@@ -183,3 +183,18 @@ input[type="checkbox"]{
 .link_separation {
     margin-bottom: 5px;
 }
+
+
+.register_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.register_logo_image {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
