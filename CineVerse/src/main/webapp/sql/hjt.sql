@@ -19,5 +19,5 @@ create table order_change(
 	oc_type number not null,
 	oc_content clob not null,
 	oc_reg_date date default sysdate not null,
-	--작성중
+	--작성중  
 );
