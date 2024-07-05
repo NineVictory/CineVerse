@@ -7,25 +7,13 @@
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"/></title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
 <tiles:insertAttribute name="css" ignore="true"/>
 </head>
 <body>
 <div id="main">
-	<div id="main_header">
-		<tiles:insertAttribute name="header"/>
-	</div>
 	<div id="main_body">
 		<tiles:insertAttribute name="body"/>
-	</div>
-	<div id="main_footer">
-		<tiles:insertAttribute name="footer"/>
 	</div>
 </div>
 </body>
 </html>
-
-
-
-
-

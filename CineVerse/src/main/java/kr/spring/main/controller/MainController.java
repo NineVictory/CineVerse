@@ -18,6 +18,11 @@ public class MainController {
 		return "main";//Tiles의 설정명
 	}
 	
+	@GetMapping("/member/login")
+	public String memberLogin() {
+		return "memberLogin";
+	}
+	
 }
 
 

@@ -5,11 +5,14 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="jsy" extends="main">
-		<put-attribute name="title" value="회원가입"/>
+
+	<definition name="memberLogin"  template="/WEB-INF/views/template/layout_member.jsp">
+		<put-attribute name="title" value="로그인"/>
 		<put-attribute name="css" value="/WEB-INF/views/member/memberCSS.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/memberRegister.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/memberLogin.jsp"/>
 	</definition>
+	
+	
 </tiles-definitions>
 
 
