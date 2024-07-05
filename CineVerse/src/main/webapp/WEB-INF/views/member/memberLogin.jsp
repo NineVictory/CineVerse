@@ -28,7 +28,7 @@
             <div class="login_logo">
                 <div class="login_logo_wrapper">
                     <div class="login_logo_image">
-                        <a href="main.html">
+                        <a href="${pageContext.request.contextPath}/main/main">
                             <img src="${pageContext.request.contextPath}/images/cmj/logo.png" width="210">
                         </a>
                     </div>
