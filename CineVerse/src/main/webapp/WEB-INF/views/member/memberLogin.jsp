@@ -59,7 +59,7 @@
 						<form:errors element="div" path="mem_passwd" cssClass="error-color"/>
 					</div>
 					<div class="find-password">
-						<span>비밀번호를 잊으셨나요?</span> <a href="#">
+						<span>비밀번호를 잊으셨나요?</span> <a href="${pageContext.request.contextPath}/member/findPasswd">
 							<button class="plain-button" type="button">비밀번호 재설정</button>
 						</a>
 					</div>
@@ -69,7 +69,7 @@
 				</div>
 				<div class="login_button">
 					<form:button class="round_button primary-round_button" tabindex="3">로그인</form:button>
-					<span class="find_link"> <a href="#">
+					<span class="find_link"> <a href="${pageContext.request.contextPath}/member/findId">
 							<button class="plain-button" type="button">아이디 찾기</button>
 					</a> <span class="link_separation">|</span> <a href="${pageContext.request.contextPath}/member/register">
 							<button class="plain-button" type="button">가입하기</button>
@@ -98,7 +98,7 @@
 		<script>
  			function loginWithKakao() {
     				Kakao.Auth.authorize({
-      							redirectUri: 'http://localhost:8000/main/main',
+      							redirectUri: 'http://localhost:8000/member/register',
     				});
   				}
 

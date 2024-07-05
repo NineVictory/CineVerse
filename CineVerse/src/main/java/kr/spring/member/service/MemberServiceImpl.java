@@ -50,5 +50,15 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO selectCheckEMember(String mem_email) {
 		return memberMapper.selectCheckEMember(mem_email);
 	}
+
+	@Override
+	public MemberVO findId(MemberVO member) {
+		return memberMapper.findId(member);
+	}
+
+	@Override
+	public MemberVO updateRandomPasswd(MemberVO member) {
+		return memberMapper.updateRandomPasswd(member);
+	}
 	
 }

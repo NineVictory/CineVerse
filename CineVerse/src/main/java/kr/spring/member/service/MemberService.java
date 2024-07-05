@@ -18,4 +18,9 @@ public interface MemberService {
 
 	// 이메일 중복 체크
 	public MemberVO selectCheckEMember(String mem_email);
+	
+	// 아이디 찾기
+	public MemberVO findId(MemberVO member);
+	// 비밀번호 찾기
+	public MemberVO updateRandomPasswd(MemberVO member);
 }

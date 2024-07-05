@@ -26,5 +26,11 @@ public interface MemberMapper {
 	public void selectAu_id(String au_id);
 	public void deleteAu_id(Long mem_num);
 	
+	//아이디 찾기
+	@Select("SELECT * FROM member LEFT OUTER JOIN member_detail USING(mem_num) WHERE mem_name=#{mem_name} AND mem_phone=#{mem_phone}")
+	public MemberVO findId(MemberVO member);
+	// 비밀번호 찾기
+	public MemberVO updateRandomPasswd(MemberVO member);
+	
 	
 }
