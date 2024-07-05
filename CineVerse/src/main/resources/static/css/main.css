@@ -118,7 +118,7 @@ a {
 /* 영화 순위 CSS */
 
 .movie_rank {
-    background: linear-gradient(to top, rgba(29, 29, 31, 1) 0%, rgba(0, 0, 0, 0) 194%);
+    background: linear-gradient(to top, rgba(29, 29, 31, 1) 0%, rgba(0, 0, 0, 0) 116%);
 }
 .ranks {
     display: flex;

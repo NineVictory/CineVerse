@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SineVerseApplication {
+public class CineVerseApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SineVerseApplication.class, args);
+		SpringApplication.run(CineVerseApplication.class, args);
 	}
 
 }

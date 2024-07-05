@@ -18,7 +18,7 @@
                 <li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
             </ul>
             <ul class="main_menu3">
-                <li><a href="register.html" class="btn_my"><img src="${pageContext.request.contextPath}/images/cmj/user.png" width="15" class="user-img">회원가입</a></li>
+                <li><a href="${pageContext.request.contextPath}/member/register" class="btn_my"><img src="${pageContext.request.contextPath}/images/cmj/user.png" width="15" class="user-img">회원가입</a></li>
                 <li><a href="#" class="btn_reserve"><img src="${pageContext.request.contextPath}/images/cmj/reserve.png" width="18" class="ticket-img">바로 예매</a></li>
             </ul>
         </div>
@@ -68,6 +68,15 @@
                             <li><a href="#" title="영화">영화</a></li>
                             <li><a href="#" title="시사회/무대인사">시사회/무대인사</a></li>
                             <li><a href="#" title="제휴할인">제휴할인</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                	<a href="#">커뮤니티</a>
+                	<div>
+                        <ul>
+                            <li><a href="#" title="영화톡톡">영화톡톡</a></li>
+                            <li><a href="#" title="양도/교환">양도/교환</a></li>
                         </ul>
                     </div>
                 </li>
