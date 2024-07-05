@@ -7,18 +7,21 @@ create table member (
     mem_membership number(1) default 1 not null,
     constraint member_pk primary key (mem_num)
 );
-create sequence member;
+
 
 --멤버 상세 테이블
 create table member_detail (
     mem_num number not null,
+    au_id varchar2(36) unique,	-- 자동 로그인에 사용되는 식별값
     mem_name varchar2(30) not null,
     mem_passwd varchar2(35) not null,
     mem_phone varchar2(15) not null,
     mem_email varchar2(50) not null,
+    photo blob,
+	photo_name varchar2(100),
     mem_reg_date date default sysdate not null,
     mem_modify_date date,
-    social_kako varchar2(400),
+    social_kakao varchar2(400),
     constraint member_detail_pk primary key (mem_num),
     constraint member_detail_fk foreign key (mem_num) references member (mem_num)
 );

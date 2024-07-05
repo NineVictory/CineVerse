@@ -198,3 +198,12 @@ input[type="checkbox"]{
     justify-content: center;
     margin-bottom: 20px;
 }
+
+#member_register .error-color{
+	font-size: 12px;
+	color:red;
+}
+
+#message_id, #message_phone, #message_email {
+	font-size: 12px;
+}

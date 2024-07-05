@@ -18,7 +18,7 @@ spring:
       max-lifetime: 1800000 #커넥션 풀에서 살아있을 수 있는 커넥션의 최대 수명시간 1,800초(30분)
       
   messages:
-    basename: cje.properties,hjt.properties,jmj.properties,kbm.properties,ksh.properties,pgh.properties,pmj.properties
+    basename: messages.cje,messages.hjt,messages.jmj,messages.kbm,messages.ksh,messages.pgh,messages.pmj
     encoding: UTF-8
     
   devtools: #View reload
