@@ -15,10 +15,20 @@
             <ul class="main_menu2">
                 <li><a href="#">고객 센터</a></li>
                 <li><a href="#">멤버십</a></li>
-                <li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                <c:if test="${!empty user }">
+                	<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+                </c:if>
+                <c:if test="${empty user}">
+				<li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>                
+                </c:if>
             </ul>
             <ul class="main_menu3">
-                <li><a href="${pageContext.request.contextPath}/member/register" class="btn_my"><img src="${pageContext.request.contextPath}/images/cmj/user.png" width="15" class="user-img">회원가입</a></li>
+            	<c:if test="${!empty user }">
+                	<li><a href="${pageContext.request.contextPath}/member/myPage" class="btn_my"><img src="${pageContext.request.contextPath}/images/cmj/user.png" width="15" class="user-img">마이</a></li>
+                </c:if>
+                <c:if test="${empty user}">
+					<li><a href="${pageContext.request.contextPath}/member/register" class="btn_my"><img src="${pageContext.request.contextPath}/images/cmj/user.png" width="15" class="user-img">회원가입</a></li>          
+                </c:if>
                 <li><a href="#" class="btn_reserve"><img src="${pageContext.request.contextPath}/images/cmj/reserve.png" width="18" class="ticket-img">바로 예매</a></li>
             </ul>
         </div>

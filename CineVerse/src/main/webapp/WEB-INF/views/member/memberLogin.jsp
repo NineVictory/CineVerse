@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,18 +43,20 @@
 
 				</div>
 			</div>
-			<form id="login_form">
+			<form:form action="login" id="login_form" modelAttribute="memberVO">
+			<form:errors element="div" cssStyle="margin-top:10px; font-size:12px; color:red;"/>
 				<div class="login_form_inputs">
 					<div class="login_form_all">
 						<div class="login_form_inputs_id_passwd">
-							<input placeholder="ID를 입력해주세요" name="mem_id" id="mem_id" type="text" class="input_style">
+							<form:input path="mem_id" placeholder="ID를 입력해주세요" class="input_style" autocomplete="off"/>
 						</div>
+						<form:errors element="div" path="mem_id" cssClass="error-color"/>
 					</div>
 					<div class="login_form_all">
 						<div class="login_form_inputs_id_passwd">
-							<input placeholder="비밀번호를 입력해주세요" type="password" name="mem_passwd" id="mem_passwd"
-								class="input_style">
+                            <form:password path="mem_passwd" placeholder="비밀번호를 입력해주세요" class="input_style"/>
 						</div>
+						<form:errors element="div" path="mem_passwd" cssClass="error-color"/>
 					</div>
 					<div class="find-password">
 						<span>비밀번호를 잊으셨나요?</span> <a href="#">
@@ -64,8 +68,7 @@
 					</div>
 				</div>
 				<div class="login_button">
-					<input class="round_button primary-round_button " type="submit" value="로그인"
-						tabindex="3">
+					<form:button class="round_button primary-round_button" tabindex="3">로그인</form:button>
 					<span class="find_link"> <a href="#">
 							<button class="plain-button" type="button">아이디 찾기</button>
 					</a> <span class="link_separation">|</span> <a href="${pageContext.request.contextPath}/member/register">
@@ -73,7 +76,7 @@
 					</a>
 					</span>
 				</div>
-			</form>
+			</form:form>
 			<div
 				style="display: flex; justify-content: center; margin-top: 30px;">
 				<a id="kakao-login-btn" href="javascript:loginWithKakao()"> <img
