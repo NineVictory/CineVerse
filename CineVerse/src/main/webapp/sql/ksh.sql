@@ -178,7 +178,7 @@ create table notice_board (
 create sequence notice_board_seq;
 
 --양도 게시판 테이블
-create table assignment_board (
+create table assignment_board ( 
     ab_num number not null,
     ab_title varchar2(150) not null,
     ab_content clob not null,
