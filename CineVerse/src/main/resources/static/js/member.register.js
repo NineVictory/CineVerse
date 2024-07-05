@@ -69,12 +69,8 @@ $(function(){
 	});	// end of submit
 	
 	
-	// 번호 중복 여부 저장 변수
 	let checkPhone = 0;
-	// 0: 번호 중복 또는 체크 미실행
-	// 1: 번호 미중복
 	
-	// 번호 중복 체크
 	 $('#mem_phone').blur(function(){
 		if($('#mem_phone').val().trim() == ''){
 			$('#message_phone').css('color','red').text('전화번호를 입력하세요');
