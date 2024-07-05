@@ -1,0 +1,60 @@
+spring:
+  profiles:
+    active: local #local,dev,real
+    
+  mvc:
+    view: #view 경로 및 확장자 지정
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@211.63.89.70:1521:xe
+    username: fuser03
+    password: f1234
+    hikari:
+      connection-timeout: 30000 #클라이언트가 pool에 connection을 요청하는데 기다리는 최대시간을 설정 30초
+      maximum-pool-size: 10 #최대 커넥션 개수 설정
+      max-lifetime: 1800000 #커넥션 풀에서 살아있을 수 있는 커넥션의 최대 수명시간 1,800초(30분)
+      
+  messages:
+    basename: kcy.properties,ksy.properties,kyj.properties,shg.properties,ssh.properties,whl.properties,ych.properties
+    encoding: UTF-8
+    
+  devtools: #View reload
+    livereload:
+      enabled: true
+      
+    restart: #컨트롤러,모델단이 바뀌었을 때 프로젝트 재시작 설정(정확히 classpath에 있는 모든 파일)
+      enabled: true
+      
+  servlet:
+    multipart:
+      max-file-size: 50MB #파일 한 개당 최대 사이즈
+      max-request-size: 200MB #요청당 최대 파일 크기        
+    
+mybatis:
+  type-aliases-package: kr.spring.**.vo
+  mapper-locations: kr/spring/**/dao/*.xml
+    
+logging:
+  level:
+    #root: error
+    '[kr.spring]': debug
+    
+server:
+  port: 8000
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true #http 인코딩 지원을 활성활지 여부
+      force: true    
+  tomcat:
+    max-http-form-post-size: 200MB #톰캣에서 허용하는 파일 업로드 사이즈    
+    
+    
+    
+    
+    
+    
+    
