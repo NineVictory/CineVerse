@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+:root {
+	/* CSS 전역 변수 선언 */
+	--main-color: #DBE3FF;
+	--main-color-strong: #3F66ED;
+	--main-color-light: #EFF3FD;
+	--gray-1: #F2F2F2;
+	--gray-2: #D1D1D1;
+	--gray-3: #BDBDBD;
+	--gray-4: #ABAAAA;
+	--gray-5: #949292;
+	--gray-6: #020202;
+	--yellow-check-btn: #FFDE5A;
+	--red-check-btn: #FF5151;
+
+	/*color: var(--main-font-color);
+	  변수 선언한 건 이런식으로 사용하면 됨
+	*/
+}
+
+* {
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+ul, ol, dl {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+.page-container {
+	width: 70%;
+	min-width: 900px;
+	margin: 0 auto;
+}

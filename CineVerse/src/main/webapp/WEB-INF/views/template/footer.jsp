@@ -1,66 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">
 <!-- 하단 시작 -->
-<style>
-* {
-    font-family: "Noto Sans KR", sans-serif;
-}
-
-a {
-	text-decoration: none;
-}
-
-ul li {
-	list-style: none;
-}
-
-.footer {
-	margin-top: 10%;
-	bottom: 0;
-	width: 100%;
-	color: #000;
-	padding: 10px 0;
-	box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.footer-content {
-	width: 980px;
-	height: 100%;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	font-size: 12px;
-}
-
-.footer .f_menu {
-	margin-bottom: 15px;
-}
-
-.footer .f_menu li:first-child {
-	padding-left: 0;
-}
-
-.footer .f_menu li {
-	position: relative;
-	float: left;
-	margin-right: 10px;
-	padding-left: 10px;
-}
-
-.footer .f_menu.type1 li a {
-	color: #4d4d4d;
-}
-
-.footer .f_menu li a {
-	display: block;
-	font-size: 12px;
-}
-
-.footer-main-logo {
-	margin-left: 25px;
-}
-</style>
-
 <footer class="footer">
 	<div class="footer-content">
 		<div class="footer-main-logo">
