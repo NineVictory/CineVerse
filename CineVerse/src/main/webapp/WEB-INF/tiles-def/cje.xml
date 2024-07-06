@@ -5,10 +5,12 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="yhl" template="/WEB-INF/views/template/layout_basic.jsp">
-		<put-attribute name="title" value="SpringPage"/>
-		<put-attribute name="css" value="/WEB-INF/views/member/memberCSS.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
+	<definition name="shopMain"  template="/WEB-INF/views/template/layout_shop.jsp">
+		<put-attribute name="title" value="벌스샵"/>
+		<put-attribute name="nav"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/shop/shopMain.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
 	</definition>
 </tiles-definitions>
 

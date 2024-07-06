@@ -76,7 +76,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="#">벌스샵</a></li>
+                <li><a href="${pageContext.request.contextPath}/shop/shopMain">벌스샵</a></li>
             </ul>
         </nav>
         <div class="user-menu">
