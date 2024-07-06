@@ -1,11 +1,5 @@
 @charset "UTF-8";
-* {
-    font-family: 'Noto Sans KR', sans-serif;
-    
-}
-a{
-    text-decoration: none;
-}
+
 
 .find_link {
     display: inline-flex;
@@ -206,4 +200,9 @@ input[type="checkbox"]{
 
 #message_id, #message_phone, #message_email {
 	font-size: 12px;
+}
+
+#member_findId .error-color{
+	font-size: 12px;
+	color:red;
 }

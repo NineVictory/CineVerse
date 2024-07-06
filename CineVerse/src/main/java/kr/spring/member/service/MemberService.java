@@ -23,4 +23,7 @@ public interface MemberService {
 	public MemberVO findId(MemberVO member);
 	// 비밀번호 찾기
 	public MemberVO updateRandomPasswd(MemberVO member);
+	
+	public void updatePassword(String mem_passwd, String mem_id);
+	public void chargePoint(Long ph_point, Long mem_num);
 }

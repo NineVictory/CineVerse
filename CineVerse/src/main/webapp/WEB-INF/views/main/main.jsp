@@ -111,7 +111,7 @@
         <a href="#none" class="mid_itm" title="화면이동">
             <img src="https://cf.lottecinema.co.kr//Media/WebAdmin/3423e358b74d49d5b12867c7d9c6f6a8.png" alt="할인안내">
         </a>
-        <a href="#none" class="mid_itm" title="화면이동">
+        <a href="${pageContext.request.contextPath}/member/pointCharge" class="mid_itm" title="화면이동">
             <img src="https://cf.lottecinema.co.kr//Media/WebAdmin/16b056e5e6a04c609b94a5c21e786d3b.png" alt="포인트">
         </a>
         <a href="#none" class="mid_itm" title="화면이동">

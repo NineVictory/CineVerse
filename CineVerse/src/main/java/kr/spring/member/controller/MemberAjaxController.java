@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -76,6 +77,26 @@ public class MemberAjaxController {
 		}
 		return mapAjax;
 	}
+	
+	 	@PostMapping("/member/pointCharge")
+	   @ResponseBody
+	    public Map<String, String> chargePoint(@RequestParam Long mem_num, @RequestParam Long ph_point) {
+	        log.debug("<<포인트 충전>> ");
+	        
+	        Map<String, String> mapAjax = new HashMap<String,String>();
+	        
+	        try {
+	            memberService.chargePoint(ph_point, mem_num);
+	            mapAjax.put("result", "success");
+	        } catch (Exception e) {
+	            log.error("포인트 충전 에러", e);
+	            mapAjax.put("result", "error");
+	        }
+	        
+	        return mapAjax;
+	    }
+	
+	
 	
 	
 }

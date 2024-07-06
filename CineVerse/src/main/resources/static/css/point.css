@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+.point_title {
+	margin-left: 6.5%;
+	margin-top: 3%;
+	font-size: 28px;
+	color: #333;
+}
+
+.point_charge_all {
+	display: flex;
+	margin-top: 20px;
+	justify-content: center;
+}
+
+.point_charge_toss {
+	display: flex;
+	flex-direction: column;
+}
+
+h3 {
+	margin-top: 10%;
+	font-size: 24px;
+	margin-bottom: 10px;
+	color: #333;
+}
+
+.choose_amount {
+	margin: 20px;
+}
+
+.choose_list {
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+	gap: 20px;
+	border: 1px solid #ececec;
+}
+
+.choose_list li {
+	margin-bottom: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 300px;
+}
+
+input[type="radio"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ccc;
+	border-radius: 50%;
+	outline: none;
+	cursor: pointer;
+	margin-right: 10px;
+	transition: border-color 0.3s ease;
+}
+
+input[type="radio"]:checked {
+	border-color: var(--main-color);
+}
+
+.choose_list span {
+	font-size: 18px;
+	color: #555;
+}
+
+#charge_kakao {
+	background-color: transparent;
+	margin-top: 20px;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	background-image: url(../images/cmj/kakaopay.png);
+	background-size: contain;
+	background-position: center;
+	width: 160px;
+	height: 64px;
+	color: transparent;
+	background-repeat: no-repeat;
+}
+
+#charge_toss {
+	background-color: transparent;
+	margin-top: 20px;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	background-image: url(../images/cmj/tosspay_logo.png);
+	background-size: contain;
+	background-position: center;
+	width: 160px;
+	height: 64px;
+	color: transparent;
+	background-repeat: no-repeat;
+}
+
+.inputs {
+	display: flex;
+	align-items: center;
+}
+
+.charge_types {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px;
+}
+
+.buyer_info{
+	    display: flex;
+    flex-direction: column;
+}
+
+.buyer_info_all {
+	margin: 20px;
+}
+
+#buyer_name , #buyer_email{
+	margin-left: 10px;
+    border: none;
+    padding: 5px 10px;
+    background-color: transparent;
+    font-weight: 600;
+}
