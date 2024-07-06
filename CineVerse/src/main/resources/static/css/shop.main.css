@@ -1,0 +1,22 @@
+#main_content {
+    display: flex;
+    flex-direction: row; 
+}
+
+.shopNav ul {
+	margin-top: 80px;
+	margin-left: 20px;
+}
+.shopNav ul li {
+	margin: 10px;
+	margin-bottom: 28px;
+	display: flex; 
+	align-items: center;
+	justify-content: center; 
+}
+
+.shopNav ul li a {
+	font-size: 12pt;
+	font-weight: bold;
+	
+}
