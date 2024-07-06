@@ -60,5 +60,11 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO updateRandomPasswd(MemberVO member) {
 		return memberMapper.updateRandomPasswd(member);
 	}
+
+
+	@Override
+	public void updatePassword(String mem_passwd, String mem_id) {
+		memberMapper.updatePassword(mem_passwd, mem_id);
+	}
 	
 }

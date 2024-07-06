@@ -3,6 +3,7 @@ package kr.spring.member.dao;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.member.vo.MemberVO;
 
@@ -30,7 +31,10 @@ public interface MemberMapper {
 	@Select("SELECT * FROM member LEFT OUTER JOIN member_detail USING(mem_num) WHERE mem_name=#{mem_name} AND mem_phone=#{mem_phone}")
 	public MemberVO findId(MemberVO member);
 	// 비밀번호 찾기
+	@Select("SELECT * FROM member LEFT OUTER JOIN member_detail USING(mem_num) WHERE mem_id=#{mem_id} AND mem_phone=#{mem_phone} AND mem_email=#{mem_email}")
 	public MemberVO updateRandomPasswd(MemberVO member);
-	
+	// 비밀번호 변경
+	@Update("UPDATE member_detail SET mem_passwd = #{mem_passwd} WHERE mem_num = (SELECT mem_num FROM member WHERE mem_id = #{mem_id})")
+	public void updatePassword(String mem_passwd, String mem_id);
 	
 }

@@ -1,5 +1,7 @@
 package kr.spring.member.controller;
 
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -173,5 +175,43 @@ public class MemberController {
 
 		return "memberFindPasswd";
 	}
+	
+	@PostMapping("/member/findPasswd")
+	public String findPasswd(@Valid MemberVO memberVO, BindingResult result, String mem_passwd,
+							 Model model,HttpServletRequest request) {
+		log.debug("<< 비밀번호 찾기 >> " + memberVO);
+		
+		if(result.hasFieldErrors("mem_id") || 
+				result.hasFieldErrors("mem_phone") || 
+					result.hasFieldErrors("mem_email")) {
+			return findPasswdForm();
+		}
+		
+	MemberVO member = memberService.updateRandomPasswd(memberVO);
+	
+	if(member == null) {
+		model.addAttribute("message", "해당하는 아이디가 없습니다. 아이디 찾기로 이동합니다.");
+		model.addAttribute("url", request.getContextPath() + "/member/findId");
+		return "common/resultAlert";
+	}
+		String temp_pw = "";
+		UUID uuid = UUID.randomUUID();
+		
+		log.debug("<< 임시 비밀번호 >> : " + uuid);
+		
+		temp_pw = uuid.toString().substring(0, 6);
+		
+		memberService.updatePassword(temp_pw, memberVO.getMem_id());
+		
+		model.addAttribute("accessTitle","임시 비밀번호 생성");
+		model.addAttribute("accessMsg","임시 비밀번호가 발급되었습니다.");
+		model.addAttribute("new_passwd",temp_pw);
+		model.addAttribute("accessBtn","로그인");
+		model.addAttribute("accessUrl", request.getContextPath()+"/member/login");
+		
+		return "common/resultFindPasswd";
+	}
+	
+	
 
 }
