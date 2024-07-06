@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.2.1.js"></script>
 <script src="${pageContext.request.contextPath}/js/member.point.js"></script>
@@ -75,6 +76,19 @@
 						</div>
 					</li>
 				</ul>
+				
+				<h3>구매자 정보 입력하기</h3>
+				<div class="buyer_info">
+					<c:if test="${!empty user }">
+					<input type="hidden" id="mem_num" name="mem_num" value="${user.mem_num }">
+					<label class="buyer_info_all">구매자 아이디 <input type="text" id="buyer_name" value="${user.mem_id }" disabled="disabled"></label>
+					<label class="buyer_info_all">구매자 이메일 <input type="email" id="buyer_email" value="${email }" ></label>
+					</c:if>
+					<c:if test="${empty user }">
+						<label class="buyer_info_all">구매자 아이디 <input type="text" id="buyer_name" disabled="disabled"></label>
+						<label class="buyer_info_all">구매자 이메일 <input type="email" id="buyer_email" disabled="disabled" ></label>
+					</c:if>
+				</div>
 
 				<div>
 					<h3>결제 방법 선택하기</h3>
@@ -94,6 +108,9 @@
 						</div>
 					</div>
 				</div>
+				
+				
+						
 			</div>
 		</div>
 	</div>

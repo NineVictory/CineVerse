@@ -66,5 +66,10 @@ public class MemberServiceImpl implements MemberService{
 	public void updatePassword(String mem_passwd, String mem_id) {
 		memberMapper.updatePassword(mem_passwd, mem_id);
 	}
+
+	@Override
+	public void chargePoint(Long ph_point, Long mem_num) {
+		memberMapper.chargePoint(ph_point, mem_num);
+	}
 	
 }

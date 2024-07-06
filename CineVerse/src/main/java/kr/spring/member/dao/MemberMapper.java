@@ -37,4 +37,7 @@ public interface MemberMapper {
 	@Update("UPDATE member_detail SET mem_passwd = #{mem_passwd} WHERE mem_num = (SELECT mem_num FROM member WHERE mem_id = #{mem_id})")
 	public void updatePassword(String mem_passwd, String mem_id);
 	
+	//포인트 충전하기
+	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num) VALUES(point_history_seq.nextval,#{ph_point},SYSDATE,#{mem_num})")
+	public void chargePoint(Long ph_point, Long mem_num);
 }

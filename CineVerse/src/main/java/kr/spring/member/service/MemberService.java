@@ -25,4 +25,5 @@ public interface MemberService {
 	public MemberVO updateRandomPasswd(MemberVO member);
 	
 	public void updatePassword(String mem_passwd, String mem_id);
+	public void chargePoint(Long ph_point, Long mem_num);
 }

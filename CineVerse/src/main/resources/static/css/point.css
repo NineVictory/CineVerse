@@ -26,7 +26,7 @@ h3 {
 }
 
 .choose_amount {
-	margin-top: 20px;
+	margin: 20px;
 }
 
 .choose_list {
@@ -112,5 +112,22 @@ input[type="radio"]:checked {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 10px;
+	margin: 20px;
+}
+
+.buyer_info{
+	    display: flex;
+    flex-direction: column;
+}
+
+.buyer_info_all {
+	margin: 20px;
+}
+
+#buyer_name , #buyer_email{
+	margin-left: 10px;
+    border: none;
+    padding: 5px 10px;
+    background-color: transparent;
+    font-weight: 600;
 }
