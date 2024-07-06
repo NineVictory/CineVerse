@@ -732,4 +732,4 @@ ALTER TABLE community_bookmark ADD CONSTRAINT FK_member_TO_community_bookmark_1 
 ALTER TABLE community_bookmark ADD CONSTRAINT FK_community_board_TO_community_bookmark_1 FOREIGN KEY (cb_num) REFERENCES community_board (cb_num);
 ALTER TABLE consult ADD CONSTRAINT FK_member_TO_consult_1 FOREIGN KEY (mem_num) REFERENCES member (mem_num);
 ALTER TABLE rm_form ADD CONSTRAINT FK_re_movie_TO_rm_form_1 FOREIGN KEY (rm_num) REFERENCES re_movie (rm_num);
-ALTER TABLE rm_form ADD CONSTRAINT FK_member_TO_rm_form_1 FOREIGN KEY (mem_num) REFERENCES member (mem_num);
+ALTER TABLE rm_form ADD CONSTRAINT FK_member_TO_rm_form_1 FOREIGN KEY (mem_num) REFERENCES member (mem_num); 
