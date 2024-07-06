@@ -89,7 +89,7 @@ create sequence event_participation_seq;
 --포인트 내역 테이블
 create table point_history (
     ph_history number not null,
-    ph_point number not null,
+    ph_point number not null default 0,
     ph_date date default sysdate not null,
     mem_num number not null,
     constraint point_history_pk primary key (ph_history),

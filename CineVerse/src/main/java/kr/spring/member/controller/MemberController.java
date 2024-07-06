@@ -158,8 +158,8 @@ public class MemberController {
 		MemberVO member = memberService.findId(memberVO);
 
 		if(member == null) {
-			model.addAttribute("message", "회원가입한 아이디가 없습니다. 회원가입 화면으로 이동합니다.");
-			model.addAttribute("url", request.getContextPath() + "/member/register");
+			model.addAttribute("message", "정보에 맞는 회원이 없습니다. 재시도해주세요.");
+			model.addAttribute("url", request.getContextPath() + "/member/findId");
 			return "common/resultAlert";
 		}
 
@@ -190,8 +190,8 @@ public class MemberController {
 	MemberVO member = memberService.updateRandomPasswd(memberVO);
 	
 	if(member == null) {
-		model.addAttribute("message", "해당하는 아이디가 없습니다. 아이디 찾기로 이동합니다.");
-		model.addAttribute("url", request.getContextPath() + "/member/findId");
+		model.addAttribute("message", "정보에 맞는 회원이 없습니다. 재시도해주세요.");
+		model.addAttribute("url", request.getContextPath() + "/member/findPasswd");
 		return "common/resultAlert";
 	}
 		String temp_pw = "";
@@ -210,6 +210,11 @@ public class MemberController {
 		model.addAttribute("accessUrl", request.getContextPath()+"/member/login");
 		
 		return "common/resultFindPasswd";
+	}
+	
+	@GetMapping("/member/pointCharge")
+	public String pointChargeForm() {
+		return "memberPointCharge";
 	}
 	
 	
