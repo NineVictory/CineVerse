@@ -68,7 +68,7 @@
                     </div>
                	</li>
                 <li>
-                	<a href="#">커뮤니티</a>
+                	<a href="${pageContext.request.contextPath}/board/list">커뮤니티</a>
                 	<div class="hide_menu">
                         <ul>
                             <li><a href="#" title="영화톡톡">영화톡톡</a></li>
