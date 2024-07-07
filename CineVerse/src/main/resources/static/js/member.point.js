@@ -7,6 +7,11 @@ $(function() {
 		var buyerEmail = $('#buyer_email').val();
 		var memNum = $('#mem_num').val();
 		var paymentMethod = $(this).attr('id') === 'charge_kakao' ? 'kakaopay' : 'tosspay';
+		
+		if(money == null){
+			alert('충전하실 금액을 선택해주세요.');
+			return false;
+		}
 
 		IMP.request_pay(
 			{
@@ -43,7 +48,6 @@ $(function() {
                 });
             } else {
                 var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
                 alert(msg);
             }
 			}
