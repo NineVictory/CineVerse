@@ -90,7 +90,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="#">벌스샵</a></li>
+                <li><a href="${pageContext.request.contextPath}/shop/shopMain">벌스샵</a></li>
                 <li class="wrap_nav_underline"><span class="nav_underline"></span></li>
             </ul>
         </div>
