@@ -3,20 +3,22 @@
 * {
     font-family: "Noto Sans KR", sans-serif;
 }
-#main_body_1 {
-    display: flex;
+/* =======================
+	  myPage 고정 프로필 박스
+   ======================= */
+.myPageMain_1{
+	display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
     margin-top: 5%;
     background-color: #DBE3FF;
-    width: 60%;
+    width: 61%;
     height: 230px;
     box-sizing: border-box;
     border-radius: 15px;
 }
-/* body_1 마이페이지 고정 */
-.myPageMain_1_photo {
+.myPageMain_photo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,31 +28,31 @@
     border-radius: 50%;
     overflow: hidden;
 }
-.myPageMain_1_photo img {
+.myPageMain_photo img {
     width: 200%;
     height: auto;
 }
 
-.myPageMain_1_right{
+.myPageMain_right{
 	width:70%;
 	height:70%;
 }
-.myPageMain_1_1{
+.myPageMain_information{
 	margin-top: 25px;
 }
-.myPageMain_1_name{
+.myPageMain_name{
 	font-weight:500;
 	font-size: 20pt;
 }
-.myPageMain_1_id,.myPageMain_1_nickName{
+.myPageMain_id,.myPageMain_nickName{
 	margin-left: 10px;
 	font-size: 14px;
 }
-.myPageMain_1_2{
+.myPageMain_vip{
 	margin-top:10px;
 	font-size: 14px;
 }
-.myPageMain_1_3 {
+.mp_vip_lounge {
     margin-top: 13px;
     font-size: 14px;
     border-radius: 20px;
@@ -61,27 +63,297 @@
     padding :1px 10px;
     cursor: pointer;
 }
-
-.myPageMain_1_3:hover {
+.mp_vip_lounge:hover {
     background: #2a49b3;
 }
-/* body_1 마이페이지 고정 */
+/* =======================
+  myPage 고정 티켓,쿠폰,포인트 박스
+   ======================= */
+.myPageMain_2{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    width: 61%;
+    height: 240px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+/* 고정_티켓,쿠폰,포인트 */
+.myPage_ticket,.myPage_coupon{
+    background-color: #EFF3FD;
+    width: 35%;
+    height: 80%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    margin-right: 40px;
+    font-size: 14px;
+    padding: 20px 0 10px 25px;
+}
+.myPage_point{
+    background-color: #EFF3FD;
+    width: 35%;
+    height: 80%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-size: 14px;
+    padding: 20px 0 10px 25px;
+}
+.mp_ticket,.mp_coupon,.mp_point{
+	border-radius: 20px;
+    background: #3F66ED;
+    color: white;
+    width:100px;
+    height:26px;
+    padding :2px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.my_point_charge{
+	border-radius: 20px;
+    background: #FF5151;
+    color: white;
+    width:50px;
+    height:26px;
+    font-size: 13px;
+    padding :3px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.ticket_content{
+	margin-top: 7%;
+	cursor: pointer;
+}
+.point_content,.coupon_content{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 28px;
+    margin-top: 7%;
+	font-weight: 500;
+	cursor: pointer;
+}
+.user_point{
+	text-align: right;
+}
+.mypage_movie_name{
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 5px;
+	width:245px;
+	/* 글자 ..처리 */
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.myPage_bold{
+	font-weight: 500;
+	margin-left: 10px;
+}
+.point_list{
+	margin-top: 5px;
+	font-size: 13px;
+	color: #A1A1A1;
+}
+.line{
+	margin-top: 10px;
+}
+/* =======================
+			nav
+   ======================= */
+.mp_nav_myPage{
+	font-size: 17px;
+	font-weight: bold;
+}
+.mp_nav{
+	font-size: 17px;
+	font-weight: bold;
+	margin: 10px 0 10px 0;
+}
+li{
+	font-size: 14px;
+	margin-bottom: 3px;
+}
 
+li:hover{
+	color:#2a49b3;/* 왜 안됨 */
+	cursor: pointer;
+	font-weight: 900; 
+}
+/* =======================
+       body-nav,main
+   ======================= */
 #main_body {
     display: flex;
     flex-direction: column;
     align-items: center;
-	width:100%;
 }
 
 #main_content {
     display: flex;
-    flex-direction: row; 
-	width:1500px;
+	width:1320px;
 	justify-content: center;
 }
-
+.myPageNav{
+	width:18%;
+}
 .myPage_main{
 	width:70%;
+	margin-right:30px;
+	background-color: #e7e7e7;
+}
+/* =======================
+       main_myPage_body_1
+       (myPageMain.jsp)
+   ======================= */
+.myPage_active{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 3%;
+    width: 100%;
+    height: 240px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+.m_except{
+	text-align:center;
+	background-color: #EFF3FD;
+    width: 35%;
+    height: 80%;
+    box-sizing: border-box;
+    border-radius: 15px 0 0 15px;
+    font-size: 14px;
+    padding: 4% 9% 4% 9%;
+}
+.m_watching{
+	text-align:center;
+	background-color: #EFF3FD;
+    width: 35%;
+    height: 80%;
+    box-sizing: border-box;
+    font-size: 14px;
+    padding: 4% 9% 4% 9%;
+}
+.m_review{
+	text-align:center;
+	background-color: #EFF3FD;
+    width: 35%;
+    height: 80%;
+    box-sizing: border-box;
+    border-radius: 0 15px 15px 0;
+    font-size: 14px;
+    padding: 4% 9% 4% 9%;
+}
+.m_except:hover,.m_watching:hover,.m_review:hover{
+	background-color: #DBE3FF;
+}
+/* 아이콘 위치 삭제---------------------- */
+.test_icon{
+    margin: 0 auto;
+	background-color: #fff;
+	width:40px;
+	height:40px;
+	margin-bottom: 8px;
+}
+/* 아이콘 위치 삭제---------------------- */
+.myPageMain_font_b{
+	font-size: 17px;
+	font-weight: 600;
+	margin: 12px 0 5px 0;
+}
+.myPageMain_font_s{
+	font-size: 13px;
+	font-weight: 400;
+	color: #949292;
+}
+/* =======================
+       main_myPage_body_2
+       (myPageMain.jsp)
+   ======================= */
+.reserv_font{
+	font-size: 18px;
+    font-weight: 500;
+}
+.myPageReservation_list{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 240px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background: #F2F2F2;
+}
+.mp_reserv{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	margin-right: auto;
+}
+.m_movie_photo{
+	width:250px;
+}
+.mpMovie_info{
+	width:500px;
+}
+
+.reservation_list{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+	cursor: pointer;
+}
+.reserv_info{
+	color: #666;
+	font-weight: 500;
+	font-size: 15px;
+}
+.my_reserv_info{
+	font-size: 15px;
+	font-weight: 600;
+	margin-right: 50%;
+}
+.reserv_pay_cancle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+	font-weight: 500;
+	cursor: pointer;
+	font-size: 15px;
+}
+.m_pay{
 	
 }
+.m_cancle{
+	margin-left: auto;
+}
+.qna{
+	margin-top: 10%;
+}
+.myPage_qna{
+	
+}
+.mpQna{
+	
+}
+
+
+
+
+
+
+
+
+/* =======================
+       main_myPage_body_3
+       (myPageMain.jsp)
+   ======================= */
+
+
+
+
+
