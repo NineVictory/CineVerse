@@ -5,13 +5,20 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="board_main" template="/WEB-INF/views/template/layout_board.jsp">
+	<definition name="boardList" template="/WEB-INF/views/template/layout_board.jsp">
 		<put-attribute name="title" value="커뮤니티"/>
 		<put-attribute name="css" value="/WEB-INF/views/board/boardCSS.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/board/main.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/boardList.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
 	</definition>
+	
+	<definition name="boardWrite" extends="boardList">
+		<put-attribute name="title" value="글쓰기"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/boardWrite.jsp"/>
+	</definition>
+	
+	
 </tiles-definitions>
 
 
