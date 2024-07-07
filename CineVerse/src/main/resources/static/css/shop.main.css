@@ -35,11 +35,13 @@
 	font-size: 12pt;
 	font-weight: bold;
 }
+
 .shop-main {
     display: flex;
 	justify-content: center;
 	width: 80%; 	
 	margin-right: 120px;
+	position: relative;
 }
 
 
@@ -99,3 +101,21 @@ input[type="search"]::placeholder {
     color: #8D8D8D;
 	font-weight:500;
 }
+
+.select-wrapper {
+    position: absolute;
+    top: 120px; 
+    right: 10px; 
+    z-index: 1000; 
+}
+
+.select-wrapper select {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid#3D3D3D;
+    background-color: #fff;
+	border-radius: 10px;
+	color:#3D3D3D;
+	height:40px;
+}
+
