@@ -1,22 +1,121 @@
+
+#main_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	width:100%;
+}
+
 #main_content {
     display: flex;
     flex-direction: row; 
+	width:1500px;
+	justify-content: center;
 }
 
+.shopNav{
+	width: 20%;
+}
 .shopNav ul {
-	margin-top: 80px;
-	margin-left: 20px;
+	margin-top: 120px;
+	margin-left: 40px;
 }
 .shopNav ul li {
 	margin: 10px;
-	margin-bottom: 28px;
+	margin-bottom: 15px;
 	display: flex; 
 	align-items: center;
 	justify-content: center; 
+	height: 50px;
+	width: 190px;
+	border-radius: 10px;
 }
 
 .shopNav ul li a {
 	font-size: 12pt;
 	font-weight: bold;
-	
 }
+
+.shop-main {
+    display: flex;
+	justify-content: center;
+	width: 80%; 	
+	margin-right: 120px;
+	position: relative;
+}
+
+
+input[type="search"] {
+    width: 500px; 
+    height: 50px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #EBE9E9;
+    border: none;
+    border-radius: 10px;
+    margin-top: 50px;
+    color: #8D8D8D;
+    position: relative; 
+}
+
+
+label {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+input[type="search"] {
+	width: 500px;
+	height: 50px;
+	padding: 20px 10px; 
+	font-size: 16px;
+	background-color: #EBE9E9;
+	border: none;
+	border-radius: 10px;
+	margin-top: 50px;
+	color: #8D8D8D;
+	position: relative;
+}
+
+input[type="submit"] {
+
+	background-color: #EBE9E9;
+	width: 40px; 
+	height: 30px; 
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	top: 75px;
+	right: 13px;
+	transform: translateY(-50%); 
+	background-image: url('${pageContext.request.contextPath}/images/search_icon.png');
+	background-size: contain; 
+	background-repeat: no-repeat;
+	background-position: center; 
+}
+
+
+input[type="search"]::placeholder {
+	padding:10px;
+    color: #8D8D8D;
+	font-weight:500;
+}
+
+.select-wrapper {
+    position: absolute;
+    top: 120px; 
+    right: 10px; 
+    z-index: 1000; 
+}
+
+.select-wrapper select {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid#3D3D3D;
+    background-color: #fff;
+	border-radius: 10px;
+	color:#3D3D3D;
+	height:40px;
+}
+

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="shopNav">
     <ul>
-        <li><a href="?category=all"> ALL </a></li>
+        <li><a href="${pageContext.request.contextPath}/shop/shopMain"> ALL </a></li>
         <li><a href="?category=marvel"> MARVEL </a></li>
         <li><a href="?category=disney"> DISNEY </a></li>
         <li><a href="?category=disney_princess"> DISNEY PRINCESS </a></li>
@@ -15,17 +15,16 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-		
         var menuItems = document.querySelectorAll('.shopNav ul li a');
-        
         var currentCategory = new URL(window.location).searchParams.get('category');
-        if (currentCategory) {
+        
+        if (!currentCategory) {
+            // 기본 경로일 경우 ALL에 배경 색상 적용
+            menuItems[0].parentElement.style.background = '#D8D8D8';
+        } else {
             menuItems.forEach(function(item) {
                 if (new URL(item.href).searchParams.get('category') === currentCategory) {
                     item.parentElement.style.background = '#D8D8D8';
-					item.parentElement.style.borderRadius = '10px';
-					item.parentElement.style.height="50px";
-					item.parentElement.style.width="190px";
                 }
             });
         }

@@ -16,13 +16,11 @@
         <div id="main_header">
             <tiles:insertAttribute name="header"/>
         </div>
-		<div id="main_content">
-	        <div>
+		<div id="main_body">
+			<div id="main_content">
 	            <tiles:insertAttribute name="shopNav"/>
-	        </div>
-	        <div id="main_body">
 	            <tiles:insertAttribute name="body"/>
-	        </div>
+			</div>
 		</div>
         <div id="main_footer">
             <tiles:insertAttribute name="footer"/>

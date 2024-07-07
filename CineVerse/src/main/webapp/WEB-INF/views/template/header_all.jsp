@@ -88,7 +88,7 @@
                 </c:if>
                 
                 <c:if test="${!empty user }">
-               	<a href="#">마이페이지</a>
+               	<a href="${pageContext.request.contextPath}/myPage/myPageMain">마이페이지</a>
                 </c:if>
                 <c:if test="${empty user}">
 				<a href="${pageContext.request.contextPath}/member/register">회원가입</a>               

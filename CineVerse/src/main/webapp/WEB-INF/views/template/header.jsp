@@ -24,7 +24,7 @@
             </ul>
             <ul class="main_menu3">
             	<c:if test="${!empty user }">
-                	<li><a href="${pageContext.request.contextPath}/member/myPage" class="btn_my"><img src="${pageContext.request.contextPath}/images/cmj/user.png" width="15" class="user-img">마이</a></li>
+                	<li><a href="${pageContext.request.contextPath}/myPage/myPageMain" class="btn_my"><img src="${pageContext.request.contextPath}/images/cmj/user.png" width="15" class="user-img">마이</a></li>
                 </c:if>
                 <c:if test="${empty user}">
 					<li><a href="${pageContext.request.contextPath}/member/register" class="btn_my"><img src="${pageContext.request.contextPath}/images/cmj/user.png" width="15" class="user-img">회원가입</a></li>          
