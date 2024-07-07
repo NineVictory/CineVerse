@@ -82,11 +82,11 @@
                     </div>
                 </li>
                 <li>
-                	<a href="#">커뮤니티</a>
+                	<a href="${pageContext.request.contextPath}/board/boardList">커뮤니티</a>
                 	<div>
                         <ul>
-                            <li><a href="#" title="영화톡톡">영화톡톡</a></li>
-                            <li><a href="#" title="양도/교환">양도/교환</a></li>
+                            <li><a href="${pageContext.request.contextPath}/board/movieTalk" title="영화톡톡">영화톡톡</a></li>
+                            <li><a href="${pageContext.request.contextPath}/board/swap" title="양도/교환">양도/교환</a></li>
                         </ul>
                     </div>
                 </li>
