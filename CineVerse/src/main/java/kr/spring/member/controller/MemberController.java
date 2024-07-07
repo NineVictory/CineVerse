@@ -217,6 +217,11 @@ public class MemberController {
 		return "memberPointCharge";
 	}
 	
+	@GetMapping("/member/extraInfo")
+	public String kakaoLoginForm() {
+		return "extraInfo";
+	}
+	
 	
 
 }

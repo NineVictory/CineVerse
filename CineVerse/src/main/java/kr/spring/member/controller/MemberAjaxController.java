@@ -95,8 +95,7 @@ public class MemberAjaxController {
 	        
 	        return mapAjax;
 	    }
-	
-	
+
 	
 	
 }
