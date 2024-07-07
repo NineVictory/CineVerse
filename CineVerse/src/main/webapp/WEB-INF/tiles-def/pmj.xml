@@ -8,9 +8,17 @@
 	<definition name="myPageMain" template="/WEB-INF/views/template/layout_myPage.jsp">
 		<put-attribute name="title" value="마이페이지"/>
 		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
-		<put-attribute name="body_1" value="/WEB-INF/views/myPage/myPageMain_1.jsp"/>
+		<put-attribute name="body_1" value="/WEB-INF/views/template/myPageMain_1.jsp"/>
 		<put-attribute name="myPageNav" value="/WEB-INF/views/template/myPageNav.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPageMain.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<definition name="myPageReservation" template="/WEB-INF/views/template/layout_myPage_all.jsp">
+		<put-attribute name="title" value="나의 예매내역"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+		<put-attribute name="myPageNav" value="/WEB-INF/views/template/myPageNav.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPageReservation.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
 	</definition>
 </tiles-definitions>

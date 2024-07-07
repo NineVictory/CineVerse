@@ -3,3 +3,85 @@
 * {
     font-family: "Noto Sans KR", sans-serif;
 }
+#main_body_1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5%;
+    background-color: #DBE3FF;
+    width: 60%;
+    height: 230px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+/* body_1 마이페이지 고정 */
+.myPageMain_1_photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.myPageMain_1_photo img {
+    width: 200%;
+    height: auto;
+}
+
+.myPageMain_1_right{
+	width:70%;
+	height:70%;
+}
+.myPageMain_1_1{
+	margin-top: 25px;
+}
+.myPageMain_1_name{
+	font-weight:500;
+	font-size: 20pt;
+}
+.myPageMain_1_id,.myPageMain_1_nickName{
+	margin-left: 10px;
+	font-size: 14px;
+}
+.myPageMain_1_2{
+	margin-top:10px;
+	font-size: 14px;
+}
+.myPageMain_1_3 {
+    margin-top: 13px;
+    font-size: 14px;
+    border-radius: 20px;
+    background: #3F66ED;
+    color: white;
+    width:85px;
+    height:26px;
+    padding :1px 10px;
+    cursor: pointer;
+}
+
+.myPageMain_1_3:hover {
+    background: #2a49b3;
+}
+/* body_1 마이페이지 고정 */
+
+#main_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	width:100%;
+}
+
+#main_content {
+    display: flex;
+    flex-direction: row; 
+	width:1500px;
+	justify-content: center;
+}
+
+.myPage_main{
+	width:70%;
+	
+}
