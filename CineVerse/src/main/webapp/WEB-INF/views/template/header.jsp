@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 상단 시작 -->
     <div class="header-main">
-        <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/images/cmj/main_logo.png" alt="메인 로고"
+        <div class="logo"><a href="${pageContext.request.contextPath}/main/main"><img src="${pageContext.request.contextPath}/images/cmj/main_logo.png" alt="메인 로고"
                     style="width: 200px; height: auto;"></a></div>
         <div class="main">
             <ul class="main_menu1">
