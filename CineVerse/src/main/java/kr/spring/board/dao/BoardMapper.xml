@@ -5,7 +5,7 @@
 <mapper namespace="kr.spring.board.dao.BoardMapper"><!--인터페이스명-자동매핑-->
 	<insert id="insertBoard" parameterType="boardVO">
 		INSERT INTO community_board (cb_num,cb_type,cb_title,cb_content,cb_filename,cb_ip,mem_num) 
-				VALUES (community_board_seq.nextval,#{cb_type},#{cb_title},#{cb_content},#{cb_filename,jdbcType=VARCHAR},#{ip},#{mem_num})
+				VALUES (community_board_seq.nextval,#{cb_type, jdbcType=INTEGER},#{cb_title},#{cb_content},#{cb_filename,jdbcType=VARCHAR},#{cb_ip},#{mem_num})
 	</insert>
 	
 	<!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->	<!--sub_sql처럼-->
@@ -43,15 +43,16 @@
 									cb_hit,
 									cb_filename,
 									cb_reg_date,
+									cb_type,
 									mem_num,
 									mem_id,
 									re_cnt,
 									fav_cnt
 								
 									FROM community_board 
-									LEFT OUTER JOIN (SELECT COUNT(*) re_cnt, board_num FROM spboard_reply GROUP BY board_num) USING(board_num)
-									LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, board_num FROM spboard_fav GROUP BY board_num) USING(board_num)
-												JOIN spmember USING(mem_num)
+									LEFT OUTER JOIN (SELECT COUNT(*) re_cnt, cb_num FROM community_comment GROUP BY cb_num) USING (cb_num)
+									LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM community_fav GROUP BY cb_num) USING(cb_num)
+												JOIN member USING(mem_num)
 												<include refid="boardSearch"></include>
 												)a)
 		<![CDATA[

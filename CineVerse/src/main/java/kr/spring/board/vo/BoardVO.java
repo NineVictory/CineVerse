@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,14 +18,14 @@ import lombok.ToString;
 public class BoardVO {
 	private long cb_num;
 	private long mem_num;
-	@NotBlank
+	//@NotBlank
 	private String cb_title;
-	@NotEmpty
+	//@NotEmpty
 	private String cb_content;
 	private String cb_filename;
 	private MultipartFile upload;	//파일
-	@NotBlank
-	private int cb_type;	//카테고리
+	//@NotNull
+	private String cb_type;	//카테고리
 	private Date cb_reg_date;
 	private Date cb_modify_date;
 	private int cb_report;
@@ -32,7 +33,7 @@ public class BoardVO {
 	private String cb_ip;				//ip주소
 
 	
-	private String id;				//아이디
+	private String mem_id;				//아이디
 	
 	private int re_cnt;				//댓글 개수
 	private int fav_cnt;			//좋아요 개수

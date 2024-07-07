@@ -8,9 +8,9 @@
     document.addEventListener("DOMContentLoaded", function() {
         var currentUrl = window.location.href;
         
-        if (currentUrl.includes("?type=1")) {
+        if (currentUrl.includes("?cb_type=movieTalk")) {
             document.getElementById("link-type1").classList.add("active");
-        } else if (currentUrl.includes("?type=2")) {
+        } else if (currentUrl.includes("?cb_type=swap")) {
             document.getElementById("link-type2").classList.add("active");
         } else {
             document.getElementById("link-all").classList.add("active");
@@ -22,7 +22,7 @@
 	<h2>커뮤니티</h2>
 	<div class="board-main">
 		<c:if test="${!empty user}">
-			<input type="button" class="board-btn" value="글쓰기" onclick="location.href='write'">
+			<input type="button" class="write-btn" value="글쓰기" onclick="location.href='write'">
 		</c:if>
 	
 		<table class="board-table">
@@ -31,8 +31,8 @@
 					<td colspan="2">
 						<div class="types">
 							<a href="list" id="link-all">전체</a>
-							<a href="list?type=1" id="link-type1">영화톡톡</a>
-							<a href="list?type=2" id="link-type2">양도/교환</a>
+							<a href="list?cb_type=movieTalk" id="link-type1">영화톡톡</a>
+							<a href="list?cb_type=swap" id="link-type2">양도/교환</a>
 						</div>
 					</td>
 					<td colspan="2" style="text-align: right;">
@@ -60,9 +60,11 @@
 				<c:forEach var="board" items="${list}">
 				<tr>
 					<td colspan="4">
-						<div class="content">${board.cb_title}</div>
-						<div class="likes">${board.cb_likes}</div>
-						<div class="writer">${board.mem_id} ${board.cb_reg_date}</div>
+						<div class="cell-content">
+							<div class="title">${board.cb_title}</div>
+							<div class="likes">${board.cb_hit} ${board.re_cnt} ${board.fav_cnt}</div>
+							<div class="writer">${board.mem_id} ${board.cb_reg_date}</div>
+						</div>
 					</td>
 				</tr>
 				</c:forEach>

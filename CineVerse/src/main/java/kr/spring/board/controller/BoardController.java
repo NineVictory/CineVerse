@@ -40,6 +40,7 @@ public class BoardController {
 		return new BoardVO();
 	}
 	
+	
 	/*====================
 	 *게시판 글쓰기
 	 =====================*/
