@@ -16,9 +16,6 @@
         <div id="main_header">
             <tiles:insertAttribute name="header"/>
         </div>
-        <div id="main_body_1">
-	            <tiles:insertAttribute name="body_1"/>
-	    </div>
 		<div id="main_body">
 	        <div id="main_content">
 	            <tiles:insertAttribute name="myPageNav"/>
