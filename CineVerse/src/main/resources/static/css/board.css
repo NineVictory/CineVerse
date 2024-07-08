@@ -18,16 +18,24 @@
 }
 
 /*boardList 리스트*/
+
 .board-main{
 	display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top:20px;
+    margin-top:10px;
 
+}
+.board-content{
+	width:1160px;
+	margin:0 auto;
+}
+.write-btn-container {
+    text-align: right; /* 내용을 오른쪽으로 정렬합니다 */
+    margin-bottom: 10px; /* 필요에 따라 조정합니다 */
 }
 .write-btn{
     align-self: flex-end; /* 자신을 오른쪽으로 정렬 */
-    margin:0 5% 5px 0;
     border:1px solid #8a8a8a;
     border-radius:5px;
     background-color:#fff;
@@ -54,7 +62,7 @@
     color:#000;
 }
 .board-table{
-	width:90%;
+	width:100%;
 	margin:5px auto;
 	border-collapse:collapse;
 }
@@ -111,13 +119,17 @@ thead{
 	border-left:none;
 	height:30px;
 }
-.cell-content {
+div.cell-content {
     position: relative;
-    height: 100px; /* 필요에 따라 조정 */
+    height: 80px; /* 필요에 따라 조정 */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin:5px 20px;
+    margin:0px 20px;
+    padding:5px 0;
+}
+div.cell-content > div.likes, div.cell-content > div.writer{
+	font-size:14px;
 }
 
 .title {
@@ -134,6 +146,7 @@ thead{
 .writer {
     align-self: flex-start;
 }
+
 
 
 /*boardWrite 글쓰기*/
@@ -155,7 +168,9 @@ thead{
 
 
 
- .form-container {
+
+
+ /* .form-container {
         max-width: 600px;
         margin: 0 auto;
     }
@@ -215,4 +230,4 @@ thead{
     }
     .form-buttons button:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+    } */
