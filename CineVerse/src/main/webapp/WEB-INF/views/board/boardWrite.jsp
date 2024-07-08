@@ -34,7 +34,7 @@
 
 </script>
 
-<div class="page-main">
+<div class="page-container page-main">
 	<h2>글쓰기</h2>
 	<form:form action="write" id="board_register" enctype="multipart/form-data" modelAttribute="boardVO">
 		<ul>
