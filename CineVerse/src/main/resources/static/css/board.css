@@ -44,13 +44,23 @@
 .write-btn:hover, .default-btn1:hover, .default-btn2:hover{
 	box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
 }
-.default-btn1{
+.default-btn{
 	border:none;
 	border-radius:5px;
 	width:60px;
 	height:28px;
     background-color:#3F66ED;
     color:#fff;
+}
+.default-btn1{/*버튼 복수*/
+	border:none;
+	border-radius:5px;
+	width:60px;
+	height:28px;
+    background-color:#3F66ED;
+    color:#fff;
+    
+    margin-right:10px;
 }
 .default-btn2{
 	border:1px solid #3F66ED;
@@ -153,8 +163,8 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 	color:red;
 }
 #board_register{
-	width:1000px;
-	margin:0 auto;
+	width:950px;
+	margin:10px auto;
 
 }
 .ck-editor__editable_inline{
@@ -171,20 +181,36 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 .category{
 	display:flex;
 	align-items:center;
-	
+	margin-bottom:10px;	
 }
-#cb_type, #cb_title{
+.category label {
+	margin-right: 10px;
+
+}
+.custom-type{
 	height:25px;
 
 }
-#cb_title{
-	width:300px;
+.custom-title{
+	height:30px;
+	width:400px;
 }
 
+.borderR{
+	border-radius:5px;
+	border:1px solid #c9c9c9;
+}
+#board_register div.align-center{
+	margin-top:40px;
+}
+::placeholder {
+    font-size: 14px;
+}
 
-
-
-
+/*boardView 글상세*/
+.flexbox{
+	
+}
 
 
  /* .form-container {
