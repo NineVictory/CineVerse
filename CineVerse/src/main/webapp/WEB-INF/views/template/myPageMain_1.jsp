@@ -40,7 +40,7 @@
 <hr size="1" width="90%" class="line">
 </div>
 
-<div class="myPage_point" onclick="location.href='/myPage/'"><!-- 포인트 충전 링크 -->
+<div class="myPage_point" onclick="location.href='/member/pointCharge'"><!-- 포인트 충전 링크 -->
 <span class="mp_point">CV POINT</span>
 <span class="my_point_charge">충전</span><br>
 <div class="point_content">
