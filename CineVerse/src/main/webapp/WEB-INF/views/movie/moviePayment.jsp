@@ -12,7 +12,7 @@
     </div>
     <hr size="1" noshade="noshade" width="100%">
     <!-- 결제 정보 끝 -->
-
+ 
     <!-- 쿠폰 적용 시작 -->
     <h3>쿠폰 적용</h3>
     <div class="content-box">
