@@ -1,14 +1,103 @@
-.payment-page{
-   display: flex;
-   flex-direction: column; /* 세로 정렬로 변경 */
+.payment-page {
+	display: flex;
+	flex-direction: column; /* 세로 정렬로 변경 */
+	align-items: stretch; /* 가로 가운데 정렬 */
+	justify-content: center; /* 세로 가운데 정렬 */
+	margin-top: 70px;
+	
+}
+
+.content-box {
+  display: flex;
+  justify-content: center; /* 가로 가운데 정렬 */
 }
 
 .payment-box {
-	position: absolute;
-	width: 100px;
-	height: 100px;
+	width: 500px;
+	height: 300px;
 	border-radius: 20px;
 	background: #FFFFFF;
 	box-sizing: border-box;
 	border: 2px solid #000000;
+	margin-top: 20px;
+	margin-bottom: 100px; /* 각 박스 사이의 간격 */
+}
+
+.cuppon-box {
+	width: 500px;
+	height: 150px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	border: 2px solid #000000;
+	margin-top: 20px;
+	margin-bottom: 100px; /* 각 박스 사이의 간격 */
+}
+
+.point-box {
+	width: 500px;
+	height: 150px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	border: 2px solid #000000;
+	margin-top: 20px;
+	margin-bottom: 100px; /* 각 박스 사이의 간격 */
+}
+
+.finalpay-box {
+	width: 500px;
+	height: 150px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	border: 2px solid #000000;
+	margin-top: 20px;
+	margin-bottom: 50px; /* 각 박스 사이의 간격 */
+}
+
+h3 {
+  text-align: left; /* h3 태그 왼쪽 정렬 */
+  margin-top: 20px;
+}
+
+h4 {
+	position: absolute;
+	top: 1070px;
+	left: 700px;	
+}
+
+.cuppon-button {
+  position: absolute;
+  top: 785px;
+  right: 700px;
+  display: flex;
+}
+
+.point-button {
+  position: absolute;
+  top: 1110px;
+  right: 700px;
+  display: flex;
+}
+
+.final-button {
+	text-align: right;
+}
+
+input[type="button"] {
+   background: #4381FD;
+   color: #FFFFFF;
+   border: none;
+   border-radius: 5px; 
+   width: 100px;
+   height: 50px;
+}
+
+.payment-box img{
+	position: absolute;
+	top: 320px;
+	left: 710px;
+	width: 200px;
+	height: 200px;
 }
