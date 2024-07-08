@@ -10,4 +10,13 @@
         <put-attribute name="body" value="/WEB-INF/views/shop/shopMain.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
     </definition>
+    
+    
+    <definition name="shopDetail" template="/WEB-INF/views/template/layout_all.jsp">
+        <put-attribute name="title" value="벌스샵 디테일"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/shop/shopDetailCSS.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/shop/shopDetail.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>
 </tiles-definitions>

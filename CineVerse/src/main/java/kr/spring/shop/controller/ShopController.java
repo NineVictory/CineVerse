@@ -13,4 +13,8 @@ public class ShopController {
 		return "shopMain";
 	}
 	
+	@GetMapping("/shop/shopDetail")
+	public String shopDetail() {
+		return "shopDetail";
+	}
 }

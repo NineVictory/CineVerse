@@ -8,10 +8,10 @@
 	<div class="shop-main">
 		<form action="shopSearch" id="shop_search">
 			<ul>
-			<label>
+			<li>
 				<input type="search" name="search" placeholder="검색어를 입력하세요">
 				<input type="submit" value="" style="background-image: url('${pageContext.request.contextPath}/images/search_icon.png');">
-			</label>
+			</li>
 				</ul>
 			<div class="select-wrapper">
 			<select name="shopOrder" id="shopOrder">
@@ -26,7 +26,7 @@
 	</div>
 	<div class="shop-product-page">
 		<div class="shop-product">
-			<div class="product-item">
+			<div class="product-item" onclick="window.location.href='shopDetail'"> <!-- 이거 실제로 구현할 때는 이름에 sequence 붙여서 나오게 해야 할듯 구분을 주기 위해 -->
 				<img src="${pageContext.request.contextPath}/images/cje/product.png" alt="티셔츠">
 			    <h3>MARVEL</h3>
 				<p>클래식 티셔츠(아이보리)</p>
@@ -100,5 +100,5 @@
 																									</div>																																										</div>
 		</div>				
 	</div>
-</div>
+
 <!-- 벌스샵 끝-->
