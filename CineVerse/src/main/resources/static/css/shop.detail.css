@@ -1,95 +1,245 @@
+body {
+    overflow: auto; 
+}
+
 #main_body {
     display: flex;
     flex-direction: column;
     align-items: center;
-	width:100%;
-	border: 1px solid black;
+    width: 100%;
 }
 
 #main_content {
     display: flex;
     flex-direction: row; 
-	width:1500px;
+    width: 1500px;
+    margin-bottom: 50px; /* Footer와 겹치지 않도록 아래쪽 여백 추가 */
 }
 
 .product-main {
-	display: flex; 
-	justify-content: space-between; 
-	align-items: center;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
 }
 
-.product-img{
-	width: 500px;
-	height: 500px;
-	margin-top:100px;
-	margin-right: 50px;
-	border: 1px solid black;
+.product-img {
+    width: 500px;
+    height: 630px;
+    margin-top: 100px;
+    margin-right: 80px;
 }
 
-.product-info{
-	width: 500px;
-	height: 500px;
-	margin-top:100px;
-	border: 1px solid black;
+.product-img img {
+    margin-top: 33px;
+    width: 500px;
+    height: 500px;
+    box-shadow: 12px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.product-info h1, .product-info p{
-	margin-top: 20px;
+.product-info {
+    width: 500px;
+    height: 630px;
+    margin-top: 100px;
 }
 
-.product-info p{
-	font-size: 15pt;
-	font-weight: 500;
+.product-info h1, .product-info p {
+    margin-top: 20px;
 }
 
-.buy-form{
-	margin-top:70px;
+.product-info p {
+    font-size: 15pt;
+    font-weight: 500;
 }
 
-.buy-form span{
-	font-weight: 500;
+.buy-form {
+    margin-top: 70px;
 }
 
+.buy-form span {
+    font-weight: 500;
+}
 
- .buy-form ul {
-        list-style-type: none;
-        margin-top: 20px;
-    padding: 0;
-    }
-
-.buy-form ul li {
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0;
+.buy-form ul, .product-detail ul {
+    list-style-type: none;
+    margin-top: 20px;
     padding: 0;
 }
 
+.buy-form ul li, .product-detail ul li {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+.quantity-controls {
+    margin-top: 15px;
+}
     
 .quantity-down, .quantity-up {
-	width: 30px;
-	height:30px;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	background-color: #f0f0f0;
-	margin:0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    margin: 0;
+    border-radius: 10px;
 }
 
 .quantity-input {
-	height:30px;
-	width: 50px;
-	margin: 0;
-	text-align: center;
-	border: 1px solid #ccc;
-	background-color: #f0f0f0;
-	text-align: center;
+    height: 40px;
+    width: 75px;
+    margin: 0;
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    text-align: center;
+    border-radius: 10px;
 }
 
-.showPrice{
-	margin-top:100px;
-	margin-left: 270px;
-	font-weight: 400;
+.showPrice {
+    margin-top: 40px;
+    margin-left: 270px;
+    font-weight: 400;
+    margin-bottom: 50px;
 }
-.showPrice span{
-	font-size: 20pt;
-	font-weight: 500;
+
+.showPrice span {
+    font-size: 20pt;
+    font-weight: 500;
+}
+
+.shop-submit button, .shop-submit input[type="submit"] {
+    width: 200px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 12.5pt;
+    font-weight: 600;
+}
+
+.shop-submit button {
+    background: white;
+    margin-right: 26px;
+    border: 2px solid black;
+}
+
+.shop-submit input[type="submit"] {
+    background: #1C75FF;
+    border: none;
+    color: white;
+}
+
+.product-detail {
+    text-align: center;
+    margin-bottom: 100px; /* Footer와 겹치지 않도록 아래쪽 여백 추가 */
+}
+
+.product-detail ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.product-detail ul li {
+    margin: 0 40px;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.product-detail ul li a {
+    color: #A2A2A2;
+}
+
+.deliver {
+    margin-top: 50px;
+}
+
+.deliver img {
+    width: 80%;
+}
+
+.product-detail-info {
+    margin-top: 200px;
+}
+
+.product-detail-info img {
+    width: 80%;
+}
+
+.product-review {
+    margin-top: 80px;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.pReview{
+    background: #EBE9E9;
+    border-radius: 15px;
+    height:230px;
+    
+}
+.pReview span {
+    text-align: center;
+    font-size: 15pt;
+    font-weight: 500;
+    display: block;
+    margin-top: 20px;
+}
+
+.reStar {
+    margin-top: 40px;
+    width: 50px;
+    height: 50px;
+}
+
+.review-container {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.review-container h2 {
+	margin-right: 1000px;
+    margin-top: 30px;
+}
+
+.review-item {
+    margin-top: 20px;
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 230px;
+    border: 1px solid black;
+}
+
+.review-item div {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.review-profile{
+	width:50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+
+.profile-photo {
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    margin-top: 20px;
+    margin-right: 700px; /* 기존 스타일, 필요에 따라 조정 */
+}
+
+review-profile {
+    height: 50px; /* 이미지 높이 자동 조정 */
+    margin-right: 10px; /* 이미지 사이 여백 조정 */
 }
