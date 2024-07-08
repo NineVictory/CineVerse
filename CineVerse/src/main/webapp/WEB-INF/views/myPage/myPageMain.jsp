@@ -23,13 +23,14 @@
 </div>
 </div>
 
+<div class="main_body_reservation">
 <div class="my_reserv_info">
 <span class="reserv_font">MY 예매내역</span><span>0건</span>
 </div>
 
-<div class="myPageReservation_list">
+<div class="myPageReservation_list"><!--  css 수정 예매추가로 하면 박스 늘어나게 -->
 <div class="mp_reserv">
-<div class="m_movie_photo">사진</div>
+<div class="m_movie_photo"><img src="${pagecontext.reuqest.contextPath }/images/pmj/dune.jpg" alt="내가 본 영화2" width="150" height="210"></div>
 <div class="mpMovie_info">
 <div><span class="mp_movie_number_1">예매번호</span><span class="mp_movie_number_2">0023-</span> <span class="mp_movie_number_3">0619-3123-229</span></div>
 <div class="mp_movie_title">듄</div>
@@ -56,6 +57,7 @@
 </div>
 </div>
 </div>
+</div>
 
 <div class="qna_box">
 <div class="my_reserv_info">
@@ -63,9 +65,7 @@
 </div>
 
 <div class="qna">
-<div class="myPage_qna">
-<div class="mpQna">고객님의 1:1 문의내역이 존재하지 않습니다</div>
-</div>
+<div class="mpQna">고객님의 1:1 문의내역이 존재하지 않습니다</div><!-- css box늘어나게 -->
 </div>
 </div>
 </div>

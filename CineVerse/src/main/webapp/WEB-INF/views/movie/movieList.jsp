@@ -3,12 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- 영화목록 시작 -->
+<div class="page-container">
+
 <div class="movie-page">
    <div class="movie-main">   
       <!-- 상영작 체크 -->
-      <div>
+      <div class="movie-list-title">
+      <input type="checkbox">
       현재 상영작만 보기
       </div>
+
       
       <form action="movieSearch" id="movie_search">
          <!-- 검색바 -->
@@ -28,32 +32,69 @@
    
    <!-- 목록 -->
    <div class="movie-list-page">
-      <div class="movie-list">
-         <div class="movie">
+      <ul class="movie-list">
+         <li class="movie">
+            <div class="movie-info">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <h4>인사이드 아웃2</h4>
+            <p>인사이드 아웃2</p>
             <div>예매율 | 개봉일</div>   
             <input type="button" value="예매하기" onclick="">
-         </div>
-         <div class="movie">
+            </div>
+            
+         </li>
+         <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <h4>인사이드 아웃2</h4>
+            <p>인사이드 아웃2</p>
             <div>예매율 | 개봉일</div>   
             <input type="button" value="예매하기" onclick="">
-         </div>
-         <div class="movie">
+         </li>
+         <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <h4>인사이드 아웃2</h4>
+            <p>인사이드 아웃2</p>
             <div>예매율 | 개봉일</div>   
             <input type="button" value="예매하기" onclick="">
-         </div>
-         <div class="movie">
+         </li>
+         <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <h4>인사이드 아웃2</h4>
+            <p>인사이드 아웃2</p>
             <div>예매율 | 개봉일</div>   
             <input type="button" value="예매하기" onclick="">
-         </div>
-      </div>
+         </li>
+         
+          <li class="movie">
+            <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
+            <p>인사이드 아웃2</p>
+            <div>예매율 | 개봉일</div>   
+            <input type="button" value="예매하기" onclick="">
+         </li>
+         
+          <li class="movie">
+            <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
+            <p>인사이드 아웃2</p>
+            <div>예매율 | 개봉일</div>   
+            <input type="button" value="예매하기" onclick="">
+         </li>
+         
+          <li class="movie">
+            <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
+            <p>인사이드 아웃2</p>
+            <div>예매율 | 개봉일</div>   
+            <input type="button" value="예매하기" onclick="">
+         </li>
+         
+          <li class="movie">
+            <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
+            <p>인사이드 아웃2</p>
+            <div>예매율 | 개봉일</div>   
+            <input type="button" value="예매하기" onclick="">
+         </li>
+      </ul>
    </div>
+     <div class="load-more">
+         <button id="loadMoreButton">더 보기</button>
+      </div>  
+   
 </div>
 <!-- 영화목록 끝 -->
+
+</div>

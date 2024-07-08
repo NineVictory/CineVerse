@@ -18,11 +18,14 @@
 	<div id="main_header">
 		<tiles:insertAttribute name="header"/>
 	</div>
+	 <div class="page-container">
 	<div id="main_body">
 		<tiles:insertAttribute name="body"/>
+	</div>
 	</div>
 	<div id="main_footer">
 		<tiles:insertAttribute name="footer"/>
 	</div>
+</div>
 </body>
 </html>
