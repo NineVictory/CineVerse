@@ -272,9 +272,11 @@ input.chatBtn{
 	min-height:350px;
 	margin:30px auto;
 }
+/*커뮤니티 업로드 이미지 중앙정렬*/
 .image img{
 	display: block;
 	margin:0 auto;
+	
 }
 
 #reply_div img{
