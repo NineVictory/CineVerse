@@ -1,0 +1,38 @@
+#main_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	width:100%;
+	border: 1px solid black;
+}
+
+.product-main {
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center;
+}
+
+.product-img{
+	width: 500px;
+	height: 500px;
+	margin-top:100px;
+	margin-right: 50px;
+	border: 1px solid black;
+}
+
+.product-info{
+	width: 500px;
+	height: 500px;
+	margin-top:100px;
+	border: 1px solid black;
+}
+
+.product-info h1, .product-info p{
+	margin-top: 20px;
+}
+
+.product-info p{
+	font-size: 15pt;
+	font-weight: 500;
+}
+
