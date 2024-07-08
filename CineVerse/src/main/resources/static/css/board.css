@@ -153,10 +153,33 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 	color:red;
 }
 #board_register{
-	width:1160px;
+	width:1000px;
 	margin:0 auto;
+
+}
+.ck-editor__editable_inline{
+	min-height:350px;
 }
 
+
+.form-group {
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 15px;
+	flex-direction: column;
+}
+.category{
+	display:flex;
+	align-items:center;
+	
+}
+#cb_type, #cb_title{
+	height:25px;
+
+}
+#cb_title{
+	width:300px;
+}
 
 
 
