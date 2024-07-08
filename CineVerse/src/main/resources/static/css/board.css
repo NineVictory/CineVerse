@@ -24,15 +24,14 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top:10px;
-
-}
-.board-content{
 	width:1160px;
 	margin:0 auto;
 }
+
 .write-btn-container {
     text-align: right; /* 내용을 오른쪽으로 정렬합니다 */
-    margin-bottom: 10px; /* 필요에 따라 조정합니다 */
+    margin:10px 0;
+    margin-left:auto;
 }
 .write-btn{
     align-self: flex-end; /* 자신을 오른쪽으로 정렬 */
@@ -154,14 +153,32 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 	color:red;
 }
 #board_register{
-	width:90%;
-	margin:5px auto;
+	width:1000px;
+	margin:0 auto;
+
 }
-.form-row {
-    margin-bottom: 15px;
-    list-style-type: none;
-    display: flex;
-    align-items: center;
+.ck-editor__editable_inline{
+	min-height:350px;
+}
+
+
+.form-group {
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 15px;
+	flex-direction: column;
+}
+.category{
+	display:flex;
+	align-items:center;
+	
+}
+#cb_type, #cb_title{
+	height:25px;
+
+}
+#cb_title{
+	width:300px;
 }
 
 

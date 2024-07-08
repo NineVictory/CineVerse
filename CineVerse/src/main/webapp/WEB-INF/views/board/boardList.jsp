@@ -21,7 +21,6 @@
 <div class="page-container page-main">
 	
 	<div class="board-main">
-		<div class="board-content">
 		<h2>커뮤니티</h2>
 		
 		<div class="write-btn-container">
@@ -75,6 +74,5 @@
 			</c:if>
 			</tbody>
 		</table>
-		</div>
 	</div>
 </div>

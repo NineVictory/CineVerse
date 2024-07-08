@@ -1,1 +1,42 @@
-@charset "UTF-8";
+ @charset "UTF-8";
+
+.detail-main {
+    width: 70%;
+	min-width: 900px;
+	margin: 0 auto;
+}
+
+
+.movie-details {
+    position: absolute;
+    left: 700px; 
+    top: 302px;
+    max-width: 500px; 
+}
+
+.movie-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.movie-info {
+    font-size: 16px;
+    color: #666;
+}
+
+.movie-reservation{
+	border-radius: 20px;
+    background: #FF5151;
+    color: white;
+    width:50px;
+    height:26px;
+    font-size: 13px;
+    padding :3px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.menu-hr{
+	 margin: 20px auto;
+}
