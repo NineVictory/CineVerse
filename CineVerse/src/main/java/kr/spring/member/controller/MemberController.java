@@ -103,7 +103,7 @@ public class MemberController {
 
 				if (member.getMem_auth() == 9) {
 					// 관리자라면
-					return "redirect:/main/admin";
+					return "redirect:/admin/adminMain";
 				} else {
 					return "redirect:/main/main";
 				}
