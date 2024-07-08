@@ -448,19 +448,30 @@
 /* =======================
        myPageReservation.jsp
    ======================= */
-.reservation_disply{
+.reservation_display{
 	 display: flex;
     align-items: center;
     justify-content: space-between;
 }
+.myPage_title_re {
+    font-size: 18px;
+    font-weight: 700;
+}
 .watched_movie{
-	
+	background-color: #3F66ED;
+	font-size: 16px;
+	color: #fff;
+	width:110px;
+	height:30px;
+	text-align: center;
+	align-content: center;
 }
 .reservation_font{
 	display: flex;
     gap: 10px;
     flex-direction: column;/* flex 상하 */
     text-align: center;
+    margin-top: 50px;
 }
 .reservation_font_red{
 	color: red;
@@ -473,4 +484,13 @@
 	font-size: 13px;
 	font-weight: 500;
 	color: #666;
+}
+.reservation_rep{
+	
+}
+.reservation_display{
+	
+}
+reservation_info{
+	
 }
