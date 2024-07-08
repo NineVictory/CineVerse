@@ -412,9 +412,6 @@
 	font-weight: 700;
 	margin-bottom: 10px;
 }
-.watchedMovie{
-	
-}
 .wa_box{
 	display: flex;
     align-items: center;
@@ -427,7 +424,7 @@
     margin-top: 25px;
 }
 .wa_photo{
-	width: 160px;
+	width: 150px;
 	height: 210px;
 	background-color: #000;
 }
@@ -447,4 +444,53 @@
 }
 .wa_line{
 	margin: 20px 0;
+}
+/* =======================
+       myPageReservation.jsp
+   ======================= */
+.reservation_display{
+	 display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.myPage_title_re {
+    font-size: 18px;
+    font-weight: 700;
+}
+.watched_movie{
+	background-color: #3F66ED;
+	font-size: 16px;
+	color: #fff;
+	width:110px;
+	height:30px;
+	text-align: center;
+	align-content: center;
+}
+.reservation_font{
+	display: flex;
+    gap: 10px;
+    flex-direction: column;/* flex 상하 */
+    text-align: center;
+    margin-top: 50px;
+}
+.reservation_font_red{
+	color: red;
+}
+.reservation_font1{
+	font-size: 20px;
+	font-weight: 600;
+}
+.reservation_font2{
+	font-size: 13px;
+	font-weight: 500;
+	color: #666;
+}
+.reservation_rep{
+	
+}
+.reservation_display{
+	
+}
+reservation_info{
+	
 }

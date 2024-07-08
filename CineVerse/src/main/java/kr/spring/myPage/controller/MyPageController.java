@@ -3,6 +3,7 @@ package kr.spring.myPage.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import kr.spring.member.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -39,6 +40,10 @@ public class MyPageController {
 	//장바구니
 	//채팅 이력
 	//회원 정보 - 개인정보 변경
+	@GetMapping("/myPage/modifyUser")
+	public String modifyUser(MemberVO memberVO) {
+		return "modifyUser";
+	}
 	//회원 정보 - 회원 탈퇴
 	//멤버십 구독
 	//나의 문의 내역 - 1:1문의

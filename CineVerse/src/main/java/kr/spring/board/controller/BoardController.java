@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.board.service.BoardService;
 import kr.spring.board.vo.BoardVO;
@@ -24,6 +25,7 @@ import kr.spring.main.controller.CommonController;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -116,6 +118,24 @@ public class BoardController {
 		
 		return "boardList";
 	}
-	
-	
+	/*====================
+	 *게시판 글상세
+	 =====================*/
+	@GetMapping("/board/detail")
+	public ModelAndView process(long cb_num) {
+		log.debug("<<게시판 글 상세 - cb_num>> : " + cb_num);
+		
+		//해당 글의 조회수 증가
+		boardService.updateHit(cb_num);
+		
+		BoardVO board = boardService.selectBoard(cb_num);
+		
+		//제목에 태그를 허용하지 않음
+		board.setCb_title(StringUtil.useNoHTML(board.getCb_title()));
+		
+		//내용에 태그를 허용하지 않으면서 줄바꿈 처리(CKEditor 사용시 주석 처리)
+		//board.setContent(StringUtil.useBrNoHTML(board.getContent()));
+		
+		return new ModelAndView("boardView", "board", board);
+	}	
 }

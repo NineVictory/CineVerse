@@ -28,6 +28,11 @@
 		<put-attribute name="title" value="내가 본 영화"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/expectingMovie.jsp"/>
 	</definition>
+	
+	<definition name="modifyUser" extends="myPageMain">
+		<put-attribute name="title" value="내가 본 영화"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/modifyUser.jsp"/>
+	</definition>
 </tiles-definitions>
 
 
