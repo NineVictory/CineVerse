@@ -97,17 +97,42 @@
     </div>
 </header>
 
-	<script>
-	document.querySelectorAll('.main-navigation > ul > li').forEach(function(menu) {
-	    menu.addEventListener('mouseenter', function() {
-	        this.querySelector('.hide_menu').style.display = 'block';
-	        this.querySelector('.hide_menu').style.opacity = 1;
-	    });
+<script>
+document.querySelectorAll('.main-navigation > ul > li').forEach(function(menu) {
+    let timeoutId;
 
-	    menu.addEventListener('mouseleave', function() {
-	        this.querySelector('.hide_menu').style.display = 'none';
-	        this.querySelector('.hide_menu').style.opacity = 0;
-	    });
-	});
+    menu.addEventListener('mouseenter', function() {
+        clearTimeout(timeoutId); // 마우스를 올리면 기존 타임아웃 제거
+        const submenu = this.querySelector('.hide_menu');
+        if (submenu) {
+            submenu.style.display = 'block';
+            submenu.style.opacity = 1;
+        }
+    });
 
-        </script>
+    menu.addEventListener('mouseleave', function() {
+        const submenu = this.querySelector('.hide_menu');
+        if (submenu) {
+            timeoutId = setTimeout(() => {
+                submenu.style.display = 'none';
+                submenu.style.opacity = 0;
+            }, 200); // 200ms 후에 메뉴가 사라지도록 딜레이 설정
+        }
+    });
+
+    const submenu = menu.querySelector('.hide_menu');
+    if (submenu) {
+        submenu.addEventListener('mouseenter', function() {
+            clearTimeout(timeoutId); // 하위 메뉴에 마우스가 올라갔을 때 타이머 취소
+        });
+
+        submenu.addEventListener('mouseleave', function() {
+            timeoutId = setTimeout(() => {
+                submenu.style.display = 'none';
+                submenu.style.opacity = 0;
+            }, 200); // 하위 메뉴를 떠났을 때 200ms 후에 사라지도록 딜레이 설정
+        });
+    }
+});
+</script>
+
