@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
 	window.onload=function(){
-		const myForm = document.getElementById('board_register');
+		const myForm = document.getElementById('board_modify');
 		myForm.onsubmit=function(){
 			const type = document.getElementById('cb_type');
 			if(type.value.trim() == '' || type.value === 'select'){
@@ -40,9 +40,9 @@
 
 <div class="page-container page-main">
 	<div class="board-main">
-	<h2>글쓰기</h2>
-	<form:form action="write" id="board_register" enctype="multipart/form-data" modelAttribute="boardVO">
-		
+	<h2>글수정</h2>
+	<form:form action="update" id="board_modify" enctype="multipart/form-data" modelAttribute="boardVO">
+			<form:hidden path="cb_num"/>
 			<div class="form-group">
 				<div class="category">
 					<form:label path="cb_type" class="custom-type">분류</form:label>
@@ -79,9 +79,8 @@
 			    </script> 
 			</div>
 			
-
 		<div class="align-center btn-container">
-			<form:button class="default-btn1">등록</form:button>
+			<form:button class="default-btn1">수정</form:button>
 			<input type="button" value="목록" class="default-btn2" onclick="location.href='list'">
 		</div>
 	</form:form>

@@ -23,6 +23,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/board/boardView.jsp"/>
 	</definition>
 	
+	<definition name="boardModify" extends="boardList">
+		<put-attribute name="title" value="글수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/boardModify.jsp"/>
+	</definition>
+	
 </tiles-definitions>
 
 

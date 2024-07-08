@@ -2,6 +2,7 @@
 
 #main_body{
 	width:100%;
+	min-height:300px;
 }
 .page-main{
 	margin-top:30px;
@@ -41,7 +42,7 @@
     padding:3px 8px;
     cursor:pointer;
 }
-.write-btn:hover, .default-btn1:hover, .default-btn2:hover{
+.write-btn:hover, .default-btn:hover, .default-btn1:hover, .default-btn2:hover, .chatBtn:hover{
 	box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
 }
 .default-btn{
@@ -52,7 +53,7 @@
     background-color:#3F66ED;
     color:#fff;
 }
-.default-btn1{/*버튼 복수*/
+.default-btn1{/*버튼 복수. 여백*/
 	border:none;
 	border-radius:5px;
 	width:60px;
@@ -145,11 +146,15 @@ div.cell-content > div.likes, div.cell-content > div.writer{
     align-self: flex-start;
 }
 
-.likes {
+.likes-container {
     position: absolute;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+}
+.likes span{
+	margin:0 8px 0 1x;
+	font-size:14px;
 }
 
 .writer {
@@ -164,7 +169,7 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 .error-color{
 	color:red;
 }
-#board_register{
+#board_register, #board_modify{
 	width:950px;
 	margin:10px auto;
 
@@ -202,17 +207,23 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 	border-radius:5px;
 	border:1px solid #c9c9c9;
 }
-#board_register div.align-center{
-	margin-top:40px;
+.btn-container{
+	margin-top:60px;
 }
 ::placeholder {
     font-size: 14px;
 }
 
+
+
 /*boardView 글상세*/
 .boardview-main{
 	width:950px;
-	margin:50px auto;
+	margin:70px auto;
+}
+.boardview-main h3{
+	margin:0 0 7px 10px;
+	display:inline-block;
 }
 .flexbox-h{
 	display:flex;
@@ -231,69 +242,89 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 
 .boardview-main > div.flexbox-h > div{
 	margin-right:10px;
-	width:30px;
-
+}
+.ml10{
+	margin-left:10px;
+}
+.ml20{
+	margin-left:20px;
+}
+.mt10{
+	margin-top:10px;
+}
+.mt70{
+	margin-top:70px;
+}
+hr{
+	margin:5px 0;
 }
 
+input.chatBtn{
+	border:none;
+	background-color:var(--main-color-strong);
+	color:#fff;
+	border-radius:5px;
+	height:24px;
+}
 
- /* .form-container {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    .form-container h1 {
-        text-align: left;
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-    .form-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-    .form-group label {
-        margin-right: 10px;
-        font-weight: bold;
-    }
-    .form-group select,
-    .form-group input[type="text"],
-    .form-group textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-    .form-group textarea {
-        resize: vertical;
-        height: 200px;
-    }
-    .file-input-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-    .file-input-group input[type="file"] {
-        margin-left: 10px;
-    }
-    .form-buttons {
-        text-align: center;
-    }
-    .form-buttons button {
-        padding: 10px 20px;
-        margin: 5px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: box-shadow 0.3s;
-    }
-    .form-buttons button.register {
-        background-color: #007bff;
-        color: white;
-    }
-    .form-buttons button.list {
-        background-color: white;
-        color: #007bff;
-        border: 1px solid #007bff;
-    }
-    .form-buttons button:hover {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    } */
+.detail-content{
+	width:80%;
+	min-height:350px;
+	margin:30px auto;
+}
+.image img{
+	display: block;
+	margin:0 auto;
+}
+
+#reply_div img{
+	margin:0 20px 0 10px;
+}
+.board-info{
+	margin-bottom:10px;
+}
+
+/*수정/삭제버튼*/
+div.board-btn{
+	display: flex;
+	flex-direction:column;
+	align-items:flex-end;	
+	position: relative;
+	/* display:inline-block;
+	position:relative; */
+	cursor:pointer;
+}
+span.board-cbtn{
+	position:absolute;
+	z-index:999;
+	right:0;
+	top:-5px;
+}
+ul.btn-hide {
+    position: absolute;
+    top: 25px;
+    right: 0;
+    z-index: 995;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    padding: 0;
+    margin: 0;
+    display: none;
+    width:90px;
+}
+ul.btn-hide li {
+    padding: 5px 10px;
+    text-align:right;
+}
+
+ul.btn-hide li a:hover {
+    color: #ccc;
+}
+
+.rep-content {
+    resize: none;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 100%;
+}
