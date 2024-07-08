@@ -39,6 +39,10 @@ public class MyPageController {
 	//장바구니
 	//채팅 이력
 	//회원 정보 - 개인정보 변경
+	@GetMapping("/myPage/modifyUser")
+	public String modifyUser() {
+		return "modifyUser";
+	}
 	//회원 정보 - 회원 탈퇴
 	//멤버십 구독
 	//나의 문의 내역 - 1:1문의
