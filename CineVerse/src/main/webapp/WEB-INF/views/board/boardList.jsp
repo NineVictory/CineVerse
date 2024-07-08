@@ -18,9 +18,10 @@
     });
 </script>
 
-<div class="page-main">
-	<h2>커뮤니티</h2>
+<div class="page-container page-main">
+	
 	<div class="board-main">
+		<h2>커뮤니티</h2>
 		<c:if test="${!empty user}">
 			<input type="button" class="write-btn" value="글쓰기" onclick="location.href='write'">
 		</c:if>
@@ -62,7 +63,7 @@
 					<td colspan="4">
 						<div class="cell-content">
 							<div class="title">${board.cb_title}</div>
-							<div class="likes">${board.cb_hit} ${board.re_cnt} ${board.fav_cnt}</div>
+							<div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15px;">${board.cb_hit}&nbsp; <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15px;">${board.re_cnt}&nbsp; <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15px;">${board.fav_cnt}</div>
 							<div class="writer">${board.mem_id} ${board.cb_reg_date}</div>
 						</div>
 					</td>

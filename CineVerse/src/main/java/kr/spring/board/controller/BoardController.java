@@ -85,14 +85,14 @@ public class BoardController {
 	@GetMapping("/board/list")
 	public String getList(@RequestParam(defaultValue="1") int pageNum,
 						  @RequestParam(defaultValue="2") int order,
-						  @RequestParam(defaultValue="") String type,
+						  @RequestParam(defaultValue="") String cb_type,
 						  String keyfield, String keyword, Model model) {
 		
-		log.debug("<<게시판 목록 - type>> : " + type);
+		log.debug("<<게시판 목록 - cb_type>> : " + cb_type);
 		log.debug("<<게시판 목록 - order>> : " + order);
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("type", type);
+		map.put("cb_type", cb_type);
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
 		
@@ -100,7 +100,7 @@ public class BoardController {
 		int count = boardService.selectRowCount(map);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,20,10,"list","&type="+type + "&order="+order);
+		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,20,10,"list","&cb_type="+cb_type + "&order="+order);
 		List<BoardVO> list = null;
 		if(count > 0) {
 			map.put("order", order);
