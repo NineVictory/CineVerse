@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <div class="adminNav">
 	<ul>
-		<li class="admin_main"><img
+		<li><img
 			src="${pageContext.request.contextPath}/images/cmj/logo.png"
-			onclick="location.href = '${pageContext.request.contextPath}/main/main'" /></li>
- 
+			onclick="location.href = '${pageContext.request.contextPath}/main/main'"/>
+		</li>
+
 		<li><h2>회원</h2></li>
 		<li > <a href = "#">회원관리</a></li>
 		<li > <a href = "#">구독맴버십</a></li>

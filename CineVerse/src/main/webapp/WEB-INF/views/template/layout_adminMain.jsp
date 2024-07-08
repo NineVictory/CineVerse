@@ -19,19 +19,13 @@
 </head>
 <body>
 	<div id="main">
-		<div class="page-container">
 			<div id="body">
-				<div class = "adminNav1">
-					<tiles:insertAttribute name="admin_nav" />
-				</div>
-				<div class = "adminBody1">
-					<tiles:insertAttribute name="admin_body" />
-				</div>
+				<tiles:insertAttribute name="admin_nav" />
+				<tiles:insertAttribute name="admin_body" />
 			</div>
+		<div id="footer">
+			<tiles:insertAttribute name="footer" />
 		</div>
-	</div>
-	<div id="footer">
-		<tiles:insertAttribute name="footer" />
 	</div>
 </body>
 </html>
