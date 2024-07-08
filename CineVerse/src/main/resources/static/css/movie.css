@@ -1,5 +1,10 @@
  @charset "UTF-8";
 
+.movie-container {
+	margin-top:50px;
+	 display: flex;
+    align-items: flex-start;
+}
 .movie-photo {
     flex: 0 0 calc(30% - 20px); /* 사진 너비를 계산하고 오른쪽 여백 고려 */
     margin-right: 20px;
@@ -10,29 +15,37 @@
             border-radius: 10px;
 }       
 .movie-details {
-    flex: 1;
+
     max-width: calc(70% - 20px); /* 내용 너비를 계산하고 왼쪽 여백 고려 */
 }
 
 .movie-title {
-    font-size: 24px;
+	margin-left:20px;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 10px;
 }
-
+.movie-infolist{
+	font-size: 30px;
+    color: #666;
+}
+.movie-content{
+	margin: 20px;
+}
 .movie-info {
     font-size: 16px;
     color: #666;
 }
 
 .movie-reservation {
+	margin-left:100px;
     border-radius: 20px;
     background: #FF5151;
     color: white;
-    width: 300px; /* 너비를 더 크게 설정 */
-    height: 100px; /* 높이를 더 크게 설정 */
-    font-size: 25px; /* 폰트 사이즈를 크게 설정 */
-    padding: 28px 60px; /* 내부 여백을 조정하여 버튼 내용이 좀 더 넓게 보이도록 설정 */
+    width: 200px; /* 너비를 더 크게 설정 */
+    height: 70px; /* 높이를 더 크게 설정 */
+    font-size: 20px; /* 폰트 사이즈를 크게 설정 */
+    padding: 20px 60px; /* 내부 여백을 조정하여 버튼 내용이 좀 더 넓게 보이도록 설정 */
     text-align: center;
     cursor: pointer;
 }
@@ -53,10 +66,11 @@
 }
 .grade-review {
 	margin-top: 30px;
-	text-align: center;
+	
 }
 
 .review-title {
+	margin-left:0px;
 	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 10px;
@@ -76,5 +90,10 @@
 	outline: none;
 	border-color: #FF5151;
 }
-
+.movie-teaser{
+	text-align: center;
+}
+.grade-review{
+	text-align: center;
+}
 
