@@ -6,7 +6,7 @@
         <li class="mp_nav"><a href="/myPage/reservation">나의 예매내역</a></li>
         <li class="mp_nav"><a href="#">나의 쿠폰</a></li>
         <li class="mp_nav"><a href="#">나의 활동</a></li>
-        <li class="mp_li"><a href="#">기대되는 영화</a></li>
+        <li class="mp_li"><a href="/myPage/expectingMovie">기대되는 영화</a></li>
         <li class="mp_li"><a href="/myPage/watchedMovie">내가 본 영화</a></li>
         <li class="mp_li"><a href="#">내가 쓴 평점</a></li>
         <li class="mp_nav"><a href="#">게시판</a></li>
