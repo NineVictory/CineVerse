@@ -4,6 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
+
 <script type="text/javascript">
 	window.onload=function(){
 		const myForm = document.getElementById('board_register');
@@ -35,6 +39,7 @@
 </script>
 
 <div class="page-container page-main">
+	<div class="board-main">
 	<h2>글쓰기</h2>
 	<form:form action="write" id="board_register" enctype="multipart/form-data" modelAttribute="boardVO">
 		<ul>
@@ -51,8 +56,26 @@
 				<form:errors path="cb_title" cssClass="error-color"/>
 			</li>
 			<li>
-				<form:textarea path="cb_content" id="cb_content" placeholder="내용을 입력해주세요"/>
+				<form:textarea path="cb_content"/>
 				<form:errors path="cb_content" cssClass="error-color"/>
+				<script>
+				 function MyCustomUploadAdapterPlugin(editor) {
+					    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+					        return new UploadAdapter(loader);
+					    }
+					}
+				 
+				 ClassicEditor
+		            .create( document.querySelector( '#cb_content' ),{
+		            	extraPlugins: [MyCustomUploadAdapterPlugin]
+		            })
+		            .then( editor => {
+						window.editor = editor;
+					} )
+		            .catch( error => {
+		                console.error( error );
+		            } );
+			    </script> 
 			</li>
 			<li>
 				<input type="file" name="upload" id="upload"><%--반드시 upload로--%>
@@ -63,4 +86,5 @@
 			<input type="button" value="목록" class="default-btn2" onclick="location.href='list'">
 		</div>
 	</form:form>
+	</div>
 </div>
