@@ -149,6 +149,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.main_display{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.main_movie_info1{
+	width:20%;
+}
+.main_movie_info2{
+	width:80%;
+}
+
 .myPage_bold{
 	font-weight: 500;
 	margin-left: 10px;
@@ -204,10 +217,10 @@
 	justify-content: center;
 }
 .myPageNav{
-	width:220px;
+	width:250px;
 }
 .myPage_main{
-	width:977px;
+	width:950px;
 	margin-right:32px;
 }
 /* =======================
@@ -231,7 +244,7 @@
     box-sizing: border-box;
     border-radius: 15px 0 0 15px;
     font-size: 14px;
-    padding: 4% 9% 4% 9%;
+    padding: 4% 10%;
 }
 .m_watching{
 	text-align:center;
@@ -240,7 +253,7 @@
     height: 80%;
     box-sizing: border-box;
     font-size: 14px;
-    padding: 4% 9% 4% 9%;
+    padding: 4% 10%;
 }
 .m_review{
 	text-align:center;
@@ -250,7 +263,7 @@
     box-sizing: border-box;
     border-radius: 0 15px 15px 0;
     font-size: 14px;
-    padding: 4% 9% 4% 9%;
+    padding: 4% 10%;
 }
 .m_except:hover,.m_watching:hover,.m_review:hover{
 	background-color: #DBE3FF;
@@ -400,7 +413,7 @@
 }
 .mpQna{
 	margin-right: auto;
-	margin-left: 20px;
+	margin-left: 30px;
 	font-weight: 500;
 }
 
@@ -449,7 +462,7 @@
        myPageReservation.jsp
    ======================= */
 .reservation_display{
-	 display: flex;
+	display: flex;
     align-items: center;
     justify-content: space-between;
 }
@@ -486,11 +499,221 @@
 	color: #666;
 }
 .reservation_rep{
-	
+	margin: 60px 0;
 }
-.reservation_display{
-	
+.re_movie_number{
+	margin-bottom: 20px;
 }
-reservation_info{
-	
+.reserv_display{
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.reservation_info{
+	width:100%;
+	height:210px;
+	padding-top: 20px;
+	margin-left: 40px;
+}
+.reservation_movie_name{
+	font-size: 18px;
+	font-weight: 600;
+}
+.reservation_infomation{
+	display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.my_reserv_info_1{
+	width:12%;
+	color:#666;
+	font-weight: 500;
+}
+.my_reserv_info_2{
+	width:25%;
+	color:#000;
+	font-weight: 500;
+}
+.my_reserv_info_3{
+	width:12%;
+	color:#666;
+	font-weight: 500;
+}
+.my_reserv_info_4{
+	width:51%;
+	color:#000;
+	font-weight: 500;
+}
+.my_reserv_info_1 > div,
+.my_reserv_info_2 > div,
+.my_reserv_info_3 > div,
+.my_reserv_info_4 > div{
+	margin-bottom: 2px;
+}
+
+
+.payment_receipt{
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+.pay_receipt_box{
+	background-color:#fff;
+	padding: 38px 50px 55px 50px;
+	margin-bottom: 40px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);/* 그림자 속성(수평,수직,블러반경,투명도) */
+}
+.pay_receipt{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.reservation_pay{
+	font-size: 16px;
+	font-weight: 600;
+}
+.reservation_pay_blue_font{
+	color:#3F66ED;
+	font-weight: 600;
+}
+.payment_way{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pay_way,.pay_way_count{
+	font-size: 14.5px;
+	font-weight: 500;
+	color: #666;
+}
+.pay_way > div{
+	margin-bottom: 3px;
+}
+/* =======================
+       modifyUser.jsp
+   ======================= */
+.login_form_inputs {
+	margin: 38px 0 46px;
+}
+
+#member_modify {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login_form_all {
+	width: 380px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.login_form_inputs_id_passwd {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	border-radius: 6px;
+	background-color: #fff;
+	border: 1px solid #eaeaea;
+}
+
+.input_style {
+	font-size: 14px;
+	line-height: 22.4px;
+	font-weight: 400;
+	word-break: keep-all;
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	margin: 0;
+	padding: 0 20px;
+	color: #000;
+	border: none;
+	outline: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.user_modify_btn {
+	margin-top: 15px;
+	border-radius: 7px;
+	color: #fff;
+	background-color: var(--main-color-strong);
+	width: 180px;
+	height: 35px;
+	border: none;
+	cursor: pointer;
+}
+
+.modify_btn_all {
+	display: flex;
+	justify-content: center;
+}
+
+#member_modify .error-color{
+	font-size: 12px;
+	color:red;
+}   
+   
+/* =======================
+       expectinMovie.jsp
+   ======================= */
+.movie_list_all {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	overflow: hidden;
+}
+
+#expecting_movielist {
+	margin-left: -70px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin-bottom: 30px;
+}
+
+.liked_movie {
+	width: calc(25% - 10px);
+	margin: 0 5px 30px 5px;
+	text-align: center;
+}
+
+.expect_movie .expect_movie_poster {
+	width: 80%;
+	max-width: 100%;
+	height: auto;
+}
+
+.expect_movie {
+	display: flex;
+	color: #666;
+	flex-direction: column;
+	align-items: center;
+}
+
+.expect-movie-info {
+	padding: 15px;
+	display: flex;
+}
+
+.expect-movie-title {
+	display: flex;
+	align-items: center;
+	width: 110px;
+	justify-content: center;
+}
+
+.expect-movie-like {
+	display: flex;
+	width: 40px;
+	align-items: center;
+	justify-content: flex-end;
+}
+/* =======================
+       .jsp
+   ======================= */

@@ -1,79 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-.login_form_inputs {
-	margin: 38px 0 46px;
-}
-
-#member_modify {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.login_form_all {
-	width: 380px;
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 10px;
-}
-
-.login_form_inputs_id_passwd {
-	height: 50px;
-	display: flex;
-	align-items: center;
-	column-gap: 8px;
-	border-radius: 6px;
-	background-color: #fff;
-	border: 1px solid #eaeaea;
-}
-
-.input_style {
-	font-size: 14px;
-	line-height: 22.4px;
-	font-weight: 400;
-	word-break: keep-all;
-	flex-grow: 1;
-	display: flex;
-	align-items: center;
-	margin: 0;
-	padding: 0 20px;
-	color: #000;
-	border: none;
-	outline: none;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.user_modify_btn {
-	margin-top: 15px;
-	border-radius: 7px;
-	color: #fff;
-	background-color: var(--main-color-strong);
-	width: 180px;
-	height: 35px;
-	border: none;
-	cursor: pointer;
-}
-
-.modify_btn_all {
-	display: flex;
-	justify-content: center;
-}
-
-#member_modify .error-color{
-	font-size: 12px;
-	color:red;
-}
-
-</style>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="myPage_main">
-	<div class="myPage_title">
-		<h3>개인정보 변경</h3>
-	</div>
+	<div class="myPage_title">개인정보 변경</div>
 	<form:form action="modifyUser" id="member_modify" modelAttribute="memberVO">
                 <div class="login_form_inputs">
                     <div class="login_form_all">

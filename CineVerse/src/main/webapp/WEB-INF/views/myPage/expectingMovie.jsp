@@ -1,59 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-.movie_list_all {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	overflow: hidden;
-}
-
-#expecting_movielist {
-	margin-left: -70px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	margin-bottom: 30px;
-}
-
-.liked_movie {
-	width: calc(25% - 10px);
-	margin: 0 5px 30px 5px;
-	text-align: center;
-}
-
-.expect_movie .expect_movie_poster {
-	width: 80%;
-	max-width: 100%;
-	height: auto;
-}
-
-.expect_movie {
-	display: flex;
-	color: #666;
-	flex-direction: column;
-	align-items: center;
-}
-
-.expect-movie-info {
-	padding: 15px;
-	display: flex;
-}
-
-.expect-movie-title {
-	display: flex;
-	align-items: center;
-	width: 110px;
-	justify-content: center;
-}
-
-.expect-movie-like {
-	display: flex;
-	width: 40px;
-	align-items: center;
-	justify-content: flex-end;
-}
-</style>
 <!--  기대되는 영화 시작 -->
 <div class="myPage_main">
 	<div class="myPage_title">
