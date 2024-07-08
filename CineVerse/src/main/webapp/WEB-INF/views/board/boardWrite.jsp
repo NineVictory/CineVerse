@@ -45,19 +45,19 @@
 		
 			<div class="form-group">
 				<div class="category">
-					<form:label path="cb_type">분류</form:label>
-					<form:select path="cb_type" id="cb_type">
+					<form:label path="cb_type" class="custom-type">분류</form:label>
+					<form:select path="cb_type" id="cb_type" class="custom-type borderR">
 						<option value="select" disabled selected>선택하세요</option>
 						<form:option value="movieTalk">영화톡톡</form:option>
 	            		<form:option value="swap">양도/교환</form:option>
 					</form:select>
 				</div>
 				<form:errors path="cb_type" cssClass="error-color"/>
-				<form:input path="cb_title" id="cb_title" placeholder="제목을 입력해주세요"/>
+				<form:input path="cb_title" id="cb_title" class="custom-title borderR" placeholder=" 제목을 입력해주세요"/>
 				<form:errors path="cb_title" cssClass="error-color"/>
 			</div>
 			<div>
-				<form:textarea path="cb_content"/>
+				<form:textarea path="cb_content" placeholder="내용을 입력해주세요"/>
 				<form:errors path="cb_content" cssClass="error-color"/>
 				<script>
 				 function MyCustomUploadAdapterPlugin(editor) {
@@ -82,7 +82,7 @@
 			<%-- <div>
 				<input type="file" name="upload" id="upload">반드시 upload로
 			</div> --%>
-		<div class="align-center">
+		<div class="align-center btn-container">
 			<form:button class="default-btn1">등록</form:button>
 			<input type="button" value="목록" class="default-btn2" onclick="location.href='list'">
 		</div>

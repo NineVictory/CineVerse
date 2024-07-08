@@ -24,21 +24,20 @@ public interface BoardService {
 	public Integer selectFavCount(Long cb_num);
 	public void insertFav(BoardFavVO fav);
 	public void deleteFav(BoardFavVO fav);
-	//public void deleteFavByBoardNum(Long board_num);
 	
 	//댓글
 	public List<BoardReplyVO> selectListReply(Map<String,Object> map);
 	public Integer selectRowCountReply(Map<String,Object> map);
-	public BoardReplyVO selectReply(Long re_num);
+	public BoardReplyVO selectReply(Long cc_num);
 	public void insertReply(BoardReplyVO boardReply);
 	public void updateReply(BoardReplyVO boardReply);
-	public void deleteReply(Long re_num);
+	public void deleteReply(Long cc_num);
 	
 	//댓글 좋아요
 	public BoardReFavVO selectReFav(BoardReFavVO fav);
-	public Integer selectReFavCount(Long re_num);
+	public Integer selectReFavCount(Long cc_num);
 	public void insertReFav(BoardReFavVO fav);
 	public void deleteReFav(BoardReFavVO fav);
-	public void deleteReFavByReNum(Long re_num);
+	public void deleteReFavByReNum(Long cc_num);
 	public void deleteReFavByBoardNum(Long cb_num);
 }

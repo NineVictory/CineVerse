@@ -25,7 +25,7 @@
 		
 		<div class="write-btn-container">
 		<c:if test="${!empty user}">
-			<input type="button" class="write-btn" value="글쓰기" onclick="location.href='write'">
+			<input type="button" class="write-btn default-btn" value="글쓰기" onclick="location.href='write'">
 		</c:if>
 		</div>
 		<table class="board-table">
@@ -41,7 +41,7 @@
 					<td colspan="2" style="text-align: right;">
 						<div class="search">
 							<form action="list" id="search_form" method="get" style="margin-left: auto;">
-								<input type="hidden" name="type" value="${param.type}">
+								<input type="hidden" name="cb_type" value="${param.cb_type}">
 								<input type="search" class="search-input" name="keyword" placeholder="제목,내용,작성자 검색">
 								<button type="submit" class="search-button" aria-label="검색"></button>
 								<%--<input type="image" src="${pageContext.request.contextPath}/images/kbm/search.png" width="20" alt="검색"> --%>
@@ -64,9 +64,9 @@
 				<tr>
 					<td colspan="4">
 						<div class="cell-content">
-							<div class="title">${board.cb_title}</div>
+							<div class="title"><a href="detail?cb_num=${board.cb_num}">${board.cb_title}</a></div>
 							<div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;">${board.cb_hit}&nbsp; <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;">${board.re_cnt}&nbsp; <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;">${board.fav_cnt}</div>
-							<div class="writer">${board.mem_id}&nbsp;&nbsp; ${board.cb_reg_date}</div>
+							<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="12" height="12" class="my-photo">${board.mem_id}&nbsp;&nbsp; ${board.cb_reg_date}</div>
 						</div>
 					</td>
 				</tr>

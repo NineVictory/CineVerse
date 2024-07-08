@@ -30,7 +30,7 @@
 
 <div class="myPageReservation_list"><!--  css 수정 예매추가로 하면 박스 늘어나게 -->
 <div class="mp_reserv">
-<div class="m_movie_photo">사진</div>
+<div class="m_movie_photo"><img src="${pagecontext.reuqest.contextPath }/images/pmj/dune.jpg" alt="내가 본 영화2" width="150" height="210"></div>
 <div class="mpMovie_info">
 <div><span class="mp_movie_number_1">예매번호</span><span class="mp_movie_number_2">0023-</span> <span class="mp_movie_number_3">0619-3123-229</span></div>
 <div class="mp_movie_title">듄</div>
