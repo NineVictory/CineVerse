@@ -11,12 +11,15 @@
 <script src="${pageContext.request.contextPath}/js/board.reply.js"></script>
 
 <div class="page-container page-main">
-	<div class="board-main">
-		<div class="flexbox">
-			<div class="flexbox-c1">
-				<span>${board.cb_type}</span>
+	<div class="boardview-main">
+		<div class="flexbox-h side">
+			<div>
+				<span>
+					<c:if test="${board.cb_type == 'movieTalk'}">영화톡톡</c:if>
+					<c:if test="${board.cb_type == 'swap'}">양도/교환</c:if>
+				</span>
 			</div>
-			<div class="flexbox-c2">
+			<div>
 				<c:if test="${empty cb_modify_date}">
 				<span>${board.cb_reg_date}</span>
 				</c:if>
@@ -24,12 +27,13 @@
 				<span>수정일 ${board.cb_modify_date}</span>
 				</c:if>			
 			</div>
-
 		</div>
-		<b>${board.cb_title}</b>
-		<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="12" height="12" class="my-photo">&nbsp;${board.mem_id}
-	
-		<div>
+		
+		<h4>${board.cb_title}</h4>
+		<div class="writer">
+		<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="20" height="20" class="my-photo">&nbsp;${board.mem_id}
+		</div>
+		<div class="flexbox-h">
 			<div>
 			<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
 			<span>${board.cb_hit}</span>
