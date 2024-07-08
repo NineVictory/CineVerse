@@ -31,7 +31,7 @@
 		
 		<h4>${board.cb_title}</h4>
 		<div class="writer">
-		<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="20" height="20" class="my-photo">&nbsp;${board.mem_id}
+		<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="15" height="15" class="my-photo">&nbsp;${board.mem_id}
 		</div>
 		<div class="flexbox-h">
 			<div>
