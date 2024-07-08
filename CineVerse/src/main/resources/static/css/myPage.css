@@ -424,7 +424,7 @@
     height: 210px;
     box-sizing: border-box;
     border-radius: 15px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 .wa_photo{
 	width: 160px;
@@ -444,4 +444,7 @@
 	font-size: 15px;
 	font-weight: 600;
 	margin-bottom: 3px;
+}
+.wa_line{
+	margin: 20px 0;
 }
