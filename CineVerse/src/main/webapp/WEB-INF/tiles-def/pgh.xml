@@ -5,10 +5,11 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="lsy" template="/WEB-INF/views/template/layout_basic.jsp">
+	<!-- 관리자 메인 -->
+	<definition name="adminMain" template="/WEB-INF/views/template/layout_admin.jsp">
 		<put-attribute name="title" value="SpringPage"/>
-		<put-attribute name="css" value="/WEB-INF/views/member/memberCSS.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminMain.jsp"/>
 	</definition>
 </tiles-definitions>
 
