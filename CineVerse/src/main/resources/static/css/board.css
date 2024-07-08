@@ -154,6 +154,8 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 
 .writer {
     align-self: flex-start;
+    display:flex;
+    align-items:center;
 }
 
 
@@ -208,8 +210,29 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 }
 
 /*boardView 글상세*/
-.flexbox{
-	
+.boardview-main{
+	width:950px;
+	margin:50px auto;
+}
+.flexbox-h{
+	display:flex;
+	flex-direction:row;
+}
+
+.flexbox-p{
+	display:flex;
+	flex-direction:column;
+}
+.side{
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+}
+
+.boardview-main > div.flexbox-h > div{
+	margin-right:10px;
+	width:30px;
+
 }
 
 

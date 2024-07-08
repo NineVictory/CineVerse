@@ -1,0 +1,14 @@
+.payment-page{
+   display: flex;
+   flex-direction: column; /* 세로 정렬로 변경 */
+}
+
+.payment-box {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	border: 2px solid #000000;
+}
