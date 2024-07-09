@@ -52,7 +52,7 @@
 				<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="20" height="20" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp;&nbsp;<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">
 			</div>
 			<div>
-				<c:if test="${board.mem_num == user.mem_num || user.mem_auth == 9}">
+				<c:if test="${board.mem_num == user.mem_num}">
 			
 				<div class="board-btn">
 						<span class="board-cbtn"><a href="" onclick="return false;"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></a></span>
