@@ -10,7 +10,7 @@
 <div class="review_content_info">
 <div>아이디</div>
 <div>별점 카운트</div>
-<div class="">리뷰oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</div>
+<div class="review_line">리뷰 길게 쓸 때 줄바꿈 처리 하기 리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기리뷰 길게 쓸 때 줄바꿈 처리 하기</div>
 </div>
 <div class="review_delete_btn">
 <div>삭제</div>

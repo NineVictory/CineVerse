@@ -766,17 +766,21 @@
     background-color: #F7F7F7;
     border-radius: 12px;
     padding: 20px 30px 20px 30px;
+    gap: 15px;
  }
  .review_content{
  	display: flex;
     align-items: center;
     justify-content: space-between;
-   	gap: 10px;
+   	
+ }
+ .review_line{
+ 	margin-top: 10px;
  }
 .review_content_info{
 	text-align: left;
 	font-size: 14px;
-	width: 800px;
+	width: 840px;
 }
 .my_review_content{
 	/* review_content_info의 width 800넘어가면 줄바꿈 처리되게 */
