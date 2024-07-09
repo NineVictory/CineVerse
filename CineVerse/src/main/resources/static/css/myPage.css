@@ -715,5 +715,25 @@
 	justify-content: flex-end;
 }
 /* =======================
-       .jsp
+     		myPageCoupon  .jsp
    ======================= */
+.coupon_box{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   

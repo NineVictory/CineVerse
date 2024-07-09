@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="myPageMain_1">
 	<div class="myPageMain_photo">
 		<img
@@ -10,13 +10,30 @@
 
 	<div class="myPageMain_right">
 		<div class="myPageMain_information">
-			<span class="myPageMain_name">분모재 님</span> <span
-				class="myPageMain_id">boonmojae</span> <span
-				class="myPageMain_nickName">닉네임 : 분모재</span> <input type="button"
+			<span class="myPageMain_name">${member.mem_name } 님</span> <span
+				class="myPageMain_id">${member.mem_id }</span> <span
+				class="myPageMain_nickName">닉네임 : ${member.mem_id }</span> <input type="button"
 				value="수정이미지로 변경">
 		</div>
 
-		<div class="myPageMain_vip">고객님은 2024년 1월 RVIP 입니다</div>
+		<div class="myPageMain_vip">고객님은 2024년 1월 
+		<c:if test="${member.mem_rank==1 }">
+			 <b>BASIC</b>
+		</c:if>
+		<c:if test="${member.mem_rank==2 }">
+			 <b>MEMBER</b>
+		</c:if>
+		<c:if test="${member.mem_rank==3 }">
+			<b> REGULAR</b>
+		</c:if>
+		<c:if test="${member.mem_rank==4 }">
+			<b> VIP</b>
+		</c:if>
+		<c:if test="${member.mem_rank==5 }">
+			 <b>VVIP</b>
+		</c:if>
+		
+		 입니다</div>
 
 		<div class="mp_vip_lounge">VIP 라운지</div>
 	</div>
@@ -59,7 +76,7 @@
 		<!-- 포인트 충전 링크 -->
 		<span class="mp_point">CV POINT</span> <span class="my_point_charge">충전</span><br>
 		<div class="point_content">
-			<span>사용가능한 포인트</span><span class="user_point">500000P</span>
+			<span>사용가능한 포인트</span><span class="user_point">${member.ph_point}P</span>
 		</div>
 		<hr size="1" width="90%" class="line">
 		<div class="point_list">

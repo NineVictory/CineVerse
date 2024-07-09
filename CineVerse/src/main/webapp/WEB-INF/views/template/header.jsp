@@ -58,6 +58,8 @@
                     <a href="#">영화관</a>
                     <div>
                         <ul>
+                        <li class=""><a href="${pageContext.request.contextPath}/movie/ownMovieInfo" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
+                        <li class=""><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>
                             <li class=""><a href="#" title="스페셜관">스페셜관</a></li>
                             <li><a href="#" title="서울">서울</a></li>
                             <li><a href="#" title="경기/인천">경기/인천</a></li>
@@ -85,8 +87,8 @@
                 	<a href="${pageContext.request.contextPath}/board/list">커뮤니티</a>
                 	<div>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/board/list?cb_type=movieTalk" title="영화톡톡">영화톡톡</a></li>
-                            <li><a href="#">양도/교환</a></li>
+                            <li><a href="${pageContext.request.contextPath}/board/list" title="영화톡톡">영화톡톡</a></li>
+                            <li><a href="${pageContext.request.contextPath}/assignboard/list">양도/교환</a></li>
                         </ul>
                     </div>
                 </li>

@@ -77,16 +77,20 @@
 			<div id="review_first">
 				<span class="letter-count">300/300</span>
 			</div>
-			<div id="review_second" class="review-align-right">
-				<input type="submit" value="등록">
+			<div id="review_second" style="text-align: right;">
+    			<div class="review-button">등록</div>
 			</div>
+
 		</form>
 	</div>
 </div>
 <div class="review-menu">
-<span>추천순</span>
-<span>|</span>
-<span>최신순</span>
+    <span id="recommendation">추천순</span>
+    <span>|</span>
+    <span id="latest">최신순</span>
 </div>
 </div>
+<script>
+</script>
+	
 <!-- 영화상세 끝 -->

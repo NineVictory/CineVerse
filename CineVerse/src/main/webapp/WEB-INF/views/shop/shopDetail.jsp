@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	    pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -13,7 +13,7 @@
 	            <p>클래식 티셔츠(아이보리)</p>
 	            <p class="product-price">39,000원</p>
 	            <div class="buy-form">
-	                <form action="shopBuy" id="shop_buy">
+	                <form action="shopBuy" id="shop_buy" method="post">
 	                    <span>수량</span>
 	                    <div class="quantity-controls">
 	                        <button type="button" class="quantity-down">-</button>
