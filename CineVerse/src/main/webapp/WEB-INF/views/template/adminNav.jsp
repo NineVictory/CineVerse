@@ -17,8 +17,8 @@
 		<li > <a href = "#">예매</a></li>
 		<li > <a href = "#">리뷰관리</a></li>
 
-		<li > <a href = "#"><h2>공지사항</h2></a></li>
-		<li > <a href = "#"><h2>이벤트</h2></a></li>
+		<li > <a href = "${pageContext.request.contextPath}/admin/adminNotice"><h2>공지사항</h2></a></li>
+		<li > <a href = "${pageContext.request.contextPath}/admin/adminEvent"><h2>이벤트</h2></a></li>
 		<li > <a href = "#"><h2>포인트</h2></a></li>
 
 		<li > <a href = "#"><h2>게시판</h2></a></li>

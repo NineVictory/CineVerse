@@ -95,7 +95,7 @@ public class AdminController {
     // 이벤트
     @GetMapping("/admin/adminEvent")
 	public String adminEvent(){
-		return "adminNotice";
+		return "adminEvent";
 	}
     // 결제
     @GetMapping("/admin/admin/adminPayment")

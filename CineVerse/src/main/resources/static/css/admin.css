@@ -45,6 +45,7 @@
 #sub_title{
 	font-size:25pt;
 	font-weight:bold;
+	margin-bottom: 10px;
 }
 .row {
     display: flex; /* Flexbox를 사용하여 내부 요소들을 수평으로 배치 */
@@ -178,7 +179,15 @@ input[type="search"] {
     cursor: pointer;
 }
 
+.insert_button {
+    float: right;
+    margin-right: 10px;
+}
 
+/*이벤트*/
+#sub_title2{
+	font-size:25pt;
+	font-weight:bold;
+	margin:100px 0 30px 30px;
 
-
-
+}

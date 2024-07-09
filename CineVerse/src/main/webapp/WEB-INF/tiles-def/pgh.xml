@@ -36,13 +36,41 @@
 	<!-- 구독맴버십 -->
 	<definition name="adminMembership"
 		template="/WEB-INF/views/template/layout_adminMain.jsp">
-		<put-attribute name="title" value="구독취소" />
+		<put-attribute name="title" value="구독관리" />
 		<put-attribute name="css"
 			value="/WEB-INF/views/admin/adminCSS.jsp" />
 		<put-attribute name="admin_nav"
 			value="/WEB-INF/views/template/adminNav.jsp" />
 		<put-attribute name="admin_body"
 			value="/WEB-INF/views/admin/adminMembership.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/template/footer.jsp" />
+	</definition>
+	
+	<!-- 공지사항 -->
+	<definition name="adminNotice"
+		template="/WEB-INF/views/template/layout_adminMain.jsp">
+		<put-attribute name="title" value="공지사항" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_nav"
+			value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body"
+			value="/WEB-INF/views/admin/adminNotice.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/template/footer.jsp" />
+	</definition>
+	
+	<!-- 이벤트 -->
+	<definition name="adminEvent"
+		template="/WEB-INF/views/template/layout_adminMain.jsp">
+		<put-attribute name="title" value="이벤트 관리" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_nav"
+			value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body"
+			value="/WEB-INF/views/admin/adminEvent.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/views/template/footer.jsp" />
 	</definition>
