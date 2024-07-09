@@ -280,7 +280,7 @@ input.chatBtn{
 .image img{
 	display: block;
 	margin:0 auto;
-	
+	max-width:760px;
 }
 
 #reply_div img{
@@ -296,8 +296,7 @@ div.board-btn{
 	flex-direction:column;
 	align-items:flex-end;	
 	position: relative;
-	/* display:inline-block;
-	position:relative; */
+	/* display:inline-block;*/
 	cursor:pointer;
 }
 span.board-cbtn{
@@ -305,6 +304,20 @@ span.board-cbtn{
 	z-index:999;
 	right:0;
 	top:-5px;
+}
+
+div.assboard-btn{
+	display: flex;
+	flex-direction:column;
+	align-items:flex-end;	
+	position: relative;
+	/* display:inline-block;*/
+	cursor:pointer;
+}
+span.assboard-cbtn{
+	z-index:999;
+	right:0;
+	/* top:-5px; */
 }
 ul.btn-hide {
     position: absolute;
@@ -337,8 +350,9 @@ ul.btn-hide li a:hover {
 
 
 /*assign 글상세 */
-.marg445{
-	width:445px;
+.marg440{
+	width:440px;
+	max-height:425px;
 }
 .assign-info-container{
 	margin:30px 30px 40px 30px;
@@ -347,8 +361,64 @@ ul.btn-hide li a:hover {
 }
 
 .simple-info{
-	
+	height:400px;
 	align-items: flex-start;
+	position:relative;
+}
+.simple-info h2{	
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 원하는 줄 수 */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width:440px;
+}
+/* 엣지에서 안될때
+.simple-info h2{
+      width: 300px; 원하는 너비 설정
+      height: 4.5em; 원하는 높이 설정 (line-height의 배수)
+      line-height: 1.5em; 줄 높이 설정
+      overflow: hidden;
+      position: relative;
+    }
+    .simple-info h2:after {
+      content: '...';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 0 5px;
+    } */
+.font14{
+	font-size:14px;
+}
+.font15{
+	font-size:15px;
+}
+
+.assign-price b{
+	font-size:24px;
+}
+.middle-hr{
+	border:0;
+	height:1px;
+	background:#edebeb;
+}
+.assign-likes{
+	margin-bottom:15px;
+}
+.assign-likes span, .assign-report a{
+	color:#808080;
+	font-size:15px;
+
+}
+ul.status-df{
+	padding-left:2px;
+}
+ul.status-df li.font14 label{
+	display:inline-block;
+	width:55px;
+	margin-right:10px;
+	color:#808080;
 }
 
 .info-detail-top{
@@ -356,4 +426,36 @@ ul.btn-hide li a:hover {
 }
 .info-detail-main{
 	font-size:15px;
+}
+
+.assView-btn{
+	width:440px;
+	position:absolute;
+	top:355px;
+}
+.assView-btn button{
+    color:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	
+	width:215px;
+	height:50px;
+	font-size:17px;
+	border:none;
+	cursor:pointer;
+	font-weight:bold;
+}
+.likeBtn{
+	background:#c7c7c7;
+}
+.liked {
+	background-color: red;
+}
+.ass-chatBtn{
+	background:#fcaf28;/* #3F66ED */
+}
+
+.assign-comment{
+	margin:10px 30px;
 }

@@ -3,17 +3,17 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 게시판 글상세 시작 -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
 <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>
-<script src="${pageContext.request.contextPath}/js/board.reply.js"></script>
+<script src="${pageContext.request.contextPath}/js/assignboard.view.js"></script>
 
 <div class="page-container page-main">
 	<div class="boardview-main">
-		<div class="board-btn">
-				<span class="board-cbtn"><a href="" onclick="return false;"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></a></span>
+		<div class="assboard-btn">
+				<span class="assboard-cbtn"><a href="" onclick="return false;"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></a></span>
 	
 				<ul class="btn-hide">
 	            	<li><a href="update">수정</a></li>
@@ -22,7 +22,7 @@
 	        	
 	        	<script type="text/javascript">
 	        	$('.btn-hide').hide();
-	        	$('.board-cbtn').click(function() {
+	        	$('.assboard-cbtn').click(function() {
 	        	    $(this).parent().find('.btn-hide').toggle();
 	        	});
 	        	$('#delete_btn').click(function(event) {
@@ -42,39 +42,42 @@
 		<div class="assign-info-container 상품정보">
 		
 			<div class="flexbox-h side">
-				<div class="marg445">
+				<div class="marg440">
 				<img src="${pageContext.request.contextPath}/images/kbm/ot.png" width="420">
 				</div>
-				<div class="marg445">
+				<div class="marg440">
 					<div class="flexbox-p simple-info">
-						<h3>퓨리오사 오리지널 티켓 2종 굿즈</h3>
-						<span>양도</span>
-						<span><b>30000</b>원</span>
-						<div class="flexbox-h side">
+						<span class="font15">양도</span><%--양도 or 교환 카테고리 --%>
+						<h2>퓨리오사 오리지널 티켓 2종 굿즈 길이테스트입니다아아아아아아아아아아아아아아아아아아아아아아아아아아</h2><%--ab_title--%>
+						<span class="assign-price"><b><fmt:formatNumber value="30000" type="number"/></b>원</span>
+						<hr size="1" width="100%" class="middle-hr">
+						<div class="flexbox-h side assign-likes">
 							<div class="">
 								<div>
-								<%-- 북마크 --%>
 								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-								<span>5</span>
+								<span>5</span><%-- 북마크 --%>
 								&nbsp;&nbsp;
-								<%-- 조회수 --%>
+								
 								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-								<span>25</span>
+								<span>25</span><%-- 조회수 --%>
+								&nbsp;&nbsp;
+								<span>예약중</span>
 								</div>
 							</div>
-							<div>
-								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15" height="15"><span style="margin-left:2px;" id="board-report">신고하기</span>
+							<div class="assign-report">
+								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15" height="15"><span style="margin-left:2px;" id="board-report"><a href="#">신고하기</a></span>
 							</div>
 						</div>
 						<div>
-							<div> 상품상태  <b>새 상품</b></div>
+							<ul class="status-df">
+							 	<li class="font14"><label>상품상태</label> <span>새 상품</span></li>
+						
+							 	<li class="font14"><label>배송비</label> <span><fmt:formatNumber value="3000" type="number"/>원</span></li>
+							 </ul>
 						</div>
-						<div>
-							<div> 배송비 일반 4000원 | gs반값 2000원</div>
-						</div>
-						<div>
-							<input type="button" value="찜">
-							<input type="button" value="채팅">
+						<div class="assView-btn flexbox-h side">
+							<button class="likeBtn"><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="17"><span> 찜 </span><span>5</span></button>
+							<button class="ass-chatBtn"><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="17"><span>채팅</span></button>
 						</div>
 					</div>
 				</div>
@@ -98,13 +101,13 @@
 		
 		<div>
 			<div class="flexbox-h side">
-			<span class="ml10">댓글(2)</span>
+			<span class="ml10">댓글(0)</span>
 			
 			</div>
 			<hr size="1" width="100%">
 		</div>	
 		
-		<div class="댓글">
+		<div class="assign-comment">
 			<!-- 댓글 목록 출력 -->
 			 //댓글 출력//
 			<div id="output"></div>
@@ -118,7 +121,7 @@
 		
 		
 			<!-- 댓글 작성 UI 시작 -->
-			<div id="reply_div" class="ml10 mt10">
+			<div id="reply_div" class=" mt10">
 				<div><span class="re-title">댓글쓰기</span></div>
 				<div class="flexbox-h">
 					<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="45" height="45" class="my-photo">
