@@ -71,8 +71,8 @@
                 	<a href="${pageContext.request.contextPath}/board/list" class="secondary-a">커뮤니티</a>
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
-                            <li class="hide_menu_li"><a class="hide-menu-a" href="${pageContext.request.contextPath}/board/list?cb_type=movieTalk" title="영화톡톡">영화톡톡</a></li>
-                            <li class="hide_menu_li"><a class="hide-menu-a" href="#" title="양도/교환">양도/교환</a></li>
+                            <li class="hide_menu_li"><a class="hide-menu-a" href="${pageContext.request.contextPath}/board/list" title="영화톡톡">영화톡톡</a></li>
+                            <li class="hide_menu_li"><a class="hide-menu-a" href="${pageContext.request.contextPath}/assignboard/list" title="양도/교환">양도/교환</a></li>
                         </ul>
                     </div>
                 </li>
