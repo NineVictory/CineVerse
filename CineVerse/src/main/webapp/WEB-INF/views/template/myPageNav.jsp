@@ -8,11 +8,11 @@
         <li class="mp_nav"><a href="/myPage/expectingMovie">나의 활동</a></li>
         <li class="mp_li"><a href="/myPage/expectingMovie">기대되는 영화</a></li>
         <li class="mp_li"><a href="/myPage/watchedMovie">내가 본 영화</a></li>
-        <li class="mp_li"><a href="#">내가 쓴 평점</a></li>
-        <li class="mp_nav"><a href="#">게시판</a></li>
-        <li class="mp_li"><a href="">북마크</a></li>
-        <li class="mp_li"><a href="">내가 쓴 글</a></li>
-        <li class="mp_li"><a href="#">내가 쓴 댓글</a></li>
+        <li class="mp_li"><a href="/myPage/review">내가 쓴 평점</a></li>
+        <li class="mp_nav"><a href="/myPage/boardWrite">게시판</a></li>
+        <li class="mp_li"><a href="/myPage/bookMark">북마크</a></li>
+        <li class="mp_li"><a href="/myPage/boardWrite">내가 쓴 글</a></li>
+        <li class="mp_li"><a href="/myPage/boardReply">내가 쓴 댓글</a></li>
         <li class="mp_nav"><a href="#">내 캘린더</a></li>
         <li class="mp_nav"><a href="#">이벤트 참여 내역</a></li>
         <li class="mp_nav"><a href="#">구매</a></li>
@@ -29,4 +29,3 @@
         <li class="mp_li"><a href="#">1:1 문의</a></li>
     </ul>
 </div>
-

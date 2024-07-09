@@ -174,6 +174,9 @@
 .line{
 	margin-top: 10px;
 }
+.main_count{
+	margin-left: 6px;
+}
 /* =======================
 			nav
    ======================= */
@@ -715,19 +718,83 @@
 	justify-content: flex-end;
 }
 /* =======================
-     		myPageCoupon  .jsp
+     		myPageCoupon.jsp
    ======================= */
 .coupon_box{
+	width:100%;
+	margin-top: 30px;
+}
+.coupon_info{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;    
+	background-color: #F2F2F2;
+}
+.coupon_info_list{
 	display: flex;
     align-items: center;
     justify-content: space-between;
 }
+.coupon_in{
+	font-size: 16px;
+	font-weight: 600;
+	width:50%;
+	text-align: center;
+	padding: 13px 0;
+}
+.coupon_info_name,.coupon_info_date,.coupon_info_content{
+	font-size: 14px;
+	font-weight: 600;
+	width:50%;
+	text-align: center;
+	padding: 13px 0;
+}
+.myCoupon_option{
+	width: 80px;
+	height: 30px;
+	border-radius: 10px;
+	text-align: center;
+}
+ /* =======================
+     		myPageReview.jsp
+   ======================= */  
+ .review_box{
+ 	display: flex;
+    flex-direction: column;/* flex 상하 */
+    text-align: center;
+    margin-top: 25px;
+ }
+ .review_content{
+ 	display: flex;
+    align-items: center;
+    justify-content: space-between;
+ }
+.review_content_info{
+	text-align: left;
+	font-size: 14px;
+}
+.review_delete_btn{
+}
+.review_fav_date{
+	text-align: right;
+	font-size: 14px;
+}
+  /* =======================
+     		myPageBookMark.jsp
+   ======================= */  
+   
+   
+   
+    /* =======================
+     		myPageWrite.jsp
+   ======================= */  
    
    
    
    
-   
-   
+    /* =======================
+     		myPageReply.jsp
+   ======================= */  
    
    
    

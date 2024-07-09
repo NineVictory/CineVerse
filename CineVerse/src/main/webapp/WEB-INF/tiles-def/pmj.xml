@@ -30,12 +30,37 @@
 	</definition>
 	
 	<definition name="expectingMovie" extends="myPageMain">
-		<put-attribute name="title" value="내가 본 영화"/>
+		<put-attribute name="title" value="기대되는 영화"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/expectingMovie.jsp"/>
 	</definition>
 	
+	<definition name="review" extends="myPageMain">
+		<put-attribute name="title" value="내가 쓴 별점"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/review.jsp"/>
+	</definition>
+	
+	<definition name="bookMark" extends="myPageMain">
+		<put-attribute name="title" value="북마크"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/bookMark.jsp"/>
+	</definition>
+	
+	<definition name="boardWrite" extends="myPageMain">
+		<put-attribute name="title" value="내가 쓴 게시글"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/boardWrite.jsp"/>
+	</definition>
+	
+	<definition name="boardReply" extends="myPageMain">
+		<put-attribute name="title" value="내가  쓴 댓글"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/boardReply.jsp"/>
+	</definition>
+	
+	
+	
+	
+	
+	
 	<definition name="modifyUser" extends="myPageMain">
-		<put-attribute name="title" value="내가 본 영화"/>
+		<put-attribute name="title" value="개인정보변경"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/modifyUser.jsp"/>
 	</definition>
 </tiles-definitions>

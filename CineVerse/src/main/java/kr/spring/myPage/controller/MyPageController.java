@@ -66,9 +66,42 @@ public class MyPageController {
 		return "watchedMovie";
 	}
 	//나의 활동 - 내가 쓴 별점
-	//게시판 - 내가 쓴 글
-	//게시판 - 내가 쓴 댓글
+	@GetMapping("/myPage/review")
+		public String myPageReview(HttpSession session, Model model) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			MyPageVO member = mypageService.selectMember(user.getMem_num());
+			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+			model.addAttribute("member",member);
+			return "review";
+		}
 	//북마크
+	@GetMapping("/myPage/bookMark")
+	public String myPageBookMark(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "bookMark";
+	}
+	//게시판 - 내가 쓴 글
+	@GetMapping("/myPage/boardWrite")
+	public String myPageBoardWrite(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "boardWrite";
+	}
+	//게시판 - 내가 쓴 댓글
+	@GetMapping("/myPage/boardReply")
+	public String myPageBoardReply(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "boardReply";
+	}
+	
 	//내 캘린더
 	//이벤트 참여 내역
 	//구매 - 포인트 충전 내역
