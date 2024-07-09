@@ -6,7 +6,8 @@
 <div class="main_content">
 	<div class="buy-main">
 		<h2>결제하기</h2>
-		<span>배송지 정보</span>
+		<span>배송지 정보</span> 
+		<div class="add-address">추가</div>
 		<%-- <form:form action="shopPay" id="shop_pay" method="post">
 		받는 사람  <form:input path="a_name"/>
 		연락처 <form:input path="a_phone"/>
@@ -28,28 +29,53 @@
 	<form action="shopPay" id="shop_pay" method="post">
 	    <div class="select-address">
 	    	<ul>
-		        <li><input type="checkbox" name="address1" id="address1" checked> <span>기본</span></li>
-		        <li><input type="checkbox" name="address2" id="address2"> <span>집</span></li>
-		        <li><input type="checkbox" name="address3" id="address3"><span>학교</span></li>
+		        <li><input type="radio" name="address" value="a_num1" checked> <span>기본</span></li>
+		        <li class="address-box">
+		        	<div class="address-list">
+			        	<span class="a_zipcode">(11223)</span>
+			        	<p class="a_address1"> &nbsp;&nbsp;경기도 성남시 분당구 저쩌구</p> 
+			        	<p class="a_address2"> &nbsp;&nbsp;308동 1803호</p>
+		        	</div>
+		        </li>
+		        <li><input type="radio" name="address" value="a_num2"> <span>집</span></li>
+		        <li class="address-box">
+		        	<div class="address-list">
+			        	<span class="a_zipcode">(11223)</span>
+			        	<p class="a_address1"> &nbsp;&nbsp;경기도 성남시 분당구 저쩌구</p> 
+			        	<p class="a_address2"> &nbsp;&nbsp;308동 1803호</p>
+		        	</div>
+		        </li>
+		        <li><input type="radio" name="address" value="a_num3"><span>학교</span></li>
+		        <li class="address-box">
+		        	<div class="address-list">
+			        	<span class="a_zipcode">(11223)</span>
+			        	<p class="a_address1"> &nbsp;&nbsp;경기도 성남시 분당구 저쩌구</p> 
+			        	<p class="a_address2"> &nbsp;&nbsp;308동 1803호</p>
+		        	</div>
+		        </li>
 	        </ul>
+	    </div>
+	    <div class="order-product">
+	    	<div class="order-header">
+				<h3>주문 상품 <span class="order_quantity">1건</span></h3>
+				<hr size="4px" color="black" width="53%">
+			</div>	    
+			<div class="order-body">
+				<span class=order-category">MARVEL</span>
+				<hr size="2px" color="#969696" width="53%">
+				<div class="product-list">
+					<img src="${pageContext.request.contextPath}/images/cje/product.png" alt="티셔츠" >
+					<div class="product-name">
+						<span>클래식 티셔츠(아이보리)</span>
+						<p>클래식 티셔츠(아이보리)&nbsp; <span>1개</span></p>
+					</div>
+					<p>가격 <span>39,000원</span></p>
+				</div>
+				<hr size="4px" color="black" width="53%">	
+			</div>
 	    </div>
 	</form>
 
-<script>
-    // JavaScript로 체크박스 제어
-    const checkboxes = document.querySelectorAll('.select-address input[type="checkbox"]');
-    
-    checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('click', function() {
-            // 모든 체크박스를 순회하며 현재 클릭된 체크박스 이외의 것들은 체크를 해제한다.
-            checkboxes.forEach((cb) => {
-                if (cb !== this) {
-                    cb.checked = false;
-                }
-            });
-        });
-    });
-</script>
 </div>
 	
 </div>
