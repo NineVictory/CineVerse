@@ -40,7 +40,7 @@
 								<li class="theater-place"><a href="#none">병점</a></li>
 								<li class="theater-place"><a href="#none">평촌(범계)</a></li>
 							</ul>
-						</div></li>
+						</div></li> 
 					<li class="theater-location" id="chungcheong-location"><a
 						href="#none">충청/대전(8)</a>
 						<div class="location" id="chungcheong" style="display: none;">
