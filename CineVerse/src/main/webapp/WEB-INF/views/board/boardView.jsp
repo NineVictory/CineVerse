@@ -17,14 +17,14 @@
 			<div class="ml10">
 				<span>
 					<c:if test="${board.cb_type == 'movieTalk'}">영화톡톡</c:if>
-					<c:if test="${board.cb_type == 'swap'}">양도/교환</c:if>
+					<c:if test="${board.cb_type == 'dailyTalk'}">일상톡톡</c:if>
 				</span>
 			</div>
 			<div>
-				<c:if test="${empty cb_modify_date}">
+				<c:if test="${empty board.cb_modify_date}">
 				<span>${board.cb_reg_date}</span>
 				</c:if>
-				<c:if test="${!empty cb_modify_date}">
+				<c:if test="${!empty board.cb_modify_date}">
 				<span>수정일 ${board.cb_modify_date}</span>
 				</c:if>			
 			</div>
@@ -98,7 +98,7 @@
 		<hr size="1" width="100%">
 	
 		<!-- 댓글 목록 출력 -->
-		댓글 출력//
+		 //댓글 출력//
 		<div id="output"></div>
 		<div id="loading" style="display:none;">
 			<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="30" height="30">
