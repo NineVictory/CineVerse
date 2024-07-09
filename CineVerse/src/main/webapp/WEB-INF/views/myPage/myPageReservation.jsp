@@ -5,8 +5,8 @@
 <div class="myPage_main">
 
 	<div class="reservation_display">
-		<span class="myPage_title_re">예매내역</span><span class="watched_movie">내가
-			본 영화</span>
+		<span class="myPage_title_re">예매내역</span>
+		<span class="watched_movie">내가 본 영화</span>
 	</div>
 	<hr size="1" width="100%" class="wa_line">
 	<div class="reservation_font">
