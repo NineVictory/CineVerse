@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.assignment.dao.AssignBoardMapper"><!--인터페이스명-자동매핑-->
+	<insert id="a_insertBoard" parameterType="assignVO">
+		INSERT INTO community_board (cb_num,cb_type,cb_title,cb_content,cb_filename,cb_ip,mem_num) 
+				VALUES (community_board_seq.nextval,#{cb_type, jdbcType=INTEGER},#{cb_title},#{cb_content},#{cb_filename,jdbcType=VARCHAR},#{cb_ip},#{mem_num})
+	</insert>
+	
+	<!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->	<!--sub_sql처럼-->
+	<sql id="a_boardSearch">
+		<where><!--조건-->
+			<if test="cb_type != null and cb_type != ''">
+				cb_type = #{cb_type}
+			</if>
+			<if test="keyword != null and keyword != ''">
+				<if test="cb_type != null and cb_type != ''">
+				AND
+				</if>
+				cb_title LIKE '%' || #{keyword} || '%' OR mem_id LIKE '%' || #{keyword} || '%'
+				OR cb_content LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
+	
+	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<select id="a_selectRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM community_board JOIN member USING (mem_num)
+		<include refid="boardSearch"></include>
+	</select>
+
+	<!-- 게시판 전체 목록/검색 목록 -->
+	<select id="a_selectList" parameterType="map" resultType="assignVO">
+		SELECT * FROM
+				(SELECT a.*, rownum rnum FROM			<!--좋아요가 없을 때 누락-->
+								(SELECT 
+									cb_num,
+									<![CDATA[
+									REPLACE(REPLACE(cb_title,'<','&lt;'),'>','&gt;') cb_title,
+									]]>
+									cb_hit,
+									cb_filename,
+									cb_reg_date,
+									cb_type,
+									mem_num,
+									mem_id,
+									re_cnt,
+									fav_cnt
+								
+									FROM community_board 
+									LEFT OUTER JOIN (SELECT COUNT(*) re_cnt, cb_num FROM community_comment GROUP BY cb_num) USING (cb_num)
+									LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM community_fav GROUP BY cb_num) USING(cb_num)
+												JOIN member USING(mem_num)
+												<include refid="boardSearch"></include>
+												ORDER BY cb_reg_date DESC)a) 
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	
+	<!-- 게시판 글 수정 -->
+	<update id="a_updateBoard" parameterType="assignVO">
+		UPDATE community_board SET
+						cb_type = #{cb_type}, cb_title = #{cb_title}, cb_content = #{cb_content}, cb_ip = #{cb_ip}, cb_modify_date = SYSDATE
+												WHERE cb_num = #{cb_num}
+	</update>
+	
+	<!-- 댓글 등록 -->
+	<insert id="a_insertReply" parameterType="boardReplyVO">
+		INSERT INTO spboard_reply (re_num, re_content, re_ip, board_num, mem_num)
+								VALUES (spreply_seq.nextval, #{re_content}, #{re_ip}, #{board_num}, #{mem_num})
+	</insert>
+	
+	<!-- 댓글 목록 -->
+	<select id="a_selectListReply" parameterType="map" resultType="boardReplyVO">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM 
+										(SELECT * FROM spboard_reply JOIN spmember USING(mem_num) 
+											<!-- 로그인 한 상태에서 클릭한 사람의 정보 읽기, 로그인하지 않으면 0 전달 -->
+											LEFT OUTER JOIN (SELECT re_num, mem_num click_num FROM spreply_fav WHERE mem_num=#{mem_num}) USING (re_num)
+											LEFT OUTER JOIN (SELECT re_num, COUNT(*) refav_cnt FROM spreply_fav GROUP BY re_num) USING (re_num)
+											WHERE board_num=#{board_num} ORDER BY re_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}]]>
+	</select>		<!--map 키 -->
+</mapper>							
+
+
+
+
+
+

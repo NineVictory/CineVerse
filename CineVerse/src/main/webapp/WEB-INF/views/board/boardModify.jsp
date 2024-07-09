@@ -49,7 +49,7 @@
 					<form:select path="cb_type" id="cb_type" class="custom-type borderR">
 						<option value="select" disabled selected>선택하세요</option>
 						<form:option value="movieTalk">영화톡톡</form:option>
-	            		<form:option value="swap">양도/교환</form:option>
+	            		<form:option value="dailyTalk">일상톡톡</form:option>
 					</form:select>
 				</div>
 				<form:errors path="cb_type" cssClass="error-color"/>

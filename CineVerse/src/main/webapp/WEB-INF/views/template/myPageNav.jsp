@@ -22,6 +22,7 @@
         <li class="mp_nav"><a href="#">채팅이력</a></li>
         <li class="mp_nav"><a href="#">회원정보</a></li>
         <li class="mp_li"><a href="/myPage/modifyUser">개인정보 변경</a></li>
+         <li class="mp_li"><a href="#">배송지 관리</a></li>
         <li class="mp_li"><a href="#">회원 탈퇴</a></li>
         <li class="mp_nav"><a href="#">멤버십 구독</a></li>
         <li class="mp_nav"><a href="#">나의 문의 내역</a></li>
