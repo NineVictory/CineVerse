@@ -65,8 +65,8 @@
 					<td colspan="4">
 						<div class="cell-content">
 							<div class="title"><a href="detail?cb_num=${board.cb_num}">${board.cb_title}</a></div>
-							<div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;">${board.cb_hit}&nbsp; <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;">${board.re_cnt}&nbsp; <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;">${board.fav_cnt}</div>
-							<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="12" height="12" class="my-photo">${board.mem_id}&nbsp;&nbsp; ${board.cb_reg_date}</div>
+							<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.cb_hit}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.re_cnt}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.fav_cnt}</span></div></div>
+							<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp; ${board.cb_reg_date}</div>
 						</div>
 					</td>
 				</tr>

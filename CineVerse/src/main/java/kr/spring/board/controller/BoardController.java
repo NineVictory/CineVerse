@@ -68,8 +68,6 @@ public class BoardController {
 	boardVO.setMem_num(vo.getMem_num());
 	//ip 셋팅
 	boardVO.setCb_ip(request.getRemoteAddr());
-	//파일 업로드											multipartfile로 반환
-	boardVO.setCb_filename(FileUtil.createFile(request, boardVO.getUpload()));
 	
 	//글쓰기
 	boardService.insertBoard(boardVO);
@@ -137,5 +135,48 @@ public class BoardController {
 		//board.setContent(StringUtil.useBrNoHTML(board.getContent()));
 		
 		return new ModelAndView("boardView", "board", board);
-	}	
+	}
+	
+	/*====================
+	 *게시판 글수정
+	 =====================*/
+	//수정 폼 호출
+	@GetMapping("/board/update")
+	public String formUpdate(long cb_num, Model model) {
+		BoardVO boardVO = boardService.selectBoard(cb_num);
+		model.addAttribute("boardVO", boardVO);
+		
+		return "boardModify";
+	}
+	//수정 폼에서 전송된 데이터 처리
+	@PostMapping("/board/update")
+	public String submitUpdate(@Valid BoardVO boardVO, BindingResult result, Model model, HttpServletRequest request) throws IllegalStateException, IOException {
+		log.debug("<<게시판 글 수정>> : " + boardVO);
+		
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return "boardModify";
+		}
+		//ip 셋팅
+		boardVO.setCb_ip(request.getRemoteAddr());
+		//글 수정
+		boardService.updateBoard(boardVO);
+		
+		//View에 표시할 메시지
+		model.addAttribute("message", "글 수정 완료");
+		model.addAttribute("url", request.getContextPath() + "/board/detail?cb_num=" + boardVO.getCb_num());
+		return "common/resultAlert";
+	}
+	/*====================
+	 *게시판 글삭제
+	 =====================*/
+	@GetMapping("/board/delete")
+	public String submitDelete(long cb_num, HttpServletRequest request) {
+		log.debug("<<게시판 글 삭제 - board_num>> : " + cb_num);
+		
+		//글 삭제
+		boardService.deleteBoard(cb_num);
+		
+		return "redirect:/board/list";
+	}
 }

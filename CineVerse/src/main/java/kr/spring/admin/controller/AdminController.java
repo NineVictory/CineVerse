@@ -30,6 +30,6 @@ public class AdminController {
 	@GetMapping("/admin/adminMain")
 	public String process(HttpSession session,Model model) {
 		
-		return "adminMain"; 
+		return "/admin/adminMain"; 
 	}
 }

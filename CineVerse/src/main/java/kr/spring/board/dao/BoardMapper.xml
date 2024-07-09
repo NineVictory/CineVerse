@@ -54,7 +54,7 @@
 									LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM community_fav GROUP BY cb_num) USING(cb_num)
 												JOIN member USING(mem_num)
 												<include refid="boardSearch"></include>
-												)a)
+												ORDER BY cb_reg_date DESC)a) 
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
@@ -63,12 +63,9 @@
 	
 	<!-- 게시판 글 수정 -->
 	<update id="updateBoard" parameterType="boardVO">
-		UPDATE spboard SET
-						<if test="filename != null">
-							filename = #{filename},
-						</if>
-												title = #{title}, content = #{content}, ip = #{ip}, modify_date = SYSDATE
-												WHERE board_num = #{board_num}
+		UPDATE community_board SET
+						cb_type = #{cb_type}, cb_title = #{cb_title}, cb_content = #{cb_content}, cb_ip = #{cb_ip}, cb_modify_date = SYSDATE
+												WHERE cb_num = #{cb_num}
 	</update>
 	
 	<!-- 댓글 등록 -->

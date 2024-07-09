@@ -1,14 +1,292 @@
-.payment-page{
-   display: flex;
-   flex-direction: column; /* 세로 정렬로 변경 */
+.payment-page {
+	display: flex;
+	flex-direction: column; /* 세로 정렬로 변경 */
+	align-items: stretch; /* 가로 가운데 정렬 */
+	justify-content: center; /* 세로 가운데 정렬 */
+	margin-top: 70px;
+	
+}
+
+.content-box {
+  display: flex;
+  justify-content: center; /* 가로 가운데 정렬 */
 }
 
 .payment-box {
-	position: absolute;
-	width: 100px;
-	height: 100px;
+	width: 500px;
+	height: 300px;
 	border-radius: 20px;
 	background: #FFFFFF;
 	box-sizing: border-box;
 	border: 2px solid #000000;
+	margin-top: 20px;
+	margin-bottom: 100px; /* 각 박스 사이의 간격 */
 }
+
+.cuppon-box {
+	width: 500px;
+	height: 150px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	border: 2px solid #000000;
+	margin-top: 20px;
+	margin-bottom: 100px; /* 각 박스 사이의 간격 */
+}
+
+.point-box {
+	width: 500px;
+	height: 150px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	border: 2px solid #000000;
+	margin-top: 20px;
+	margin-bottom: 100px; /* 각 박스 사이의 간격 */
+}
+
+.finalpay-box {
+	width: 500px;
+	height: 150px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	border: 2px solid #000000;
+	margin-top: 20px;
+	margin-bottom: 50px; /* 각 박스 사이의 간격 */
+}
+
+h3 {
+  text-align: left; /* h3 태그 왼쪽 정렬 */
+  margin-top: 20px;
+}
+
+h4 {
+	position: absolute;
+	top: 1070px;
+	left: 700px;	
+}
+
+.cuppon-button {
+  position: absolute;
+  top: 785px;
+  right: 700px;
+  display: flex;
+}
+ 
+.point-button {
+  position: absolute;
+  top: 1110px;
+  right: 700px;
+  display: flex;
+}
+
+.final-button {
+	text-align: right;
+}
+
+input[type="button"] {
+   background: #4381FD;
+   color: #FFFFFF;
+   border: none;
+   border-radius: 5px; 
+   width: 100px;
+   height: 50px;
+}
+
+.payment-box img{
+	position: absolute;
+	top: 320px;
+	left: 710px;
+	width: 200px;
+	height: 200px;
+}
+
+
+
+
+/* reserve */
+* {
+    font-size: 11px;
+}
+
+.reserve-container {
+    margin-top: 140px;
+    display: flex;
+    justify-content: center;
+    height: 800px;
+}
+
+.reserve-container>div {
+    border: 1px solid #dddddd;
+}
+
+.reserve-title {
+    border-bottom: 1px solid #dddddd;
+    background-color: #444444;
+    text-align: center;
+    color: #dddddd;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.movie-part {
+    width: 284px;
+}
+
+.theater-part {
+    width: 264px;
+}
+
+.day-part {
+    width: 91px;
+}
+
+.time-part {
+    width: 384px;
+}
+
+.reserve-date {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 770px;
+}
+
+.movie-date-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 2px;
+}
+
+
+
+.saturday {
+    color: #31597E;
+    font-weight: bold;
+}
+
+.sunday {
+    color: #AF2D2D;
+    font-weight: bold;
+}
+
+.movie-date-wrapper-active {
+    background-color: #333333;
+}
+
+.movie-date-wrapper-active>* {
+    color: white;
+}
+
+.theater-wrapper {
+    padding-left: 12px;
+    padding-top: 2px;
+    display: flex;
+}
+
+.theater-location-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.theater-place-wrapper {
+    padding-right: 12px;
+    margin-top: 2px;
+    height: 300px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.theater-location {
+    height: 40px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 6px 6px 0;
+    margin-top: 1px;
+}
+
+.theater-place {
+    padding: 6px 5px;
+    height: 40px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.reserve-time {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.reserve-where {
+    font-size: 12px;
+    margin-top: 20px;
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.reserve-time-wrapper {
+    margin-top: 10px;
+}
+
+.reserve-time-button {
+    margin-top: 10px;
+}
+
+.reserve-time-want {
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding: 3px;
+    font-weight: bold;
+    border: 1px solid #dddddd;
+}
+
+.reserve-time-remain {
+    color: #97B68D;
+}
+
+.reserve-time-active {
+    background-color: #333333;
+    color: white;
+}
+
+.theater-place-active {
+    background-color: #333333;
+    color: white;
+}
+
+.movie-list-wrapper {
+    padding: 4px 15px;
+}
+
+.movie-list {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.moveSeatButton{
+	
+	font-size: 18px;
+	font-weight: bold;
+	padding: 5px;
+	margin-top: 20px;
+	margin-left: 80px;
+	border: 1px solid #333333;
+}
+.moveSeatButton:hover{
+	 background-color: #333333;
+	 color: white;
+}
+
+
+
+
+
