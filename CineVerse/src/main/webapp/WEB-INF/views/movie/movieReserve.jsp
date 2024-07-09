@@ -25,7 +25,7 @@
 											<li class=""><a href="#none">도곡</a></li>
 											<li class=""><a href="#none">독산</a></li>
 											<li class=""><a href="#none">서울대입구</a></li>
-											<li class=""><a href="#none">수락산</a></li>
+											<li class=""><a href="#none">수락산</a></li> 
 										</ul>
 									</div>
 								</div>
