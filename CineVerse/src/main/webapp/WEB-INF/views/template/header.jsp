@@ -58,6 +58,8 @@
                     <a href="#">영화관</a>
                     <div>
                         <ul>
+                        <li class=""><a href="${pageContext.request.contextPath}/movie/ownMovieInfo" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
+                        <li class=""><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>
                             <li class=""><a href="#" title="스페셜관">스페셜관</a></li>
                             <li><a href="#" title="서울">서울</a></li>
                             <li><a href="#" title="경기/인천">경기/인천</a></li>

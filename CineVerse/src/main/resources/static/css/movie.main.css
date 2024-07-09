@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%; /* 화면 크기에 맞추기 */
-    
 }
 
 #main_content {
@@ -22,27 +21,81 @@
 }
 
 .movie-main {
-    justify-content: center;
-    width: 100%; /* 화면 크기에 맞추기 */
+    display: flex;
+    justify-content: right;
+    margin-left: 100px;
+    width: 80%;     
     position: relative;
     height: 180px;
+}
 
+.movie-main ul li{	
+    display: flex;
+	align-items: center;
+	position: relative;
+}
+
+
+.search-container {
+     display: flex;
+    align-items: center; /* 요소들을 수직 가운데 정렬 */
+    
+}
+
+input[type="search"] {
+    width: 200px; 
+    height: 30px;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #EBE9E9;
+    border: none;
+    border-radius: 10px;
+    margin-top: 50px;
+    color: #8D8D8D;
+    position: relative;
+    top: 80px;
+   	left: 50px;
+}
+
+input[type="submit"] {
+    background-color: #EBE9E9;
+    width: 20px; 
+    height: 20px; 
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 145px;
+    left: 220px;
+    transform: translateY(-50%); 
+    background-image: url('${pageContext.request.contextPath}/images/search_icon.png');
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+
+input[type="search"]::placeholder {
+    color: #8D8D8D;
+    font-weight: 500;
 }
 .movie-list-title{
-	text-align: left;
-	margin-top:50px;
+	position: relative;
+    top: 100px; /* 필요에 따라 조정 */
+   	right: 330px; /* 필요에 따라 조정 */
 }
-.movie-search-div{
-	text-align:right;
-	display: flex; /*가로로 배치하기 위해 */
-    align-items: center; /* 가운데 정렬 */
+.select-wrapper {
+    position: relative;
+    top: 105px; /* 필요에 따라 조정 */
+   	left: 80px; /* 필요에 따라 조정 */
 }
 
-
-input[type="search"], input[type="submit"], .select-wrapper {
-    position: static; /* position: absolute 제거 */
-    margin-top: 20px; /* 위쪽 여백 추가 */
-    margin-left: 10px; /* 왼쪽 여백 추가 */
+.select-wrapper select {
+    padding: 5px;
+    font-size: 12px;
+    border: 1px solid #3D3D3D;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #3D3D3D;
+    height: 30px;
 }
 
 .movie-list-page {
@@ -82,11 +135,13 @@ input[type="search"], input[type="submit"], .select-wrapper {
     background-color: white;
     cursor: pointer;
 }
+
 .bookAopen {
     display: flex;
     align-items: center; /* 요소들을 수직 가운데 정렬 */
-    margin-left:17px;
+    margin-left: 17px;
 }
+
 .movie-button {
     display: flex;
     align-items: center; /* 요소들을 수직 가운데 정렬 */
@@ -107,7 +162,6 @@ input[type="search"], input[type="submit"], .select-wrapper {
     border: 1px solid gray; /* 테두리 설정 */ 
 }
 
-
 .movie-fav-button i {
     margin-right: 5px; /* 아이콘 오른쪽 여백 */
 }
@@ -121,6 +175,4 @@ input[type="search"], input[type="submit"], .select-wrapper {
     cursor: pointer;
     width: 80px; /* 너비 설정 */
     height: 21px; /* 높이 설정 */
-    
 }
-
