@@ -61,7 +61,7 @@
 		</div>
 	</div>
 
-	<div class="myPage_coupon" onclick="location.href='/myPage/'">
+	<div class="myPage_coupon" onclick="location.href='/myPage/coupon'">
 		<!-- 나의 쿠폰 링크 -->
 		<div class="mp_coupon">나의 쿠폰</div>
 		<div class="coupon_content">
