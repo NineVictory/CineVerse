@@ -187,7 +187,7 @@
 		</div>
 
 		<div>
-			<input type="button" class="moveSeatButton" value="좌석 선택" onclick="location=''">
+			<input type="button" class="moveSeatButton" value="좌석 선택" onclick="location.href='movieSeat'">
 		</div>
 	</div>
 
