@@ -158,22 +158,24 @@ input[type="search"] {
     background-color: #4381FD;
     border: none;
     padding: 0;
-    cursor: pointer;
 	
 }
 .button2 {
     background-color: #EA4949;
     border: none;
     padding: 0;
-    cursor: pointer;
 }
 .button1 input{
 	color: #ffffff;
-	background-color:blue;
+	border: none;
+	background-color:#4381FD;
+    cursor: pointer;
 }
 .button2 input{
 	color: #ffffff;
-	background-color:red;
+	border: none;
+	background-color:#EA4949;
+    cursor: pointer;
 }
 
 
