@@ -13,7 +13,7 @@ body {
     display: flex;
     flex-direction: row; 
     width: 1500px;
-    margin-bottom: 50px; /* Footer와 겹치지 않도록 아래쪽 여백 추가 */
+    margin-bottom: 50px; 
 }
 
 .product-main {

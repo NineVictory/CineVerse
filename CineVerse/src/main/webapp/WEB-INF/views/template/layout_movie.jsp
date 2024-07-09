@@ -12,6 +12,10 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/movie.main.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/movie.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/moviePayment.css" type="text/css">
+	<!-- bootstrap css cdn 링크 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- bootstrap 아이콘 cdn 링크 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <tiles:insertAttribute name="css" ignore="true"/>
 </head>
 <body>

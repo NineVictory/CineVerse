@@ -15,11 +15,8 @@
 
       
       <form action="movieSearch" id="movie_search">
-         <!-- 검색바 -->
-         <input type="search" name="search" placeholder="영화명 검색">
-         <input type="submit" value="검색">
-         
-         <!-- 분류 드롭다운 -->
+      <div class="movie-search-div">
+      	<!-- 분류 드롭다운 -->
          <div class="select-wrapper">
             <select name="movieSelect" id="movieSelect">
                <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
@@ -27,66 +24,122 @@
                <option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>영화배우</option>
             </select>
          </div>
+         <!-- 검색바 -->
+         <div class="search-movie">
+         <input type="search" name="search" placeholder="영화명 검색">
+         <input type="submit" value="검색">
+         </div>
+         </div>
       </form>
+     
    </div>
    
    <!-- 목록 -->
    <div class="movie-list-page">
-      <ul class="movie-list" onclick="location.href='movieDetail'"> <!-- 데이터가 들어가면 변경해야될듯 -->
+      <ul class="movie-list"> <!-- 데이터가 들어가면 변경해야될듯 -->
          <li class="movie">
-            <div class="movie-info">
-            <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <p>인사이드 아웃2</p>
-            <div>예매율 | 개봉일</div>   
-            <input type="button" value="예매하기" onclick="">
+            <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg" onclick="location.href='movieDetail'">
+            <p onclick="location.href='movieDetail'"><b>인사이드 아웃2</b></p>
+            <div class="bookAopen">
+            <div>예매율 34.1% | 개봉일 2024.06.12</div>
             </div>
-            
+            <div class="movie-button" onclick="location.href='/movie/'">
+            	<div class="movie-fav-button">
+            	<i class="bi bi-heart"></i>
+            	5.7K</div>
+            	<div class="movie-reservation-button-list">예매하기</div>
+       		 </div>	     
          </li>
          <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <p>인사이드 아웃2</p>
-            <div>예매율 | 개봉일</div>   
-            <input type="button" value="예매하기" onclick="">
+            <p><b>인사이드 아웃2</b></p>
+            <div class="bookAopen">
+            <div>예매율 34.1% | 개봉일 2024.06.12</div>
+            </div>
+            <div class="movie-button" onclick="location.href='/movie/'">
+            	<div class="movie-fav-button">
+            	<i class="bi bi-heart"></i>
+            	5.7K</div>
+            	<div class="movie-reservation-button-list">예매하기</div>
+       		 </div>	     
          </li>
          <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <p>인사이드 아웃2</p>
-            <div>예매율 | 개봉일</div>   
-            <input type="button" value="예매하기" onclick="">
+            <p><b>인사이드 아웃2</b></p>
+            <div class="bookAopen">
+            <div>예매율 34.1% | 개봉일 2024.06.12</div>
+            </div>
+            <div class="movie-button" onclick="location.href='/movie/'">
+            	<div class="movie-fav-button">
+            	<i class="bi bi-heart"></i>
+            	5.7K</div>
+            	<div class="movie-reservation-button-list">예매하기</div>
+       		 </div>	     
          </li>
          <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <p>인사이드 아웃2</p>
-            <div>예매율 | 개봉일</div>   
-            <input type="button" value="예매하기" onclick="">
+            <p><b>인사이드 아웃2</b></p>
+            <div class="bookAopen">
+            <div>예매율 34.1% | 개봉일 2024.06.12</div>
+            </div>
+            <div class="movie-button" onclick="location.href='/movie/'">
+            	<div class="movie-fav-button">
+            	<i class="bi bi-heart"></i>
+            	5.7K</div>
+            	<div class="movie-reservation-button-list">예매하기</div>
+       		 </div>	     
          </li>
-         
-          <li class="movie">
+         <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <p>인사이드 아웃2</p>
-            <div>예매율 | 개봉일</div>   
-            <input type="button" value="예매하기" onclick="">
+            <p><b>인사이드 아웃2</b></p>
+            <div class="bookAopen">
+            <div>예매율 34.1% | 개봉일 2024.06.12</div>
+            </div>
+            <div class="movie-button" onclick="location.href='/movie/'">
+            	<div class="movie-fav-button">
+            	<i class="bi bi-heart"></i>
+            	5.7K</div>
+            	<div class="movie-reservation-button-list">예매하기</div>
+       		 </div>	     
          </li>
-         
-          <li class="movie">
+         <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <p>인사이드 아웃2</p>
-            <div>예매율 | 개봉일</div>   
-            <input type="button" value="예매하기" onclick="">
+            <p><b>인사이드 아웃2</b></p>
+            <div class="bookAopen">
+            <div>예매율 34.1% | 개봉일 2024.06.12</div>
+            </div>
+            <div class="movie-button" onclick="location.href='/movie/'">
+            	<div class="movie-fav-button">
+            	<i class="bi bi-heart"></i>
+            	5.7K</div>
+            	<div class="movie-reservation-button-list">예매하기</div>
+       		 </div>	     
          </li>
-         
-          <li class="movie">
+         <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <p>인사이드 아웃2</p>
-            <div>예매율 | 개봉일</div>   
-            <input type="button" value="예매하기" onclick="">
+            <p><b>인사이드 아웃2</b></p>
+            <div class="bookAopen">
+            <div>예매율 34.1% | 개봉일 2024.06.12</div>
+            </div>
+            <div class="movie-button" onclick="location.href='/movie/'">
+            	<div class="movie-fav-button">
+            	<i class="bi bi-heart"></i>
+            	5.7K</div>
+            	<div class="movie-reservation-button-list">예매하기</div>
+       		 </div>	     
          </li>
-         
-          <li class="movie">
+         <li class="movie">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">
-            <p>인사이드 아웃2</p>
-            <div>예매율 | 개봉일</div>   
-            <input type="button" value="예매하기" onclick="">
+            <p><b>인사이드 아웃2</b></p>
+            <div class="bookAopen">
+            <div>예매율 34.1% | 개봉일 2024.06.12</div>
+            </div>
+            <div class="movie-button" onclick="location.href='/movie/'">
+            	<div class="movie-fav-button">
+            	<i class="bi bi-heart"></i>
+            	5.7K</div>
+            	<div class="movie-reservation-button-list">예매하기</div>
+       		 </div>	     
          </li>
       </ul>
    </div>
