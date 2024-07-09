@@ -103,7 +103,7 @@ public class MemberController {
 
 				if (member.getMem_auth() == 9) {
 					// 관리자라면
-					return "redirect:/admin/adminMain";
+					return "redirect:/admin/admin";
 				} else {
 					return "redirect:/main/main";
 				}
@@ -222,6 +222,10 @@ public class MemberController {
 		return "extraInfo";
 	}
 	
+	@GetMapping("/admin/admin")
+	public String adminMain() {
+		return "admin";
+	}
 	
 
 }

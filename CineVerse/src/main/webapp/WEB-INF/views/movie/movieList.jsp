@@ -32,7 +32,7 @@
    
    <!-- 목록 -->
    <div class="movie-list-page">
-      <ul class="movie-list">
+      <ul class="movie-list" onclick="location.href='movieDetail'"> <!-- 데이터가 들어가면 변경해야될듯 -->
          <li class="movie">
             <div class="movie-info">
             <img alt="영화1" src="${pageContext.request.contextPath}/images/ksh/movie.jpg">

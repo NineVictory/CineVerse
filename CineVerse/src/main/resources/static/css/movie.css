@@ -15,37 +15,49 @@
             border-radius: 10px;
 }       
 .movie-details {
-
     max-width: calc(70% - 20px); /* 내용 너비를 계산하고 왼쪽 여백 고려 */
 }
 
+.movie-title-screening {
+    display: flex;
+    align-items: center; /* 요소들을 수직 가운데 정렬 */
+}
+
 .movie-title {
-	margin-left:20px;
-    font-size: 40px;
+    margin-right: 10px; /* 요소 사이에 간격 추가 */
+    font-size: 24px; /* 필요에 따라 크기를 조정 */
     font-weight: bold;
-    margin-bottom: 10px;
+}
+
+.movie-screening {
+    font-size: 12px; /* 필요에 따라 크기를 조정 */
+    color: #ff5151; /* 텍스트 색상을 붉은색으로 설정 */
+    border: 1px solid #ff5151; /* 테두리를 붉은색으로 설정하고 두께를 2px로 설정 */
+    padding: 5px 10px; /* 내부 여백을 추가하여 요소에 공간을 줍니다 */
+    border-radius: 10px; /* 모서리를 둥글게 만듭니다 */
 }
 .movie-infolist{
-	font-size: 30px;
-    color: #666;
+	font-size: 15px;
+    
 }
 .movie-content{
 	margin: 20px;
 }
 .movie-info {
+	margin-left:-35px;
+	margin-bottom:20px;
     font-size: 16px;
-    color: #666;
 }
 
 .movie-reservation {
-	margin-left:100px;
+	
     border-radius: 20px;
     background: #FF5151;
     color: white;
-    width: 200px; /* 너비를 더 크게 설정 */
-    height: 70px; /* 높이를 더 크게 설정 */
-    font-size: 20px; /* 폰트 사이즈를 크게 설정 */
-    padding: 20px 60px; /* 내부 여백을 조정하여 버튼 내용이 좀 더 넓게 보이도록 설정 */
+    width: 90px; /* 너비를 더 크게 설정 */
+    height: 30px; /* 높이를 더 크게 설정 */
+    font-size: 12px; /* 폰트 사이즈를 크게 설정 */
+    padding: 7px 15px; /* 내부 여백을 조정하여 버튼 내용이 좀 더 넓게 보이도록 설정 */
     text-align: center;
     cursor: pointer;
 }
@@ -69,11 +81,8 @@
 	
 }
 
-.review-title {
-	margin-left:0px;
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 10px;
+.review-choice{
+	color:gray;
 }
 
 #review-text {
@@ -96,4 +105,33 @@
 .grade-review{
 	text-align: center;
 }
+.menu-title{
+	width:100%;
+	background-color:#e6e6e6;
+	padding: 10px;
+	margin-bottom: 30px;
+	margin-top: 40px;
+}
 
+.movie-teaser {
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 비율을 유지하기 위한 패딩 */
+    height: 0;
+}
+
+.movie-teaser iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.review-content {
+        height: auto; /* 높이 자동으로 설정 */
+        min-height: 100px; /* 최소 높이 설정 */
+        resize: vertical; /* 사용자가 수직으로만 크기 조정할 수 있도록 설정 */
+        padding: 10px; /* 내부 여백 추가 */
+        font-size: 14px; /* 폰트 사이즈 설정 */
+        line-height: 1.5; /* 줄 간격 설정 */
+    }
