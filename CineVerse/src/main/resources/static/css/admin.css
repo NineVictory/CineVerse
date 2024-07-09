@@ -3,17 +3,22 @@
 #body{
 	display:flex;
 }
-.adminNav {
-    width: 250px; /* 네비게이션 너비 설정 */
+
+/* .left-outer 클래스 스타일 */
+.left-outer {
+    width: 20%; /* 네비게이션 너비 설정 */
     background-color: #F0F4F7; /* 네비게이션 배경색 설정 */
     justify-content: center; 
-    text-align:center; 
+    text-align: center; 
+    padding: 10px; /* 안쪽 여백 추가 */
 }
 
+/* .adminNav 클래스 내부 요소 스타일 */
 .adminNav ul {
     list-style-type: none; /* 목록 기본 스타일 제거 */
     padding: 0;
 }
+
 .adminNav li {
     margin-bottom: 10px; /* 각 항목 사이의 간격 설정 */
 }
@@ -23,10 +28,12 @@
     height: auto; /* 이미지 높이 자동 조정 */
 }
 
+/* .admin_main 클래스 스타일 */
 .admin_main {
-	text-align:center;
-	width: 80%; 	
-	position: relative;
+    text-align: center;
+    width: 80%; 
+    margin-left: 0 auto; /* 가운데 정렬을 위한 margin 설정 */
+    position: relative;
 }
 #title{
 	font-size:35pt;
@@ -80,7 +87,9 @@
     margin: 0 auto; /* 가운데 정렬 */
 
 }
-
+.page-container {
+	padding:0;
+}
 .cloud_main h3 {
     height: 100%; /* 텍스트 너비를 요소의 1/3로 설정 */
     margin-top: 10px; /* 위쪽 마진 설정 */
@@ -89,5 +98,85 @@
 	margin: 30px;
 }
 .page-member {
-	margin:30px;
+	margin-left: 30px;
 }
+
+/*회원관리*/
+
+
+
+.admin_member {
+    width: 100%;
+    padding: 20px;
+}
+
+.firstTitle {
+    margin: 30px;
+}
+
+
+input[type="search"] {
+	width: 80%;
+	height: 30px;
+	padding: 20px 10px; 
+	font-size: 16px;
+	background-color: #F2F1F1;
+	border: 2px solid #3578FF;
+	border-radius: 20px;
+	margin-top: 30px;
+	color: #000000;
+	position: relative;
+}
+.search-button {
+        background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius:10px;
+        cursor: pointer;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center; /* 배경 이미지를 중앙 정렬합니다 */
+}
+
+.adminMember-table {
+    width: 90%;
+    margin: 40px 0 0 30px;
+    border-collapse: collapse;
+}
+
+.adminMember-table th, .adminMember-table td {
+    padding: 8px;
+    text-align: center;
+}
+
+.adminMember-table th {
+    background-color: #F2F1F1;
+}
+
+.button1 {
+    background-color: #4381FD;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+	
+}
+.button2 {
+    background-color: #EA4949;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+.button1 input{
+	color: #ffffff;
+	background-color:blue;
+}
+.button2 input{
+	color: #ffffff;
+	background-color:red;
+}
+
+
+
+
+
