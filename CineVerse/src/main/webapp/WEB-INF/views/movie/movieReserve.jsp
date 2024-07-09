@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <div class="reserve-container">
+	<!-- 지점명 -->
 	<div class="theater-part">
 		<div class="reserve-title">지점명</div>
 		<div class="theater-container">
@@ -126,7 +127,8 @@
          });
      });
  </script>
-
+ 
+	<!-- 영화 -->
 	<div class="movie-part">
 		<div class="reserve-title">영화</div>
 		<div class="sort-wrapper">
@@ -146,6 +148,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 날짜 및 시간 -->
 	<div class="time-part">
 		<div class="reserve-title">날짜 및 시간</div>
 		<div class="reserve-time">

@@ -42,6 +42,14 @@ public class MovieController {
 	}
 	
 	/*=======================
+	 * 영화 좌석 선택
+	 *=======================*/
+	@GetMapping("/movie/movieSeat")
+	public String movieSeat(){
+		return "movieSeat";
+	}
+	
+	/*=======================
 	 * 영화 결제
 	 *=======================*/
 	@GetMapping("/movie/moviePayment")

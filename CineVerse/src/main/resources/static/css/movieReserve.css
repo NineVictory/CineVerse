@@ -20,18 +20,19 @@
     text-align: center;
     color: #dddddd;
     padding: 5px;
+    font-size: 15px;
     font-weight: bold;
 }
 
 /* 지점명 */
 
-
 .theater-part {
-    width: 300px;
+    width: 350px;
 }
 
 .theater-container {
     display: flex;
+    justify-content : left;
 }
 
 .theater-wrapper {
@@ -45,30 +46,14 @@
     flex-direction: column;
 }
 
-.theater-place-wrapper {
-    padding-right: 2px;
-    margin-top: 10px;
-    height: 400px;
-    flex-grow: 1;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-}
-
 .theater-location {
 	position: relative;
-    width: 100px;
+    width: 150px;
     height: 50px;
     text-align: center;
+    align-items : center;
     background-color: #E6E4D9; 
     margin-top: 5px;
-}
-
-.theater-place {
-    padding: 6px 5px;
-    height: 40px;
-    font-weight: bold;
-    text-align: center;
 }
 
 .location {
@@ -83,12 +68,31 @@
     z-index: 1;
 }
 
+.theater-place-wrapper {
+    padding-right: 2px;
+    margin-top: 10px;
+    height: 400px;
+    flex-grow: 1;
+    text-align: center;
+   
+}
+
+.theater-place {
+    padding: 6px 5px;
+    height: 40px;
+    font-weight: bold;
+    background-color: #E6E4D9;
+    text-align: left;
+}
+
+
+
 
 
 /* 영화 */
 
 .movie-part {
-    width: 284px;
+    width: 300px;
 }
 
 .sort-wrapper {
@@ -124,18 +128,24 @@
 }
 
 .movie-select {
-	background-color: #E6E4D9;	
+	text-align: center;
 }
 
 .select{
-	margin-top: 5px;
+	background-color: #E6E4D9;	
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.select a{	
+	font-size: 20px;
 }
 
 
 
 /* 날짜 및 시간 */
 .time-part {
-    width: 384px;
+    width: 400px;
 }
 
 .reserve-time {

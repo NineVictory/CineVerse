@@ -30,6 +30,11 @@
         <put-attribute name="title" value="영화예매"/>
         <put-attribute name="body" value="/WEB-INF/views/movie/movieReserve.jsp"/>
     </definition>
+    <!-- 영화 좌석 선택 -->
+    <definition name="movieSeat" extends="movieList">
+        <put-attribute name="title" value="영화좌석선택"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movieSeat.jsp"/>
+    </definition>
     <!-- 영화 결제 -->
     <definition name="moviePayment" extends="movieList">
         <put-attribute name="title" value="영화결제"/>

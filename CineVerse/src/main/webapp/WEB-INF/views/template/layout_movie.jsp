@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/moviePaymentNew.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/movie.ownInfo.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/movieReserve.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/movieSeat.css" type="text/css">
     <tiles:insertAttribute name="css" ignore="true"/> 
 </head>
 <body>
