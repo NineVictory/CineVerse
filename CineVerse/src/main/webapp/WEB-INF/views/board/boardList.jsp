@@ -10,7 +10,7 @@
         
         if (currentUrl.includes("?cb_type=movieTalk")) {
             document.getElementById("link-type1").classList.add("active");
-        } else if (currentUrl.includes("?cb_type=swap")) {
+        } else if (currentUrl.includes("?cb_type=dailyTalk")) {
             document.getElementById("link-type2").classList.add("active");
         } else {
             document.getElementById("link-all").classList.add("active");
@@ -35,7 +35,7 @@
 						<div class="types">
 							<a href="list" id="link-all">전체</a>
 							<a href="list?cb_type=movieTalk" id="link-type1">영화톡톡</a>
-							<a href="list?cb_type=swap" id="link-type2">양도/교환</a>
+							<a href="list?cb_type=dailyTalk" id="link-type2">일상톡톡</a>
 						</div>
 					</td>
 					<td colspan="2" style="text-align: right;">
