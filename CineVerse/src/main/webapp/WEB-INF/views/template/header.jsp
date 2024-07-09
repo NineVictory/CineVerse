@@ -87,8 +87,8 @@
                 	<a href="${pageContext.request.contextPath}/board/list">커뮤니티</a>
                 	<div>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/board/list?cb_type=movieTalk" title="영화톡톡">영화톡톡</a></li>
-                            <li><a href="#">양도/교환</a></li>
+                            <li><a href="${pageContext.request.contextPath}/board/list" title="영화톡톡">영화톡톡</a></li>
+                            <li><a href="${pageContext.request.contextPath}/assignboard/list">양도/교환</a></li>
                         </ul>
                     </div>
                 </li>
