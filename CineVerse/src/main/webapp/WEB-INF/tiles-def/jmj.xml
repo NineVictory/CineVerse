@@ -35,6 +35,14 @@
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
 	</definition>
 	
+	<definition name="admin"  template="/WEB-INF/views/template/layout_admin.jsp">
+		<put-attribute name="title" value="관리자 화면"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header_admin.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin.jsp"/>
+		<put-attribute name="adminNav" value="/WEB-INF/views/template/nav_admin.jsp"/>
+	</definition>
+	
 </tiles-definitions>
 
 
