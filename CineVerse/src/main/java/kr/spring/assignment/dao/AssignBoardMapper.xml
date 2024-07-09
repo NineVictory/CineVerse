@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.assignment.dao.AssignBoardMapper"><!--인터페이스명-자동매핑-->
+	<insert id="ab_insertBoard" parameterType="assignVO">
+		INSERT INTO assignment_board (ab_num,ab_title,ab_content,ab_price,ab_filename,ab_ip,mem_num) 
+				VALUES (assignment_board_seq.nextval,#{ab_title},#{ab_content},#{ab_price},#{ab_filename,jdbcType=VARCHAR},#{ab_ip},#{mem_num})
+	</insert>
+	
+	<!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->	<!--sub_sql처럼-->
+	<sql id="ab_boardSearch">
+		<where><!--조건-->
+			<if test="keyword != null and keyword != ''">
+				ab_title LIKE '%' || #{keyword} || '%' OR mem_id LIKE '%' || #{keyword} || '%' OR cb_content LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<select id="ab_selectRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM assignment_board JOIN member USING (mem_num)
+		<include refid="ab_boardSearch"></include>
+	</select>
+
+	<!-- 게시판 전체 목록/검색 목록 -->
+	<!-- <select id="ab_selectList" parameterType="map" resultType="assignVO">
+		SELECT * FROM
+				(SELECT a.*, rownum rnum FROM			좋아요가 없을 때 누락
+								(SELECT 
+									board_num,
+									<![CDATA[
+									REPLACE(REPLACE(title,'<','&lt;'),'>','&gt;') title,
+									]]>
+									hit,
+									filename,
+									reg_date,
+									mem_num,
+									id,
+									nick_name,
+									re_cnt,
+									fav_cnt
+								
+									FROM spboard 
+									LEFT OUTER JOIN (SELECT COUNT(*) re_cnt, board_num FROM spboard_reply GROUP BY board_num) USING(board_num)
+									LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, board_num FROM spboard_fav GROUP BY board_num) USING(board_num)
+												JOIN spmember USING(mem_num)
+												<include refid="boardSearch"></include>
+												<include refid="boardOrder"></include>
+												)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]> 
+	</select>-->
+	
+	<!-- 게시판 글 수정 -->
+	<!-- <update id="updateBoard" parameterType="boardVO">
+		UPDATE spboard SET
+						<if test="filename != null">
+							filename = #{filename},
+						</if>
+												title = #{title}, content = #{content}, ip = #{ip}, modify_date = SYSDATE
+												WHERE board_num = #{board_num}
+	</update>
+	
+	댓글 등록
+	<insert id="insertReply" parameterType="boardReplyVO">
+		INSERT INTO spboard_reply (re_num, re_content, re_ip, board_num, mem_num)
+								VALUES (spreply_seq.nextval, #{re_content}, #{re_ip}, #{board_num}, #{mem_num})
+	</insert>
+	 -->
+	<!-- 댓글 목록 -->
+	<!-- <select id="selectListReply" parameterType="map" resultType="boardReplyVO">
+         SELECT * FROM (SELECT a.*, rownum rnum FROM 
+							(SELECT re_num,
+									<![CDATA[
+									REPLACE(REPLACE(re_content,'<','&lt;'),'>','&gt;') re_content,
+									]]> 
+									re_date, 
+									re_mdate, 
+									board_num,
+									mem_num,
+									id,
+									nick_name,
+									click_num,
+									refav_cnt,
+									resp_cnt
+							FROM spboard_reply JOIN spmember USING(mem_num)
+        				 	LEFT OUTER JOIN (SELECT re_num, mem_num click_num FROM spreply_fav WHERE mem_num=#{mem_num}) USING(re_num)
+        					LEFT OUTER JOIN (SELECT re_num, COUNT(*) refav_cnt FROM spreply_fav GROUP BY re_num) USING(re_num)
+         					LEFT OUTER JOIN (SELECT re_num, COUNT(*) resp_cnt FROM spboard_response GROUP BY re_num) USING(re_num)
+        					WHERE board_num=#{board_num} ORDER BY re_num DESC)a)
+      <![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>
+	</select> -->				<!--map 키 -->
+	
+	<!-- 답글 등록 -->
+	<!-- <insert id="insertResponse" parameterType="boardResponseVO">
+		INSERT INTO spboard_response(te_num, te_content, te_parent_num, te_depth, te_ip, re_num, mem_num)
+							VALUES (response_seq.nextval, #{te_content}, #{te_parent_num}, #{te_depth}, #{te_ip}, #{re_num}, #{mem_num})
+	</insert> -->
+	
+	<!-- 답글 목록 -->
+	<!-- <select id="selectListResponse" parameterType="long" resultType="boardResponseVO">
+		SELECT 
+			r.te_num,
+			r.te_content,
+			r.mem_num,
+			a.id,
+			a.nick_name,
+			r.te_date,
+			r.te_ip,
+			r.re_num,
+			r.te_depth,
+			r.te_parent_num,
+			m.id parent_id,
+			m.nick_name pnick_name 
+		FROM spboard_response r JOIN spmember a ON r.mem_num=a.mem_num
+		LEFT OUTER JOIN spboard_response s ON r.te_parent_num=s.te_num
+		LEFT OUTER JOIN spmember m ON s.mem_num=m.mem_num WHERE r.re_num=#{re_num}
+		함수를 이용해 정렬-> 계층적으로
+		START WITH r.te_depth=0 CONNECT BY PRIOR r.te_num=r.te_parent_num ORDER SIBLINGS BY r.te_num DESC
+	</select> -->
+</mapper>							
+
+
+
+
+
+

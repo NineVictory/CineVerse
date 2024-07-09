@@ -31,10 +31,12 @@
 	
 	<definition name="assignList" extends="boardList">
 		<put-attribute name="title" value="양도/교환"/>
-		<put-attribute name="css" value="/WEB-INF/views/board/boardCSS.jsp"/>
-		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignList.jsp"/>
-		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<definition name="assignView" extends="boardList">
+		<put-attribute name="title" value="글상세"/>
+		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignView.jsp"/>
 	</definition>
 	
 </tiles-definitions>

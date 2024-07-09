@@ -8,7 +8,7 @@
 <div class="page-container page-main">
 	
 	<div class="board-main">
-		<h2>커뮤니티</h2>
+		<h2>양도/교환</h2>
 		
 		<div class="write-btn-container">
 		<c:if test="${!empty user}">
@@ -32,7 +32,45 @@
 		       </tr>
 			</thead>
 			<tbody>
-			<c:if test="${count == 0}">
+			<tr>
+				<td colspan="4">
+					<div class="cell-content">
+						<div class="title"><a href="detail">티켓 무료 나눔합니다</a></div>
+						<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>20</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>2</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>5</span></div></div>
+						<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;moja&nbsp;&nbsp; 24.07.09</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<div class="cell-content">
+						<div class="title"><a href="detail">티켓 무료 나눔합니다</a></div>
+						<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>20</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>2</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>5</span></div></div>
+						<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;moja&nbsp;&nbsp; 24.07.09</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<div class="cell-content">
+						<div class="title"><a href="detail">티켓 무료 나눔합니다</a></div>
+						<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>20</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>2</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>5</span></div></div>
+						<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;moja&nbsp;&nbsp; 24.07.09</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<div class="cell-content">
+						<div class="title"><a href="detail">티켓 무료 나눔합니다</a></div>
+						<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>20</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>2</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>5</span></div></div>
+						<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;moja&nbsp;&nbsp; 24.07.09</div>
+					</div>
+				</td>
+			</tr>
+			
+			
+			<%-- <c:if test="${count == 0}">
 				<tr>
  					<td colspan="4">
 						<div style="height:250px; display:flex; align-items:center; justify-content: center;">표시할 게시물이 없습니다.</div>
@@ -52,7 +90,7 @@
 					</td>
 				</tr>
 				</c:forEach>
-			</c:if>
+			</c:if> --%>
 			</tbody>
 		</table>
 	</div>

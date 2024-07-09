@@ -29,6 +29,10 @@
 	margin:0 auto;
 }
 
+.board-main h2{
+	margin-top:35px;
+}
+
 .write-btn-container {
     text-align: right; /* 내용을 오른쪽으로 정렬합니다 */
     margin:10px 0;
@@ -221,7 +225,7 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 	width:950px;
 	margin:70px auto;
 }
-.boardview-main h3{
+.boardview-main .board-info h3{
 	margin:0 0 7px 10px;
 	display:inline-block;
 }
@@ -329,4 +333,27 @@ ul.btn-hide li a:hover {
     overflow-y: auto;
     width: 100%;
     max-width: 100%;
+}
+
+
+/*assign 글상세 */
+.marg445{
+	width:445px;
+}
+.assign-info-container{
+	margin:30px 30px 40px 30px;
+	min-height:200px;
+	gap:30px;
+}
+
+.simple-info{
+	
+	align-items: flex-start;
+}
+
+.info-detail-top{
+	font-size:18px;
+}
+.info-detail-main{
+	font-size:15px;
 }

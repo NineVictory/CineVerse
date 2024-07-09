@@ -31,5 +31,5 @@ public class AssignVO {
 	private int ac_cnt;		//댓글수
 	private int bookmark_cnt;	//북마크수
 	
-	//신고 report, 상태 status
+	//신고 report, 상태 status 나중에 추가?
 }
