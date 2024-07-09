@@ -21,7 +21,7 @@
 			<th>등급</th>
 			<th>전화번호</th>
 			<th>이메일</th>
-			<th>맴버십</th>
+			<th></th>
 		</tr>
 		<tr>
 			<td class="mem-data">데이터</td>
