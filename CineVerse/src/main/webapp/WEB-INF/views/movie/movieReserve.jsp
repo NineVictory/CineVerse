@@ -29,10 +29,10 @@
 						href="#none">경기/인천(10)</a>
 						<div class="location" id="gyeonggi" style="display: none;">
 							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">광교아울렛</a></li>							
-								<li class="theater-place"><a href="#none">광명(광명사거리)</a></li>
-								<li class="theater-place"><a href="#none">광명아울렛</a></li>
-								<li class="theater-place"><a href="#none">구리아울렛</a></li>
+								<li class="theater-place"><a href="#none">광교</a></li>							
+								<li class="theater-place"><a href="#none">광명</a></li>
+								<li class="theater-place"><a href="#none">인덕원</a></li>
+								<li class="theater-place"><a href="#none">구리</a></li>
 								<li class="theater-place"><a href="#none">동탄</a></li>
 								<li class="theater-place"><a href="#none">라페스타</a></li>
 								<li class="theater-place"><a href="#none">마석</a></li>
@@ -135,13 +135,13 @@
 		</div>
 		<div class="movie-list-wrapper">
 			<div class="movie-list">
-				<ul>
-					<li class=""><a href="#none">인사이드아웃2</a></li>
-					<li class=""><a href="#none">파일럿</a></li>
-					<li class=""><a href="#none">탈출</a></li>
-					<li class=""><a href="#none">콰이어트 플레이스</a></li>
-					<li class=""><a href="#none">존 오브 인터레스트</a></li>
-					<li class=""><a href="#none">귀멸의 칼날</a></li>
+				<ul class="movie-select">
+					<li class="select"><a href="#none">인사이드아웃2</a></li>
+					<li class="select"><a href="#none">파일럿</a></li>
+					<li class="select"><a href="#none">탈출</a></li>
+					<li class="select"><a href="#none">콰이어트 플레이스</a></li>
+					<li class="select"><a href="#none">존 오브 인터레스트</a></li>
+					<li class="select"><a href="#none">귀멸의 칼날</a></li>
 				</ul>
 			</div>
 		</div>
@@ -183,7 +183,7 @@
 		</div>
 
 		<div>
-			<button class="moveSeatButton" type="button">결제하기</button>
+			<input type="button" class="moveSeatButton" value="좌석 선택" onclick="location=''">
 		</div>
 	</div>
 
