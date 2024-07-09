@@ -146,12 +146,12 @@
 		<div class="movie-list-wrapper">
 			<div class="movie-list">
 				<ul class="movie-select">
-					<li class="select"><a href="#none">인사이드아웃2</a></li>
-					<li class="select"><a href="#none">파일럿</a></li>
-					<li class="select"><a href="#none">탈출</a></li>
-					<li class="select"><a href="#none">콰이어트 플레이스</a></li>
-					<li class="select"><a href="#none">존 오브 인터레스트</a></li>
-					<li class="select"><a href="#none">귀멸의 칼날</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_all">전체</span>인사이드아웃 2</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_12">12세</span>파일럿</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>탈출</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>콰이어트 플레이스</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_12">12세</span>존 오브 인터레스트</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>귀멸의 칼날</a></li>
 				</ul>
 			</div>
 		</div>

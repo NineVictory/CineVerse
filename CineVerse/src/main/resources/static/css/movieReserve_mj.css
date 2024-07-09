@@ -105,13 +105,14 @@
 }
 
 .sort-wrapper {
-	margin: 10px 6px 6px 10px;
+	padding: 10px 6px 6px 10px;
 	display: flex;
 	border-bottom: 1px solid #dddddd;
 }
 
 .sort-wrapper>div {
-	padding: 3px;
+    cursor: pointer;
+    padding: 3px;
 }
 
 .sort-wrapper>div:hover {
@@ -129,24 +130,31 @@
 
 .movie-list {
 	display: flex;
-	align-items: center;
-	margin-top: 10px;
-	font-size: 20px;
-	margin-top: 5px;
+    align-items: center;
+    /* margin-top: 10px; */
+    font-size: 20px;
+    /* margin-top: 5px;*/
 }
 
 .movie-select {
+	width: 100%;
+	padding: 0;
 	text-align: center;
 }
 
 .select {
-	background-color: #E6E4D9;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	display: flex;
+    padding: 14px;
+    border-bottom: 1px solid var(--gray-3);
+    /* background-color: #E6E4D9; */
+    /* margin-top: 20px; */
+    /* margin-bottom: 20px; */
+    align-items: center;
+    font-weight: 600;
 }
 
 .select a {
-	font-size: 20px;
+	/* font-size: 20px; */
 }
 
 /* 날짜 및 시간 */
@@ -195,7 +203,45 @@
 }
 
 .movie-list-wrapper {
-	padding: 4px 15px;
+	/* padding: 4px 15px; */
+}
+
+.ic_grade {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    font-size: 0;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.ic_grade:before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    background-size: 100%;
+}
+
+.ic_grade.gr_all:before {
+    background: #229c56 url(../images/cmj/grade_all.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_12:before {
+    background: #e9b630 url(../images/cmj/grade_12.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_15:before {
+    background: #dd7430 url(../images/cmj/grade_15.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_19:before {
+    background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
 }
 
 .moveSeatButton {
