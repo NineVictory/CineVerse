@@ -1,113 +1,6 @@
-.payment-page {
-	display: flex;
-	flex-direction: column; /* 세로 정렬로 변경 */
-	align-items: stretch; /* 가로 가운데 정렬 */
-	justify-content: center; /* 세로 가운데 정렬 */
-	margin-top: 70px;
-	
-}
 
-.content-box {
-  display: flex;
-  justify-content: center; /* 가로 가운데 정렬 */
-}
-
-.payment-box {
-	width: 500px;
-	height: 300px;
-	border-radius: 20px;
-	background: #FFFFFF;
-	box-sizing: border-box;
-	border: 2px solid #000000;
-	margin-top: 20px;
-	margin-bottom: 100px; /* 각 박스 사이의 간격 */
-}
-
-.cuppon-box {
-	width: 500px;
-	height: 150px;
-	border-radius: 20px;
-	background: #FFFFFF;
-	box-sizing: border-box;
-	border: 2px solid #000000;
-	margin-top: 20px;
-	margin-bottom: 100px; /* 각 박스 사이의 간격 */
-}
-
-.point-box {
-	width: 500px;
-	height: 150px;
-	border-radius: 20px;
-	background: #FFFFFF;
-	box-sizing: border-box;
-	border: 2px solid #000000;
-	margin-top: 20px;
-	margin-bottom: 100px; /* 각 박스 사이의 간격 */
-}
-
-.finalpay-box {
-	width: 500px;
-	height: 150px;
-	border-radius: 20px;
-	background: #FFFFFF;
-	box-sizing: border-box;
-	border: 2px solid #000000;
-	margin-top: 20px;
-	margin-bottom: 50px; /* 각 박스 사이의 간격 */
-}
-
-h3 {
-  text-align: left; /* h3 태그 왼쪽 정렬 */
-  margin-top: 20px;
-}
-
-h4 {
-	position: absolute;
-	top: 1070px;
-	left: 700px;	
-}
-
-.cuppon-button {
-  position: absolute;
-  top: 785px;
-  right: 700px;
-  display: flex;
-}
- 
-.point-button {
-  position: absolute;
-  top: 1110px;
-  right: 700px;
-  display: flex;
-}
-
-.final-button {
-	text-align: right;
-}
-
-input[type="button"] {
-   background: #4381FD;
-   color: #FFFFFF;
-   border: none;
-   border-radius: 5px; 
-   width: 100px;
-   height: 50px;
-}
-
-.payment-box img{
-	position: absolute;
-	top: 320px;
-	left: 710px;
-	width: 200px;
-	height: 200px;
-}
-
-
-
-
-/* reserve */
-* {
-    font-size: 11px;
+*{
+	font-size: 14px;
 }
 
 .reserve-container {
@@ -127,59 +20,18 @@ input[type="button"] {
     text-align: center;
     color: #dddddd;
     padding: 5px;
-    font-size: 13px;
     font-weight: bold;
 }
 
-.movie-part {
-    width: 284px;
-}
+/* 지점명 */
+
 
 .theater-part {
     width: 264px;
 }
 
-.day-part {
-    width: 91px;
-}
-
-.time-part {
-    width: 384px;
-}
-
-.reserve-date {
-    padding-top: 5px;
+.theater-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 770px;
-}
-
-.movie-date-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 2px;
-}
-
-  
-
-.saturday {
-    color: #31597E;
-    font-weight: bold;
-}
-
-.sunday {
-    color: #AF2D2D;
-    font-weight: bold;
-}
-
-.movie-date-wrapper-active {
-    background-color: #333333;
-}
-
-.movie-date-wrapper-active>* {
-    color: white;
 }
 
 .theater-wrapper {
@@ -188,21 +40,14 @@ input[type="button"] {
     display: flex;
 }
 
-.theater-location-wrapper  {
-	line-height: 1.1;
-	letter-spacing: -0.03em;
-	font-family: "Noto Sans KR", "Roboto", "dotum", "sans-serif";
-	font-size: 12px;
-	color: #000;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	min-height: 90px;
-	height: 753px;
+.theater-location-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .theater-place-wrapper {
-    padding-right: 12px;
+    padding-right: 2px;
     margin-top: 2px;
     height: 300px;
     flex-grow: 1;
@@ -210,32 +55,78 @@ input[type="button"] {
     flex-direction: column;
 }
 
-.depth1 {
-    height: 40px;
-    font-size: 12px;
-    font-weight: bold;
+.theater-location {
+	position: relative;
+    height: 30px;
     text-align: center;
+    background-color: #E6E4D9;
     padding: 6px 6px 6px 0;
     margin-top: 1px;
 }
-
-.depth2 {
-    display: none;
-    height: 40px;
-    font-size: 12px;
-    font-weight: bold;
-    text-align: center;
-    padding: 6px 6px 6px 0;
-    margin-top: 1px;
-}
-
 
 .theater-place {
     padding: 6px 5px;
     height: 40px;
-    font-size: 12px;
     font-weight: bold;
     text-align: center;
+}
+
+.location {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    display: none; 
+    background-color: white;
+    border: 1px solid #dddddd;
+    width: 200px; 
+    padding: 10px;
+    z-index: 1;
+}
+
+
+
+/* 영화 */
+
+.movie-part {
+    width: 284px;
+}
+
+.sort-wrapper {
+    margin: 10px 6px 6px 10px;
+    display: flex;
+    border-bottom: 1px solid #dddddd;
+}
+
+.sort-wrapper>div {
+    padding: 3px;
+}
+
+.sort-wrapper>div:hover {
+    border-bottom: 1px solid #111111;
+}
+
+.sort-selected {
+    font-weight: bold;
+    border-bottom: 1px solid #111111;
+}
+
+.sort-korean {
+    margin-left: 6px;
+}
+
+.movie-list {	
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+
+
+
+/* 날짜 및 시간 */
+.time-part {
+    width: 384px;
 }
 
 .reserve-time {
@@ -244,7 +135,6 @@ input[type="button"] {
 }
 
 .reserve-where {
-    font-size: 12px;
     margin-top: 20px;
     margin-left: 8px;
     font-weight: bold;
@@ -260,7 +150,6 @@ input[type="button"] {
 
 .reserve-time-want {
     letter-spacing: 1px;
-    font-size: 12px;
     padding: 3px;
     font-weight: bold;
     border: 1px solid #dddddd;
@@ -284,27 +173,72 @@ input[type="button"] {
     padding: 4px 15px;
 }
 
-.movie-list {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
 
 .moveSeatButton{
-	
+	width: 150px;
+	height: 80px;
 	font-size: 18px;
 	font-weight: bold;
 	padding: 5px;
 	margin-top: 20px;
 	margin-left: 80px;
 	border: 1px solid #333333;
+	border-radius: 15px;
+	background: #3F66ED;
+	color: #FFFFFF;
 }
 .moveSeatButton:hover{
 	 background-color: #333333;
 	 color: white;
 }
+.fifteen {
+    color: white;
+    background-color: #AF2D2D;
+    
+}
+
+.eighteen {
+    color: white;
+    background-color: red;
+    font-size: 11px;
+}
 
 
 
 
+
+
+/* 보류 
+
+
+.movie-list-title {
+    padding: 6px 4px;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.movie-list-title-active {
+    background-color: #333333;
+}
+
+.movie-list-title-active>button {
+    font-weight: bold;
+    color: white;
+}
+
+
+
+.movie-list-age {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    border-radius: 100%;
+}
+
+
+
+*/
 
