@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="adminNav">
+<div class="adminNav left-outer">
 	<ul>
 		<li><img
 			src="${pageContext.request.contextPath}/images/cmj/logo.png"
@@ -8,8 +8,8 @@
 		</li>
 
 		<li><h2>회원</h2></li>
-		<li > <a href = "#">회원관리</a></li>
-		<li > <a href = "#">구독맴버십</a></li>
+		<li > <a href = "${pageContext.request.contextPath}/admin/adminMember">회원관리</a></li>
+		<li > <a href = "${pageContext.request.contextPath}/admin/adminMembership">구독맴버십</a></li>
 
 		<li><h2>영화</h2></li>
 		<li > <a href = "#">영화</a></li>

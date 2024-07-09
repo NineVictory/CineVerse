@@ -21,10 +21,10 @@
 <body>
 	<div id="main">
 		<div class="page-container">
-			<div id="body">
-				<tiles:insertAttribute name="admin_nav"/>
-				<tiles:insertAttribute name="admin_body" />
-			</div>
+		<div id="body">
+			<tiles:insertAttribute name="admin_nav"/>
+			<tiles:insertAttribute name="admin_body" />
+		</div>
 		</div>
 		<div id="footer">
 			<tiles:insertAttribute name="footer"/>
