@@ -86,7 +86,7 @@
                 	<div>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/board/list?cb_type=movieTalk" title="영화톡톡">영화톡톡</a></li>
-                            <li><a href="${pageContext.request.contextPath}/board/list?cb_type=swap">양도/교환</a></li>
+                            <li><a href="#">양도/교환</a></li>
                         </ul>
                     </div>
                 </li>
