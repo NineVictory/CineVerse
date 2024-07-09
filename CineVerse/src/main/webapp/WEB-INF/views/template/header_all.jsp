@@ -118,21 +118,21 @@ document.querySelectorAll('.main-navigation > ul > li').forEach(function(menu) {
             timeoutId = setTimeout(() => {
                 submenu.style.display = 'none';
                 submenu.style.opacity = 0;
-            }, 200); // 200ms 후에 메뉴가 사라지도록 딜레이 설정
+            }, 250); // 딜레이 더 길게 잡음
         }
     });
 
     const submenu = menu.querySelector('.hide_menu');
     if (submenu) {
         submenu.addEventListener('mouseenter', function() {
-            clearTimeout(timeoutId); // 하위 메뉴에 마우스가 올라갔을 때 타이머 취소
+            clearTimeout(timeoutId); // 하위 메뉴에 마우스가 올라갔을 때 타이머 초기화 하여 유지 되게 설정
         });
 
         submenu.addEventListener('mouseleave', function() {
             timeoutId = setTimeout(() => {
                 submenu.style.display = 'none';
                 submenu.style.opacity = 0;
-            }, 200); // 하위 메뉴를 떠났을 때 200ms 후에 사라지도록 딜레이 설정
+            }, 250); // 하위 메뉴를 떠났을 때 250ms 후에 사라지도록 딜레이 설정
         });
     }
 });
