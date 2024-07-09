@@ -10,7 +10,7 @@
 <div class="review_content_info">
 <div>아이디</div>
 <div>별점 카운트</div>
-<div>리뷰</div>
+<div class="">리뷰oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</div>
 </div>
 <div class="review_delete_btn">
 <div>삭제</div>

@@ -29,7 +29,7 @@
     overflow: hidden;
 }
 .myPageMain_photo img {
-    width: 200%;
+    width: 100%;
     height: auto;
 }
 
@@ -763,21 +763,36 @@
     flex-direction: column;/* flex 상하 */
     text-align: center;
     margin-top: 25px;
+    background-color: #F7F7F7;
+    border-radius: 12px;
+    padding: 20px 30px 20px 30px;
  }
  .review_content{
  	display: flex;
     align-items: center;
     justify-content: space-between;
+   	gap: 10px;
  }
 .review_content_info{
 	text-align: left;
 	font-size: 14px;
+	width: 800px;
 }
+.my_review_content{
+	/* review_content_info의 width 800넘어가면 줄바꿈 처리되게 */
+}
+
+
+
+
+
 .review_delete_btn{
+	margin-bottom: 60px;
+	font-size: 14px;
 }
 .review_fav_date{
 	text-align: right;
-	font-size: 14px;
+	font-size: 13px;
 }
   /* =======================
      		myPageBookMark.jsp
