@@ -6,12 +6,34 @@
 
 <tiles-definitions>
 	<!-- 관리자 메인 -->
-	<definition name="adminMain" template="/WEB-INF/views/template/layout_admin.jsp">
-		<put-attribute name="title" value="SpringPage"/>
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/admin/adminMain.jsp"/>
+	<definition name="adminMain"
+		template="/WEB-INF/views/template/layout_adminMain.jsp">
+		<put-attribute name="title" value="관리자" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_nav"
+			value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body"
+			value="/WEB-INF/views/admin/adminMain.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/template/footer.jsp" />
+	</definition>
+
+	<!-- 구독맴버십 -->
+	<definition name="adminMembership"
+		template="/WEB-INF/views/template/layout_adminMain.jsp">
+		<put-attribute name="title" value="관리자" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_nav"
+			value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body"
+			value="/WEB-INF/views/admin/adminMembership.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/template/footer.jsp" />
 	</definition>
 </tiles-definitions>
+
 
 
 
