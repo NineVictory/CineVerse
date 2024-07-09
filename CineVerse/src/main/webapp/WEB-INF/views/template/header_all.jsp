@@ -44,7 +44,9 @@
                 	<a href="#" class="secondary-a">영화관</a>
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="스페셜관">스페셜관</a></li>
+	                        <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/ownMovieInfo" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
+	                        <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>
+	                        <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="스페셜관">스페셜관</a></li>
                             <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="서울">서울</a></li>
                             <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="경기/인천">경기/인천</a></li>
                             <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="충청/대전">충청/대전</a></li>
@@ -71,8 +73,8 @@
                 	<a href="${pageContext.request.contextPath}/board/list" class="secondary-a">커뮤니티</a>
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
-                            <li class="hide_menu_li"><a class="hide-menu-a" href="${pageContext.request.contextPath}/board/list?cb_type=movieTalk" title="영화톡톡">영화톡톡</a></li>
-                            <li class="hide_menu_li"><a class="hide-menu-a" href="#" title="양도/교환">양도/교환</a></li>
+                            <li class="hide_menu_li"><a class="hide-menu-a" href="${pageContext.request.contextPath}/board/list" title="영화톡톡">영화톡톡</a></li>
+                            <li class="hide_menu_li"><a class="hide-menu-a" href="${pageContext.request.contextPath}/assignboard/list" title="양도/교환">양도/교환</a></li>
                         </ul>
                     </div>
                 </li>
