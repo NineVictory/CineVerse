@@ -1,5 +1,6 @@
 package kr.spring.myPage.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
+import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -66,9 +68,42 @@ public class MyPageController {
 		return "watchedMovie";
 	}
 	//나의 활동 - 내가 쓴 별점
-	//게시판 - 내가 쓴 글
-	//게시판 - 내가 쓴 댓글
+	@GetMapping("/myPage/review")
+		public String myPageReview(HttpSession session, Model model) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			MyPageVO member = mypageService.selectMember(user.getMem_num());
+			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+			model.addAttribute("member",member);
+			return "review";
+		}
 	//북마크
+	@GetMapping("/myPage/bookMark")
+	public String myPageBookMark(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "bookMark";
+	}
+	//게시판 - 내가 쓴 글
+	@GetMapping("/myPage/boardWrite")
+	public String myPageBoardWrite(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "boardWrite";
+	}
+	//게시판 - 내가 쓴 댓글
+	@GetMapping("/myPage/boardReply")
+	public String myPageBoardReply(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "boardReply";
+	}
+	
 	//내 캘린더
 	//이벤트 참여 내역
 	//구매 - 포인트 충전 내역
@@ -87,4 +122,51 @@ public class MyPageController {
 	//회원 정보 - 회원 탈퇴
 	//멤버십 구독
 	//나의 문의 내역 - 1:1문의
+	
+	
+	
+	// 프로필 사진 출력하기(로그인 전용)
+		@GetMapping("/member/photoView")
+		public String getProfile(HttpSession session, HttpServletRequest request, Model model) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			log.debug("<< 프로필 사진 출력 >> : " + user);
+			
+			
+			if(user == null) {
+				getBasicProfileImage(request, model);
+			} else {
+				MyPageVO member = mypageService.selectMember(user.getMem_num());
+				viewProfile(member, request, model);
+			}
+			
+			return "imageView";
+		}
+		
+		// 프초필 사진 출력하기
+		@GetMapping("/member/viewProfile")
+		public String getProfileByMem_num(long mem_num, HttpServletRequest request, Model model) {
+			MyPageVO member = mypageService.selectMember(mem_num);
+			
+			viewProfile(member, request, model);
+			
+			return "imageView";
+		}
+		
+		// 회원 프로필 사진 처리를 위한 공통 코드
+		public void viewProfile(MyPageVO member, HttpServletRequest request, Model model) {
+			if (member == null || member.getPhoto_name() ==  null) {
+				getBasicProfileImage(request, model);
+			} else {
+				model.addAttribute("imageFile", member.getPhoto());
+				model.addAttribute("filename", member.getPhoto_name());
+			}
+		}
+		
+		// 기본 이미지 읽어오기
+		public void getBasicProfileImage(HttpServletRequest request, Model model) {
+			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/profile_none.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "profile_none.png");
+		}
+		
 }

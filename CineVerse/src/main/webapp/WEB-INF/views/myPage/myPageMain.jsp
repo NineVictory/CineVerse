@@ -25,7 +25,7 @@
 
 	<div class="main_body_reservation">
 		<div class="my_reserv_info">
-			<span class="reserv_font">MY 예매내역</span><span>0건</span>
+			<span class="reserv_font">MY 예매내역</span><span class="main_count">0건</span>
 		</div>
 
 		<div class="myPageReservation_list">
@@ -70,7 +70,7 @@
 
 	<div class="qna_box">
 		<div class="my_reserv_info">
-			<span class="reserv_font">MY QnA</span><span>0건</span>
+			<span class="reserv_font">MY QnA</span><span class="main_count">0건</span>
 		</div>
 
 		<div class="qna">

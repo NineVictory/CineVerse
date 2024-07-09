@@ -19,8 +19,9 @@ public class MyPageServiceImpl implements MyPageService{
 		
 	}
 	@Override
-	public int selectMemberPoint(long mem_num) {
-		return myPageMapper.selectMemberPoint(mem_num);
+	public Integer selectMemberPoint(long mem_num) {
+		Integer point = myPageMapper.selectMemberPoint(mem_num);
+        return point != null ? point : 0;
 	}
 	
 	

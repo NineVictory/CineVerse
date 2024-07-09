@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="myPageMain_1">
 	<div class="myPageMain_photo">
-		<img
-			src="${pageContext.request.contextPath}/images/pmj/myPage_photo.jpg"
-			alt="마이페이지사진">
+		<img src="${pageContext.request.contextPath}/member/photoView" width="50" height="50" class="my-photo">
 	</div>
 
 	<div class="myPageMain_right">
