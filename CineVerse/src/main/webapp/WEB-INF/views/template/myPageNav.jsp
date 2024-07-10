@@ -1,25 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-    /* 클릭된 항목에 적용될 스타일 */
-    .myPageNav .mp_nav_active a, .myPageNav .mp_li_active a{
-        font-weight: 800; 
-        color: #3F66ED !important;
-    }
-    
-    .myPageNav .mp_nav_active, .myPageNav .mp_li_active a {
+    .myPageNav .mp_nav_active a , .myPageNav .mp_li_active a {
+   		 font-weight: 800; 
         color: #3F66ED !important;
     }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script>
     $(document).ready(function() {
-        // 페이지 로드 시 로컬 스토리지에서 강조 항목을 가져와 적용
-        var activeItem = localStorage.getItem('activeItem');
-        if (activeItem) {
-            $('#' + activeItem).addClass(activeItem.includes('mp_nav') ? 'mp_nav_active' : 'mp_li_active');
-        }
+        // 현재 URL 경로 가져오기
+        var currentPath = window.location.pathname;
+        
+        // 경로에 따라 적절한 메뉴 항목에 클래스 추가
+        $('.myPageNav a').each(function() {
+            if ($(this).attr('href') === currentPath) {
+                var parentClass = $(this).parent().hasClass('mp_nav') ? 'mp_nav_active' : 'mp_li_active';
+                $(this).parent().addClass(parentClass);
+            }
+        });
 
+        // 메뉴 항목 클릭 시 강조 처리
         $('.myPageNav a').click(function(event) {
             // 모든 .mp_nav, .mp_li 클래스에서 .mp_nav_active, .mp_li_active 제거
             $('.mp_nav').removeClass('mp_nav_active');
@@ -28,16 +29,6 @@
             // 클릭된 a 태그의 부모 li에 .mp_nav_active 또는 .mp_li_active 클래스 추가
             var parentClass = $(this).parent().hasClass('mp_nav') ? 'mp_nav_active' : 'mp_li_active';
             $(this).parent().addClass(parentClass);
-
-            // 로컬 스토리지에 강조 항목 저장
-            var parentId = $(this).parent().attr('id');
-            localStorage.setItem('activeItem', parentId);
-
-            // 링크 이동을 위해 setTimeout 사용
-            var href = $(this).attr('href');
-            setTimeout(function() {
-                window.location.href = href;
-            }, 100); // 100ms 후 링크로 이동
         });
     });
 </script>
@@ -58,7 +49,7 @@
         <li class="mp_nav" id="mp_nav_eventHistory"><a href="#">이벤트 참여 내역</a></li>
         <li class="mp_nav" id="mp_nav_purchase"><a href="#">구매</a></li>
         <li class="mp_li" id="mp_li_pointCharge"><a href="#">포인트충전</a></li>
-        <li class="mp_li" id="mp_li_goodsPayment"><a href="#">굿즈 결제 내역</a></li>
+        <li class="mp_li" id="mp_li_goodsPayment"><a href="/myPage/bought">굿즈 결제 내역</a></li>
         <li class="mp_li" id="mp_li_cart"><a href="#">장바구니</a></li>
         <li class="mp_nav" id="mp_nav_chatHistory"><a href="#">채팅이력</a></li>
         <li class="mp_nav" id="mp_nav_memberInfo"><a href="#">회원정보</a></li>
