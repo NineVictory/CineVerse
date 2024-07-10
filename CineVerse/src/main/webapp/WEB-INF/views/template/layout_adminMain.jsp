@@ -12,7 +12,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/admin.css" type="text/css"> 
+	href="${pageContext.request.contextPath}/css/admin.css" type="text/css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <tiles:insertAttribute name="css" ignore="true" />
@@ -21,13 +21,13 @@
 <body>
 	<div id="main">
 		<div class="page-container">
-		<div id="body">
-			<tiles:insertAttribute name="admin_nav"/>
-			<tiles:insertAttribute name="admin_body" />
-		</div>
-		</div>
-		<div id="footer">
-			<tiles:insertAttribute name="footer"/>
+			<div id="header">
+				<tiles:insertAttribute name="admin_header" />
+			</div>
+			<div id="body">
+				<tiles:insertAttribute name="admin_nav" />
+				<tiles:insertAttribute name="admin_body" />
+			</div>
 		</div>
 	</div>
 </body>

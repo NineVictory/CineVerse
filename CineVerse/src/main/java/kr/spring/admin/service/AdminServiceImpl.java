@@ -21,11 +21,14 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public List<AdminVO> getAllMembers() {
-		// TODO Auto-generated method stub
 		return adminMapper.getAllMembers();
+	}
+	@Override
+	public List<AdminVO> getAllMembership() {
+		// TODO Auto-generated method stub
+		return adminMapper.getAllMembership();
 	}
 
 

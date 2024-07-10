@@ -15,24 +15,39 @@
 		</form>
 		<p id = "sub_title2">이벤트 관리</p>
 		<input type = "button" value = "이벤트 등록" class = "insert_button"/>
-	<table class="adminMember-table">
-		<tr>
-			<th>글 번호</th>
-			<th>제목</th>
-			<th>내용</th>
-			<th>조회수</th>
-			<th>등록일</th>
-			<th></th>
-		</tr>
-		<tr>
-			<td class="mem-data">데이터</td>
-			<td class="mem-data">데이터</td>
-			<td class="mem-data">데이터</td>
-			<td class="mem-data">데이터</td>
-			<td class="mem-data">데이터</td>
-			<td class="button2"><input type ="button" value = "삭제"/></td>
-		</tr>
-		
-	</table>
+		<table class="adminMember-table">
+        <thead>
+            <tr>
+                <th>회원번호</th>
+                <th>아이디</th>
+                <th>상태</th>
+                <th>등급</th>
+                <th>맴버십</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>이메일</th>
+                <th>가입일</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="member" items="${adminList}">
+                <tr>
+                    <td class="mem-data">${member.mem_num}</td>
+                    <td class="mem-data">${member.mem_id}</td>
+                    <td class="mem-data">${member.mem_auth}</td>
+                    <td class="mem-data">${member.mem_rank}</td>
+                    <td class="mem-data">${member.mem_membership}</td>
+                    <td class="mem-data">${member.mem_name}</td>
+                    <td class="mem-data">${member.mem_phone}</td>
+                    <td class="mem-data">${member.mem_email}</td>
+                    <td class="mem-data">${member.mem_reg_date}</td>
+                    <td class="button1"><input type="button" value="정지" /></td>
+                    <td class="button2"><input type="button" value="탈퇴" /></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 
 </div>

@@ -14,7 +14,12 @@ public class AdminVO {
 	//회원관리 
 	private long mem_num;
 	private long mem_auth;
-
+	private String mem_id;
+	private long mem_rank;
+	private String mem_name;
+	private String mem_phone;
+	private String mem_email;
+	private Date mem_reg_date;
 	//맴버십관리
 	private long mem_membership;
 	private long ph_point; //포인트 돌려주기
