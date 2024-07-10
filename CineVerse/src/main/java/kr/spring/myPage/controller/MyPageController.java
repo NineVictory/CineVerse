@@ -108,6 +108,14 @@ public class MyPageController {
 	
 	//내 캘린더
 	//이벤트 참여 내역
+	@GetMapping("/myPage/myEvent")
+	public String myPageEvent(MemberVO memberVO,HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "myEvent";
+	}
 	//구매 - 포인트 충전 내역
 	//구매 - 굿즈 결제 내역
 	//장바구니
@@ -198,5 +206,13 @@ public class MyPageController {
 			return "boughtDetail";
 		}
 		
+		@GetMapping("/myPage/deleteMember")
+		public String deleteMember(MemberVO memberVO,HttpSession session, Model model) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			MyPageVO member = mypageService.selectMember(user.getMem_num());
+			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+			model.addAttribute("member",member);
+			return "deleteMember";
+		}
 		
 }

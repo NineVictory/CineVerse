@@ -37,27 +37,27 @@
         <li class="mp_nav_myPage" id="mp_nav_myPage"><a href="/myPage/myPageMain">MY 페이지</a></li>
         <li class="mp_nav" id="mp_nav_reservation"><a href="/myPage/reservation">나의 예매내역</a></li>
         <li class="mp_nav" id="mp_nav_coupon"><a href="/myPage/coupon">나의 쿠폰</a></li>
-        <li class="mp_nav" id="mp_nav_expectingMovie"><a href="/myPage/expectingMovie">나의 활동</a></li>
+        <li class="mp_nav" id="mp_nav_expectingMovie">나의 활동</li>
         <li class="mp_li" id="mp_li_expectingMovie"><a href="/myPage/expectingMovie">기대되는 영화</a></li>
         <li class="mp_li" id="mp_li_watchedMovie"><a href="/myPage/watchedMovie">내가 본 영화</a></li>
         <li class="mp_li" id="mp_li_review"><a href="/myPage/review">내가 쓴 평점</a></li>
-        <li class="mp_nav" id="mp_nav_boardWrite"><a href="/myPage/boardWrite">게시판</a></li>
+        <li class="mp_nav" id="mp_nav_boardWrite">게시판</li>
         <li class="mp_li" id="mp_li_bookMark"><a href="/myPage/bookMark">북마크</a></li>
         <li class="mp_li" id="mp_li_boardWrite"><a href="/myPage/boardWrite">내가 쓴 글</a></li>
         <li class="mp_li" id="mp_li_boardReply"><a href="/myPage/boardReply">내가 쓴 댓글</a></li>
         <li class="mp_nav" id="mp_nav_calendar"><a href="#">내 캘린더</a></li>
-        <li class="mp_nav" id="mp_nav_eventHistory"><a href="#">이벤트 참여 내역</a></li>
-        <li class="mp_nav" id="mp_nav_purchase"><a href="#">구매</a></li>
+        <li class="mp_nav" id="mp_nav_eventHistory"><a href="/myPage/myEvent">이벤트 참여 내역</a></li>
+        <li class="mp_nav" id="mp_nav_purchase">구매</li>
         <li class="mp_li" id="mp_li_pointCharge"><a href="#">포인트충전</a></li>
         <li class="mp_li" id="mp_li_goodsPayment"><a href="/myPage/bought">굿즈 결제 내역</a></li>
         <li class="mp_li" id="mp_li_cart"><a href="#">장바구니</a></li>
         <li class="mp_nav" id="mp_nav_chatHistory"><a href="#">채팅이력</a></li>
-        <li class="mp_nav" id="mp_nav_memberInfo"><a href="#">회원정보</a></li>
+        <li class="mp_nav" id="mp_nav_memberInfo">회원정보</li>
         <li class="mp_li" id="mp_li_modifyUser"><a href="/myPage/modifyUser">개인정보 변경</a></li>
         <li class="mp_li" id="mp_li_delivery"><a href="#">배송지 관리</a></li>
-        <li class="mp_li" id="mp_li_withdraw"><a href="#">회원 탈퇴</a></li>
+        <li class="mp_li" id="mp_li_withdraw"><a href="/myPage/deleteMember">회원 탈퇴</a></li>
         <li class="mp_nav" id="mp_nav_membership"><a href="#">멤버십 구독</a></li>
-        <li class="mp_nav" id="mp_nav_inquiry"><a href="#">나의 문의 내역</a></li>
+        <li class="mp_nav" id="mp_nav_inquiry">나의 문의 내역</li>
         <li class="mp_li" id="mp_li_oneOnOne"><a href="/myPage/consult">1:1 문의</a></li>
     </ul>
 </div>
