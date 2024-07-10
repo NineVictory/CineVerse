@@ -59,10 +59,10 @@
                     </div>
                 </li>
                 <li class="secondary-li">
-                	<a href="#" class="secondary-a">이벤트</a>
+                	<a href="${pageContext.request.contextPath}/event/event" class="secondary-a">이벤트</a>
                		<div class="hide_menu">
                         <ul class="hide_menu_ul">
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="홈">홈</a></li>
+                            <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/event/event" class="hide-menu-a" title="홈">홈</a></li>
                             <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="영화">영화</a></li>
                             <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="시사회/무대인사">시사회/무대인사</a></li>
                             <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="제휴할인">제휴할인</a></li>

@@ -73,10 +73,10 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#">이벤트</a>
+                    <a href="${pageContext.request.contextPath}/event/event">이벤트</a>
                     <div>
                         <ul>
-                            <li><a href="#" title="홈">홈</a></li>
+                            <li><a href="${pageContext.request.contextPath}/event/event" title="홈">홈</a></li>
                             <li><a href="#" title="영화">영화</a></li>
                             <li><a href="#" title="시사회/무대인사">시사회/무대인사</a></li>
                             <li><a href="#" title="제휴할인">제휴할인</a></li>
