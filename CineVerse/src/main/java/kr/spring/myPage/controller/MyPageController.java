@@ -14,6 +14,8 @@ import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Slf4j
 @Controller
@@ -184,6 +186,16 @@ public class MyPageController {
 			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 			model.addAttribute("member",member);
 			return "bought";
+		}
+		
+		// 마이페이지 구매 내역 상세 페이지로 가기
+		@GetMapping("/myPage/boughtDetail")
+		public String getMyPageDetailBought(MemberVO memberVO,HttpSession session, Model model) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			MyPageVO member = mypageService.selectMember(user.getMem_num());
+			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+			model.addAttribute("member",member);
+			return "boughtDetail";
 		}
 		
 		

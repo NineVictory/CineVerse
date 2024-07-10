@@ -48,4 +48,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPageBought.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
 	</definition>
+	
+	<definition name="boughtDetail" extends="bought">
+		<put-attribute name="title" value="굿즈 결제 내역"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPageBoughtDetail.jsp"/>
+	</definition>
 </tiles-definitions>

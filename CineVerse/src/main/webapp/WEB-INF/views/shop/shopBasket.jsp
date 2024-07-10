@@ -2,7 +2,7 @@
 	    pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- 벌스샵 결제 시작 -->
+<!-- 벌스샵 장바구니 시작 -->
 <div class="main_content">
 	<div class="buy-main">
 		<h2>장바구니</h2>
@@ -56,4 +56,4 @@
 </div>
 	
 </div>
-<!-- 벌스샵 결제 끝-->
+<!-- 벌스샵 장바구니 끝-->
