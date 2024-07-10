@@ -226,6 +226,7 @@
 
 .mp_li {
 	font-size: 14px;
+	font-weight: 550;
 	margin-bottom: 3px;
 }
 
@@ -990,17 +991,17 @@
 }
 .my_consult_check{
 	display: flex;
-    flex-direction: column; /* 수직 정렬 */
+    flex-direction: column;
 	font-size: 16px;
 	font-weight: 550;
 	width: 110px;
 	height:35px;
-	margin-left: 15px;
-	color: #000;
+	color: #fff;
 	background-color: #3F66ED;
 	border-radius: 30px;
-	align-items: center; /* 자식 요소들을 수직 가운데 정렬 */
-    justify-content: center; /* 자식 요소들을 가로 가운데 정렬 */
+	align-items: center;
+    justify-content: center;
+    margin: 10px 0 0 15px;
 }
 
 /* =======================
