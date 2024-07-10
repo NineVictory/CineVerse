@@ -530,7 +530,7 @@ create sequence order_change_seq;
 -- 상품 리뷰
 CREATE TABLE product_review (
     pr_num number NOT NULL,
-    p_content clob NOT NULL,
+    pr_content clob NOT NULL,
     pr_reg_date date DEFAULT sysdate NOT NULL,
     pr_filename clob NULL,
     od_num number NOT NULL,
