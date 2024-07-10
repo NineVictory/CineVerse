@@ -2,6 +2,9 @@ package kr.spring.shop.vo;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,13 +16,23 @@ import lombok.ToString;
 public class ProductVO {
 	// product
 	private long p_num;
+	@NotBlank
 	private String p_name;
-	private String p_category;
+	@NotNull
+	private int p_category;
+	@NotBlank
 	private String p_content;
+	@NotNull
 	private long p_price;
-	private long quantity;
+	@NotNull
+	private long p_quantity;
+	
+	@NotNull
+	private int p_status;
+	
 	private Date p_reg_date;
 	private Date r_modify_date;
+	@NotBlank
 	private String p_filename;
 	
 	// product_review (p_num은 알아서 사용)

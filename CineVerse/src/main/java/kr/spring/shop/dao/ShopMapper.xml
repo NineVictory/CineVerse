@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="kr.spring.shop.dao.ShopMapper">
+	<insert id="registerProduct" parameterType="productVO">
+		INSERT INTO product(
+			p_num, p_name, p_category, p_content, p_quantity, p_price, p_reg_date, p_filename, p_status 
+		) VALUES(
+			product_seq.nextval, #{p_name}, #{p_category}, #{p_content}, #{p_quantity}, #{p_price}, SYSDATE, #{p_filename}, #{p_status}
+		)
+	</insert>
+
+ </mapper>
