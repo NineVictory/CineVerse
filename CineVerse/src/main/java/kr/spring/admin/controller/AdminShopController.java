@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.shop.service.ShopService;
 import kr.spring.shop.vo.ProductVO;
+import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -38,11 +39,14 @@ public class AdminShopController {
 	public String registerProduct(@Valid ProductVO product, BindingResult result, HttpServletRequest request, HttpSession session, Model model)throws IllegalStateException,IOException{
 		log.debug("<<상품 등록>> : " + product);
 		
+		/*
 		// 유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
 			return "adminShop";
 		}
+		*/
 		
+		product.setP_filename(FileUtil.createFile(request, product.getP_upload()));
 		// 상품 등록
 		shopService.registerProduct(product);
 		

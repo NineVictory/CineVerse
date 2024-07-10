@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			<input type="number" name="p_quantity" id="p_quantity" min="0" max="9999999" class="input-check">
 		</li>
 		<li>
-			<label for="p_filename">상품사진</label>
-			<input type="file" name="p_filename" class="input-check" id="p_filename" accept="image/gif,image/png,image/jpeg">
+			<label for="p_upload">상품사진</label>
+			<input type="file" name="p_upload" class="input-check" id="p_upload" accept="image/gif,image/png,image/jpeg">
 		</li>
 		<li>
 			<label for="p_content">상품설명</label>

@@ -5,6 +5,8 @@ import java.sql.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,8 +34,10 @@ public class ProductVO {
 	
 	private Date p_reg_date;
 	private Date r_modify_date;
-	@NotBlank
 	private String p_filename;
+	
+	@NotNull
+	private MultipartFile p_upload;
 	
 	// product_review (p_num은 알아서 사용)
 	private long pr_num;
@@ -45,4 +49,5 @@ public class ProductVO {
 	
 	// fav_product (p_num은 알아서 사용)
 	private long mem_num;
+
 }
