@@ -207,7 +207,7 @@ public class MyPageController {
 		}
 		
 		@GetMapping("/myPage/deleteMember")
-		public String deleteMember(MemberVO memberVO,HttpSession session, Model model) {
+		public String deleteMember(MyPageVO myPageVO, HttpSession session, Model model) {
 			MemberVO user = (MemberVO)session.getAttribute("user");
 			MyPageVO member = mypageService.selectMember(user.getMem_num());
 			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
