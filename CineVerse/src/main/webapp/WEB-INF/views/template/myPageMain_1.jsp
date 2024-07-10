@@ -70,9 +70,9 @@
 		<hr size="1" width="90%" class="line">
 	</div>
 
-	<div class="myPage_point" onclick="location.href='/member/pointCharge'">
+	<div class="myPage_point">
 		<!-- 포인트 충전 링크 -->
-		<span class="mp_point">CV POINT</span> <span class="my_point_charge">충전</span><br>
+		<span class="mp_point">CV POINT</span> <span class="my_point_charge" onclick="location.href='/member/pointCharge'">충전</span><br>
 		<div class="point_content">
 			<span>사용가능한 포인트</span><span class="user_point">${member.ph_point}P</span>
 		</div>

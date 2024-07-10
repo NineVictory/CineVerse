@@ -122,8 +122,14 @@ public class MyPageController {
 	//회원 정보 - 회원 탈퇴
 	//멤버십 구독
 	//나의 문의 내역 - 1:1문의
-	
-	
+	@GetMapping("/myPage/consult")
+	public String myPageConsult(MemberVO memberVO,HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "consult";
+	}
 	
 	// 프로필 사진 출력하기(로그인 전용)
 		@GetMapping("/member/photoView")

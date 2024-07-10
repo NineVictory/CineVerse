@@ -63,6 +63,13 @@
 		<put-attribute name="title" value="개인정보변경"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/modifyUser.jsp"/>
 	</definition>
+	
+	<definition name="consult" extends="myPageMain">
+		<put-attribute name="title" value="개인정보변경"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/consult.jsp"/>
+	</definition>
+	
+	
 </tiles-definitions>
 
 

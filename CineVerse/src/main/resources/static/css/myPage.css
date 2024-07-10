@@ -1,291 +1,327 @@
 @charset "UTF-8";
 
 * {
-    font-family: "Noto Sans KR", sans-serif;
+	font-family: "Noto Sans KR", sans-serif;
 }
 /* =======================
 	  myPage 고정 프로필 박스
    ======================= */
-.myPageMain_1{
+.myPageMain_1 {
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    margin-top: 5%;
-    background-color: #DBE3FF;
-    width: 1160px;
-    height: 230px;
-    box-sizing: border-box;
-    border-radius: 15px;
-}
-.myPageMain_photo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-.myPageMain_photo img {
-    width: 100%;
-    height: auto;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	margin-top: 5%;
+	background-color: #DBE3FF;
+	width: 1160px;
+	height: 230px;
+	box-sizing: border-box;
+	border-radius: 15px;
 }
 
-.myPageMain_right{
-	width:70%;
-	height:70%;
+.myPageMain_photo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	width: 170px;
+	height: 170px;
+	border-radius: 50%;
+	overflow: hidden;
 }
-.myPageMain_information{
+
+.myPageMain_photo img {
+	width: 100%;
+	height: auto;
+}
+
+.myPageMain_right {
+	width: 70%;
+	height: 70%;
+}
+
+.myPageMain_information {
 	margin-top: 25px;
 }
-.myPageMain_name{
-	font-weight:500;
+
+.myPageMain_name {
+	font-weight: 500;
 	font-size: 20pt;
 }
-.myPageMain_id,.myPageMain_nickName{
+
+.myPageMain_id, .myPageMain_nickName {
 	margin-left: 10px;
 	font-size: 14px;
 	font-weight: 500;
 	margin-right: 10px;
 }
-.myPageMain_vip{
-	margin-top:10px;
+
+.myPageMain_vip {
+	margin-top: 10px;
 	font-size: 14px;
 }
+
 .mp_vip_lounge {
-    margin-top: 13px;
-    font-size: 14px;
-    border-radius: 20px;
-    background: #3F66ED;
-    color: white;
-    width:85px;
-    height:26px;
-    padding :1px 10px;
-    cursor: pointer;
+	margin-top: 13px;
+	font-size: 14px;
+	border-radius: 20px;
+	background: #3F66ED;
+	color: white;
+	width: 85px;
+	height: 26px;
+	padding: 1px 10px;
+	cursor: pointer;
 }
+
 .mp_vip_lounge:hover {
-    background: #2a49b3;
+	background: #2a49b3;
 }
 /* =======================
   myPage 고정 티켓,쿠폰,포인트 박스
    ======================= */
-.myPageMain_2{
+.myPageMain_2 {
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    margin-top: 2%;
-    margin-bottom: 5%;
-    width: 1160px;
-    height: 240px;
-    box-sizing: border-box;
-    border-radius: 15px;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	margin-top: 2%;
+	margin-bottom: 5%;
+	width: 1160px;
+	height: 240px;
+	box-sizing: border-box;
+	border-radius: 15px;
 }
 /* 고정_티켓,쿠폰,포인트 */
-.myPage_ticket,.myPage_coupon{
-    background-color: #EFF3FD;
-    width: 35%;
-    height: 80%;
-    box-sizing: border-box;
-    border-radius: 15px;
-    margin-right: 40px;
-    font-size: 14px;
-    padding: 20px 0 10px 25px;
+.myPage_ticket, .myPage_coupon {
+	background-color: #EFF3FD;
+	width: 35%;
+	height: 80%;
+	box-sizing: border-box;
+	border-radius: 15px;
+	margin-right: 40px;
+	font-size: 14px;
+	padding: 20px 0 10px 25px;
 }
-.myPage_point{
-    background-color: #EFF3FD;
-    width: 35%;
-    height: 80%;
-    box-sizing: border-box;
-    border-radius: 15px;
-    font-size: 14px;
-    padding: 20px 0 10px 25px;
+
+.myPage_point {
+	background-color: #EFF3FD;
+	width: 35%;
+	height: 80%;
+	box-sizing: border-box;
+	border-radius: 15px;
+	font-size: 14px;
+	padding: 20px 0 10px 25px;
 }
-.mp_ticket,.mp_coupon,.mp_point{
+
+.mp_ticket, .mp_coupon, .mp_point {
 	border-radius: 20px;
-    background: #3F66ED;
-    color: white;
-    width:100px;
-    height:26px;
-    padding :2px 10px;
-    text-align: center;
-    cursor: pointer;
+	background: #3F66ED;
+	color: white;
+	width: 100px;
+	height: 26px;
+	padding: 2px 10px;
+	text-align: center;
+	cursor: pointer;
 }
-.my_point_charge{
+
+.my_point_charge {
 	border-radius: 20px;
-    background: #FF5151;
-    color: white;
-    width:50px;
-    height:26px;
-    font-size: 13px;
-    padding :3px 10px;
-    text-align: center;
-    cursor: pointer;
+	background: #FF5151;
+	color: white;
+	width: 50px;
+	height: 26px;
+	font-size: 13px;
+	padding: 3px 10px;
+	text-align: center;
+	cursor: pointer;
 }
-.ticket_content{
+
+.ticket_content {
 	margin-top: 7%;
 	cursor: pointer;
 }
-.point_content,.coupon_content{
-    display: flex;
-    justify-content: space-between;
-    padding-right: 28px;
-    margin-top: 7%;
+
+.point_content, .coupon_content {
+	display: flex;
+	justify-content: space-between;
+	padding-right: 28px;
+	margin-top: 7%;
 	font-weight: 500;
 	cursor: pointer;
 }
-.user_point{
+
+.user_point {
 	text-align: right;
 }
-.mypage_movie_name{
+
+.mypage_movie_name {
 	font-size: 16px;
 	font-weight: 600;
 	margin-bottom: 5px;
-	width:245px;
+	width: 245px;
 	/* 글자 ..처리 */
 	white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.main_display{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-.main_movie_info1{
-	width:20%;
-}
-.main_movie_info2{
-	width:80%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.myPage_bold{
+.main_display {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.main_movie_info1 {
+	width: 20%;
+}
+
+.main_movie_info2 {
+	width: 80%;
+}
+
+.myPage_bold {
 	font-weight: 500;
 	margin-left: 10px;
 }
-.point_list{
+
+.point_list {
 	margin-top: 5px;
 	font-size: 13px;
 	color: #A1A1A1;
 }
-.line{
+
+.line {
 	margin-top: 10px;
 }
-.main_count{
+
+.main_count {
 	margin-left: 6px;
 }
 /* =======================
 			nav
    ======================= */
-.mp_nav_myPage{
+.mp_nav_myPage {
 	font-size: 17px;
 	font-weight: bold;
 }
-.mp_nav_myPage:hover{
+
+.mp_nav_myPage a:hover {
 	cursor: pointer;
-	font-weight:900; 
+	font-weight: 800;
+	color: #3F66ED !important;
 }
-.mp_nav{
+
+.mp_nav {
 	font-size: 17px;
 	font-weight: bold;
-	margin: 10px 0 10px 0;
+	margin: 10px 0;
 }
-.mp_nav:hover{
+
+.mp_nav a:hover {
 	cursor: pointer;
-	font-weight:900; 
+	font-weight: 800;
+	color: #3F66ED !important;
 }
-.mp_li{
+
+.mp_li {
 	font-size: 14px;
 	margin-bottom: 3px;
 }
-.mp_li:hover{
+
+.mp_li a:hover {
 	cursor: pointer;
-	font-weight:800; 
+	font-weight: 800;
+	color: #3F66ED !important;
 }
 /* =======================
        body-nav,main
    ======================= */
 #main_body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #main_content {
-    display: flex;
-	width:1320px;
+	display: flex;
+	width: 1320px;
 	justify-content: center;
 }
-.myPageNav{
-	width:250px;
+
+.myPageNav {
+	width: 250px;
 }
-.myPage_main{
-	width:950px;
-	margin-right:32px;
+
+.myPage_main {
+	width: 950px;
+	margin-right: 32px;
 }
 /* =======================
        main_myPage_body_1
        (myPageMain.jsp)
    ======================= */
-.myPage_active{
+.myPage_active {
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 15px;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 15px;
 }
-.m_except{
-	text-align:center;
+
+.m_except {
+	text-align: center;
 	background-color: #EFF3FD;
-    width: 35%;
-    height: 80%;
-    box-sizing: border-box;
-    border-radius: 15px 0 0 15px;
-    font-size: 14px;
-    padding: 4% 10%;
+	width: 35%;
+	height: 80%;
+	box-sizing: border-box;
+	border-radius: 15px 0 0 15px;
+	font-size: 14px;
+	padding: 4% 10%;
 }
-.m_watching{
-	text-align:center;
+
+.m_watching {
+	text-align: center;
 	background-color: #EFF3FD;
-    width: 35%;
-    height: 80%;
-    box-sizing: border-box;
-    font-size: 14px;
-    padding: 4% 10%;
+	width: 35%;
+	height: 80%;
+	box-sizing: border-box;
+	font-size: 14px;
+	padding: 4% 10%;
 }
-.m_review{
-	text-align:center;
+
+.m_review {
+	text-align: center;
 	background-color: #EFF3FD;
-    width: 35%;
-    height: 80%;
-    box-sizing: border-box;
-    border-radius: 0 15px 15px 0;
-    font-size: 14px;
-    padding: 4% 10%;
+	width: 35%;
+	height: 80%;
+	box-sizing: border-box;
+	border-radius: 0 15px 15px 0;
+	font-size: 14px;
+	padding: 4% 10%;
 }
-.m_except:hover,.m_watching:hover,.m_review:hover{
+
+.m_except:hover, .m_watching:hover, .m_review:hover {
 	background-color: #DBE3FF;
 }
 /* 아이콘 위치 삭제---------------------- */
-.test_icon{
-    margin: 0 auto;
+.test_icon {
+	margin: 0 auto;
 	background-color: #fff;
-	width:40px;
-	height:40px;
+	width: 40px;
+	height: 40px;
 	margin-bottom: 8px;
 }
 /* 아이콘 위치 삭제---------------------- */
-.myPageMain_font_b{
+.myPageMain_font_b {
 	font-size: 17px;
 	font-weight: 700;
 	margin: 12px 0 5px 0;
 }
-.myPageMain_font_s{
+
+.myPageMain_font_s {
 	font-size: 13px;
 	font-weight: 400;
 	color: #949292;
@@ -297,124 +333,141 @@
 /* .my_reserv_info{
 	margin-bottom: 10px;
 } */
-.main_body_reservation{
+.main_body_reservation {
 	margin-top: 40px;
 	margin-bottom: 30px;
 }
-.qna_box{
-	margin-top: 40px;
-	margin-bottom: 30px;
-}
-.reserv_font{
-	font-size: 18px;
-    font-weight: 600;
-}
-.myPageReservation_list{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    width: 100%;
-    height: 270px;
-    box-sizing: border-box;
-    border-radius: 15px;
-    background: #F2F2F2;
-    margin-top: 15px;
-}
-.mp_reserv{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-	margin-right: auto;
 
+.qna_box {
+	margin-top: 40px;
+	margin-bottom: 30px;
 }
-.m_movie_photo{
-	width:150px;
+
+.reserv_font {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.myPageReservation_list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	width: 100%;
+	height: 270px;
+	box-sizing: border-box;
+	border-radius: 15px;
+	background: #F2F2F2;
+	margin-top: 15px;
+}
+
+.mp_reserv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: auto;
+}
+
+.m_movie_photo {
+	width: 150px;
 	height: 200px;
 	background-color: #fff;
 	margin: 20px 45px 20px 40px;
 }
-.mpMovie_info{
-	width:700px;
+
+.mpMovie_info {
+	width: 700px;
 }
 
-.mp_movie_number_1{
+.mp_movie_number_1 {
 	color: #666;
-	font-weight:600;
+	font-weight: 600;
 	font-size: 16px;
-	margin-right:5px;
+	margin-right: 5px;
 }
-.mp_movie_number_2{
+
+.mp_movie_number_2 {
 	color: #000;
 	font-weight: 600;
 	font-size: 16px;
 }
-.mp_movie_number_3{
+
+.mp_movie_number_3 {
 	color: red;
 	font-weight: 600;
 	font-size: 16px;
 }
-.mp_movie_title{
+
+.mp_movie_title {
 	font-weight: 600;
 	font-size: 18px;
-	margin:6px 0 10px 0;
+	margin: 6px 0 10px 0;
 }
-.reservation_list{
+
+.reservation_list {
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
+	align-items: center;
+	justify-content: space-between;
 	cursor: pointer;
 }
-.reserv_info{
+
+.reserv_info {
 	color: #666;
 	font-weight: 500;
 	font-size: 15px;
 }
-.my_reserv_info{
+
+.my_reserv_info {
 	font-size: 15px;
 	font-weight: 600;
 	margin-right: 470px;
 }
-.reserv_pay_cancle{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
+.reserv_pay_cancle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	font-weight: 500;
 	cursor: pointer;
 	font-size: 15px;
 }
-.reserv_line{
+
+.reserv_line {
 	margin: 15px 0 12px 0;
 }
-.m_pay{
+
+.m_pay {
 	font-size: 15px;
 	font-weight: 600;
 }
-.my_blue_font{
-	color:#3F66ED;
+
+.my_blue_font {
+	color: #3F66ED;
 	font-weight: 600;
 }
-.m_cancle{
+
+.m_cancle {
 	margin-left: auto;
 	border: 1px solid;
-	width:70px;
-	font-size:13px;
+	width: 70px;
+	font-size: 13px;
 	text-align: center;
 }
 
-.qna{
+.qna {
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    width: 100%;
-    height: 90px;
-    box-sizing: border-box;
-    border-radius: 15px;
-    background: #F2F2F2;
-    margin-top: 15px;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	width: 100%;
+	height: 90px;
+	box-sizing: border-box;
+	border-radius: 15px;
+	background: #F2F2F2;
+	margin-top: 15px;
 }
-.mpQna{
+
+.mpQna {
 	margin-right: auto;
 	margin-left: 30px;
 	font-weight: 500;
@@ -423,174 +476,201 @@
 /* =======================
        watchedMovie.jsp
    ======================= */
-.myPage_title{
+.myPage_title {
 	font-size: 18px;
 	font-weight: 700;
 	margin-bottom: 10px;
 }
-.wa_box{
+
+.wa_box {
 	display: flex;
-    align-items: center;
-    /* justify-content: center;
+	align-items: center;
+	/* justify-content: center;
     margin: 0 auto; */
-    width: 100%;
-    height: 210px;
-    box-sizing: border-box;
-    border-radius: 15px;
-    margin-top: 25px;
+	width: 100%;
+	height: 210px;
+	box-sizing: border-box;
+	border-radius: 15px;
+	margin-top: 25px;
 }
-.wa_photo{
+
+.wa_photo {
 	width: 150px;
 	height: 210px;
 	background-color: #000;
 }
-.wa_movie_info{
-	width:400px;
+
+.wa_movie_info {
+	width: 400px;
 	margin-left: 50px;
 }
-.wa_info_name{
+
+.wa_info_name {
 	font-size: 18px;
 	font-weight: 500;
 	margin-bottom: 10px;
 }
-.wa_info_sub{
+
+.wa_info_sub {
 	font-size: 15px;
 	font-weight: 600;
 	margin-bottom: 3px;
 }
-.wa_line{
+
+.wa_line {
 	margin: 20px 0;
 }
 /* =======================
        myPageReservation.jsp
    ======================= */
-.reservation_display{
+.reservation_display {
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
+	align-items: center;
+	justify-content: space-between;
 }
+
 .myPage_title_re {
-    font-size: 18px;
-    font-weight: 700;
+	font-size: 18px;
+	font-weight: 700;
 }
-.watched_movie{
+
+.watched_movie {
 	background-color: #3F66ED;
 	font-size: 16px;
 	color: #fff;
-	width:110px;
-	height:30px;
+	width: 110px;
+	height: 30px;
 	text-align: center;
 	align-content: center;
 }
-.reservation_font{
+
+.reservation_font {
 	display: flex;
-    gap: 10px;
-    flex-direction: column;/* flex 상하 */
-    text-align: center;
-    margin-top: 50px;
+	gap: 10px;
+	flex-direction: column; /* flex 상하 */
+	text-align: center;
+	margin-top: 50px;
 }
-.reservation_font_red{
+
+.reservation_font_red {
 	color: red;
 }
-.reservation_font1{
+
+.reservation_font1 {
 	font-size: 20px;
 	font-weight: 600;
 }
-.reservation_font2{
+
+.reservation_font2 {
 	font-size: 13px;
 	font-weight: 500;
 	color: #666;
 }
-.reservation_rep{
+
+.reservation_rep {
 	margin: 60px 0;
 }
-.re_movie_number{
+
+.re_movie_number {
 	margin-bottom: 20px;
 }
-.reserv_display{
+
+.reserv_display {
 	display: flex;
-    align-items: center;
-    justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
-.reservation_info{
-	width:100%;
-	height:210px;
+
+.reservation_info {
+	width: 100%;
+	height: 210px;
 	padding-top: 20px;
 	margin-left: 40px;
 }
-.reservation_movie_name{
+
+.reservation_movie_name {
 	font-size: 18px;
 	font-weight: 600;
 }
-.reservation_infomation{
+
+.reservation_infomation {
 	display: flex;
-    justify-content: center;
-    cursor: pointer;
-    margin-top: 10px;
+	justify-content: center;
+	cursor: pointer;
+	margin-top: 10px;
 }
-.my_reserv_info_1{
-	width:12%;
-	color:#666;
+
+.my_reserv_info_1 {
+	width: 12%;
+	color: #666;
 	font-weight: 500;
 }
-.my_reserv_info_2{
-	width:25%;
-	color:#000;
+
+.my_reserv_info_2 {
+	width: 25%;
+	color: #000;
 	font-weight: 500;
 }
-.my_reserv_info_3{
-	width:12%;
-	color:#666;
+
+.my_reserv_info_3 {
+	width: 12%;
+	color: #666;
 	font-weight: 500;
 }
-.my_reserv_info_4{
-	width:51%;
-	color:#000;
+
+.my_reserv_info_4 {
+	width: 51%;
+	color: #000;
 	font-weight: 500;
 }
-.my_reserv_info_1 > div,
-.my_reserv_info_2 > div,
-.my_reserv_info_3 > div,
-.my_reserv_info_4 > div{
+
+.my_reserv_info_1>div, .my_reserv_info_2>div, .my_reserv_info_3>div,
+	.my_reserv_info_4>div {
 	margin-bottom: 2px;
 }
 
-
-.payment_receipt{
+.payment_receipt {
 	font-size: 16px;
 	font-weight: 600;
 	margin-bottom: 20px;
 }
-.pay_receipt_box{
-	background-color:#fff;
+
+.pay_receipt_box {
+	background-color: #fff;
 	padding: 38px 50px 55px 50px;
 	margin-bottom: 40px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);/* 그림자 속성(수평,수직,블러반경,투명도) */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 속성(수평,수직,블러반경,투명도) */
 }
-.pay_receipt{
+
+.pay_receipt {
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
+	align-items: center;
+	justify-content: space-between;
 }
-.reservation_pay{
+
+.reservation_pay {
 	font-size: 16px;
 	font-weight: 600;
 }
-.reservation_pay_blue_font{
-	color:#3F66ED;
+
+.reservation_pay_blue_font {
+	color: #3F66ED;
 	font-weight: 600;
 }
-.payment_way{
+
+.payment_way {
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
+	align-items: center;
+	justify-content: space-between;
 }
-.pay_way,.pay_way_count{
+
+.pay_way, .pay_way_count {
 	font-size: 14.5px;
 	font-weight: 500;
 	color: #666;
 }
-.pay_way > div{
+
+.pay_way>div {
 	margin-bottom: 3px;
 }
 /* =======================
@@ -657,11 +737,11 @@
 	justify-content: center;
 }
 
-#member_modify .error-color{
+#member_modify .error-color {
 	font-size: 12px;
-	color:red;
-}   
-   
+	color: red;
+}
+
 /* =======================
        expectinMovie.jsp
    ======================= */
@@ -720,162 +800,171 @@
 /* =======================
      	myPageCoupon.jsp
    ======================= */
-.coupon_box{
-	width:100%;
+.coupon_box {
+	width: 100%;
 	margin-top: 30px;
 }
-.coupon_info{
+
+.coupon_info {
 	display: flex;
-    align-items: center;
-    justify-content: space-between;    
+	align-items: center;
+	justify-content: space-between;
 	background-color: #F2F2F2;
 }
-.coupon_info_list{
+
+.coupon_info_list {
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
+	align-items: center;
+	justify-content: space-between;
 }
-.coupon_in{
+
+.coupon_in {
 	font-size: 16px;
 	font-weight: 600;
-	width:50%;
+	width: 50%;
 	text-align: center;
 	padding: 13px 0;
 }
-.coupon_info_name,.coupon_info_date,.coupon_info_content{
+
+.coupon_info_name, .coupon_info_date, .coupon_info_content {
 	font-size: 14px;
 	font-weight: 600;
-	width:50%;
+	width: 50%;
 	text-align: center;
 	padding: 13px 0;
 }
-.myCoupon_option{
+
+.myCoupon_option {
 	width: 80px;
 	height: 30px;
 	border-radius: 10px;
 	text-align: center;
 }
- /* =======================
+/* =======================
      	myPageReview.jsp
-   ======================= */  
- .review_box{
- 	display: flex;
-    flex-direction: column;/* flex 상하 */
-    text-align: center;
-    margin-top: 25px;
-    background-color: #F7F7F7;
-    border-radius: 12px;
-    padding: 20px 30px 20px 30px;
-    gap: 12px;
-    /* 자동 높이 조정 */
-    flex-grow: 1;
- 	align-items: stretch;
- }
- .review_content{
- 	display: flex;
-    align-items: center;
-    justify-content: space-between;
-   	
- }
- .review_content_info{
+   ======================= */
+.review_box {
+	display: flex;
+	flex-direction: column; /* flex 상하 */
+	text-align: center;
+	margin-top: 25px;
+	background-color: #F7F7F7;
+	border-radius: 12px;
+	padding: 20px 30px 20px 30px;
+	gap: 12px;
+	/* 자동 높이 조정 */
+	flex-grow: 1;
+	align-items: stretch;
+}
+
+.review_content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.review_content_info {
 	text-align: left;
 	font-size: 14px;
 	width: 840px;
- }
- .review_id{
- 	font-size: 14px;
- 	font-weight: 500;
- }
- .my_review{
- 	margin-top: 10px;
- 	font-size: 15px;
- }
-.review_delete_btn{
-	font-size: 14px;
-	align-self: flex-start;/* 상단 정렬/하단 정렬이면 end 사용 */
 }
-.review_fav_date{
+
+.review_id {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.my_review {
+	margin-top: 10px;
+	font-size: 15px;
+}
+
+.review_delete_btn {
+	font-size: 14px;
+	align-self: flex-start; /* 상단 정렬/하단 정렬이면 end 사용 */
+}
+
+.review_fav_date {
 	text-align: right;
 	font-size: 13px;
 }
-  /* =======================
+/* =======================
      		myPageBookMark.jsp/boardWrite/boardReply
-   ======================= */  
+   ======================= */
 .bookMark_box {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 25px;
-  background-color: #F7F7F7;
-  border-radius: 12px;
-  padding: 20px 30px;
-  gap: 12px;
-  flex-grow: 1;
-  align-items: stretch;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-top: 25px;
+	background-color: #F7F7F7;
+	border-radius: 12px;
+	padding: 20px 30px;
+	gap: 12px;
+	flex-grow: 1;
+	align-items: stretch;
 }
 
 .bk_content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: auto; /* 높이 자동 조정 */
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: auto; /* 높이 자동 조정 */
 }
 
 .my_board_bk {
-  text-align: left;
-  font-size: 14px;
-  width: 840px;
-  display: flex;
-  flex-direction: column; /* 수직 정렬 */
+	text-align: left;
+	font-size: 14px;
+	width: 840px;
+	display: flex;
+	flex-direction: column; /* 수직 정렬 */
 }
 
 .bk_delete_btn {
-  font-size: 14px;
-  align-self: flex-start; /* 상단 정렬/하단 정렬이면 end 사용 */
+	font-size: 14px;
+	align-self: flex-start; /* 상단 정렬/하단 정렬이면 end 사용 */
 }
 
 .my_board_type {
-  font-size: 14.5px;
-  font-weight: 550;
-  color: #575757;
-}
-.my_board_reply{
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-}
-.my_boardWrite_bk {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: 550;
-  width: 100%; /* 너비를 부모 요소에 맞춤 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.my_board_reply {
-  margin-top: 5px;
-  font-size: 13px;
+	font-size: 14.5px;
+	font-weight: 550;
+	color: #575757;
 }
 
- 
-   
-    /* =======================
-     		myPageWrite.jsp
-   ======================= */  
-   
-   
-   
-   
-    /* =======================
+.my_board_reply {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.my_boardWrite_bk {
+	margin-top: 10px;
+	font-size: 16px;
+	font-weight: 550;
+	width: 100%; /* 너비를 부모 요소에 맞춤 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.my_board_reply {
+	margin-top: 5px;
+	font-size: 13px;
+}
+
+/* =======================
+     		myPageConsult.jsp
+   ======================= */
+.my_consult {
+	text-align: left;
+	font-size: 14px;
+	width: 800px;
+	display: flex;
+	flex-direction: column; /* 수직 정렬 */
+}
+.my_consult_check{
+	font-size: 14px;
+	width: 200px;
+}
+/* =======================
      		myPageReply.jsp
-   ======================= */  
-   
-   
-   
-   
-   
-   
-   
-   
-   
+   ======================= */
