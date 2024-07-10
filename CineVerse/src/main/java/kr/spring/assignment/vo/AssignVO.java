@@ -24,7 +24,10 @@ public class AssignVO {
 	private String ab_filename;
 	private long mem_num;
 	private String ab_ip;
-	
+	//추가
+	private String ab_type;
+	private int ab_item_status;
+
 
 	private String mem_id;
 	

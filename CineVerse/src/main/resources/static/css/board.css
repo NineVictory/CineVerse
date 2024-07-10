@@ -453,9 +453,24 @@ ul.status-df li.font14 label{
 	background-color: red;
 }
 .ass-chatBtn{
-	background:#fcaf28;/* #3F66ED */
+	background:#3F66ED;/* #3F66ED#fcaf28 */
 }
 
 .assign-comment{
 	margin:10px 30px;
+}
+
+/*assignWrite 양도/교환*/
+.item-label{
+	width: 10.5rem;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgb(25, 25, 25);
+    padding-top: 8px;
+}
+.info-container{
+	padding:2rem 0;
+}
+.divcontainer{
+	display:inline-block;
 }

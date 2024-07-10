@@ -39,6 +39,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignView.jsp"/>
 	</definition>
 	
+	<definition name="assignWrite" extends="boardList">
+		<put-attribute name="title" value="상품등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignWrite.jsp"/>
+	</definition>
+	
 </tiles-definitions>
 
 
