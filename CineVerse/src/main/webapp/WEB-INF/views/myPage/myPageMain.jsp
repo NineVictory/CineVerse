@@ -37,9 +37,9 @@
 				</div>
 				<div class="mpMovie_info">
 					<div>
-						<span class="mp_movie_number_1">예매번호</span><span
-							class="mp_movie_number_2">0023-</span> <span
-							class="mp_movie_number_3">0619-3123-229</span>
+						<span class="mp_movie_number_1">예매번호</span>
+						<span class="mp_movie_number_2">0023-</span> 
+						<span class="mp_movie_number_3">0619-3123-229</span>
 					</div>
 					<div class="mp_movie_title">듄</div>
 

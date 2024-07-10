@@ -117,6 +117,14 @@ public class MyPageController {
 		return "myEvent";
 	}
 	//구매 - 포인트 충전 내역
+	@GetMapping("/myPage/pointList")
+	public String myPagePointList(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "pointList";
+	}
 	//구매 - 굿즈 결제 내역
 	//장바구니
 	//채팅 이력

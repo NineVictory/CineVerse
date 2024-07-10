@@ -193,6 +193,7 @@
 
 .line {
 	margin-top: 10px;
+	border-top: 1px solid #D8D8D8;
 }
 
 .main_count {
@@ -372,12 +373,11 @@
 .m_movie_photo {
 	width: 150px;
 	height: 200px;
-	background-color: #fff;
 	margin: 20px 45px 20px 40px;
 }
 
 .mpMovie_info {
-	width: 700px;
+	width: 680px;
 }
 
 .mp_movie_number_1 {
@@ -435,6 +435,7 @@
 
 .reserv_line {
 	margin: 15px 0 12px 0;
+	border-top: 1px solid #D8D8D8;
 }
 
 .m_pay {
@@ -520,6 +521,7 @@
 
 .wa_line {
 	margin: 20px 0;
+	border-top: 1px solid #D8D8D8;
 }
 /* =======================
        myPageReservation.jsp
@@ -982,7 +984,7 @@
 	flex-direction: column; /* 수직 정렬 */
 }
 .my_consult_title{
-	margin-top: 10px;
+	margin-top: 7px;
 	font-size: 16px;
 	font-weight: 550;
 	width: 500px;
@@ -1008,7 +1010,64 @@
 /* =======================
      		myPagePointList.jsp
    ======================= */
-   .my_point_count{
+.point_box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 25px;
+    background-color: #F7F7F7;
+    border-radius: 12px;
+    padding: 20px 30px 30px 30px;
+    gap: 12px;
+    flex-grow: 1;
+    align-items: stretch;
+}
+.point_box_rep {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* margin-top: 25px; */
+    background-color: #F7F7F7;
+    border-radius: 12px;
+    padding: 20px 30px 25px 30px;
+    gap: 12px;
+    flex-grow: 1;
+    align-items: stretch;
+}
+.point_box_now {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 25px;
+    background-color: #EFF3FD;
+    border-radius: 12px;
+    padding: 20px 30px 25px 30px;
+    gap: 12px;
+    flex-grow: 1;
+    align-items: stretch;
+}
+.my_point_now {
+    font-size: 14.5px;
+    font-weight: 550;
+    color: #949292;
+    margin-top: 5px;
+}
+.my_point_date{
+	font-size: 14.5px;
+	font-weight: 550;
+	color: #949292;
+}
+.myPage_point_now{
+	font-size: 16px;
+    font-weight: 600;
+    color: #949292;
+}
+.myPage_point_count{
+	font-size: 17px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+.my_point_count{
 	display: flex;
     flex-direction: column;
 	font-size: 18px;
@@ -1020,3 +1079,44 @@
     justify-content: center;
     margin: 10px 0 0 15px;
 }
+.point_line{
+	 width:930px;
+	 margin: 0 auto;
+	 border-top: 1px solid #D8D8D8;
+}
+/* =======================
+     		myPageBought.jsp
+   ======================= */
+.bought_info{
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.my_delivery_process{
+	color:#fff;
+	font-size: 10px;
+	font-weight: 550;
+	text-align: center;
+	line-height: 18px; /* 수직 정렬-요소의 높이와 동일하게 설정 */
+	background-color: #FFDE5A;
+	display: inline-block;/* span,a태그는 display:inline이기 때문에 width,height적용X */
+	width: 70px;
+	height: 18px;
+	border-radius: 13px;
+	margin-left: 7px;
+}
+.my_bought_btn{
+	width:150px;
+	display: flex;
+	justify-content: space-between;
+}
+.my_order_confirm,.my_order_return{
+	border: 1px solid;
+	width: 70px;
+	font-size: 13px;
+	text-align: center;
+}
+/* =======================
+     		myPage.jsp
+   ======================= */
+

@@ -9,33 +9,45 @@
 	
 	
 	
-	<div class="consult_box">
+	<div class="point_box_now">
 		<div class="consult_content">
 			<div class="my_consult">
-				<div class="my_board_type">보유 포인트 </div>
-				<div class="my_consult_title">400P</div>
+				<div class="myPage_point_now">보유 포인트 </div>
+				<div class="myPage_point_count">15000P</div>
 			</div>
 		</div>
 	</div>
 	
 	
-	
-	
-	<div class="consult_box">
+	<!-- 반복 -->
+	<div class="point_box_rep">
 		<div class="consult_content">
 			<div class="my_consult">
-				<div class="my_board_type">2024.07.31 ~2024.07.31 </div>
+				<div class="my_point_date">2024.07.31 ~2024.07.31 </div>
 				<div class="my_consult_title">카카오페이</div>
-				<div class="my_board_type">보유포인트 4000p </div>
+				<div class="my_point_now">보유포인트 15000p </div>
+			</div>
+			<div class="my_point_count">
+				<div>50000P</div>
+			</div>
+		</div>
+	</div>
+	<hr size="1" class="point_line">
+	<!-- 반복 -->
+	<!-- 반복 -->
+	<div class="point_box_rep">
+		<div class="consult_content">
+			<div class="my_consult">
+				<div class="my_point_date">2024.07.31 ~2024.07.31 </div>
+				<div class="my_consult_title">카카오페이</div>
+				<div class="my_point_now">보유포인트 10000p </div>
 			</div>
 			<div class="my_point_count">
 				<div>10000P</div>
 			</div>
 		</div>
 	</div>
-	
-	
-	
+	<hr size="1" class="point_line">
 	<!-- 반복 -->
 
 </div>
