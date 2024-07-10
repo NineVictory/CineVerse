@@ -4,18 +4,17 @@
 <!-- 나의 문의 시작 -->
 <div class="myPage_main">
 	<div class="reservation_display">
-		<span class="myPage_title_re">나의 문의 내역</span>
+		<span class="myPage_title_re">나의 이벤트 참여 내역</span>
 	</div>
 	<!-- 반복 -->
 	<div class="consult_box">
 		<div class="consult_content">
 			<div class="my_consult">
-				<div class="my_board_type">2024.07.31</div>
-				<div class="my_consult_title">게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면
-					..처리되게/ 게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면 ..처리되게</div>
+				<div class="my_board_type">2024.07.31 ~2024.07.31 </div>
+				<div class="my_consult_title">[데드풀과 울버린] 내한 행사 이벤트</div>
 			</div>
 			<div class="my_consult_check">
-				<div>문의 확인</div>
+				<div>당첨 확인</div>
 			</div>
 		</div>
 	</div>
@@ -24,12 +23,11 @@
 	<div class="consult_box">
 		<div class="consult_content">
 			<div class="my_consult">
-				<div class="my_board_type">2024.07.31</div>
-				<div class="my_consult_title">게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면
-					..처리되게/ 게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면 ..처리되게</div>
+				<div class="my_board_type">2024.07.31 ~2024.07.31</div>
+				<div class="my_consult_title">[데드풀과 울버린] 내한 행사 이벤트</div>
 			</div>
 			<div class="my_consult_check">
-				<div>문의 확인</div>
+				<div>당첨 확인</div>
 			</div>
 		</div>
 	</div>

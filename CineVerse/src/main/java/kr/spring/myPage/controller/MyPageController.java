@@ -109,7 +109,7 @@ public class MyPageController {
 	//내 캘린더
 	//이벤트 참여 내역
 	@GetMapping("/myPage/myEvent")
-	public String myPageEvent(MemberVO memberVO,HttpSession session, Model model) {
+	public String myPageEvent(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
@@ -122,7 +122,7 @@ public class MyPageController {
 	//채팅 이력
 	//회원 정보 - 개인정보 변경
 	@GetMapping("/myPage/modifyUser")
-	public String modifyUser(MemberVO memberVO,HttpSession session, Model model) {
+	public String modifyUser(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
@@ -130,10 +130,18 @@ public class MyPageController {
 		return "modifyUser";
 	}
 	//회원 정보 - 회원 탈퇴
+	@GetMapping("/myPage/deleteMember")
+	public String deleteMember(MyPageVO myPageVO, HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		model.addAttribute("member",member);
+		return "deleteMember";
+	}
 	//멤버십 구독
 	//나의 문의 내역 - 1:1문의
 	@GetMapping("/myPage/consult")
-	public String myPageConsult(MemberVO memberVO,HttpSession session, Model model) {
+	public String myPageConsult(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
@@ -204,15 +212,6 @@ public class MyPageController {
 			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 			model.addAttribute("member",member);
 			return "boughtDetail";
-		}
-		
-		@GetMapping("/myPage/deleteMember")
-		public String deleteMember(MyPageVO myPageVO, HttpSession session, Model model) {
-			MemberVO user = (MemberVO)session.getAttribute("user");
-			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
-			model.addAttribute("member",member);
-			return "deleteMember";
 		}
 		
 }
