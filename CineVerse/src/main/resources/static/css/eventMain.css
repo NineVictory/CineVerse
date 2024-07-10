@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.event-menu {
+	    gap: 130px;
+    display: flex;
+    flex-direction: row;
+}
