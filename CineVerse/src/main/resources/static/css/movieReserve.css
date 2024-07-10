@@ -1,195 +1,250 @@
+* {
+	font-size: 14px;
+}
 
 .reserve-container {
-    margin-top: 140px;
-    display: flex;
-    justify-content: center;
-    height: 800px;
+	margin-top: 140px;
+	display: flex;
+	justify-content: center;
+	height: 800px;
 }
 
 .reserve-container>div {
-    border: 1px solid #dddddd;
+	border: 1px solid #dddddd;
 }
 
 .reserve-title {
-    border-bottom: 1px solid #dddddd;
-    background-color: #444444;
-    text-align: center;
-    color: #dddddd;
-    padding: 5px;
-    font-size: 15px;
-    font-weight: bold;
+	border-bottom: 1px solid #dddddd;
+	background-color: #444444;
+	text-align: center;
+	color: #dddddd;
+	padding: 5px;
+	font-size: 15px;
+	font-weight: bold;
 }
 
 /* 지점명 */
-
 .theater-part {
-    width: 350px;
+	width: 350px;
 }
 
 .theater-container {
-    display: flex;
-    justify-content : left;
+	display: flex;
+	justify-content: left;
+	height: 763px;
+	background-color: var(--main-color-light);
 }
 
 .theater-wrapper {
-    padding-top: 20px;
-   
+	/* padding-top: 20px;
+   */
 }
- 
+
 .theater-location-wrapper {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+	/* flex-grow: 1; */
+	/* display: flex; */
+	/* flex-direction: column; */
+	padding: 0;
 }
 
 .theater-location {
+	padding: 15px 20px;
 	position: relative;
-    width: 150px;
-    height: 50px;
-    text-align: center;
-    align-items : center;
-    background-color: #E6E4D9; 
-    margin-top: 5px;
+	width: 152px;
+	height: 50px;
+	/* text-align: center; */
+	align-items: center;
+	/* background-color: #E6E4D9; */
+	/* margin-top: 5px;*/
 }
 
 .location {
+	height: 763px;
     position: absolute;
-    left: 100%;
-    display: none; 
-    margin-top: 10px;
+    left: 155px;
+    right: 0px;
+    top: 0;
+    bottom: 0;
+    /* left: 100%; */
+    /* display: none; */
+    /* margin-top: 10px; */
     background-color: white;
-    border: 1px solid #444444;
-    width: 150px; 
-    padding: 10px;
+    /* border: 1px solid #444444; */
+    width: 193px;
+    /* padding: 10px; */
     z-index: 1;
 }
 
 .theater-place-wrapper {
-    padding-right: 2px;
-    margin-top: 10px;
-    height: 400px;
-    flex-grow: 1;
-    text-align: center;
-   
+	padding: 0;
 }
 
 .theater-place {
-    padding: 6px 5px;
-    height: 40px;
-    font-weight: bold;
-    background-color: #E6E4D9;
-    text-align: left;
+	padding: 25px 0 0px 20px;
+	font-weight: bold;
+	text-align: left;
 }
 
+.theater-location-active {
+	outline: 2px solid var(--main-color-strong);
+    background-color: #fff;
+    /* color: white;*/
+}
 
+.theater-location-active .a {
+	color: white;
+}
 
-
+.theater-location-active .location {
+	display: block;
+}
 
 /* 영화 */
-
 .movie-part {
-    width: 300px;
+	width: 300px;
 }
 
 .sort-wrapper {
-    margin: 10px 6px 6px 10px;
-    display: flex;
-    border-bottom: 1px solid #dddddd;
+	padding: 10px 6px 6px 10px;
+	display: flex;
+	border-bottom: 1px solid #dddddd;
 }
 
 .sort-wrapper>div {
+    cursor: pointer;
     padding: 3px;
 }
 
 .sort-wrapper>div:hover {
-    border-bottom: 1px solid #111111;
+	border-bottom: 1px solid #111111;
 }
 
 .sort-selected {
-    font-weight: bold;
-    border-bottom: 1px solid #111111;
+	font-weight: bold;
+	border-bottom: 1px solid #111111;
 }
 
 .sort-korean {
-    margin-left: 6px;
+	margin-left: 6px;
 }
 
-.movie-list {	
-	
-    display: flex;
+.movie-list {
+	display: flex;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     font-size: 20px;
-    margin-top: 5px;
+    /* margin-top: 5px;*/
 }
 
 .movie-select {
+	width: 100%;
+	padding: 0;
 	text-align: center;
 }
 
-.select{
-	background-color: #E6E4D9;	
-	margin-top: 20px;
-	margin-bottom: 20px;
+.select {
+	display: flex;
+    padding: 14px;
+    border-bottom: 1px solid var(--gray-3);
+    /* background-color: #E6E4D9; */
+    /* margin-top: 20px; */
+    /* margin-bottom: 20px; */
+    align-items: center;
+    font-weight: 600;
 }
 
-.select a{	
-	font-size: 20px;
+.select a {
+	/* font-size: 20px; */
 }
-
-
 
 /* 날짜 및 시간 */
 .time-part {
-    width: 400px;
+	width: 400px;
 }
 
 .reserve-time {
-    width: 300px;
-    margin: 0 auto;
+	width: 300px;
+	margin: 0 auto;
 }
 
 .reserve-where {
-    margin-top: 20px;
-    margin-left: 8px;
-    font-weight: bold;
+	margin-top: 20px;
+	margin-left: 8px;
+	font-weight: bold;
 }
 
 .reserve-time-wrapper {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .reserve-time-button {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .reserve-time-want {
-    letter-spacing: 1px;
-    padding: 3px;
-    font-weight: bold;
-    border: 1px solid #dddddd;
+	letter-spacing: 1px;
+	padding: 3px;
+	font-weight: bold;
+	border: 1px solid #dddddd;
 }
 
 .reserve-time-remain {
-    color: #97B68D;
+	color: #97B68D;
 }
 
 .reserve-time-active {
-    background-color: #333333;
-    color: white;
+	background-color: #333333;
+	color: white;
 }
 
 .theater-place-active {
-    background-color: #333333;
-    color: white;
+	background-color: #333333;
+	color: white;
 }
 
 .movie-list-wrapper {
-    padding: 4px 15px;
+	/* padding: 4px 15px; */
 }
 
+.ic_grade {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    font-size: 0;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-weight: bold;
+}
 
-.moveSeatButton{
+.ic_grade:before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    background-size: 100%;
+}
+
+.ic_grade.gr_all:before {
+    background: #229c56 url(../images/cmj/grade_all.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_12:before {
+    background: #e9b630 url(../images/cmj/grade_12.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_15:before {
+    background: #dd7430 url(../images/cmj/grade_15.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_19:before {
+    background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
+}
+
+.moveSeatButton {
 	width: 150px;
 	height: 80px;
 	font-size: 18px;
@@ -202,26 +257,22 @@
 	background: #3F66ED;
 	color: #FFFFFF;
 }
-.moveSeatButton:hover{
-	 background-color: #333333;
-	 color: white;
+
+.moveSeatButton:hover {
+	background-color: #333333;
+	color: white;
 }
+
 .fifteen {
-    color: white;
-    background-color: #AF2D2D;
-    
+	color: white;
+	background-color: #AF2D2D;
 }
 
 .eighteen {
-    color: white;
-    background-color: red;
-    font-size: 11px;
+	color: white;
+	background-color: red;
+	font-size: 11px;
 }
-
-
-
-
-
 
 /* 보류 
 
@@ -256,4 +307,3 @@
 
 
 */
-

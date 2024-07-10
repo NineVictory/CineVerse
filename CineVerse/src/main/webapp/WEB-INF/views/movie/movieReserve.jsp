@@ -28,7 +28,7 @@
 						</div></li>
 					<li class="theater-location" id="gyeonggi-location"><a
 						href="#none">경기/인천(10)</a>
-						<div class="location" id="gyeonggi" style="display: none;">
+						<div class="location" id="gyeonggi" style="display: none; top: -50px;">
 							<ul class="theater-place-wrapper">
 								<li class="theater-place"><a href="#none">광교</a></li>							
 								<li class="theater-place"><a href="#none">광명</a></li>
@@ -44,7 +44,7 @@
 						</div></li> 
 					<li class="theater-location" id="chungcheong-location"><a
 						href="#none">충청/대전(8)</a>
-						<div class="location" id="chungcheong" style="display: none;">
+						<div class="location" id="chungcheong" style="display: none; top: -100px;">
 							<ul class="theater-place-wrapper">
 								<li class="theater-place"><a href="#none">당진</a></li>
 								<li class="theater-place"><a href="#none">대전</a></li>
@@ -58,7 +58,7 @@
 						</div></li>
 					<li class="theater-location" id="jeolla-location"><a
 						href="#none">전라/광주(4)</a>
-						<div class="location" id="jeolla" style="display: none;">
+						<div class="location" id="jeolla" style="display: none; top: -151px;">
 							<ul class="theater-place-wrapper">
 								<li class="theater-place"><a href="#none">광주</a></li>				
 								<li class="theater-place"><a href="#none">군산</a></li>
@@ -68,7 +68,7 @@
 						</div></li>
 					<li class="theater-location" id="gyeongbuk-location"><a
 						href="#none">경북/대구(8)</a>
-						<div class="location" id="gyeongbuk" style="display: none;">
+						<div class="location" id="gyeongbuk" style="display: none; top:-201px;">
 							<ul class="theater-place-wrapper">
 								<li class="theater-place"><a href="#none">경주</a></li>
 								<li class="theater-place"><a href="#none">구미</a></li>
@@ -82,7 +82,7 @@
 						</div></li>
 						<li class="theater-location" id="gyeongnam-location"><a
 						href="#none">경남/부산/울산(10)</a>
-						<div class="location" id="gyeongnam" style="display: none;">
+						<div class="location" id="gyeongnam" style="display: none; top: -251px;">
 							<ul class="theater-place-wrapper">
 								<li class="theater-place"><a href="#none">거창</a></li>
 								<li class="theater-place"><a href="#none">마산</a></li>
@@ -98,7 +98,7 @@
 						</div></li>
 						<li class="theater-location" id="gangwon-location"><a
 						href="#none">강원(5)</a>
-						<div class="location" id="gangwon" style="display: none;">
+						<div class="location" id="gangwon" style="display: none; top: -301px;">
 							<ul class="theater-place-wrapper">
 								<li class="theater-place"><a href="#none">원주</a></li>
 								<li class="theater-place"><a href="#none">동해</a></li>
@@ -109,7 +109,7 @@
 						</div></li>
 						<li class="theater-location" id="jeju-location"><a
 						href="#none">제주(2)</a>
-						<div class="location" id="jeju" style="display: none;">
+						<div class="location" id="jeju" style="display: none; top: -351px;">
 							<ul class="theater-place-wrapper">
 								<li class="theater-place"><a href="#none">서귀포</a></li>
 								<li class="theater-place"><a href="#none">제주</a></li>
@@ -120,12 +120,20 @@
 		</div>
 	</div>
 	<script>
-     $(document).ready(function(){
-         $('.theater-location > a').click(function(){
-             $('.location').hide();
-             $(this).next('.location').toggle();
-         });
-     });
+	$(document).ready(function(){
+	    // 화면 첫 진입할 때 서울 지점명?들 호출하기
+	    $('#seoul-location').addClass('theater-location-active');
+	    $('#seoul').show();
+	    
+	    // 지점들 클릭할 때마다 class 추가해서 새로운 css 적용해주기
+	    $('.theater-location > a').click(function(){
+	        $('.location').hide();
+	        $('.theater-location').removeClass('theater-location-active');
+	        $(this).next('.location').toggle();
+	        $(this).parent().toggleClass('theater-location-active');
+	    });
+	});
+
  </script>
  
 	<!-- 영화 -->
@@ -138,12 +146,12 @@
 		<div class="movie-list-wrapper">
 			<div class="movie-list">
 				<ul class="movie-select">
-					<li class="select"><a href="#none">인사이드아웃2</a></li>
-					<li class="select"><a href="#none">파일럿</a></li>
-					<li class="select"><a href="#none">탈출</a></li>
-					<li class="select"><a href="#none">콰이어트 플레이스</a></li>
-					<li class="select"><a href="#none">존 오브 인터레스트</a></li>
-					<li class="select"><a href="#none">귀멸의 칼날</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_all">전체</span>인사이드아웃 2</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_12">12세</span>파일럿</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>탈출</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>콰이어트 플레이스</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_12">12세</span>존 오브 인터레스트</a></li>
+					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>귀멸의 칼날</a></li>
 				</ul>
 			</div>
 		</div>
@@ -187,7 +195,7 @@
 		</div>
 
 		<div>
-			<input type="button" class="moveSeatButton" value="좌석 선택" onclick="location.href='movieSeat'">
+			<input type="button" class="moveSeatButton" value="좌석 선택" onclick="location=''">
 		</div>
 	</div>
 
