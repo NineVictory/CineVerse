@@ -5,8 +5,7 @@
 }
 
 .select-wrapper {
-    width: 900px;
-    background-color: #F2F0E5;
+    width: 1050px;
     margin: 0 auto;
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
@@ -29,43 +28,16 @@
 .select-seat-number-container {
     flex-grow: 1;
     border-right: 1px solid #dddddd;
-    display: flex;
 }
 
 .select-seat-number-wrapper {
     padding: 15px 0 20px 20px;
     flex-grow: 1;
-}
-
-.select-seat-ul {
     display: flex;
+    flex-direction: row; 
+    align-items: center; 
 }
 
-.select-seat-ul>li {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #dddddd;
-    text-align: center;
-    font-weight: bold;
-    /* line-height: 15px; */
-    /* padding: 5px; */
-    padding: 2px;
-}
-
-.select-seat-ul>li:hover {
-    color: white;
-    background-color: #222222;
-    cursor: pointer;
-}
-
-.select-seat-ul-active {
-    color: white;
-    background-color: #222222;
-}
-
-.select-seat-ul>li:not(:first-child) {
-    margin-left: 5px;
-}
 
 .select-seat-information {
     flex-grow: 1;
@@ -170,15 +142,19 @@
 }
 
 .ticket-price-wrapper{
-	margin-top: 5px;
+	width: 100%;
 	display: flex;
 	align-items: center;
+	background-color: #444444;
+    color: #dddddd;
+    height: 80px;
 }
 .ticket-price-wrapper>div{	
 	font-weight: bold;
 }
 .ticket-price-title{
-	font-size: 13px;
+	font-size: 20px;
+	margin-left: 20px;
 }
 
 .ticket-price {
@@ -201,9 +177,10 @@
 }
 
 .seat-container {
-    margin-top: 20px;
+    /*margin-top: 50px;  영화관 검은색 위 공백 조절*/
     display: flex;
     justify-content: center;
+    border-bottom: 2px solid #dddddd;
 }
 
 .title_screen1 {
@@ -220,10 +197,10 @@
 
 
 .seat-wrapper {
-    background-color: #222222;
-    width: 700px;
-    height: 460px;
-    /* padding-top: 120px; */
+    background-color: #000;
+    width: 1050px;  /*영화관 검은 색 가로 조절*/
+    height: 600px;
+    /*margin-bottom: 50px; 영화관 검은 색 아래 공백 조절  */
 }
 
 .seat {
@@ -273,4 +250,21 @@
 
 .top-margin {
     margin-top: 30px;
+}
+
+.ticket-container {
+	 border-bottom: 2px solid #dddddd;
+	 display: flex; 
+     flex-direction: row; 
+     align-items: center; 
+}
+
+.movePaymentButton {
+	background: #3F66ED;
+	color: #FFFFFF;
+	width: 150px;
+	height: 80px;
+	border: none;
+	font-size: 18px;
+	font-weight: bold;
 }

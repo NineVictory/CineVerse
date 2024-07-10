@@ -25,24 +25,7 @@
 						<span class="selected-seats-title">좌석번호</span> <span
 							class="selected-seats">선택한 좌석이 없습니다.</span>
 					</div>
-					<div class="ticket-price-wrapper">
-						<div class="ticket-price-title">가격</div>
-						<div class="ticket-price">0원</div>
-					</div>
-					<form action="moveKakao.do" class="seatForm" method="post">
-						<input type="hidden" class="title" name="title"> <input
-							type="hidden" class="selectedTheater" name="selectedTheater">
-						<input type="hidden" class="reserveDate" name="movieDate">
-						<input type="hidden" class="runningTime" name="runningTime">
-						<input type="hidden" class="movieAge" name="movieAge"
-							value="">
-						<!-- 티켓의수(선택한 좌석) -->
-						<input type="hidden" class="ticketNumber" name="ticketNumber">
-						<input type="hidden" class="selectedSeat" name="selectedSeat">
-						<!-- 결제 정보 -->
-						<input type="hidden" class="payMoney" name="payMoney">
-						<input type="button" class="btn_col1" id="link_rpay" value="결제하기" onclick="location.href='moviePayment'">
-					</form>
+					
 				</div>
 				<div class="select-seat-number-container">
 					<div class="select-seat-number-wrapper">
@@ -90,6 +73,26 @@
 						<span class="title_screen1">SCREEN</span>
 					</div>
 				</div>
+			</div>
+			<div class="ticket-container">
+			<div class="ticket-price-wrapper">
+						<div class="ticket-price-title">총 합계</div>
+						<div class="ticket-price">0원</div>
+					</div>
+					<form action="" class="seatForm" method="post">
+						<input type="hidden" class="title" name="title"> <input
+							type="hidden" class="selectedTheater" name="selectedTheater">
+						<input type="hidden" class="reserveDate" name="movieDate">
+						<input type="hidden" class="runningTime" name="runningTime">
+						<input type="hidden" class="movieAge" name="movieAge"
+							value="">
+						<!-- 티켓의수(선택한 좌석) -->
+						<input type="hidden" class="ticketNumber" name="ticketNumber">
+						<input type="hidden" class="selectedSeat" name="selectedSeat">
+						<!-- 결제 정보 -->
+						<input type="hidden" class="payMoney" name="payMoney">
+						<input type="button" class="movePaymentButton" id="link_rpay" value="결제하기" onclick="location.href='moviePayment'">
+					</form>
 			</div>
 		</div>
 	</div>
