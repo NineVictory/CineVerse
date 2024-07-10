@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.shop.service.ShopService;
 import kr.spring.shop.vo.ProductVO;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 
 
 @Slf4j
@@ -47,13 +49,13 @@ public class ShopController {
 	    log.debug("<<벌스샵 메인>> - shopOrder: " + shopOrder);
 
 	    Map<String, Object> map = new HashMap<>();
-	    map.put("p_type", p_category);
+	    map.put("p_category", p_category);
 	    map.put("keyfield", keyfield);
 	    map.put("keyword", keyword);
 
 	    int count = shopService.productCount(map);
 
-	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "shopMain", "&cb_type=" + p_category + "&shopOrder=" + shopOrder);
+	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "shopMain", "&p_category=" + p_category + "&shopOrder=" + shopOrder);
 
 	    List<ProductVO> productList = null;
 	    if (count > 0) {
@@ -73,8 +75,13 @@ public class ShopController {
 
 	
 	@GetMapping("/shop/shopDetail")
-	public String shopDetail() {
-		return "shopDetail";
+	public ModelAndView shopDetail(long p_num) {
+		log.debug("<<벌스샵 상세 - p_num>> ::: " + p_num);
+		
+		ProductVO product = shopService.productDetail(p_num);
+		product.setP_name(StringUtil.useNoHTML(product.getP_name()));
+		
+		return new ModelAndView("shopDetail", "product", product);
 	}
 	
 	@PostMapping("/shop/shopBuy")

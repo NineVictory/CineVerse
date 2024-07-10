@@ -177,6 +177,7 @@ input[type="search"]::placeholder {
 .product-item h3, .product-item p {
     text-align: left;
     margin: 5px 0;
+	white-space:nowrap;
 }
 
 .product-item h3 {
@@ -187,3 +188,4 @@ input[type="search"]::placeholder {
     font-size: 13pt;
     font-weight: 500;
 }
+

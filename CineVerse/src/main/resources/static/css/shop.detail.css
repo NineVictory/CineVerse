@@ -46,9 +46,13 @@ body {
     margin-top: 20px;
 }
 
-.product-info p {
+.product-price, .product-info p {
     font-size: 15pt;
     font-weight: 500;
+}
+
+.product-info p {
+	margin-bottom: 20px;
 }
 
 .buy-form {

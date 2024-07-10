@@ -9,4 +9,5 @@ public interface ShopService {
 	public void registerProduct(ProductVO product);
 	public List<ProductVO> productList(Map<String, Object> map);
 	public Integer productCount(Map<String, Object> map);
+	public ProductVO productDetail(Long p_num);
 }

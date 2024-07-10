@@ -17,14 +17,14 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var menuItems = document.querySelectorAll('.shopNav ul li a');
-        var currentCategory = new URL(window.location).searchParams.get('category');
+        var currentCategory = new URL(window.location).searchParams.get('p_category');
         
         if (!currentCategory) {
             // 기본 경로일 경우 ALL에 배경 색상 적용
             menuItems[0].parentElement.style.background = '#D8D8D8';
         } else {
             menuItems.forEach(function(item) {
-                if (new URL(item.href).searchParams.get('category') === currentCategory) {
+                if (new URL(item.href).searchParams.get('p_category') === currentCategory) {
                     item.parentElement.style.background = '#D8D8D8';
                 }
             });

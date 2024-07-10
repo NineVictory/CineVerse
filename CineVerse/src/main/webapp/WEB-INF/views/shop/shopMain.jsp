@@ -38,7 +38,7 @@
 			</c:if>
 			<c:if test="${count > 0}">
 				<c:forEach var="product" items="${productList}">
-					<div class="product-item" onclick="window.location.href='shopDetail?=${product.p_num}'">
+					<div class="product-item" onclick="window.location.href='shopDetail?p_num=${product.p_num}'">
 						<img src="${pageContext.request.contextPath}/images/cje/product.png" alt="티셔츠">
 						<h3>
 							<c:if test="${product.p_category == 1}"> MARVEL </c:if>
@@ -50,12 +50,28 @@
 							<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
 						</h3>
 						<p>${product.p_name}</p>
-						<p class="product-price">${product.p_price}</p>
+						<p><span class="product-price">${product.p_price}</span>원</p>
 					</div>
 				</c:forEach>
 			</c:if>
 		</div>		
 	</div>				
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 모든 제품의 가격 요소들을 가져와서 처리
+        const productPrices = document.querySelectorAll(".product-price");
+
+        productPrices.forEach(function(element) {
+            let price = parseInt(element.textContent.replace(/[^0-9]/g, '')); // 숫자만 추출하여 정수로 변환
+            element.textContent = addCommas(price); // 포맷팅된 가격으로 변경
+        });
+
+        // 함수: 3자리 단위 쉼표 추가
+        function addCommas(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    });
+</script>
 
 <!-- 벌스샵 끝-->

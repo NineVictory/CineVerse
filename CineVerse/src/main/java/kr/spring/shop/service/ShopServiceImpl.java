@@ -31,4 +31,9 @@ public class ShopServiceImpl implements ShopService {
 		return shopMapper.productCount(map);
 	}
 
+	@Override
+	public ProductVO productDetail(Long p_num) {
+		return shopMapper.productDetail(p_num);
+	}
+
 }

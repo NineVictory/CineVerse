@@ -24,9 +24,7 @@
 			<!--검색어 있을 때-->
 			<if test="keyword != null and keyword != ''" >
 				<!-- AND로 연결-->
-				<if test="p_category != null and p_category != ''">
-					AND				
-				</if>
+					AND	
 				<!-- keyfield 1 : 상품 제목 -->
 				<if test="keyfield == 1">
 					p_name LIKE '%' || #{keyword} || '%'

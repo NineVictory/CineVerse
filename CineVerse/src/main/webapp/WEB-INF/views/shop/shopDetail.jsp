@@ -9,9 +9,18 @@
 	            <img src="${pageContext.request.contextPath}/images/cje/product.png" alt="티셔츠">
 	        </div>
 	        <div class="product-info">
-	            <h1>MARVEL</h1>
-	            <p>클래식 티셔츠(아이보리)</p>
-	            <p class="product-price">39,000원</p>
+	            <h1>
+					<c:if test="${product.p_category == 1}"> MARVEL </c:if>
+					<c:if test="${product.p_category == 2}"> DISNEY </c:if>
+					<c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>
+					<c:if test="${product.p_category == 4}"> PIXAR </c:if>
+					<c:if test="${product.p_category == 5}"> Studio GHIBLI </c:if>
+					<c:if test="${product.p_category == 6}"> Warner Bros. </c:if>
+					<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
+				</h3>
+				</h1>
+	            <p>${product.p_name}</p>
+	            <span class="product-price">${product.p_price}</span>원
 	            <div class="buy-form">
 	                <form action="shopBuy" id="shop_buy" method="post">
 	                    <span>수량</span>
@@ -21,7 +30,7 @@
 	                        <button type="button" class="quantity-up">+</button>
 	                    </div>
 	                    <div class="showPrice">
-	                        총 상품 금액 <span>39,000</span>원
+	                        총 상품 금액 <span>${product.p_price}</span>원
 	                    </div>
 	                    <div class="shop-submit">
 		                    <button>장바구니</button>
@@ -110,34 +119,39 @@
 	</div>
 	
 	<script>
-	document.addEventListener("DOMContentLoaded", function() {
-	    const quantityInput = document.querySelector(".quantity-input");
-	    const quantityDownBtn = document.querySelector(".quantity-down");
-	    const quantityUpBtn = document.querySelector(".quantity-up");
-	    const productPrice = document.querySelector(".product-price"); 
-	    const totalPriceSpan = document.querySelector(".showPrice span"); 
-	    let totalPrice = parseInt(productPrice.textContent.replace(',', '')); 
-	
-	    // 함수: 3단위 쉼표 추가
-	    function addCommas(number) {
-	        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	    }
-	
-	    quantityDownBtn.addEventListener("click", function() {
-	        const currentValue = parseInt(quantityInput.value);
-	        if (currentValue > 1) {
-	            quantityInput.value = currentValue - 1;
-	            totalPrice -= parseInt(productPrice.textContent.replace(',', '')); 
-	            totalPriceSpan.textContent = addCommas(totalPrice); 
-	        }
-	    });
-	
-	    quantityUpBtn.addEventListener("click", function() {
-	        const currentValue = parseInt(quantityInput.value);
-	        quantityInput.value = currentValue + 1;
-	        totalPrice += parseInt(productPrice.textContent.replace(',', '')); 
-	        totalPriceSpan.textContent = addCommas(totalPrice); 
-	    });
-	});
+		document.addEventListener("DOMContentLoaded", function() {
+		    const quantityInput = document.querySelector(".quantity-input");
+		    const quantityDownBtn = document.querySelector(".quantity-down");
+		    const quantityUpBtn = document.querySelector(".quantity-up");
+		    const productPrice = document.querySelector(".product-price"); 
+		    const totalPriceSpan = document.querySelector(".showPrice span"); 
+		    let totalPrice = parseInt(productPrice.textContent.replace(/[^0-9]/g, '')); // 숫자만 추출하여 정수로 변환
+
+		    // 함수: 3단위 쉼표 추가
+		    function addCommas(number) {
+		        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		    }
+
+		    // 초기화 시 쉼표 추가
+		    totalPriceSpan.textContent = addCommas(totalPrice);
+		    productPrice.textContent = addCommas(parseInt(productPrice.textContent.replace(/[^0-9]/g, ''))); // p_price에도 적용
+
+		    quantityDownBtn.addEventListener("click", function() {
+		        const currentValue = parseInt(quantityInput.value);
+		        if (currentValue > 1) {
+		            quantityInput.value = currentValue - 1;
+		            totalPrice -= parseInt(productPrice.textContent.replace(/[^0-9]/g, '')); 
+		            totalPriceSpan.textContent = addCommas(totalPrice); 
+		        }
+		    });
+
+		    quantityUpBtn.addEventListener("click", function() {
+		        const currentValue = parseInt(quantityInput.value);
+		        quantityInput.value = currentValue + 1;
+		        totalPrice += parseInt(productPrice.textContent.replace(/[^0-9]/g, '')); 
+		        totalPriceSpan.textContent = addCommas(totalPrice); 
+		    });
+		});
+
 	</script>
 	<!-- 벌스샵 디테일 끝-->

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import kr.spring.shop.vo.ProductVO;
 
@@ -18,4 +19,7 @@ public interface ShopMapper {
 	public List<ProductVO> productList(Map<String, Object> map);
 	// 상품 카운트
 	public Integer productCount(Map<String, Object> map);
+	// 상품 상세
+	@Select("SELECT * FROM product WHERE p_num=#{p_num}")
+	public ProductVO productDetail(Long p_num);
 }
