@@ -7,12 +7,11 @@
 		<span class="myPage_title_re">나의 문의 내역</span>
 	</div>
 	<!-- 반복 -->
-	<div class="bookMark_box">
-		<div class="bk_content">
-
+	<div class="consult_box">
+		<div class="consult_content">
 			<div class="my_consult">
 				<div class="my_board_type">2024.07.31</div>
-				<div class="my_boardWrite_bk">게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면
+				<div class="my_consult_title">게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면
 					..처리되게/ 게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면 ..처리되게/ 게시판 제목이 길면 ..처리되게</div>
 			</div>
 			<div class="my_consult_check">
