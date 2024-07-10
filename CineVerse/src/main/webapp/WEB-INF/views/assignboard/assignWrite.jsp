@@ -102,7 +102,7 @@
 				</div>
 			</div>
 		
-			<div class="flexbox-h">
+			<div class="flexbox-h info-container">
 				<div class="item-label">
 					상품이미지
 					<small>(0/3)</small>
@@ -117,11 +117,11 @@
 				<div>상품 이미지는 1:1로 보여집니다.</div>
 				</div>
 			</div>
-			<div class="flexbox-h">
+			<div class="flexbox-h info-container">
 				<div class="item-label">
 					상품명
 				</div>
-				<div>
+				<div class="">
 					<div class="divcontainer">
 						<form:input path="ab_title" id="ab_title" class="custom-title borderR" placeholder="상품명을 입력해주세요"/>
 						<form:errors path="ab_title" cssClass="error-color"/>
@@ -131,7 +131,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="flexbox-h">
+			<div class="flexbox-h info-container">
 				<div class="item-label">
 					상품상태
 				</div>
@@ -153,7 +153,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="flexbox-h">
+			<div class="flexbox-h info-container">
 				<div class="item-label">
 					설명
 				</div>
@@ -166,7 +166,7 @@
 		</div>
 		<hr size="1" width="100%">
 		<div>
-			<div class="flexbox-h">
+			<div class="flexbox-h info-container">
 				<div class="item-label">
 					가격
 				</div>

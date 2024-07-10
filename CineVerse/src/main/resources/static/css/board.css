@@ -474,3 +474,7 @@ ul.status-df li.font14 label{
 .divcontainer{
 	display:inline-block;
 }
+.p-center{
+	display: flex;
+    align-items: center;
+}
