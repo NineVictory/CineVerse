@@ -11,10 +11,32 @@
     <!-- 영화관 정보 시작-->
     <div class="movie-content-place">
         
-        <div class="location-button" onclick="location.href='/movie/'"> 
+        <div class="location-button"> 
         		<div class="content-place-title">CINEVERSE 강남</div>
-              <div class="location-button-list">위치/지도보기</div>
+              <div class="location-button-list" id="modal_opne_btn">위치/지도보기</div>
              </div>
+             <div id="modal">
+    			<div class="modal_content">
+    			<button type="button" class="close_btn" id="modal_close_btn">×</button>
+        			<div class="modal_title">지도</div>
+        			
+        			<hr class="custom-hr">
+      
+       					 <div class="modal-content">모달창입니다.</div>
+       					 <div class="modal-content">모달창입니다.</div>
+       					 <div class="modal-content">모달창입니다.</div>
+       					 <div class="modal-content">모달창입니다.</div>
+       					 <div class="modal-content">모달창입니다.</div>
+       					 <div class="modal-content">모달창입니다.</div>
+       					 <div class="modal-content">모달창입니다.</div>
+       					 <div class="modal-content">모달창입니다.</div>
+       					 
+        		
+       
+    			</div>
+   
+    			<div class="modal_layer"></div>
+			</div>
         <div class="content-place-location">위치 : <b>서울특별시 강남구 테헤란로 132 (한독약품빌딩)</b></div>
         <div class="content-place-tell">문의전화 : <b>1544-0000</b></div>
         <div class="content-place-cinema">상영관수 : <b>6관,874석</b></div>
@@ -215,5 +237,15 @@
     </div>
     <hr class="custom-hr">
     <!-- 영화관 별 영화 목록 끝-->
+
+<script>
+    document.getElementById("modal_opne_btn").onclick = function() {
+        document.getElementById("modal").style.display="block";
+    }
+   
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("modal").style.display="none";
+    }   
+</script>
 </div>
 <!-- 자체영화관 끝 -->
