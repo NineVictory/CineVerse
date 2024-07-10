@@ -7,7 +7,7 @@
         <nav class="main-navigation">
             <ul class="main-navigation-ul">
                 <li class="main-navigation-li"><a href="#" class="main-navigation-a">멤버십</a></li>
-                <li class="main-navigation-li"><a href="${pageContext.request.contextPath}/support/supportMain" class="main-navigation-a">고객센터</a></li>
+                <li class="main-navigation-li"><a href="${pageContext.request.contextPath}/support/main" class="main-navigation-a">고객센터</a></li>
             </ul>
         </nav>
     </div>
