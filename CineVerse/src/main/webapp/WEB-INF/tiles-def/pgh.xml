@@ -64,7 +64,7 @@
 	<!-- 이벤트 -->
 	<definition name="adminEvent"
 		template="/WEB-INF/views/template/layout_adminMain.jsp">
-		<put-attribute name="title" value="포인트 관리" />
+		<put-attribute name="title" value="이벤트 관리" />
 		<put-attribute name="css"
 			value="/WEB-INF/views/admin/adminCSS.jsp" />
 		<put-attribute name="admin_header"
@@ -75,11 +75,23 @@
 			value="/WEB-INF/views/admin/adminEvent.jsp" />
 	</definition>
 	
-	
+	<!-- 이벤트 등록폼-->
+	<definition name="adminEventForm"
+		template="/WEB-INF/views/template/layout_adminMain.jsp">
+		<put-attribute name="title" value="이벤트 등록" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_header"
+			value="/WEB-INF/views/template/header_admin.jsp" />
+		<put-attribute name="admin_nav"
+			value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body"
+			value="/WEB-INF/views/admin/adminEventForm.jsp" />
+	</definition>
 		<!-- 포인트-->
 	<definition name="adminPayment"
 		template="/WEB-INF/views/template/layout_adminMain.jsp">
-		<put-attribute name="title" value="이벤트 관리" />
+		<put-attribute name="title" value="포인트 관리" />
 		<put-attribute name="css"
 			value="/WEB-INF/views/admin/adminCSS.jsp" />
 		<put-attribute name="admin_header"

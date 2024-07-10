@@ -121,14 +121,48 @@ public class AdminController {
 	public String adminNotice(){
 		return "adminNotice";
 	}
-
+	/*==============================
+	 * 공지사항 관리
+	 *==============================*/	
+	@GetMapping("/admin/adminNoticeForm")
+	public String adminNoticeForm(){
+		return "adminNoticeForm";
+	}
+	@PostMapping("/admin/adminNoticeForm")
+	public String insertAdminNoticeForm(){
+		return "adminNoticeForm";
+	}
 	/*==============================
 	 * 이벤트 관리
 	 *==============================*/	
+	//이벤트 조회
 	@GetMapping("/admin/adminEvent")
 	public String adminEvent(){
 		return "adminEvent";
 	}
+	//이벤트 수정폼 호출
+	@GetMapping("/admin/adminEventForm")
+	public String AdminEventForm(){
+		return "adminEventForm";
+	}
+	@PostMapping("/adminEventForm")
+    public String insertEvent(@ModelAttribute("eventVO") 
+    								AdminVO adminVO, 
+    								BindingResult bindingResult, 
+    								Model model) {
+        // 폼 데이터 유효성 검사
+        if (bindingResult.hasErrors()) {
+            // 유효성 검사 오류 발생 시 처리
+            model.addAttribute("errorMessage", "입력 값이 올바르지 않습니다.");
+            return "adminEventForm"; // 다시 폼을 보여줌
+        }
+
+        // 이벤트 등록 로직 수행
+        // adminService.insertEvent(eventVO); // 예시: 서비스를 통해 이벤트 등록하는 메서드 호출
+
+        // 등록 후 이벤트 관리 페이지로 리다이렉트
+        return "redirect:/admin/adminEvent";
+    }
 	// 포인트(결제) 관리
 	@GetMapping("/admin/adminPayment")
 	public String adminPayment(){

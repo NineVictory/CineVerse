@@ -13,7 +13,7 @@ public interface AdminMapper {
     @Select("SELECT m.mem_num, m.mem_id, m.mem_auth, m.mem_rank, m.mem_membership, "
             + "md.mem_name, md.mem_phone, md.mem_email, md.mem_reg_date "
             + "FROM member m "
-            + "JOIN member_detail md ON m.mem_num = md.mem_num ORDER BY md.mem_reg_date DESC")
+            + "JOIN member_detail md ON m.mem_num = md.mem_num WHERE m.mem_auth = 3 ORDER BY md.mem_reg_date DESC")
     public List<AdminVO> getAllMembers();
     
     public void updateAuth(long mem_num, long mem_auth);

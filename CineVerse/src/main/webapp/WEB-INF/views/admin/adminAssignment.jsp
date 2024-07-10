@@ -14,7 +14,7 @@
 			</ul>
 		</form>
 		<p id = "sub_title2">이벤트 관리</p>
-		<input type = "button" value = "이벤트 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminEventForm'"/>
+		<input type = "button" value = "이벤트 등록" class = "insert_button"/>
 		<table class="adminMember-table">
         <thead>
             <tr>
