@@ -19,6 +19,7 @@
 	</div>
 	 <div class="page-container">
 	<div id="main_body">
+		<tiles:insertAttribute name="body_1"/>
 		<tiles:insertAttribute name="body"/>
 	</div>
 	</div>

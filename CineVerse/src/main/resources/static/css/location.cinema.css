@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+}
+
+img {
+    border: 0;
+}
+.own-movie-title{
+	font-size:25px;
+	margin-bottom:10px;
+	font-weight: bold; /* 텍스트 굵게 설정 */
+}
+
+.container-location {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.main-location-navigation {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px;
+}
+
+.main-location-navigation-ul,
+.secondary-location-ul {
+    display: flex;
+    list-style: none;
+}
+
+.main-location-navigation-li {
+    margin-left: 20px;
+}
+
+.main-location-navigation-a:hover {
+    text-decoration: underline;
+    color: #dcdcdc;
+}
+
+.secondary-location-header {
+    position: relative;
+    margin-top: 100px;
+    
+}
+
+.secondary-location-ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.secondary-location-li {
+    position: relative;
+    padding: 5px 20px;
+}
+
+.secondary-location-a {
+    display: block;
+    padding: 10px;
+    color: white;
+    white-space: nowrap;
+    font-size:20px;
+}
+
+.hide_location_menu {
+    position: absolute;
+    top: 100%;
+    left: 50%; /* 가운데 정렬을 위해 left를 50%로 설정 */
+    transform: translateX(-50%); /* 가운데 정렬을 위해 translateX를 -50%로 설정 */
+    background-color: black;
+    display: none;
+    z-index: 1001;
+    white-space: nowrap;
+}
+
+
+.hide_location_menu_ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+    white-space: nowrap;
+}
+
+.hide_location_menu_li {
+    padding: 5px 20px;
+    display: inline-block;
+    background-color: black; /* 배경색을 검정색으로 설정 */
+}
+
+.hide_location_menu_li a {
+    color: white; /* 글자색을 흰색으로 설정 */
+}
+
+.hide_location_menu_li a:hover {
+    color: #0056b3;
+}
+
+.secondary-location-li:hover .hide_location_menu {
+    display: block;
+}
+
+.responsive-image {
+    position: relative;
+}
+
+.responsive-image img {
+    width: 100%;
+    height: auto;
+}
+
+.main-location-navigation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.main-location-navigation-ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
