@@ -53,7 +53,7 @@
         <li class="mp_nav" id="mp_nav_eventHistory"><a href="#">이벤트 참여 내역</a></li>
         <li class="mp_nav" id="mp_nav_purchase"><a href="#">구매</a></li>
         <li class="mp_li" id="mp_li_pointCharge"><a href="#">포인트충전</a></li>
-        <li class="mp_li" id="mp_li_goodsPayment"><a href="#">굿즈 결제 내역</a></li>
+        <li class="mp_li" id="mp_li_goodsPayment"><a href="/myPage/bought">굿즈 결제 내역</a></li>
         <li class="mp_li" id="mp_li_cart"><a href="#">장바구니</a></li>
         <li class="mp_nav" id="mp_nav_chatHistory"><a href="#">채팅이력</a></li>
         <li class="mp_nav" id="mp_nav_memberInfo"><a href="#">회원정보</a></li>

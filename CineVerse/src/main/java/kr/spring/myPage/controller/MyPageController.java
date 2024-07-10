@@ -175,4 +175,16 @@ public class MyPageController {
 			model.addAttribute("filename", "profile_none.png");
 		}
 		
+		
+		// 마이페이지 구매 내역 페이지로 가기
+		@GetMapping("/myPage/bought")
+		public String getMyPageBought(MemberVO memberVO,HttpSession session, Model model) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			MyPageVO member = mypageService.selectMember(user.getMem_num());
+			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+			model.addAttribute("member",member);
+			return "bought";
+		}
+		
+		
 }

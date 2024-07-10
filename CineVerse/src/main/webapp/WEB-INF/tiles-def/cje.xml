@@ -39,4 +39,13 @@
         <put-attribute name="body" value="/WEB-INF/views/shop/shopBasket.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
     </definition>
+    
+    <definition name="bought" template="/WEB-INF/views/template/layout_myPage.jsp">
+		<put-attribute name="title" value="굿즈 결제 내역"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+		<put-attribute name="body_1" value="/WEB-INF/views/template/myPageMain_1.jsp"/>
+		<put-attribute name="myPageNav" value="/WEB-INF/views/template/myPageNav.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPageBought.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
 </tiles-definitions>
