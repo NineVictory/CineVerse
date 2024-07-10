@@ -61,7 +61,7 @@
 				<hr size="4px" color="black" width="53%">
 			</div>	    
 			<div class="order-body">
-				<span class=order-category">MARVEL</span>
+				 <span class="order-category"> MARVEL</span>
 				<hr size="2px" color="#969696" width="53%">
 				<div class="product-list">
 					<img src="${pageContext.request.contextPath}/images/cje/product.png" alt="티셔츠" >
@@ -74,6 +74,40 @@
 				<hr size="4px" color="black" width="53%">	
 			</div>
 	    </div>
+	    
+	
+ 	<div class="pay_coupon">
+ 		<h2>할인 적용</h2>
+ 		<h3>쿠폰</h3>
+ 		<div class="coupon_list">
+ 			<div class="coupon_detail">
+ 				<span class="coupon_name">영화 (2D) 할인권</span>
+ 				<span class="coupon_detail_all">14000원 이상 결제시 사용 가능</span>
+ 				<span class="coupon_detail_all">2024.06.09 ~ 2024.07.09 <span class="coupon_time">D - DAY</span></span> 
+ 			</div>
+ 			
+ 			<div class="coupon_detail">
+ 				<span class="coupon_name">영화 (2D) 할인권</span>
+ 				<span class="coupon_detail_all">14000원 이상 결제시 사용 가능</span>
+ 				<span class="coupon_detail_all">2024.06.09 ~ 2024.07.09 <span class="coupon_time">D - DAY</span></span> 
+ 			</div>
+ 			
+ 			
+ 		</div>
+ 	</div>
+ 	
+ 	<div class="pay_select">
+ 		<h2>최종 결제 수단</h2>
+ 		<div class="point_pay">
+ 			<h3>포인트 결제</h3>
+ 				<div class="point_charging">
+ 					<b><span class="point_detail">15,0000P</span></b>
+ 					<button class="point_charge">포인트 충전</button>
+ 			</div>
+ 		</div>
+ 		<p>결제 내용에 동의합니다. <input type="checkbox"></p>
+ 	</div>
+ 	
 	</form>
 
 </div>

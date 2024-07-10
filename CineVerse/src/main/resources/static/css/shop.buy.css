@@ -23,6 +23,10 @@ body {
 }
 
 
+.total_count, .total_price, .coupon_discount, .deliveryfee {
+	display: flex;
+    justify-content: space-between;
+}
 .buy-main h2{ 		
     margin-right: 690px;
     white-space:nowrap;
@@ -50,6 +54,7 @@ body {
 	border-radius: 15px;
 	font-size: 10pt;
 	margin-left: 320px;
+	padding: 8px 12px;
 }
 
 .select-address{
@@ -183,13 +188,21 @@ input [type="checkbox"]{
 	margin-bottom: 24px;
 }
 
-.price-detail p{
-	margin-top: 30px;
-	font-weight: 500;
+.price-detail {
+	margin-left: 30px;
+	margin-bottom: 24px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .price-result{
-	margin-left: 210px;
+	margin-left: 30px;
+    margin-bottom: 24px;
+    display: flex;
+    width: 280px;
+    justify-content: flex-end;
 }
 
 .price-result span{
@@ -197,5 +210,127 @@ input [type="checkbox"]{
 }
 
 .pay-box{
+	margin-top:  30px;
+	width: 350px;
+	height: 60px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #FD4D57;
+}
+
+.pay-box span{
+	text-align: center;
+	color: white;
+	font-size: 13pt;
+}
+
+
+
+
+
+
+.pay_coupon{
+	margin-top: 80px;
+	padding: 10px;
+	margin-left: 18px;
+}
+
+.pay_coupon h2{
+	font-size: 12pt;
+	font-weight: 500;
+}
+
+.pay_coupon h3{
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 11.5pt;
+	font-weight: 450;
+}
+
+.coupon_detail {
+	border: 1px solid var(--gray-4);
+    border-radius: 10px;
+    flex-direction: column;
+    margin: 10px;
+    padding: 15px;
+    width: 550px;
+    
+}
+
+
+.coupon_name {
+	font-size: 1.05em;
+	font-weight: 700;
+}
+
+.coupon_time {
+	color : red;
+	font-weight: bold;
+	font-size:11px;
+}
+.coupon_detail_all {
+	font-size:12px;
+}
+
+
+.pay_select{
+	margin-top: 80px;
+	padding: 10px;
+	margin-left: 18px;
+}
+
+.pay_select h2{
+	font-size: 12pt;
+	font-weight: 500;
+}
+
+.point_pay {
+	padding : 10px;
 	
+}
+
+.point_pay h3{
+	margin-top: 10px;
+	font-size: 11.5pt;
+	font-weight: 450;
+}
+
+.point_charging{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--gray-4);
+    border-radius: 10px;
+    width: 550px;
+    margin-top: 10px;
+    padding: 15px;
+}
+
+
+.point_detail {
+	font-size: 1.1em;
+}
+
+.point_charging b, .point_charging span {
+	width: 300px;
+}
+
+
+.point_charging .point_charge { 
+	cursor : pointer;
+	border-radius : 8px;
+	font-weight : 600;
+	font-size : 12px;
+	padding : 8px 8px;
+	border: none;
+	background-color: var(--yellow-check-btn);
+	margin-left: 100px;
+	white-space:nowrap;
+}
+
+.pay_select p{
+	margin-top: 10px;
+	margin-left: 10px;
 }
