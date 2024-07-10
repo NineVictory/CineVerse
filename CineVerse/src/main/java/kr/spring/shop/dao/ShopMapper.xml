@@ -11,5 +11,86 @@
 			product_seq.nextval, #{p_name}, #{p_category}, #{p_content}, #{p_quantity}, #{p_price}, SYSDATE, #{p_filename}, #{p_status}
 		)
 	</insert>
+	
+	<!-- 상품 검색 -->
+	<sql id="productSearch">
+		<where>
+			p_status=2 
+			<!--카테고리가 있다면 카테고리 조건 포함-->
+			<if test="p_category != null and p_category !=''">
+				AND p_category=#{p_category}
+			</if>
+			
+			<!--검색어 있을 때-->
+			<if test="keyword != null and keyword != ''" >
+				<!-- AND로 연결-->
+				<if test="p_category != null and p_category != ''">
+					AND				
+				</if>
+				<!-- keyfield 1 : 상품 제목 -->
+				<if test="keyfield == 1">
+					p_name LIKE '%' || #{keyword} || '%'
+				</if>	
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 상품 목록 정렬 -->
+	<sql id="productOrder">
+		<!--최신-->
+		<if test="shopOrder==null || shopOrder==1">
+			ORDER BY p_reg_date DESC
+		</if>
+		<!--구매-->
+		<if test="shopOrder==2">
+			ORDER BY o_cnt DESC
+		</if>
+		<!--후기-->
+		<if test="shopOrder==3">
+			ORDER BY pr_cnt DESC
+		</if>
+		<!--평점-->
+		<if test="shopOrder==4">
+			ORDER BY pr_grade DESC
+		</if>
+		<!--관심상품-->
+		<if test="shopOrder==5">
+			ORDER BY pf_cnt DESC
+		</if>
+		<if test="shopOrder==null">
+		
+		</if>
+	</sql>
+	
+	<!--상품 개수 (총 개수/ 검색 개수)-->
+	<select id="productCount">
+		SELECT COUNT(*) FROM product
+		<include refid="productSearch"></include>
+	</select>
+	
+	<!-- 상품 목록 (총/검색)-->
+	<select id="productList" parameterType="map" resultType="productVO">
+		SELECT * FROM 
+			(SELECT a.*, rownum rnum FROM
+				(SELECT p_num,
+						<![CDATA[
+						REPLACE(REPLACE(p_name,'<','&lt;'),'>','&gt;') p_name,
+						]]>
+						p_category,
+						p_content,
+						p_quantity,
+						p_price,
+						p_reg_date,
+						p_modify_date,
+						p_filename,
+						p_status
+						FROM product
+							<include refid="productSearch"></include>
+							<include refid="productOrder"></include>
+							)a)
+								<![CDATA[
+								WHERE rnum >= #{start} AND rnum <= #{end}
+								]]>
+	</select>
 
  </mapper>

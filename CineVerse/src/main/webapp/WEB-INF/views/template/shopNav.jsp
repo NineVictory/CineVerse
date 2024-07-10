@@ -4,13 +4,13 @@
 <div class="shopNav">
     <ul>
         <li><a href="${pageContext.request.contextPath}/shop/shopMain"> ALL </a></li>
-        <li><a href="?category=marvel"> MARVEL </a></li>
-        <li><a href="?category=disney"> DISNEY </a></li>
-        <li><a href="?category=disney_princess"> DISNEY PRINCESS </a></li>
-        <li><a href="?category=pixar"> PIXAR </a></li>
-        <li><a href="?category=studio_ghibli"> Studio GHIBLI </a></li>
-        <li><a href="?category=warner_bros"> Warner Bros. </a></li>
-        <li><a href="?category=universal_studio"> Universal Studio </a></li>
+        <li><a href="?p_category=1"> MARVEL </a></li>
+        <li><a href="?p_category=2"> DISNEY </a></li>
+        <li><a href="?p_category=3"> DISNEY PRINCESS </a></li>
+        <li><a href="?p_category=4"> PIXAR </a></li>
+        <li><a href="?p_category=5"> Studio GHIBLI </a></li>
+        <li><a href="?p_category=6"> Warner Bros. </a></li>
+        <li><a href="?p_category=7"> Universal Studio </a></li>
     </ul>
 </div>
 

@@ -21,7 +21,7 @@ public class ProductVO {
 	@NotBlank
 	private String p_name;
 	@NotNull
-	private int p_category;
+	private Integer p_category;
 	@NotBlank
 	private String p_content;
 	@NotNull
