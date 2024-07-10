@@ -22,8 +22,13 @@ public class ShopController {
 	}
 	
 	@PostMapping("/shop/shopBuy")
-	public String postMethodName() {
+	public String shopBuy() {
 		return "shopBuy";
+	}
+	
+	@GetMapping("/shop/shopBasket")
+	public String shopBasket() {
+		return "shopBasket";
 	}
 	
 }
