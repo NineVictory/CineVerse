@@ -104,17 +104,9 @@
 </div>
 
 <!-- Swiper JS 라이브러리 가져오기-->
+<!-- 광고 부분 슬라이드 -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-
-<style>
-.movie-wrapper{
-}
-
-.ranks {
-	max-height: 335px;
-}
-</style>
 
 <div class="movie_rank">
     <div class="contents">
@@ -255,9 +247,9 @@
 <!-- Swiper.js JavaScript -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<!-- 내용 슬라이드 구현 -->
+<!-- 영화 랭킹 슬라이드 구현 -->
 <script>
-    var swiper = new Swiper('.swiper-container', {
+    var swiper = new Swiper('.swiper-container.ranks', {
         slidesPerView: 5, // 한 화면에 보이는 슬라이드 수
         spaceBetween: 30, // 슬라이드 간의 간격
         navigation: {
@@ -266,75 +258,6 @@
         },
     });
 </script>
-
-
-<!-- 
-
-<div class="movie_rank">
-	<div class="contents">
-		<div class="ranks">
-			<div class="item">
-				<div class="top_info">
-					<span class="poster_info"> <img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202406/20970_101_1.jpg"
-						alt="인사이드 아웃 2">
-					</span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"> <span class="ic_grade gr_all">전체</span>인사이드
-						아웃 2
-					</strong> <span class="sub_info1"> <span class="rate_info">예매율&nbsp;<em>35.8%</em>
-					</span> <span class="star_info" style="cursor: pointer;">9.5</span>
-					</span>
-				</div>
-			</div>
-
-
-			
-			
-			<div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21252_101_1.jpg"
-						alt="러브 라이즈 블리딩"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_19">청불</span>러브
-						라이즈 블리딩</strong><span class="sub_info1"><span class="rate_info">예매율&nbsp;<em>6.4%</em></span><span
-						class="remain_info">D-7</span></span>
-				</div>
-			</div>
-			
-			<div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21252_101_1.jpg"
-						alt="러브 라이즈 블리딩"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_19">청불</span>러브
-						라이즈 블리딩</strong><span class="sub_info1"><span class="rate_info">예매율&nbsp;<em>6.4%</em></span><span
-						class="remain_info">D-7</span></span>
-				</div>
-			</div>
-			
-			<div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21252_101_1.jpg"
-						alt="러브 라이즈 블리딩"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_19">청불</span>러브
-						라이즈 블리딩</strong><span class="sub_info1"><span class="rate_info">예매율&nbsp;<em>6.4%</em></span><span
-						class="remain_info">D-7</span></span>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-</div> -->
 
 <div id="main_content" class="event_list">
 	<div class="sec_tit">이벤트</div>
