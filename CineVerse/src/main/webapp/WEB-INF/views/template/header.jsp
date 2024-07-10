@@ -13,7 +13,7 @@
                 <li><a href="#"><img src="${pageContext.request.contextPath}/images/cmj/twitter.png" alt="Twitter"></a></li>
             </ul>
             <ul class="main_menu2">
-                <li><a href="#">고객 센터</a></li>
+                <li><a href="${pageContext.request.contextPath}/support/supportMain">고객 센터</a></li>
                 <li><a href="#">멤버십</a></li>
                 <c:if test="${!empty user }">
                 	<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>

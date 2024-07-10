@@ -44,6 +44,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignWrite.jsp"/>
 	</definition>
 	
+	<definition name="supportMain" template="/WEB-INF/views/template/layout_cs.jsp">
+		<put-attribute name="title" value="고객센터"/>
+		<put-attribute name="css" value="/WEB-INF/views/board/csCSS.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportMain.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
 </tiles-definitions>
 
 
