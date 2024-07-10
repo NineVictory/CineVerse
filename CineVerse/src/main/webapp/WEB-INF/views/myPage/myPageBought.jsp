@@ -11,9 +11,10 @@
 		<div class="myPageReservation_list">
 			<!--  css 수정 예매추가로 하면 박스 늘어나게 -->
 			<div class="mp_reserv">
+				<!-- 근데 이 부분 css를 똑같이 썼더니 하얀색으로 삐죽... -->
 				<div class="m_movie_photo">
-					<img src="${pagecontext.reuqest.contextPath }/images/pmj/dune.jpg"
-						alt="굿즈 내역" width="150" height="210" onclick="location.href='/myPage/boughtDetail'">
+					<img src="${pagecontext.reuqest.contextPath}/images/cje/product.png"
+						alt="결제 내역" width="160" height="160" onclick="location.href='/myPage/boughtDetail'">
 				</div>
 				<div class="mpMovie_info">
 					<div>
@@ -21,27 +22,27 @@
 							class="mp_movie_number_2">0023-</span> <span
 							class="mp_movie_number_3">0619-3123-229</span>
 					</div>
-					<div class="mp_movie_title">듄</div>
+					<div class="mp_movie_title">클래식 티셔츠(아이보리)</div>
 
 					<div class="reservation_list">
 						<div class="reserv_info">
-							<div>관람극장</div>
-							<div>관람일시</div>
-							<div>관람좌석</div>
+							<div>구매일시</div>
+							<div>상품금액</div>
+							<div>주문수량</div>
 						</div>
 
 						<div class="my_reserv_info">
-							<div>CGV 용산아이파크몰</div>
 							<div>2024.07.06(토) 26:00</div>
-							<div>L 22,L 23</div>
+							<div>39,000원</div>
+							<div>2개</div>
 						</div>
 					</div>
 					<hr size="1" width="100%" class="reserv_line">
 					<div class="reserv_pay_cancle">
 						<div>
-							<span class="m_pay">총 결제금액 </span><span class="my_blue_font">32,000원</span>
+							<span class="m_pay">총 결제금액 </span><span class="my_blue_font">78,000원</span>
 						</div>
-						<div class="m_cancle">예매취소</div>
+						<!-- 버튼들 -->
 					</div>
 				</div>
 				
