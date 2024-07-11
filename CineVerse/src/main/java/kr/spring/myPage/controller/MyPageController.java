@@ -119,13 +119,15 @@ public class MyPageController {
 	//게시판 - 내가 쓴 글
 	@GetMapping("/myPage/boardWrite")
 	public String myPageBoardWrite(@RequestParam(defaultValue = "") String cb_type,HttpSession session, Model model) {
-		log.debug("<<카테고리 타입 >> : " + cb_type);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("cb_type", cb_type);
+		log.debug("<<카테고리 타입 >> : " + cb_type);
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");	
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cb_type", cb_type);
+		map.put("mem_num",user.getMem_num());
 		
 		List<BoardVO> list = null;
 		int count = mypageService.cBoardWriteListcnt(map);

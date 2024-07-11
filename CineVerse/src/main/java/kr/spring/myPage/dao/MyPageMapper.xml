@@ -17,12 +17,12 @@
 		</if>
 	</where>
 	</sql>
-	<select id="cBoardWriteListcnt" parameterType="long" resultType="map">
+	<select id="cBoardWriteListcnt" parameterType="map" resultType="integer">
 	SELECT COUNT(*) FROM community_board WHERE mem_num=#{mem_num}
 	<include refid="myPageBoardSearch"></include>
 	</select>
 	<!-- 게시글 목록 -->
-	<select id="selectMemBoardWriteList" parameterType="long" resultType="boardVO">
+	<select id="selectMemcBoardWriteList" parameterType="long" resultType="boardVO">
 		SELECT * FROM community_board LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,cb_num FROM community_fav GROUP BY cb_num)USING(cb_num) WHERE mem_num=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
