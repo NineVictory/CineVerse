@@ -10,10 +10,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MovieVO {
+public class MovieReviewVO {
+	private Long mr_num;
+	private Clob mr_content;
+	private Date mr_regdate;
+	private Long mr_spoiler;
+	private Long mr_grade;
+	private Long md_num;
 	private Long m_code;
-	private String m_name;
-	private Date m_opendate;
-	private Long m_status;
-	private Clob m_filename;
 }

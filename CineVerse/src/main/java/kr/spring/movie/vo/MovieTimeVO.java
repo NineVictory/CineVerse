@@ -1,6 +1,5 @@
 package kr.spring.movie.vo;
 
-import java.sql.Clob;
 import java.sql.Date;
 
 import lombok.Getter;
@@ -10,10 +9,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MovieVO {
+public class MovieTimeVO {
+	private Long mt_num;
+	private Date mt_date;
+	private String mt_start;
+	private String mt_end;
 	private Long m_code;
-	private String m_name;
-	private Date m_opendate;
-	private Long m_status;
-	private Clob m_filename;
+	private long c_num;
 }
