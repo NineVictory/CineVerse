@@ -31,6 +31,7 @@ $(function() {
 						type: "POST",
 						url: "pointCharge",
 						data: {
+							"ph_payment" : paymentMethod,
 							"ph_point": money,
 							"mem_num": memNum,
 						},

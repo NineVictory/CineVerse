@@ -14,4 +14,6 @@ public class PointVO {
 	private Long ph_point;
 	private Date ph_date;
 	private Long mem_num;
+	private String ph_payment;
+	private int ph_type;
 }
