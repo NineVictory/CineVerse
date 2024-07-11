@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.board.vo.BoardVO;
 import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.myPage.vo.MyPageVO;
 
@@ -21,11 +22,7 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.selectMember(mem_num);
 		
 	}
-	@Override
-	public Integer selectMemberPoint(long mem_num) {
-		Integer point = myPageMapper.selectMemberPoint(mem_num);
-        return point != null ? point : 0;
-	}
+
 	@Override
 	public Integer selectMemberCoupon(long mem_num) {
 		Integer coupon = myPageMapper.selectMemberCoupon(mem_num);
@@ -34,6 +31,16 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map) {
 		return myPageMapper.selectMemCouponList(map);
+	}
+
+	@Override
+	public List<BoardVO> selectMemcBoardWriteList(Map<String, Object> map) {
+		return myPageMapper.selectMemcBoardWriteList(map);
+	}
+
+	@Override
+	public Integer cBoardWriteListcnt(Map<String, Object> map) {
+		return myPageMapper.cBoardWriteListcnt(map);
 	}
 	
 	

@@ -23,7 +23,7 @@
 	<div class="point_box_rep">
 		<div class="consult_content">
 			<div class="my_consult">
-				<div class="my_point_date">2024.07.31 ~2024.07.31 </div>
+				<div class="my_point_date">2024.07.31 </div>
 				<div class="my_consult_title">카카오페이</div>
 				<div class="my_point_now">보유포인트 15000p </div>
 			</div>
@@ -38,7 +38,7 @@
 	<div class="point_box_rep">
 		<div class="consult_content">
 			<div class="my_consult">
-				<div class="my_point_date">2024.07.31 ~2024.07.31 </div>
+				<div class="my_point_date">2024.07.31 </div>
 				<div class="my_consult_title">카카오페이</div>
 				<div class="my_point_now">보유포인트 10000p </div>
 			</div>

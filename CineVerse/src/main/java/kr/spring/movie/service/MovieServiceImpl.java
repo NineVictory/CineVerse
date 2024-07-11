@@ -21,19 +21,19 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Override
 	public List<MovieVO> selectMovieList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return movieMapper.selectMovieList(map);
 	}
 
 	@Override
 	public Integer selectMovieRowCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return movieMapper.selectMovieRowCount(map);
 	}
 
 	@Override
 	public void insertMovie(MovieVO movie) {
-		// TODO Auto-generated method stub
+		movieMapper.insertMovie(movie);
 		
 	}
 
