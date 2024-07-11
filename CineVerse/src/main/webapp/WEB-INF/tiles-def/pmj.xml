@@ -68,6 +68,16 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myEvent.jsp"/>
 	</definition>
 	
+	<definition name="chatList" extends="myPageMain">
+		<put-attribute name="title" value="배송지 관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/chatList.jsp"/>
+	</definition>
+	
+	<definition name="addressList" extends="myPageMain">
+		<put-attribute name="title" value="배송지 관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/addressList.jsp"/>
+	</definition>
+	
 	<definition name="modifyUser" extends="myPageMain">
 		<put-attribute name="title" value="개인정보변경"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/modifyUser.jsp"/>
@@ -76,6 +86,11 @@
 	<definition name="passwdChange" extends="myPageMain">
 		<put-attribute name="title" value="비밀번호변경"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/passwdChange.jsp"/>
+	</definition>
+	
+	<definition name="memberShipSub" extends="myPageMain">
+		<put-attribute name="title" value="문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/memberShipSub.jsp"/>
 	</definition>
 	
 	<definition name="consult" extends="myPageMain">

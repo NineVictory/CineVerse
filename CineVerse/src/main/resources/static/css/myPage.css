@@ -922,7 +922,7 @@
 	flex-direction: column; /* 수직 정렬 */
 }
 
-.bk_delete_btn {/* 마이페이지 삭제 버튼 */
+.bk_delete_btn { /* 마이페이지 삭제 버튼 */
 	font-size: 14px;
 	font-weight: 500;
 	align-self: flex-start; /* 상단 정렬/하단 정렬이면 end 사용 */
@@ -958,24 +958,26 @@
 /* =======================
      		myPageConsult.jsp
    ======================= */
-.consult_box{
+.consult_box {
 	display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 25px;
-    background-color: #F7F7F7;
-    border-radius: 12px;
-    padding: 20px 30px 30px 30px;
-    gap: 12px;
-    flex-grow: 1;
-    align-items: stretch;
+	flex-direction: column;
+	text-align: center;
+	margin-top: 25px;
+	background-color: #F7F7F7;
+	border-radius: 12px;
+	padding: 20px 30px 30px 30px;
+	gap: 12px;
+	flex-grow: 1;
+	align-items: stretch;
 }
+
 .consult_content {
 	display: flex;
 	align-items: center;
 	justify-content: normal;
 	height: auto; /* 높이 자동 조정 */
 }
+
 .my_consult {
 	text-align: left;
 	font-size: 14px;
@@ -983,7 +985,8 @@
 	display: flex;
 	flex-direction: column; /* 수직 정렬 */
 }
-.my_consult_title{
+
+.my_consult_title {
 	margin-top: 7px;
 	font-size: 16px;
 	font-weight: 550;
@@ -992,131 +995,176 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.my_consult_check{
+
+.my_consult_check {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	font-size: 15px;
 	font-weight: 550;
 	width: 105px;
-	height:32px;
+	height: 32px;
 	color: #fff;
 	background-color: #3F66ED;
 	border-radius: 30px;
 	align-items: center;
-    justify-content: center;
-    margin: 10px 0 0 15px;
+	justify-content: center;
+	margin: 10px 0 0 15px;
 }
 
 /* =======================
      		myPagePointList.jsp
    ======================= */
 .point_box {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 25px;
-    background-color: #F7F7F7;
-    border-radius: 12px;
-    padding: 20px 30px 30px 30px;
-    gap: 12px;
-    flex-grow: 1;
-    align-items: stretch;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-top: 25px;
+	background-color: #F7F7F7;
+	border-radius: 12px;
+	padding: 20px 30px 30px 30px;
+	gap: 12px;
+	flex-grow: 1;
+	align-items: stretch;
 }
+
 .point_box_rep {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    /* margin-top: 25px; */
-    background-color: #F7F7F7;
-    border-radius: 12px;
-    padding: 20px 30px 25px 30px;
-    gap: 12px;
-    flex-grow: 1;
-    align-items: stretch;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	/* margin-top: 25px; */
+	background-color: #F7F7F7;
+	border-radius: 12px;
+	padding: 20px 30px 25px 30px;
+	gap: 12px;
+	flex-grow: 1;
+	align-items: stretch;
 }
+
 .point_box_now {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 25px;
-    background-color: #EFF3FD;
-    border-radius: 12px;
-    padding: 20px 30px 25px 30px;
-    gap: 12px;
-    flex-grow: 1;
-    align-items: stretch;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-top: 25px;
+	background-color: #EFF3FD;
+	border-radius: 12px;
+	padding: 20px 30px 25px 30px;
+	gap: 12px;
+	flex-grow: 1;
+	align-items: stretch;
 }
+
 .my_point_now {
-    font-size: 14.5px;
-    font-weight: 550;
-    color: #949292;
-    margin-top: 5px;
+	font-size: 14.5px;
+	font-weight: 550;
+	color: #949292;
+	margin-top: 5px;
 }
-.my_point_date{
+
+.my_point_date {
 	font-size: 14.5px;
 	font-weight: 550;
 	color: #949292;
 }
-.myPage_point_now{
+
+.myPage_point_now {
 	font-size: 16px;
-    font-weight: 600;
-    color: #949292;
+	font-weight: 600;
+	color: #949292;
 }
-.myPage_point_count{
+
+.myPage_point_count {
 	font-size: 17px;
-    font-weight: 600;
-    margin-top: 5px;
+	font-weight: 600;
+	margin-top: 5px;
 }
-.my_point_count{
+
+.my_point_count {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	font-size: 18px;
 	font-weight: 600;
 	width: 110px;
-	height:35px;
+	height: 35px;
 	border-radius: 30px;
 	align-items: center;
-    justify-content: center;
-    margin: 10px 0 0 30px;
+	justify-content: center;
+	margin: 10px 0 0 30px;
 }
-.point_line{
-	 width:930px;
-	 margin: 0 auto;
-	 border-top: 1px solid #D8D8D8;
+
+.point_line {
+	width: 930px;
+	margin: 0 auto;
+	border-top: 1px solid #D8D8D8;
 }
 /* =======================
      		myPageBought.jsp
    ======================= */
-.bought_info{
+.bought_info {
 	display: flex;
-    flex-direction: row;
-    align-items: center;
+	flex-direction: row;
+	align-items: center;
 }
-.my_delivery_process{
-	color:#fff;
+
+.my_delivery_process {
+	color: #fff;
 	font-size: 10px;
 	font-weight: 550;
 	text-align: center;
 	line-height: 18px; /* 수직 정렬-요소의 높이와 동일하게 설정 */
 	background-color: #FFDE5A;
-	display: inline-block;/* span,a태그는 display:inline이기 때문에 width,height적용X */
+	display: inline-block;
+	/* span,a태그는 display:inline이기 때문에 width,height적용X */
 	width: 70px;
 	height: 18px;
 	border-radius: 13px;
 	margin-left: 7px;
 }
-.my_bought_btn{
-	width:150px;
+
+.my_bought_btn {
+	width: 150px;
 	display: flex;
 	justify-content: space-between;
 }
-.my_order_confirm,.my_order_return{
+
+.my_order_confirm, .my_order_return {
 	border: 1px solid;
 	width: 70px;
 	font-size: 13px;
 	text-align: center;
 }
 /* =======================
-     		myPage.jsp
+     		myPageaddressList.jsp
    ======================= */
+  .adress_plus{
+  	margin-left: auto;
+  	margin-top: 25px;
+  	margin-bottom: 15px;
+  	color: #fff;
+  	background-color: #3F66ED;
+  	font-size: 15px;
+  	text-align: center;
+  	width: 110px;
+  	height: 33px;
+  	line-height: 33px;
+  }
+.myPage_address {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-top: 25px;
+	
+	
+}
 
+.my_address_choice {
+	
+}
+.my_address_find {
+	
+}
+
+
+
+/* =======================
+     		myPageMemberShipSub.jsp
+   ======================= */

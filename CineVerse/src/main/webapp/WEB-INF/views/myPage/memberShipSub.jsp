@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 비밀번호 변경 시작 -->
+<!-- 멤버십 구독 시작 -->
 <div class="myPage_main">
 	<div class="reservation_display">
-		<span class="myPage_title_re">비밀번호 변경</span>
+		<span class="myPage_title_re">멤버십 구독</span>
 	</div>
 	
-	
 </div>
-<!-- 비밀번호 변경 끝 -->
+<!-- 멤버십 구독 끝 -->
