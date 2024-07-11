@@ -55,7 +55,7 @@ public class ShopController {
 
 	    int count = shopService.productCount(map);
 
-	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "shopMain", "&p_category=" + p_category + "&shopOrder=" + shopOrder);
+	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 16, 10, "shopMain", "&p_category=" + p_category + "&shopOrder=" + shopOrder);
 
 	    List<ProductVO> productList = null;
 	    if (count > 0) {

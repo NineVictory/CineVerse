@@ -44,6 +44,12 @@
         <put-attribute name="body" value="/WEB-INF/views/movie/moviePayment.jsp"/>
         <put-attribute name="css" value="/WEB-INF/views/movie/moviePaymentCSS.jsp"/>
     </definition>
+    <!-- 영화 상영시간표 -->
+    <definition name="movieTime" extends="movieList">
+        <put-attribute name="title" value="영화시간표"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movieTime.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/movie/movieTimeCSS.jsp"/>
+    </definition>
     <!-- 자체 영화관 정보 -->
     <definition name="ownMovieInfo" template="/WEB-INF/views/template/layout_cinema.jsp">
         <put-attribute name="title" value="자체영화관"/>

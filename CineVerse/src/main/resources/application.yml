@@ -30,8 +30,8 @@ spring:
       
   servlet:
     multipart:
-      max-file-size: 50MB #파일 한 개당 최대 사이즈
-      max-request-size: 200MB #요청당 최대 파일 크기        
+      max-file-size: 4000MB #파일 한 개당 최대 사이즈
+      max-request-size: 6000MB #요청당 최대 파일 크기        
     
 mybatis:
   type-aliases-package: kr.spring.**.vo
@@ -50,7 +50,7 @@ server:
       enabled: true #http 인코딩 지원을 활성활지 여부
       force: true    
   tomcat:
-    max-http-form-post-size: 200MB #톰캣에서 허용하는 파일 업로드 사이즈    
+    max-http-form-post-size: 6000MB #톰캣에서 허용하는 파일 업로드 사이즈    
     
     
     

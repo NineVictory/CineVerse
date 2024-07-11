@@ -25,7 +25,7 @@
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
                             <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/movieReserve" title="예매하기" class="hide-menu-a">예매하기</a></li>
-                            <li class="hide_menu_li"><a href="#" title="상영시간표" class="hide-menu-a">상영시간표</a></li>
+                            <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/movieTime" title="상영시간표" class="hide-menu-a">상영시간표</a></li>
                             <li class="hide_menu_li"><a href="#" title="할인안내" class="hide-menu-a">할인안내</a></li>
                         </ul>
                     </div>
@@ -45,16 +45,7 @@
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
 	                        <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/ownMovieInfo" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
-	                        <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>
-	                        <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="스페셜관">스페셜관</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="서울">서울</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="경기/인천">경기/인천</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="충청/대전">충청/대전</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="전라/광주">전라/광주</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="경북/대구">경북/대구</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="경남/부산/울산">경남/부산/울산</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="강원">강원</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="제주">제주</a></li>
+	                        <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>          
                         </ul>
                     </div>
                 </li>

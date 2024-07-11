@@ -188,4 +188,6 @@ input[type="search"]::placeholder {
     font-size: 13pt;
     font-weight: 500;
 }
-
+.page-div {
+	margin-left: 514px;
+}
