@@ -193,14 +193,6 @@ public class MyPageController {
 		return "chatList";
 	}
 	
-	//회원 정보 - 배송지 관리
-	@GetMapping("/myPage/addressList")
-	public String myPageAddressList(MyPageVO myPageVO, HttpSession session, Model model) {
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		model.addAttribute("member",member);
-		return "addressList";
-	}
 	
 	
 	//회원 정보 - 비밀번호 변경
@@ -297,22 +289,6 @@ public class MyPageController {
 		}
 		
 		
-		// 마이페이지 구매 내역 페이지로 가기
-		@GetMapping("/myPage/bought")
-		public String getMyPageBought(MemberVO memberVO,HttpSession session, Model model) {
-			MemberVO user = (MemberVO)session.getAttribute("user");
-			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			model.addAttribute("member",member);
-			return "bought";
-		}
 		
-		// 마이페이지 구매 내역 상세 페이지로 가기
-		@GetMapping("/myPage/boughtDetail")
-		public String getMyPageDetailBought(MemberVO memberVO,HttpSession session, Model model) {
-			MemberVO user = (MemberVO)session.getAttribute("user");
-			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			model.addAttribute("member",member);
-			return "boughtDetail";
-		}
 		
 }

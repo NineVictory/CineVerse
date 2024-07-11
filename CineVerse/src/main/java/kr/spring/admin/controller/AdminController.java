@@ -263,39 +263,7 @@ public class AdminController {
 	public String adminAssignment(){
 		return "adminAssignment";
 	}
-	/*==============================
-	 * 벌스샵 관리
-	 *==============================*/	
-	// 상품 등록 폼
-	@GetMapping("/admin/adminShop")
-	public String adminShop(){
-		return "adminShop";
-	}
-
-	@PostMapping("/admin/adminShop")
-	public String adminInsertShop(){
-		return "adminShop";
-	}
-	// 배송 상태 관리
-	@GetMapping("/admin/adminDelivery")
-	public String adminDelivery(){
-		return "adminDelivery";
-	}
-	// 배송지
-	@GetMapping("/admin/adminAddress")
-	public String adminAddress(){
-		return "adminAddress";
-	}
-	// 상품문의
-	@GetMapping("/admin/adminShopQna")
-	public String adminShopQna(){
-		return "adminShopQna";
-	}
-	// 상품후기
-	@GetMapping("/admin/adminShopReview")
-	public String adminShopReview(){
-		return "adminShopReview";
-	}
+	
 	// 영화
 	@GetMapping("/admin/adminMovie")
 	public String adminShopMovie(){
