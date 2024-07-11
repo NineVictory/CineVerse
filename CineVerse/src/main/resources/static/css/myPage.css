@@ -1133,11 +1133,12 @@
 	text-align: center;
 }
 /* =======================
-     		myPageaddressList.jsp
+     		myPageAddressList.jsp
    ======================= */
   .adress_plus{
   	margin-left: auto;
   	margin-top: 25px;
+  	margin-bottom: 5px;
   	color: #fff;
   	background-color: #3F66ED;
   	font-size: 15px;
@@ -1146,29 +1147,45 @@
   	height: 33px;
   	line-height: 33px;
   }
-.myPage_address {
+
+.my_address_del_modi{
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 }
 .my_address_choice {
 	margin-right: auto;
+	padding-left: 7px;
 }
 .my_address_info {
-	margin-top: 25px;
+	display: flex;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom:15px;
+	margin: 15px 0 30px 0;
 	background-color: #F7F7F7;
     border-radius: 12px;
     padding: 20px 30px;
-    gap: 12px;
+    gap: 430px;
     flex-grow: 1;
     align-items: stretch;
+    text-align: left;
 }
-.my_address_box{
-	 
+.my_address_1,.my_address_2,.my_address_number{
+	font-size: 15px;
+	font-weight: 600;
+	 margin-bottom: 4px;
 }
-
-
-
+.my_address_btn{
+	margin-left: auto;
+}
+.add_del_btn,.add_modi_btn{
+	font-size:14px;
+	text-align: center;
+	/* border: 1px solid; */
+	border-radius: 15px;
+	margin-right: 10px;
+}
 /* =======================
      		myPageMemberShipSub.jsp
    ======================= */
