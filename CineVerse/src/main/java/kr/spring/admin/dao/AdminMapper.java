@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.admin.vo.AdminVO;
+import kr.spring.board.vo.BoardVO;
 
 @Mapper
 public interface AdminMapper {
@@ -26,7 +27,8 @@ public interface AdminMapper {
     // 공지사항
 
     // 이벤트
-    
+    public void insertEvent(AdminVO admin);
+	
     // 결제
     
     // 상품

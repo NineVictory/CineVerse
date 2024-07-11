@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
+import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -145,24 +146,28 @@ public class AdminController {
 	public String AdminEventForm(){
 		return "adminEventForm";
 	}
-	@PostMapping("/adminEventForm")
-    public String insertEvent(@ModelAttribute("eventVO") 
-    								AdminVO adminVO, 
-    								BindingResult bindingResult, 
-    								Model model) {
-        // 폼 데이터 유효성 검사
-        if (bindingResult.hasErrors()) {
-            // 유효성 검사 오류 발생 시 처리
-            model.addAttribute("errorMessage", "입력 값이 올바르지 않습니다.");
-            return "adminEventForm"; // 다시 폼을 보여줌
-        }
+	@PostMapping("admin/adminEventForm")
+	public String insertEvent(@Valid AdminVO adminVO,
+			BindingResult result,
+			HttpServletRequest request,
+			HttpSession session,
+			Model model) throws IllegalStateException,
+    						IOException{
+		log.debug("<<이벤트 글 저장>> : " + adminVO);
+		
+		// 폼 데이터 유효성 검사
+		if (result.hasErrors()) {
+			// 유효성 검사 오류 발생 시 처리
+			return AdminEventForm(); // 다시 폼을 보여줌
+		}
 
-        // 이벤트 등록 로직 수행
-        // adminService.insertEvent(eventVO); // 예시: 서비스를 통해 이벤트 등록하는 메서드 호출
-
-        // 등록 후 이벤트 관리 페이지로 리다이렉트
-        return "redirect:/admin/adminEvent";
-    }
+		adminVO.setEvent_filename(FileUtil.createFile(request, 
+				                      adminVO.getUpload()));
+		
+		adminService.insertEvent(adminVO);
+		// 등록 후 이벤트 관리 페이지로 리다이렉트
+		return "redirect:/admin/adminEvent";
+	}
 	// 포인트(결제) 관리
 	@GetMapping("/admin/adminPayment")
 	public String adminPayment(){
@@ -172,7 +177,7 @@ public class AdminController {
 	 * 게시판관리
 	 *==============================*/	
 	// 자유게시판 관리
-	@GetMapping("/admin//adminCommunity")
+	@GetMapping("/admin/adminCommunity")
 	public String adminComuunity(){
 		return "adminCommunity";
 	}
@@ -189,7 +194,7 @@ public class AdminController {
 	public String adminShop(){
 		return "adminShop";
 	}
-	
+
 	@PostMapping("/admin/adminShop")
 	public String adminInsertShop(){
 		return "adminShop";
@@ -213,6 +218,26 @@ public class AdminController {
 	@GetMapping("/admin/adminShopReview")
 	public String adminShopReview(){
 		return "adminShopReview";
+	}
+	// 영화
+	@GetMapping("/admin/adminMovie")
+	public String adminShopMovie(){
+		return "adminMovie";
+	}
+	// 영화등록
+	@GetMapping("/admin/adminMovieForm") 
+	public String adminMovieForm(){
+		return "adminMovieForm";
+	}
+	// 영화
+	@GetMapping("/admin/adminCinema")
+	public String adminCinema(){
+		return "adminCinema";
+	}
+	// 영화등록
+	@GetMapping("/admin/adminCinemaForm") 
+	public String adminCinemaForm(){
+		return "adminCinemaForm";
 	}
 }
 

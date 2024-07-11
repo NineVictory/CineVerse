@@ -3,7 +3,25 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.admin.dao.AdminMapper"><!--인터페이스명-자동매핑-->
-	
+	<insert id="insertBoard" parameterType="boardVO">
+	 	INSERT INTO event(
+	 	  event_num,
+	 	  event_name,
+	 	  event_content,
+	 	  event_filename,
+	 	  event_start,
+	 	  event_end,
+	 	  event_reg_date,
+	 	  )
+	 	VALUES (
+	 	  spboard_seq.nextval,
+	 	  #{event_name},
+	 	  #{event_content},
+	 	  #{filename,jdbcType=VARCHAR},
+	 	  #{event_start},
+	 	  #{event_end},
+	 	  #{event_reg_date})  
+	 </insert>
 </mapper>							
 
 

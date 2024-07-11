@@ -30,6 +30,9 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return adminMapper.getAllMembership();
 	}
+	@Override
+	public void insertEvent(AdminVO admin) {
+					}
 
 
 	

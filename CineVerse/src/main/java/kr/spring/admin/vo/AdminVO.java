@@ -3,6 +3,8 @@ package kr.spring.admin.vo;
 import java.sql.Clob;
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,6 +34,8 @@ public class AdminVO {
 	private Date re_reg_date;
 	private String nb_filename;
 
+	private MultipartFile upload;	//파일
+
 	//이벤트관리
 	private long event_num;
 	private String event_name;
@@ -42,6 +46,6 @@ public class AdminVO {
 	private Date event_reg_date;
 
 	//결제취소
-	private long ph_num; //위에 ph_point랑 ph_date잇음
+	private long ph_num; //위에 ph_point랑 ph_date잇
 
 }
