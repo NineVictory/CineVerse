@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.member.vo.MemberVO;
 import kr.spring.shop.service.ShopService;
 import kr.spring.shop.vo.ProductVO;
 import kr.spring.util.PagingUtil;
@@ -91,10 +93,30 @@ public class ShopController {
 		return "shopBuy";
 	}
 	
-	// 벌스샵 장바구니 (상품 장바구니)
+	
+	// 벌스샵 장바구니 (상품 장바구니) 불러오기
 	@GetMapping("/shop/shopBasket")
-	public String shopBasket() {
+	public String shopMyBasket(HttpSession session, Model model) {
+		log.debug("<<장바구니 목록>>");
+		
+		List<ProductVO> list = null;
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		list = shopService.productBasketList(user.getMem_num());
+		
+		model.addAttribute("list", list);
+		
 		return "shopBasket";
+	}
+	
+	// 벌스샵 장바구니 담기
+	@PostMapping("/shop/productBasket")
+	public String productBasket(ProductVO basket, HttpSession session, HttpServletRequest request) {
+		log.debug("<<장바구니 등록 취소>> ::: " + basket);
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		return new String();
 	}
 	
 }

@@ -3,6 +3,10 @@ package kr.spring.shop.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
 import kr.spring.shop.vo.ProductVO;
 
 public interface ShopService {
@@ -14,4 +18,8 @@ public interface ShopService {
 	public ProductVO selectProductFav(ProductVO fav);
 	public void ProductFavDelete(ProductVO fav);
 	public Integer productFavCount(Long p_num);
+	public ProductVO selectProductBasket(ProductVO fav);
+	public void ProductBasket(ProductVO fav);
+	public void ProductBasketDelete(ProductVO fav);
+	public List<ProductVO> productBasketList(Long mem_num);
 }

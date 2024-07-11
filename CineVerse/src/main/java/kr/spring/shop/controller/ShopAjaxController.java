@@ -24,13 +24,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ShopAjaxController {
 	@Autowired
 	private ShopService shopService;
-	// 찜 불러오기
+
+	// 관심 상품 불러오기
 	@GetMapping("/shop/getProductFav")
 	@ResponseBody
 	public Map<String, Object> getProjectFav(ProductVO fav, HttpSession session){
-		log.debug("<<상품 찜>> ::: " + fav);
+		log.debug("<<관심 상품>> ::: " + fav);
 		Map<String, Object> mapJson = new HashMap<String, Object>();
-		
+
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user==null) {
 			mapJson.put("status", "noFav");
@@ -45,17 +46,17 @@ public class ShopAjaxController {
 		}
 		mapJson.put("count", shopService.productFavCount(fav.getP_num()));
 		return mapJson;
-				
+
 	}
-	
-	// 찜하기, 찜취소하기
+
+	// 관심 상품 하기, 관심 상품 취소하기
 	@PostMapping("/shop/productFav")
 	@ResponseBody
 	public Map<String, Object> productFav(ProductVO fav, HttpSession session) {
-		log.debug("<<상품 찜하기>> ::: " + fav);
-		
+		log.debug("<<관심 상품 등록 취소>> ::: " + fav);
+
 		Map<String, Object> mapJson = new HashMap<String, Object>();
-		
+
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user==null) {
 			mapJson.put("result", "logout");
@@ -75,5 +76,33 @@ public class ShopAjaxController {
 		}
 		return mapJson;
 	}
-	
+
+	// 상품 장바구니 담기, 빼기
+	@PostMapping("/shop/productBasket")
+	@ResponseBody
+	public Map<String, Object> productBasket(ProductVO basket, HttpSession session) {
+		log.debug("<<장바구니 등록 취소>> ::: " + basket);
+
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {
+			mapJson.put("result", "logout");
+		} else {
+			basket.setMem_num(user.getMem_num());
+			ProductVO productFav = shopService.selectProductBasket(basket);
+			if(productFav==null) {
+				// 찜한 적 없을 때는 찜할 수 있게
+				shopService.ProductBasket(basket);
+				mapJson.put("status", "yesBasket");
+			} else {
+				shopService.ProductBasketDelete(basket);
+				mapJson.put("status", "nobasket");
+			}
+			mapJson.put("result", "success");
+			mapJson.put("count", shopService.productFavCount(basket.getP_num()));
+		}
+		return mapJson;
+	}
+
 }

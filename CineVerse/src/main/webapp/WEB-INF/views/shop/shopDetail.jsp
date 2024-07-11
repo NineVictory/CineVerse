@@ -5,6 +5,7 @@
 	
 	<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/product.fav.js"></script>
+<script src="${pageContext.request.contextPath}/js/product.basket.js"></script>
 	<!-- 벌스샵 디테일 시작 -->
 	<div class="main_content">
 	    <div class="product-main">
@@ -36,7 +37,7 @@
 	                    </div>
 	                    <div class="shop-submit">
 	                    	<button id="output_fav" data-num="${product.p_num}"><span class="fav">♡</span> 관심 상품 <span class="output_fcount"> </span></button>
-		                    <button>장바구니</button>
+		                    <button id="basket" data-num="${product.p_num}">장바구니</button>
 		                    <input type="submit" value="바로 구매하기">
 	                    </div>
 	                </form>

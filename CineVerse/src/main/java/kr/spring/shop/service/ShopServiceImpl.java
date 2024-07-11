@@ -57,4 +57,26 @@ public class ShopServiceImpl implements ShopService {
 		return shopMapper.productFavCount(p_num);
 	}
 
+	@Override
+	public ProductVO selectProductBasket(ProductVO fav) {
+		return shopMapper.selectProductBasket(fav);
+	}
+
+	@Override
+	public void ProductBasket(ProductVO fav) {
+		shopMapper.ProductBasket(fav);
+	}
+
+	@Override
+	public void ProductBasketDelete(ProductVO fav) {
+		shopMapper.ProductBasketDelete(fav);
+	}
+
+	@Override
+	public List<ProductVO> productBasketList(Long mem_num) {
+		return shopMapper.productBasketList(mem_num);
+	}
+	
+	
+
 }
