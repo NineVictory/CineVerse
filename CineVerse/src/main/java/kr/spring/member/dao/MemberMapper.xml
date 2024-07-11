@@ -34,4 +34,8 @@
 		WHERE mem_email = #{mem_email}
 	</select>
 
+	<update id="totalPoint" parameterType="long">
+    UPDATE member_detail SET point = COALESCE((SELECT SUM(ph_point) FROM point_history WHERE ph_type=2) - COALESCE((SELECT SUM(ph_point) FROM point_history WHERE ph_type=1 AND ph_type=0), 0),0) 
+    WHERE mem_num = #{mem_num}
+	</update>
  </mapper>

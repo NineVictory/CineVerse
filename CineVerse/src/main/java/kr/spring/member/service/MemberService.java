@@ -31,4 +31,8 @@ public interface MemberService {
 	public void chargePoint(Long ph_point, Long mem_num, String ph_payment);
 	public List<Long> selectInitialCoupons();
 	public void insertNewMemCoupon(CouponVO coupon);
+	
+	public void totalPoint(Long mem_num);
+	
+	
 }

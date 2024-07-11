@@ -24,9 +24,10 @@ public class MemberVO {
 	private int mem_auth;
 	private String auto;
 	private String au_id;
-	
+	private long point;
 	@NotBlank
 	private String mem_name;
+	private String mem_nickname;
 	
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_passwd;

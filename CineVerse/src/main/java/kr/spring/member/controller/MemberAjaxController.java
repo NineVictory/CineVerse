@@ -20,16 +20,16 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberAjaxController {
 	@Autowired
 	private MemberService memberService;
-	
+
 	@GetMapping("/member/confirmId")
 	@ResponseBody
 	public Map<String, String> confirmId(@RequestParam String mem_id){
 		log.debug("<<아이디 중복 체크>> : " + mem_id);
-		
+
 		Map<String, String> mapAjax = new HashMap<String, String>();
-		
+
 		MemberVO member = memberService.selectCheckMember(mem_id);
-		
+
 		if(member != null) {
 			// 아이디 중복
 			mapAjax.put("result", "idDuplicated");
@@ -37,22 +37,22 @@ public class MemberAjaxController {
 			if(!Pattern.matches("^[a-zA-Z0-9]{4,12}$",mem_id)) {
 				mapAjax.put("result", "notMatchPattern");
 			} else {
-//				패턴이 일치하면서 아이디 미중복
+				//				패턴이 일치하면서 아이디 미중복
 				mapAjax.put("result", "idNotFound");
 			}
 		}
 		return mapAjax;
 	}
-	
+
 	@GetMapping("/member/confirmPhone")
 	@ResponseBody
 	public Map<String, String> confirmPhone(@RequestParam String mem_phone){
 		log.debug("<< 전화번호 중복 체크>> : " + mem_phone);
-		
+
 		Map<String, String> mapAjax = new HashMap<String, String>();
-		
+
 		MemberVO member = memberService.selectCheckPMember(mem_phone);
-		
+
 		if(member != null) {
 			mapAjax.put("result", "phoneDuplicated");
 		} else {
@@ -60,16 +60,16 @@ public class MemberAjaxController {
 		}
 		return mapAjax;
 	}
-	
+
 	@GetMapping("/member/confirmEmail")
 	@ResponseBody
 	public Map<String, String> confirmEmail(@RequestParam String mem_email){
 		log.debug("<< 이메일 중복 체크>> : " + mem_email);
-		
+
 		Map<String, String> mapAjax = new HashMap<String, String>();
-		
+
 		MemberVO member = memberService.selectCheckEMember(mem_email);
-		
+
 		if(member != null) {
 			mapAjax.put("result", "emailDuplicated");
 		} else {
@@ -77,25 +77,29 @@ public class MemberAjaxController {
 		}
 		return mapAjax;
 	}
-	
-	 	@PostMapping("/member/pointCharge")
-	   @ResponseBody
-	    public Map<String, String> chargePoint(@RequestParam Long mem_num, @RequestParam Long ph_point, @RequestParam String ph_payment) {
-	        log.debug("<<포인트 충전>> ");
-	        
-	        Map<String, String> mapAjax = new HashMap<String,String>();
-	        
-	        try {
-	            memberService.chargePoint(ph_point, mem_num,ph_payment);
-	            mapAjax.put("result", "success");
-	        } catch (Exception e) {
-	            log.error("포인트 충전 에러", e);
-	            mapAjax.put("result", "error");
-	        }
-	        
-	        return mapAjax;
-	    }
 
-	
-	
+	@PostMapping("/member/pointCharge")
+	@ResponseBody
+	public Map<String, String> chargePoint(@RequestParam Long mem_num, @RequestParam Long ph_point, @RequestParam String ph_payment) {
+		log.debug("<<포인트 충전>> ");
+
+		Map<String, String> mapAjax = new HashMap<String,String>();
+
+		try {
+			memberService.chargePoint(ph_point, mem_num,ph_payment);
+			
+			memberService.totalPoint(mem_num);
+
+			mapAjax.put("result", "success");
+
+		} catch (Exception e) {
+			log.error("포인트 충전 에러", e);
+			mapAjax.put("result", "error");
+		}
+
+		return mapAjax;
+	}
+
+
+
 }
