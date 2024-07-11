@@ -22,6 +22,7 @@ create table member_detail (
     mem_reg_date date default sysdate not null,
     mem_modify_date date,
     social_kakao varchar2(400),
+    mem_nickname varchar2(30),
     constraint member_detail_pk primary key (mem_num),
     constraint member_detail_fk foreign key (mem_num) references member (mem_num)
 );
