@@ -65,7 +65,7 @@
 		<!-- 나의 쿠폰 링크 -->
 		<div class="mp_coupon">나의 쿠폰</div>
 		<div class="coupon_content">
-			<span>쿠폰</span><span>21개</span>
+			<span>쿠폰</span><span>${member.coupon_cnt }</span>
 		</div>
 		<hr size="1" width="90%" class="line">
 	</div>

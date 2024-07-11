@@ -23,6 +23,11 @@ public class MyPageServiceImpl implements MyPageService{
 		Integer point = myPageMapper.selectMemberPoint(mem_num);
         return point != null ? point : 0;
 	}
+	@Override
+	public Integer selectMemberCoupon(long mem_num) {
+		Integer coupon = myPageMapper.selectMemberCoupon(mem_num);
+		return coupon != null ? coupon : 0;
+	}
 	
 	
 }

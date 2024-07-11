@@ -50,6 +50,8 @@ public class MyPageVO {
 	private int mem_membership;
 	private int ph_point;
 	
+	private int coupon_cnt;	// 쿠폰 개수를 지정하는 이름
+	
 	// 비밀번호 변경시 현재 비밀번호를 저장하는 용도로 사용
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String now_passwd;	// 컬럼은 없지만 필요에 의해 생성해줌
