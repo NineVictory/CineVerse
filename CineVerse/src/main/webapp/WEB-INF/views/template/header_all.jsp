@@ -25,7 +25,7 @@
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
                             <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/movieReserve" title="예매하기" class="hide-menu-a">예매하기</a></li>
-                            <li class="hide_menu_li"><a href="#" title="상영시간표" class="hide-menu-a">상영시간표</a></li>
+                            <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/movieTime" title="상영시간표" class="hide-menu-a">상영시간표</a></li>
                             <li class="hide_menu_li"><a href="#" title="할인안내" class="hide-menu-a">할인안내</a></li>
                         </ul>
                     </div>
