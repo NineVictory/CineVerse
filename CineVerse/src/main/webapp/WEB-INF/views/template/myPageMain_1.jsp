@@ -9,9 +9,8 @@
 	<div class="myPageMain_right">
 		<div class="myPageMain_information">
 			<span class="myPageMain_name">${member.mem_name } 님</span> <span
-				class="myPageMain_id">${member.mem_id }</span> <span
-				class="myPageMain_nickName">닉네임 : ${member.mem_id }</span> <input type="button"
-				value="수정이미지로 변경">
+				class="myPageMain_id">${member.mem_nickName }</span> <span
+				class="myPageMain_nickName">닉네임 : ${member.mem_id }</span>
 		</div>
 
 		<div class="myPageMain_vip">고객님은 2024년 1월 
@@ -65,7 +64,7 @@
 		<!-- 나의 쿠폰 링크 -->
 		<div class="mp_coupon">나의 쿠폰</div>
 		<div class="coupon_content">
-			<span>쿠폰</span><span>${member.coupon_cnt }</span>
+			<span>쿠폰</span><span>${member.coupon_cnt}</span>
 		</div>
 		<hr size="1" width="90%" class="line">
 	</div>

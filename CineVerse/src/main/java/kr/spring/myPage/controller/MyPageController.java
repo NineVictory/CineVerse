@@ -44,6 +44,7 @@ public class MyPageController {
 	public String myPageReservation(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
 		model.addAttribute("member",member);
 		return "myPageReservation";
 	}
@@ -140,6 +141,7 @@ public class MyPageController {
 		map.put("count", count);
 		
 		model.addAttribute("member",member);
+		model.addAttribute("boardData", map); 
 		return "myBoardWrite";
 	}
 	
