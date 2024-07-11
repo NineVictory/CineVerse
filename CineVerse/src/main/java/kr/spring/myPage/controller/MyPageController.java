@@ -28,6 +28,7 @@ public class MyPageController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
 		log.debug("<<마이페이지 >> : " +member);
 		model.addAttribute("member",member);
 		return "myPageMain";

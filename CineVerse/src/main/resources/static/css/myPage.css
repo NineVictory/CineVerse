@@ -1138,7 +1138,6 @@
   .adress_plus{
   	margin-left: auto;
   	margin-top: 25px;
-  	margin-bottom: 15px;
   	color: #fff;
   	background-color: #3F66ED;
   	font-size: 15px;
@@ -1151,16 +1150,21 @@
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	margin-top: 25px;
-	
-	
 }
-
 .my_address_choice {
-	
+	margin-right: auto;
 }
-.my_address_find {
-	
+.my_address_info {
+	margin-top: 25px;
+	background-color: #F7F7F7;
+    border-radius: 12px;
+    padding: 20px 30px;
+    gap: 12px;
+    flex-grow: 1;
+    align-items: stretch;
+}
+.my_address_box{
+	 
 }
 
 

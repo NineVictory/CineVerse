@@ -6,13 +6,17 @@
 		<span class="myPage_title_re">배송지 관리</span>
 	</div>
 	<div class="adress_plus">우편번호 추가</div>
+	
+	
 	<div class="myPage_address">
+	
 	<div class="my_address_choice">
 	<input type="radio" name="my_address" value="m_adress_1">
 	<span>집</span>
 	</div>
-	<div class="my_address_find">
 	
+	<div class="my_address_info">
+	<div class="my_address_box">박스</div>
 	</div>
 	</div>
 </div>
