@@ -18,13 +18,13 @@ public class SupportController {
 		return "supportFaq";
 	}
 	
-	@GetMapping("/support/news")
-	public String newsList() {
-		return "supportNews";
+	@GetMapping("/support/notice")
+	public String noticeList() {
+		return "supportNotice";
 	}
 	
-	@GetMapping("/support/qna")
-	public String qnaForm() {
-		return "supportQna";
+	@GetMapping("/support/consult")
+	public String consultForm() {
+		return "supportConsult";
 	}
 }
