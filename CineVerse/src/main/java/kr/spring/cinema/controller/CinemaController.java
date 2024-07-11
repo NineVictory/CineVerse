@@ -1,6 +1,9 @@
 package kr.spring.cinema.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
-import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -49,8 +51,7 @@ public class CinemaController {
 		if(result.hasErrors()) {
 			return form();
 		}
-		//파일 업로드
-		cinemaVO.setC_filename(FileUtil.createFile(request, cinemaVO.getUpload()));
+
 		//글쓰기
 		cinemaService.insertCinema(cinemaVO);
 		
@@ -65,8 +66,11 @@ public class CinemaController {
 	 * 		영화관 목록
 	 *==============================*/
 	@GetMapping("/movie/ownMovieInfo")
-	public String ownMovieInfo(){
-		
+	public String ownMovieInfo(Model model){
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<CinemaVO> list = null;
+		list = cinemaService.selectCinemaList(map);
+		model.addAttribute("list", list);
 		
 		return "ownMovieInfo";
 	}

@@ -46,10 +46,6 @@
 				<form:input path="c_parkable" placeholder="주차가능여부를 입력하세요"/>
 				<form:errors path="c_parkable" cssClass="error-color"/>
 			</li>
-			<li>
-				<form:label path="upload">파일업로드</form:label>
-				<input type="file" name="upload" id="upload">
-			</li>
 		</ul> 
 		<div class="align-center">
 			<form:button class="default-btn">전송</form:button>

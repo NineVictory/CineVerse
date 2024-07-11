@@ -13,8 +13,7 @@
 			c_phone,
 			c_theater,
 			c_seat,
-			c_parkable,
-			c_filename)
+			c_parkable)
 		VALUES (
 			cinema_num.nextval,
 			#{c_branch},
@@ -23,8 +22,7 @@
 			#{c_phone},
 			#{c_theater},
 			#{c_seat},
-			#{c_parkable},
-			#{c_filename})
+			#{c_parkable})
 	</insert>
 	
 	
@@ -38,9 +36,6 @@
 	<!-- 영화관 목록 -->
 	<select id="selectCinemaList" parameterType="map" resultType="cinemaVO">
 		SELECT
-			*
-		FROM (SELECT a.*, rownum rnum
-		FROM (SELECT
 					c_num,
 					<![CDATA[
 	 				REPLACE(REPLACE(c_branch,'<','&lt;'),'&gt;') c_branch,
@@ -51,11 +46,7 @@
 	 				c_seat,
 	 				c_parkable,
 	 				c_filename
-	 		FROM cinema
-					)a)
-				<![CDATA[
-		 			WHERE rnum >= #{start} AND rnum <= #{end}
-				]]>
+		FROM cinema
 	</select>
 </mapper>							
 

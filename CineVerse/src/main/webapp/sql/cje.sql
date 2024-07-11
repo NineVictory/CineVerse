@@ -346,7 +346,7 @@ CREATE TABLE cinema (
     c_theater NUMBER NOT NULL,
     c_seat NUMBER NOT NULL,
     c_parkable VARCHAR2(5), -- Oracle에서는 boolean 대신 VARCHAR2로 처리
-    c_filename CLOB NOT NULL,
+    c_filename CLOB NULL,
     CONSTRAINT PK_CINEMA PRIMARY KEY (c_num)
 );
 
