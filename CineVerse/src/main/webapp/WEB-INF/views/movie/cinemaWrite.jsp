@@ -6,7 +6,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <div class="page-main">
 	<h2>영화등록</h2>
-	<form:form action="write" id="cinema_write" enctype="multipart/form-data" modelAttribute="cinemaVO">
+	<form:form action="cinemaWrite" id="cinema_write" enctype="multipart/form-data" modelAttribute="cinemaVO">
 		<ul>
 			<li>
 				<form:label path="c_location">지역</form:label>
@@ -35,15 +35,15 @@
 				<form:errors path="c_phone" cssClass="error-color"/>
 			</li>
 			<li>
-				<form:input path="c_theater" placeholder="ㅅ를 입력하세요"/>
+				<form:input path="c_theater" placeholder="상영관수를 입력하세요"/>
 				<form:errors path="c_theater" cssClass="error-color"/>
 			</li>
 			<li>
-				<form:input path="c_seat" placeholder="주소를 입력하세요"/>
+				<form:input path="c_seat" placeholder="좌석수를 입력하세요"/>
 				<form:errors path="c_seat" cssClass="error-color"/>
 			</li>
 			<li>
-				<form:input path="c_parkable" placeholder="주소를 입력하세요"/>
+				<form:input path="c_parkable" placeholder="주차가능여부를 입력하세요"/>
 				<form:errors path="c_parkable" cssClass="error-color"/>
 			</li>
 			<li>

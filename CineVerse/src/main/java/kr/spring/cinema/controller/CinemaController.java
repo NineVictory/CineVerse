@@ -35,12 +35,12 @@ public class CinemaController {
 	 * 		영화관 등록
 	 *==============================*/	
 	//등록 폼 호출
-	@GetMapping("/movie/Write")
+	@GetMapping("/movie/cinemaWrite")
 	public String form() {
 		return "cinemaWrite";
 	}
 	//등록 폼에서 전송된 데이터 처리
-	@PostMapping("movie/Write")
+	@PostMapping("movie/cinemaWrite")
 	public String cinemaWrite(@Valid CinemaVO cinemaVO, BindingResult result, HttpServletRequest request, HttpSession session, Model model)
 																										throws IllegalStateException, IOException{
 		log.debug("<<영화관 등록>> : " + cinemaVO);

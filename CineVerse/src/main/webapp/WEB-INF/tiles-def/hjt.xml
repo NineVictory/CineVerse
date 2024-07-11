@@ -5,11 +5,12 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="cyy" extends="main">
-		<put-attribute name="title" value="게시판 목록"/>
-		<put-attribute name="css" value="/WEB-INF/views/board/boardCSS.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/board/boardList.jsp"/>
-	</definition>
+	 <!-- 영화관 등록 -->
+    <definition name="cinemaWrite" extends="movieList">
+        <put-attribute name="title" value="영화예매"/>
+        <put-attribute name="css" value="/WEB-INF/views/movie/movieReserveCSS.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/cinemaWrite.jsp"/>
+    </definition>
 </tiles-definitions>
 
 
