@@ -111,6 +111,7 @@ input[type="search"]::placeholder {
     justify-content: flex-start;
     width: 100%; /* 화면 크기에 맞추기 */
     overflow-x: hidden; /* 가로 스크롤 숨기기 */
+    
 }
 
 .movie {
@@ -122,7 +123,7 @@ input[type="search"]::placeholder {
 .movie img {
     width: 70%;
     max-width: 100%;
-    height: auto;
+    height: 50%;
 }
 
 #loadMoreButton {

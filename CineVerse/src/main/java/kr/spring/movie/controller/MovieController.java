@@ -1,5 +1,11 @@
 package kr.spring.movie.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,37 +14,53 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.board.vo.BoardVO;
+import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 public class MovieController {
 	
-	//자바빈(VO) 초기화
-		@ModelAttribute
-		public MovieVO initCommand() {
-			return new MovieVO();
-		}
-	/*=======================
-	 * 영화 등록
-	*=======================*/
-	//등록 폼 호출
-	@GetMapping("/movie/write")
-	public String form() {
-		return "movieWrite";
-	}	
+	@Autowired
+	private MovieService movieService;
 		
 	/*=======================
 	 * 영화 목록
 	 *=======================*/
 	@GetMapping("/movie/movieList")
 	public String movieList(@RequestParam(defaultValue = "1") int pageNum,
-			  				@RequestParam(defaultValue = "1") int order,
+			  				@RequestParam(defaultValue = "1") int movieorder,
 			  				
 			  String keyfield, String keyword, Model model) {
 		
-		log.debug("<<게시판 목록 - order>> :"+order); //정렬
+		log.debug("<<게시판 목록 - movieorder>> :"+movieorder); //정렬
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+
+		map.put("keyfield",keyfield);
+		map.put("keyword",keyword);
+		
+		//전체,검색 레코드 수
+		int count = movieService.selectMovieRowCount(map);
+		
+		//페이지 처리
+				PagingUtil page = 
+						new PagingUtil(keyfield,keyword, pageNum,
+											count,20,10,"movielist",
+											"&movieorder="+movieorder);
+				List<MovieVO> movielist = null;
+				if(count >0) {
+					map.put("movieorder",movieorder);
+					map.put("start",page.getStartRow());
+					map.put("end",page.getEndRow());
+					
+					movielist = movieService.selectMovieList(map);
+				}
+				model.addAttribute("count",count);
+				model.addAttribute("movielist",movielist);
+				model.addAttribute("page",page.getPage());
 		
 		return "movieList";
 	}
