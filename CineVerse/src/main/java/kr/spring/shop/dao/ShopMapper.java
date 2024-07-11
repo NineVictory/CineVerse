@@ -40,7 +40,7 @@ public interface ShopMapper {
 	
 	// 상품 장바구니 여부
 	@Select("SELECT p_num FROM p_basket WHERE mem_num=#{mem_num}")
-	public ProductVO selectProductBasket(ProductVO fav);
+	public ProductVO selectProductBasket(Long mem_num);
 	// 상품 장바구니 넣기
 	@Insert("INSERT INTO p_basket (pb_num, pb_quantity, p_reg_date, p_num, mem_num) VALUES (p_basket_seq.nextval, #{pb_quantity}, SYSDATE, #{p_num}, #{mem_num})")
 	public void ProductBasket(ProductVO fav);

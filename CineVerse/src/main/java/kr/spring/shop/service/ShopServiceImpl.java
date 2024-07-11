@@ -58,8 +58,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public ProductVO selectProductBasket(ProductVO fav) {
-		return shopMapper.selectProductBasket(fav);
+	public ProductVO selectProductBasket(Long mem_num) {
+		return shopMapper.selectProductBasket(mem_num);
 	}
 
 	@Override

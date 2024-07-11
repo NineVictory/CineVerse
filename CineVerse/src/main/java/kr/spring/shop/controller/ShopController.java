@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -109,14 +110,6 @@ public class ShopController {
 		return "shopBasket";
 	}
 	
-	// 벌스샵 장바구니 담기
-	@PostMapping("/shop/productBasket")
-	public String productBasket(ProductVO basket, HttpSession session, HttpServletRequest request) {
-		log.debug("<<장바구니 등록 취소>> ::: " + basket);
-		
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		
-		return new String();
-	}
+	
 	
 }

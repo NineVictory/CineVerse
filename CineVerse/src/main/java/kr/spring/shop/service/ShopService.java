@@ -18,7 +18,7 @@ public interface ShopService {
 	public ProductVO selectProductFav(ProductVO fav);
 	public void ProductFavDelete(ProductVO fav);
 	public Integer productFavCount(Long p_num);
-	public ProductVO selectProductBasket(ProductVO fav);
+	public ProductVO selectProductBasket(Long mem_num);
 	public void ProductBasket(ProductVO fav);
 	public void ProductBasketDelete(ProductVO fav);
 	public List<ProductVO> productBasketList(Long mem_num);
