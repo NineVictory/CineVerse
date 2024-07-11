@@ -3,13 +3,36 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.cinema.dao.CinemaMapper"><!--인터페이스명-자동매핑-->
+	<!-- 영화관 등록 -->
+	<insert id="insertCinema" parameterType="cinemaVO">
+		INSERT INTO cinema(
+			c_num,
+			c_branch,
+			c_location,
+			c_address,
+			c_phone,
+			c_theater,
+			c_seat,
+			c_parkable,
+			c_filename)
+		VALUES (
+			cinema_num.nextval,
+			#{c_branch},
+			#{c_location},
+			#{c_address},
+			#{c_phone},
+			#{c_theater},
+			#{c_seat},
+			#{c_parkable},
+			#{c_filename})
+	</insert>
+	
 	
 	<!-- 영화관 총 수 -->
 	<select id="selectCinemaRowCount" parameterType="map" resultType="integer">
 		SELECT
 			COUNT(*)
 		FROM cinema
-		<include refid="locationSelect"></include>
 	</select>
 	
 	<!-- 영화관 목록 -->
@@ -29,7 +52,6 @@
 	 				c_parkable,
 	 				c_filename
 	 		FROM cinema
-	 				<include refid="locationSelect"></include>
 					)a)
 				<![CDATA[
 		 			WHERE rnum >= #{start} AND rnum <= #{end}

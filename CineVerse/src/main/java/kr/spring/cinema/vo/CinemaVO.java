@@ -1,6 +1,6 @@
 package kr.spring.cinema.vo;
 
-import java.sql.Clob;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,5 +18,6 @@ public class CinemaVO {
 	private int c_theater;  		//상영관 수
 	private int c_seat; 			//좌석 수
 	private String c_parkable;		//주차 가능 여부
-	private Clob c_filename;		//영화관 내부 사진
+	private String c_filename;		//영화관 내부 사진
+	private MultipartFile upload;		//파일
 }

@@ -30,8 +30,7 @@ public class CinemaServiceImpl implements CinemaService{
 
 	@Override
 	public void insertCinema(CinemaVO cinema) {
-		// TODO Auto-generated method stub
-		
+		cinemaMapper.insertCinema(cinema);
 	}
 
 	@Override
