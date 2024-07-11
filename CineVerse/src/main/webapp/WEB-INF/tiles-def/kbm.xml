@@ -59,14 +59,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/support/supportFaq.jsp"/>
 	</definition>
 	
-	<definition name="supportNews" extends="supportMain">
+	<definition name="supportNotice" extends="supportMain">
 		<put-attribute name="title" value="공지/뉴스"/>
-		<put-attribute name="body" value="/WEB-INF/views/support/supportNews.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportNotice.jsp"/>
 	</definition>
 	
-	<definition name="supportQna" extends="supportMain">
+	<definition name="supportConsult" extends="supportMain">
 		<put-attribute name="title" value="공지/뉴스"/>
-		<put-attribute name="body" value="/WEB-INF/views/support/supportQna.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportConsult.jsp"/>
 	</definition>
 </tiles-definitions>
 

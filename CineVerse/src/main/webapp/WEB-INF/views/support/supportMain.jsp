@@ -22,7 +22,7 @@
 		<div class="flexbox-p fast-menu">
 			<strong>내 상담 내역 확인</strong>
 			<span>문의하신 내용을 확인하실 수 있습니다</span>
-			<a href="#">문의내역 조회</a>
+			<a href="${pageContext.request.contextPath}/myPage/consult" target="_blank" rel="noopener noreferrer">문의내역 조회</a>
 		</div>
 	</div>
 	<div class="flexbox-h main-lower-menu flex-start">
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div class="right-lower-menu">
-			<h4 style="display:inline-block;">공지/뉴스</h4> &nbsp;<a href="#"><img src="">추가버튼</a>
+			<h4 style="display:inline-block;">공지/뉴스</h4> &nbsp;<a href="notice"><img src="">추가버튼</a>
 			<table>
 				<tr>
 					<td><a href="#"><span>최신 공지 5개</span></a><span>등록일</span></td>
