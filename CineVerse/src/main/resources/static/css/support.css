@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+.align-center{
+	text-align:center;
+}
+.align-right{
+	text-align:right;
+}
+.align-left{
+	text-align:left;
+}
+
 /*supportNav*/
 div.supportNav{
 	width:18%;
@@ -141,4 +151,94 @@ li.support_nav{
 }
 .faq-table-title, .news-table-title{
 	text-align:left;
+}
+
+/*consult 일대일문의*/
+.qna-member-info{
+	margin-top:15px;
+}
+.qna-member-info > div{
+	border-top:1px solid #000;
+}
+.qna-member-info > div:last-child{
+	border-bottom:1px solid #000;
+}
+.check-info{
+	padding:2px 5px 2px 0;
+	font-size:14px;
+}
+.member-info-gap{
+	display:flex;
+	padding:10px;
+}
+.info-label{
+	display:inline-block;
+	width:80px;
+	margin-right:15px;
+}
+.phone-email{
+	gap:300px;
+}
+.warning{
+	background:#CEEEF9;
+	align-items:center;
+	padding:7px 30px;
+	gap:30px;
+	margin:20px 0;
+}
+.qna-member-info, .warning{
+	font-size:15px;
+}
+
+form#qna_register{
+	margin:50px 0;
+	padding:10px;
+	font-size:15px;
+}
+.form-label{
+	width:100px;
+	margin-right:20px;
+}
+.form-items{
+	 border-bottom:1px solid #edebeb;
+	 padding:20px 0;
+}
+input#consult_title, textarea#consult_content{
+	width:850px;
+	padding:7px;
+}
+textarea#consult_content{
+	height:170px;
+	overflow:auto;
+	resize:none;
+}
+.file-info > div{
+	margin-top:7px;
+}
+.btn-container{
+	margin-top:30px;
+}
+/*버튼*/
+.default-btn3{
+	border:none;
+	border-radius:5px;
+	width:80px;
+	height:32px;
+    background-color:#3F66ED;
+    color:#fff;
+    font-size:15px;
+    
+    margin-right:10px;
+}
+.default-btn4{
+	border:1px solid #3F66ED;
+	border-radius:5px;
+	width:80px;
+	height:32px;
+    background-color:#fff;
+    color:#000;
+    font-size:15px;
+}
+.font-red{
+	color:red;
 }

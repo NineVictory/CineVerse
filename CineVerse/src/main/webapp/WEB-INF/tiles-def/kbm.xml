@@ -65,7 +65,7 @@
 	</definition>
 	
 	<definition name="supportConsult" extends="supportMain">
-		<put-attribute name="title" value="공지/뉴스"/>
+		<put-attribute name="title" value="1:1문의"/>
 		<put-attribute name="body" value="/WEB-INF/views/support/supportConsult.jsp"/>
 	</definition>
 </tiles-definitions>

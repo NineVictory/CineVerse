@@ -17,7 +17,7 @@
 		<div class="flexbox-p fast-menu">
 			<strong>1:1 문의</strong>
 			<span>24시간 365일 언제든지 문의해주세요</span>
-			<a href="qna">문의하기</a>
+			<a href="consult">문의하기</a>
 		</div>
 		<div class="flexbox-p fast-menu">
 			<strong>내 상담 내역 확인</strong>

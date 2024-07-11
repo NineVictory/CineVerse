@@ -24,10 +24,10 @@ public class AssignBoardController {
 	
 	
 	//자바빈(VO) 초기화
-		@ModelAttribute
-		public AssignVO initCommand() {
-			return new AssignVO();
-		}
+	@ModelAttribute
+	public AssignVO initCommand() {
+		return new AssignVO();
+	}
 	
 	
 	/*====================
