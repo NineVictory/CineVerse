@@ -43,7 +43,7 @@
 	    <div class="product-detail">
 		     <ul>
 	            <li>
-	                <a href="?page=detail">
+	                <a href="?page=detail&p_num=${product.p_num}">
 	                    <c:if test="${param.page == 'detail' || param.page == null}">
 	                        <b style="color:black;">상세 정보</b>
 	                    </c:if>
@@ -53,7 +53,7 @@
 	                </a>
 	            </li>
 	            <li>
-	                <a href="?page=review">
+	                <a href="?page=review&p_num=${product.p_num}">
 	                    <c:if test="${param.page == 'review'}">
 	                        <b style="color:black;">리뷰</b>
 	                    </c:if>
@@ -63,7 +63,7 @@
 	                </a>
 	            </li>
 	            <li>
-	                <a href="?page=info">
+	                <a href="?page=info&p_num=${product.p_num}">
 	                    <c:if test="${param.page == 'info'}">
 	                        <b style="color:black;">반품/교환 정보</b>
 	                    </c:if>
