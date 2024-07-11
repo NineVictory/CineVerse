@@ -44,7 +44,9 @@ public class AppConfig implements WebMvcConfigurer{
 				.addPathPatterns("/myPage/deleteMember")
 				.addPathPatterns("/movie/write")
 				.addPathPatterns("/movie/update")
-				.addPathPatterns("/movie/delete");
+				.addPathPatterns("/movie/delete")
+				.addPathPatterns("/shop/shopBasket")
+				.addPathPatterns("/shop/productBasket");
 		
 				
 	}
