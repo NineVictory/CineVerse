@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!-- 자체영화관 시작 -->
 <div class="ownMovie-main">
     <!-- 영화관 선택 시작 -->
@@ -13,7 +14,7 @@
         
         <div class="location-button"> 
         		<div class="content-place-title">CINEVERSE 강남</div>
-              <div class="location-button-list" id="modal_opne_btn">위치/지도보기</div>
+              <div class="location-button-list" id="modal_open_btn">위치/지도보기</div>
              </div>
              <div id="modal">
     			<div class="modal_content">
@@ -22,17 +23,92 @@
         			
         			<hr class="custom-hr">
       
-       					 <div class="modal-content">모달창입니다.</div>
-       					 <div class="modal-content">모달창입니다.</div>
-       					 <div class="modal-content">모달창입니다.</div>
-       					 <div class="modal-content">모달창입니다.</div>
-       					 <div class="modal-content">모달창입니다.</div>
-       					 <div class="modal-content">모달창입니다.</div>
-       					 <div class="modal-content">모달창입니다.</div>
-       					 <div class="modal-content">모달창입니다.</div>
-       					 
-        		
-       
+       					 <!-- 지도 -->        		
+       					<!-- 지도를 표시할 div 입니다 -->
+						<div id="modal_map" style="width: 100%; height: 700px;"></div>
+						<div class="map_wrap">
+<!--     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> -->
+
+    <div id="map" class="bg_white">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="영화관" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
+</div>
+<!-- 지도 스크립트 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23eb84e1f8e8eadb7771addf44c8a193"></script>
+<!-- <script type="text/javascript">
+	document.getElementById("modal_open_btn").onclick = function() {
+		document.getElementById("modal").style.display="block";
+
+		var container = document.getElementById('modal_map'); //지도를 담을 영역의 DOM 레퍼런스
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+			level: 3 //지도의 레벨(확대, 축소 정도)
+		};
+
+		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	}
+   
+	document.getElementById("modal_close_btn").onclick = function() {
+		document.getElementById("modal").style.display="none";
+	}
+</script> -->
+<script type="text/javascript">
+    // 모달 열기 버튼 클릭 시
+    document.getElementById("modal_open_btn").onclick = function() {
+        document.getElementById("modal").style.display = "block";
+
+        var container = document.getElementById('modal_map'); // 지도를 담을 영역의 DOM 레퍼런스
+        var options = { // 지도를 생성할 때 필요한 기본 옵션
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 레벨(확대, 축소 정도)
+        };
+
+        var map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+		
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+                });
+                infowindow.open(map, marker);
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            }
+        });
+    }
+
+    // 모달 닫기 버튼 클릭 시
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("modal").style.display = "none";
+        // 지도를 초기화할 수 있다면 추가 코드 필요
+    }
+</script>
+<!-- 지도 끝 -->
     			</div>
    
     			<div class="modal_layer"></div>
@@ -55,16 +131,12 @@
         var daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 
         // 영화 날짜 생성 함수
-        //cinema-gallery 클래스를 가진 div 요소를 gallery에 저장
         function generateMovieDays() {
-        	//querySelector는 주어진 CSS 선택자를 사용하여 첫 번째로 일치하는 요소를 선택하여 반환하는데 여기선 .cinema-gallery 클래스가 있는 첫번째 요소로를 선택했다. 그외에 <div>,id 등등 다양하게 선택 가능하다.
             var gallery = document.querySelector('.cinema-gallery'); 
             gallery.innerHTML = ''; // 기존 내용을 비웁니다.
 
             for (var i = 0; i < 12; i++) {
-            							//createElement는 document 객체의 메서드로 지정한 HTML 요소를 생성 시키는 역할이다. 여기선 div 요소를 생성시킴
-                var dayElement = document.createElement('div');//각 루프마다 dayElement라는 div 요소를 생성
-                		//Date객체함수들:  getFullYear:현재Date를 4자리 숫자로 반환	| getMonth:월을 0~11까지의 숫자로 반환 	| getDate: 1~31까지 숫자로 반환
+                var dayElement = document.createElement('div');
                 var displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i); //현재날짜에 i일을 더함
                 var day = displayDate.getDate(); //displayDate 에 '일' 부분을 저장 
                 var dayOfWeek = daysOfWeek[displayDate.getDay()]; // getDay() 는 요일을 가져오는 Date 객체의 함수 : 숫자 0~6사이를 반환
@@ -198,54 +270,6 @@
 	    </div>
     </div>
     <hr class="custom-hr">
-    <div class="cinema-movie">
-	    <div class="cinema-movie-title">
-		    <img class="watch-15-2" src="${pageContext.request.contextPath}/images/ksh/watch-15.png">
-		    <div>대충만든영화</div>
-	    </div>
-	    <div class="screening-room">
-	    	<div class="cinema-hall">
-	    		1관 <br> 총 120석
-	    	</div>
-	    	<div class="timeorseat">
-	    			18:00<br>155/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			21:00<br>180/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			00:00<br>211/232
-	    	</div>
-	    
-	    </div>
-	    <hr class="custom-hr">
-	    <div class="screening-room">
-	    	<div class="cinema-hall">
-	    		2관 <br> 총 102석
-	    	</div>
-	    	<div class="timeorseat">
-	    			17:00<br>155/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			20:00<br>180/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			23:00<br>211/232
-	    	</div>
-	    	
-	    </div>
-    </div>
-    <hr class="custom-hr">
-    <!-- 영화관 별 영화 목록 끝-->
-
-<script>
-    document.getElementById("modal_opne_btn").onclick = function() {
-        document.getElementById("modal").style.display="block";
-    }
-   
-    document.getElementById("modal_close_btn").onclick = function() {
-        document.getElementById("modal").style.display="none";
-    }   
-</script>
+    
 </div>
 <!-- 자체영화관 끝 -->
