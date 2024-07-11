@@ -20,78 +20,16 @@
 	font-weight: bold;
 }
 
-/* 지점명 */
-.theater-part {
-	width: 350px;
-}
-
-.theater-container {
-	display: flex;
-	justify-content: left;
-	height: 763px;
-	background-color: var(--main-color-light);
-}
-
-
-.theater-location-wrapper {
-	/* flex-grow: 1; */
-	/* display: flex; */
-	/* flex-direction: column; */
-	padding: 0;
-}
-
-.theater-location {
-	font-size: 13px;
-	padding: 15px 20px;
-	position: relative;
-	width: 152px;
-	height: 50px;
-	/* text-align: center; */
-	align-items: center;
-	/* background-color: #E6E4D9; */
-	/* margin-top: 5px;*/
-}
-
-.location {
-	height: 763px;
-    position: absolute;
-    left: 155px;
-    right: 0px;
-    top: 0;
-    bottom: 0;
-    /* left: 100%; */
-    /* display: none; */
-    /* margin-top: 10px; */
-    background-color: white;
-    /* border: 1px solid #444444; */
-    width: 193px;
-    /* padding: 10px; */
-    z-index: 1;
-}
-
-.theater-place-wrapper {
-	padding: 0;
-}
-
-.theater-place {
-	font-size: 14px;
-	padding: 25px 0 0px 20px;
+.select-movietime{
+	border-bottom: 1px solid #dddddd;
+	background-color: #D3D3D3;
+	text-align: center;
+	align-items: center;	
+	padding: 5px;
+	font-size: 20px;
 	font-weight: bold;
-	text-align: left;
-}
-
-.theater-location-active {
-	outline: 2px solid var(--main-color-strong);
-    background-color: #fff;
-    /* color: white;*/
-}
-
-.theater-location-active .a {
-	color: white;
-}
-
-.theater-location-active .location {
-	display: block;
+	height: 70px;
+	margin-bottom: 30px;
 }
 
 /* 영화 */
@@ -153,11 +91,11 @@
 
 /* 날짜 및 시간 */
 .time-part {
-	width: 400px;
+	width: 750px;
 }
 
 .reserve-time {
-	width: 300px;
+	width: 700px;
 	margin: 0 auto;
 }
 

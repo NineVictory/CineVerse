@@ -7,6 +7,7 @@
 	<!-- 영화 -->
 	<div class="movie-part">
 		<div class="reserve-title">영화</div>
+		<div class="select-movietime">선택한 영화</div>
 		<div class="sort-wrapper">
 			<div class="sort-rate sort-selected">예매율순</div>
 			<div class="sort-korean">가나다순</div>	
@@ -28,10 +29,10 @@
 	<!-- 날짜 및 시간 -->
 	<div class="time-part">
 		<div class="reserve-title">날짜 및 시간</div>
+		<div class="select-movietime">선택한 날짜</div>
 		<div class="reserve-time">
 			<div class="reserve-month">7월			
 				<ul class="reserve-date">								
-					<li class="date"><a href="#">10<br>수</a></li>
 					<li class="date"><a href="#">11<br>목</a></li>
 					<li class="date"><a href="#">12<br>금</a></li>
 					<li class="date saturday"><a href="#">13<br>토</a></li>
@@ -58,7 +59,7 @@
 			<div class="reserve-time-wrapper">
 				<button class="reserve-time-button">
 					<span class="reserve-time-want">18:50</span> 
-					<span class="reserve-time-remain">240/240</span><br>
+					<span class="reserve-time-remain">240/240</span>
 					<span class="reserve-time-place">1관</span>
 				</button>
 				<button class="reserve-time-button">
