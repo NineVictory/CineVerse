@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.NoticeVO;
 
 public interface AdminService {
 
@@ -14,4 +15,6 @@ public interface AdminService {
 	public List<AdminVO> getAllMembership();
 	public List<EventVO> getAllEvent();
 	public void insertEvent(EventVO eventVO);
+	public List<NoticeVO> getAllNotice();
+	public void insertNotice(NoticeVO noticeVO);
 }

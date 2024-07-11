@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.NoticeVO;
 import kr.spring.board.vo.BoardVO;
 
 @Mapper
@@ -27,7 +28,11 @@ public interface AdminMapper {
     		+ "ON m.mem_num = md.mem_num WHERE m.mem_membership = 1 ORDER BY md.mem_reg_date DESC")
     public List<AdminVO> getAllMembership();
     // 공지사항
-
+    @Select("SELECT nb_num, nb_title, nb_content, nb_filename, nb_reg_date "
+    		+ "FROM notice_board "
+    		+ "ORDER BY nb_reg_date DESC")
+    public List<NoticeVO> getAllNotice();
+    public void insertNotice(NoticeVO noticeVO);
     
     // 이벤트
     @Select("SELECT event_num, event_name, event_start, event_end, event_reg_date "

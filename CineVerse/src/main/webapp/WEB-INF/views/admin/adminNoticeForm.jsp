@@ -9,8 +9,8 @@
 <script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        const myForm = document.getElementById('RegisterEvent_form');
+    document.addnoticeListener('DOMContentLoaded', function() {
+        const myForm = document.getElementById('RegisterNotice_form');
         myForm.onsubmit = function() {
             const items = document.querySelectorAll('.input-check');
             for (let i = 0; i < items.length; i++) {
@@ -25,23 +25,23 @@
         };
     });
 </script>
-	<h2>이벤트 등록</h2>
-	<form:form action="adminEventForm" enctype="multipart/form-data" id="registerEvent_form" modelAttribute="eventVO">
+	<h2>공지사항 등록</h2>
+	<form:form action="adminNoticeForm" enctype="multipart/form-data" id="registerNotice_form" modelAttribute="NoticeVO">
 	<ul>
 		<li>	
-			<label for="event_name">이벤트명</label>
-			<input type="text" name="event_name" id="event_name" class="input-check">
-			<form:errors path="event_name"></form:errors>
+			<label for="nb_title">공지사항명</label>
+			<input type="text" name="nb_title" id="nb_title" class="input-check">
+			<form:errors path="nb_title"></form:errors>
 		</li>
 		<li>
-			<label for="event_upload">이벤트사진</label>
-			<input type="file" name="event_upload" id="event_upload" class="input-check" accept="image/gif,image/png,image/jpeg">
-			<form:errors path="event_upload"></form:errors>
+			<label for="nb_upload">공지사항사진</label>
+			<input type="file" name="nb_upload" id="nb_upload" class="input-check" accept="image/gif,image/png,image/jpeg">
+			<form:errors path="nb_upload"></form:errors>
 		</li>
 		<li>
-			<label for="event_content">이벤트내용</label>
-			<textarea rows="5" cols="30" name="event_content" id="event_content" class="input-check"></textarea>
-			<form:errors path="event_content"></form:errors>
+			<label for="nb_content">공지사항내용</label>
+			<textarea rows="5" cols="30" name="nb_content" id="nb_content" class="input-check"></textarea>
+			<form:errors path="nb_content"></form:errors>
 			<script>
 				 function MyCustomUploadAdapterPlugin(editor) {
 					    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
@@ -50,7 +50,7 @@
 					}
 				 
 				 ClassicEditor
-		            .create( document.querySelector( '#event_content' ),{
+		            .create( document.querySelector( '#nb_content' ),{
 		            	extraPlugins: [MyCustomUploadAdapterPlugin]
 		            })
 		            .then( editor => {
@@ -60,16 +60,6 @@
 		                console.error( error );
 		            } );
 			    </script> 
-		</li>
-		<li>
-			<label for="event_start">시작일</label>
-			<input type="date" name="event_start" id="event_start" class="input-check">
-			<form:errors path="event_start"></form:errors>
- 		</li>
-		<li>
-			<label for="event_end">마감일</label>
-			<input type="date" name="event_end" id="event_end" class="input-check">
-			<form:errors path="event_end"></form:errors>
 		</li>
 		<li>
 			<input type="submit" value="등록">

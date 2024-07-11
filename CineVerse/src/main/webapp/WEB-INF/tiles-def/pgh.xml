@@ -60,6 +60,20 @@
 		<put-attribute name="admin_body"
 			value="/WEB-INF/views/admin/adminNotice.jsp" />
 	</definition>
+	
+	<!-- 공지사항 등록폼 -->
+	<definition name="adminNoticeForm"
+		template="/WEB-INF/views/template/layout_adminMain.jsp">
+		<put-attribute name="title" value="공지사항 등록폼" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_header"
+			value="/WEB-INF/views/template/header_admin.jsp" />
+		<put-attribute name="admin_nav"
+			value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body"
+			value="/WEB-INF/views/admin/adminNoticeForm.jsp" />
+	</definition>
 
 	<!-- 이벤트 -->
 	<definition name="adminEvent"

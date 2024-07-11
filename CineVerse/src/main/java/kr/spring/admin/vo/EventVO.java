@@ -2,6 +2,7 @@ package kr.spring.admin.vo;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotNull;
 
@@ -17,18 +18,16 @@ import lombok.ToString;
 public class EventVO {
 	//이벤트관리
 	private long event_num;
-	@NotNull
+	@NotBlank
 	private String event_name;
-	@NotNull
-	private MultipartFile upload;	//파일
-	@NotNull
 	private String event_filename;
-	@NotNull
+	@NotBlank
 	private String event_content;
-	@NotNull
-	private Date event_start;
-	@NotNull
-	private Date event_end;
+	@NotBlank
+	private String event_start;
+	@NotBlank
+	private String event_end;
 	private Date event_reg_date;
 	private Date event_modify_date;
+	private MultipartFile event_upload;	//파일
 }

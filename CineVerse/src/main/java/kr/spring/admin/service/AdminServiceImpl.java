@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.spring.admin.dao.AdminMapper;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.NoticeVO;
 @Service
 @Transactional
 public class AdminServiceImpl implements AdminService{
@@ -37,5 +38,13 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void insertEvent(EventVO eventVO) {
 		adminMapper.insertEvent(eventVO);
+	}
+	@Override
+	public List<NoticeVO> getAllNotice() {
+		return adminMapper.getAllNotice();
+	}
+	@Override
+	public void insertNotice(NoticeVO noticeVO) {
+		adminMapper.insertNotice(noticeVO);
 	}
 }

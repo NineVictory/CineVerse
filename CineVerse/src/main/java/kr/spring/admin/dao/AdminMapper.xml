@@ -13,13 +13,26 @@
 		event_end
 		)
 		VALUES (
-		spboard_seq.nextval,
+		event_seq.nextval,
 		#{event_name},
 		#{event_content},
 		#{event_filename,jdbcType=VARCHAR},
 		#{event_start},
 		#{event_end})
+	</insert>
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="NoticeVO">
+		INSERT INTO notice_board(
+		nb_num,
+		nb_title,
+		nb_content,
+		nb_filename
 		)
+		VALUES (
+		notice_board_seq.nextval,
+		#{nb_title},
+		#{nb_content},
+		#{nb_filename,jdbcType=VARCHAR})
 	</insert>
 </mapper>							
 

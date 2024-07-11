@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.NoticeVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
@@ -40,6 +41,11 @@ public class AdminController {
 	@ModelAttribute
 	public EventVO initCommand1() {
 		return new EventVO();
+	}
+	//자바빈(VO) 초기화
+	@ModelAttribute
+	public NoticeVO initCommand2() {
+		return new NoticeVO();
 	}
 	/*==============================
 	 * 관리자메인
@@ -124,27 +130,68 @@ public class AdminController {
 	/*==============================
 	 * 공지사항 관리
 	 *==============================*/	
+	//공지사항 조회
 	@GetMapping("/admin/adminNotice")
-	public String adminNotice(){
-		return "adminNotice";
+	public String SelectAdminNotice(Model model){
+		try {
+			// 모든 회원 정보 조회
+			List<NoticeVO> adminList = adminService.getAllNotice();
+
+			// 조회된 회원 정보를 모델에 추가하여 View로 전달
+			model.addAttribute("adminList", adminList);
+
+			
+			return "adminNotice"; // 회원 정보를 보여줄 View 이름
+		} catch (Exception e) {
+			log.error("회원 정보 조회 중 오류 발생", e);
+			model.addAttribute("errorMessage", "회원 정보 조회 중 오류가 발생하였습니다.");
+			log.debug("<<회원 정보 조회 오류>>");
+			return "errorPage"; // 에러 페이지로 이동
+
+		}
 	}
-	/*==============================
-	 * 공지사항 관리
-	 *==============================*/	
+	//공지사항 수정폼 호출
 	@GetMapping("/admin/adminNoticeForm")
-	public String adminNoticeForm(){
+	public String AdminNoticeForm(){
 		return "adminNoticeForm";
 	}
-	@PostMapping("/admin/adminNoticeForm")
-	public String insertAdminNoticeForm(){
-		return "adminNoticeForm";
+	@PostMapping("admin/adminNoticeForm")
+	public String insertNotice(@Valid NoticeVO noticeVO,
+								BindingResult result,
+								HttpServletRequest request,
+								HttpSession session,
+								Model model) throws IllegalStateException,IOException{
+		log.debug("<<이벤트 글 저장>> : " + noticeVO);
+		
+		//업로드된 파일이 없는 경우
+		if(noticeVO.getNb_upload()==null || noticeVO.getNb_upload().isEmpty()) {
+			result.rejectValue("notice_upload","fileNotFound");
+		}
+		 
+		// 폼 데이터 유효성 검사
+		if (result.hasErrors()) {
+			log.debug("<<유효성검사이상있음>> : " + noticeVO);
+			return "adminnoticeForm"; // 다시 폼을 보여줌
+		}
+		
+		noticeVO.setNb_filename(FileUtil.createFile(request, 
+				                      noticeVO.getNb_upload()));
+		
+		log.debug("파일명: " + noticeVO.getNb_filename());
+		adminService.insertNotice(noticeVO);
+		//View 메시지 처리
+				model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+				model.addAttribute("url", 
+						 request.getContextPath()+"/admin/adminNotice");
+				
+				return "common/resultAlert";
 	}
 	/*==============================
 	 * 이벤트 관리
 	 *==============================*/	
 	//이벤트 조회
 	@GetMapping("/admin/adminEvent")
-	public String SelectadminEvent(Model model){
+	public String SelectAdminEvent(Model model){
 		try {
 			// 모든 회원 정보 조회
 			List<EventVO> adminList = adminService.getAllEvent();
@@ -169,12 +216,16 @@ public class AdminController {
 	}
 	@PostMapping("admin/adminEventForm")
 	public String insertEvent(@Valid EventVO eventVO,
-			BindingResult result,
-			HttpServletRequest request,
-			HttpSession session,
-			Model model) throws IllegalStateException,
-    						IOException{
+								BindingResult result,
+								HttpServletRequest request,
+								HttpSession session,
+								Model model) throws IllegalStateException,IOException{
 		log.debug("<<이벤트 글 저장>> : " + eventVO);
+		
+		//업로드된 파일이 없는 경우
+		if(eventVO.getEvent_upload()==null || eventVO.getEvent_upload().isEmpty()) {
+			result.rejectValue("event_upload","fileNotFound");
+		}
 		
 		// 폼 데이터 유효성 검사
 		if (result.hasErrors()) {
@@ -183,7 +234,7 @@ public class AdminController {
 		}
 		
 		eventVO.setEvent_filename(FileUtil.createFile(request, 
-				                      eventVO.getUpload()));
+				                      eventVO.getEvent_upload()));
 		
 		log.debug("파일명: " + eventVO.getEvent_filename());
 		adminService.insertEvent(eventVO);
