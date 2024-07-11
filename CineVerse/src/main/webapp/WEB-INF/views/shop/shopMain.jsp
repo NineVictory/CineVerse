@@ -54,7 +54,9 @@
 					</div>
 				</c:forEach>
 			</c:if>
-		</div>		
+			<div class="page-div">${page}</div>
+		</div>	
+			
 	</div>				
 </div>
 <script>
