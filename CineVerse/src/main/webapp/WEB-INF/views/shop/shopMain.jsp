@@ -53,8 +53,9 @@
 						<p><span class="product-price">${product.p_price}</span>원</p>
 					</div>
 				</c:forEach>
+				<div class="page-div">${page}</div>
 			</c:if>
-			<div class="page-div">${page}</div>
+			
 		</div>	
 			
 	</div>				

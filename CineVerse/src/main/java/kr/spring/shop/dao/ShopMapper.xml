@@ -53,7 +53,7 @@
 		</if>
 		<!--관심상품-->
 		<if test="shopOrder==5">
-			ORDER BY pf_cnt DESC
+			ORDER BY pf_cnt DESC NULLS LAST
 		</if>
 		<if test="shopOrder==null">
 		
@@ -83,6 +83,7 @@
 						p_filename,
 						p_status
 						FROM product
+						LEFT OUTER JOIN (SELECT COUNT(*) pf_cnt, p_num FROM product_fav GROUP BY p_num) USING(p_num)
 							<include refid="productSearch"></include>
 							<include refid="productOrder"></include>
 							)a)

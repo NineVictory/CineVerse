@@ -2,6 +2,9 @@
 	    pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	
+	<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/product.fav.js"></script>
 	<!-- 벌스샵 디테일 시작 -->
 	<div class="main_content">
 	    <div class="product-main">
@@ -32,6 +35,7 @@
 	                        총 상품 금액 <span>${product.p_price}</span>원
 	                    </div>
 	                    <div class="shop-submit">
+	                    	<button id="output_fav" data-num="${product.p_num}"><span class="fav">♡</span> 관심 상품 <span class="output_fcount"> </span></button>
 		                    <button>장바구니</button>
 		                    <input type="submit" value="바로 구매하기">
 	                    </div>
@@ -75,11 +79,8 @@
 	        </ul>
 	        <!-- 상세정보 -->
 	        <c:if test="${param.page == 'detail' || param.page == null}">
-		        <div class="deliver">
-		        	<img src=${pageContext.request.contextPath}/images/cje/deli_pic.png>
-		        </div>
 		        <div class="product-detail-info">
-		        ${product.p_content}
+		        	${product.p_content}
 		        </div>
 	        </c:if>
 	        <!-- 리뷰 -->

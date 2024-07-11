@@ -30,6 +30,7 @@ public class ShopController {
 	@Autowired
 	private ShopService shopService;
 	
+	// 벌스샵 메인 (목록)
 	@GetMapping("/shop/shopMain")
 	public String shopMain(@RequestParam(defaultValue="1") int pageNum,
 	                       @RequestParam(defaultValue="1") int shopOrder,
@@ -73,7 +74,7 @@ public class ShopController {
 	    return "shopMain";
 	}
 
-	
+	// 벌스샵 상세 (상품 상세)
 	@GetMapping("/shop/shopDetail")
 	public ModelAndView shopDetail(long p_num) {
 		log.debug("<<벌스샵 상세 - p_num>> ::: " + p_num);
@@ -84,11 +85,13 @@ public class ShopController {
 		return new ModelAndView("shopDetail", "product", product);
 	}
 	
+	// 벌스샵 결제 (상품 결제)
 	@PostMapping("/shop/shopBuy")
 	public String shopBuy() {
 		return "shopBuy";
 	}
 	
+	// 벌스샵 장바구니 (상품 장바구니)
 	@GetMapping("/shop/shopBasket")
 	public String shopBasket() {
 		return "shopBasket";
