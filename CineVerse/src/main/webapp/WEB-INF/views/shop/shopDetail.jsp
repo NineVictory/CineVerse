@@ -5,7 +5,6 @@
 	
 	<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/product.fav.js"></script>
-<script src="${pageContext.request.contextPath}/js/product.basket.js"></script>
 	<!-- 벌스샵 디테일 시작 -->
 	<div class="main_content">
 	    <div class="product-main">
@@ -21,26 +20,28 @@
 					<c:if test="${product.p_category == 5}"> Studio GHIBLI </c:if>
 					<c:if test="${product.p_category == 6}"> Warner Bros. </c:if>
 					<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
+					<c:if test="${product.p_category == 8}"> ETC </c:if>
 				</h1>
 	            <p>${product.p_name}</p>
 	            <span class="product-price">${product.p_price}</span>원
 	            <div class="buy-form">
-	                <form action="shopBuy" id="shop_buy" method="post">
-	                    <span>수량</span>
-	                    <div class="quantity-controls">
-	                        <button type="button" class="quantity-down">-</button>
-	                        <input type="number" min="1" value="1" max="100" readonly class="quantity-input"/>
-	                        <button type="button" class="quantity-up">+</button>
-	                    </div>
-	                    <div class="showPrice">
-	                        총 상품 금액 <span>${product.p_price}</span>원
-	                    </div>
-	                    <div class="shop-submit">
-	                    	<button id="output_fav" data-num="${product.p_num}"><span class="fav">♡</span> 관심 상품 <span class="output_fcount"> </span></button>
-		                    <button id="basket" data-num="${product.p_num}">장바구니</button>
-		                    <input type="submit" value="바로 구매하기">
-	                    </div>
-	                </form>
+	                <form id="productForm" action="${pageContext.request.contextPath}/shop/addToCartOrBuyNow" method="post">
+					    <input type="hidden" id="p_num" name="p_num" value="${product.p_num}">
+					    <span>수량</span>
+					    <div class="quantity-controls">
+					        <button type="button" class="quantity-down">-</button>
+					        <input type="number" id="pb_quantity" name="pb_quantity" min="1" value="1" max="100" readonly class="quantity-input"/>
+					        <button type="button" class="quantity-up">+</button>
+					    </div>
+					    <div class="showPrice">
+					        총 상품 금액 <span>${product.p_price}</span>원
+					    </div>
+					    <div class="shop-submit">
+					        <button id="output_fav" data-num="${product.p_num}"><span class="fav">♡</span> 관심 상품 <span class="output_fcount"> </span></button>
+					        <button id="addToCartBtn" type="submit" data-action="addToCart">장바구니</button>
+					        <button id="buyNowBtn" type="submit" data-action="buyNow">바로 구매하기</button>
+					    </div>
+					</form>
 	            </div>
 	        </div>
 	    </div>
@@ -152,6 +153,27 @@
 		        totalPrice += parseInt(productPrice.textContent.replace(/[^0-9]/g, '')); 
 		        totalPriceSpan.textContent = addCommas(totalPrice); 
 		    });
+		    
+		    // 폼 서브밋 버튼 클릭 이벤트 처리
+	        document.getElementById('addToCartBtn').addEventListener('click', function(e) {
+	            e.preventDefault(); // 폼 서브밋 막기
+
+	            // 액션 설정
+	            document.getElementById('productForm').setAttribute('action', '${pageContext.request.contextPath}/shop/addToCart');
+
+	            // 폼 서브밋
+	            document.getElementById('productForm').submit();
+	        });
+
+	        document.getElementById('buyNowBtn').addEventListener('click', function(e) {
+	            e.preventDefault(); // 폼 서브밋 막기
+
+	            // 액션 설정
+	            document.getElementById('productForm').setAttribute('action', '${pageContext.request.contextPath}/shop/buyNow');
+
+	            // 폼 서브밋
+	            document.getElementById('productForm').submit();
+	        });
 		});
 
 	</script>

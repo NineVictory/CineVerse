@@ -62,15 +62,13 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // 모든 제품의 가격 요소들을 가져와서 처리
         const productPrices = document.querySelectorAll(".product-price");
 
         productPrices.forEach(function(element) {
-            let price = parseInt(element.textContent.replace(/[^0-9]/g, '')); // 숫자만 추출하여 정수로 변환
-            element.textContent = addCommas(price); // 포맷팅된 가격으로 변경
+            let price = parseInt(element.textContent.replace(/[^0-9]/g, ''));
+            element.textContent = addCommas(price); 
         });
 
-        // 함수: 3자리 단위 쉼표 추가
         function addCommas(number) {
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }

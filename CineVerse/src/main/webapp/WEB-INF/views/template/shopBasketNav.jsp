@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 벌스샵 장바구니 메뉴 시작 -->
+<c:if test="${not empty list && count!=null && count>0}">
 <div class="shop-pay-nav">
 	<div class="shopNav">
 		<div class="price-box">
@@ -11,13 +12,22 @@
 		</div>
 		<div class="price-detail">
 			<div class="total_count">
-				<span>총 수량</span><span>2개</span>
+				<span>총 수량</span><span>${count}개</span>
 			</div>
 			<div class="total_price">
-				<span>총 상품 금액</span><span>78,000원</span>
+				<span>총 상품 금액</span><span>${total}원</span>
 			</div>
 			<div class="deliveryfee">
-				<span>배송비</span><span>0원</span>
+				<span>배송비</span>
+				<span>
+					<c:if test="${total>=50000}">
+						0
+					</c:if>
+					<c:if test="${total<50000}">
+						3000
+					</c:if>
+					원
+				</span>
 			</div>
 
 		</div>
@@ -25,12 +35,41 @@
 			<hr size="3px" color="black" width="88%">
 		</div>
 		<div class="price-result">
-			<span>39,000원</span>
+			<span>
+				<c:if test="${total>=50000}">
+						${total}원
+					</c:if>
+					<c:if test="${total<50000}">
+						${total+3000}원
+					</c:if>
+			</span>
 		</div>
 	</div>
 	<div class="pay-box">
 		<span>주문하기</span>
 	</div>
 </div>
+</c:if>
 
-<!-- 벌스샵 장바구니 메뉴 시작 -->
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    const prices = document.querySelectorAll(".price-detail span, .price-result span");
+	    
+	    for (let i = 0; i < prices.length; i++) {
+	        let element = prices[i];
+	        let priceText = element.textContent.trim();
+	        let number = parseInt(priceText.replace(/[^0-9]/g, ''));
+	        
+	        if (!isNaN(number)) {
+	            let formattedPrice = addCommas(number);
+	            element.textContent = priceText.replace(number, formattedPrice);
+	        }
+	    }
+	
+	    function addCommas(number) {
+	        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    }
+	});
+</script>
+
+<!-- 벌스샵 장바구니 메뉴 끝 -->

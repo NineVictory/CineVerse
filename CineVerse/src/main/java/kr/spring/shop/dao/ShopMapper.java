@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
 
 @Mapper
@@ -39,15 +40,29 @@ public interface ShopMapper {
 	public Integer productFavCount(Long p_num);
 	
 	// 상품 장바구니 여부
-	@Select("SELECT p_num FROM p_basket WHERE mem_num=#{mem_num}")
-	public ProductVO selectProductBasket(Long mem_num);
+	@Select("SELECT * FROM p_basket WHERE mem_num=#{mem_num} AND p_num=#{p_num}")
+	public PBasketVO selectProductBasket(PBasketVO basket);
 	// 상품 장바구니 넣기
-	@Insert("INSERT INTO p_basket (pb_num, pb_quantity, p_reg_date, p_num, mem_num) VALUES (p_basket_seq.nextval, #{pb_quantity}, SYSDATE, #{p_num}, #{mem_num})")
-	public void ProductBasket(ProductVO fav);
+	@Insert("INSERT INTO p_basket (pb_num, pb_quantity, pb_reg_date, p_num, mem_num) VALUES (p_basket_seq.nextval, #{pb_quantity}, SYSDATE, #{p_num}, #{mem_num})")
+	public void ProductBasket(PBasketVO basket);
 	// 상품 장바구니 빼기
 	@Delete("DELETE FROM p_basket WHERE pb_num=#{pb_num}")
-	public void ProductBasketDelete(ProductVO fav);
+	public void ProductBasketDelete(PBasketVO basket);
 	// 내 장바구니 리스트 구하기
-	@Select("SELECT FROM p_basket WHERE mem_num=#{mem_num}")
+	@Select("SELECT * FROM p_basket JOIN product USING(p_num) WHERE mem_num=#{mem_num}")
 	public List<ProductVO> productBasketList(Long mem_num);
+	/*
+	 * // 장바구니 각각 가격
+	 * 
+	 * @Select("SELECT p_price * pb_quantity FROM p_basket JOIN product USING(p_num) WHERE mem_num = #{mem_num}"
+	 * ) public List<Integer> basketPrice(Long mem_num);
+	 */
+	
+	// 장바구니 총 가격
+	@Select("SELECT SUM(p_price * pb_quantity) FROM p_basket JOIN product USING(p_num) WHERE mem_num = #{mem_num}")
+	public Integer basketTotalPrice(Long mem_num);
+	// 장바구니 총 개수
+	@Select("SELECT SUM(pb_quantity) FROM p_basket WHERE mem_num = #{mem_num}")
+	public Integer basketCount(Long mem_num);
+	
 }

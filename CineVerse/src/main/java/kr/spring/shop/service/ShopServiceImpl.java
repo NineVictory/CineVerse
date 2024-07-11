@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.shop.dao.ShopMapper;
+import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
 
 @Service
@@ -58,23 +59,37 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public ProductVO selectProductBasket(Long mem_num) {
-		return shopMapper.selectProductBasket(mem_num);
+	public PBasketVO selectProductBasket(PBasketVO basket) {
+		return shopMapper.selectProductBasket(basket);
 	}
 
 	@Override
-	public void ProductBasket(ProductVO fav) {
-		shopMapper.ProductBasket(fav);
+	public void ProductBasket(PBasketVO basket) {
+		shopMapper.ProductBasket(basket);
 	}
 
 	@Override
-	public void ProductBasketDelete(ProductVO fav) {
-		shopMapper.ProductBasketDelete(fav);
+	public void ProductBasketDelete(PBasketVO basket) {
+		shopMapper.ProductBasketDelete(basket);
 	}
 
 	@Override
 	public List<ProductVO> productBasketList(Long mem_num) {
 		return shopMapper.productBasketList(mem_num);
+	}
+
+	@Override
+	public Integer basketCount(Long mem_num) {
+		return shopMapper.basketCount(mem_num);
+	}
+	/*
+	 * @Override public List<Integer> basketPrice(Long mem_num) { return
+	 * shopMapper.basketPrice(mem_num); }
+	 */
+
+	@Override
+	public Integer basketTotalPrice(Long mem_num) {
+		return shopMapper.basketTotalPrice(mem_num);
 	}
 	
 	
