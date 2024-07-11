@@ -120,6 +120,7 @@
         <div class="content-place-cinema">상영관수 : <b>${cinema.c_theater}관,${cinema.c_seat}석</b></div>
         <div class="content-place-parking">주차정보 : <b>${cinema.c_parkable}</b></div>
         </c:forEach>
+        <input type="button" value="삭제" onclick="location.href='cinemaDelete'">
     </div>
       
     <!-- 영화 정보 끝-->

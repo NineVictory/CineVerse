@@ -35,8 +35,7 @@ public class CinemaServiceImpl implements CinemaService{
 
 	@Override
 	public CinemaVO selectCinema(Long c_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return cinemaMapper.selectCinema(c_num); 
 	}
 
 	@Override
@@ -47,8 +46,7 @@ public class CinemaServiceImpl implements CinemaService{
 
 	@Override
 	public void deleteCinema(Long c_num) {
-		// TODO Auto-generated method stub
-		
+		cinemaMapper.deleteCinema(c_num); 
 	}
 
 }

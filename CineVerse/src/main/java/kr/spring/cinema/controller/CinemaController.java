@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
@@ -79,6 +80,13 @@ public class CinemaController {
 	/*==============================
 	 * 		영화관 정보 상세보기
 	 *==============================*/
+	@GetMapping("/movie/cinemaDetail")
+	public ModelAndView cinemaDetail(long c_num) {
+		
+		CinemaVO cinema = cinemaService.selectCinema(c_num);
+		
+		return new ModelAndView("cinemaDetail", "cinema", cinema);
+	}
 	
 	/*==============================
 	 * 		영화관 정보 수정
@@ -87,5 +95,13 @@ public class CinemaController {
 	/*==============================
 	 * 		영화관 정보 삭제
 	 *==============================*/
-	
+	@GetMapping("/movie/cinemaDelete")
+	public String cinemaDelete(Long c_num, HttpServletRequest request) {
+		
+
+		//글 삭제
+		cinemaService.deleteCinema(c_num);	
+		
+		return "redirect:/movie/ownMovieInfo";
+	}
 }
