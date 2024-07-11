@@ -12,4 +12,19 @@ public class SupportController {
 	public String main() {
 		return "supportMain";
 	}
+	
+	@GetMapping("/support/faq")
+	public String faqList() {
+		return "supportFaq";
+	}
+	
+	@GetMapping("/support/news")
+	public String newsList() {
+		return "supportNews";
+	}
+	
+	@GetMapping("/support/qna")
+	public String qnaForm() {
+		return "supportQna";
+	}
 }

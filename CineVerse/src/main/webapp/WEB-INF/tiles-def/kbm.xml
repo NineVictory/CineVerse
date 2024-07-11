@@ -44,6 +44,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignWrite.jsp"/>
 	</definition>
 	
+	
 	<definition name="supportMain" template="/WEB-INF/views/template/layout_support.jsp">
 		<put-attribute name="title" value="고객센터"/>
 		<put-attribute name="css" value="/WEB-INF/views/support/supportCSS.jsp"/>
@@ -51,6 +52,21 @@
 		<put-attribute name="supportNav" value="/WEB-INF/views/template/supportNav.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/support/supportMain.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<definition name="supportFaq" extends="supportMain">
+		<put-attribute name="title" value="자주 묻는 질문"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportFaq.jsp"/>
+	</definition>
+	
+	<definition name="supportNews" extends="supportMain">
+		<put-attribute name="title" value="공지/뉴스"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportNews.jsp"/>
+	</definition>
+	
+	<definition name="supportQna" extends="supportMain">
+		<put-attribute name="title" value="공지/뉴스"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportQna.jsp"/>
 	</definition>
 </tiles-definitions>
 

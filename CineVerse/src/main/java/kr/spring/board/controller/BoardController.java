@@ -172,7 +172,7 @@ public class BoardController {
 	 =====================*/
 	@GetMapping("/board/delete")
 	public String submitDelete(long cb_num, HttpServletRequest request) {
-		log.debug("<<게시판 글 삭제 - board_num>> : " + cb_num);
+		log.debug("<<게시판 글 삭제 - cb_num>> : " + cb_num);
 		
 		//글 삭제
 		boardService.deleteBoard(cb_num);

@@ -1,1 +1,144 @@
 @charset "UTF-8";
+
+/*supportNav*/
+div.supportNav{
+	width:18%;
+}
+div.supportNav ul li{
+	width:160px;
+}
+div.supportNav ul li.support_nav a{
+	display:inline-block;
+	width:153px;
+}
+div.supportNav ul li.support_nav{
+	border-top:1px solid #BEBABA;
+	border-left:1px solid #BEBABA;
+	border-right:1px solid #BEBABA;
+}
+div.supportNav > *{
+	font-size:15px;
+}
+div.supportNav ul li.support-call{
+	border:1px solid #BEBABA;
+	border-radius:0 0 10px 10px;
+}
+.support-call div{
+	font-size:15px;
+	color:#8c8c8c;
+	padding:7px 5px 7px 7px;
+}
+li.support_nav{
+	padding:5px 5px 5px 7px;
+}
+
+/*supportMain 고객센터 메인*/
+.flexbox-h{
+	display:flex;
+	flex-direction:row;
+}
+
+.flexbox-p{
+	display:flex;
+	flex-direction:column;
+}
+.side{
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+}
+
+#main_content{
+	display:flex;
+	justify-content:center;
+	width:1250px;
+	margin:0 auto;
+}
+#main_content > div{
+	margin-top:50px;
+}
+#support_main{
+	width:78%;
+}
+#support_main{
+	gap:20px;
+}
+.main-upper-menu > div{
+	width:290px;
+	height:250px;
+	margin-right:15px;
+	background:#EFF3FD;
+}
+.main-lower-menu{
+	width:930px;
+	gap:15px;
+}
+.left-lower-menu{
+	width:290px;
+}
+.right-lower-menu{
+	width:600px;
+}
+.fast-menu{
+	align-items:center;
+	justify-content:center;
+}
+.flex-start{
+	align-items:flex-start;
+}
+.imenu > a > span{
+	display:inline-block;
+	width:130px;
+	height:65px;
+	margin:5px;
+	font-size:14px;
+	padding:3px;
+	vertical-align:middle;
+	border:1px solid #BEBABA;
+	border-radius:7px;
+}
+.right-lower-menu table{
+	width:100%;
+	border-collapse: collapse;
+}
+.right-lower-menu td{
+	display:flex;
+	justify-content: space-between;
+	padding:3px;
+	font-size:15px;
+}
+
+/*supportFaq 자주묻는질문*/
+.faq-table, .news-table{
+	border-collapse:collapse;
+	width:930px;
+	font-size:15px;
+}
+.faq-table td, .news-table td{
+	border-top:1px solid #BEBABA;
+	padding:8px 7px;
+}
+.faq-table:last-child, .news-table:last-child{
+	border-bottom:1px solid #BEBABA;
+}
+.faq-sub-info, .news-sub-info{
+	margin:2px 0;
+	font-size:14px;
+	color:#404040;
+}
+.support-search{
+	margin:15px 0;
+}
+.support-search input{
+	width:35%;
+	padding:4px;
+}
+.faq-table-num, .news-table-num{
+	padding: 7px;
+}
+.faq-table-num, .faq-table-hit, .news-table-num, .news-table-hit, .news-table-rdate{
+	text-align:center;
+}
+.faq-table-title, .news-table-title{
+	text-align:left;
+}
