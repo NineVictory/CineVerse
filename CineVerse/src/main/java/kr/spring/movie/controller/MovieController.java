@@ -64,7 +64,7 @@ public class MovieController {
 	public String movieTime(){
 		return "movieTime";
 	}
-	
+	 
 	
 	/*=======================
 	 * 자체 영화관 정보

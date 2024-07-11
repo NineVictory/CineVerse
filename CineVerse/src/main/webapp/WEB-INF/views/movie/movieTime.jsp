@@ -24,7 +24,7 @@
 			</div>
 		</div>
 	</div>
-	
+	 
 	<!-- 날짜 및 시간 -->
 	<div class="time-part">
 		<div class="reserve-title">날짜 및 시간</div>
