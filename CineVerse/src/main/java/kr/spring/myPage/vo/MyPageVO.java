@@ -8,7 +8,6 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.spring.member.vo.CouponVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -67,7 +66,6 @@ public class MyPageVO {
 	private int coupon_sale;		// 할인 금액
 	private int coupon_where;		// 어디서 사용 가능한지 1:영화 2:벌스샵
 	private Date coupon_regdate;	// 쿠폰 발급일자
-	private Date coupon_enddate;//쿠폰 발급일자에서 한달 추가
 	
 	//board
 	private String cb_title;
@@ -78,6 +76,7 @@ public class MyPageVO {
 	private int fav_cnt;			//좋아요 개수
 	
 	
+	private Date coupon_enddate;	// 쿠폰 만료일자
 	
 	
 	// 비밀번호 변경시 현재 비밀번호를 저장하는 용도로 사용

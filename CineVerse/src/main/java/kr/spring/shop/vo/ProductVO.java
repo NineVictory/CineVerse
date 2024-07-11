@@ -49,5 +49,9 @@ public class ProductVO {
 	
 	// fav_product (p_num은 알아서 사용)
 	private long mem_num;
+	
+	private long pb_num;
+	private long pb_quantity;
+	private Date pb_reg_date;
 
 }

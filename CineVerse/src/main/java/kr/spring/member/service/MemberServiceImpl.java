@@ -85,4 +85,9 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.insertNewMemCoupon(coupon);
 	}
 
+	@Override
+	public void totalPoint(Long mem_num) {
+		memberMapper.totalPoint(mem_num);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
 
 public interface ShopService {
@@ -18,8 +19,12 @@ public interface ShopService {
 	public ProductVO selectProductFav(ProductVO fav);
 	public void ProductFavDelete(ProductVO fav);
 	public Integer productFavCount(Long p_num);
-	public ProductVO selectProductBasket(Long mem_num);
-	public void ProductBasket(ProductVO fav);
-	public void ProductBasketDelete(ProductVO fav);
+	public PBasketVO selectProductBasket(PBasketVO basket);
+	public void ProductBasket(PBasketVO basket);
+	public void ProductBasketDelete(PBasketVO basket);
 	public List<ProductVO> productBasketList(Long mem_num);
+
+	/* public List<Integer> basketPrice(Long mem_num); */
+	public Integer basketTotalPrice(Long mem_num);
+	public Integer basketCount(Long mem_num);
 }

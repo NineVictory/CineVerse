@@ -115,7 +115,7 @@ body {
 }
 
 .shop-submit button, .shop-submit input[type="submit"] {
-    width: 140px;
+    width: 137px;
     height: 60px;
     border-radius: 10px;
     font-size: 12.5pt;
@@ -128,7 +128,7 @@ body {
     border: 2px solid black;
 }
 
-.shop-submit input[type="submit"] {
+#buyNowBtn {
     background: #1C75FF;
     border: none;
     color: white;
@@ -247,5 +247,5 @@ review-profile {
 
 
 #output_fav{
-	width:160px;
+	width:140px;
 }

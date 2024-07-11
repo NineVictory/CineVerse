@@ -82,15 +82,7 @@ public class MovieController {
 	public String movieTime(){
 		return "movieTime";
 	}
-	 
-	
-	/*=======================
-	 * 자체 영화관 정보
-	 *=======================*/
-	@GetMapping("/movie/ownMovieInfo")
-	public String ownMovieInfo(){
-		return "ownMovieInfo";
-	}
+	 	
 	
 	/*=======================
 	 * 3사 영화관 정보
