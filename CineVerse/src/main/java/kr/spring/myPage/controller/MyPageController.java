@@ -94,7 +94,7 @@ public class MyPageController {
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
-		return "boardWrite";
+		return "myBoardWrite";
 	}
 	//게시판 - 내가 쓴 댓글
 	@GetMapping("/myPage/boardReply")
@@ -103,7 +103,7 @@ public class MyPageController {
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
-		return "boardReply";
+		return "myBoardReply";
 	}
 	
 	//내 캘린더

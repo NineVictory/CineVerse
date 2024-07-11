@@ -3,7 +3,7 @@
 <!--  내가 본 영화 시작 -->
 <div class="myPage_main">
 
-	<div class="myPage_title">내가 구매한 굿즈</div>
+	<div class="myPage_title">내가 본 영화</div>
 	<hr size="1" width="100%" class="wa_line">
 
 

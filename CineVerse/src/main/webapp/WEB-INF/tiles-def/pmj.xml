@@ -44,12 +44,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/bookMark.jsp"/>
 	</definition>
 	
-	<definition name="boardWrite" extends="myPageMain">
+	<definition name="myBoardWrite" extends="myPageMain">
 		<put-attribute name="title" value="내가 쓴 게시글"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/boardWrite.jsp"/>
 	</definition>
 	
-	<definition name="boardReply" extends="myPageMain">
+	<definition name="myBoardReply" extends="myPageMain">
 		<put-attribute name="title" value="내가  쓴 댓글"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/boardReply.jsp"/>
 	</definition>
