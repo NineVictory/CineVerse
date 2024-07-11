@@ -46,6 +46,7 @@
         <put-attribute name="body" value="/WEB-INF/views/shop/shopFav.jsp"/>
 	</definition>
     
+    <!--마이페이지-->
 	<definition name="bought" template="/WEB-INF/views/template/layout_myPage.jsp">
 		<put-attribute name="title" value="굿즈 결제 내역"/>
 		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
@@ -62,5 +63,15 @@
 		<put-attribute name="myPageNav" value="/WEB-INF/views/template/myPageNav.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPageBoughtDetail.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<!--관리자-->
+	<!-- 회원관리 -->
+	<definition name="adminProductList" template="/WEB-INF/views/template/layout_adminMain.jsp">
+		<put-attribute name="title" value="상품 관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_header" value="/WEB-INF/views/template/header_admin.jsp" />
+		<put-attribute name="admin_nav" value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminProductList.jsp" />
 	</definition>
 </tiles-definitions>

@@ -21,8 +21,10 @@ public interface ShopMapper {
 	// 상품
 	// 상품 목록
 	public List<ProductVO> productList(Map<String, Object> map);
-	// 상품 카운트
+	// 상품 카운트 - 표시 상품
 	public Integer productCount(Map<String, Object> map);
+	// 상품 카운트 - 전체 상품
+	public Integer productAllCount(Map<String, Object> map);
 	// 상품 상세
 	@Select("SELECT * FROM product WHERE p_num=#{p_num}")
 	public ProductVO productDetail(Long p_num);
@@ -70,6 +72,10 @@ public interface ShopMapper {
 	
 	// 주문
 	public void productOrders(OrdersVO orders);
+	
+	
+	// 관리자 - 벌스샵
+	public List<ProductVO> adminProductList(Map<String, Object> map);
 	
 	
 	

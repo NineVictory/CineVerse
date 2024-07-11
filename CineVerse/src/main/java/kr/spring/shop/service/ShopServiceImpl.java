@@ -96,6 +96,16 @@ public class ShopServiceImpl implements ShopService {
 	public List<ProductVO> productFavList(Long mem_num) {
 		return shopMapper.productFavList(mem_num);
 	}
+
+	@Override
+	public List<ProductVO> adminProductList(Map<String, Object> map) {
+		return shopMapper.adminProductList(map);
+	}
+
+	@Override
+	public Integer productAllCount(Map<String, Object> map) {
+		return shopMapper.productAllCount(map);
+	}
 	
 	
 

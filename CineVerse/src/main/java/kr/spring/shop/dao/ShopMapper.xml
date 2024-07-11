@@ -96,5 +96,73 @@
 		INSERT INTO orders (order_num, mem_num, order_date, a_num) VALUES
 		(orders_seq.nextval, #{mem_num}, SYSDATE, #{a_num})
 	</insert>
+	
+	
+	
+	<!--관리자 상품-->
+	<!-- 관리자 상품 검색 -->
+	<sql id="adminProductSearch">
+		<where>
+			<!--검색어 있을 때-->
+			<if test="keyword != null and keyword != ''" >
+				<if test="p_category == 1">
+					p_category=1 AND 
+				</if>
+				<if test="p_category == 2">
+					p_category=2 AND 
+				</if>
+				<if test="p_category == 3">
+					p_category=3 AND 
+				</if>
+				<if test="p_category == 4">
+					p_category=4 AND 
+				</if>
+				<if test="p_category == 5">
+					p_category=5 AND 
+				</if>
+				<if test="p_category == 6">
+					p_category=6 AND 
+				</if>
+				<if test="p_category == 7">
+					p_category=7 AND 
+				</if>	
+				<if test="p_category == 8">
+					p_category=8 AND 
+				</if>
+				p_name LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 관리자 상품 목록 (총/검색)-->
+	<select id="adminProductList" parameterType="map" resultType="productVO">
+		SELECT * FROM 
+			(SELECT a.*, rownum rnum FROM
+				(SELECT p_num,
+						<![CDATA[
+						REPLACE(REPLACE(p_name,'<','&lt;'),'>','&gt;') p_name,
+						]]>
+						p_category,
+						p_content,
+						p_quantity,
+						p_price,
+						p_reg_date,
+						p_modify_date,
+						p_filename,
+						p_status
+						FROM product
+						LEFT OUTER JOIN (SELECT COUNT(*) pf_cnt, p_num FROM product_fav GROUP BY p_num) USING(p_num)
+							<include refid="adminProductSearch"></include>
+							)a)
+								<![CDATA[
+								WHERE rnum >= #{start} AND rnum <= #{end}
+								]]>
+	</select>
+	
+	<!-- 관리자 상품 개수 (전체)-->
+	<select id="productAllCount">
+		SELECT COUNT(*) FROM product
+		<include refid="adminProductSearch"></include>
+	</select>
 
  </mapper>

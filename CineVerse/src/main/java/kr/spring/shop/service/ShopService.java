@@ -14,6 +14,7 @@ public interface ShopService {
 	public void registerProduct(ProductVO product);
 	public List<ProductVO> productList(Map<String, Object> map);
 	public Integer productCount(Map<String, Object> map);
+	public Integer productAllCount(Map<String, Object> map);
 	public ProductVO productDetail(Long p_num);
 	public void ProductFav(ProductVO fav);
 	public ProductVO selectProductFav(ProductVO fav);
@@ -29,4 +30,7 @@ public interface ShopService {
 	/* public List<Integer> basketPrice(Long mem_num); */
 	public Integer basketTotalPrice(Long mem_num);
 	public Integer basketCount(Long mem_num);
+	
+	// 관리자
+	public List<ProductVO> adminProductList(Map<String, Object> map);
 }

@@ -33,7 +33,7 @@ public class ProductVO {
 	private int p_status;
 	
 	private Date p_reg_date;
-	private Date r_modify_date;
+	private Date p_modify_date;
 	private String p_filename;
 	
 	@NotNull
