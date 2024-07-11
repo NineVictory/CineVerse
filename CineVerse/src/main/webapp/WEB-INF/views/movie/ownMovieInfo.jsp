@@ -13,7 +13,9 @@
     <div class="movie-content-place">
         
         <div class="location-button"> 
-        		<div class="content-place-title">CINEVERSE 강남</div>
+        	<c:forEach var="cinema" items="${list}">
+        		<div class="content-place-title">${cinema.c_branch}</div>
+        	</c:forEach>
               <div class="location-button-list" id="modal_open_btn">위치/지도보기</div>
              </div>
              <div id="modal">
@@ -112,10 +114,12 @@
    
     			<div class="modal_layer"></div>
 			</div>
-        <div class="content-place-location">위치 : <b>서울특별시 강남구 테헤란로 132 (한독약품빌딩)</b></div>
-        <div class="content-place-tell">문의전화 : <b>1544-0000</b></div>
-        <div class="content-place-cinema">상영관수 : <b>6관,874석</b></div>
-        <div class="content-place-parking">주차정보 : <b>주차가능</b></div>
+		<c:forEach var="cinema" items="${list}">
+        <div class="content-place-location">주소 : <b>${cinema.c_address}</b></div>
+        <div class="content-place-tell">문의전화 : <b>${cinema.c_phone}</b></div>
+        <div class="content-place-cinema">상영관수 : <b>${cinema.c_theater}관,${cinema.c_seat}석</b></div>
+        <div class="content-place-parking">주차정보 : <b>${cinema.c_parkable}</b></div>
+        </c:forEach>
     </div>
       
     <!-- 영화 정보 끝-->
