@@ -27,11 +27,9 @@ public interface MovieMapper {
 	public void insertBookMark(MovieBookMarkVO bookMark);
 	public void deleteBookMark(BoardFavVO bookMark);
 	public void deleteBookMarkByMovieNum(Long m_code);
-	//영화관
 	
 	//영화예매
 	
 	//영화 리뷰
 	
-	//좌석 리뷰
 }
