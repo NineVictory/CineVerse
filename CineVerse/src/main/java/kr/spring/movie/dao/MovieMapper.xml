@@ -49,7 +49,7 @@
 
 	 	</where>
 	 </sql>
-	 <sql id="movieListOrder"> <!-- 정렬할 때 -->
+	 <sql id="movieOrder"> <!-- 정렬할 때 -->
 	 	<if test="movieorder ==1">
 	 		ORDER BY m_code DESC
 	 	</if>
