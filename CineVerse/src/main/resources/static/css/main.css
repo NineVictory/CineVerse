@@ -216,6 +216,7 @@ a {
 }
 
 .sec_tit {
+	margin-left:40px;
     position: relative;
     font-size: 17px;
     margin-bottom: 10px;
@@ -398,21 +399,30 @@ a:hover {
     font-size: 22px;
 }
 
+.noticeClient {
+	display: flex;
+    justify-content: center;
+}
+
+.contents_notice{
+	margin-left: 35px;
+    width: 980px;
+    height: 100%;
+    display: flex;
+}
 
 
-
-
-.noticeClient .contents .noticeClient_container {
+.noticeClient .contents_notice .noticeClient_container {
     width: 736px;
     border: 1px solid #EFF3FD;
     border-radius: 10px;
 }
 
-.noticeClient .contents .noticeClient_container .noticeClient_content {
+.noticeClient .contents_notice .noticeClient_container .noticeClient_content {
     padding: 30px 18px 0px 30px;
 }
 
-.noticeClient .contents .noticeClient_container .noticeClient_content .notice_wrap {
+.noticeClient .contents_notice .noticeClient_container .noticeClient_content .notice_wrap {
     display: block;
     padding-bottom: 21px;
 }
@@ -464,7 +474,7 @@ a:hover {
     border-radius: 11px;
 }
 
-.noticeClient .contents .noticeClient_container .noticeClient_content .notice_wrap .btn_link {
+.noticeClient .contents_notice .noticeClient_container .noticeClient_content .notice_wrap .btn_link {
     float: left;
     overflow: hidden;
     max-width: 300px;
@@ -477,7 +487,7 @@ a:hover {
     white-space: nowrap;
 }
 
-.noticeClient .contents .noticeClient_container .noticeClient_content .notice_wrap strong {
+.noticeClient .contents_notice .noticeClient_container .noticeClient_content .notice_wrap strong {
     float: left;
     font-weight: 500;
     font-size: 16px;

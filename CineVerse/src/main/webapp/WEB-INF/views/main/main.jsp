@@ -309,7 +309,7 @@
 </div>
 
 <div class="noticeClient">
-	<div class="contents">
+	<div class="contents_notice">
 		<div class="noticeClient_container">
 			<div class="noticeClient_content">
 				<div class="notice_wrap">
