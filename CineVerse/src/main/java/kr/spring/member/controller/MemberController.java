@@ -1,5 +1,6 @@
 package kr.spring.member.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.AuthCheckException;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +49,18 @@ public class MemberController {
 		}
 
 		memberService.insertMember(memberVO);
+		
+		// 초기 쿠폰 리스트 조회
+        List<Long> initialCoupons = memberService.selectInitialCoupons();
+        
+        // 회원 쿠폰 테이블에 초기 쿠폰 삽입
+        for (Long coupon_num : initialCoupons) {
+        	CouponVO coupon = new CouponVO();
+            coupon.setMem_num(memberVO.getMem_num());
+            coupon.setCoupon_num(coupon_num);
+            memberService.insertNewMemCoupon(coupon);
+        }
+		
 
 		// UI 문구 처리
 		model.addAttribute("message", "회원 가입이 완료되었습니다");

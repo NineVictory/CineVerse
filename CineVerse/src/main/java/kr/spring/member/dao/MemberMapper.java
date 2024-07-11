@@ -1,10 +1,13 @@
 package kr.spring.member.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 
 
@@ -16,6 +19,13 @@ public interface MemberMapper {
 	public Long selectMem_num();
 	@Insert("INSERT INTO member (mem_num, mem_id, mem_auth, mem_rank, mem_membership) VALUES (#{mem_num}, #{mem_id}, 3, 1, 1)")
 	public void insertMember(MemberVO member);
+	// 회원가입시 회원가입 축하 쿠폰 증정
+	@Insert("INSERT INTO member_coupon (mc_num, mem_num, coupon_num) VALUES (member_coupon_seq.nextval,#{mem_num}, #{coupon_num})")
+	public void insertNewMemCoupon(CouponVO coupon);
+    
+    @Select("SELECT coupon_num FROM coupon_db WHERE coupon_num IN (1, 2)")
+    public List<Long> selectInitialCoupons();
+	
 	// xml 작성
 	public void insertMember_detail(MemberVO member);
 	public MemberVO selectCheckMember(String mem_id);
@@ -38,6 +48,6 @@ public interface MemberMapper {
 	public void updatePassword(String mem_passwd, String mem_id);
 	
 	//포인트 충전하기
-	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num) VALUES(point_history_seq.nextval,#{ph_point},SYSDATE,#{mem_num})")
-	public void chargePoint(Long ph_point, Long mem_num);
+	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num,ph_type,ph_payment) VALUES(point_history_seq.nextval,#{ph_point},SYSDATE,#{mem_num},1,#{ph_payment})")
+	public void chargePoint(Long ph_point, Long mem_num, String ph_payment);
 }

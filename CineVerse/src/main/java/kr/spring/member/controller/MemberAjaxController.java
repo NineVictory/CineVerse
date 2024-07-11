@@ -80,13 +80,13 @@ public class MemberAjaxController {
 	
 	 	@PostMapping("/member/pointCharge")
 	   @ResponseBody
-	    public Map<String, String> chargePoint(@RequestParam Long mem_num, @RequestParam Long ph_point) {
+	    public Map<String, String> chargePoint(@RequestParam Long mem_num, @RequestParam Long ph_point, @RequestParam String ph_payment) {
 	        log.debug("<<포인트 충전>> ");
 	        
 	        Map<String, String> mapAjax = new HashMap<String,String>();
 	        
 	        try {
-	            memberService.chargePoint(ph_point, mem_num);
+	            memberService.chargePoint(ph_point, mem_num,ph_payment);
 	            mapAjax.put("result", "success");
 	        } catch (Exception e) {
 	            log.error("포인트 충전 에러", e);

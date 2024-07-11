@@ -101,6 +101,8 @@ CREATE TABLE point_history (
     ph_point NUMBER NOT NULL,
     ph_date DATE DEFAULT SYSDATE NOT NULL ,
     mem_num NUMBER NOT NULL,
+    ph_type NUMBER NOT NULL,		-- 1: 충전 0: 환불
+    ph_payment VARCHAR2(100) NOT NULL,	-- kakaopay 또는 tosspay로 결정됨
     CONSTRAINT PK_POINT_HISTORY PRIMARY KEY (ph_num),
     CONSTRAINT FK_member_TO_point_history_1 FOREIGN KEY (mem_num) REFERENCES member (mem_num)
 );
@@ -113,6 +115,7 @@ CREATE TABLE coupon_db (
     coupon_content VARCHAR2(200),
     coupon_type NUMBER NOT NULL,
     coupon_sale NUMBER NOT NULL,
+    coupon_where NUMBER NOT NULL,
     CONSTRAINT PK_COUPON_DB PRIMARY KEY (coupon_num)
 );
 
