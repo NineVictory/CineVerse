@@ -12,6 +12,7 @@
 	</definition>
 </tiles-definitions> -->
 <tiles-definitions>
+	
 	<!-- 영화목록 -->
     <definition name="movieList" template="/WEB-INF/views/template/layout_movie.jsp">
         <put-attribute name="title" value="영화목록"/>
@@ -19,6 +20,12 @@
         <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/movie/movieList.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>
+    <!-- 영화등록 -->
+    <definition name="movieWrite" extends="movieList">
+        <put-attribute name="title" value="영화등록"/>
+        <!-- <put-attribute name="css" value="/WEB-INF/views/movie/movieMainCSS.jsp"/> -->
+        <put-attribute name="body" value="/WEB-INF/views/movie/movieWrite.jsp"/>
     </definition>
     <!-- 영화상세 -->
     <definition name="movieDetail" extends="movieList">

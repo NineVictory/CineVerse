@@ -14,6 +14,7 @@
 
                 <li onclick="toggleSubMenu('menuMovie')"><h2>영화</h2></li>
                 <ul id="menuMovie">
+                	<li><a href="${pageContext.request.contextPath}/movie/movieWrite">영화등록</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/adminMovie">영화</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/adminCinema">영화관</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/adminReservation">예매</a></li>
