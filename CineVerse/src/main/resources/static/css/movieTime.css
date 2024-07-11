@@ -1,0 +1,363 @@
+
+.reserve-container {
+	margin-top: 140px;
+	display: flex;
+	justify-content: center;
+	height: 800px;
+}
+
+.reserve-container>div {
+	border: 1px solid #dddddd;
+}
+
+.reserve-title {
+	border-bottom: 1px solid #dddddd;
+	background-color: #444444;
+	text-align: center;
+	color: #dddddd;
+	padding: 5px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+/* 지점명 */
+.theater-part {
+	width: 350px;
+}
+
+.theater-container {
+	display: flex;
+	justify-content: left;
+	height: 763px;
+	background-color: var(--main-color-light);
+}
+
+
+.theater-location-wrapper {
+	/* flex-grow: 1; */
+	/* display: flex; */
+	/* flex-direction: column; */
+	padding: 0;
+}
+
+.theater-location {
+	font-size: 13px;
+	padding: 15px 20px;
+	position: relative;
+	width: 152px;
+	height: 50px;
+	/* text-align: center; */
+	align-items: center;
+	/* background-color: #E6E4D9; */
+	/* margin-top: 5px;*/
+}
+
+.location {
+	height: 763px;
+    position: absolute;
+    left: 155px;
+    right: 0px;
+    top: 0;
+    bottom: 0;
+    /* left: 100%; */
+    /* display: none; */
+    /* margin-top: 10px; */
+    background-color: white;
+    /* border: 1px solid #444444; */
+    width: 193px;
+    /* padding: 10px; */
+    z-index: 1;
+}
+
+.theater-place-wrapper {
+	padding: 0;
+}
+
+.theater-place {
+	font-size: 14px;
+	padding: 25px 0 0px 20px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.theater-location-active {
+	outline: 2px solid var(--main-color-strong);
+    background-color: #fff;
+    /* color: white;*/
+}
+
+.theater-location-active .a {
+	color: white;
+}
+
+.theater-location-active .location {
+	display: block;
+}
+
+/* 영화 */
+.movie-part {
+	width: 300px;
+}
+
+.sort-wrapper {
+	padding: 10px 6px 6px 10px;
+	display: flex;
+	border-bottom: 1px solid #dddddd;
+}
+
+.sort-wrapper>div {
+    cursor: pointer;
+    padding: 3px;
+    font-size: 14px;
+}
+
+.sort-wrapper>div:hover {
+	border-bottom: 1px solid #111111;
+}
+
+.sort-selected {
+	font-weight: bold;
+	border-bottom: 1px solid #111111;
+}
+
+.sort-korean {
+	margin-left: 6px;
+}
+
+.movie-list {
+	display: flex;
+    align-items: center;
+    /* margin-top: 10px; */
+    font-size: 20px;
+    /* margin-top: 5px;*/
+}
+
+.movie-select {
+	width: 100%;
+	padding: 0;
+	text-align: center;
+}
+
+.select {
+	font-size: 14px;
+	display: flex;
+    padding: 14px;
+    border-bottom: 1px solid var(--gray-3);
+    /* background-color: #E6E4D9; */
+    /* margin-top: 20px; */
+    /* margin-bottom: 20px; */
+    align-items: center;
+    font-weight: 600;
+}
+
+
+/* 날짜 및 시간 */
+.time-part {
+	width: 400px;
+}
+
+.reserve-time {
+	width: 300px;
+	margin: 0 auto;
+}
+
+.reserve-month {
+	margin-top: 20px;
+	margin-left: 8px;
+	font-weight: bold;
+	border-bottom: 1px solid var(--gray-3);
+	margin-bottom: 70px;
+}
+
+.reserve-date {
+    display: flex; 
+    justify-content: space-between; 
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.reserve-date .date {
+    flex: 1; 
+    text-align: center; 
+}
+
+.reserve-date .date a {
+    display: block; 
+    padding: 10px; 
+    text-decoration: none; 
+    color: black; 
+}
+
+.reserve-date .date a:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경 색상 변경 */
+}
+
+.reserve-date .saturday a {
+    color: blue; /* 토요일 텍스트 색상 */
+}
+
+.reserve-date .sunday a {
+    color: red; /* 일요일 텍스트 색상 */
+}
+
+.reserve-time-wrapper {
+	margin-top: 10px;
+	display: flex; 
+    flex-wrap: wrap; /* 버튼들이 줄바꿈될 수 있도록 설정 */
+    gap: 20px; /* 버튼들 사이의 간격 설정 */
+}
+
+.reserve-time-button {
+	margin-top: 10px;
+	flex: 1; /* 버튼들이 동일한 너비를 가짐 */
+    padding: 10px; /* 버튼 내부 패딩 */
+    border: 1px solid #ccc; /* 버튼 테두리 */
+    background-color: #fff; /* 버튼 배경색 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--main-color-light);
+}
+
+.reserve-time-button:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경 색상 변경 */
+}
+
+.reserve-time-want {
+	letter-spacing: 1px;
+	padding: 3px;
+	font-weight: bold;
+}
+
+.reserve-time-want {
+	letter-spacing: 1px;
+	padding: 3px;
+	font-weight: bold;
+}
+
+.reserve-time-remain{
+	font-size: 11px;
+}
+
+.reserve-time-active {
+	background-color: #333333;
+	color: white;
+}
+
+.theater-place-active {
+	background-color: #333333;
+	color: white;
+}
+
+.ic_grade {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    font-size: 0;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.ic_grade:before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    background-size: 100%;
+}
+
+.ic_grade.gr_all:before {
+    background: #229c56 url(../images/cmj/grade_all.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_12:before {
+    background: #e9b630 url(../images/cmj/grade_12.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_15:before {
+    background: #dd7430 url(../images/cmj/grade_15.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_19:before {
+    background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
+}
+
+.moveSeatButton {
+	width: 150px;
+	height: 80px;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 5px;
+	margin-top: 150px;
+	margin-left: 200px;
+	border: 1px solid #333333;
+	border-radius: 15px;
+	background: #3F66ED;
+	color: #FFFFFF;
+}
+
+.moveSeatButton:hover {
+	background-color: #333333;
+	color: white;
+}
+
+.fifteen {
+	color: white;
+	background-color: #AF2D2D;
+}
+
+.eighteen {
+	color: white;
+	background-color: red;
+	font-size: 11px;
+}
+
+.seat-select-button{
+	align-items: center;
+}
+
+
+
+
+
+/* 보류 
+
+
+.movie-list-title {
+    padding: 6px 4px;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.movie-list-title-active {
+    background-color: #333333;
+}
+
+.movie-list-title-active>button {
+    font-weight: bold;
+    color: white;
+}
+
+
+
+.movie-list-age {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    border-radius: 100%;
+}
+
+
+
+*/

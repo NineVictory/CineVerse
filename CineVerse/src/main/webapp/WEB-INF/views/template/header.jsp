@@ -39,7 +39,7 @@
                     <div>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/movie/movieReserve" title="예매하기">예매하기</a></li>
-                            <li><a href="#" title="상영시간표">상영시간표</a></li>
+                            <li><a href="${pageContext.request.contextPath}/movie/movieTime" title="상영시간표">상영시간표</a></li>
                             <li><a href="#" title="할인안내">할인안내</a></li>
                         </ul>
                     </div>
@@ -59,16 +59,7 @@
                     <div>
                         <ul>
                         <li class=""><a href="${pageContext.request.contextPath}/movie/ownMovieInfo" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
-                        <li class=""><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>
-                            <li class=""><a href="#" title="스페셜관">스페셜관</a></li>
-                            <li><a href="#" title="서울">서울</a></li>
-                            <li><a href="#" title="경기/인천">경기/인천</a></li>
-                            <li><a href="#" title="충청/대전">충청/대전</a></li>
-                            <li><a href="#" title="전라/광주">전라/광주</a></li>
-                            <li><a href="#" title="경북/대구">경북/대구</a></li>
-                            <li><a href="#" title="경남/부산/울산">경남/부산/울산</a></li>
-                            <li><a href="#" title="강원">강원</a></li>
-                            <li><a href="#" title="제주">제주</a></li>
+                        <li class=""><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>    
                         </ul>
                     </div>
                 </li>
