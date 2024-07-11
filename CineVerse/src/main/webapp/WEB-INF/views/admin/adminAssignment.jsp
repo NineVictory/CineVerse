@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <div class = "admin_member">
 	<div class = "firstTitle">
-		<p id ="title">이벤트</p>
+		<p id ="title">양도/교환 게시판 관리</p>
 	</div>
 		<form action="adminSearch" id="admin_search">
 			<ul>
@@ -13,8 +13,7 @@
 				</li>
 			</ul>
 		</form>
-		<p id = "sub_title2">이벤트 관리</p>
-		<input type = "button" value = "이벤트 등록" class = "insert_button"/>
+		<p id = "sub_title2">양도/교환 게시판 관리</p>
 		<table class="adminMember-table">
         <thead>
             <tr>

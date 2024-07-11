@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
+import kr.spring.admin.vo.EventVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
@@ -34,6 +35,11 @@ public class AdminController {
 	@ModelAttribute
 	public AdminVO initCommand() {
 		return new AdminVO();
+	}
+	//자바빈(VO) 초기화
+	@ModelAttribute
+	public EventVO initCommand1() {
+		return new EventVO();
 	}
 	/*==============================
 	 * 관리자메인
@@ -138,8 +144,23 @@ public class AdminController {
 	 *==============================*/	
 	//이벤트 조회
 	@GetMapping("/admin/adminEvent")
-	public String adminEvent(){
-		return "adminEvent";
+	public String SelectadminEvent(Model model){
+		try {
+			// 모든 회원 정보 조회
+			List<EventVO> adminList = adminService.getAllEvent();
+
+			// 조회된 회원 정보를 모델에 추가하여 View로 전달
+			model.addAttribute("adminList", adminList);
+
+			
+			return "adminEvent"; // 회원 정보를 보여줄 View 이름
+		} catch (Exception e) {
+			log.error("회원 정보 조회 중 오류 발생", e);
+			model.addAttribute("errorMessage", "회원 정보 조회 중 오류가 발생하였습니다.");
+			log.debug("<<회원 정보 조회 오류>>");
+			return "errorPage"; // 에러 페이지로 이동
+
+		}
 	}
 	//이벤트 수정폼 호출
 	@GetMapping("/admin/adminEventForm")
@@ -147,26 +168,31 @@ public class AdminController {
 		return "adminEventForm";
 	}
 	@PostMapping("admin/adminEventForm")
-	public String insertEvent(@Valid AdminVO adminVO,
+	public String insertEvent(@Valid EventVO eventVO,
 			BindingResult result,
 			HttpServletRequest request,
 			HttpSession session,
 			Model model) throws IllegalStateException,
     						IOException{
-		log.debug("<<이벤트 글 저장>> : " + adminVO);
+		log.debug("<<이벤트 글 저장>> : " + eventVO);
 		
 		// 폼 데이터 유효성 검사
 		if (result.hasErrors()) {
-			// 유효성 검사 오류 발생 시 처리
-			return AdminEventForm(); // 다시 폼을 보여줌
+			log.debug("<<유효성검사이상있음>> : " + eventVO);
+			return "adminEventForm"; // 다시 폼을 보여줌
 		}
-
-		adminVO.setEvent_filename(FileUtil.createFile(request, 
-				                      adminVO.getUpload()));
 		
-		adminService.insertEvent(adminVO);
-		// 등록 후 이벤트 관리 페이지로 리다이렉트
-		return "redirect:/admin/adminEvent";
+		eventVO.setEvent_filename(FileUtil.createFile(request, 
+				                      eventVO.getUpload()));
+		
+		log.debug("파일명: " + eventVO.getEvent_filename());
+		adminService.insertEvent(eventVO);
+		//View 메시지 처리
+				model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+				model.addAttribute("url", 
+						 request.getContextPath()+"/admin/adminEvent");
+				
+				return "common/resultAlert";
 	}
 	// 포인트(결제) 관리
 	@GetMapping("/admin/adminPayment")

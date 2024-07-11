@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.admin.dao.AdminMapper;
 import kr.spring.admin.vo.AdminVO;
+import kr.spring.admin.vo.EventVO;
 @Service
 @Transactional
 public class AdminServiceImpl implements AdminService{
@@ -27,14 +28,14 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	public List<AdminVO> getAllMembership() {
-		// TODO Auto-generated method stub
 		return adminMapper.getAllMembership();
 	}
 	@Override
-	public void insertEvent(AdminVO admin) {
-					}
-
-
-	
-
+	public List<EventVO> getAllEvent() {
+		return adminMapper.getAllEvent();
+	} 
+	@Override
+	public void insertEvent(EventVO eventVO) {
+		adminMapper.insertEvent(eventVO);
+	}
 }

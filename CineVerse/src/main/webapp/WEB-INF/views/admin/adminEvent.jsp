@@ -18,33 +18,23 @@
 		<table class="adminMember-table">
         <thead>
             <tr>
-                <th>회원번호</th>
-                <th>아이디</th>
-                <th>상태</th>
-                <th>등급</th>
-                <th>맴버십</th>
-                <th>이름</th>
-                <th>전화번호</th>
-                <th>이메일</th>
-                <th>가입일</th>
-                <th></th>
+                <th>글 번호</th>
+                <th>제목</th>
+                <th>시작일</th>
+                <th>마감일</th>
+                <th>등록일</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="member" items="${adminList}">
+            <c:forEach var="event" items="${adminList}">
                 <tr>
-                    <td class="mem-data">${member.mem_num}</td>
-                    <td class="mem-data">${member.mem_id}</td>
-                    <td class="mem-data">${member.mem_auth}</td>
-                    <td class="mem-data">${member.mem_rank}</td>
-                    <td class="mem-data">${member.mem_membership}</td>
-                    <td class="mem-data">${member.mem_name}</td>
-                    <td class="mem-data">${member.mem_phone}</td>
-                    <td class="mem-data">${member.mem_email}</td>
-                    <td class="mem-data">${member.mem_reg_date}</td>
-                    <td class="button1"><input type="button" value="정지" /></td>
-                    <td class="button2"><input type="button" value="탈퇴" /></td>
+                    <td class="mem-data">${event.event_num}</td>
+                    <td class="mem-data">${event.event_name}</td>
+                    <td class="mem-data">${event.event_start}</td>
+                    <td class="mem-data">${event.event_end}</td>
+                    <td class="mem-data">${event.event_reg_date}</td>
+                    <td class="button1"><input type="button" value="삭제" /></td>
                 </tr>
             </c:forEach>
         </tbody>

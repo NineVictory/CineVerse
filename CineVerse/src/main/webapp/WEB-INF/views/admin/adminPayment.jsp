@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <div class = "admin_member">
 	<div class = "firstTitle">
-		<p id ="title">맴버십관리</p>
+		<p id ="title">결제 관리</p>
 	</div>
 		<form action="adminSearch" id="admin_search">
 			<ul>

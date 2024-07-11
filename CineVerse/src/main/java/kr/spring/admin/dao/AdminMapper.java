@@ -1,11 +1,13 @@
 package kr.spring.admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.admin.vo.AdminVO;
+import kr.spring.admin.vo.EventVO;
 import kr.spring.board.vo.BoardVO;
 
 @Mapper
@@ -26,8 +28,13 @@ public interface AdminMapper {
     public List<AdminVO> getAllMembership();
     // 공지사항
 
+    
     // 이벤트
-    public void insertEvent(AdminVO admin);
+    @Select("SELECT event_num, event_name, event_start, event_end, event_reg_date "
+    		+ "FROM event "
+    		+ "ORDER BY event_reg_date DESC")
+    public List<EventVO> getAllEvent();
+    public void insertEvent(EventVO eventVO);
 	
     // 결제
     

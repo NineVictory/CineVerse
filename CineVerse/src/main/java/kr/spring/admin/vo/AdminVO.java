@@ -33,18 +33,7 @@ public class AdminVO {
 	private Clob nb_content;
 	private Date re_reg_date;
 	private String nb_filename;
-
-	private MultipartFile upload;	//파일
-
-	//이벤트관리
-	private long event_num;
-	private String event_name;
-	private String event_filename;
-	private Clob event_content;
-	private String event_start;
-	private String event_end;
-	private Date event_reg_date;
-
+	
 	//결제취소
 	private long ph_num; //위에 ph_point랑 ph_date잇
 
