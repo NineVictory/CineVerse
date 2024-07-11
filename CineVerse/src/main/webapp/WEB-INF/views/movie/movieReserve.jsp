@@ -163,7 +163,6 @@
 		<div class="reserve-time">
 			<div class="reserve-month">7월			
 				<ul class="reserve-date">								
-					<li class="date"><a href="#">10<br>수</a></li>
 					<li class="date"><a href="#">11<br>목</a></li>
 					<li class="date"><a href="#">12<br>금</a></li>
 					<li class="date saturday"><a href="#">13<br>토</a></li>
