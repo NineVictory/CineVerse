@@ -16,12 +16,12 @@
       현재 상영작만 보기
       </div>
     <div class="select-wrapper">
-            <select name="shopOrder" id="shopOrder">
-                <option value="1" <c:if test="${param.order == 1 }">selected</c:if>>최신순</option>
-                <option value="2" <c:if test="${param.order == 2 }">selected</c:if>>구매순</option>
-                <option value="3" <c:if test="${param.order == 3 }">selected</c:if>>후기순</option>
-                <option value="4" <c:if test="${param.order == 4 }">selected</c:if>>평점순</option>
-                <option value="5" <c:if test="${param.order == 5 }">selected</c:if>>관심상품순</option>
+            <select name="movieOrder" id="movieOrder">
+                <option value="1" <c:if test="${param.movieOrder == 1 }">selected</c:if>>최신순</option>
+                <option value="2" <c:if test="${param.movieOrder == 2 }">selected</c:if>>구매순</option>
+                <option value="3" <c:if test="${param.movieOrder == 3 }">selected</c:if>>후기순</option>
+                <option value="4" <c:if test="${param.movieOrder == 4 }">selected</c:if>>평점순</option>
+                <option value="5" <c:if test="${param.movieOrder == 5 }">selected</c:if>>관심상품순</option>
             </select>
         </div>
         <ul>

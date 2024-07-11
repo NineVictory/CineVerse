@@ -30,29 +30,33 @@
 	 		<if test="m_status != null and m_status != ''"> <!-- status가 있을 때 where절과 카테고리값 생성 -->
 	 			m_status = #{m_status}
 	 		</if>
+	 		<!-- 검색어가 있을 때만 호출 -->
 	 		<if test="keyword !=null and keyword !=''">
 	 			And
 	 		</if>
+	 		<!-- 1:영화이름 -->
 	 		<if test="keyfield ==1">
 	 			m_name LIKE '%' || #{keyword} || '%'
 	 		</if>
+	 		<!-- 2:상영일 -->
 	 		<if test="keyfield ==2">
 	 			m_opendate LIKE '%' || #{keyword} || '%'
 	 		</if>
+	 		<!-- 3:제작사 -->
 	 		<if test="keyfield ==3">
 	 			m_companys LIKE '%' || #{keyword} || '%'
 	 		</if>
 
 	 	</where>
 	 </sql>
-	 <sql id="movieOrder"> <!-- 정렬할 때 -->
-	 	<if test="order ==1">
+	 <sql id="movieListOrder"> <!-- 정렬할 때 -->
+	 	<if test="movieorder ==1">
 	 		ORDER BY m_code DESC
 	 	</if>
-	 	<if test="order ==2">
+	 	<if test="movieorder ==2">
 	 		ORDER BY bookmark_cnt DESC NULLS LAST
 	 	</if>
-	 	<if test="order ==3">
+	 	<if test="movieorder ==3">
 	 		ORDER BY m_opendate DESC NULLS LAST
 	 	</if>
 	 </sql>
@@ -80,11 +84,9 @@
 	 		  		  ]]>  
 	 		  		  m_filename,
 	 		  		  m_opendate,
-	 		  		  m_company,
-	 		  		  m_status,
-	 		  		  nick_name,
-	 		  		  re_cnt,
-	 		  		  fav_cnt
+	 		  		  m_companys,
+	 		  		  m_status,  
+	 		  		  m_content
 	 		  		FROM movie 
 	 		  		LEFT OUTER JOIN (SELECT COUNT (*) bookmark_cnt, m_code FROM movie_bookmark GROUP BY m_code) USING(m_code) <!-- bookmark_cnt는 알리아스 명칭임 이 괄호는 인라인 뷰 -->
 	 		  		JOIN member USING(mem_num)
