@@ -1,5 +1,7 @@
 package kr.spring.member.vo;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +14,7 @@ public class CouponVO {
 	private int coupon_use;		// 회원 쿠폰 사용 여부 1:미사용, 2:사용, 3:만기
 	private long coupon_num;	// 쿠폰의 번호
 	private long mem_num;		// 회원 번호
+	private Date coupon_regdate;	// 쿠폰 발급일자
 	
 	private String coupon_name;		// 쿠폰 이름
 	private String coupon_content;	// 쿠폰 내용

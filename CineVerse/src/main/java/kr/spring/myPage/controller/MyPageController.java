@@ -1,5 +1,9 @@
 package kr.spring.myPage.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -52,7 +56,24 @@ public class MyPageController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
+		
+		// 쿠폰 리스트 불러오기 시작
+		Map<String,Object> map = new HashMap<String,Object>();
+		// mem_num 지정하기
+		map.put("mem_num", user.getMem_num());
+		 
+		log.debug("<< 쿠폰 개수 >> : " + member.getCoupon_cnt());
+		
+		List<MyPageVO> couponList = null;
+		// 쿠폰 개수 0보다 크면 list에 삽입
+		if(member.getCoupon_cnt() > 0) {
+			couponList = mypageService.selectMemCouponList(map);
+		}
+		
+		model.addAttribute("couponList",couponList);
 		model.addAttribute("member",member);
+		
 		return "coupon";
 	}
 	

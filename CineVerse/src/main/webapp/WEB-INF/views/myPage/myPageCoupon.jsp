@@ -24,19 +24,23 @@
 		</div>
 		<!-- 1:미사용 2:사용 3:만기 -->
 		<!-- 쿠폰 반복 -->
-		<div class="coupon_info_list">
+		<c:if test="${member.coupon_cnt > 0 }">
+		<c:forEach  var="couponList" items="${couponList}">
+			<div class="coupon_info_list">
 			<div class="coupon_info_name">
-				<div>회원가입 쿠폰</div>
+				<div>${couponList.coupon_name }</div>
 			</div>
 			<div class="coupon_info_date">
-				<div>2024-07-01 ~ 2024-12-31</div>
+				<div>${couponList.coupon_regdate } ~ ${couponList.coupon_enddate }</div>
 			</div>
 			<div class="coupon_info_content">
-				<div>10000원 이상 구매시 배송비 무료 쿠폰</div>
+				<div>${couponList.coupon_content }</div>
 			</div>
 		</div>
 		<hr size="1" class="coupon_line">
-		<!-- 쿠폰 반복 -->
+		</c:forEach>
+		</c:if>
+	
 	</div>
 </div>
 <!-- 나의 쿠폰 끝 -->

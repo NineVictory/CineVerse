@@ -4,6 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 
 <mapper namespace="kr.spring.myPage.dao.MyPageMapper">
-	
+	<select id="selectMemCouponList" parameterType="long">
+		SELECT mc.*, c.*, ADD_MONTHS(mc.coupon_regdate, 1) coupon_enddate FROM member_coupon mc JOIN coupon_db c ON mc.coupon_num = c.coupon_num
+		WHERE mc.mem_num = #{mem_num}
+	</select>
 
  </mapper>

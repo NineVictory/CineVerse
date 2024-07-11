@@ -1,5 +1,8 @@
 package kr.spring.myPage.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -13,4 +16,5 @@ public interface MyPageMapper {
 	public Integer selectMemberPoint(long mem_num);//회원 포인트
 	@Select("SELECT COUNT(*) FROM member_coupon WHERE mem_num=#{mem_num}")
 	public Integer selectMemberCoupon(long mem_num);	// 회원 쿠폰 개수 구하기
+	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
 }

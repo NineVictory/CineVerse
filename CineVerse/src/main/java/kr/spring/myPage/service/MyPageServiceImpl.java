@@ -1,5 +1,8 @@
 package kr.spring.myPage.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +30,10 @@ public class MyPageServiceImpl implements MyPageService{
 	public Integer selectMemberCoupon(long mem_num) {
 		Integer coupon = myPageMapper.selectMemberCoupon(mem_num);
 		return coupon != null ? coupon : 0;
+	}
+	@Override
+	public List<MyPageVO> selectMemCouponList(Map<String, Object> map) {
+		return myPageMapper.selectMemCouponList(map);
 	}
 	
 	
