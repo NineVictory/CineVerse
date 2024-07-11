@@ -14,6 +14,7 @@ public class MovieVO {
 	private Long m_code;
 	private String m_name;
 	private Date m_opendate;
+	private String m_companys;
 	private Long m_status;
 	private Clob m_filename;
 }
