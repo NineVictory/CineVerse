@@ -39,8 +39,8 @@
 			<c:if test="${count > 0}">
 				<c:forEach var="product" items="${productList}">
 					<div class="product-item" onclick="window.location.href='shopDetail?p_num=${product.p_num}'">
-						<img src="${pageContext.request.contextPath}/images/cje/product.png" alt="티셔츠">
-						<h3>
+						<img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
+						<h3>	
 							<c:if test="${product.p_category == 1}"> MARVEL </c:if>
 							<c:if test="${product.p_category == 2}"> DISNEY </c:if>
 							<c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>

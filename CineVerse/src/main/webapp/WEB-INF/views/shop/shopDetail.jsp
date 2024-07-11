@@ -6,7 +6,7 @@
 	<div class="main_content">
 	    <div class="product-main">
 	        <div class="product-img">
-	            <img src="${pageContext.request.contextPath}/images/cje/product.png" alt="티셔츠">
+	            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
 	        </div>
 	        <div class="product-info">
 	            <h1>
@@ -17,7 +17,6 @@
 					<c:if test="${product.p_category == 5}"> Studio GHIBLI </c:if>
 					<c:if test="${product.p_category == 6}"> Warner Bros. </c:if>
 					<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
-				</h3>
 				</h1>
 	            <p>${product.p_name}</p>
 	            <span class="product-price">${product.p_price}</span>원
@@ -80,7 +79,7 @@
 		        	<img src=${pageContext.request.contextPath}/images/cje/deli_pic.png>
 		        </div>
 		        <div class="product-detail-info">
-		        <img src=${pageContext.request.contextPath}/images/cje/detail_pic.png>
+		        ${product.p_content}
 		        </div>
 	        </c:if>
 	        <!-- 리뷰 -->

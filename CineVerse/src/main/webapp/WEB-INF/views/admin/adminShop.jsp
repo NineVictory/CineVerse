@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- include ckeditor js -->
+<script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 <!-- 상품 등록 시작 -->
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
@@ -70,6 +75,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		<li>
 			<label for="p_content">상품설명</label>
 			<textarea rows="5" cols="30" name="p_content" id="p_content" class="input-check"></textarea>
+			<script>
+				 function MyCustomUploadAdapterPlugin(editor) {
+					    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+					        return new UploadAdapter(loader);
+					    }
+					}
+				 
+				 ClassicEditor
+		            .create( document.querySelector( '#p_content' ),{
+		            	extraPlugins: [MyCustomUploadAdapterPlugin]
+		            })
+		            .then( editor => {
+						window.editor = editor;
+					} )
+		            .catch( error => {
+		                console.error( error );
+		            } );
+			    </script> 
 		</li>
 		<li>
 			<input type="submit" value="등록">
