@@ -150,5 +150,18 @@ public class ShopController {
 	    model.addAttribute("url", request.getContextPath() + "/shop/shopBasket");
 	    return "common/resultAlert";
 	}
+	
+	// 벌스샵 결제 (상품 결제)
+		@GetMapping("/shop/shopFav")
+		public ModelAndView shopFav(HttpSession session, Model model) {
+			List<ProductVO> list = null;
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			list = shopService.productFavList(user.getMem_num());
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("list", list);
+
+			return new ModelAndView("shopFav", map);
+		}
 
 }

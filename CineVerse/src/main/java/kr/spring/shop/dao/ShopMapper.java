@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
 
@@ -38,6 +39,9 @@ public interface ShopMapper {
 	// 관심 상품 전체 개수
 	@Select("SELECT COUNT(*) FROM product_fav WHERE p_num=#{p_num}")
 	public Integer productFavCount(Long p_num);
+	// 내 관심 상품 리스트 구하기
+	@Select("SELECT * FROM product_fav JOIN product USING(p_num) WHERE mem_num=#{mem_num}")
+	public List<ProductVO> productFavList(Long mem_num);
 	
 	// 상품 장바구니 여부
 	@Select("SELECT * FROM p_basket WHERE mem_num=#{mem_num} AND p_num=#{p_num}")
@@ -53,7 +57,6 @@ public interface ShopMapper {
 	public List<ProductVO> productBasketList(Long mem_num);
 	/*
 	 * // 장바구니 각각 가격
-	 * 
 	 * @Select("SELECT p_price * pb_quantity FROM p_basket JOIN product USING(p_num) WHERE mem_num = #{mem_num}"
 	 * ) public List<Integer> basketPrice(Long mem_num);
 	 */
@@ -64,5 +67,10 @@ public interface ShopMapper {
 	// 장바구니 총 개수
 	@Select("SELECT SUM(pb_quantity) FROM p_basket WHERE mem_num = #{mem_num}")
 	public Integer basketCount(Long mem_num);
+	
+	// 주문
+	public void productOrders(OrdersVO orders);
+	
+	
 	
 }

@@ -3,21 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- 벌스샵 장바구니 시작 -->
+<style>
+	.pp{
+		margin-left: 30px;
+	}
+</style>
 <div class="main_content">
     <div class="buy-main">
-        <h2>장바구니</h2>
-        <form action="shopPay" id="shop_pay" method="post">
+        <h2>관심 상품</h2>
             <c:if test="${empty list}">
-                <img src="${pageContext.request.contextPath}/images/cje/empty.png" width="500px" style="margin-left:150px; margin-top:50px; cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/shop/shopMain'" onclick="location.href='shopDetail?p_num=${product.p_num}'">
+                <img src="${pageContext.request.contextPath}/images/cje/empty.png" width="500px" style="margin-left:150px; margin-top:50px; cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/shop/shopMain'">
             </c:if>
             <c:if test="${not empty list}">
             	<c:forEach var="product" items="${list}">
 						<div class="order-product">
 		                    <div class="order-header">
-		                        <!-- <h3 class="order-category">
-									
-
-								</h3> -->
 		                        <hr size="4px" color="black" width="53%">
 		                    </div>	    
 		                    <div class="order-body">
@@ -32,38 +32,16 @@
 								</span>
 		                        <hr size="2px" color="#969696" width="53%">
 		                        <div class="product-list">
-		                            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
+		                            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}" onclick="location.href='shopDetail?p_num=${product.p_num}'">
 		                            <div class="product-name">
 		                                <span>${product.p_name}</span>
-		                                <p>${product.p_name}&nbsp; <span>${product.pb_quantity}개</span></p>
 		                            </div>
-		                            <p>가격 <span>${product.p_price}원</span></p>
+		                            <p class="pp">가격 <span>${product.p_price}원</span></p>
 		                        </div>
-		                        <div class="basket-result">
-		                            <p>${product.p_name}<span> ${product.pb_quantity}개</span></p>
-		                        </div>
-		                        <!-- <hr size="4px" color="black" width="53%">	 -->
 		                    </div>
 		                </div>
                 </c:forEach>
             </c:if>
-        </form>
-        <c:if test="${not empty list}">
-        <div class="basket-price">
-             <p>
-                 <span>상품 금액 ${total}원</span> 
-                 <span> + </span>
-                 <span> 배송비
-					<c:if test="${total>=50000}">0</c:if>
-					<c:if test="${total<50000}">3000</c:if>
-					원
-				</span>
-                 <span> + </span>
-                 <span><c:if test="${total>=50000}">${total}원</c:if>
-					<c:if test="${total<50000}">${total+3000}원</c:if></span>
-            </p>
-      	</div>
-      	</c:if>
     </div>
 </div>
 <script>

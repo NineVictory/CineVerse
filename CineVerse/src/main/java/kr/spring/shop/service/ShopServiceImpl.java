@@ -91,6 +91,11 @@ public class ShopServiceImpl implements ShopService {
 	public Integer basketTotalPrice(Long mem_num) {
 		return shopMapper.basketTotalPrice(mem_num);
 	}
+
+	@Override
+	public List<ProductVO> productFavList(Long mem_num) {
+		return shopMapper.productFavList(mem_num);
+	}
 	
 	
 

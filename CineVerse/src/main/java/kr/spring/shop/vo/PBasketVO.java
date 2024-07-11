@@ -2,8 +2,6 @@ package kr.spring.shop.vo;
 
 import java.sql.Date;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 

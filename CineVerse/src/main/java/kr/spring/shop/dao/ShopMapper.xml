@@ -91,5 +91,10 @@
 								WHERE rnum >= #{start} AND rnum <= #{end}
 								]]>
 	</select>
+	
+	<insert id="productOrders" parameterType="ordersVO">
+		INSERT INTO orders (order_num, mem_num, order_date, a_num) VALUES
+		(orders_seq.nextval, #{mem_num}, SYSDATE, #{a_num})
+	</insert>
 
  </mapper>
