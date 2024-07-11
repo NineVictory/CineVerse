@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
@@ -31,7 +32,6 @@ public class MyPageController {
 	public String myPageMain(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
 		log.debug("<<마이페이지 >> : " +member);
 		model.addAttribute("member",member);
@@ -44,7 +44,6 @@ public class MyPageController {
 	public String myPageReservation(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "myPageReservation";
 	}
@@ -55,7 +54,6 @@ public class MyPageController {
 	public String myPageCoupon(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
 		
 		// 쿠폰 리스트 불러오기 시작
@@ -83,7 +81,6 @@ public class MyPageController {
 	public String expectingMovie(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "expectingMovie";
 	}
@@ -94,7 +91,6 @@ public class MyPageController {
 	public String watchedMovie(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "watchedMovie";
 	}
@@ -105,7 +101,6 @@ public class MyPageController {
 		public String myPageReview(HttpSession session, Model model) {
 			MemberVO user = (MemberVO)session.getAttribute("user");
 			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 			model.addAttribute("member",member);
 			return "review";
 		}
@@ -116,7 +111,6 @@ public class MyPageController {
 	public String myPageBookMark(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "bookMark";
 	}
@@ -124,10 +118,25 @@ public class MyPageController {
 	
 	//게시판 - 내가 쓴 글
 	@GetMapping("/myPage/boardWrite")
-	public String myPageBoardWrite(HttpSession session, Model model) {
-		MemberVO user = (MemberVO)session.getAttribute("user");
+	public String myPageBoardWrite(@RequestParam(defaultValue = "") String cb_type,HttpSession session, Model model) {
+		log.debug("<<카테고리 타입 >> : " + cb_type);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cb_type", cb_type);
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");	
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
+		
+		List<BoardVO> list = null;
+		int count = mypageService.cBoardWriteListcnt(map);
+		if(count > 0) {
+			list = mypageService.selectMemcBoardWriteList(map);
+			
+			log.debug("<<  글 목록 >> : " + list);
+		}
+		map.put("list", list);
+		map.put("count", count);
+		
 		model.addAttribute("member",member);
 		return "myBoardWrite";
 	}
@@ -138,7 +147,6 @@ public class MyPageController {
 	public String myPageBoardReply(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "myBoardReply";
 	}
@@ -154,7 +162,6 @@ public class MyPageController {
 	public String myPageEvent(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "myEvent";
 	}
@@ -165,7 +172,6 @@ public class MyPageController {
 	public String myPagePointList(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "pointList";
 	}
@@ -181,7 +187,6 @@ public class MyPageController {
 	public String myPageChatList(HttpSession session,Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "chatList";
 	}
@@ -191,7 +196,6 @@ public class MyPageController {
 	public String myPageAddressList(MyPageVO myPageVO, HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "addressList";
 	}
@@ -202,7 +206,6 @@ public class MyPageController {
 	public String myPagePasswdChange(MyPageVO myPageVO, HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "passwdChange";
 	}
@@ -213,7 +216,6 @@ public class MyPageController {
 	public String modifyUser(MyPageVO myPageVO, HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "modifyUser";
 	}
@@ -224,7 +226,6 @@ public class MyPageController {
 	public String deleteMember(MyPageVO myPageVO, HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "deleteMember";
 	}
@@ -235,7 +236,6 @@ public class MyPageController {
 	public String myPageMemberShipSub(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "memberShipSub";
 	}
@@ -246,7 +246,6 @@ public class MyPageController {
 	public String myPageConsult(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "consult";
 	}
@@ -301,7 +300,6 @@ public class MyPageController {
 		public String getMyPageBought(MemberVO memberVO,HttpSession session, Model model) {
 			MemberVO user = (MemberVO)session.getAttribute("user");
 			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 			model.addAttribute("member",member);
 			return "bought";
 		}
@@ -311,7 +309,6 @@ public class MyPageController {
 		public String getMyPageDetailBought(MemberVO memberVO,HttpSession session, Model model) {
 			MemberVO user = (MemberVO)session.getAttribute("user");
 			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			member.setPh_point(mypageService.selectMemberPoint(user.getMem_num()));
 			model.addAttribute("member",member);
 			return "boughtDetail";
 		}

@@ -22,6 +22,8 @@ public class MyPageVO {
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_id;
 	
+	private String mem_nickName;
+	
 	private int mem_auth;
 	private String auto;
 	private String au_id;
@@ -51,6 +53,8 @@ public class MyPageVO {
 	private int mem_membership;
 	private int ph_point;
 	
+	private long point;
+	
 	private int coupon_cnt;	// 쿠폰 개수를 지정하는 이름
 	
 	private long mc_num;		// 회원의 쿠폰 번호
@@ -63,7 +67,19 @@ public class MyPageVO {
 	private int coupon_sale;		// 할인 금액
 	private int coupon_where;		// 어디서 사용 가능한지 1:영화 2:벌스샵
 	private Date coupon_regdate;	// 쿠폰 발급일자
-	private Date coupon_enddate;
+	private Date coupon_enddate;//쿠폰 발급일자에서 한달 추가
+	
+	//board
+	private String cb_title;
+	private String cb_content;
+	private String cb_type;	//카테고리
+	private Date cb_reg_date;
+	private Date cb_modify_date;
+	private int fav_cnt;			//좋아요 개수
+	
+	
+	
+	
 	// 비밀번호 변경시 현재 비밀번호를 저장하는 용도로 사용
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String now_passwd;	// 컬럼은 없지만 필요에 의해 생성해줌

@@ -4,9 +4,27 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 
 <mapper namespace="kr.spring.myPage.dao.MyPageMapper">
+	<!-- 쿠폰 목록 -->
 	<select id="selectMemCouponList" parameterType="long">
 		SELECT mc.*, c.*, ADD_MONTHS(mc.coupon_regdate, 1) coupon_enddate FROM member_coupon mc JOIN coupon_db c ON mc.coupon_num = c.coupon_num
 		WHERE mc.mem_num = #{mem_num}
 	</select>
 
+	<sql id="myPageBoardSearch">
+	<where>
+		<if test="cb_type !=null and cb_type!= ''">
+			cb_type = #{cb_type}
+		</if>
+	</where>
+	</sql>
+	<select id="cBoardWriteListcnt" parameterType="long" resultType="map">
+	SELECT COUNT(*) FROM community_board WHERE mem_num=#{mem_num}
+	<include refid="myPageBoardSearch"></include>
+	</select>
+	<!-- 게시글 목록 -->
+	<select id="selectMemBoardWriteList" parameterType="long" resultType="boardVO">
+		SELECT * FROM community_board LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,cb_num FROM community_fav GROUP BY cb_num)USING(cb_num) WHERE mem_num=#{mem_num}
+		<include refid="myPageBoardSearch"></include>
+	</select>
+	
  </mapper>
