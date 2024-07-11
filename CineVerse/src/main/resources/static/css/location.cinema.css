@@ -16,7 +16,7 @@ img {
     border: 0;
 }
 .own-movie-title{
-	font-size:25px;
+	font-size:25px; 
 	margin-bottom:10px;
 	font-weight: bold; /* 텍스트 굵게 설정 */
 }
