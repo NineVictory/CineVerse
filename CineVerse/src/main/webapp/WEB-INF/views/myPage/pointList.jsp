@@ -7,46 +7,43 @@
 		<span class="myPage_title_re">나의 포인트 내역</span>
 	</div>
 	
-	
-	
 	<div class="point_box_now">
 		<div class="consult_content">
 			<div class="my_consult">
 				<div class="myPage_point_now">보유 포인트 </div>
-				<div class="myPage_point_count">15000P</div>
+				<div class="myPage_point_count">${member.point }P</div>
 			</div>
 		</div>
 	</div>
 	
-	
-	<!-- 반복 -->
-	<div class="point_box_rep">
+	<c:forEach var="point" items="${list }">
+		<div class="point_box_rep">
 		<div class="consult_content">
 			<div class="my_consult">
-				<div class="my_point_date">2024.07.31 </div>
-				<div class="my_consult_title">카카오페이</div>
+				<div class="my_point_date">${point.ph_date} </div>
+				<div class="my_consult_title">
+					<c:if test="${point.ph_payment == 'kakaopay' }">카카오페이</c:if>
+					<c:if test="${point.ph_payment == 'tosspay' }">토스페이</c:if>
+				</div>
+				<div class="my_point_now">
+				<c:choose>
+					<c:when test="${point.ph_type == 0}">환불</c:when>
+					<c:when test="${point.ph_type == 1}">결제</c:when>
+					<c:when test="${point.ph_type == 2}">충전</c:when>
+				</c:choose>
+				</div>
 			</div>
 			<div class="my_point_count">
-				<div>50000P</div>
+				<div>
+				<c:choose>
+					<c:when test="${point.ph_type == 0 || point.ph_type == 1}">-</c:when>
+					<c:when test="${point.ph_type == 2 }">+</c:when>
+				</c:choose>
+				${point.ph_point}P</div>
 			</div>
 		</div>
 	</div>
 	<hr size="1" class="point_line">
-	<!-- 반복 -->
-	<!-- 반복 -->
-	<div class="point_box_rep">
-		<div class="consult_content">
-			<div class="my_consult">
-				<div class="my_point_date">2024.07.31 </div>
-				<div class="my_consult_title">카카오페이</div>
-			</div>
-			<div class="my_point_count">
-				<div>10000P</div>
-			</div>
-		</div>
-	</div>
-	<hr size="1" class="point_line">
-	<!-- 반복 -->
-
+	</c:forEach>
 </div>
 <!-- 나의 포인트 내역 끝 -->

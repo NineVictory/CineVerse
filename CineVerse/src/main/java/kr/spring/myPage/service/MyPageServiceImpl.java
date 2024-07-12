@@ -42,6 +42,14 @@ public class MyPageServiceImpl implements MyPageService{
 	public Integer cBoardWriteListcnt(Map<String, Object> map) {
 		return myPageMapper.cBoardWriteListcnt(map);
 	}
-	
+	@Override
+	public Integer pointHistoryCnt(long mem_num) {
+		return myPageMapper.pointHistoryCnt(mem_num);
+	}
+
+	@Override
+	public List<MyPageVO> selectMemPointList(Map<String, Object> map) {
+		return myPageMapper.selectMemPointList(map);
+	}
 	
 }
