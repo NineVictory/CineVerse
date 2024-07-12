@@ -52,19 +52,18 @@ public class AdminShopController {
 
 	// 상품 등록
 	@PostMapping("/admin/registerProduct")
-	public String registerProduct(@Valid ProductVO product, BindingResult result, HttpServletRequest request, HttpSession session, Model model)throws IllegalStateException,IOException{
-		log.debug("<<상품 등록>> : " + product);
+	public String registerProduct(@Valid ProductVO productVO, BindingResult result, HttpServletRequest request, HttpSession session, Model model)throws IllegalStateException,IOException{
+		log.debug("<<상품 등록>> : " + productVO);
 
-		/*
+		
 		// 유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
 			return "adminShop";
 		}
-		 */
 
-		product.setP_filename(FileUtil.createFile(request, product.getP_upload()));
+		productVO.setP_filename(FileUtil.createFile(request, productVO.getP_upload()));
 		// 상품 등록
-		shopService.registerProduct(product);
+		shopService.registerProduct(productVO);
 
 		// 메세지 처리
 		model.addAttribute("message", "성공적으로 상품이 등록되었습니다.");
