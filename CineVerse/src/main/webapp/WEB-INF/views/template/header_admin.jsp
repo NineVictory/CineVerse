@@ -13,13 +13,13 @@ body {
 }
 
 .container {
-padding: 7px;
+padding: 4px;
     margin: 0 auto;
     overflow: hidden;
 }
 
 .site-header {
-    background-color: #282b29;
+    background-color: var(--gray-1);
 }
 
 .site-header .logo {
@@ -45,12 +45,12 @@ padding: 7px;
 }
 
 .site-header .main-navigation ul li a {
-    font-weight: 600;
-    color: #fcfcfc;
+        font-weight: 600;
+    color: #000;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 13px;
     transition: all 0.3s ease;
-    padding: 5px;
+    padding: 10px;
 }
 
 </style>    
