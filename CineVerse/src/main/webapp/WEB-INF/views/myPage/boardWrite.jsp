@@ -11,10 +11,10 @@
             <option>양도/교환</option>
         </select>
     </div>
-    <c:if test="${empty boardData.list}">작성한 게시글이 없습니다.</c:if>
-    <c:if test="${!empty boardData.list}">
+    <c:if test="${count == 0}">작성한 게시글이 없습니다.</c:if>
+    <c:if test="${count > 0}">
     <!-- 반복 -->
-    <c:forEach var="board" items="${boardData.list}">
+    <c:forEach var="board" items="${list}">
         <div class="bookMark_box">
             <div class="bk_content">
                 <div class="my_board_bk">

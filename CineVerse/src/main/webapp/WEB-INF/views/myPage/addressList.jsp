@@ -19,6 +19,7 @@
                 </div>
                 <div class="error-color"><c:out value="${errors.a_name}" /></div>
             </div>
+            <span>우편주소 찾기</span>
             <div class="login_form_all">
                 <div class="login_form_inputs_id_passwd">
                     <input type="text" name="a_zipcode" placeholder="우편번호를 입력해주세요" class="input_style" autocomplete="off"/>

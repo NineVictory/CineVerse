@@ -9,8 +9,8 @@
 	<div class="myPageMain_right">
 		<div class="myPageMain_information">
 			<span class="myPageMain_name">${member.mem_name } 님</span> <span
-				class="myPageMain_id">${member.mem_nickName }</span> <span
-				class="myPageMain_nickName">닉네임 : ${member.mem_id }</span>
+				class="myPageMain_id">닉네임 :${member.mem_nickName }</span> <span
+				class="myPageMain_nickName">아이디 : ${member.mem_id }</span>
 		</div>
 
 		<div class="myPageMain_vip">고객님은 2024년 1월 

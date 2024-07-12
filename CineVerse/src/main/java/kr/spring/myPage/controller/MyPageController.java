@@ -6,10 +6,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -32,7 +34,7 @@ public class MyPageController {
 	public String myPageMain(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		log.debug("<<마이페이지 >> : " +member);
 		model.addAttribute("member",member);
 		return "myPageMain";
@@ -44,7 +46,7 @@ public class MyPageController {
 	public String myPageReservation(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "myPageReservation";
 	}
@@ -55,7 +57,7 @@ public class MyPageController {
 	public String myPageCoupon(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		
 		// 쿠폰 리스트 불러오기 시작
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -82,6 +84,7 @@ public class MyPageController {
 	public String expectingMovie(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "expectingMovie";
 	}
@@ -92,6 +95,7 @@ public class MyPageController {
 	public String watchedMovie(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "watchedMovie";
 	}
@@ -102,6 +106,7 @@ public class MyPageController {
 		public String myPageReview(HttpSession session, Model model) {
 			MemberVO user = (MemberVO)session.getAttribute("user");
 			MyPageVO member = mypageService.selectMember(user.getMem_num());
+			member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 			model.addAttribute("member",member);
 			return "review";
 		}
@@ -112,6 +117,7 @@ public class MyPageController {
 	public String myPageBookMark(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member",member);
 		return "bookMark";
 	}
@@ -137,11 +143,10 @@ public class MyPageController {
 			
 			log.debug("<<  글 목록 >> : " + list);
 		}
-		map.put("list", list);
-		map.put("count", count);
 		
 		model.addAttribute("member",member);
-		model.addAttribute("boardData", map); 
+		model.addAttribute("list", list); 
+		model.addAttribute("count", count);
 		return "myBoardWrite";
 	}
 	
@@ -215,6 +220,20 @@ public class MyPageController {
 		model.addAttribute("member",member);
 		return "modifyUser";
 	}
+	
+	@PostMapping("/myPage/modifyUser")
+	public String postModifyUser1(@Valid MyPageVO myPageVO,BindingResult result, HttpSession session, Model model) {
+		
+		if (result.hasErrors()) {
+			return "modifyUser";
+		}
+		
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		model.addAttribute("member",member);
+		return "postModifyUser";
+	} 
 	
 	
 	//회원 정보 - 회원 탈퇴

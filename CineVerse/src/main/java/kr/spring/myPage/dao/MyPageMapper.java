@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.vo.MyPageVO;
 
 @Mapper
@@ -18,4 +20,7 @@ public interface MyPageMapper {
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
 	public List<BoardVO> selectMemcBoardWriteList(Map<String, Object> map);//내가 쓴 게시글 목록
 	public Integer cBoardWriteListcnt(Map<String, Object> map);
+	@Update("UPDATE member SET mem_nickname=#{mem_nickname} WHERE mem_num=#{mem_num}")
+	public void updateMember(MemberVO member);
+	public void updateMember_detail(MemberVO member);
 }

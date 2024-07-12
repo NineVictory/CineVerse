@@ -17,6 +17,7 @@
 		</if>
 	</where>
 	</sql>
+	
 	<select id="cBoardWriteListcnt" parameterType="map" resultType="integer">
 	SELECT COUNT(*) FROM community_board WHERE mem_num=#{mem_num}
 	<include refid="myPageBoardSearch"></include>
@@ -26,5 +27,15 @@
 		SELECT * FROM community_board LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,cb_num FROM community_fav GROUP BY cb_num)USING(cb_num) WHERE mem_num=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
+	
+	<update id="updateMember_detail" parameterType="myPageVO">
+        UPDATE member_detail
+        SET mem_name = #{mem_name},
+        	mem_id = #{mem_id},
+            mem_nickname = #{mem_nickname},
+            mem_phone = #{mem_phone},
+            mem_modify_date = SYSDATE
+        WHERE mem_num = #{mem_num}
+    </update>
 	
  </mapper>
