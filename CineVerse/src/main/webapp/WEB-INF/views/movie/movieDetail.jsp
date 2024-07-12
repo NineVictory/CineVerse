@@ -5,6 +5,7 @@
 <!-- 영화상세 시작 -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
+<script src="${pageContext.request.contextPath}/js/movie.review.js"></script>
 <div class="detail-main">
 	<div class="movie-container">
     <div class="movie-photo">
@@ -78,14 +79,16 @@
     <div id="review_div">
 		<form id="mr_form">
 		<input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
-			<textarea rows="3" cols="50" name="mr_content" name="mr_content" class="review-content" placeholder="*작성 글이 다른 고객에게 일정 기준 이상 신고 될 경우 자동 숨김 처리되며 고객센터로 이의 제기 가능합니다.*"></textarea>
+			<textarea rows="3" cols="50" name="mr_content" name="mr_content" class="review-content" placeholder="*작성 글이 다른 고객에게 일정 기준 이상 신고 될 경우 자동 숨김 처리되며 고객센터로 이의 제기 가능합니다.*"
+			><c:if test="${empty user}">로그인해야 작성할 수 있습니다.</c:if></textarea>
+			<c:if test="${!empty user}">
 			<div id="review_first">
 				<span class="letter-count">300/300</span>
 			</div>
 			<div id="review_second" style="text-align: right;">
     			<div class="review-button">등록</div>
 			</div>
-
+			</c:if>
 		</form>
 	</div>
 </div>
@@ -94,7 +97,16 @@
     <span>|</span>
     <span id="latest">최신순</span>
 </div>
+
 </div>
+<!-- 댓글 목록 출력 -->
+	<div id="output"></div>
+	<div id="loading" style="display:none;">
+		<img src="${pageContext.request.contextPath}/images/loading.gif" width="30" height="30">
+	</div>
+	<div class="paging-button" style="display:none;">
+		<input type="button" value="더보기">
+	</div>
 <script>
 </script>
 	

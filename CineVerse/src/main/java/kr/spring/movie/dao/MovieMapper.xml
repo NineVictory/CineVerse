@@ -133,7 +133,7 @@
 	]]>
 	</select>
 	
-	<insert id="insertReview" parameterType="MovieReviewVO">
+	<!-- <insert id="insertReview" parameterType="MovieReviewVO">
 		INSERT INTO movie_review(
 			mr_num,
 			mr_content,
@@ -149,9 +149,10 @@
 			SYSDATE,
 			#{mr_spoiler},
 			#{mr_grade},
-			#{board_num},
+			#{md_num},
+			#{m_code},
 			#{mem_num})
-	</insert>
+	</insert> -->
 </mapper>							
 
 

@@ -7,7 +7,7 @@ $(function(){
 		리뷰 목록
 	===================*/
 	//리뷰 목록
-	function selectList(pageNum){
+	function selectMovieList(pageNum){
 		
 	}
 	/*===================
@@ -38,7 +38,7 @@ $(function(){
 					initForm();
 					//리뷰 작성시 성공하면 새로 삽입한 글을 포함해서 
 					//첫번째 페이지의 게시글들을 다시 호출함
-					selectList(1);
+					selectMovieList(1);
 				}else{
 				    alert('리뷰 등록 오류 발생')	
 				}
@@ -56,7 +56,7 @@ $(function(){
 	//리뷰 작성 폼 초기화
 	function initForm(){
 		$('textarea').val('');
-		$('#re_first .letter-count').text('300/300');
+		$('#review_first .letter-count').text('300/300');
 	}
 	/*===================
 		리뷰 수정
@@ -83,5 +83,5 @@ $(function(){
 	/*===================
 		초기 데이터 호출
 	===================*/
-	selectList(1);
+	selectMovieList(1);
 });
