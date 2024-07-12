@@ -109,7 +109,7 @@ $(function() {
 					window.location.href = '../shop/shopMain';
                 } else {
                     alert('결제 오류 발생');
-                }
+                } 
             },
             error: function() {
                 alert('네트워크 오류 발생');
