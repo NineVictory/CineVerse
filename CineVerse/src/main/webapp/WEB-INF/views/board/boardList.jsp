@@ -24,9 +24,11 @@
 		<h2>커뮤니티</h2>
 		
 		<div class="write-btn-container">
+		
 		<c:if test="${!empty user}">
 			<input type="button" class="write-btn default-btn" value="글쓰기" onclick="location.href='write'">
 		</c:if>
+				
 		</div>
 		<table class="board-table">
 			<thead>
@@ -41,10 +43,24 @@
 					<td colspan="2" style="text-align: right;">
 						<div class="search">
 							<form action="list" id="search_form" method="get" style="margin-left: auto;">
+								<select id="order" name="order">
+								<option value="1" <c:if test="${param.order == 1}">selected</c:if>>최신순</option>
+								<option value="2" <c:if test="${param.order == 2}">selected</c:if>>조회수</option>
+								<option value="3" <c:if test="${param.order == 3}">selected</c:if>>좋아요</option>
+								<option value="4" <c:if test="${param.order == 4}">selected</c:if>>댓글수</option>
+								</select>
+								<script type="text/javascript">
+									$('#order').change(function(){>
+										location.href='list?cb_type=${param.cb_type}&keyword='+$('#keyword').val()+'&order='+$('#order').val();
+									});
+								</script>
+								
 								<input type="hidden" name="cb_type" value="${param.cb_type}">
 								<input type="search" class="search-input" name="keyword" placeholder="제목,내용,작성자 검색">
 								<button type="submit" class="search-button" aria-label="검색"></button>
 								<%--<input type="image" src="${pageContext.request.contextPath}/images/kbm/search.png" width="20" alt="검색"> --%>
+		                   		
+		                   		
 		                   </form>
 		               </div>
 		           </td>
@@ -66,7 +82,15 @@
 						<div class="cell-content">
 							<div class="title"><a href="detail?cb_num=${board.cb_num}">${board.cb_title}</a></div>
 							<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.cb_hit}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.re_cnt}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.fav_cnt}</span></div></div>
-							<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp; ${board.cb_reg_date}</div>
+							<div class="writer">
+								<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;
+								<c:if test="${empty board.mem_nickname}">
+									${board.mem_id}&nbsp;&nbsp; ${board.cb_reg_date}
+								</c:if>
+								<c:if test="${!empty board.mem_nickname}">
+									${board.mem_nickname}&nbsp;&nbsp; ${board.cb_reg_date}
+								</c:if>
+							</div>
 						</div>
 					</td>
 				</tr>
@@ -74,5 +98,6 @@
 			</c:if>
 			</tbody>
 		</table>
+			<c:if test="${count > 0}"><div class="align-center page-count">${page}</div></c:if>
 	</div>
 </div>

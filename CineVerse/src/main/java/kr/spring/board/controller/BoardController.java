@@ -32,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class BoardController {
 
-	
 	@Autowired
 	private BoardService boardService;
 	
@@ -41,8 +40,7 @@ public class BoardController {
 	public BoardVO initCommand() {
 		return new BoardVO();
 	}
-	
-	
+		
 	/*====================
 	 *게시판 글쓰기
 	 =====================*/
@@ -56,27 +54,27 @@ public class BoardController {
 	@PostMapping("/board/write")
 	public String submit(@Valid BoardVO boardVO, BindingResult result,
 						HttpServletRequest request, HttpSession session, Model model)throws IllegalStateException,IOException{
-	log.debug("<<게시판 글 등록>> : " + boardVO);
-	
-	//유효성 체크 결과 오류가 있으면 폼 호출
-	if(result.hasErrors()) {
-		return form();
-	}
-	
-	//회원번호 셋팅
-	MemberVO vo = (MemberVO)session.getAttribute("user");
-	boardVO.setMem_num(vo.getMem_num());
-	//ip 셋팅
-	boardVO.setCb_ip(request.getRemoteAddr());
-	
-	//글쓰기
-	boardService.insertBoard(boardVO);
-	
-	//View 메시지 처리
-	model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
-	model.addAttribute("url", request.getContextPath() + "/board/list");
-	return "common/resultAlert";
-	}
+		log.debug("<<게시판 글 등록>> : " + boardVO);
+		
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return form();
+		}
+		
+		//회원번호 셋팅
+		MemberVO vo = (MemberVO)session.getAttribute("user");
+		boardVO.setMem_num(vo.getMem_num());
+		//ip 셋팅
+		boardVO.setCb_ip(request.getRemoteAddr());
+		
+		//글쓰기
+		boardService.insertBoard(boardVO);
+		
+		//View 메시지 처리
+		model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/board/list");
+		return "common/resultAlert";
+		}
 	
 	
 	/*====================
@@ -84,7 +82,7 @@ public class BoardController {
 	 =====================*/
 	@GetMapping("/board/list")
 	public String getList(@RequestParam(defaultValue="1") int pageNum,
-						  @RequestParam(defaultValue="2") int order,
+						  @RequestParam(defaultValue="1") int order,
 						  @RequestParam(defaultValue="") String cb_type,
 						  String keyfield, String keyword, Model model) {
 		
@@ -100,7 +98,7 @@ public class BoardController {
 		int count = boardService.selectRowCount(map);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,20,10,"list","&cb_type="+cb_type + "&order="+order);
+		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,10,10,"list","&cb_type="+cb_type + "&order="+order);
 		List<BoardVO> list = null;
 		if(count > 0) {
 			map.put("order", order);
@@ -116,6 +114,7 @@ public class BoardController {
 		
 		return "boardList";
 	}
+	
 	/*====================
 	 *게시판 글상세
 	 =====================*/
@@ -155,6 +154,7 @@ public class BoardController {
 		
 		//유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
+			
 			return "boardModify";
 		}
 		//ip 셋팅
@@ -167,6 +167,7 @@ public class BoardController {
 		model.addAttribute("url", request.getContextPath() + "/board/detail?cb_num=" + boardVO.getCb_num());
 		return "common/resultAlert";
 	}
+	
 	/*====================
 	 *게시판 글삭제
 	 =====================*/
@@ -179,6 +180,4 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-	
-
 }

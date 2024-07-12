@@ -128,14 +128,24 @@ thead{
 #search_form{
     display: flex;
     align-items: center;
+    margin-right:10px;
 }
 .search-input{
-	border-top-left-radius: 10px; 
-	border-bottom-left-radius: 10px;
+	border-top-left-radius: 5px; 
+	border-bottom-left-radius: 5px;
 	border:1px solid #c9c9c9;
 	border-right:none;
 	height:30px;
 	padding-left:10px;
+	font-size:14px;
+}
+select#order{
+	border:1px solid #c9c9c9;
+	border-radius:5px;
+	height:30px;
+	padding:3px 5px;
+	margin-right:3px;
+	color:#666565;
 }
 .search-button {
 	padding:0 15px;
@@ -177,9 +187,9 @@ div.cell-content > div.likes, div.cell-content > div.writer{
     top: 50%;
     transform: translateY(-50%);
 }
-.likes span{
-	margin:0 8px 0 1x;
-	font-size:14px;
+.likes span:not(:last-child){
+	margin:0 8px 0 0.5px;
+	font-size:15px;
 }
 
 .writer {
@@ -187,8 +197,10 @@ div.cell-content > div.likes, div.cell-content > div.writer{
     display:flex;
     align-items:center;
 }
-
-
+.page-count{
+	width:100%;
+	margin-top:50px;
+}
 
 /*boardWrite 글쓰기*/
 .error-color{
@@ -368,6 +380,10 @@ ul.btn-hide li a:hover {
     width: 100%;
     max-width: 100%;
 }
+
+/*커뮤니티 글상세 댓글*/
+
+
 
 
 /*assign 글상세 */

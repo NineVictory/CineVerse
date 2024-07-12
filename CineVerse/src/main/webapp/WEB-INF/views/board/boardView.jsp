@@ -32,17 +32,9 @@
 		
 		<div class="flexbox-h side">
 			<h3>${board.cb_title}</h3>
-			<div class="likes">
-				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-				<span>${board.cb_hit}</span>
+			<div>
+				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12" height="12"><span style="margin-left:2px;" id="board-report">신고</span>
 				
-				<%-- 댓글수 --%>
-				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-				<span id="output_rcount">0</span>
-				
-				<%-- 좋아요 --%>
-				<img id="output_fav" data-num="${board.cb_num}" src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-				<span id="output_fcount">0</span>
 			</div>
 		</div>			
 					
@@ -55,7 +47,8 @@
 				<c:if test="${board.mem_num == user.mem_num}">
 			
 				<div class="board-btn">
-						<span class="board-cbtn"><a href="" onclick="return false;"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></a></span>
+					<%-- <span class="board-cbtn"><a href="" onclick="return false;"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></a></span>  --%>
+						<span class="board-cbtn"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></span>
 			
 						<ul class="btn-hide">
 			            	<li><a href="update?cb_num=${board.cb_num}">수정</a></li>
@@ -92,16 +85,26 @@
 		</div>
 		
 		<div class="flexbox-h side">
-		<span class="ml10">댓글(<span id="output_rcount">0</span>)</span>
-		<div><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12" height="12"><span style="margin-left:2px;" id="board-report">신고</span></div>
+			<span class="ml10">댓글(<span id="output_rcount">0</span>)</span>
+			<div class="likes">
+				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
+				<span>${board.cb_hit}</span>
+				
+				<%-- 댓글수 --%>
+				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
+				<span id="output_rcount">0</span>
+				
+				<%-- 좋아요 --%>
+					<img id="output_fav" data-num="${board.cb_num}" src="${pageContext.request.contextPath}/images/kbm/heart01.png">
+					<span id="output_fcount">0</span>
+			</div>
 		</div>
 		<hr size="1" width="100%">
 	
 		<!-- 댓글 목록 출력 -->
-		 //댓글 출력//
 		<div id="output"></div>
 		<div id="loading" style="display:none;">
-			<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="30" height="30">
+			<img src="${pageContext.request.contextPath}/images/kbm/loading.gif" width="30" height="30">
 		</div>
 		<div class="paging-button" style="display:none;">
 			<input type="button" value="더보기">
@@ -110,14 +113,13 @@
 		
 		
 		<!-- 댓글 UI 시작 -->
-		<div id="reply_div" class="ml10 mt10">
-			<div><span class="re-title">댓글쓰기</span></div>
+		<div id="comment_div" class="ml10 mt10">
 			<div class="flexbox-h">
-				<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="45" height="45" class="my-photo">
-				<form id="re_form">
+				<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="45" height="45" class="my-photo">
+				<form id="comment_form">
 					<input type="hidden" name="cb_num" value="${board.cb_num}" id="cb_num">
 						<div class="flexbox-h">
-							<textarea rows="4" cols="105" name="re_content" id="cc_content" class="rep-content"
+							<textarea rows="4" cols="105" name="cc_content" id="cc_content" class="rep-content"
 										<c:if test="${empty user}">disabled="disabled"</c:if>
 										<c:if test="${!empty user}">placeholder="내용을 입력해주세요."</c:if>
 									><c:if test="${empty user}">로그인해야 작성할 수 있습니다.</c:if></textarea>

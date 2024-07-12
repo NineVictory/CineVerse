@@ -5,7 +5,7 @@ import java.util.Map;
 
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
-import kr.spring.board.vo.BoardReplyVO;
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 
 public interface BoardService {
@@ -26,12 +26,12 @@ public interface BoardService {
 	public void deleteFav(BoardFavVO fav);
 	
 	//댓글
-	public List<BoardReplyVO> selectListReply(Map<String,Object> map);
-	public Integer selectRowCountReply(Map<String,Object> map);
-	public BoardReplyVO selectReply(Long cc_num);
-	public void insertReply(BoardReplyVO boardReply);
-	public void updateReply(BoardReplyVO boardReply);
-	public void deleteReply(Long cc_num);
+	public List<BoardCommentVO> selectListComment(Map<String,Object> map);
+	public Integer selectRowCountComment(Map<String,Object> map);
+	public BoardCommentVO selectComment(Long cc_num);
+	public void insertComment(BoardCommentVO boardComment);
+	public void updateComment(BoardCommentVO boardComment);
+	public void deleteComment(Long cc_num);
 	
 	//댓글 좋아요
 	public BoardReFavVO selectReFav(BoardReFavVO fav);

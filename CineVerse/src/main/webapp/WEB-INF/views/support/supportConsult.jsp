@@ -28,7 +28,7 @@
 
 			<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="25px;" height="25px">
 			<div>
-				고객님의 문의에 답변하는 직원은 고객 여려분의 가족 중 한 사람일 수 있습니다.
+				고객님의 문의에 답변하는 직원은 <span class="font-red">고객 여려분의 가족 중 한 사람</span>일 수 있습니다.
 				<p>
 				CINEVERSE는 고객의 언어폭력(비하, 욕설, 반말, 성희롱 등)으로부터 고객상담지원을 보호하기 위해<br>
 				관련 법에 따라 수사기관에 필요한 조치를 요구할 수 있으며, 형법에 의해 처벌 대상이 될 수 있습니다.

@@ -75,7 +75,7 @@ li.support_nav{
 }
 .main-upper-menu > div{
 	width:290px;
-	height:250px;
+	height:300px;
 	margin-right:15px;
 	background:#EFF3FD;
 }
@@ -92,6 +92,13 @@ li.support_nav{
 .fast-menu{
 	align-items:center;
 	justify-content:center;
+}
+/*문의하기,문의내역 버튼*/
+.fast-menu a{
+	background:#3F66ED;
+	color:#fff;
+	padding:3px 7px;
+	border-radius:5px;
 }
 .flex-start{
 	align-items:flex-start;

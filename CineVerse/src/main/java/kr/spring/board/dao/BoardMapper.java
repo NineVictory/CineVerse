@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
-import kr.spring.board.vo.BoardReplyVO;
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 
 @Mapper
@@ -47,20 +47,20 @@ public interface BoardMapper {
 		
 	
 	//댓글
-	public List<BoardReplyVO> selectListReply(Map<String,Object> map);
+	public List<BoardCommentVO> selectListComment(Map<String,Object> map);
 	@Select("SELECT COUNT(*) FROM community_comment WHERE cb_num=#{cb_num}")
-	public Integer selectRowCountReply(Map<String,Object> map);
+	public Integer selectRowCountComment(Map<String,Object> map);
 	//댓글 수정,삭제시 작성자 회원번호를 구하기 위해 사용
 	@Select("SELECT * FROM community_comment WHERE re_num=#{cc_num}")
-	public BoardReplyVO selectReply(Long cc_num);
-	public void insertReply(BoardReplyVO boardReply);				//cc_ip 컬럼 추가할 것
+	public BoardCommentVO selectComment(Long cc_num);
+	public void insertComment(BoardCommentVO boardComment);				//cc_ip 컬럼 추가할 것
 	@Update("UPDATE spboard_reply SET cc_content=#{cc_content},cc_ip=#{cc_ip},cc_modify_date=SYSDATE WHERE cc_num=#{cc_num}")
-	public void updateReply(BoardReplyVO boardReply);
+	public void updateComment(BoardCommentVO boardComment);
 	@Delete("DELETE FROM community_comment WHERE cc_num=#{cc_num}")
-	public void deleteReply(Long cc_num);
+	public void deleteComment(Long cc_num);
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
 	@Delete("DELETE FROM community_comment WHERE cb_num=#{cb_num}")
-	public void deleteReplyByBoardNum(Long cb_num);
+	public void deleteCommentByBoardNum(Long cb_num);
 	//부모글 삭제시 댓글의 답글이 존재하면 댓글 번호를 구해서 답글 삭제시 사용
 	@Select("SELECT * FROM community_comment WHERE cb_num=#{cb_num}")
 	public List<Long> selectReNumsByBoard_num(Long cb_num);

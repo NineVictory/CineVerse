@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.spring.board.dao.BoardMapper;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
-import kr.spring.board.vo.BoardReplyVO;
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 
 @Service
@@ -54,11 +54,11 @@ public class BoardServiceImpl implements BoardService{
 	public void deleteBoard(Long cb_num) {
 		//답글 삭제
 		//댓글 좋아요 삭제
-		boardMapper.deleteReFavByBoardNum(cb_num);
+		//boardMapper.deleteReFavByBoardNum(cb_num);
 		//댓글 삭제
-		boardMapper.deleteReplyByBoardNum(cb_num);
+		//boardMapper.deleteReplyByBoardNum(cb_num);
 		//부모글 좋아요 삭제
-		boardMapper.deleteFavByBoardNum(cb_num);
+		//boardMapper.deleteFavByBoardNum(cb_num);
 		//부모글 삭제
 		boardMapper.deleteBoard(cb_num);
 	}
@@ -89,37 +89,37 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardReplyVO> selectListReply(Map<String, Object> map) {
-		return boardMapper.selectListReply(map);
+	public List<BoardCommentVO> selectListComment(Map<String, Object> map) {
+		return boardMapper.selectListComment(map);
 	}
 
 	@Override
-	public Integer selectRowCountReply(Map<String, Object> map) {
-		return boardMapper.selectRowCountReply(map);
+	public Integer selectRowCountComment(Map<String, Object> map) {
+		return boardMapper.selectRowCountComment(map);
 	}
 
 	@Override
-	public BoardReplyVO selectReply(Long re_num) {
-		return boardMapper.selectReply(re_num);
+	public BoardCommentVO selectComment(Long cc_num) {
+		return boardMapper.selectComment(cc_num);
 	}
 
 	@Override
-	public void insertReply(BoardReplyVO boardReply) {
-		boardMapper.insertReply(boardReply);
+	public void insertComment(BoardCommentVO boardComment) {
+		boardMapper.insertComment(boardComment);
 	}
 
 	@Override
-	public void updateReply(BoardReplyVO boardReply) {
-		boardMapper.updateReply(boardReply);
+	public void updateComment(BoardCommentVO boardComment) {
+		boardMapper.updateComment(boardComment);
 		
 	}
 
 	@Override
-	public void deleteReply(Long re_num) {
+	public void deleteComment(Long cc_num) {
 		//답글
 		//댓글 좋아요
-		boardMapper.deleteReFavByReNum(re_num);
-		boardMapper.deleteReply(re_num);
+		boardMapper.deleteReFavByReNum(cc_num);
+		boardMapper.deleteComment(cc_num);
 	}
 
 	@Override
@@ -128,8 +128,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Integer selectReFavCount(Long re_num) {
-		return boardMapper.selectReFavCount(re_num);
+	public Integer selectReFavCount(Long cc_num) {
+		return boardMapper.selectReFavCount(cc_num);
 	}
 
 	@Override
@@ -143,12 +143,12 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void deleteReFavByReNum(Long re_num) {
+	public void deleteReFavByReNum(Long cc_num) {
 		
 	}
 
 	@Override
-	public void deleteReFavByBoardNum(Long board_num) {
+	public void deleteReFavByBoardNum(Long cb_num) {
 		// TODO Auto-generated method stub
 		
 	}

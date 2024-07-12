@@ -2,13 +2,12 @@
 <!DOCTYPE mapper   
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="kr.spring.board.dao.BoardMapper"><!--인터페이스명-자동매핑-->
+<mapper namespace="kr.spring.board.dao.BoardMapper">
 	<insert id="insertBoard" parameterType="boardVO">
 		INSERT INTO community_board (cb_num,cb_type,cb_title,cb_content,cb_filename,cb_ip,mem_num) 
-				VALUES (community_board_seq.nextval,#{cb_type, jdbcType=INTEGER},#{cb_title},#{cb_content},#{cb_filename,jdbcType=VARCHAR},#{cb_ip},#{mem_num})
+				VALUES (community_board_seq.nextval,#{cb_type},#{cb_title},#{cb_content},#{cb_filename,jdbcType=VARCHAR},#{cb_ip},#{mem_num})
 	</insert>
 	
-	<!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->	<!--sub_sql처럼-->
 	<sql id="boardSearch">
 		<where><!--조건-->
 			<if test="cb_type != null and cb_type != ''">
@@ -23,8 +22,21 @@
 			</if>
 		</where>
 	</sql>
-	
-	
+	<sql id="boardOrder">
+		<if test="order == 1">
+			ORDER BY cb_num DESC
+		</if>
+		<if test="order == 2">
+			ORDER BY hit DESC
+		</if>
+		<if test="order == 3">
+			ORDER BY fav_cnt DESC NULLS LAST
+		</if>
+		<if test="order == 4">
+			ORDER BY re_cnt DESC NULLS LAST
+		</if>
+	</sql>
+		
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
 	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT COUNT(*) FROM community_board JOIN member USING (mem_num)
@@ -43,18 +55,19 @@
 									cb_hit,
 									cb_filename,
 									cb_reg_date,
-									cb_type,
 									mem_num,
 									mem_id,
+									mem_nickname,
 									re_cnt,
 									fav_cnt
 								
 									FROM community_board 
 									LEFT OUTER JOIN (SELECT COUNT(*) re_cnt, cb_num FROM community_comment GROUP BY cb_num) USING (cb_num)
 									LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM community_fav GROUP BY cb_num) USING(cb_num)
-												JOIN member USING(mem_num)
+												JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num)
 												<include refid="boardSearch"></include>
-												ORDER BY cb_reg_date DESC)a) 
+												<include refid="boardOrder"></include>
+												)a) 
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
@@ -69,19 +82,19 @@
 	</update>
 	
 	<!-- 댓글 등록 -->
-	<insert id="insertReply" parameterType="boardReplyVO">
-		INSERT INTO spboard_reply (re_num, re_content, re_ip, board_num, mem_num)
-								VALUES (spreply_seq.nextval, #{re_content}, #{re_ip}, #{board_num}, #{mem_num})
+	<insert id="insertComment" parameterType="boardCommentVO">
+		INSERT INTO community_comment (cc_num, cc_content, cc_ip, cb_num, mem_num)
+								VALUES (community_comment_seq.nextval, #{cc_content}, #{cc_ip}, #{cb_num}, #{mem_num})
 	</insert>
 	
 	<!-- 댓글 목록 -->
-	<select id="selectListReply" parameterType="map" resultType="boardReplyVO">
+	<select id="selectListComment" parameterType="map" resultType="boardCommentVO">
 		SELECT * FROM (SELECT a.*, rownum rnum FROM 
-										(SELECT * FROM spboard_reply JOIN spmember USING(mem_num) 
+										(SELECT * FROM community_comment JOIN member USING(mem_num) 
 											<!-- 로그인 한 상태에서 클릭한 사람의 정보 읽기, 로그인하지 않으면 0 전달 -->
-											LEFT OUTER JOIN (SELECT re_num, mem_num click_num FROM spreply_fav WHERE mem_num=#{mem_num}) USING (re_num)
-											LEFT OUTER JOIN (SELECT re_num, COUNT(*) refav_cnt FROM spreply_fav GROUP BY re_num) USING (re_num)
-											WHERE board_num=#{board_num} ORDER BY re_num DESC)a)
+											LEFT OUTER JOIN (SELECT cc_num, mem_num click_num FROM community_comment_fav WHERE mem_num=#{mem_num}) USING (cc_num)
+											LEFT OUTER JOIN (SELECT cc_num, COUNT(*) refav_cnt FROM community_comment_fav GROUP BY cc_num) USING (cc_num)
+											WHERE cb_num=#{cb_num} ORDER BY cc_num DESC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}]]>
 	</select>		<!--map 키 -->
