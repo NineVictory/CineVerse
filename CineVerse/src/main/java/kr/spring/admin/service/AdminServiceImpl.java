@@ -21,9 +21,8 @@ public class AdminServiceImpl implements AdminService{
 
 
 	@Override
-	public void updateAuth(long mem_num, long mem_auth) {
-		// TODO Auto-generated method stub
-		
+	public void updateMemberAuth(long mem_num) {
+		adminMapper.updateMemberAuth(mem_num);
 	}
 	@Override
 	public List<AdminVO> getAllMembers() {
@@ -56,6 +55,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<AssignVO> getAllAssignment() {
 		return adminMapper.getAllAssignment();
+	}
+	@Override
+	public void deleteMemberAuth(long mem_num) {
+		adminMapper.deleteMemberAuth(mem_num);
 	}
 
 

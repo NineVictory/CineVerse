@@ -13,7 +13,8 @@ import kr.spring.board.vo.BoardVO;
 public interface AdminService {
 
 	public List<AdminVO> getAllMembers();
-	public void updateAuth(long mem_num, long mem_auth);
+	public void updateMemberAuth(long mem_num);
+	public void deleteMemberAuth(long mem_num);
 	public List<AdminVO> getAllMembership();
 	public List<EventVO> getAllEvent();
 	public void insertEvent(EventVO eventVO);
@@ -21,5 +22,5 @@ public interface AdminService {
 	public void insertNotice(NoticeVO noticeVO);
 	public List<BoardVO> getAllCommunity();
 	public List<AssignVO> getAllAssignment();
-
+	
 }

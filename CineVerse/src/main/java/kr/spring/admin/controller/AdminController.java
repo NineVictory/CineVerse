@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
@@ -81,25 +82,25 @@ public class AdminController {
 	}
 
 	// 회원 정지 처리
-	@PostMapping("/admin/adminMember")
-	public String submitUpdateMember(@ModelAttribute("adminVO") @Valid AdminVO adminVO,
-			BindingResult result,
-			Model model,
-			HttpServletRequest request) throws IllegalStateException, IOException {
-
-		if (result.hasErrors()) {
-			// 유효성 검사 에러가 있을 경우 처리
-			return "redirect:/admin/adminMember";
-		}
-		// 회원 정지 처리 로직 추가
-		long mem_num = adminVO.getMem_num(); // AdminVO에서 회원 번호 가져오기
-		long mem_auth = adminVO.getMem_auth(); // AdminVO에서 회원 권한 가져오기
-
-		// 회원 정지 처리 로직 추가
-		adminService.updateAuth(mem_num, mem_auth); // 예시로 adminService의 메소드를 호출하여 회원 상태를 업데이트하는 로직
-
-		// 정지 처리 후 결과 페이지로 이동
-		return "redirect:/admin/adminMember";
+	@PostMapping("/stopMember")
+    @ResponseBody
+    public String stopMember(@RequestParam("mem_num") int mem_num) {
+        // auth 값을 0으로 업데이트하는 예시입니다.
+        adminService.updateMemberAuth(mem_num);
+        log.debug("<<회원정지 완료>>");
+        return "success";
+    
+	}
+	
+	// 회원 정지 처리
+	@PostMapping("/deleteMember")
+    @ResponseBody
+    public String deleteMember(@RequestParam("mem_num") int mem_num) {
+        // auth 값을 1으로 업데이트하는 예시입니다.
+        adminService.deleteMemberAuth(mem_num);
+        log.debug("<<회원탈퇴 완료>>");
+        return "success";
+    
 	}
 	/*==============================
 	 * 구독 관리

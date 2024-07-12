@@ -138,7 +138,7 @@
 }
 
 input[type="search"] {
-	width: 80%;
+	width: 90%;
 	height: 30px;
 	padding: 20px 10px;
 	font-size: 16px;
@@ -157,15 +157,18 @@ input[type="search"] {
 	height: 40px;
 	border: none;
 	border-radius: 10px;
+	margin-right:0px;
 	cursor: pointer;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center; /* 배경 이미지를 중앙 정렬합니다 */
 }
-
+.body_table{
+	margin-left:30px;
+}
 .adminMember-table {
-	width: 90%;
-	margin: 40px 0 0 30px;
+	width: 100%;
+	margin: 40px 0 0 0px;
 	border-collapse: collapse;
 }
 
@@ -206,12 +209,70 @@ input[type="search"] {
 
 .insert_button {
 	float: right;
-	margin-right: 10px;
+	margin-bottom:20px;
+	height:30px;
+	background-color:#4381FD;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
 }
+
 
 /*이벤트*/
 #sub_title2 {
 	font-size: 25pt;
 	font-weight: bold;
 	margin: 100px 0 30px 30px;
+}
+
+/*등록 폼*/
+/* 각 입력 요소 스타일 */
+#registerEvent_form{
+	margin-left:10%;
+}
+.input-check {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box; /* 패딩과 경계선을 포함한 전체 너비를 조정 */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 레이블 스타일 */
+label {
+    font-weight: bold;
+}
+
+/* 입력 요소 간 여백 */
+ul li {
+    margin-bottom: 10px;
+}
+
+/* 버튼 스타일 */
+#insert_button {
+	background-color:#4381FD;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+/* 에러 메시지 스타일 */
+.form-error {
+    color: red;
+    font-size: 12px;
+}
+
+/* CKEditor의 스타일 */
+.ck-editor__editable_inline {
+    min-height: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
 }

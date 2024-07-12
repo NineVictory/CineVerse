@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
@@ -20,9 +21,10 @@ public interface AdminMapper {
             + "FROM member m "
             + "JOIN member_detail md ON m.mem_num = md.mem_num WHERE m.mem_auth = 3 ORDER BY md.mem_reg_date DESC")
     public List<AdminVO> getAllMembers();
-    
-    public void updateAuth(long mem_num, long mem_auth);
-    
+    @Update("UPDATE member SET mem_auth = 1 WHERE mem_num=#{mem_num}")
+    public void updateMemberAuth(long mem_num);
+    @Update("UPDATE member SET mem_auth = 2 WHERE mem_num=#{mem_num}")
+    public void deleteMemberAuth(long mem_num);
     // 구독 맴버십
     @Select("SELECT m.mem_num, m.mem_id, m.mem_rank, m.mem_membership, md.mem_name, md.mem_reg_date "
     		+ "FROM member m Join member_detail md "

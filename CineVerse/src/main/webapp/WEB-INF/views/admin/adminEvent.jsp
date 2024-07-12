@@ -14,6 +14,7 @@
 			</ul>
 		</form>
 		<p id = "sub_title2">이벤트 관리</p>
+		<div class = "body_table">
 		<input type = "button" value = "이벤트 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminEventForm'"/>
 		<table class="adminMember-table">
         <thead>
@@ -34,10 +35,11 @@
                     <td class="mem-data">${event.event_start}</td>
                     <td class="mem-data">${event.event_end}</td>
                     <td class="mem-data">${event.event_reg_date}</td>
-                    <td class="button1"><input type="button" value="삭제" /></td>
+                    <td class="button2"><input type="button" value="삭제" /></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+    </div>
 
 </div>

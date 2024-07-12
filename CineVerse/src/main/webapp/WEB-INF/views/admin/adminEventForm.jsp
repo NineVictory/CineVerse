@@ -25,8 +25,8 @@
         };
     });
 </script>
-	<h2>이벤트 등록</h2>
 	<form:form action="adminEventForm" enctype="multipart/form-data" id="registerEvent_form" modelAttribute="eventVO">
+	<h2>이벤트 등록</h2>
 	<ul>
 		<li>	
 			<label for="event_name">이벤트명</label>
@@ -72,7 +72,7 @@
 			<form:errors path="event_end"></form:errors>
 		</li>
 		<li>
-			<input type="submit" value="등록">
+			<input type="submit" value="등록" id = "insert_button">
 		</li>
 	</ul>
 	

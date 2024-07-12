@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 });
 </script>
-<h2>상품 등록</h2>
 <form action="insertMovie" method="post" enctype="multipart/form-data" id="insert_form"> 
+<h2>상품 등록</h2>
 	<ul>
 		<li>
 			<label for="m_status">영화 상영여부 </label>
