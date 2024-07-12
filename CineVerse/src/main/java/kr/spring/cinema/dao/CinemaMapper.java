@@ -15,8 +15,8 @@ public interface CinemaMapper {
 	public List<CinemaVO> selectCinemaList(Integer c_location);
 	public Integer selectCinemaRowCount(Map<String,Object> map);
 	public void insertCinema(CinemaVO cinema);
-	@Select("SELECT * FROM cinema WHERE c_num=#{c_num}")
-	public CinemaVO selectCinema(Long c_num);
+	@Select("SELECT * FROM cinema WHERE c_branch=#{c_branch}")
+	public CinemaVO selectCinema(String c_branch);
 	public void updateCinema(CinemaVO cinema);
 	@Delete("DELETE FROM cinema WHERE c_num=#{c_num}")
 	public void deleteCinema(Long c_num);

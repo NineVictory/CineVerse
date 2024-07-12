@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
@@ -64,7 +65,7 @@ public class CinemaController {
 	}
 	
 	/*==============================
-	 * 		영화관 목록
+	 * 		영화관 지점명 보기
 	 *==============================*/
 	@GetMapping("/cinema/cinemaList")
 	@ResponseBody
@@ -80,14 +81,16 @@ public class CinemaController {
 	
 	
 	/*==============================
-	 * 		영화관 정보 상세보기
+	 * 		지점 상세 정보 확인
 	 *==============================*/
 	@GetMapping("/cinema/cinemaDetail")
-	public String cinemaDetail(){
+	public Map<String, Object> cinemaDetail(String c_branch){
 		
+		CinemaVO cinema = cinemaService.selectCinema(c_branch);
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		mapJson.put("detail", cinema);
 		
-		
-		return "cinemaDetail";
+		return mapJson;
 	}
 	
 	/*==============================
