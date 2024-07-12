@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- include ckeditor js -->
@@ -8,7 +10,7 @@
 <!-- 상품 등록 시작 -->
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
-    const myForm = document.getElementById('insert_form');
+    /* const myForm = document.getElementById('insert_form');
     //이벤트 연결
     myForm.onsubmit = function() {
         const radioGroups = [
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('영화 상영여부는 필수 ');
                 return false;
             }
-        }
+        } */
 
         const items = document.querySelectorAll('.input-check');
         for (let i = 0; i < items.length; i++) {
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	<ul>
 		<li>	
 			<label for="mt_date">날짜</label>
-			<input type="text" name="mt_date" id="mt_date" class="input-check">
+			<input type="date" name="mt_date" id="mt_date" class="input-check">
 		</li>
 		<li>
 			<label for="mt_start">시작 시간</label>
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			<input type="text" name="mt_end" id="mt_end" class="input-check" placeholder="HH:MM" required>
 		</li>
 
-		<%-- <li>
+		<li>
 			<fieldset>
 				<legend>상영 영화 선택</legend>
 				<!-- 서버에서 가져온 영화 리스트를 라디오 버튼으로 출력 -->
@@ -77,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			</fieldset>
 		</li> 
 		
-			 --%>	
+			 	
 		<li>
 			<input type="submit" value="등록">
 		</li>
