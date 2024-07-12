@@ -18,8 +18,10 @@ public interface AdminService {
 	public List<AdminVO> getAllMembership();
 	public List<EventVO> getAllEvent();
 	public void insertEvent(EventVO eventVO);
+	public void deleteEvent(long event_num);
 	public List<NoticeVO> getAllNotice();
 	public void insertNotice(NoticeVO noticeVO);
+	public void deleteNotice(long nb_num);
 	public List<BoardVO> getAllCommunity();
 	public List<AssignVO> getAllAssignment();
 	

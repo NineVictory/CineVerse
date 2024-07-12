@@ -25,8 +25,8 @@
         };
     });
 </script>
+	<form:form action="adminNoticeForm" enctype="multipart/form-data" id ="insert_form" modelAttribute="NoticeVO">
 	<h2>공지사항 등록</h2>
-	<form:form action="adminNoticeForm" enctype="multipart/form-data" id="registerNotice_form" modelAttribute="NoticeVO">
 	<ul>
 		<li>	
 			<label for="nb_title">공지사항명</label>

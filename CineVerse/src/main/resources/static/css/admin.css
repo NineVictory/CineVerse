@@ -249,12 +249,12 @@ label {
 
 /* 입력 요소 간 여백 */
 ul li {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 /* 버튼 스타일 */
 #insert_button {
-	background-color:#4381FD;
+    background-color: #4381FD;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -263,7 +263,9 @@ ul li {
     font-size: 16px;
 }
 
-
+#insert_button:hover {
+    background-color: #3c71d2; /* hover 시 배경색 변경 */
+}
 /* 에러 메시지 스타일 */
 .form-error {
     color: red;

@@ -3,6 +3,7 @@ package kr.spring.admin.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -36,13 +37,19 @@ public interface AdminMapper {
     		+ "ORDER BY nb_reg_date DESC")
     public List<NoticeVO> getAllNotice();
     public void insertNotice(NoticeVO noticeVO);
-    
+    @Delete("DELETE FROM notice_board WHERE nb_num = #{nb_num}")
+    public void deleteNotice(long nb_num);
+
     // 이벤트
     @Select("SELECT event_num, event_name, event_start, event_end, event_reg_date "
     		+ "FROM event "
     		+ "ORDER BY event_reg_date DESC")
     public List<EventVO> getAllEvent();
     public void insertEvent(EventVO eventVO);
+    @Delete("DELETE FROM event WHERE event_num = #{event_num}")
+	public void deleteEvent(long event_num);
+	
+
 	
     // 결제
     // 게시판

@@ -1,4 +1,4 @@
-package kr.spring.admin.controller;
+	package kr.spring.admin.controller;
 
 import java.io.IOException;
 import java.util.HashMap;

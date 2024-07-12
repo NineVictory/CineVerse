@@ -150,10 +150,19 @@ public class AdminController {
 			model.addAttribute("errorMessage", "회원 정보 조회 중 오류가 발생하였습니다.");
 			log.debug("<<회원 정보 조회 오류>>");
 			return "errorPage"; // 에러 페이지로 이동
-
 		}
 	}
-	//공지사항 수정폼 호출
+	// 공지사항 삭제 처리
+	@PostMapping("/deleteNotice")
+	@ResponseBody
+	public String deleteNotice(@RequestParam("nb_num") int nb_num) {
+		adminService.deleteNotice(nb_num);
+		log.debug("<<공지사항 삭제완료>>");
+		return "success";
+		
+	}
+
+	//공지사항 등록폼 호출
 	@GetMapping("/admin/adminNoticeForm")
 	public String AdminNoticeForm(){
 		return "adminNoticeForm";
@@ -174,14 +183,14 @@ public class AdminController {
 		// 폼 데이터 유효성 검사
 		if (result.hasErrors()) {
 			log.debug("<<유효성검사이상있음>> : " + noticeVO);
-			return "adminnoticeForm"; // 다시 폼을 보여줌
+			return "adminNoticeForm"; // 다시 폼을 보여줌
 		}
 		
 		MemberVO vo = (MemberVO)session.getAttribute("user");
 		//비로그인 상태 유효성 체크
 		if(vo == null) {
 			log.debug("<<비로그인 상태>> :" + vo);
-			return "adminnoticeForm"; // 다시 폼을 보여줌
+			return "adminNoticeForm"; // 다시 폼을 보여줌
 		}
 		noticeVO.setMem_num(vo.getMem_num());
 		noticeVO.setNb_filename(FileUtil.createFile(request, 
@@ -219,7 +228,16 @@ public class AdminController {
 
 		}
 	}
-	//이벤트 수정폼 호출
+	// 이벤트 삭제 처리
+	@PostMapping("/deleteEvent")
+	@ResponseBody
+	public String deleteEvent(@RequestParam("event_num") int event_num) {
+		adminService.deleteEvent(event_num);
+		log.debug("<<이벤트 삭제 완료>>");
+		return "success";
+		
+	}
+	//이벤트 삭제폼 호출
 	@GetMapping("/admin/adminEventForm")
 	public String AdminEventForm(){
 		return "adminEventForm";
