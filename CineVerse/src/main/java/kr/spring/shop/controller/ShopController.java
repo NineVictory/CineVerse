@@ -190,7 +190,7 @@ public class ShopController {
 		model.addAttribute("message", "장바구니에 담았습니다.");
 		model.addAttribute("url", request.getContextPath() + "/shop/shopBasket");
 		return "common/resultAlert";
-	}
+	} 
 
 	// 벌스샵 관심 상품 목록
 	@GetMapping("/shop/shopFav")
