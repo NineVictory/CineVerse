@@ -7,9 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.board.dao.BoardMapper;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.movie.dao.MovieMapper;
+import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieDirectorVO;
+import kr.spring.movie.vo.MovieGenreVO;
+import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.movie.vo.MovieVO;
 
 @Service
@@ -33,14 +38,35 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public void insertMovie(MovieVO movie) {
+		
+		movie.setM_code(movieMapper.selectM_code()); 
 		movieMapper.insertMovie(movie);
+		// movie_actor 테이블에 데이터 삽입
+	    MovieActorVO actor = new MovieActorVO();
+	    actor.setM_code(movie.getM_code());
+	    actor.setActor(movie.getActor());
+	    movieMapper.insertMovieActor(actor);
+	    
+	    // movie_director 테이블에 데이터 삽입
+	    MovieDirectorVO director = new MovieDirectorVO();
+	    director.setM_code(movie.getM_code());
+	    director.setDirector(movie.getDirector());
+	    movieMapper.insertMovieDirector(director);
+	    
+	    // movie_genre 테이블에 데이터 삽입
+	    MovieGenreVO genre = new MovieGenreVO();
+	    genre.setM_code(movie.getM_code());
+	    genre.setGenre(movie.getGenre());
+	    movieMapper.insertMovieGenre(genre);
 		
 	}
 
+	
+
 	@Override
-	public MovieVO selectMovie(Long m_code) {
-		// TODO Auto-generated method stub
-		return null;
+	public MovieVO selectMovie(long m_code) {
+		
+		return movieMapper.selectMovie(m_code);
 	}
 
 	@Override
@@ -51,8 +77,8 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public void deleteMovie(Long m_code) {
-		// TODO Auto-generated method stub
-		
+
+		movieMapper.deleteReplyByMovieNum(m_code);
 	}
 
 	@Override
@@ -78,5 +104,50 @@ public class MovieServiceImpl implements MovieService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<MovieReviewVO> selectMovieListReview(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer selectMovieRowCountReview(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MovieReviewVO selectReview(Long mr_num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertReview(MovieReviewVO movieReview) {
+		movieMapper.insertReview(movieReview);
+		
+	}
+
+	@Override
+	public void updateReview(MovieReviewVO movieReview) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteReview(Long mr_num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
+
+	
+
+	
 
 }

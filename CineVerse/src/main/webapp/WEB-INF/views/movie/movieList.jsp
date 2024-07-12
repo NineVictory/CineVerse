@@ -35,6 +35,7 @@
             <li>
             	<input type="hidden" name="keyfield" id="keyfield" value="1">
             	<input type="hidden" name="m_status" value="${param.m_status}">
+            	<input type="hidden" name="m_code" value="${param.m_code}">
                 <input type="search" name="keyword" id="keyword" placeholder="검색어를 입력하세요">
                 <input type="submit" value="" style="background-image: url('${pageContext.request.contextPath}/images/search_icon.png');">
             </li>

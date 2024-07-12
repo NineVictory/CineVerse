@@ -60,6 +60,18 @@ document.addEventListener('DOMContentLoaded', function() {
 			<input type="file" name="m_upload" class="input-check" id="m_upload" accept="image/gif,image/png,image/jpeg">
 		</li>
 		<li>
+			<label for="genre">장르명</label>
+			<input type="text" name="genre" id="genre">
+		</li>
+		<li>
+			<label for="director">감독이름</label>
+			<input type="text" name="director" id="director">
+		</li>
+		<li>
+			<label for="actor">영화배우</label>
+			<input type="text" name="actor" id="actor">
+		</li>
+		<li>
 			<label for="m_content">영화소개</label>
 			<textarea rows="5" cols="30" name="m_content" id="m_content" class="input-check"></textarea>
 			<script>

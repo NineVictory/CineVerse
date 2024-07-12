@@ -5,24 +5,59 @@
 <mapper namespace="kr.spring.movie.dao.MovieMapper"><!--인터페이스명-자동매핑-->
 	<!-- 글쓰기 -->
 	 <insert id="insertMovie" parameterType="MovieVO">
-	 	INSERT INTO movie(
-	 		m_code,
-	 		m_name,
-	 		m_opendate,
-	 		m_companys,
-	 		m_status,
-	 		m_filename,
-	 		m_content
-			)
-	 		VALUES(
-	 		movie_seq.nextval,
-	 		#{m_name},
-	 		#{m_opendate},
-	 		#{m_companys},
-	 		#{m_status},
-	 		#{m_filename},
-	 		#{m_content})
+	 	  INSERT INTO movie (
+            m_code,
+            m_name,
+            m_opendate,
+            m_companys,
+            m_status,
+            m_filename,
+            m_content
+        ) VALUES (
+            #{m_code},
+            #{m_name},
+            #{m_opendate},
+            #{m_companys},
+            #{m_status},
+            #{m_filename},
+            #{m_content}
+        )
+    </insert>
+
+    <!-- movie_actor 테이블에 데이터 삽입 -->
+    <insert id="insertMovieActor" parameterType="MovieActorVO">
+        INSERT INTO movie_actor (
+            m_code,
+            actor
+        ) VALUES (
+            #{m_code},
+            #{actor}
+        )
+    </insert>
+
+    <!-- movie_director 테이블에 데이터 삽입 -->
+    <insert id="insertMovieDirector" parameterType="MovieDirectorVO">
+        INSERT INTO movie_director (
+            m_code,
+            director
+        ) VALUES (
+            #{m_code},
+            #{director}
+        )
+    </insert>
+
+    <!-- movie_genre 테이블에 데이터 삽입 -->
+    <insert id="insertMovieGenre" parameterType="MovieGenreVO">
+        INSERT INTO movie_genre (
+            m_code,
+            genre
+        ) VALUES (
+            #{m_code},
+            #{genre}
+        )
 	 </insert>
+	 
+
 	 
 	 	 <!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->
 	 <sql id="movieSearch"> <!-- 검색할 떄 -->
@@ -97,6 +132,26 @@
 	WHERE rnum >= #{start} AND rnum <= #{end}
 	]]>
 	</select>
+	
+	<insert id="insertReview" parameterType="MovieReviewVO">
+		INSERT INTO movie_review(
+			mr_num,
+			mr_content,
+			mr_regdate,
+			mr_spoiler,
+			mr_grade,
+			md_num,
+			m_code,
+			mem_num)
+		VALUES(
+			movie_review.nextval,
+			#{mr_content},
+			SYSDATE,
+			#{mr_spoiler},
+			#{mr_grade},
+			#{board_num},
+			#{mem_num})
+	</insert>
 </mapper>							
 
 

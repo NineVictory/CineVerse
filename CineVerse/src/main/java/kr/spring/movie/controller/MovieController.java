@@ -12,11 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.board.vo.BoardVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -69,8 +71,14 @@ public class MovieController {
 	 * 영화 상세
 	 *=======================*/
 	@GetMapping("/movie/movieDetail")
-	public String movieDetail(){
-		return "movieDetail";
+	public ModelAndView movieDetail(long m_code){
+		
+		MovieVO movie = movieService.selectMovie(m_code);
+		
+		log.debug("<<영화글 상세 - m_code>> :"+m_code);
+		movie.setM_name(StringUtil.useNoHTML(movie.getM_name()));
+		
+		return new ModelAndView("movieDetail","movie",movie);
 	}
 	
 	/*=======================

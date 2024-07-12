@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.spring.movie.service.MovieService;
+import kr.spring.movie.vo.MovieActorVO;
+import kr.spring.movie.vo.MovieDirectorVO;
+import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +39,7 @@ public class AdminMovieController {
 	*=======================*/
 	//등록 폼에서 전송된 데이터 처리
 		@PostMapping("/admin/insertMovie")
-		public String insertMovie(@Valid MovieVO movieVO,
+		public String insertMovie(@Valid MovieVO movieVO, 
 								BindingResult result, 
 								HttpSession session,
 								HttpServletRequest request,
@@ -49,7 +52,11 @@ public class AdminMovieController {
 			 */			
 			movieVO.setM_filename(FileUtil.createFile(request, movieVO.getM_upload()));
 			//영화등록
-			movieService.insertMovie(movieVO);
+			
+			 movieService.insertMovie(movieVO); 
+			 
+			
+			
 			
 			//View 메시지 처리
 			model.addAttribute("message","성공적으로 글이 등록되었습니다.");

@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MovieGenre {
+public class MovieGenreVO {
 	private Long m_code;
 	private String genre;
 }

@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MovieVO {
-	private int m_code;
+	private long m_code;
 	@NotBlank
 	private String m_name;
 	private Date m_opendate;
@@ -28,6 +28,11 @@ public class MovieVO {
 	
 	@NotNull
 	private MultipartFile m_upload;	//파일
+	
+	private String actor;
+	private String director;
+	private String genre;
+	
 	
 	private int bookmark_cnt;			//북마크 개수
 } 
