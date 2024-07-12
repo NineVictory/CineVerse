@@ -38,7 +38,7 @@ public class CinemaController {
 	 * 		영화관 등록
 	 *==============================*/	
 	//등록 폼 호출
-	@GetMapping("/movie/cinemaWrite")
+	@GetMapping("/cinema/cinemaWrite")
 	public String form() {
 		return "cinemaWrite";
 	}
@@ -58,7 +58,7 @@ public class CinemaController {
 		
 		//view 메시지 처리
 		model.addAttribute("message","영화가 성공적으로 등록되었습니다.");
-		model.addAttribute("url", request.getContextPath() + "/movie/ownMovieInfo");
+		model.addAttribute("url", request.getContextPath() + "/movie/cinemaDetail");
 		
 		return "common/resultAlert";
 	}
@@ -66,26 +66,20 @@ public class CinemaController {
 	/*==============================
 	 * 		영화관 목록
 	 *==============================*/
-	@GetMapping("/movie/ownMovieInfo")
-	public String ownMovieInfo(Model model){
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<CinemaVO> list = null;
-		list = cinemaService.selectCinemaList(map);
-		model.addAttribute("list", list);
+	@GetMapping("/cinema/cinemaList")
+	public String cinemaList(){
 		
-		return "ownMovieInfo";
+		return "cinemaList";
 	}
 	
 	
 	/*==============================
 	 * 		영화관 정보 상세보기
 	 *==============================*/
-	@GetMapping("/movie/cinemaDetail")
-	public ModelAndView cinemaDetail(long c_num) {
+	@GetMapping("/cinema/cinemaDetail")
+	public String cinemaDetail(){
 		
-		CinemaVO cinema = cinemaService.selectCinema(c_num);
-		
-		return new ModelAndView("cinemaDetail", "cinema", cinema);
+		return "cinemaDetail";
 	}
 	
 	/*==============================
@@ -95,13 +89,4 @@ public class CinemaController {
 	/*==============================
 	 * 		영화관 정보 삭제
 	 *==============================*/
-	@GetMapping("/movie/cinemaDelete")
-	public String cinemaDelete(Long c_num, HttpServletRequest request) {
-		
-
-		//글 삭제
-		cinemaService.deleteCinema(c_num);	
-		
-		return "redirect:/movie/ownMovieInfo";
-	}
 }
