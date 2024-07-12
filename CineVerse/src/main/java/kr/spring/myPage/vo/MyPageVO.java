@@ -89,6 +89,11 @@ public class MyPageVO {
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String now_passwd;	// 컬럼은 없지만 필요에 의해 생성해줌
 
+	// 비밀번호 변경에만 조건 체크
+	@Pattern(regexp="^[A-Za-z0-9]+$")
+	private String captcha_chars;
+
+	//비밀번호 일치 여부 체크
 	public boolean ischeckedPassword(String userPasswd) {
 		if(mem_auth > 1 && mem_passwd.equals(userPasswd)) {
 			return true;

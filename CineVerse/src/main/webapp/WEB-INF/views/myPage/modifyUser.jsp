@@ -16,8 +16,7 @@
 			</div>
 			<div class="login_form_all">
 				<div class="login_form_inputs_id_passwd">
-					<form:input path="mem_id" placeholder="ID를 입력해주세요"
-						class="input_style" autocomplete="off" disabled="disabled"
+					<form:input path="mem_id" placeholder="ID를 입력해주세요" class="input_style" autocomplete="off" disabled="disabled"
 						value="${member.mem_id }" />
 				</div>
 				<div id="message_id"></div>
