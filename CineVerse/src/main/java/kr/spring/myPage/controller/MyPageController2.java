@@ -19,7 +19,6 @@ import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.service.MyPageService2;
 import kr.spring.myPage.vo.AddressVO;
 import kr.spring.myPage.vo.MyPageVO;
-import kr.spring.shop.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -46,10 +45,17 @@ public class MyPageController2 {
 		return "addressList";
 	}
 	
+	
+	
 	// 배송지 추가
 	@PostMapping("/myPage/addAddress")
 	public String addAddress(@Valid AddressVO address, BindingResult result, HttpServletRequest request, HttpSession session, Model model)throws IllegalStateException,IOException {
 		log.debug("<<배송지 추가>> ::: " + address);
+		
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return "addressList";
+		}
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
