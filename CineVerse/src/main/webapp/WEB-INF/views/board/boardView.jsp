@@ -103,7 +103,7 @@
 	
 		<!-- 댓글 목록 출력 -->
 		<div id="output"></div>
-		<div id="loading" style="display:none;">
+		<div id="loading" style="display:none;" class="align-center">
 			<img src="${pageContext.request.contextPath}/images/kbm/loading.gif" width="30" height="30">
 		</div>
 		<div class="paging-button" style="display:none;">

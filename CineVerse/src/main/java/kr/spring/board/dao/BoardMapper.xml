@@ -94,7 +94,7 @@
 											<!-- 로그인 한 상태에서 클릭한 사람의 정보 읽기, 로그인하지 않으면 0 전달 -->
 											LEFT OUTER JOIN (SELECT cc_num, mem_num click_num FROM community_comment_fav WHERE mem_num=#{mem_num}) USING (cc_num)
 											LEFT OUTER JOIN (SELECT cc_num, COUNT(*) refav_cnt FROM community_comment_fav GROUP BY cc_num) USING (cc_num)
-											WHERE cb_num=#{cb_num} ORDER BY cc_num DESC)a)
+											WHERE cb_num=#{cb_num} ORDER BY cc_num ASC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}]]>
 	</select>		<!--map 키 -->
