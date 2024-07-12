@@ -75,7 +75,9 @@
 	display: block;
 }
 
-
+.hide_location_menu{
+	color: #EFF3FD;
+}
 
 .movie-content-place{
 	margin-top: 50px;

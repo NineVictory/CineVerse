@@ -34,19 +34,10 @@
 	</select>
 	
 	<!-- 영화관 목록 -->
-	<select id="selectCinemaList" parameterType="map" resultType="cinemaVO">
+	<select id="selectCinemaList" parameterType="integer" resultType="cinemaVO">
 		SELECT
-					c_num,
-					<![CDATA[
-	 				REPLACE(REPLACE(c_branch,'<','&lt;'),'&gt;') c_branch,
-	 				]]>
-	 				c_address,
-	 				c_phone,
-	 				c_theater,
-	 				c_seat,
-	 				c_parkable,
-	 				c_filename
-		FROM cinema
+			*
+		FROM cinema WHERE c_location=#{c_location} 
 	</select>
 </mapper>							
 

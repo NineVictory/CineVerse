@@ -19,8 +19,8 @@ public class CinemaServiceImpl implements CinemaService{
 	
 	
 	@Override
-	public List<CinemaVO> selectCinemaList(Map<String, Object> map) {
-		return cinemaMapper.selectCinemaList(map);
+	public List<CinemaVO> selectCinemaList(Integer c_location) {
+		return cinemaMapper.selectCinemaList(c_location);
 	}
  
 	@Override

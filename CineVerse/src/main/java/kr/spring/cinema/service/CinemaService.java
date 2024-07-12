@@ -7,7 +7,7 @@ import kr.spring.cinema.vo.CinemaVO;
 
 public interface CinemaService {
 	//영화관
-		public List<CinemaVO> selectCinemaList(Map<String,Object>map);
+		public List<CinemaVO> selectCinemaList(Integer c_location);
 		public Integer selectCinemaRowCount(Map<String,Object> map);
 		public void insertCinema(CinemaVO cinema);
 		public CinemaVO selectCinema(Long c_num);

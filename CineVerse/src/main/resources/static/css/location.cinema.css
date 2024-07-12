@@ -80,7 +80,7 @@ img {
     left: 50%; /* 가운데 정렬을 위해 left를 50%로 설정 */
     transform: translateX(-50%); /* 가운데 정렬을 위해 translateX를 -50%로 설정 */
     background-color: black;
-    display: none;
+   /*  display: none; */
     z-index: 1001;
     white-space: nowrap;
 }
@@ -102,7 +102,7 @@ img {
 .hide_location_menu_li a {
     color: white; /* 글자색을 흰색으로 설정 */
 }
-
+/*
 .hide_location_menu_li a:hover {
     color: #0056b3;
 }
@@ -110,7 +110,7 @@ img {
 .secondary-location-li:hover .hide_location_menu {
     display: block;
 }
-
+*/
 .responsive-image {
     position: relative;
 }
