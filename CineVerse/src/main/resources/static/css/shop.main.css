@@ -170,8 +170,9 @@ input[type="search"]::placeholder {
 }
 
 .product-item img {
-    max-width: 100%;
-    height: auto;
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
 }
 
 .product-item h3, .product-item p {
