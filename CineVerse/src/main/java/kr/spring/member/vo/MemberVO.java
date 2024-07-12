@@ -24,7 +24,9 @@ public class MemberVO {
 	private int mem_auth;
 	private String auto;
 	private String au_id;
-	private long point;
+	
+	private int point;
+	
 	@NotBlank
 	private String mem_name;
 	private String mem_nickname;
@@ -36,6 +38,7 @@ public class MemberVO {
 	private String captcha_cahrs;
 	
 	@NotBlank
+	@Pattern(regexp = "^010\\d{8}$")
 	private String mem_phone;
 	
 	@NotBlank
