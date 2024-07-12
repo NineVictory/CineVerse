@@ -13,6 +13,7 @@ import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
+import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
 
 @Mapper
@@ -43,7 +44,10 @@ public interface MovieMapper {
 	public void deleteBookMarkByMovieNum(Long m_code);
 	
 	//영화예매
-	
+	@Select("SELECT cinema_seq.nextval FROM dual")
+	public Long selectC_num();
+	public List<MovieVO> selectMovieTimeList(Map<String,Object>map);
+	public void insertMovieTime(MovieTimeVO movietime);
 	//영화 리뷰
 	public List<MovieReviewVO> selectMovieListReview(Map<String,Object> map);
 	public Integer selectMovieRowCountReview(Map<String,Object>map); //mybatis는 객체형태로 처리하기 때문에 int보다 Integer로 명시한다. int를 써도 자동으로 바뀌긴함. 그냥 명시를 맞게 해주는게 좋아서 

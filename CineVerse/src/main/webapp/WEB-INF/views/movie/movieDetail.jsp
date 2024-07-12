@@ -86,7 +86,7 @@
 				<span class="letter-count">300/300</span>
 			</div>
 			<div id="review_second" style="text-align: right;">
-    			<div class="review-button">등록</div>
+    			<div class="review-button"><input type="submit" value="등록"></div>
 			</div>
 			</c:if>
 		</form>

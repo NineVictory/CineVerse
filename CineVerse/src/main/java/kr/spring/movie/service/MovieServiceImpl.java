@@ -15,6 +15,7 @@ import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
+import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
 
 @Service
@@ -138,6 +139,20 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void deleteReview(Long mr_num) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<MovieVO> selectMovieTimeList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertMovieTime(MovieTimeVO movietime) {
+		movietime.setM_code(movieMapper.selectM_code());
+		movietime.setC_num(movieMapper.selectC_num());
+		movieMapper.insertMovieTime(movietime);
 		
 	}
 

@@ -133,11 +133,10 @@
 	]]>
 	</select>
 	
-	<!-- <insert id="insertReview" parameterType="MovieReviewVO">
+	<insert id="insertReview" parameterType="MovieReviewVO">
 		INSERT INTO movie_review(
 			mr_num,
 			mr_content,
-			mr_regdate,
 			mr_spoiler,
 			mr_grade,
 			md_num,
@@ -146,13 +145,30 @@
 		VALUES(
 			movie_review.nextval,
 			#{mr_content},
-			SYSDATE,
 			#{mr_spoiler},
 			#{mr_grade},
 			#{md_num},
 			#{m_code},
 			#{mem_num})
-	</insert> -->
+	</insert>
+	
+	<!-- 영화 시간표 등록 -->
+	 <insert id="insertMovieTime" parameterType="MovieTimeVO">
+	 	  INSERT INTO movie_time (
+            mt_num,
+            mt_date,
+            mt_start,
+            mt_end,
+            m_code,
+            c_num) 
+            VALUES (
+        	movie_time.nextval,
+            #{mt_date},
+            #{mt_start},
+            #{mt_end},
+            #{m_code},
+            #{c_num})
+    </insert>
 </mapper>							
 
 

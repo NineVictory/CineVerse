@@ -9,6 +9,7 @@ import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
+import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
 
 public interface MovieService {
@@ -26,6 +27,10 @@ public interface MovieService {
 		public void insertBookMark(MovieBookMarkVO bookMark);
 		public void deleteBookMark(BoardFavVO bookMark);
 		
+		//영화 예매
+		//영화예매
+		public List<MovieVO> selectMovieTimeList(Map<String,Object>map);
+		public void insertMovieTime(MovieTimeVO movietime);
 		
 		//영화 리뷰
 		public List<MovieReviewVO> selectMovieListReview(Map<String,Object> map);
