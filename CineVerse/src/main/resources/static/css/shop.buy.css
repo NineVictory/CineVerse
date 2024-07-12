@@ -1,3 +1,5 @@
+/*이것저것 겹치고 충돌나는 css 많은데 귀찮아서 놔둠*/
+
 body {
     overflow: auto; 
 }
@@ -144,10 +146,38 @@ input [type="checkbox"]{
 .product-name span, .product-list span, .product-list p, .product-name p{
      writing-mode: horizontal-tb;
      white-space:nowrap;
+    
+}
+
+.product-name{
+	margin-right: 20px;
+	margin-top:14px;
+}
+
+.product-name h3{
+	width: 250px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.pn {
+	font-size:10pt;
+	width: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.product-name span{
+	font-size: 10pt;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .product-name p{
 	font-size: 10pt;
+	
 }
 
 .product-list span{
@@ -209,22 +239,20 @@ input [type="checkbox"]{
 	font-weight: bold;
 }
 
-.pay-box{
-	margin-top:  30px;
-	width: 350px;
-	height: 60px;
-	border-radius: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: #FD4D57;
+input[type="submit"] {
+    margin-top: 30px;
+    width: 350px;
+    height: 60px;
+    border-radius: 10px;
+    background: #FD4D57;
+    color: white;
+    font-size: 13pt;
+    text-align: center;
+    line-height: 60px; 
+    border:none;
 }
 
-.pay-box span{
-	text-align: center;
-	color: white;
-	font-size: 13pt;
-}
+
 
 
 

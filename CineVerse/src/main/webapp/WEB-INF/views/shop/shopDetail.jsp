@@ -154,24 +154,16 @@
 		        totalPriceSpan.textContent = addCommas(totalPrice); 
 		    });
 		    
-		    // 폼 서브밋 버튼 클릭 이벤트 처리
+
 	        document.getElementById('addToCartBtn').addEventListener('click', function(e) {
-	            e.preventDefault(); // 폼 서브밋 막기
-
-	            // 액션 설정
+	            e.preventDefault();
 	            document.getElementById('productForm').setAttribute('action', '${pageContext.request.contextPath}/shop/addToCart');
-
-	            // 폼 서브밋
 	            document.getElementById('productForm').submit();
 	        });
 
 	        document.getElementById('buyNowBtn').addEventListener('click', function(e) {
-	            e.preventDefault(); // 폼 서브밋 막기
-
-	            // 액션 설정
+	            e.preventDefault(); 
 	            document.getElementById('productForm').setAttribute('action', '${pageContext.request.contextPath}/shop/buyNow');
-
-	            // 폼 서브밋
 	            document.getElementById('productForm').submit();
 	        });
 		});

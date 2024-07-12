@@ -8,7 +8,7 @@
         <h2>장바구니</h2>
         <form action="shopPay" id="shop_pay" method="post">
             <c:if test="${empty list}">
-                <img src="${pageContext.request.contextPath}/images/cje/empty.png" width="500px" style="margin-left:150px; margin-top:50px; cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/shop/shopMain'" onclick="location.href='shopDetail?p_num=${product.p_num}'">
+                <img src="${pageContext.request.contextPath}/images/cje/empty.png" width="500px" style="margin-left:150px; margin-top:50px; cursor: pointer;" onclick="location.href='shopDetail?p_num=${product.p_num}'">
             </c:if>
             <c:if test="${not empty list}">
             	<c:forEach var="product" items="${list}">
