@@ -307,6 +307,11 @@ public class AdminController {
 	public String adminShopMovie(){
 		return "adminMovie";
 	}
+	// 영화
+	@GetMapping("/admin/adminMovieTime")
+	public String adminShopMovieTime(){
+		return "adminMovieTime";
+	}
 	// 영화등록
 	@GetMapping("/admin/adminMovieForm") 
 	public String adminMovieForm(){

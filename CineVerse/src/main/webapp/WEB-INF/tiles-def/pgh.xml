@@ -269,6 +269,19 @@
 		<put-attribute name="admin_body"
 			value="/WEB-INF/views/admin/adminCinemaForm.jsp" />
 	</definition>
+	
+	<definition name="adminMovieTime"
+		template="/WEB-INF/views/template/layout_adminMain.jsp">
+		<put-attribute name="title" value="영화등록" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_header"
+			value="/WEB-INF/views/template/header_admin.jsp" />
+		<put-attribute name="admin_nav"
+			value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body"
+			value="/WEB-INF/views/admin/adminMovieTime.jsp" />
+	</definition>
 </tiles-definitions>
 
 

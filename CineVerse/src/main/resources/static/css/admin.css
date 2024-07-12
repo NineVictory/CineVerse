@@ -210,7 +210,8 @@ input[type="search"] {
 .insert_button {
 	float: right;
 	margin-bottom:20px;
-	height:30px;
+	width:90px;
+	height:40px;
 	background-color:#4381FD;
     color: white;
     cursor: pointer;
