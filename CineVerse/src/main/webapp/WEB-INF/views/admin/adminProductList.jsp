@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+ul .pcg{
+    list-style-type: none;
+}
+
+ul .pcg li {
+    display: inline-block;
+    margin-right: 6px;
+}
+
+</style>
 <div class="admin_member">
     <div class="firstTitle">
         <p id="title">상품관리</p>
@@ -7,19 +18,38 @@
     <form action="adminProductList" id="admin_productList" method="get">
         <ul>
             <li>
-                <select name="p_category">
-                    <option value="" <c:if test="${param.p_category == ''}">selected</c:if>>ALL</option>
-                    <option value="1" <c:if test="${param.p_category == '1'}">selected</c:if>>MARVEL</option>
-                    <option value="2" <c:if test="${param.p_category == '2'}">selected</c:if>>DISNEY</option>
-                    <option value="3" <c:if test="${param.p_category == '3'}">selected</c:if>>DISNEY PRINCES</option>
-                    <option value="4" <c:if test="${param.p_category == '4'}">selected</c:if>>PIXAR</option>
-                    <option value="5" <c:if test="${param.p_category == '5'}">selected</c:if>>Studio GHIBLI</option>
-                    <option value="6" <c:if test="${param.p_category == '6'}">selected</c:if>>Warner Bros.</option>
-                    <option value="7" <c:if test="${param.p_category == '7'}">selected</c:if>>Universal Studio</option>
-                    <option value="8" <c:if test="${param.p_category == '8'}">selected</c:if>>ETC</option>
-                </select>
+                <ul class="pcg">
+                	<li>
+                		 <a href="?p_category=">ALL</a> |
+                	</li>
+                	<li>
+                		<a href="?p_category=1">MARVEL</a>  |
+                	</li>
+                	<li>
+                		<a href="?p_category=2">DISNEY</a>  |
+                	</li>
+                	<li>
+                		<a href="?p_category=3">DISNEY PRINCES</a>  |
+                	</li>
+                	<li>
+                		<a href="?p_category=4">PIXAR</a>  |
+                	</li>
+                	<li>
+                		<a href="?p_category=5">Studio GHIBLI</a>  |
+                	</li>
+                	<li>
+                		<a href="?p_category=6">Warner Bros.</a>  |
+                	</li>
+                	<li>
+                		<a href="?p_category=7">Universal Studio</a>  |
+                	</li>
+                	<li>
+                		<a href="?p_category=8">ETC</a>
+                	</li>
+                </ul>
             </li>
             <li>
+            	<input type="hidden" name="p_category" value="${param.p_category}">
                 <input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="상품명을 입력하세요">
                 <input type="submit" value="" class="search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
             </li>

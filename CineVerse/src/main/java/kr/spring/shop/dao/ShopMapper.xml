@@ -103,32 +103,33 @@
 	<!-- 관리자 상품 검색 -->
 	<sql id="adminProductSearch">
 		<where>
-			<!--검색어 있을 때-->
-			<if test="keyword != null and keyword != ''" >
 				<if test="p_category == 1">
-					p_category=1 AND 
+					p_category=1 
 				</if>
 				<if test="p_category == 2">
-					p_category=2 AND 
+					p_category=2
 				</if>
 				<if test="p_category == 3">
-					p_category=3 AND 
+					p_category=3 
 				</if>
 				<if test="p_category == 4">
-					p_category=4 AND 
+					p_category=4 
 				</if>
 				<if test="p_category == 5">
-					p_category=5 AND 
+					p_category=5 
 				</if>
 				<if test="p_category == 6">
-					p_category=6 AND 
+					p_category=6 
 				</if>
 				<if test="p_category == 7">
-					p_category=7 AND 
+					p_category=7 
 				</if>	
 				<if test="p_category == 8">
-					p_category=8 AND 
+					p_category=8 
 				</if>
+			<!--검색어 있을 때-->
+			<if test="keyword != null and keyword != ''" >
+				<if test="p_category!=null and p_category!=''"> AND </if>
 				p_name LIKE '%' || #{keyword} || '%'
 			</if>
 		</where>
