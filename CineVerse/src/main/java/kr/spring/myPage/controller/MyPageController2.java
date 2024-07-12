@@ -29,20 +29,22 @@ public class MyPageController2 {
 
 	@Autowired
 	public MyPageService2 mypageService2;
+	
 	//회원 정보 - 배송지 관리
 	@GetMapping("/myPage/addressList")
 	public String myPageAddressList(MyPageVO myPageVO, HttpSession session, Model model) {
-		log.debug("<<배송지 관리>> ::: 진입 성공");
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		model.addAttribute("member",member);
-		
-		List<AddressVO> address = mypageService2.addressList(user.getMem_num());
-		Integer count = mypageService2.countAddress(user.getMem_num());
-		
-		model.addAttribute("count", count);
-		model.addAttribute("address", address);
-		return "addressList";
+	    log.debug("<<배송지 관리>> ::: 진입 성공");
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    model.addAttribute("member", member);
+	    
+	    Integer count = mypageService2.countAddress(user.getMem_num());
+	    List<AddressVO> addressList = mypageService2.addressList(user.getMem_num());
+	    
+	    model.addAttribute("count", count);
+	    model.addAttribute("addressList", addressList); // 'addressList'로 변경
+	    model.addAttribute("address", new AddressVO()); // 폼에 사용될 객체 추가
+	    return "addressList";
 	}
 	
 	
