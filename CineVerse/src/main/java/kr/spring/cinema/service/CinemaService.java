@@ -10,7 +10,7 @@ public interface CinemaService {
 		public List<CinemaVO> selectCinemaList(Integer c_location);
 		public Integer selectCinemaRowCount(Map<String,Object> map);
 		public void insertCinema(CinemaVO cinema);
-		public CinemaVO selectCinema(String c_branch);
+		public CinemaVO selectCinema(Long c_num);
 		public void updateCinema(CinemaVO cinema);
 		public void deleteCinema(Long c_num);
 }

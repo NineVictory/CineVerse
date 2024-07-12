@@ -84,13 +84,9 @@ public class CinemaController {
 	 * 		지점 상세 정보 확인
 	 *==============================*/
 	@GetMapping("/cinema/cinemaDetail")
-	public Map<String, Object> cinemaDetail(String c_branch){
+	public String cinemaDetail(){
 		
-		CinemaVO cinema = cinemaService.selectCinema(c_branch);
-		Map<String, Object> mapJson = new HashMap<String, Object>();
-		mapJson.put("detail", cinema);
-		
-		return mapJson;
+		return "cinemaDetail";
 	}
 	
 	/*==============================

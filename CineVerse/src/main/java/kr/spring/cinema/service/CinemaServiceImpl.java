@@ -34,8 +34,8 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
-	public CinemaVO selectCinema(String c_branch) {
-		return cinemaMapper.selectCinema(c_branch); 
+	public CinemaVO selectCinema(Long c_num) {
+		return cinemaMapper.selectCinema(c_num); 
 	}
 
 	@Override

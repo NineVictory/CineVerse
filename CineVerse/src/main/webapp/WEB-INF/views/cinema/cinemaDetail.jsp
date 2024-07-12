@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <!-- 자체영화관 시작 -->
 <div class="ownMovie-main">
     <!-- 영화관 선택 시작 -->
@@ -13,9 +12,9 @@
     <div class="movie-content-place">
         
         <div class="location-button"> 
-        	<c:forEach var="cinema" items="${list}">
-        		<div class="content-place-title">${cinema.c_branch}</div>
-        	</c:forEach>
+        		 	<div id="branch-list">
+                <!-- 지점명 목록이 동적으로 여기에 추가됩니다 -->
+           			 </div>
               <div class="location-button-list" id="modal_open_btn">위치/지도보기</div>
              </div>
              <div id="modal">
@@ -114,12 +113,10 @@
    
     			<div class="modal_layer"></div>
 			</div>
-		<c:forEach var="cinema" items="${list}">
-        <div class="content-place-location">주소 : <b>${cinema.c_address}</b></div>
-        <div class="content-place-tell">문의전화 : <b>${cinema.c_phone}</b></div>
-        <div class="content-place-cinema">상영관수 : <b>${cinema.c_theater}관,${cinema.c_seat}석</b></div>
-        <div class="content-place-parking">주차정보 : <b>${cinema.c_parkable}</b></div>
-        </c:forEach>
+			<div class="content-place-location">주소 : <b></b></div>
+            <div class="content-place-tell">문의전화 : <b></b></div>
+            <div class="content-place-cinema">상영관수 : <b></b></div>
+            <div class="content-place-parking">주차정보 : <b></b></div>
         <input type="button" value="삭제" onclick="location.href='cinemaDelete'">
     </div>
       
