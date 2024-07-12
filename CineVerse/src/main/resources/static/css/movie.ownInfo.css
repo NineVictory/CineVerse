@@ -62,6 +62,21 @@
 	font-weight: bold; /* 텍스트 굵게 설정 */
 	font-size: 14px; /* 링크 텍스트 크기 설정 */
 }
+
+.secondary-location-li-active {
+    background-color: #000;
+}
+
+.secondary-location-li-active .a {
+	color: black;
+}
+
+.secondary-location-li-active .hide_location_menu {
+	display: block;
+}
+
+
+
 .movie-content-place{
 	margin-top: 50px;
 	padding:30px;

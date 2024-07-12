@@ -7,9 +7,18 @@
 <tiles-definitions>
 	 <!-- 영화관 등록 -->
     <definition name="cinemaWrite" extends="movieList">
-        <put-attribute name="title" value="영화예매"/>
+        <put-attribute name="title" value="영화관등록"/>
         <put-attribute name="css" value="/WEB-INF/views/movie/movieReserveCSS.jsp"/>
-        <put-attribute name="body" value="/WEB-INF/views/movie/cinemaWrite.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaWrite.jsp"/>
+    </definition>
+    <!-- 자체 영화관 정보 -->
+    <definition name="ownMovieInfo" template="/WEB-INF/views/template/layout_cinema.jsp">
+        <put-attribute name="title" value="자체영화관"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/movie/ownMovieInfoCSS.jsp"/>
+        <put-attribute name="body_1" value="/WEB-INF/views/movie/cinemaLocation.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/ownMovieInfo.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
     </definition>
 </tiles-definitions>
 
