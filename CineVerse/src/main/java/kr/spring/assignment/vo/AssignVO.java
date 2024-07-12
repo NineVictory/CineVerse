@@ -27,7 +27,7 @@ public class AssignVO {
 	//추가
 	private String ab_type;
 	private int ab_item_status;
-
+	private long ab_report;
 
 	private String mem_id;
 	

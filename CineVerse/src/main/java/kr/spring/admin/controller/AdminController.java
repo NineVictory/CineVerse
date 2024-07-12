@@ -1,6 +1,7 @@
 package kr.spring.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
@@ -31,7 +33,6 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
-
 	//자바빈(VO) 초기화
 	@ModelAttribute
 	public AdminVO initCommand() {
@@ -44,7 +45,7 @@ public class AdminController {
 	}
 	//자바빈(VO) 초기화
 	@ModelAttribute
-	public NoticeVO initCommand2() {
+	public NoticeVO initCommand3() {
 		return new NoticeVO();
 	}
 	/*==============================
@@ -137,6 +138,7 @@ public class AdminController {
 			// 모든 회원 정보 조회
 			List<NoticeVO> adminList = adminService.getAllNotice();
 
+			
 			// 조회된 회원 정보를 모델에 추가하여 View로 전달
 			model.addAttribute("adminList", adminList);
 
@@ -174,6 +176,13 @@ public class AdminController {
 			return "adminnoticeForm"; // 다시 폼을 보여줌
 		}
 		
+		MemberVO vo = (MemberVO)session.getAttribute("user");
+		//비로그인 상태 유효성 체크
+		if(vo == null) {
+			log.debug("<<비로그인 상태>> :" + vo);
+			return "adminnoticeForm"; // 다시 폼을 보여줌
+		}
+		noticeVO.setMem_num(vo.getMem_num());
 		noticeVO.setNb_filename(FileUtil.createFile(request, 
 				                      noticeVO.getNb_upload()));
 		
@@ -253,15 +262,43 @@ public class AdminController {
 	/*==============================
 	 * 게시판관리
 	 *==============================*/	
-	// 자유게시판 관리
+	// 게시판 통합 관리
 	@GetMapping("/admin/adminCommunity")
-	public String adminComuunity(){
-		return "adminCommunity";
+	public String adminComuunity(Model model){
+		try {
+			// 양도 게시판 정보
+			List<AssignVO> assignList = adminService.getAllAssignment();
+			// 자유 게시판 정보
+			List<BoardVO> commuList = adminService.getAllCommunity();
+			
+			//합치기
+			
+			  List<Object> adminList = new ArrayList<>(); 
+			  adminList.addAll(assignList);
+			  adminList.addAll(commuList);
+			 
+	        
+			// 조회된 회원 정보를 모델에 추가하여 View로 전달
+			model.addAttribute("adminList", adminList);
+			 
+			model.addAttribute("assginList", assignList);
+			model.addAttribute("commuList", commuList);
+
+			
+			return "adminCommunity"; // 회원 정보를 보여줄 View 이름
+		} catch (Exception e) {
+			log.error("회원 정보 조회 중 오류 발생", e);
+			model.addAttribute("errorMessage", "회원 정보 조회 중 오류가 발생하였습니다.");
+			log.debug("<<회원 정보 조회 오류>>");
+			return "errorPage"; // 에러 페이지로 이동
+
+		}
 	}
-	// 양도/교환 관리
-	@GetMapping("/admin/adminAssignment")
+	
+	// 게시판 댓글 관리
+	@GetMapping("/admin/adminBoardReview")
 	public String adminAssignment(){
-		return "adminAssignment";
+		return "adminBoardReview";
 	}
 	
 	// 영화

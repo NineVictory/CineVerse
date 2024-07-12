@@ -116,10 +116,10 @@
 			value="/WEB-INF/views/admin/adminPayment.jsp" />
 	</definition>
 	
-	<!-- 자유게시판 -->
+	<!-- 게시판 통합 관리 -->
 	<definition name="adminCommunity"
 		template="/WEB-INF/views/template/layout_adminMain.jsp">
-		<put-attribute name="title" value="자유게시판 관리" />
+		<put-attribute name="title" value="게시판 통합 관리" />
 		<put-attribute name="css"
 			value="/WEB-INF/views/admin/adminCSS.jsp" />
 		<put-attribute name="admin_header"
@@ -130,10 +130,10 @@
 			value="/WEB-INF/views/admin/adminCommunity.jsp" />
 	</definition>
 	
-		<!-- 양도/교환 게시판 관리-->
-	<definition name="adminAssignment"
+		<!-- 댓글 통합 관리-->
+	<definition name="adminBoardReview"
 		template="/WEB-INF/views/template/layout_adminMain.jsp">
-		<put-attribute name="title" value="양도/교환 게시판 관리" />
+		<put-attribute name="title" value="게시판댓글 관리" />
 		<put-attribute name="css"
 			value="/WEB-INF/views/admin/adminCSS.jsp" />
 		<put-attribute name="admin_header"
@@ -141,7 +141,7 @@
 		<put-attribute name="admin_nav"
 			value="/WEB-INF/views/template/adminNav.jsp" />
 		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminAssignment.jsp" />
+			value="/WEB-INF/views/admin/adminBoardReview.jsp" />
 	</definition>
 	
 	<!-- 상품 관리 -->

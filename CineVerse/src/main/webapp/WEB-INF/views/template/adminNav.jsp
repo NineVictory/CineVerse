@@ -27,8 +27,8 @@
 
                 <li onclick="toggleSubMenu('menuBoard')"><h2>게시판</h2></a></li>
                 <ul id="menuBoard">
-                    <li><a href="${pageContext.request.contextPath}/admin/adminAssignment">양도/교환</a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/adminCommunity">영화 톡톡</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/adminCommunity">통합게시판 관리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/adminBoardReview">게시판 댓글 관리</a></li>
                 </ul>
 
                 <li onclick="toggleSubMenu('menuShop')"><h2>벌스샵</h2></li>

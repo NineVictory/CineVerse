@@ -22,17 +22,21 @@
 	</insert>
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice" parameterType="NoticeVO">
-		INSERT INTO notice_board(
+		INSERT INTO notice_board
+		(
 		nb_num,
 		nb_title,
 		nb_content,
-		nb_filename
+		nb_filename,
+		mem_num
 		)
 		VALUES (
 		notice_board_seq.nextval,
 		#{nb_title},
 		#{nb_content},
-		#{nb_filename,jdbcType=VARCHAR})
+		#{nb_filename,jdbcType=VARCHAR},
+		#{mem_num}
+		)
 	</insert>
 </mapper>							
 
