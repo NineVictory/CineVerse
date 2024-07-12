@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.member.vo.MemberVO;
@@ -255,39 +256,6 @@ public class ShopController {
 		return new ModelAndView("shopFav", map);
 	}
 	
-	@PostMapping("/shop/buyDirect")
-	public String buyDirect(@RequestParam long total, @RequestParam(defaultValue="0") long mc_num, @RequestParam long pb_quantity, @RequestParam long p_num, HttpSession session, Model model) {
-		log.debug("<<상품 바로 구매 - total>> ::: " + total);
-		log.debug("<<상품 바로 구매 - mc_num>> ::: " + mc_num);
-		log.debug("<<상품 바로 구매 - pb_quantity>> ::: " + pb_quantity);
-		log.debug("<<상품 바로 구매 - p_num>> ::: " +p_num);
-		
-		if(mc_num!=0) {
-			shopService.useCoupon(mc_num);
-		}
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		
-		OrdersVO orders = new OrdersVO();
-		orders.setMem_num(user.getMem_num());
-		orders.setA_num(2);
-		
-		orders.setOrder_quantity(pb_quantity);
-		orders.setP_num(p_num);
-		
-		shopService.directOrder(orders);
-		 
-		orders.setPh_point(total);
-		
-		
-		shopService.usePoint(orders);
-		shopService.sellProduct(pb_quantity, p_num);
-		
-		
-		
-		
-		
-		return "shopMain";
-	}
 	
 
 }

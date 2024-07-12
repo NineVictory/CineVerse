@@ -78,13 +78,13 @@
  		
  		<div class="coupon_list">
 	 		<c:if test="${member.coupon_cnt == 0 }">
-			보유한 쿠폰이 없습니다.
-			</c:if>
+				보유한 쿠폰이 없습니다.
+			</c:if>			
 			<c:if test="${member.coupon_cnt > 0 }">
 				<c:forEach  var="couponList" items="${couponList}">
 					<c:if test="${couponList.coupon_where==2}">
 						<div style="margin-left:15px; margin-top:20px; margin-bottom:0;">
-							<input type="checkbox" class="single-select" name="option" value="${couponList.mc_num}" data-num="${couponList.mc_num}" data-point="${couponList.coupon_sale}">
+							<input type="checkbox" class="single-select" name="option" value="${couponList.mc_num}" data-num="${couponList.mc_num}" data-point="${couponList.coupon_sale}" data-nosaletotal="${total}">
 						</div>
 			 			<div class="coupon_detail" style="margin-top:0;" >
 			 				<span class="coupon_name">${couponList.coupon_name}</span>
@@ -92,6 +92,13 @@
 			 				<span class="coupon_detail_all">${couponList.coupon_regdate } ~ ${couponList.coupon_enddate }<!-- <span class="coupon_time">D - DAY</span> --></span> 
 			 			</div>
 		 			</c:if>
+					<c:if test="${couponList.coupon_where==1}">
+						<div class="coupon_detail" style="background-color:#BDBDBD">
+							<span class="coupon_name">(영화 전용 - 사용 불가) ${couponList.coupon_name}</span>
+							<span class="coupon_detail_all">${couponList.coupon_content }</span>
+							<span class="coupon_detail_all">${couponList.coupon_regdate } ~ ${couponList.coupon_enddate }<!-- <span class="coupon_time">D - DAY</span> --></span> 
+						</div>
+					</c:if>
  				</c:forEach>
  			</c:if>
  			
@@ -107,7 +114,7 @@
  					<button class="point_charge" onclick ="location.href='${pageContext.request.contextPath}/member/pointCharge'">포인트 충전</button>
  			</div>
  		</div>
- 		<p>결제 내용에 동의합니다. <input type="checkbox"></p>
+ 		<p>결제 내용에 동의합니다. <input type="checkbox" name="agree"></p>
  	</div>
  	
 	</form>

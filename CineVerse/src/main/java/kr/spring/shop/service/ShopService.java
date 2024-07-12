@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.member.vo.CouponVO;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
@@ -33,17 +34,21 @@ public interface ShopService {
 	public void ProductBasket(PBasketVO basket);
 	public void ProductBasketDelete(PBasketVO basket);
 	public List<PBasketVO> productBasketList(Long mem_num);
-
 	/* public List<Integer> basketPrice(Long mem_num); */
 	public Integer basketTotalPrice(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
 	public Integer basketCount(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
 	
 	// 바로 구매
 	public void directOrder(OrdersVO orders);
+	/* public Integer selectOrderNUM(long mem_num); */
 	public void usePoint(OrdersVO orders);
 	public void useCoupon(long mc_num);
 	public void sellProduct(@Param(value="p_quantity") Long p_quantity, @Param(value="p_num") Long p_num);
+	/* public void directOrderDetail(OrdersVO orders); */
+	public Integer getPoint(long mem_num);
 	
+	// 쿠폰 조건
+	public CouponVO couponInfo(long mc_num);
 	
 	// 관리자
 	public List<ProductVO> adminProductList(Map<String, Object> map);

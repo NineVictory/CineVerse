@@ -6,10 +6,12 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.member.vo.CouponVO;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
@@ -85,28 +87,35 @@ public interface ShopMapper {
 	public void productOrders(OrdersVO orders);
 	
 	
-	
-	// 바로 구매하기 -> 결제
-	@Insert("INSERT INTO ORDERS (order_num, mem_num) VALUES (orders_seq.nextval, #{mem_num})")
-	public void directOrder(OrdersVO orders);
-	
-	// 바로 구매하기 -> 결제 내역
-	@Insert("INSERT INTO ORDER_DETAIL (od_num, order_quantity, order_num, p_num) VALUES (order_detail_seq.nextval, #{order_quantity}, #{order_num}, #{p_num})")
-	public void directOrderDetail(OrdersVO orders);
-	
+	// 상품 결제
+	@Insert("INSERT INTO ORDERS (order_num, mem_num, a_num) VALUES (#{order_num}, #{mem_num}, #{a_num})")
+    void directOrder(OrdersVO orders);
+	// 상품 결제 내역
+    @Insert("INSERT INTO ORDER_DETAIL (od_num, order_quantity, order_num, p_num) VALUES (order_detail_seq.nextval, #{order_quantity}, #{order_num}, #{p_num})")
+    void directOrderDetail(OrdersVO orders);
+    // 상품 번호 생성
+    @Select("SELECT orders_seq.nextval FROM dual")
+    long getNextOrderNum();
+    
 	// 상품 수량 차감하기
 	@Update("UPDATE product SET p_quantity = p_quantity - #{p_quantity} WHERE p_num = #{p_num}")
 	public void sellProduct(@Param(value="p_quantity") Long p_quantity, @Param(value="p_num") Long p_num);
+
+	// 유저 보유 포인트 불러오기
+	@Select("SELECT point FROM member_detail WHERE mem_num=#{mem_num}")
+	public Integer getPoint(long mem_num);
 	
 	// 포인트 차감하기
-	@Insert("INSERT INTO point_history (ph_num, ph_point, mem_num, ph_type) VALUES (point_history_seq.nextval, #{ph_point}, #{mem_num}, 1)")
+	@Insert("INSERT INTO point_history (ph_num, ph_point, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{ph_point}, #{mem_num}, 1, 'goods')")
 	public void usePoint(OrdersVO orders);
 	
 	// 쿠폰 사용하기
-	@Delete("DELETE FROM member_coupon WHERE mc_num=#{mc_num}")
+	@Update("UPDATE member_coupon SET coupon_use=2 WHERE mc_num=#{mc_num}")
 	public void useCoupon(long mc_num);
 	
-	
+	// 쿠폰 조건 체크
+	@Select("SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) WHERE mc_num=#{mc_num}")
+	public CouponVO couponInfo(long mc_num);
 	
 	// 관리자 - 벌스샵
 	public List<ProductVO> adminProductList(Map<String, Object> map);

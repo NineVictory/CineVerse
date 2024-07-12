@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/product.pay.js"></script>
 <!-- 벌스샵 결제 메뉴 시작 -->
 <c:if test="${count>0}">
 <div class="shop-pay-nav">
@@ -42,19 +40,20 @@
 						${total}원
 					</c:if>
 					<c:if test="${total<50000}">
-						${total-3000}원
+						${total+3000}원
 					</c:if>
 			</span>
 		</div>
 	</div>
 	<div class="pay-box">
 		<form action="buyDirect" class="bd" method="post">
-			<input type="hidden" value="0" name="mc_num">
-			<input type="hidden" value="<c:if test="${total>=50000}">${total}</c:if><c:if test="${total<50000}">${total-3000}</c:if>" name="total">
-			<input type="hidden" value="${pb_quantity}" name="pb_quantity">
-			<input type="hidden" value="${product.p_num}" name="p_num">
-			<input type="hidden">
-			<input type="submit" value="결제하기">
+			<input type="hidden" value="0" name="agree" id="hidden_agree">
+			<input type="hidden" value="0" name="a_num" id="hidden_option">
+		    <input type="hidden" value="0" name="mc_num">
+		    <input type="hidden" value="<c:if test="${total >= 50000}">${total}</c:if><c:if test="${total < 50000}">${total + 3000}</c:if>" name="total">
+		    <input type="hidden" value="${pb_quantity}" name="pb_quantity">
+		    <input type="hidden" value="${product.p_num}" name="p_num">
+		    <input type="submit" value="결제하기">
 		</form>
 	</div>
 </div>

@@ -62,6 +62,12 @@ public class OrdersVO {
 	private Date r_modify_date;
 	private String p_filename;
 	
+	private long pb_quantity;
+	
 	private MultipartFile p_upload;
+	
+	// 주문 시 쓰는 것
+	private long total;
+	private int agree;
 	
 }

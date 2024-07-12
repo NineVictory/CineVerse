@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.member.vo.CouponVO;
 import kr.spring.shop.dao.ShopMapper;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
@@ -124,6 +125,8 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public void directOrder(OrdersVO orders) {
+		long order_num = shopMapper.getNextOrderNum();
+		orders.setOrder_num(order_num);
 		shopMapper.directOrder(orders);
 		shopMapper.directOrderDetail(orders);
 		
@@ -144,6 +147,26 @@ public class ShopServiceImpl implements ShopService {
 	public void sellProduct(Long p_quantity, Long p_num) {
 		shopMapper.sellProduct(p_quantity, p_num);
 		
+	}
+
+	/*
+	 * @Override public void directOrderDetail(OrdersVO orders) {
+	 * shopMapper.directOrderDetail(orders); }
+	 */
+	@Override
+	public Integer getPoint(long mem_num) {
+		return shopMapper.getPoint(mem_num);
+	}
+	/*
+	 * @Override public Integer selectOrderNUM(long mem_num) { return
+	 * shopMapper.selectOrderNUM(mem_num);
+	 * 
+	 * }
+	 */
+
+	@Override
+	public CouponVO couponInfo(long mc_num) {
+		return shopMapper.couponInfo(mc_num);
 	}
 	
 	
