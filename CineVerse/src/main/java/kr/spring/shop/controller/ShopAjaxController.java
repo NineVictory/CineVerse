@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import kr.spring.member.vo.MemberVO;
+import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.shop.service.ShopService;
 import kr.spring.shop.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Slf4j
@@ -25,6 +29,9 @@ public class ShopAjaxController {
 	@Autowired
 	private ShopService shopService;
 
+	@Autowired
+	private MyPageMapper myPageMapper;
+	
 	// 관심 상품 불러오기
 	@GetMapping("/shop/getProductFav")
 	@ResponseBody
@@ -76,4 +83,23 @@ public class ShopAjaxController {
 		}
 		return mapJson;
 	}
+	
+	// 쿠폰 선택하기
+	@GetMapping("/shop/coupon")
+	@ResponseBody
+	public Map<String, Object> getMethodName(HttpSession session) {
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {
+			mapJson.put("result", "logout");
+		} else {
+			
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
+	
+	
+	
+	
 }

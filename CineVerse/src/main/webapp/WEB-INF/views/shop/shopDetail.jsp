@@ -22,7 +22,12 @@
 					<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
 					<c:if test="${product.p_category == 8}"> ETC </c:if>
 				</h1>
-	            <p>${product.p_name}</p>
+	            <p>
+	            <c:if test="${product.p_quantity==0}">
+	            <span style="color:#FF5151;">(품절)</span>
+	            </c:if>
+	            ${product.p_name}
+	            </p>
 	            <span class="product-price">${product.p_price}</span>원
 	            <div class="buy-form">
 	                <form id="productForm" action="${pageContext.request.contextPath}/shop/addToCartOrBuyNow" method="post">

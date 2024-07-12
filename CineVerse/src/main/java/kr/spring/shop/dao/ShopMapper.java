@@ -6,7 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
@@ -45,6 +47,14 @@ public interface ShopMapper {
 	@Select("SELECT * FROM product_fav JOIN product USING(p_num) WHERE mem_num=#{mem_num}")
 	public List<ProductVO> productFavList(Long mem_num);
 	
+	// 상품 수량 불러오기 - 단품
+	@Select("SELECT p_quantity FROM product WHERE p_num=#{p_num}")
+	public Integer productRemain(Long p_num);
+	
+	// 장바구니에 담은 수량 불러오기
+	@Select("SELECT pb_quantity FROM p_basket WHERE pb_num=#{pb_num}")
+	public Integer productPut(Long pb_num);
+	
 	// 상품 장바구니 여부
 	@Select("SELECT * FROM p_basket WHERE mem_num=#{mem_num} AND p_num=#{p_num}")
 	public PBasketVO selectProductBasket(PBasketVO basket);
@@ -56,22 +66,46 @@ public interface ShopMapper {
 	public void ProductBasketDelete(PBasketVO basket);
 	// 내 장바구니 리스트 구하기
 	@Select("SELECT * FROM p_basket JOIN product USING(p_num) WHERE mem_num=#{mem_num}")
-	public List<ProductVO> productBasketList(Long mem_num);
+	public List<PBasketVO> productBasketList(Long mem_num);
 	/*
 	 * // 장바구니 각각 가격
 	 * @Select("SELECT p_price * pb_quantity FROM p_basket JOIN product USING(p_num) WHERE mem_num = #{mem_num}"
 	 * ) public List<Integer> basketPrice(Long mem_num);
 	 */
 	
-	// 장바구니 총 가격
-	@Select("SELECT SUM(p_price * pb_quantity) FROM p_basket JOIN product USING(p_num) WHERE mem_num = #{mem_num}")
-	public Integer basketTotalPrice(Long mem_num);
+	// 장바구니 총 가격 - 재고 있는 것만
+	@Select("SELECT (p_price * pb_quantity) FROM p_basket JOIN product USING(p_num) WHERE mem_num = #{mem_num} AND p_num=#{p_num}")
+	public Integer basketTotalPrice(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
+	
 	// 장바구니 총 개수
-	@Select("SELECT SUM(pb_quantity) FROM p_basket WHERE mem_num = #{mem_num}")
-	public Integer basketCount(Long mem_num);
+	@Select("SELECT pb_quantity FROM p_basket WHERE mem_num = #{mem_num} AND p_num=#{p_num}")
+	public Integer basketCount(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
 	
 	// 주문
 	public void productOrders(OrdersVO orders);
+	
+	
+	
+	// 바로 구매하기 -> 결제
+	@Insert("INSERT INTO ORDERS (order_num, mem_num) VALUES (orders_seq.nextval, #{mem_num})")
+	public void directOrder(OrdersVO orders);
+	
+	// 바로 구매하기 -> 결제 내역
+	@Insert("INSERT INTO ORDER_DETAIL (od_num, order_quantity, order_num, p_num) VALUES (order_detail_seq.nextval, #{order_quantity}, #{order_num}, #{p_num})")
+	public void directOrderDetail(OrdersVO orders);
+	
+	// 상품 수량 차감하기
+	@Update("UPDATE product SET p_quantity = p_quantity - #{p_quantity} WHERE p_num = #{p_num}")
+	public void sellProduct(@Param(value="p_quantity") Long p_quantity, @Param(value="p_num") Long p_num);
+	
+	// 포인트 차감하기
+	@Insert("INSERT INTO point_history (ph_num, ph_point, mem_num, ph_type) VALUES (point_history_seq.nextval, #{ph_point}, #{mem_num}, 1)")
+	public void usePoint(OrdersVO orders);
+	
+	// 쿠폰 사용하기
+	@Delete("DELETE FROM member_coupon WHERE mc_num=#{mc_num}")
+	public void useCoupon(long mc_num);
+	
 	
 	
 	// 관리자 - 벌스샵

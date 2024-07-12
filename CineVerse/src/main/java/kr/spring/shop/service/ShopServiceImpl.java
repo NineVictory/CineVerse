@@ -3,11 +3,13 @@ package kr.spring.shop.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.shop.dao.ShopMapper;
+import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
 
@@ -74,23 +76,16 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<ProductVO> productBasketList(Long mem_num) {
+	public List<PBasketVO> productBasketList(Long mem_num) {
 		return shopMapper.productBasketList(mem_num);
 	}
 
-	@Override
-	public Integer basketCount(Long mem_num) {
-		return shopMapper.basketCount(mem_num);
-	}
 	/*
 	 * @Override public List<Integer> basketPrice(Long mem_num) { return
 	 * shopMapper.basketPrice(mem_num); }
 	 */
 
-	@Override
-	public Integer basketTotalPrice(Long mem_num) {
-		return shopMapper.basketTotalPrice(mem_num);
-	}
+	
 
 	@Override
 	public List<ProductVO> productFavList(Long mem_num) {
@@ -105,6 +100,50 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public Integer productAllCount(Map<String, Object> map) {
 		return shopMapper.productAllCount(map);
+	}
+
+	@Override
+	public Integer productRemain(Long p_num) {
+		return shopMapper.productRemain(p_num);
+	}
+
+	@Override
+	public Integer productPut(Long pb_num) {
+		return shopMapper.productPut(pb_num);
+	}
+
+	@Override
+	public Integer basketTotalPrice(Long mem_num, Long p_num) {
+		return shopMapper.basketTotalPrice(mem_num, p_num);
+	}
+
+	@Override
+	public Integer basketCount(Long mem_num, Long p_num) {
+		return shopMapper.basketCount(mem_num, p_num);
+	}
+
+	@Override
+	public void directOrder(OrdersVO orders) {
+		shopMapper.directOrder(orders);
+		shopMapper.directOrderDetail(orders);
+		
+	}
+
+	@Override
+	public void usePoint(OrdersVO orders) {
+		shopMapper.usePoint(orders);
+		
+	}
+
+	@Override
+	public void useCoupon(long mc_num) {
+		shopMapper.useCoupon(mc_num);
+	}
+
+	@Override
+	public void sellProduct(Long p_quantity, Long p_num) {
+		shopMapper.sellProduct(p_quantity, p_num);
+		
 	}
 	
 	

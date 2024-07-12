@@ -30,5 +30,7 @@ public class PBasketVO {
 	private Date r_modify_date;
 	private String p_filename;
 	
+	private int pb_status;
+	
 	private MultipartFile p_upload;
 }

@@ -1,6 +1,7 @@
 package kr.spring.shop.controller;
 
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,8 @@ import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Slf4j
@@ -41,10 +44,10 @@ public class ShopController {
 
 	@Autowired
 	public MyPageService2 mypageService2;
-	
+
 	@Autowired
 	public MyPageService mypageService;
-	
+
 	// 벌스샵 메인 (목록)
 	@GetMapping("/shop/shopMain")
 	public String shopMain(@RequestParam(defaultValue="1") int pageNum,
@@ -105,22 +108,32 @@ public class ShopController {
 	public String shopBuy(@RequestParam("p_num") long p_num, @RequestParam("pb_quantity") long pb_quantity, HttpSession session, Model model, HttpServletRequest request) {
 		log.debug("<<벌스샵 결제 - p_num>> ::: " + p_num);
 		log.debug("<<벌스샵 결제 - pb_quantity>> ::: " + pb_quantity);
-		
+
+
+		int remain = shopService.productRemain(p_num);
+		log.debug("<<벌스샵 결제 남은 상품 수량>> ::: " + remain);
+
+		if(remain<pb_quantity) {
+			model.addAttribute("message", "재고가 부족합니다.");
+			model.addAttribute("url", request.getContextPath() + "/shop/shopDetail?p_num=" + p_num);
+			return "common/resultAlert";
+		}
+
 		// 구매하고자 하는 상품 상세 정보
 		ProductVO product = shopService.productDetail(p_num);
 		product.setP_name(StringUtil.useNoHTML(product.getP_name()));
 		model.addAttribute("product", product);
-		
+
 		// 상품 수량
 		model.addAttribute("pb_quantity", pb_quantity);
-		
+
 		// 배송지 정보
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		List<AddressVO> address = mypageService2.addressList(user.getMem_num());
 		Integer count = mypageService2.countAddress(user.getMem_num());
 		model.addAttribute("count", count);
 		model.addAttribute("address", address);
-		
+
 		// 보유 쿠폰 정보
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<MyPageVO> couponList = null;
@@ -130,9 +143,13 @@ public class ShopController {
 		if(member.getCoupon_cnt() > 0) {
 			couponList = mypageService.selectMemCouponList(map);
 		}
+		
+		long total = (product.getP_price() * pb_quantity);
+		
+		model.addAttribute("total", total);
 		model.addAttribute("couponList",couponList);
 		model.addAttribute("member",member);
-		
+
 		return "shopBuy";
 	}
 
@@ -141,15 +158,38 @@ public class ShopController {
 	@GetMapping("/shop/shopBasket")
 	public ModelAndView shopMyBasket(HttpSession session, Model model) {
 		log.debug("<<장바구니 진입>> ::: 성공");
-		List<ProductVO> list = null;
+		List<PBasketVO> list = null;
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		list = shopService.productBasketList(user.getMem_num());
 
-		Integer count=shopService.basketCount(user.getMem_num());
+		
 		/* List<Integer> price = shopService.basketPrice(user.getMem_num()); */
-		Integer total = shopService.basketTotalPrice(user.getMem_num());
+		
 		Map<String, Object> map = new HashMap<>();
 		/* map.put("price", price); */
+
+		/*
+		 * for (PBasketVO product : list) { Integer p_quantity =
+		 * shopService.productRemain(product.getP_num()); Integer pb_quantity =
+		 * shopService.productPut(user.getMem_num(), product.getP_num());
+		 * 
+		 * if (p_quantity >= pb_quantity) { // 재고가 충분할 경우 product.setRemainStatus(1); }
+		 * else { // 재고가 부족할 경우 product.setRemainStatus(2); } }
+		 */
+		Integer total = 0;
+		Integer count = 0;
+		for (PBasketVO basket : list) {
+			int remain = shopService.productRemain(basket.getP_num());
+			int quantity = shopService.productPut(basket.getPb_num());
+			
+			if(remain<quantity) {
+				basket.setPb_status(2);
+			} else {
+				total += shopService.basketTotalPrice(user.getMem_num(), basket.getP_num());
+				count += shopService.basketCount(user.getMem_num(), basket.getP_num());
+			}
+		}
+
 		map.put("total", total);
 		map.put("list", list);
 		map.put("count", count);
@@ -162,6 +202,15 @@ public class ShopController {
 	public String addToCart(@RequestParam("p_num") long p_num, @RequestParam("pb_quantity") long pb_quantity, HttpSession session, Model model, HttpServletRequest request) {
 		log.debug("<<장바구니 담기 p_num>> ::: " + p_num);
 		log.debug("<<장바구니 담기 pb_quantity>> ::: " + pb_quantity);
+
+		int remain = shopService.productRemain(p_num);
+		log.debug("<<장바구니 담기 남은 상품 수량>> ::: " + remain);
+
+		if(remain<pb_quantity) {
+			model.addAttribute("message", "재고가 부족합니다.");
+			model.addAttribute("url", request.getContextPath() + "/shop/shopDetail?p_num=" + p_num);
+			return "common/resultAlert";
+		}
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
 
@@ -205,5 +254,41 @@ public class ShopController {
 
 		return new ModelAndView("shopFav", map);
 	}
+	
+	@PostMapping("/shop/buyDirect")
+	public String buyDirect(@RequestParam long total, @RequestParam(defaultValue="0") long mc_num, @RequestParam long pb_quantity, @RequestParam long p_num, HttpSession session, Model model) {
+		log.debug("<<상품 바로 구매 - total>> ::: " + total);
+		log.debug("<<상품 바로 구매 - mc_num>> ::: " + mc_num);
+		log.debug("<<상품 바로 구매 - pb_quantity>> ::: " + pb_quantity);
+		log.debug("<<상품 바로 구매 - p_num>> ::: " +p_num);
+		
+		if(mc_num!=0) {
+			shopService.useCoupon(mc_num);
+		}
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		OrdersVO orders = new OrdersVO();
+		orders.setMem_num(user.getMem_num());
+		orders.setA_num(2);
+		
+		orders.setOrder_quantity(pb_quantity);
+		orders.setP_num(p_num);
+		
+		shopService.directOrder(orders);
+		 
+		orders.setPh_point(total);
+		
+		
+		shopService.usePoint(orders);
+		shopService.sellProduct(pb_quantity, p_num);
+		
+		
+		
+		
+		
+		return "shopMain";
+	}
+	
 
 }
+

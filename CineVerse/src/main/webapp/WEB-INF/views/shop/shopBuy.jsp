@@ -2,6 +2,8 @@
 	    pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/product.pay.js"></script>
 <!-- 벌스샵 결제 시작 -->
 <div class="main_content">
 	<div class="buy-main">
@@ -63,7 +65,7 @@
 					<div class="product-name">
 		                <h3>${product.p_name} (${pb_quantity}개)</h3>
 		             </div>
-						<p>가격 <span>${product.p_price*pb_quantity}원</span></p>
+						<p>가격 <span>${total}원</span></p>
 				</div>
 				<hr size="4px" color="black" width="53%">	
 			</div>
@@ -80,14 +82,16 @@
 			</c:if>
 			<c:if test="${member.coupon_cnt > 0 }">
 				<c:forEach  var="couponList" items="${couponList}">
-					<div style="margin-left:15px; margin-top:20px; margin-bottom:0;">
-						<input type="checkbox" class="single-select" name="option" value="${coupnList.mc_num}">
-					</div>
-		 			<div class="coupon_detail" style="margin-top:0;" >
-		 				<span class="coupon_name">${couponList.coupon_name}</span>
-		 				<span class="coupon_detail_all">${couponList.coupon_content }</span>
-		 				<span class="coupon_detail_all">${couponList.coupon_regdate } ~ ${couponList.coupon_enddate }<!-- <span class="coupon_time">D - DAY</span> --></span> 
-		 			</div>
+					<c:if test="${couponList.coupon_where==2}">
+						<div style="margin-left:15px; margin-top:20px; margin-bottom:0;">
+							<input type="checkbox" class="single-select" name="option" value="${couponList.mc_num}" data-num="${couponList.mc_num}" data-point="${couponList.coupon_sale}">
+						</div>
+			 			<div class="coupon_detail" style="margin-top:0;" >
+			 				<span class="coupon_name">${couponList.coupon_name}</span>
+			 				<span class="coupon_detail_all">${couponList.coupon_content }</span>
+			 				<span class="coupon_detail_all">${couponList.coupon_regdate } ~ ${couponList.coupon_enddate }<!-- <span class="coupon_time">D - DAY</span> --></span> 
+			 			</div>
+		 			</c:if>
  				</c:forEach>
  			</c:if>
  			

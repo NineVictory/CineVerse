@@ -12,6 +12,7 @@
             </c:if>
             <c:if test="${not empty list}">
             	<c:forEach var="product" items="${list}">
+            		<c:if test="${product.pb_status==1}">
 						<div class="order-product">
 		                    <div class="order-header">
 		                        <!-- <h3 class="order-category">
@@ -39,14 +40,47 @@
 		                            <p>가격 <span>${product.p_price}원</span></p>
 		                        </div>
 		                        <div class="basket-result">
-		                            <p >${product.p_name} - ${product.pb_quantity}개</span></p>
+		                            <p >${product.p_name} - ${product.pb_quantity}개</p>
 		                        </div>
 		                        <!-- <hr size="4px" color="black" width="53%">	 -->
 		                    </div>
 		                </div>
-                </c:forEach>
+					</c:if>
+                </c:forEach >
             </c:if>
+            
         </form>
+        <c:forEach var="product" items="${list}">
+        <c:if test="${product.pb_status==2}">
+						<div class="order-product">
+		                    <div class="order-header">
+		                    </div>	    
+		                    <div class="order-body" style="margin-left:0;">
+		                        <span class="nn"> 
+									<c:if test="${product.p_category == 1}"> MARVEL </c:if>
+									<c:if test="${product.p_category == 2}"> DISNEY </c:if>
+									<c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>
+									<c:if test="${product.p_category == 4}"> PIXAR </c:if>
+									<c:if test="${product.p_category == 5}"> Studio GHIBLI </c:if>
+									<c:if test="${product.p_category == 6}"> Warner Bros. </c:if>
+									<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
+								</span>
+		                        <hr size="2px" color="#969696" width="77%">
+		                        <div class="product-list">
+		                            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
+		                            <div class="product-name">
+		                                <h3>${product.p_name}</h3>
+		                            </div>
+		                            <p>가격 <span>${product.p_price}원</span></p>
+		                        </div>
+		                        <div class="basket-result">
+		                            <p style="text-decoration-line: line-through; color:#FF5151;">${product.p_name} - ${product.pb_quantity}개 재고부족</p>
+		                        </div>
+		                        <!-- <hr size="4px" color="black" width="53%">	 -->
+		                    </div>
+		                </div>
+		               </c:if>
+                </c:forEach >
         <c:if test="${not empty list}">
         <div class="basket-price">
              <p>
