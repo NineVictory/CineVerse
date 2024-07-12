@@ -25,6 +25,6 @@ public class NoticeVO {
 	private Date nb_modify_date;
 	private String nb_filename;
 	private long nb_hit;
-	
+	private long mem_num;
 	private MultipartFile nb_upload;	//파일
 }

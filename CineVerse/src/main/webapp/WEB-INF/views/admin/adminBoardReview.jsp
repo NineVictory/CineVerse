@@ -3,18 +3,17 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <div class = "admin_member">
 	<div class = "firstTitle">
-		<p id ="title">양도/교환 게시판 관리</p>
+		<p id ="title">게시판 댓글관리</p>
 	</div>
 		<form action="adminSearch" id="admin_search">
 			<ul>
 				<li>
-					<input type="search" name="search" placeholder="제목을 입력하세요">
+					<input type="search" name="search" placeholder="회원명을 입력하세요">
 					<input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
 			</ul>
 		</form>
-		<p id = "sub_title2">양도/교환 게시판 관리</p>
-		<table class="adminMember-table">
+    <table class="adminMember-table">
         <thead>
             <tr>
                 <th>회원번호</th>
@@ -48,5 +47,4 @@
             </c:forEach>
         </tbody>
     </table>
-
 </div>

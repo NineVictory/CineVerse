@@ -1,5 +1,6 @@
 package kr.spring.myPage.controller;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -181,9 +182,23 @@ public class MyPageController {
 	public String myPagePointList(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("mem_num", user.getMem_num());
+		
+		int count = mypageService.pointHistoryCnt(user.getMem_num());
+		List<MyPageVO> list = null;
+		
+		if(count > 0) {
+			list = mypageService.selectMemPointList(map);
+			// 리스트 출력할 때 최근 날짜 순으로 출력하도록 설정해주는 문장
+			list.sort(Comparator.comparing(MyPageVO::getPh_date).reversed());
+		}
+		model.addAttribute("list", list);
 		model.addAttribute("member",member);
 		return "pointList";
 	}
+
 	
 	
 	

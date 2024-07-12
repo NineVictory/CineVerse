@@ -10,6 +10,8 @@ import kr.spring.admin.dao.AdminMapper;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.assignment.vo.AssignVO;
+import kr.spring.board.vo.BoardVO;
 @Service
 @Transactional
 public class AdminServiceImpl implements AdminService{
@@ -47,4 +49,14 @@ public class AdminServiceImpl implements AdminService{
 	public void insertNotice(NoticeVO noticeVO) {
 		adminMapper.insertNotice(noticeVO);
 	}
+	@Override
+	public List<BoardVO> getAllCommunity() {
+		return adminMapper.getAllCommutnity();
+	}
+	@Override
+	public List<AssignVO> getAllAssignment() {
+		return adminMapper.getAllAssignment();
+	}
+
+
 }

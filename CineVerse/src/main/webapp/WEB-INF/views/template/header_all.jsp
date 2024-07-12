@@ -6,6 +6,7 @@
     <div class="container">
         <nav class="main-navigation">
             <ul class="main-navigation-ul">
+                <li class="main-navigation-li"><a href="#" class="main-navigation-a"><img src="${pageContext.request.contextPath}/images/cmj/shoppingcart.png" width="16" height="16"></a></li>
                 <li class="main-navigation-li"><a href="#" class="main-navigation-a">멤버십</a></li>
                 <li class="main-navigation-li"><a href="${pageContext.request.contextPath}/support/main" class="main-navigation-a">고객센터</a></li>
             </ul>
@@ -44,7 +45,7 @@
                 	<a href="#" class="secondary-a">영화관</a>
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
-	                        <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/ownMovieInfo" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
+	                        <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/cinema/cinemaDetail" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
 	                        <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>          
                         </ul>
                     </div>

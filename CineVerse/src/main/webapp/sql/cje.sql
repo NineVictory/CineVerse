@@ -180,6 +180,7 @@ CREATE TABLE assignment_board (
     ab_status NUMBER(1) NOT NULL,
     ab_filename CLOB NOT NULL,
     mem_num NUMBER NOT NULL,
+    ab_report NUMBER(2),
     CONSTRAINT PK_ASSIGNMENT_BOARD PRIMARY KEY (ab_num),
     CONSTRAINT FK_assignment_board_1 FOREIGN KEY (mem_num) REFERENCES member (mem_num)
 );

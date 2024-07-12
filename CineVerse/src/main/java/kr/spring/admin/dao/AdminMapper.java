@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 
 @Mapper
@@ -42,8 +43,15 @@ public interface AdminMapper {
     public void insertEvent(EventVO eventVO);
 	
     // 결제
+    // 게시판
+    @Select("SELECT cb_num, mem_num, cb_title, cb_type, cb_report, cb_hit, cb_reg_date"
+    		+ "	FROM community_board"
+    		+ " ORDER BY cb_reg_date DESC")
+    public List<BoardVO> getAllCommutnity();
     
-    // 상품
-    
+    @Select("SELECT ab_num, mem_num, ab_title, ab_type, ab_report, ab_hit, ab_reg_date"
+    		+ "	FROM assignment_board"
+    		+ "	ORDER BY ab_reg_date DESC")
+    public List<AssignVO> getAllAssignment();
 
 }

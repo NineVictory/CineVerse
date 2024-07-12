@@ -23,4 +23,10 @@ public interface MyPageMapper {
 	@Update("UPDATE member SET mem_nickname=#{mem_nickname} WHERE mem_num=#{mem_num}")
 	public void updateMember(MemberVO member);
 	public void updateMember_detail(MemberVO member);
+	
+	@Select("SELECT COUNT(*) FROM point_history WHERE mem_num=#{mem_num}")
+	public Integer pointHistoryCnt(long mem_num);
+	@Select("SELECT * FROM point_history WHERE mem_num=#{mem_num}")
+	public List<MyPageVO> selectMemPointList(Map<String, Object> map); // 회원 포인트 충전 내역 목록 가져오기
+
 }
