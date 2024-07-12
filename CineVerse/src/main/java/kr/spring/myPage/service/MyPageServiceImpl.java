@@ -51,5 +51,15 @@ public class MyPageServiceImpl implements MyPageService{
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map) {
 		return myPageMapper.selectMemPointList(map);
 	}
+
+	@Override
+	public void updatePassword(MyPageVO mypage) {
+		myPageMapper.updatePassword(mypage);
+	}
+
+	@Override
+	public void updateMember(MyPageVO mypage) {
+		myPageMapper.updateMember(mypage);
+	}
 	
 }
