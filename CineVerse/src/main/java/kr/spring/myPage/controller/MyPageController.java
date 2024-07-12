@@ -207,7 +207,7 @@ public class MyPageController {
 		return "chatList";
 	}
 
-	// 회원 정보 - 비밀번호 변경
+	// 회원 정보 - 비밀번호 변경 폼
 	@GetMapping("/myPage/passwdChange")
 	public String myPagePasswdChange(MyPageVO myPageVO, HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -220,31 +220,13 @@ public class MyPageController {
 	//비밀번호 변경 폼
 	@PostMapping("/myPage/passwdChange")
 	public String submitpasswdChange(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
-		log.debug("<<비밀번호 변경 처리>> : " +  myPageVO);
-		// 유효성 체크 결과 오류가 있으면 폼 호출
+		log.debug("<<비밀번호 변경 처리>> : " + myPageVO);
+		//유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasFieldErrors("now_passwd") || result.hasFieldErrors("mem_passwd") || result.hasFieldErrors("captcha_chars")) {
 			return "passwdChange";
 		}
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		myPageVO.setMem_num(user.getMem_num());
-
-		MyPageVO db_member = mypageService.selectMember(myPageVO.getMem_num());
-
-		// 폼에서 전송한 현재 비밀번호와 DB에서 읽어온 비밀번호가 일치하는지 체크
-		if(!db_member.getMem_passwd().equals(myPageVO.getNow_passwd())) {
-			result.rejectValue("now_passwd", "invalidPassword");
-			return "passwdChange";
-		}
-
-		//비밀번호 수정
-		mypageService.updatePassword(myPageVO);
-
-		// 자동 로그인 해제 설정
-		//mypageService.deleteAu_id(myPageVO.getMem_num());
-
-		// View에 표시할 메시지
-		model.addAttribute("message", "비밀번호 변경 완료(재접속시 설정되어 있는 자동 로그인 기능 해제");
-		model.addAttribute("url",  request.getContextPath() + "/myPage/myPageMain");
+		
+		
 		return "common/resultAlert";
 	}
 

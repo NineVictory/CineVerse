@@ -35,7 +35,7 @@
                 <span>이미지</span> <span>${board.fav_cnt}</span> | 
                 <span>
                     <c:choose>
-                        <c:when test="${not empty board.cb_modify_date}">${board.cb_modify_date}</c:when>
+                        <c:when test="${!empty board.cb_modify_date}">${board.cb_modify_date}</c:when>
                         <c:otherwise>${board.cb_reg_date}</c:otherwise>
                     </c:choose>
                 </span>

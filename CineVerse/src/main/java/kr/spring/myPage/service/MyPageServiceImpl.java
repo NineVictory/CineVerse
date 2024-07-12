@@ -57,9 +57,5 @@ public class MyPageServiceImpl implements MyPageService{
 		myPageMapper.updatePassword(mypage);
 	}
 
-	@Override
-	public void updateMember(MyPageVO mypage) {
-		myPageMapper.updateMember(mypage);
-	}
 	
 }

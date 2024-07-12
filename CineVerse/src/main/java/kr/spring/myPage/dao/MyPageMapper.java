@@ -21,10 +21,6 @@ public interface MyPageMapper {
 	public List<BoardVO> selectMemcBoardWriteList(Map<String, Object> map);//내가 쓴 게시글 목록
 	public Integer cBoardWriteListcnt(Map<String, Object> map);
 	
-	@Update("UPDATE member SET mem_nickname=#{mem_nickname} WHERE mem_num=#{mem_num}")
-	public void updateMember(MyPageVO mypage);
-	public void updateMember_detail(MyPageVO mypage);
-	
 	@Update("UPDATE member_detail SET mem_passwd=#{mem_passwd} WHERE mem_num=#{mem_num}")
 	public void updatePassword(MyPageVO mypage);
 	
@@ -32,5 +28,6 @@ public interface MyPageMapper {
 	public Integer pointHistoryCnt(long mem_num);
 	@Select("SELECT * FROM point_history WHERE mem_num=#{mem_num}")
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map); // 회원 포인트 충전 내역 목록 가져오기
+	
 
 }

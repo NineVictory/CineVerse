@@ -17,12 +17,9 @@ import lombok.ToString;
 @ToString(exclude = {"photo"})
 public class MyPageVO {
 	private long mem_num;
-
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_id;
-
 	private String mem_nickName;
-
 	private int mem_auth;
 	private String auto;
 	private String au_id;
