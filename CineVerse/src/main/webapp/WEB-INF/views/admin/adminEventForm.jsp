@@ -72,7 +72,7 @@
 			<form:errors path="event_end"></form:errors>
 		</li>
 		<li>
-			<input type="submit" value="등록" id = "insert_button">
+			<input type="submit" value="등록" >
 		</li>
 	</ul>
 	

@@ -60,6 +60,14 @@ public class AdminServiceImpl implements AdminService{
 	public void deleteMemberAuth(long mem_num) {
 		adminMapper.deleteMemberAuth(mem_num);
 	}
+	@Override
+	public void deleteEvent(long event_num) {
+		adminMapper.deleteEvent(event_num);
+	}
+	@Override
+	public void deleteNotice(long nb_num) {
+		adminMapper.deleteNotice(nb_num);
+	}
 
 
 }
