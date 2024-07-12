@@ -44,7 +44,7 @@ public interface MovieMapper {
 	public void deleteBookMarkByMovieNum(Long m_code);
 	
 	//영화예매
-	@Select("SELECT cinema_seq.nextval FROM dual")
+	@Select("SELECT cinema_num.nextval FROM dual")
 	public Long selectC_num();
 	public List<MovieVO> selectMovieTimeList(Map<String,Object>map);
 	public void insertMovieTime(MovieTimeVO movietime);

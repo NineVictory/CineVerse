@@ -20,9 +20,13 @@ public interface MyPageMapper {
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
 	public List<BoardVO> selectMemcBoardWriteList(Map<String, Object> map);//내가 쓴 게시글 목록
 	public Integer cBoardWriteListcnt(Map<String, Object> map);
+	
 	@Update("UPDATE member SET mem_nickname=#{mem_nickname} WHERE mem_num=#{mem_num}")
-	public void updateMember(MemberVO member);
-	public void updateMember_detail(MemberVO member);
+	public void updateMember(MyPageVO mypage);
+	public void updateMember_detail(MyPageVO mypage);
+	
+	@Update("UPDATE member_detail SET mem_passwd=#{mem_passwd} WHERE mem_num=#{mem_num}")
+	public void updatePassword(MyPageVO mypage);
 	
 	@Select("SELECT COUNT(*) FROM point_history WHERE mem_num=#{mem_num}")
 	public Integer pointHistoryCnt(long mem_num);

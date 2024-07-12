@@ -12,7 +12,8 @@ public interface MyPageService {
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map); // 회원 쿠폰 목록 불러오기
 	public List<BoardVO> selectMemcBoardWriteList(Map<String, Object> map);//내가 쓴 게시글 목록
 	public Integer cBoardWriteListcnt(Map<String, Object> map);
-	
+	public void updateMember(MyPageVO mypage);
+	public void updatePassword(MyPageVO mypage);
 	public Integer pointHistoryCnt(long mem_num);
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map);
 }
