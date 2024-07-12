@@ -91,15 +91,49 @@ body {
 .product-name span, .product-list span, .product-list p, .product-name p{
      writing-mode: horizontal-tb;
      white-space:nowrap;
+    
+}
+
+.product-name{
+	margin-right: 20px;
+	margin-top:14px;
+}
+
+.product-name h3{
+	width: 250px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.pn {
+	font-size:10pt;
+	width: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.product-name span{
+	font-size: 10pt;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .product-name p{
 	font-size: 10pt;
+	
 }
 
+
+.product-list{
+	width: 400px;
+}
 .product-list span{
 	margin-bottom: 50px;
+	
 }
+
 
 #main_content .shop-pay-nav{
 	margin-top:50px;

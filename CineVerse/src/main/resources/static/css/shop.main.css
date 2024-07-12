@@ -179,6 +179,9 @@ input[type="search"]::placeholder {
     text-align: left;
     margin: 5px 0;
 	white-space:nowrap;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .product-item h3 {

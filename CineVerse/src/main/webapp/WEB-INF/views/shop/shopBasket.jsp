@@ -34,13 +34,12 @@
 		                        <div class="product-list">
 		                            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
 		                            <div class="product-name">
-		                                <span>${product.p_name}</span>
-		                                <p>${product.p_name}&nbsp; <span>${product.pb_quantity}개</span></p>
+		                                <h3>${product.p_name}</h3>
 		                            </div>
 		                            <p>가격 <span>${product.p_price}원</span></p>
 		                        </div>
 		                        <div class="basket-result">
-		                            <p>${product.p_name}<span> ${product.pb_quantity}개</span></p>
+		                            <p >${product.p_name} - ${product.pb_quantity}개</span></p>
 		                        </div>
 		                        <!-- <hr size="4px" color="black" width="53%">	 -->
 		                    </div>

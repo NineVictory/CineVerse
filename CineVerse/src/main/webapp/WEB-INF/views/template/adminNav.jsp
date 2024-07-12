@@ -34,6 +34,7 @@
                 <li onclick="toggleSubMenu('menuShop')"><h2>벌스샵</h2></li>
                 <ul id="menuShop">
                     <li><a href="${pageContext.request.contextPath}/admin/adminShop">상품등록</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/adminProductList">상품목록</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/adminDelivery">배송상태</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/adminAddress">배송지</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/adminShopQna">문의</a></li>
