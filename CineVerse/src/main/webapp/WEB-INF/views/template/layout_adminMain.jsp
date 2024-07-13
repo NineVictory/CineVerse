@@ -20,17 +20,15 @@
 </head>
 <body>
 	<div id="main">
-		<div id="header">
-			<tiles:insertAttribute name="admin_header" />
-		</div>
-		
-		<tiles:insertAttribute name="admin_nav" />
-		
-		<div id="body">
-			<div class="page-container">
-				<tiles:insertAttribute name="admin_body" />
-			</div>
-		</div>
+	<div id="main_header">
+		<tiles:insertAttribute name="admin_header" />
 	</div>
+	<div id="adminNav">
+		<tiles:insertAttribute name="admin_nav" />
+	</div>
+	<div id="main_body">
+		<tiles:insertAttribute name="admin_body" />
+	</div>
+</div>
 </body>
 </html>

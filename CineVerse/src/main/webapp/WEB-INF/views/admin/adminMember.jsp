@@ -45,7 +45,8 @@
     }
 </script>
 
-<div class = "admin_member">
+<div class="page-container">
+	<div class = "admin_member">
 	<div class = "firstTitle">
 		<p id ="title">회원관리</p>
 	</div>
@@ -64,7 +65,6 @@
                 <th>아이디</th>
                 <th>상태</th>
                 <th>등급</th>
-                <th>맴버십</th>
                 <th>이름</th>
                 <th>전화번호</th>
                 <th>이메일</th>
@@ -78,9 +78,23 @@
                 <tr>
                     <td class="mem-data">${member.mem_num}</td>
                     <td class="mem-data">${member.mem_id}</td>
-                    <td class="mem-data">${member.mem_auth}</td>
-                    <td class="mem-data">${member.mem_rank}</td>
-                    <td class="mem-data">${member.mem_membership}</td>
+                    <td class="mem-data">
+                     <c:choose>
+                    	<c:when test="${member.mem_auth == 1}">탈퇴</c:when>
+                    	<c:when test="${member.mem_auth == 2}">정지</c:when>
+                    	<c:when test="${member.mem_auth == 3}">일반</c:when>
+                    	<c:when test="${member.mem_auth == 9}">관리자</c:when>
+                   	 </c:choose>
+                    </td>
+                    <td class="mem-data">
+                    <c:choose>
+                    	<c:when test="${member.mem_rank == 1}">BASIC</c:when>
+                    	<c:when test="${member.mem_rank == 2}">MEMBER</c:when>
+                    	<c:when test="${member.mem_rank == 3}">REGULAR</c:when>
+                    	<c:when test="${member.mem_rank == 4}">VIP</c:when>
+                    	<c:when test="${member.mem_rank == 5}">VVIP</c:when>
+                    </c:choose>
+                    </td>
                     <td class="mem-data">${member.mem_name}</td>
                     <td class="mem-data">${member.mem_phone}</td>
                     <td class="mem-data">${member.mem_email}</td>
@@ -91,5 +105,6 @@
             </c:forEach>
         </tbody>
     </table>
+	</div>
 </div>
 

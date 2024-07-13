@@ -25,24 +25,26 @@
         };
     });
 </script>
-	<form:form action="adminNoticeForm" enctype="multipart/form-data" id ="insert_form" modelAttribute="NoticeVO">
-	<h2>공지사항 등록</h2>
-	<ul>
-		<li>	
-			<label for="nb_title">공지사항명</label>
-			<input type="text" name="nb_title" id="nb_title" class="input-check">
-			<form:errors path="nb_title"></form:errors>
-		</li>
-		<li>
-			<label for="nb_upload">공지사항사진</label>
-			<input type="file" name="nb_upload" id="nb_upload" class="input-check" accept="image/gif,image/png,image/jpeg">
-			<form:errors path="nb_upload"></form:errors>
-		</li>
-		<li>
-			<label for="nb_content">공지사항내용</label>
-			<textarea rows="5" cols="30" name="nb_content" id="nb_content" class="input-check"></textarea>
-			<form:errors path="nb_content"></form:errors>
-			<script>
+
+<div class="page-container">
+	<div class="notice_insert_form">
+		<h2>공지사항 등록</h2>
+		<form:form action="adminNoticeForm" enctype="multipart/form-data"
+			id="insert_form" modelAttribute="noticeVO">
+			<ul>
+				<li><label for="nb_title">제목</label> <form:input
+						path="nb_title" class="input-check" /> <form:errors
+						path="nb_title" element="div" cssClass="error-message"></form:errors>
+				</li>
+				<li><label for="nb_upload">사진</label> <input type="file"
+					name="nb_upload" id="nb_upload" class="input-check"
+					accept="image/gif,image/png,image/jpeg"> <form:errors
+						path="nb_upload" element="div" cssClass="error-message"></form:errors>
+				</li>
+				<li><label for="nb_content">내용</label> <form:textarea
+						path="nb_content" rows="5" cols="30" class="input-check" /> <form:errors
+						path="nb_content" element="div" cssClass="error-message"></form:errors>
+					<script>
 				 function MyCustomUploadAdapterPlugin(editor) {
 					    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
 					        return new UploadAdapter(loader);
@@ -59,12 +61,12 @@
 		            .catch( error => {
 		                console.error( error );
 		            } );
-			    </script> 
-		</li>
-		<li>
-			<input type="submit" value="등록">
-		</li>
-	</ul>
-	
-</form:form>
+			    </script></li>
+			</ul>
+			<div class="btn_display_set">
+				<form:button id="submit_btn">등록하기</form:button>
+			</div>
+		</form:form>
+	</div>
+</div>
 

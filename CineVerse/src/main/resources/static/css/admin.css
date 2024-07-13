@@ -1,46 +1,14 @@
-@charset "UTF-8";
+/* /* 
 
 #body {
 	display: flex;
 }
 
-/* .left-outer 클래스 스타일 */
-.adminNav {
-	width: 200px;
-	height:100%;
-	background-color: #f0f0f0;
-	padding: 10px;
-}
-
-.adminNav ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-}
-
-.adminNav ul li {
-	cursor: pointer;
-}
-
-.adminNav ul ul {
-	display: none; /* 처음에는 하위 메뉴 숨기기 */
-	margin-left: 35px;
-}
-
-.adminNav ul ul li {
-	margin-bottom: 3px;
-}
-
-.adminNav img {
-	max-width: 100%; /* 이미지 최대 너비 설정 */
-	height: auto; /* 이미지 높이 자동 조정 */
-}
-
-/* .admin_main 클래스 스타일 */
+.admin_main 클래스 스타일
 .admin_main {
 	text-align: center;
 	width: 80%;
-	margin-left: 0 auto; /* 가운데 정렬을 위한 margin 설정 */
+	margin-left: 0 auto; 가운데 정렬을 위한 margin 설정
 	position: relative;
 }
 
@@ -60,59 +28,57 @@
 }
 
 .row {
-	display: flex; /* Flexbox를 사용하여 내부 요소들을 수평으로 배치 */
-	justify-content: center; /* 내부 요소들을 가운데 정렬 */
-	margin-bottom: 20px; /* 하단 마진 설정 */
+	display: flex; Flexbox를 사용하여 내부 요소들을 수평으로 배치
+	justify-content: center; 내부 요소들을 가운데 정렬
+	margin-bottom: 20px; 하단 마진 설정
 }
 
 .section {
-	flex: 1; /* 가능한 한 많은 공간을 차지하도록 설정 */
-	padding: 10px; /* 내부 여백 설정 */
-	box-sizing: border-box; /* 패딩과 테두리를 포함한 전체 너비 설정 */
+	flex: 1; 가능한 한 많은 공간을 차지하도록 설정
+	padding: 10px; 내부 여백 설정
+	box-sizing: border-box; 패딩과 테두리를 포함한 전체 너비 설정
 	background-color: #EFF3FD;
-	margin: 0 20px; /* 좌우 여백 설정 */
-	width: 200px; /* 박스 너비 설정 */
-	height: 200px; /* 박스 높이 설정 */
+	margin: 0 20px; 좌우 여백 설정
+	width: 200px; 박스 너비 설정
+	height: 200px; 박스 높이 설정
 }
 
 .section img {
-	max-width: 100px; /* 이미지 최대 너비 설정 */
-	height: auto; /* 이미지 높이 자동 조정 */
+	max-width: 100px; 이미지 최대 너비 설정
+	height: auto; 이미지 높이 자동 조정
 }
 
 .result_data {
-	padding: 5px 10px; /* 내부 여백 설정 */
-	background-color: #3F66ED; /* 배경색 설정 */
-	color: white; /* 글자색 설정 */
-	border-radius: 10px; /* 테두리를 둥글게 설정 */
-	margin: 0 20%; /* 좌우 여백 설정 */
+	padding: 5px 10px; 내부 여백 설정
+	background-color: #3F66ED; 배경색 설정
+	color: white; 글자색 설정
+	border-radius: 10px; 테두리를 둥글게 설정
+	margin: 0 20%; 좌우 여백 설정
 }
 
 .cloud_main {
-	flex: 1; /* 가능한 한 많은 공간을 차지하도록 설정 */
-	padding: 10px; /* 내부 여백 설정 */
-	box-sizing: border-box; /* 패딩과 테두리를 포함한 전체 너비 설정 */
+	flex: 1; 가능한 한 많은 공간을 차지하도록 설정
+	padding: 10px; 내부 여백 설정
+	box-sizing: border-box; 패딩과 테두리를 포함한 전체 너비 설정
 	background-color: #D8D8D8;
-	width: 200px; /* 박스 너비 설정 */
-	height: 300px; /* 박스 높이 설정 */
+	width: 200px; 박스 너비 설정
+	height: 300px; 박스 높이 설정
 }
 
 .cloud_main img {
-	height: 55%; /* 이미지 너비를 요소의 2/3로 설정 */
-	display: block; /* 인라인 요소를 블록 요소로 변경하여 세로 정렬 문제 해결 */
-	margin: 0 auto; /* 가운데 정렬 */
+	height: 55%; 이미지 너비를 요소의 2/3로 설정
+	display: block; 인라인 요소를 블록 요소로 변경하여 세로 정렬 문제 해결
+	margin: 0 auto; 가운데 정렬
 }
 
-.page-container {
-	padding: 0;
-}
+
 
 .cloud_main h3 {
-	height: 100%; /* 텍스트 너비를 요소의 1/3로 설정 */
-	margin-top: 10px; /* 위쪽 마진 설정 */
+	height: 100%; 텍스트 너비를 요소의 1/3로 설정
+	margin-top: 10px; 위쪽 마진 설정
 }
 
-.page-container h2 {
+.cloud_rank h2 {
 	margin: 30px;
 }
 
@@ -121,13 +87,18 @@
 }
 
 .adminMember-table tbody tr:nth-child(even) {
-	background-color: #f2f2f2; /* 짝수 줄 배경색 */
+	background-color: #f2f2f2; 짝수 줄 배경색
 }
 
 .adminMember-table tbody tr:nth-child(odd) {
-	background-color: #ffffff; /* 홀수 줄 배경색 */
+	background-color: #ffffff; 홀수 줄 배경색
 }
-/*회원관리*/
+
+
+
+
+
+회원관리
 .admin_member {
 	width: 100%;
 	padding: 20px;
@@ -161,7 +132,7 @@ input[type="search"] {
 	cursor: pointer;
 	background-size: contain;
 	background-repeat: no-repeat;
-	background-position: center; /* 배경 이미지를 중앙 정렬합니다 */
+	background-position: center; 배경 이미지를 중앙 정렬합니다
 }
 .body_table{
 	margin-left:30px;
@@ -220,15 +191,15 @@ input[type="search"] {
 }
 
 
-/*이벤트*/
+이벤트
 #sub_title2 {
 	font-size: 25pt;
 	font-weight: bold;
 	margin: 100px 0 30px 30px;
 }
 
-/*등록 폼*/
-/* 각 입력 요소 스타일 */
+등록 폼
+각 입력 요소 스타일
 #registerEvent_form{
 	margin-left:10%;
 }
@@ -236,23 +207,23 @@ input[type="search"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    box-sizing: border-box; /* 패딩과 경계선을 포함한 전체 너비를 조정 */
+    box-sizing: border-box; 패딩과 경계선을 포함한 전체 너비를 조정
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
 }
 
-/* 레이블 스타일 */
+레이블 스타일
 label {
     font-weight: bold;
 }
 
-/* 입력 요소 간 여백 */
+입력 요소 간 여백
 ul li {
     margin-bottom: 5px;
 }
 
-/* 버튼 스타일 */
+버튼 스타일
 #insert_button {
     background-color: #4381FD;
     color: white;
@@ -264,18 +235,19 @@ ul li {
 }
 
 #insert_button:hover {
-    background-color: #3c71d2; /* hover 시 배경색 변경 */
+    background-color: #3c71d2; hover 시 배경색 변경
 }
-/* 에러 메시지 스타일 */
+에러 메시지 스타일
 .form-error {
     color: red;
     font-size: 12px;
 }
 
-/* CKEditor의 스타일 */
+CKEditor의 스타일
 .ck-editor__editable_inline {
     min-height: 250px;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px;
 }
+ */

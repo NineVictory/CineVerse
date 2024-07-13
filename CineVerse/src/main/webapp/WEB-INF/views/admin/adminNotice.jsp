@@ -25,6 +25,7 @@
     }
 </script>
 
+<div class="page-container">
 <div class="admin_member">
 	<div class="firstTitle">
 		<p id="title">공지사항</p>
@@ -37,9 +38,10 @@
 			</li>
 		</ul>
 	</form>
-	<p id = "sub_title2">공지사항 관리</p>
-	<input type = "button" value = "공지사항 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminNoticeForm'"/>
-	<table class="adminMember-table">
+	<div class="insert_button_all">
+		<input type = "button" value = "공지사항 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminNoticeForm'"/>
+	</div>
+		<table class="adminMember-table">
 		<thead>
 			<tr>
 				<th>글 번호</th>
@@ -61,4 +63,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
+</div>
 </div>

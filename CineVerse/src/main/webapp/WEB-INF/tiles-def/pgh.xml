@@ -6,281 +6,143 @@
 
 <tiles-definitions>
 	<!-- 관리자 메인 -->
-	<definition name="adminMain"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminMain" template="/WEB-INF/views/template/layout_adminMain.jsp">
 		<put-attribute name="title" value="관리자" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminMain.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMainCSS.jsp" />
+		<put-attribute name="admin_header" value="/WEB-INF/views/template/header_admin.jsp" />
+		<put-attribute name="admin_nav" value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMain.jsp" />
 	</definition>
 
 	<!-- 회원관리 -->
-	<definition name="adminMember"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminMember" extends="adminMain">
 		<put-attribute name="title" value="회원권한수정" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminMember.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMemberCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMember.jsp" />
 	</definition>
 
 	<!-- 구독맴버십 -->
-	<definition name="adminMembership"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminMembership" extends="adminMain">
 		<put-attribute name="title" value="구독관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminMembership.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMembershipCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMembership.jsp" />
 	</definition>
 
 	<!-- 공지사항 -->
-	<definition name="adminNotice"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminNotice" extends="adminMain">
 		<put-attribute name="title" value="공지사항" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminNotice.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminNoticeCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminNotice.jsp" />
 	</definition>
-	
+
 	<!-- 공지사항 등록폼 -->
-	<definition name="adminNoticeForm"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminNoticeForm" extends="adminMain">
 		<put-attribute name="title" value="공지사항 등록폼" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminNoticeForm.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminNoticeFormCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminNoticeForm.jsp" />
 	</definition>
 
 	<!-- 이벤트 -->
-	<definition name="adminEvent"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminEvent" extends="adminMain">
 		<put-attribute name="title" value="이벤트 관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminEvent.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEvent.jsp" />
 	</definition>
-	
-	<!-- 이벤트 등록폼-->
-	<definition name="adminEventForm"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<!-- 이벤트 등록폼 -->
+	<definition name="adminEventForm" extends="adminMain">
 		<put-attribute name="title" value="이벤트 등록" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminEventForm.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEventForm.jsp" />
 	</definition>
-		<!-- 포인트-->
-	<definition name="adminPayment"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<!-- 포인트 -->
+	<definition name="adminPayment" extends="adminMain">
 		<put-attribute name="title" value="포인트 관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminPayment.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminPayment.jsp" />
 	</definition>
-	
+
 	<!-- 게시판 통합 관리 -->
-	<definition name="adminCommunity"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminCommunity" extends="adminMain">
 		<put-attribute name="title" value="게시판 통합 관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminCommunity.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCommunity.jsp" />
 	</definition>
-	
-		<!-- 댓글 통합 관리-->
-	<definition name="adminBoardReview"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<!-- 댓글 통합 관리 -->
+	<definition name="adminBoardReview" extends="adminMain">
 		<put-attribute name="title" value="게시판댓글 관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminBoardReview.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminBoardReview.jsp" />
 	</definition>
-	
+
 	<!-- 상품 관리 -->
-	<definition name="adminShop"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminShop" extends="adminMain">
 		<put-attribute name="title" value="상품관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminShop.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminShop.jsp" />
 	</definition>
-	
-		<!-- 배송 상태 관리 -->
-	<definition name="adminDelivery"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<!-- 배송 상태 관리 -->
+	<definition name="adminDelivery" extends="adminMain">
 		<put-attribute name="title" value="배송 상태 관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminDelivery.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminDelivery.jsp" />
 	</definition>
-	
-			<!-- 배송지 관리 -->
-	<definition name="adminAddress"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<!-- 배송지 관리 -->
+	<definition name="adminAddress" extends="adminMain">
 		<put-attribute name="title" value="배송지 관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminAddress.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminAddress.jsp" />
 	</definition>
-	
-			<!-- 상품문의 -->
-	<definition name="adminShopQna"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<!-- 상품문의 -->
+	<definition name="adminShopQna" extends="adminMain">
 		<put-attribute name="title" value="상품문의 관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminShopQna.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminShopQna.jsp" />
 	</definition>
-	
-			<!-- 상품후기 관리 -->
-	<definition name="adminShopReview"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<!-- 상품후기 관리 -->
+	<definition name="adminShopReview" extends="adminMain">
 		<put-attribute name="title" value="상품관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminShopReview.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminShopReview.jsp" />
 	</definition>
-	
+
 	<!-- 영화 관리 -->
-	<definition name="adminMovie"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminMovie" extends="adminMain">
 		<put-attribute name="title" value="영화관리" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminMovie.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMovie.jsp" />
 	</definition>
-	
-	<!-- 영화 등록  -->
-	<definition name="adminMovieForm"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<!-- 영화 등록 -->
+	<definition name="adminMovieForm" extends="adminMain">
 		<put-attribute name="title" value="영화등록" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminMovieForm.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMovieForm.jsp" />
 	</definition>
-	
+
 	<!-- 영화관 관리 -->
-	<definition name="adminCinema"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminCinema" extends="adminMain">
 		<put-attribute name="title" value="영화등록" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminCinema.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCinema.jsp" />
 	</definition>
-	
-	<!-- 영화관 등록  -->
-	<definition name="adminCinameForm"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<!-- 영화관 등록 -->
+	<definition name="adminCinameForm" extends="adminMain">
 		<put-attribute name="title" value="영화등록" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminCinemaForm.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCinemaForm.jsp" />
 	</definition>
-	
-	<definition name="adminMovieTime"
-		template="/WEB-INF/views/template/layout_adminMain.jsp">
+
+	<definition name="adminMovieTime" extends="adminMain">
 		<put-attribute name="title" value="영화등록" />
-		<put-attribute name="css"
-			value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header"
-			value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav"
-			value="/WEB-INF/views/template/adminNav.jsp" />
-		<put-attribute name="admin_body"
-			value="/WEB-INF/views/admin/adminMovieTime.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMovieTime.jsp" />
 	</definition>
 </tiles-definitions>
 

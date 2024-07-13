@@ -164,7 +164,7 @@ public class AdminController {
 
 	//공지사항 등록폼 호출
 	@GetMapping("/admin/adminNoticeForm")
-	public String AdminNoticeForm(){
+	public String AdminNoticeForm(NoticeVO noticeVO){
 		return "adminNoticeForm";
 	}
 	@PostMapping("admin/adminNoticeForm")
@@ -177,7 +177,7 @@ public class AdminController {
 		
 		//업로드된 파일이 없는 경우
 		if(noticeVO.getNb_upload()==null || noticeVO.getNb_upload().isEmpty()) {
-			result.rejectValue("notice_upload","fileNotFound");
+			result.rejectValue("nb_upload","fileNotFound");
 		}
 		 
 		// 폼 데이터 유효성 검사

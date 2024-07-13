@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+.admin_main {
+	margin-left: 100px;
+	display: flex;
+	flex-direction: column;
+}
+
+.page-member {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.page-member span {
+	font-weight: 700;
+	font-size: 28px;
+}
+
+.admin_info {
+	font-size: 14px;
+}
+
+.admin-infos {
+	padding: 20px;
+	border-radius: 15px;
+	margin-top: 20px;
+}
+
+.row1 {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin-bottom: 30px;
+}
+
+.row2 {
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.section {
+	box-shadow: 5px 5px 15px 2px var(--gray-3);
+	background-color: white;
+	text-align: center;
+	border-radius: 10px;
+	height: 210px;
+	width: 230px;
+	padding: 10px;
+	gap: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#sub_title {
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.cineverse_data_all {
+	margin-top: 30px;
+	padding: 20px;
+	border-radius: 20px;
+}
+
+.setting_name {
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+.result_data {
+	width: 75px;
+	padding: 8px;
+	background: var(--main-color-strong);
+	font-size: 14px;
+	color: #fff;
+	font-weight: 900;
+	border-radius: 6px;
+}
+
+.cloud_main {
+	box-shadow: 5px 5px 15px 2px var(--gray-3);
+	background-color: white;
+	padding: 15px;
+	gap: 5px;
+	display: flex;
+	flex-direction: column;
+}
+
+.cloud_rank {
+	margin-bottom: 100px;
+	margin-top: 30px;
+	border-radius: 20px;
+}
+
+.cloud_mranks {
+	font-size: 1.2em;
+	font-weight: 900;
+}
+
+.cloud_mtitle {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.cloud_rank_tit {
+	font-size: 1.3em;
+	font-weight: 800;
+	margin-left: 11%;
+	margin-top: 20px;
+}
