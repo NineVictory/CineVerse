@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <!-- 영화상세 시작 -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
@@ -9,7 +11,7 @@
 <div class="detail-main">
 	<div class="movie-container">
     <div class="movie-photo">
-        <img src="${pageContext.request.contextPath}/upload/${movie.m_filename}" alt="Movie Photo">
+        <img src="<c:url value='/upload/${movie.m_filename}' />" alt="Movie Photo">
     </div>
     <div class="movie-details">
      <div class="movie-title-screening">
@@ -19,7 +21,7 @@
     			<c:when test="${movie.m_status == 1}">
        			 현재 미상영
     			</c:when>
-    	<c:when test="${movie.m_status == 2}">
+    			<c:when test="${movie.m_status == 2}">
         		현재 상영
     			</c:when>
 		</c:choose>
@@ -69,17 +71,17 @@
 <div class="grade-review">
     
     <div class="star-rating">
-        <span class="star" data-value="1"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-        <span class="star" data-value="2"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-        <span class="star" data-value="3"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-        <span class="star" data-value="4"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-        <span class="star" data-value="5"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+        <span class="star" data-value="1"><img src="<c:url value='/images/ksh/star.png' />"></span>
+        <span class="star" data-value="2"><img src="<c:url value='/images/ksh/star.png' />"></span>
+        <span class="star" data-value="3"><img src="<c:url value='/images/ksh/star.png' />"></span>
+        <span class="star" data-value="4"><img src="<c:url value='/images/ksh/star.png' />"></span>
+        <span class="star" data-value="5"><img src="<c:url value='/images/ksh/star.png' />"></span>
     </div>
     <div class="review-choice">별점을 선택해주세요</div>
     <div id="review_div">
 		<form id="mr_form">
 		<input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
-			<textarea rows="3" cols="50" name="mr_content" name="mr_content" class="review-content" placeholder="*작성 글이 다른 고객에게 일정 기준 이상 신고 될 경우 자동 숨김 처리되며 고객센터로 이의 제기 가능합니다.*"
+			<textarea rows="3" cols="50" name="mr_content" class="review-content" placeholder="*작성 글이 다른 고객에게 일정 기준 이상 신고 될 경우 자동 숨김 처리되며 고객센터로 이의 제기 가능합니다.*"
 			><c:if test="${empty user}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user}">
 			<div id="review_first">
@@ -102,7 +104,7 @@
 <!-- 댓글 목록 출력 -->
 	<div id="output"></div>
 	<div id="loading" style="display:none;">
-		<img src="${pageContext.request.contextPath}/images/loading.gif" width="30" height="30">
+		<img src="<c:url value='/images/loading.gif' />" width="30" height="30">
 	</div>
 	<div class="paging-button" style="display:none;">
 		<input type="button" value="더보기">

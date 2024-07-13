@@ -35,7 +35,10 @@ public interface MovieMapper {
 	public void updateMovie(MovieVO movie);
 	public void deleteMovie(long m_code);
 	/* public void deleteMovieFile(Long m_code); */ //영화 사진을 굳이 삭제 안할듯
-	
+	/*
+	 * @Select("SELECT * FROM movie WHERE m_code LIKE '%' || #{query} || '%' OR m_name LIKE '%' || #{query} || '%'"
+	 * ) public List<MovieVO> searchMovies(String query);
+	 */
 	//영화 북마크
 	public MovieBookMarkVO selectBookMark(MovieBookMarkVO bookMark);
 	public Integer selectBookMarkCount(Long m_code);
@@ -48,10 +51,11 @@ public interface MovieMapper {
 	public Long selectC_num();
 	public List<MovieVO> selectMovieTimeList(Map<String,Object>map);
 	public void insertMovieTime(MovieTimeVO movietime);
+	
+	public MovieTimeVO selectMovieTime(Long mt_num);
 	//영화 리뷰
 	public List<MovieReviewVO> selectMovieListReview(Map<String,Object> map);
 	public Integer selectMovieRowCountReview(Map<String,Object>map); //mybatis는 객체형태로 처리하기 때문에 int보다 Integer로 명시한다. int를 써도 자동으로 바뀌긴함. 그냥 명시를 맞게 해주는게 좋아서 
-	public MovieReviewVO selectReview(Long mr_num);
 	public void insertReview(MovieReviewVO movieReview);
 	public void updateReview(MovieReviewVO movieReview);
 	public void deleteReview(Long mr_num);

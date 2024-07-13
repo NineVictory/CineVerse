@@ -86,40 +86,22 @@ public class AdminMovieController {
 		//등록 폼에서 전송된 데이터 처리
 			@PostMapping("/admin/insertMovieTime")
 			public String insertMovieTime(@Valid MovieTimeVO movietimeVO, 
-					/*
-					 * Long m_code, Long c_num,
-					 */
-									BindingResult result, 
-									HttpSession session,
-									HttpServletRequest request,
-									Model model) throws IllegalStateException,IOException {
+													BindingResult result, 
+													HttpSession session,
+													HttpServletRequest request,
+													Model model) throws IllegalStateException,IOException {
 				log.debug("<<영화 시간표 저장>> : "+movietimeVO);
 					
 				
 				//영화 시간표 등록
 				
 				 movieService.insertMovieTime(movietimeVO);
-				  // 영화와 극장 정보 조회
-					/*
-					 * MovieVO movie = movieService.selectMovie(m_code); CinemaVO cinema =
-					 * cinemaService.selectCinema(c_num);
-					 */
-				
-				//View 메시지 처리
-				/*
-				 * model.addAttribute("movie", movie); // 영화 정보 model.addAttribute("cinema",
-				 * cinema); // 극장 정보
-				 */		
+
+	
 				model.addAttribute("message","성공적으로 글이 등록되었습니다.");
 				model.addAttribute("url",request.getContextPath()+"/admin/adminMovieTime");
 				
-				// 영화 목록과 극장 목록 조회
-				/*
-				 * List<MovieVO> movieList = movieService.selectMovieList(new HashMap<>());
-				 * List<CinemaVO> cineList = cinemaService.selectCinemaList(new HashMap<>());
-				 * model.addAttribute("movieList", movieList); model.addAttribute("cineList",
-				 * cineList);
-				 */
+
 				
 				return "common/resultAlert";
 			}

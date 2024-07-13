@@ -143,7 +143,7 @@
 			m_code,
 			mem_num)
 		VALUES(
-			movie_review.nextval,
+			movie_review_seq.nextval,
 			#{mr_content},
 			#{mr_spoiler},
 			#{mr_grade},
@@ -162,7 +162,7 @@
             m_code,
             c_num) 
             VALUES (
-        	movie_time.nextval,
+        	movie_time_seq.nextval,
             #{mt_date},
             #{mt_start},
             #{mt_end},

@@ -148,13 +148,19 @@ public class MovieServiceImpl implements MovieService {
 		return null;
 	}
 
-	@Override
-	public void insertMovieTime(MovieTimeVO movietime) {
-		movietime.setM_code(movieMapper.selectM_code());
-		movietime.setC_num(movieMapper.selectC_num());
-		movieMapper.insertMovieTime(movietime);
-		
-	}
+	
+	 @Override public void insertMovieTime(MovieTimeVO movietime) {
+	  movietime.setM_code(movieMapper.selectM_code());
+	  movietime.setC_num(movieMapper.selectC_num());
+	 movieMapper.insertMovieTime(movietime);
+	 
+	 }
+	 
+
+
+
+
+
 
 	
 
