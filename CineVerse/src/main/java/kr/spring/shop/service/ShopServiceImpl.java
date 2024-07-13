@@ -125,8 +125,10 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public void directOrder(OrdersVO orders) {
-		long order_num = shopMapper.getNextOrderNum();
-		orders.setOrder_num(order_num);
+		/*
+		 * long order_num = shopMapper.getNextOrderNum();
+		 * orders.setOrder_num(order_num);
+		 */
 		shopMapper.directOrder(orders);
 		shopMapper.directOrderDetail(orders);
 		
@@ -167,6 +169,16 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public CouponVO couponInfo(long mc_num) {
 		return shopMapper.couponInfo(mc_num);
+	}
+
+	@Override
+	public void basketDelete(long pb_num) {
+		shopMapper.basketDelete(pb_num);
+	}
+
+	@Override
+	public long getNextOrderNum() {
+		return shopMapper.getNextOrderNum();
 	}
 	
 	

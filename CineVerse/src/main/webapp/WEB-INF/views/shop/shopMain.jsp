@@ -20,9 +20,10 @@
 			<select name="shopOrder" id="shopOrder">
 				<option value="1" <c:if test="${param.shopOrder == 1 }">selected</c:if>>최신순</option>
 				<option value="2" <c:if test="${param.shopOrder == 2 }">selected</c:if>>구매순</option>
-				<option value="3" <c:if test="${param.shopOrder == 3 }">selected</c:if>>후기순</option>
-				<option value="4" <c:if test="${param.shopOrder == 4 }">selected</c:if>>평점순</option>
-				<option value="5" <c:if test="${param.shopOrder == 5 }">selected</c:if>>관심상품순</option>
+				<option value="3" <c:if test="${param.shopOrder == 3 }">selected</c:if>>평점순</option>
+				<option value="4" <c:if test="${param.shopOrder == 4 }">selected</c:if>>관심상품순</option>
+				<option value="5" <c:if test="${param.shopOrder == 5 }">selected</c:if>>가격낮은순</option>
+				<option value="6" <c:if test="${param.shopOrder == 6 }">selected</c:if>>가격높은순</option>
 			</select>	
 			</div>
 			<script type="text/javascript">

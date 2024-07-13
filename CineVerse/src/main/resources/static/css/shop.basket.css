@@ -35,9 +35,26 @@ body {
 
 .buy-main span{
 	margin-right: 680px;
-	margin-top: 50px;
 	font-weight: 500;
 	white-space:nowrap;
+}
+
+.button-div {
+	margin-left: 320px;
+	display: flex;
+	font-size: 9pt;
+	color: white;
+	margin-bottom: 20px;
+}
+
+.delete-btn, .update-btn{
+	background-color: #B8C8FF;
+	padding: 5px 15px;
+	border-radius: 10px;
+}
+
+.delete-btn{
+	margin-left: 20px;
 }
 
 #shop_pay{
@@ -211,7 +228,7 @@ body {
 
 .basket-result{
 	margin-top:10px;
-	margin-bottom : 30px;
+	margin-bottom : 10px;
 	background: #EEEEEE;
 	width: 566px;
 	white-space:nowrap;
@@ -240,3 +257,7 @@ body {
 	margin-right: 30px;
 }
 
+.noquantity{
+	margin-left:300px;
+		width:1100px;
+}

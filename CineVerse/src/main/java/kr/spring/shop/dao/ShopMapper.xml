@@ -43,17 +43,19 @@
 		<if test="shopOrder==2">
 			ORDER BY o_cnt DESC
 		</if>
-		<!--후기-->
-		<if test="shopOrder==3">
-			ORDER BY pr_cnt DESC
-		</if>
 		<!--평점-->
-		<if test="shopOrder==4">
+		<if test="shopOrder==3">
 			ORDER BY pr_grade DESC
 		</if>
 		<!--관심상품-->
-		<if test="shopOrder==5">
+		<if test="shopOrder==4">
 			ORDER BY pf_cnt DESC NULLS LAST
+		</if>
+		<if test="shopOrder==5">
+			ORDER BY p_price 
+		</if>
+		<if test="shopOrder==6">
+			ORDER BY p_price DESC
 		</if>
 		<if test="shopOrder==null">
 		

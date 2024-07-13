@@ -19,6 +19,7 @@ public class OrdersVO {
 	private Date order_date;
 	private int order_status;
 	private long a_num;
+	private String od_number;
 	
 	// order_detail (order_num 알아서 쓰기)
 	private long od_num;

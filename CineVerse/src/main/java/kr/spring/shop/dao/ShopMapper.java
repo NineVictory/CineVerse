@@ -83,12 +83,17 @@ public interface ShopMapper {
 	@Select("SELECT pb_quantity FROM p_basket WHERE mem_num = #{mem_num} AND p_num=#{p_num}")
 	public Integer basketCount(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
 	
+	// 장바구니 삭제 
+	@Delete("DELETE p_basket WHERE pb_num=#{pb_num}")
+	public void basketDelete(long pb_num);
+	
+	
 	// 주문
 	public void productOrders(OrdersVO orders);
 	
 	
 	// 상품 결제
-	@Insert("INSERT INTO ORDERS (order_num, mem_num, a_num) VALUES (#{order_num}, #{mem_num}, #{a_num})")
+	@Insert("INSERT INTO ORDERS (order_num, mem_num, a_num, od_number) VALUES (#{order_num}, #{mem_num}, #{a_num}, #{od_number})")
     void directOrder(OrdersVO orders);
 	// 상품 결제 내역
     @Insert("INSERT INTO ORDER_DETAIL (od_num, order_quantity, order_num, p_num) VALUES (order_detail_seq.nextval, #{order_quantity}, #{order_num}, #{p_num})")

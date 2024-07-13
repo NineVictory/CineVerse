@@ -37,6 +37,7 @@ public interface ShopService {
 	/* public List<Integer> basketPrice(Long mem_num); */
 	public Integer basketTotalPrice(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
 	public Integer basketCount(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
+	public void basketDelete(long pb_num);
 	
 	// 바로 구매
 	public void directOrder(OrdersVO orders);
@@ -46,6 +47,7 @@ public interface ShopService {
 	public void sellProduct(@Param(value="p_quantity") Long p_quantity, @Param(value="p_num") Long p_num);
 	/* public void directOrderDetail(OrdersVO orders); */
 	public Integer getPoint(long mem_num);
+	long getNextOrderNum();
 	
 	// 쿠폰 조건
 	public CouponVO couponInfo(long mc_num);
