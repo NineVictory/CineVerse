@@ -4,8 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="myPage_main">
 	<div class="myPage_title">개인정보 변경</div>
-	<form:form action="modifyUser" id="member_modify"
-		modelAttribute="myPageVO">
+	<form:form action="modifyUser" id="member_modify" modelAttribute="myPageVO">
 		<div class="login_form_inputs">
 			<div class="login_form_all">
 				<div class="login_form_inputs_id_passwd">

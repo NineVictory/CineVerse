@@ -213,7 +213,7 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		model.addAttribute("member", member);
-		
+
 		return "passwdChange";
 	}
 
@@ -225,10 +225,90 @@ public class MyPageController {
 		if(result.hasFieldErrors("now_passwd") || result.hasFieldErrors("mem_passwd") || result.hasFieldErrors("captcha_chars")) {
 			return "passwdChange";
 		}
-		
-		
+
+		// ------- 캡챠 문자 체크 시작 --------- //
+		String code = "1"; // 키 발급 0, 캡챠 이미지 비교시 1로 세팅
+
+		// 캡챠 키 발급시 받아서 세션에 저장해둔 키값
+		String key = (String)session.getAttribute("captcha_key");
+		// 사용자가 입력한 캡챠 이미지 글자값
+		String value = myPageVO.getCaptcha_chars();
+		String key_apiURL = "https://openapi.naver.com/v1/captcha/nkey?code=" + code + "&key=" + key + "&value=" + value; 
+
+		Map<String,String> requestHeaders = new HashMap<String,String>();
+		requestHeaders.put("X-Naver-Client-Id",  "pjCvRXCBMUnA7oYsWNKj");
+		requestHeaders.put("X-Naver-Client-Secret", "DYu3HKzI4x");
+		String responseBody = CaptchaUtil.get(key_apiURL, requestHeaders);
+
+		log.debug("<<캡챠 결과>> : " + responseBody);
+		JSONObject jObject = new JSONObject(responseBody);
+
+		boolean captcha_result = jObject.getBoolean("result");
+		if(!captcha_result) {
+			result.rejectValue("captcha_chars", "invalidCaptcha");
+			return "passwdChange";
+		}
+		// ------- 캡챠 문자 체크 끝 --------- //
+
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		myPageVO.setMem_num(user.getMem_num());
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+
+		model.addAttribute("member", member);
+
+		if(!member.getMem_passwd().equals(myPageVO.getNow_passwd())) {
+			result.rejectValue("now_passwd", "invalidPassword");
+			return "passwdChange";
+		}
+
+		mypageService.updatePassword(myPageVO);
+
+		model.addAttribute("message", "비밀번호 변경 완료");
+		model.addAttribute("url",  request.getContextPath() + "/myPage/myPageMain");
+
 		return "common/resultAlert";
 	}
+	/*====================
+	 * 	네이버 캡챠 API 사용\
+	 =====================*/
+
+	//캡챠 이미지 호출
+
+	@GetMapping("/myPage/getCaptcha")
+	public String getCaptcha(Model model, HttpSession session) {
+
+		String code = "0";//키 발급시 0, 캡챠 이미지 비교시 1로 세팅
+		String key_apiURL = "https://openapi.naver.com/v1/captcha/nkey?code=" + code;
+
+		Map<String,String> requestHeaders = new HashMap<String,String>();
+		requestHeaders.put("X-Naver-Client-Id",  "pjCvRXCBMUnA7oYsWNKj");
+		requestHeaders.put("X-Naver-Client-Secret", "DYu3HKzI4x");
+
+		String responseBody = CaptchaUtil.get(key_apiURL, requestHeaders);
+
+		log.debug("<<responseBody>> : " + responseBody);
+
+		JSONObject jObject = new JSONObject(responseBody);
+
+		try {
+			//https://openapi.naver.com/v1/captcha/nkey 호출로 받은 키값(을 "key"가 읽어옴
+			String key = jObject.getString("key");
+			session.setAttribute("captcha_key", key);
+
+			String apiURL = "https://openapi.naver.com/v1/captcha/ncaptcha.bin?key=" + key;
+
+			byte[] response_byte = CaptchaUtil.getCaptchaImage(apiURL, requestHeaders);
+
+			model.addAttribute("imageFile", response_byte);
+			model.addAttribute("filename", "captcha.jpg");
+
+		}catch(Exception e) {
+			log.error(e.toString());
+		}
+		return "imageView";
+	}
+
+
 
 
 
