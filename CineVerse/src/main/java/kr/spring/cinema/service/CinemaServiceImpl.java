@@ -16,21 +16,20 @@ public class CinemaServiceImpl implements CinemaService{
 
 	@Autowired
 	CinemaMapper cinemaMapper;
-	
-	
+
 	@Override
-	public List<CinemaVO> selectCinemaList(Integer c_location) {
-		return cinemaMapper.selectCinemaList(c_location);
+	public List<CinemaVO> selectCinemaList(Map<String, Object> map) {
+		return cinemaMapper.selectCinemaList(map);
 	}
- 
+
 	@Override
-	public Integer selectCinemaRowCount(Map<String, Object> map) {
-		return cinemaMapper.selectCinemaRowCount(map);
+	public Integer selectCinemaCount(Map<String, Object> map) {
+		return cinemaMapper.selectCinemaCount(map);
 	}
 
 	@Override
 	public void insertCinema(CinemaVO cinema) {
-		cinemaMapper.insertCinema(cinema);
+		cinemaMapper.insertCinema(cinema); 
 	}
 
 	@Override
@@ -47,6 +46,30 @@ public class CinemaServiceImpl implements CinemaService{
 	@Override
 	public void deleteCinema(Long c_num) {
 		cinemaMapper.deleteCinema(c_num); 
-	}
+	}	
+	
+	
+	
+	/*
+	 * @Override public List<CinemaVO> selectCinemaList(Integer c_location) { return
+	 * cinemaMapper.selectCinemaList(c_location); }
+	 * 
+	 * @Override public Integer selectCinemaRowCount(Map<String, Object> map) {
+	 * return cinemaMapper.selectCinemaRowCount(map); }
+	 * 
+	 * @Override public void insertCinema(CinemaVO cinema) {
+	 * cinemaMapper.insertCinema(cinema); }
+	 * 
+	 * @Override public CinemaVO selectCinema(Long c_num) { return
+	 * cinemaMapper.selectCinema(c_num); }
+	 * 
+	 * @Override public void updateCinema(CinemaVO cinema) { // TODO Auto-generated
+	 * method stub
+	 * 
+	 * }
+	 * 
+	 * @Override public void deleteCinema(Long c_num) {
+	 * cinemaMapper.deleteCinema(c_num); }
+	 */
 
 }

@@ -5,13 +5,41 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	 <!-- 영화관 등록 -->
+	 <!-- 영화관 목록 -->
+	 <definition name="cinemaList2" template="/WEB-INF/views/template/layout_cinema.jsp">
+        <put-attribute name="title" value="자체영화관"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/cinema/cinemaList2CSS.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaList2.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>
+	 
+	  <!-- 영화관 등록 -->
+    <definition name="cinemaWrite" extends="cinemaList2">
+        <put-attribute name="title" value="영화관등록"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/movie/movieReserveCSS.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaWrite.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>
+	 
+	  <!-- 영화관 상세 정보 -->
+	 <definition name="cinemaDetail2" extends="cinemaList2">
+        <put-attribute name="title" value="영화관 상세 정보"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/cinema/cinemaDetail2CSS.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaDetail2.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>
+	 
+	 
+	<!--  잠시 보류
     <definition name="cinemaWrite" extends="movieList">
         <put-attribute name="title" value="영화관등록"/>
         <put-attribute name="css" value="/WEB-INF/views/movie/movieReserveCSS.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaWrite.jsp"/>
     </definition>
-    <!-- 자체 영화관 정보 -->
+    자체 영화관 정보
     <definition name="cinemaDetail" template="/WEB-INF/views/template/layout_cinema.jsp">
         <put-attribute name="title" value="자체영화관"/>
         <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
@@ -19,7 +47,7 @@
         <put-attribute name="body_1" value="/WEB-INF/views/cinema/cinemaList.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaDetail.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
-    </definition>
+    </definition> -->
 </tiles-definitions>
 
 

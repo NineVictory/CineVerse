@@ -49,7 +49,7 @@
 		</ul> 
 		<div class="align-center">
 			<form:button class="default-btn">전송</form:button>
-			<input type="button" value="목록" class="default-btn" onclick="location.href='list'">
+			<input type="button" value="목록" class="default-btn" onclick="location.href='cinemaList2'">
 		</div>                           
 	</form:form>
 </div>

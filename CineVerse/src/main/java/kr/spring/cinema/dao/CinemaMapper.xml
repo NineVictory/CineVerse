@@ -24,21 +24,75 @@
 			#{c_seat},
 			#{c_parkable})
 	</insert>
+
+	<!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->
+	 <sql id="cinemaSearch">
+	 	<where>
+	 		<if test="c_location !=null and c_location != ''">
+	 			AND c_location = #{c_location}
+	 		</if>	 		
+	 	</where>
+	 </sql>
 	
-	
-	<!-- 영화관 총 수 -->
-	<select id="selectCinemaRowCount" parameterType="map" resultType="integer">
-		SELECT
+	<!-- 영화관 총레코드수/검색 레코드수 -->
+	 <select id="selectCinemaCount" parameterType="map"  resultType="integer">
+	 	SELECT
 			COUNT(*)
 		FROM cinema
-	</select>
+	 	<include refid="cinemaSearch"></include>
+	 </select>
 	
-	<!-- 영화관 목록 -->
+	
+	<!-- 영화관 전체/검색 목록 -->
+	 <select id="selectCinemaList" parameterType="map" resultType="cinemaVO">
+	 	SELECT
+	 	   *
+	    FROM (SELECT
+	            a.*,
+	            rownum rnum
+	          FROM (SELECT
+	                  c_num,
+	                  c_branch,
+	                  c_address,
+	                  c_phone,
+	                  c_theater,
+	                  c_seat,
+	                  c_parkable
+	                FROM cinema               
+	                <include refid="cinemaSearch"></include>
+	                )a)
+	 	<![CDATA[
+	 	WHERE rnum >= #{start} AND rnum <= #{end}
+	 	]]>	
+ 	</select>  
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 영화관 목록(잠시 보류)
 	<select id="selectCinemaList" parameterType="integer" resultType="cinemaVO">
 		SELECT
 			*
 		FROM cinema WHERE c_location=#{c_location} 
 	</select>
+	-->
 </mapper>							
 
 
