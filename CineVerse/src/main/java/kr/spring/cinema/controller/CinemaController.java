@@ -17,15 +17,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
-import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
-import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -79,7 +75,7 @@ public class CinemaController {
 	public String getList(
 			 @RequestParam(defaultValue="1") int pageNum,
 			 @RequestParam(defaultValue="1") int order,
-			 @RequestParam(defaultValue="") String c_location,
+			 @RequestParam(defaultValue="1") String c_location,
 			 String keyfield,String keyword,Model model) {
 		
 		log.debug("<<영화관 목록 - c_location>> : " + c_location);

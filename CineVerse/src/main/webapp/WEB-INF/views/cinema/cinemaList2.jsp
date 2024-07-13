@@ -4,8 +4,8 @@
 <!-- 영화관 목록 시작 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <div class="page-main">
-	<h2>전체 극장</h2>			
-	<input type="button" value="영화관 등록" onclick="location.href='cinemaWrite'">
+	<h2 class="all-theater">전체 극장</h2>			
+	<input type="button"  value="영화관 등록" onclick="location.href='cinemaWrite'">
 	<div class="theater-box">
 		<div class="theater-location">
 			<ul>
@@ -20,6 +20,7 @@
 				</li>	
 			</ul>
 			</div>
+			<hr size="2" width="100%">
 			<div class="theater-place">
 				<c:if test="${count == 0}">
 					<div class="result-display">표시할 영화관이 없습니다.</div>
@@ -34,9 +35,13 @@
 			</div>	
 	</div>
 <div>
-	<h2>극장 이벤트</h2>
+	<h2 class="theater-event">극장 이벤트</h2>
 </div>
-		
+	
+
+<div>
+	<h2 class="theater-pay">요금 안내</h2>
+</div>	
 </div>
 <!-- 영화관 목록 끝 -->
 

@@ -26,7 +26,7 @@
 				}
 			};
 		</script>   
-		<input type="button" value="목록"  onclick="location.href='list'">
+		<input type="button" value="목록"  onclick="location.href='cinemaList2'">
 	</div>
 	<hr size="1" width="100%">
 </div>
