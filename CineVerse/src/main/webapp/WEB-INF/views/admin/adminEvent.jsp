@@ -24,7 +24,7 @@
         });
     }
 </script>
-
+<div class="page-container">
 <div class = "admin_member">
 	<div class = "firstTitle">
 		<p id ="title">이벤트</p>
@@ -37,9 +37,10 @@
 				</li>
 			</ul>
 		</form>
-		<p id = "sub_title2">이벤트 관리</p>
+		<div class="insert_button_all">
+			<input type = "button" value = "이벤트 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminEventForm'"/>
+		</div>
 		<div class = "body_table">
-		<input type = "button" value = "이벤트 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminEventForm'"/>
 		<table class="adminMember-table">
         <thead>
             <tr>
@@ -66,4 +67,5 @@
     </table>
     </div>
 
+</div>
 </div>

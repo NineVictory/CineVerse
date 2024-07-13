@@ -32,9 +32,9 @@
 		<form:form action="adminNoticeForm" enctype="multipart/form-data"
 			id="insert_form" modelAttribute="noticeVO">
 			<ul>
-				<li><label for="nb_title">제목</label> <form:input
-						path="nb_title" class="input-check" /> <form:errors
-						path="nb_title" element="div" cssClass="error-message"></form:errors>
+				<li><label for="nb_title">제목</label> 
+				<form:input path="nb_title" class="input-check" /> 
+				<form:errors path="nb_title" element="div" cssClass="error-message"></form:errors>
 				</li>
 				<li><label for="nb_upload">사진</label> <input type="file"
 					name="nb_upload" id="nb_upload" class="input-check"

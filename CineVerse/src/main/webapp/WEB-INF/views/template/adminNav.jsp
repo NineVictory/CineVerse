@@ -51,7 +51,7 @@
 				href="${pageContext.request.contextPath}/admin/adminCommunity"
 				class="menu-link">통합게시판 관리</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}/admin/adminBoardReview"
+				href="${pageContext.request.contextPath}/admin/adminReply"
 				class="menu-link">게시판 댓글 관리</a></li>
 		</ul>
 		<a class="menu-item">벌스샵</a>

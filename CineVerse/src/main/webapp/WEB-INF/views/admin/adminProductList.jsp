@@ -11,11 +11,12 @@ ul .pcg li {
 }
 
 </style>
-<div class="admin_member">
+<div class="page-container">
+	<div class="admin_member">
     <div class="firstTitle">
         <p id="title">상품관리</p>
     </div>
-    <form action="adminProductList" id="admin_productList" method="get">
+    	<form action="adminProductList" id="admin_productList" method="get">
         <ul>
             <li>
                 <ul class="pcg">
@@ -48,13 +49,14 @@ ul .pcg li {
                 	</li>
                 </ul>
             </li>
-            <li>
-            	<input type="hidden" name="p_category" value="${param.p_category}">
-                <input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="상품명을 입력하세요">
-                <input type="submit" value="" class="search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
-            </li>
-        </ul>
-    </form>
+     	</ul>
+     	<div class="search_box_all">
+     		<input type="hidden" name="p_category" value="${param.p_category}">
+			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="상품명을 입력하세요">
+        	<input type="submit" value="" class="search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
+     	</div>
+     </form>
+    
     <table class="adminMember-table">
         <thead>
             <tr>
@@ -100,7 +102,7 @@ ul .pcg li {
                                 표시
                             </c:if>
                         </td>
-                        <td class="button1"><input type="button" value="수정" /></td>
+                        <td class="button2"><input type="button" value="수정" /></td>
                     </tr>
                 </c:forEach>
 				
@@ -108,4 +110,6 @@ ul .pcg li {
         </tbody>
     </table>
 	<div class="page-div">${page}</div>
+</div>
+	
 </div>

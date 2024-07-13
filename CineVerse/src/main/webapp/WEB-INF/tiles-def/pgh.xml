@@ -45,69 +45,69 @@
 	<!-- 이벤트 -->
 	<definition name="adminEvent" extends="adminMain">
 		<put-attribute name="title" value="이벤트 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEvent.jsp" />
 	</definition>
 
 	<!-- 이벤트 등록폼 -->
 	<definition name="adminEventForm" extends="adminMain">
 		<put-attribute name="title" value="이벤트 등록" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventFormCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEventForm.jsp" />
 	</definition>
 	<!-- 포인트 -->
 	<definition name="adminPayment" extends="adminMain">
 		<put-attribute name="title" value="포인트 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminPaymentCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminPayment.jsp" />
 	</definition>
 
 	<!-- 게시판 통합 관리 -->
 	<definition name="adminCommunity" extends="adminMain">
 		<put-attribute name="title" value="게시판 통합 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCommunityCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCommunity.jsp" />
 	</definition>
 
 	<!-- 댓글 통합 관리 -->
-	<definition name="adminBoardReview" extends="adminMain">
+	<definition name="adminReply" extends="adminMain">
 		<put-attribute name="title" value="게시판댓글 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminBoardReview.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminReplyCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminReply.jsp" />
 	</definition>
 
 	<!-- 상품 관리 -->
 	<definition name="adminShop" extends="adminMain">
 		<put-attribute name="title" value="상품관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminShopCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminShop.jsp" />
 	</definition>
 
 	<!-- 배송 상태 관리 -->
 	<definition name="adminDelivery" extends="adminMain">
 		<put-attribute name="title" value="배송 상태 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminDeliverCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminDelivery.jsp" />
 	</definition>
 
 	<!-- 배송지 관리 -->
 	<definition name="adminAddress" extends="adminMain">
 		<put-attribute name="title" value="배송지 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminDeliverCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminAddress.jsp" />
 	</definition>
 
 	<!-- 상품문의 -->
 	<definition name="adminShopQna" extends="adminMain">
 		<put-attribute name="title" value="상품문의 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminPQnaCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminShopQna.jsp" />
 	</definition>
 
 	<!-- 상품후기 관리 -->
 	<definition name="adminShopReview" extends="adminMain">
-		<put-attribute name="title" value="상품관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
+		<put-attribute name="title" value="상품후기관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminShopReviewCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminShopReview.jsp" />
 	</definition>
 

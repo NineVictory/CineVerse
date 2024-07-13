@@ -315,9 +315,9 @@ public class AdminController {
 	}
 	
 	// 게시판 댓글 관리
-	@GetMapping("/admin/adminBoardReview")
+	@GetMapping("/admin/adminReply")
 	public String adminAssignment(){
-		return "adminBoardReview";
+		return "adminReply";
 	}
 	
 	// 영화

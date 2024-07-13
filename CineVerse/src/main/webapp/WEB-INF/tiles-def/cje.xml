@@ -67,11 +67,9 @@
 	
 	<!--관리자-->
 	<!-- 회원관리 -->
-	<definition name="adminProductList" template="/WEB-INF/views/template/layout_adminMain.jsp">
+	<definition name="adminProductList"  extends="adminMain">
 		<put-attribute name="title" value="상품 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminCSS.jsp" />
-		<put-attribute name="admin_header" value="/WEB-INF/views/template/header_admin.jsp" />
-		<put-attribute name="admin_nav" value="/WEB-INF/views/template/adminNav.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminProductCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminProductList.jsp" />
 	</definition>
 </tiles-definitions>
