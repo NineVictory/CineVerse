@@ -3,6 +3,7 @@ package kr.spring.myPage.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.myPage.vo.MyPageVO;
 
@@ -12,10 +13,9 @@ public interface MyPageService {
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map); //회원 쿠폰 목록 불러오기
 	public List<BoardVO> selectMemcBoardWriteList(Map<String, Object> map);//내가 쓴 게시글 목록
 	public Integer cBoardWriteListcnt(Map<String, Object> map);
-	
+	public List<BoardCommentVO> cBoardReplyList(Map<String, Object> map);//내가 쓴 댓글 목록
+	public Integer cBoardReplyListcnt(Map<String, Object> map);
 	public void updatePassword(MyPageVO mypage);//비밀번호 수정
-	
-	//포인트
-	public Integer pointHistoryCnt(long mem_num);
+	public Integer pointHistoryCnt(long mem_num);//포인트
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map);
 }

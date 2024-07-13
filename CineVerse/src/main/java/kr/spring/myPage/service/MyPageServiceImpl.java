@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.myPage.vo.MyPageVO;
@@ -55,6 +56,16 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public void updatePassword(MyPageVO mypage) {
 		myPageMapper.updatePassword(mypage);
+	}
+
+	@Override
+	public List<BoardCommentVO> cBoardReplyList(Map<String, Object> map) {
+		return myPageMapper.cBoardReplyList(map);
+	}
+
+	@Override
+	public Integer cBoardReplyListcnt(Map<String, Object> map) {
+		return myPageMapper.cBoardReplyListcnt(map);
 	}
 
 	

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
@@ -144,7 +145,7 @@ public class MyPageController {
 		if (count > 0) {
 			list = mypageService.selectMemcBoardWriteList(map);
 
-			log.debug("<<  글 목록 >> : " + list);
+			log.debug("<< 글 목록 >> : " + list);
 		}
 
 		model.addAttribute("member", member);
@@ -155,10 +156,28 @@ public class MyPageController {
 
 	// 게시판 - 내가 쓴 댓글
 	@GetMapping("/myPage/boardReply")
-	public String myPageBoardReply(HttpSession session, Model model) {
+	public String myPageBoardReply(@RequestParam(defaultValue = "") String cb_type,HttpSession session, Model model) {
+		
+		log.debug("<<카테고리 타입 >> : " + cb_type);
+		
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(cb_type, cb_type);
+		map.put("mem_num", user.getMem_num());
+		
+		List<BoardCommentVO> list = null;
+		int count = mypageService.cBoardReplyListcnt(map);
+		if(count > 0) {
+			list = mypageService.cBoardReplyList(map);
+			
+			log.debug("<< 댓글 목록 >> : " + list);
+		}
+		
 		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
 		return "myBoardReply";
 	}
 

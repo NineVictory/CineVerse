@@ -8,7 +8,6 @@
         <select class="myCoupon_option">
             <option>영화톡톡</option>
             <option>일상톡톡</option>
-            <option>양도/교환</option>
         </select>
     </div>
     <c:if test="${count == 0}">작성한 게시글이 없습니다.</c:if>

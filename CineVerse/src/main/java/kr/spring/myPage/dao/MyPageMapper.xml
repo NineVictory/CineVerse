@@ -1,34 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper   
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.spring.myPage.dao.MyPageMapper">
 	<!-- 쿠폰 목록 -->
 	<select id="selectMemCouponList" parameterType="long">
-		SELECT mc.*, c.*, ADD_MONTHS(mc.coupon_regdate, 1) coupon_enddate FROM member_coupon mc JOIN coupon_db c ON mc.coupon_num = c.coupon_num
-		WHERE mc.mem_num = #{mem_num}
+		SELECT mc.*, c.*,
+		ADD_MONTHS(mc.coupon_regdate, 1) coupon_enddate FROM member_coupon mc
+		JOIN coupon_db c ON mc.coupon_num = c.coupon_num
+		WHERE mc.mem_num =
+		#{mem_num}
 	</select>
 
 	<sql id="myPageBoardSearch">
-	<where>
-		<if test="cb_type !=null and cb_type!= ''">
-			cb_type = #{cb_type}
-		</if>
-	</where>
+		<where>
+			<if test="cb_type !=null and cb_type!= ''">
+				cb_type = #{cb_type}
+			</if>
+		</where>
 	</sql>
 	
-	<select id="cBoardWriteListcnt" parameterType="map" resultType="integer">
-	SELECT COUNT(*) FROM community_board WHERE mem_num=#{mem_num}
-	<include refid="myPageBoardSearch"></include>
-	</select>
+	<!-- <sql id="myPageCommunity">
+		<if test="cb_type==null || cb_type==1">
+			ORDER BY cb_reg_date DESC
+		</if>
+		<if test="cb_type==2">
+			ORDER BY cb_reg_date DESC
+		</if>
+	</sql> -->
 	
+	<select id="cBoardWriteListcnt" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM community_board WHERE mem_num=#{mem_num}
+		<include refid="myPageBoardSearch"></include>
+	</select>
+
 	<!-- 게시글 목록 -->
 	<select id="selectMemcBoardWriteList" parameterType="map" resultType="boardVO">
-		SELECT * FROM community_board LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,cb_num FROM community_fav GROUP BY cb_num)USING(cb_num) WHERE mem_num=#{mem_num}
+		SELECT * FROM community_board LEFT OUTER JOIN (SELECT COUNT(*)
+		fav_cnt,cb_num FROM community_fav GROUP BY cb_num)USING(cb_num) WHERE
+		mem_num=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
 	
 	
+	<select id="cBoardReplyListcnt" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM community_comment WHERE mem_num=#{mem_num}
+		<include refid="myPageBoardSearch"></include>
+	</select>
 	
- </mapper>
+	<!-- 댓글 목록 -->
+	<select id="cBoardReplyList" parameterType="map" resultType="boardCommentVO">
+		SELECT cc.*, fav_data.fav_cnt, cb.cb_type, cb.cb_title FROM
+		community_comment cc LEFT OUTER JOIN (SELECT COUNT(*) AS fav_cnt,
+		cc_num FROM community_comment_fav GROUP BY cc_num)
+		fav_data ON cc.cc_num = fav_data.cc_num
+		JOIN community_board cb ON cc.cb_num = cb.cb_num WHERE cc.mem_num=#{mem_num}
+	</select>
+
+</mapper>

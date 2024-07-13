@@ -29,6 +29,10 @@ public class BoardCommentVO {
 	//답글 작업
 	private int resp_cnt;		//답글 개수
 	
+	private String cb_type;
+    private String cb_title;
+    private int fav_cnt;
+    
 	public void setRe_date(String cc_reg_date) {
 		this.cc_reg_date = DurationFromNow.getTimeDiffLabel(cc_reg_date);
 	}

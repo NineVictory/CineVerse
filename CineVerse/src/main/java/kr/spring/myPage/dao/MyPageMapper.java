@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.vo.MyPageVO;
@@ -20,11 +21,11 @@ public interface MyPageMapper {
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
 	public List<BoardVO> selectMemcBoardWriteList(Map<String, Object> map);//내가 쓴 게시글 목록
 	public Integer cBoardWriteListcnt(Map<String, Object> map);
-	
+	public List<BoardCommentVO> cBoardReplyList(Map<String, Object> map);//내가 쓴 댓글 목록
+	public Integer cBoardReplyListcnt(Map<String, Object> map);
 	@Update("UPDATE member_detail SET mem_passwd=#{mem_passwd} WHERE mem_num=#{mem_num}")
-	public void updatePassword(MyPageVO mypage);
-	
-	@Select("SELECT COUNT(*) FROM point_history WHERE mem_num=#{mem_num}")
+	public void updatePassword(MyPageVO mypage);//비밀번호 변경
+	@Select("SELECT COUNT(*) FROM point_history WHERE mem_num=#{mem_num}")//포인트
 	public Integer pointHistoryCnt(long mem_num);
 	@Select("SELECT * FROM point_history WHERE mem_num=#{mem_num}")
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map); // 회원 포인트 충전 내역 목록 가져오기
