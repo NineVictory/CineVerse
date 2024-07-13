@@ -43,7 +43,7 @@
 		                            <p >${product.p_name} - ${product.pb_quantity}개</p>
 		                        </div>
 								<div class="button-div">
-									<div class="update-btn">장바구니 수량 변경</div>
+									<div class="update-btn" data-num="${product.pb_num}" data-memnum="${product.mem_num}">장바구니 수량 변경</div>
 									<div class="delete-btn" data-num="${product.pb_num}" data-memnum="${product.mem_num}">장바구니 삭제</div>
 								</div>
 		                        <!-- <hr size="4px" color="black" width="53%">	 -->
@@ -83,7 +83,7 @@
 		                            <p style="text-decoration-line: line-through; color:#FF5151;">${product.p_name} - ${product.pb_quantity}개 재고부족</p>
 		                        </div>
 								<div class="button-div">
-									<div class="update-btn">장바구니 수량 변경</div>
+									<div class="update-btn" data-num="${product.pb_num}" data-memnum="${product.mem_num}">장바구니 수량 변경</div>
 									<div class="delete-btn" data-num="${product.pb_num}">장바구니 삭제</div>
 								</div>
 		                    </div>

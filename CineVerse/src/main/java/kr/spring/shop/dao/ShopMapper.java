@@ -87,6 +87,13 @@ public interface ShopMapper {
 	@Delete("DELETE p_basket WHERE pb_num=#{pb_num}")
 	public void basketDelete(long pb_num);
 	
+	// 개별 장바구니
+	@Select("SELECT * FROM p_basket WHERE pb_num=#{pb_num}")
+	public PBasketVO selectBasket(long pb_num);
+	
+	// 장바구니 수량 변경
+	@Update("UPDATE p_basket SET pb_quantity=#{pb_quantity} WHERE pb_num=#{pb_num}")
+	public void basketUpdate(@Param(value="pb_num") Long pb_num, @Param(value="pb_quantity") Long pb_quantity);
 	
 	// 주문
 	public void productOrders(OrdersVO orders);

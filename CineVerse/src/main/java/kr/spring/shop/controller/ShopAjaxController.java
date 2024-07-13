@@ -20,6 +20,7 @@ import kr.spring.myPage.service.MyPageService;
 import kr.spring.shop.dao.ShopMapper;
 import kr.spring.shop.service.ShopService;
 import kr.spring.shop.vo.OrdersVO;
+import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -144,12 +145,12 @@ public class ShopAjaxController {
 				// order, order_detail 추가
 				orders.setMem_num(user.getMem_num());
 				orders.setOrder_quantity(orders.getPb_quantity());
-				
+
 				// 주문번호(사용자에게 보여줄 용도. PK 아님) 생성
 				// 약간... 간지 느낌
 				// 형식 : yyyy-mmdd-랜덤숫자-주문번호(PK)
 				LocalDate today = LocalDate.now();
-				
+
 				int year = today.getYear();
 				int month = today.getMonthValue();
 				int day = today.getDayOfMonth();
@@ -159,24 +160,24 @@ public class ShopAjaxController {
 				} else {
 					od_number = year + ("-"  + month) + day;
 				}
-				
-				
+
+
 				Random random = new Random();
-				
+
 				String ran_num_result = "-";
 				for(int i=0; i<4; i++) {
 					int ran_num = random.nextInt(10);
 					ran_num_result += ran_num;
 				}
-				
+
 				// 주문 번호 (PK) 설정
 				long order_num = shopService.getNextOrderNum();
 				orders.setOrder_num(order_num);
-				
+
 				// 주문 번호 (간지용) 설정
 				od_number = od_number + ran_num_result + "-" + order_num;
 				orders.setOd_number(od_number);
-				
+
 				shopService.directOrder(orders);
 
 				// 상품 수량 차감
@@ -223,7 +224,7 @@ public class ShopAjaxController {
 	// 장바구니 삭제하기
 	@PostMapping("/shop/basketDelete")
 	@ResponseBody
-	public Map<String, Object> getMethodName(@RequestParam long pb_num, @RequestParam long mem_num, HttpSession session) {
+	public Map<String, Object> basketDelete(@RequestParam long pb_num, @RequestParam long mem_num, HttpSession session) {
 		log.debug("<<장바구니 삭제>> ::: " + pb_num);
 		Map<String, Object> mapJson = new HashMap<String, Object>();
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -239,7 +240,32 @@ public class ShopAjaxController {
 		return mapJson;
 	}
 
+	// 장바구니 삭제하기
+	@PostMapping("/shop/basketUpdate")
+	@ResponseBody
+	public Map<String, Object> basketUpdate(@RequestParam long pb_num, @RequestParam long mem_num, @RequestParam long updateNum,HttpSession session) {
+		log.debug("<<장바구니 수량 변경 - pb_num>> ::: " + pb_num);
+		log.debug("<<장바구니 수량 변경 - updateNum>> ::: " + updateNum);
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO) session.getAttribute("user");
 
+		PBasketVO basket = shopService.selectBasket(pb_num);
+		long remain = shopService.productRemain(basket.getP_num());
+
+
+		if (user == null) { // 로그아웃 상태
+			mapJson.put("result", "logout");
+		} else if(user.getMem_num()!=mem_num) {
+			mapJson.put("result", "wrongAccess");
+		} else if(remain<updateNum) { // 재고 부족
+			mapJson.put("result", "noProduct");
+		} else {
+			long pb_quantity = updateNum;
+			shopService.basketUpdate(pb_num, pb_quantity);
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
 
 
 }

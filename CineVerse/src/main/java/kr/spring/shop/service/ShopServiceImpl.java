@@ -180,6 +180,16 @@ public class ShopServiceImpl implements ShopService {
 	public long getNextOrderNum() {
 		return shopMapper.getNextOrderNum();
 	}
+
+	@Override
+	public PBasketVO selectBasket(long pb_num) {
+		return shopMapper.selectBasket(pb_num);
+	}
+
+	@Override
+	public void basketUpdate(Long pb_num, Long pb_quantity) {
+		shopMapper.basketUpdate(pb_num, pb_quantity);
+	}
 	
 	
 

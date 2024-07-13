@@ -38,6 +38,8 @@ public interface ShopService {
 	public Integer basketTotalPrice(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
 	public Integer basketCount(@Param(value="mem_num") Long mem_num, @Param(value="p_num") Long p_num);
 	public void basketDelete(long pb_num);
+	public PBasketVO selectBasket(long pb_num);
+	public void basketUpdate(@Param(value="pb_num") Long pb_num, @Param(value="pb_quantity") Long pb_quantity);
 	
 	// 바로 구매
 	public void directOrder(OrdersVO orders);
