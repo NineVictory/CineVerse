@@ -26,6 +26,7 @@ import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.movie.vo.MovieVO;
 import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -332,7 +333,7 @@ public class AdminController {
 	}
 	// 영화등록
 	@GetMapping("/admin/adminMovieForm") 
-	public String adminMovieForm(){
+	public String adminMovieForm(MovieVO movieVO){
 		return "adminMovieForm";
 	}
 	// 영화
