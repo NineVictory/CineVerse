@@ -1,41 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="myPageMain_1">
-	<div class="myPageMain_photo">
-		<img src="${pageContext.request.contextPath}/member/photoView" width="50" height="50" class="my-photo">
+	<div class="modify_ph">
+		<div class="camera" id="photo_btn">
+			<img src="${pageContext.request.contextPath}/images/camera.png" width="30">
+		</div>
+		<div id="photo_choice" style="display:none;">
+			<input type="file" id="upload" accept="image/gif, image/png, image/jpeg"><br>
+			<input type="button" value="전송" id="photo_submit">
+			<input type="button" value="취소" id="photo_reset">
+		</div>
 	</div>
-
+	<div class="myPageMain_photo">
+		<img src="${pageContext.request.contextPath}/myPage/photoView" width="50" height="50" class="my-photo">
+		
+	</div>
+	
+	
+	
 	<div class="myPageMain_right">
 		<div class="myPageMain_information">
-			<span class="myPageMain_name">${member.mem_name } 님</span> <span
-				class="myPageMain_id">닉네임 :${member.mem_nickName }</span> <span
-				class="myPageMain_nickName">아이디 : ${member.mem_id }</span>
+			<span class="myPageMain_name">${member.mem_name } 님</span> <span class="myPageMain_id">닉네임 :${member.mem_nickName }</span> <span class="myPageMain_nickName">아이디 : ${member.mem_id }</span>
 		</div>
-
-		<div class="myPageMain_vip">고객님은 2024년 1월 
-		<c:if test="${member.mem_rank==1 }">
-			 <b>BASIC</b>
-		</c:if>
-		<c:if test="${member.mem_rank==2 }">
-			 <b>MEMBER</b>
-		</c:if>
-		<c:if test="${member.mem_rank==3 }">
-			<b> REGULAR</b>
-		</c:if>
-		<c:if test="${member.mem_rank==4 }">
-			<b> VIP</b>
-		</c:if>
-		<c:if test="${member.mem_rank==5 }">
-			 <b>VVIP</b>
-		</c:if>
-		
-		 입니다</div>
-
+		<div class="myPageMain_vip">
+			고객님은 2024년 1월
+			<c:if test="${member.mem_rank==1 }"><b>BASIC</b></c:if>
+			<c:if test="${member.mem_rank==2 }"><b>MEMBER</b></c:if>
+			<c:if test="${member.mem_rank==3 }"><b> REGULAR</b></c:if>
+			<c:if test="${member.mem_rank==4 }"><b> VIP</b></c:if>
+			<c:if test="${member.mem_rank==5 }"><b>VVIP</b></c:if>
+			입니다
+		</div>
 		<div class="mp_vip_lounge">VIP 라운지</div>
 	</div>
 </div>
-
 
 <div class="myPageMain_2">
 	<div class="myPage_ticket" onclick="location.href='/myPage/'">
@@ -83,3 +82,31 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/myPage.profile.js"></script>
+
+<!-- CSS -->
+<style>
+
+#photo_choice {
+	margin-top: 10px; /* 사진 선택과 버튼 사이 간격 */
+	text-align: center;
+}
+.modify_ph{
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	background-color: #3F66ED;
+	cursor: pointer;
+	position: relative; /* 화면에 고정 */
+    top: 60px; /* 화면의 위쪽에서 20px 떨어진 위치에 고정 */
+    left: 250px; /* 화면의 왼쪽에서 20px 떨어진 위치에 고정 */
+    width: 50px; /* 요소의 너비 설정 */
+    height: 50px; /* 요소의 높이 설정 */
+    display: flex; /* flexbox로 설정 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    cursor: pointer; /* 커서 설정 */
+    z-index: 1; /* z-index를 높여 다른 요소보다 앞에 표시 */
+}
+</style>

@@ -39,7 +39,8 @@ public class MyPageVO {
 	private Date mem_reg_date;
 	private Date mem_modify_date;
 	private String social_kakao;
-
+	
+	//사진
 	private byte[] photo;
 	private String photo_name;
 

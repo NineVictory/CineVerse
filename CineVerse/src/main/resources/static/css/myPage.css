@@ -31,13 +31,14 @@
 }
 
 .myPageMain_photo img {
-	width: 100%;
+	width: 100%;/* 수정하기 기본이미지는 100 */
 	height: auto;
 }
 
 .myPageMain_right {
 	width: 70%;
 	height: 70%;
+	/* margin-left: 100px; */
 }
 
 .myPageMain_information {
@@ -1304,6 +1305,16 @@
 	border-radius: 15px;
 	margin-right: 10px;
 }
+
+
+
+
+
+
+
+
+
+
 /* =======================
      		myPageMemberShipSub.jsp
    ======================= */

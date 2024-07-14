@@ -31,4 +31,7 @@ public interface MyPageMapper {
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map); // 회원 포인트 충전 내역 목록 가져오기
 	public void updateMember_detail(MyPageVO myPageVO);
 
+	// 프로필 이미지 업데이트
+	@Update("UPDATE member_detail SET photo=#{photo}, photo_name=#{photo_name} WHERE mem_num=#{mem_num}")
+	public void updateProfile(MyPageVO myPageVO);
 }

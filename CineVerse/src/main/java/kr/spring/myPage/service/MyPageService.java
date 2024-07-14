@@ -19,4 +19,5 @@ public interface MyPageService {
 	public Integer pointHistoryCnt(long mem_num);//포인트
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map);
 	public void updateMember_detail(MyPageVO myPageVO);
+	public void updateProfile(MyPageVO myPageVO);// 프로필 이미지 업데이트
 }

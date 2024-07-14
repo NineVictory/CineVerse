@@ -73,5 +73,10 @@ public class MyPageServiceImpl implements MyPageService{
 		myPageMapper.updateMember_detail(mypage);
 	}
 
+	@Override
+	public void updateProfile(MyPageVO myPageVO) {
+		myPageMapper.updateProfile(myPageVO);
+	}
+
 	
 }

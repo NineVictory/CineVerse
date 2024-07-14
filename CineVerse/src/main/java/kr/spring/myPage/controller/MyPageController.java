@@ -408,47 +408,63 @@ public class MyPageController {
 		return "consult";
 	}
 
+	
+	
+	
+	
+	
+	
 	// 프로필 사진 출력하기(로그인 전용)
-	@GetMapping("/member/photoView")
-	public String getProfile(HttpSession session, HttpServletRequest request, Model model) {
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		log.debug("<< 프로필 사진 출력 >> : " + user);
+    @GetMapping("/myPage/photoView")
+    public String getProfile(HttpSession session, HttpServletRequest request, Model model) {
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        log.debug("<< 프로필 사진 출력 >> : " + user);
 
-		if (user == null) {
-			getBasicProfileImage(request, model);
-		} else {
-			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			viewProfile(member, request, model);
-		}
+        if (user == null) {
+            getBasicProfileImage(request, model);
+        } else {
+            if (user.getPhoto() == null) {
+                MyPageVO member = mypageService.selectMember(user.getMem_num());
+                log.debug("<< DB에서 가져온 멤버 >> : " + member);
+                viewProfile(member, request, model);
+            } else {
+                log.debug("<< 세션에서 가져온 사진 >> : " + user.getPhoto_name());
+                model.addAttribute("imageFile", user.getPhoto());
+                model.addAttribute("filename", user.getPhoto_name());
+            }
+        }
 
-		return "imageView";
-	}
+        return "imageView";
+    }
 
-	// 프로필 사진 출력하기
-	@GetMapping("/member/viewProfile")
-	public String getProfileByMem_num(long mem_num, HttpServletRequest request, Model model) {
-		MyPageVO member = mypageService.selectMember(mem_num);
+    // 프로필 사진 출력하기
+    @GetMapping("/myPage/viewProfile")
+    public String getProfileByMem_num(long mem_num, HttpServletRequest request, Model model) {
+        MyPageVO member = mypageService.selectMember(mem_num);
+        
+        viewProfile(member, request, model);
 
-		viewProfile(member, request, model);
+        return "imageView";
+    }
 
-		return "imageView";
-	}
+    // 회원 프로필 사진 처리를 위한 공통 코드
+    public void viewProfile(MyPageVO member, HttpServletRequest request, Model model) {
+        if (member == null || member.getPhoto() == null) { // 수정: member.getPhoto()로 null 체크
+            getBasicProfileImage(request, model);
+        } else {
+            log.debug("<< viewProfile에서 가져온 사진 >> : " + member.getPhoto_name());
+            model.addAttribute("imageFile", member.getPhoto());
+            model.addAttribute("filename", member.getPhoto_name());
+        }
+    }
 
-	// 회원 프로필 사진 처리를 위한 공통 코드
-	public void viewProfile(MyPageVO member, HttpServletRequest request, Model model) {
-		if (member == null || member.getPhoto_name() == null) {
-			getBasicProfileImage(request, model);
-		} else {
-			model.addAttribute("imageFile", member.getPhoto());
-			model.addAttribute("filename", member.getPhoto_name());
-		}
-	}
+    // 기본 이미지 읽어오기
+    public void getBasicProfileImage(HttpServletRequest request, Model model) {
+        byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/profile_none.png"));
+        log.debug("<< 기본 프로필 사진 출력 >>");
+        model.addAttribute("imageFile", readbyte);
+        model.addAttribute("filename", "profile_none.png");
+    }
 
-	// 기본 이미지 읽어오기
-	public void getBasicProfileImage(HttpServletRequest request, Model model) {
-		byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/profile_none.png"));
-		model.addAttribute("imageFile", readbyte);
-		model.addAttribute("filename", "profile_none.png");
-	}
 
 }
