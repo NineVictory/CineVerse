@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -135,7 +137,43 @@ public class CinemaController {
 	}
 	
 	
-	
+	/*=====================
+	 * 영화관 정보 수정
+	 *=====================*/
+	//수정 폼 호출
+	@GetMapping("/cinema/update")
+	public String formUpdate(long c_num,Model model) {
+		CinemaVO cinemaVO = 
+				cinemaService.selectCinema(c_num);
+		model.addAttribute("cinemaVO", cinemaVO);
+		
+		return "cinemaModify";
+	}
+	//수정 폼에서 전송된 데이터 처리
+	@PostMapping("/cinema/update")
+	public String submitUpdate(@Valid CinemaVO cinemaVO,BindingResult result, Model model,
+			                   HttpServletRequest request) throws IllegalStateException, IOException {
+		log.debug("<<영화관 정보 수정>> : " + cinemaVO);
+		
+		/*
+		 * //유효성 체크 결과 오류가 있으면 폼 호출 if(result.hasErrors()) {
+		 * 
+		 * CinemaVO vo = cinemaService.selectCinema(cinemaVO.getC_num()); return
+		 * "cinemaModify"; }
+		 * 
+		 * //DB에 저장된 파일 정보 구하기 CinemaVO db_cinema =
+		 * cinemaService.selectCinema(cinemaVO.getC_num());
+		 */
+		
+		//영화관 정보 수정
+		cinemaService.updateCinema(cinemaVO);
+		
+		//View에 표시할 메시지
+		model.addAttribute("message", "영화관 정보 수정 완료!!");
+		model.addAttribute("url", request.getContextPath() + "/cinema/detail?c_num=" +cinemaVO.getC_num());
+		
+		return "common/resultAlert";
+	}
 	
 	
 	

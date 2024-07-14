@@ -65,6 +65,20 @@
 	 	WHERE rnum >= #{start} AND rnum <= #{end}
 	 	]]>	
  	</select>  
+ 	
+ 	
+ 	<!-- 영화관 정보 수정 --> 
+ 	<update id="updateCinema" parameterType="cinemaVO">
+ 		UPDATE cinema SET
+ 		   c_branch = #{c_branch},
+ 		   c_location = #{c_location},
+ 		   c_address = #{c_address},
+ 		   c_phone = #{c_phone},
+ 		   c_theater = #{c_theater},
+ 		   c_seat = #{c_seat},
+ 		   c_parkable = #{c_parkable}
+ 		WHERE c_num = #{c_num}
+ 	</update> 
 	
 	
 	

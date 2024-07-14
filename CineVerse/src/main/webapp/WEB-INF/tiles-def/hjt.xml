@@ -18,7 +18,7 @@
     <definition name="cinemaWrite" extends="cinemaList2">
         <put-attribute name="title" value="영화관등록"/>
         <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
-        <put-attribute name="css" value="/WEB-INF/views/movie/movieReserveCSS.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/cinema/cinemaWriteCSS.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaWrite.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
     </definition>
@@ -29,6 +29,16 @@
         <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
         <put-attribute name="css" value="/WEB-INF/views/cinema/cinemaDetail2CSS.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaDetail2.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>
+	 
+	 
+	  <!-- 영화관 정보 수정 -->
+    <definition name="cinemaModify" extends="cinemaList2">
+        <put-attribute name="title" value="영화관 정보 수정"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/cinema/cinemaModifyCSS.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/cinema/cinemaModify.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
     </definition>
 	 

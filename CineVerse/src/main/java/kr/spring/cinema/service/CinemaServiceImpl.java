@@ -39,9 +39,8 @@ public class CinemaServiceImpl implements CinemaService{
 
 	@Override
 	public void updateCinema(CinemaVO cinema) {
-		// TODO Auto-generated method stub
-		
-	}
+		cinemaMapper.updateCinema(cinema);
+	} 
 
 	@Override
 	public void deleteCinema(Long c_num) {
