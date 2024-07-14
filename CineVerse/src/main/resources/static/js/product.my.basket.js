@@ -105,7 +105,7 @@ $(function(){
 	    let now_pb_quantity = parseInt(pb_quantity_text.replace('개', ''));
 	    let now_total = parseInt(total_text.replace(/[^0-9]/g, ''));
 
-	    if ($(this).is(':checked')) { // 체크
+	    if ($(this).is(':checked')) { // 체크 
 	        $.ajax({
 	            url: 'updateBasketNav',
 	            type: 'post',
@@ -167,5 +167,34 @@ $(function(){
 	});
 
 		
-	
+	// 체크된 항목의 pb_num과 그런 것들을 보내면서 
+	$('.buy-basket').on('submit', function(event) {
+	    event.preventDefault(); // 오타 수정
+
+	    let count = 1;
+	    const checkedProducts = $('.product-select:checked');
+	    
+	    checkedProducts.each(function() {
+	        const pb_num = $(this).data("pbnum");
+	        const input = $('<input>', {
+	            type: 'hidden',
+	            name: 'pb_num' + count,
+	            value: pb_num
+	        });
+	        $(".buy-basket").append(input);
+	        count++;
+	    });
+
+	    const total_count = document.querySelector('.total_count .cc').textContent.replace('개', '');
+	    const total = document.querySelector('.total_price .tt').textContent.replace('원', '');
+
+	    document.getElementById('hiddenTotalCount').value = total_count;
+	    document.getElementById('hiddenTotal').value = total;
+		document.getElementById('hiddenCount').value = count-1;
+
+	    // 폼 제출
+	    $('.buy-basket').off('submit').submit(); // 이전 이벤트 리스너 제거 후 제출
+	});
+
+		
 });

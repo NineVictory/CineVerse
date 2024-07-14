@@ -214,6 +214,9 @@ body {
 	align-items: center;
 	justify-content: center;
 	background: #1C75FF;
+	border: none;
+	color: white;
+	font-size: 12pt;
 }
 
 .pay-box span{

@@ -15,7 +15,7 @@
             <c:if test="${not empty list}">
             	<c:forEach var="product" items="${list}">
             		<c:if test="${product.pb_status==1}">
-						<input type="checkbox" class="product-select" checked data-pnum="${product.p_num}" data-pprice="${product.p_price}" data-pbquantity="${product.pb_quantity}" data-mnum="${product.mem_num}">
+						<input type="checkbox" class="product-select" checked data-pnum="${product.p_num}" data-pprice="${product.p_price}" data-pbquantity="${product.pb_quantity}" data-mnum="${product.mem_num}" data-pbnum="${product.pb_num}">
 						<div class="order-product">
 		                    <div class="order-header">
 		                        <hr size="4px" color="black" width="53%">

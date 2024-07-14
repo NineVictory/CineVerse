@@ -45,9 +45,12 @@
 			</span>
 		</div>
 	</div>
-	<div class="pay-box">
-		<span>주문하기</span>
-	</div>
+		<form action="buyBasket" class="buy-basket" method="post">
+			<input type="hidden" name="count" id="hiddenCount">
+			<input type="hidden" name="total_count" id="hiddenTotalCount">
+			<input type="hidden" name="total" id="hiddenTotal">
+			<input type="submit" value="주문하기" class="pay-box">
+		</form>
 </div>
 </c:if>
 
