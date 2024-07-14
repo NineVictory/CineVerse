@@ -31,7 +31,7 @@ public class MovieAjaxController {
                                           HttpServletRequest request) {
         log.debug("<<리뷰 등록>> :" + movieReviewVO);
 
-        Map<String, String> mapJson = new HashMap<String, String>();
+        Map<String, String> mapJson = new HashMap<>();
 
         MemberVO user = (MemberVO) session.getAttribute("user");
         if (user == null) {
@@ -43,8 +43,14 @@ public class MovieAjaxController {
             if (!hasBooked) {
                 mapJson.put("result", "notBooked");
             } else {
-                movieService.addMovieReview(movieReviewVO);
-                mapJson.put("result", "success");
+                Long md_num = movieService.getBookingDetailNum(user.getMem_num(), movieReviewVO.getM_code());
+                if (md_num == null) {
+                    mapJson.put("result", "notBooked");
+                } else {
+                    movieReviewVO.setMd_num(md_num);
+                    movieService.addMovieReview(movieReviewVO);
+                    mapJson.put("result", "success");
+                }
             }
         }
 
@@ -56,7 +62,7 @@ public class MovieAjaxController {
     public Map<String, Object> getReviews(int page, Long m_code) {
         log.debug("<<리뷰 목록>> : page = " + page + ", m_code = " + m_code);
 
-        Map<String, Object> mapJson = new HashMap<String, Object>();
+        Map<String, Object> mapJson = new HashMap<>();
 
         List<MovieReviewVO> reviews = movieService.getMovieReviews(page, m_code);
         mapJson.put("result", "success");

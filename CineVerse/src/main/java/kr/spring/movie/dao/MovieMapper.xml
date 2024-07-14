@@ -2,7 +2,7 @@
 <!DOCTYPE mapper   
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="kr.spring.movie.dao.MovieMapper"><!--인터페이스명-자동매핑-->
+<mapper namespace="kr.spring.movie.dao.MovieMapper">
 	<!-- 글쓰기 -->
 	 <insert id="insertMovie" parameterType="MovieVO">
 	 	  INSERT INTO movie (
@@ -170,25 +170,41 @@
     </insert>
     
  <!-- 예매 여부 확인 쿼리 -->
-   <select id="hasBookedMovie" resultType="boolean">
+   <select id="hasBookedMovie" parameterType="map" resultType="int">
         SELECT COUNT(*)
         FROM movie_booking mb
         JOIN mb_detail md ON mb.mb_num = md.mb_num
         WHERE mb.mem_num = #{mem_num} AND md.m_code = #{m_code}
     </select>
 
-    <insert id="addMovieReview">
+    <insert id="addMovieReview" parameterType="kr.spring.movie.vo.MovieReviewVO">
         INSERT INTO movie_review (mr_num, mr_content, mr_regdate, mr_spoiler, mr_grade, md_num, m_code, mem_num)
         VALUES (movie_review_seq.nextval, #{mr_content}, SYSDATE, #{mr_spoiler}, #{mr_grade}, #{md_num}, #{m_code}, #{mem_num})
     </insert>
 
-    <select id="getMovieReviews" resultType="kr.spring.movie.vo.MovieReviewVO">
-        SELECT * FROM movie_review
-        WHERE m_code = #{m_code}
-        ORDER BY mr_regdate DESC
-        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    <select id="getMovieReviews" parameterType="map" resultType="kr.spring.movie.vo.MovieReviewVO">
+        <![CDATA[
+        SELECT * FROM (
+            SELECT a.*, ROWNUM rnum
+            FROM (
+                SELECT * FROM movie_review
+                WHERE m_code = #{m_code}
+                ORDER BY mr_regdate DESC
+            ) a
+            WHERE ROWNUM <= #{offset} + #{limit}
+        )
+        WHERE rnum > #{offset}
+        ]]>
     </select>
-    
+
+    <select id="getBookingDetailNum" parameterType="map" resultType="java.lang.Long">
+        <![CDATA[
+        SELECT md.md_num
+        FROM movie_booking mb
+        JOIN mb_detail md ON mb.mb_num = md.mb_num
+        WHERE mb.mem_num = #{mem_num} AND md.m_code = #{m_code}
+        ]]>
+    </select>
 </mapper>							
 
 

@@ -39,9 +39,10 @@ public interface MovieService {
 		public void insertReview(MovieReviewVO movieReview);
 		public void updateReview(MovieReviewVO movieReview);
 		public void deleteReview(Long mr_num);
+		
 	    boolean hasBookedMovie(Long mem_num, Long m_code);
 	    void addMovieReview(MovieReviewVO review);
 	    List<MovieReviewVO> getMovieReviews(int page, Long m_code);
-
+	    Long getBookingDetailNum(Long mem_num, Long m_code); // 메서드 추가
 
 }
