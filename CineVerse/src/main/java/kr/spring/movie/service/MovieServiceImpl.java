@@ -1,5 +1,6 @@
 package kr.spring.movie.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +80,7 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void deleteMovie(Long m_code) {
 
-		movieMapper.deleteReplyByMovieNum(m_code);
+	
 	}
 
 	@Override
@@ -155,7 +156,31 @@ public class MovieServiceImpl implements MovieService {
 	 movieMapper.insertMovieTime(movietime);
 	 
 	 }
-	 
+
+	 @Override
+	    public boolean hasBookedMovie(Long mem_num, Long m_code) {
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("mem_num", mem_num);
+	        map.put("m_code", m_code);
+	        return movieMapper.hasBookedMovie(map);
+	    }
+
+	    @Override
+	    public void addMovieReview(MovieReviewVO review) {
+	        movieMapper.addMovieReview(review);
+	    }
+
+	    @Override
+	    public List<MovieReviewVO> getMovieReviews(int page, Long m_code) {
+	        int offset = (page - 1) * 10;
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("offset", offset);
+	        map.put("limit", 10);
+	        map.put("m_code", m_code);
+	        return movieMapper.getMovieReviews(map);
+	    }
+
+
 
 
 

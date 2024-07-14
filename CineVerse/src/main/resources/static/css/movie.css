@@ -134,6 +134,7 @@
         font-size: 14px; 폰트 사이즈 설정
         line-height: 1.5; 줄 간격 설정
     } */
+
 #review_div {
     margin-top: 20px;
 }
@@ -145,6 +146,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color:#e7e7e7;
+    resize: none; /* 사용자가 크기 조절을 못하게 함 */
 }
 
 #review_first {

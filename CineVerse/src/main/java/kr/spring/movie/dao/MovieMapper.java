@@ -59,6 +59,11 @@ public interface MovieMapper {
 	public void insertReview(MovieReviewVO movieReview);
 	public void updateReview(MovieReviewVO movieReview);
 	public void deleteReview(Long mr_num);
+	public boolean hasBookedMovie(Map<String, Object> map);
+	public void addMovieReview(MovieReviewVO review);
+	public List<MovieReviewVO> getMovieReviews(Map<String, Object> map);
+    
+
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 리뷰 삭제
-	public void deleteReplyByMovieNum(Long m_code);
+	public int hasBookedMovie(long mem_num, long m_code);
 }

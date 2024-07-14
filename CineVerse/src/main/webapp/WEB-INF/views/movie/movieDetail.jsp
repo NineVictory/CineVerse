@@ -8,108 +8,114 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
 <script src="${pageContext.request.contextPath}/js/movie.review.js"></script>
+
 <div class="detail-main">
-	<div class="movie-container">
-    <div class="movie-photo">
-        <img src="<c:url value='/upload/${movie.m_filename}' />" alt="Movie Photo">
-    </div>
-    <div class="movie-details">
-     <div class="movie-title-screening">
-        <div class="movie-title">${movie.m_name}</div> 
-        <div class="movie-screening">
-        <c:choose>
-    			<c:when test="${movie.m_status == 1}">
-       			 현재 미상영
-    			</c:when>
-    			<c:when test="${movie.m_status == 2}">
-        		현재 상영
-    			</c:when>
-		</c:choose>
+    <div class="movie-container">
+        <div class="movie-photo">
+            <img src="<c:url value='/upload/${movie.m_filename}' />" alt="Movie Photo">
         </div>
-     </div>
-        <div class="movie-infolist">
-            <span>예매율</span>
-            <span>23.3%</span>
-            <span>좋아요 수 </span>
-            <span>5.7K</span>
-        </div>
-        <hr class="menu-hr" size="1" width="100%" noshade="noshade">
+        <div class="movie-details">
+            <div class="movie-title-screening">
+                <div class="movie-title">${movie.m_name}</div>
+                <div class="movie-screening">
+                    <c:choose>
+                        <c:when test="${movie.m_status == 1}">
+                            현재 미상영
+                        </c:when>
+                        <c:when test="${movie.m_status == 2}">
+                            현재 상영
+                        </c:when>
+                    </c:choose>
+                </div>
+            </div>
+            <div class="movie-infolist">
+                <span>예매율</span>
+                <span>23.3%</span>
+                <span>좋아요 수 </span>
+                <span>5.7K</span>
+            </div>
+            <hr class="menu-hr" size="1" width="100%" noshade="noshade">
+            
+            <!-- 영화정보 -->
+            <div class="movie-info">
+                <ul>
+                    <li><b>장르 : </b> ${movie.genre}</li>
+                    <li><b>감독 : </b> ${movie.director}</li>
+                    <li><b>영화배우/출연 : </b> ${movie.actor}</li>
+                    <li><b>개봉 :</b>${movie.m_opendate}</li>
+                </ul>
+            </div>
         
-        <!-- 영화정보 -->
-		<div class="movie-info">
-			<ul>
-				<li><b>장르 : </b> ${movie.genre}</li>
-				<li><b>감독 : </b> ${movie.director}</li>
-				<li><b>영화배우/출연 : </b> ${movie.actor}</li>
-				<li><b>개봉 :</b>${movie.m_opendate}</li>
-			</ul>
-		</div>
-	
-        <div class="movie-reservation" onclick="location.href='/movie/'">
-            <div class="movie-reservation-button">예매하기</div>
+            <div class="movie-reservation" onclick="location.href='/movie/'">
+                <div class="movie-reservation-button">예매하기</div>
+            </div>
         </div>
     </div>
+
+    <!-- 상세정보와 별점 및 후기 -->
+    <div class="detail-menu">
+        <span class="detail-info">주요정보</span>
+        <span class="detail-grade">트레일러</span>
+        <span class="detail-review">평점/리뷰</span>
+        <hr class="menu-hr" size="1" width="50%" noshade="noshade">
+    </div>
+    <div class="movie-content">
+        ${movie.m_content}
     </div>
 
-<!-- 상세정보와 별점 및 후기 -->
-<div class="detail-menu">
-    <span class="detail-info">주요정보</span>
-    <span class="detail-grade">트레일러</span>
-    <span class="detail-review">평점/리뷰</span>
-    <hr class="menu-hr" size="1" width="50%" noshade="noshade">
-</div>
-<div class="movie-content">
-           ${movie.m_content}
+    <!-- 영화 예고편 -->
+    <div class="menu-title">트레일러</div>
+    <div class="movie-teaser">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/EiCmnIaj4u8?si=x1eQENSmEMIMFaxh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <!-- 별점 및 후기 -->
+    <div class="menu-title">평점/리뷰</div>
+    <div class="grade-review">
+        <div class="star-rating">
+            <span class="star" data-value="1"><img src="<c:url value='/images/ksh/star.png' />"></span>
+            <span class="star" data-value="2"><img src="<c:url value='/images/ksh/star.png' />"></span>
+            <span class="star" data-value="3"><img src="<c:url value='/images/ksh/star.png' />"></span>
+            <span class="star" data-value="4"><img src="<c:url value='/images/ksh/star.png' />"></span>
+            <span class="star" data-value="5"><img src="<c:url value='/images/ksh/star.png' />"></span>
         </div>
-<!-- 영화 예고편 -->
-<div class="menu-title">트레일러</div>
-<div class="movie-teaser">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/EiCmnIaj4u8?si=x1eQENSmEMIMFaxh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<!-- 별점 및 후기 -->            
-<div class="menu-title">평점/리뷰</div>
-<div class="grade-review">
-    
-    <div class="star-rating">
-        <span class="star" data-value="1"><img src="<c:url value='/images/ksh/star.png' />"></span>
-        <span class="star" data-value="2"><img src="<c:url value='/images/ksh/star.png' />"></span>
-        <span class="star" data-value="3"><img src="<c:url value='/images/ksh/star.png' />"></span>
-        <span class="star" data-value="4"><img src="<c:url value='/images/ksh/star.png' />"></span>
-        <span class="star" data-value="5"><img src="<c:url value='/images/ksh/star.png' />"></span>
+        <div class="review-choice">별점을 선택해주세요</div>
+        <div id="review_div">
+            <form id="mr_form">
+                <input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
+                <c:choose>
+                    <c:when test="${empty user}">
+                        <textarea rows="3" cols="50" name="mr_content" class="review-content" disabled>로그인해야 작성할 수 있습니다.</textarea>
+                    </c:when>
+                    <c:otherwise>
+                        <textarea rows="3" cols="50" name="mr_content" class="review-content"></textarea>
+                        <label for="mr_spoiler">스포일러 포함</label>
+                        <input type="checkbox" name="mr_spoiler" value="2" id="mr_spoiler">
+                        <div id="review_first">
+                            <span class="letter-count">300/300</span>
+                        </div>
+                        <div id="review_second" style="text-align: right;">
+                            <div class="review-button"><input type="submit" value="등록"></div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </form>
+        </div>
     </div>
-    <div class="review-choice">별점을 선택해주세요</div>
-    <div id="review_div">
-		<form id="mr_form">
-		<input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
-			<textarea rows="3" cols="50" name="mr_content" class="review-content" placeholder="*작성 글이 다른 고객에게 일정 기준 이상 신고 될 경우 자동 숨김 처리되며 고객센터로 이의 제기 가능합니다.*"
-			><c:if test="${empty user}">로그인해야 작성할 수 있습니다.</c:if></textarea>
-			<c:if test="${!empty user}">
-			<div id="review_first">
-				<span class="letter-count">300/300</span>
-			</div>
-			<div id="review_second" style="text-align: right;">
-    			<div class="review-button"><input type="submit" value="등록"></div>
-			</div>
-			</c:if>
-		</form>
-	</div>
-</div>
-<div class="review-menu">
-    <span id="recommendation">추천순</span>
-    <span>|</span>
-    <span id="latest">최신순</span>
+    <div class="review-menu">
+        <span id="recommendation">추천순</span>
+        <span>|</span>
+        <span id="latest">최신순</span>
+    </div>
 </div>
 
-</div>
 <!-- 댓글 목록 출력 -->
-	<div id="output"></div>
-	<div id="loading" style="display:none;">
-		<img src="<c:url value='/images/loading.gif' />" width="30" height="30">
-	</div>
-	<div class="paging-button" style="display:none;">
-		<input type="button" value="더보기">
-	</div>
-<script>
-</script>
-	
+<div id="review_list"></div>
+<div id="loading" style="display:none;">
+    <img src="<c:url value='/images/loading.gif' />" width="30" height="30">
+</div>
+<div class="paging-button" style="display:none;">
+    <input type="button" value="더보기">
+</div>
+
 <!-- 영화상세 끝 -->
