@@ -103,7 +103,7 @@
 	
 		<!-- 댓글 목록 출력 -->
 		<div id="output"></div>
-		<div id="loading" style="display:none;" class="align-center">
+		<div id="loading" style="display:none; margin:20px 0;" class="align-center">
 			<img src="${pageContext.request.contextPath}/images/kbm/loading.gif" width="30" height="30">
 		</div>
 		<div class="paging-button" style="display:none;">
@@ -115,19 +115,34 @@
 		<!-- 댓글 UI 시작 -->
 		<div id="comment_div" class="ml10 mt10">
 			<div class="flexbox-h">
-				<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="45" height="45" class="my-photo">
-				<form id="comment_form">
-					<input type="hidden" name="cb_num" value="${board.cb_num}" id="cb_num">
-						<div class="flexbox-h">
-							<textarea rows="4" cols="105" name="cc_content" id="cc_content" class="rep-content"
+				<c:if test="${empty user}">
+					<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${user.mem_num}" width="40" height="40" class="my-photo">
+					<textarea rows="4" cols="105" name="cc_content" id="cc_content" class="rep-content"
 										<c:if test="${empty user}">disabled="disabled"</c:if>
-										<c:if test="${!empty user}">placeholder="내용을 입력해주세요."</c:if>
-									><c:if test="${empty user}">로그인해야 작성할 수 있습니다.</c:if></textarea>
-							<c:if test="${!empty user}">
-								<input type="submit" class="default-btn ml10" value="등록">
-							</c:if>
-						</div>
-				</form>
+									>로그인해야 작성할 수 있습니다.</textarea>
+				</c:if>
+				<c:if test="${!empty user}">
+					<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${user.mem_num}" width="40" height="40" class="my-photo">
+					<span>
+						<c:if test="${empty user.mem_nickname}">
+									${user.mem_id}
+						</c:if>
+						<c:if test="${!empty board.mem_nickname}">
+							${board.mem_nickname}
+						</c:if>
+					</span>
+					<form id="comment_form">
+						<input type="hidden" name="cb_num" value="${board.cb_num}" id="cb_num">
+							<div class="flexbox-h">
+								<textarea rows="4" cols="105" name="cc_content" id="cc_content" class="rep-content"
+											placeholder="내용을 입력해주세요."></textarea>
+								
+									<input type="submit" class="default-btn ml10" value="등록">
+								
+					
+							</div>
+					</form>
+				</c:if>
 			</div>
 		</div>
 		
