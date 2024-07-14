@@ -69,7 +69,7 @@
         <iframe width="560" height="315" src="https://www.youtube.com/embed/EiCmnIaj4u8?si=x1eQENSmEMIMFaxh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
 
-    <!-- 별점 및 후기 -->
+    <!-- 별점 및 후기 -->            
     <div class="menu-title">평점/리뷰</div>
     <div class="grade-review">
         <div class="star-rating">
@@ -80,12 +80,17 @@
             <span class="star" data-value="5"><img src="<c:url value='/images/ksh/star.png' />"></span>
         </div>
         <div class="review-choice">별점을 선택해주세요</div>
-        <div id="review_div">
-            <form id="mr_form">
-                <input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
+		<div id="review_div">
+    <form id="mr_form">
+        <input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
+        <c:choose>
+            <c:when test="${empty user}">
+                <textarea rows="3" cols="50" name="mr_content" class="review-content" disabled>로그인해야 작성할 수 있습니다.</textarea>
+            </c:when>
+            <c:when test="${!empty user}">
                 <c:choose>
-                    <c:when test="${empty user}">
-                        <textarea rows="3" cols="50" name="mr_content" class="review-content" disabled>로그인해야 작성할 수 있습니다.</textarea>
+                    <c:when test="${!hasBooked}">
+                        <textarea rows="3" cols="50" name="mr_content" class="review-content" disabled>영화를 예매한 경우에만 댓글을 작성할 수 있습니다.</textarea>
                     </c:when>
                     <c:otherwise>
                         <textarea rows="3" cols="50" name="mr_content" class="review-content"></textarea>
@@ -99,8 +104,11 @@
                         </div>
                     </c:otherwise>
                 </c:choose>
-            </form>
-        </div>
+            </c:when>
+        </c:choose>
+    </form>
+</div>
+		
     </div>
     <div class="review-menu">
         <span id="recommendation">추천순</span>
@@ -117,5 +125,3 @@
 <div class="paging-button" style="display:none;">
     <input type="button" value="더보기">
 </div>
-
-<!-- 영화상세 끝 -->

@@ -149,20 +149,18 @@ public class MovieServiceImpl implements MovieService {
 		return null;
 	}
 
-	
-	 @Override public void insertMovieTime(MovieTimeVO movietime) {
-	  movietime.setM_code(movieMapper.selectM_code());
-	  movietime.setC_num(movieMapper.selectC_num());
-	 movieMapper.insertMovieTime(movietime);
-	 
-	 }
+	@Override
+	public void insertMovieTime(MovieTimeVO movietime) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	 @Override
 	    public boolean hasBookedMovie(Long mem_num, Long m_code) {
 	        Map<String, Object> map = new HashMap<>();
 	        map.put("mem_num", mem_num);
 	        map.put("m_code", m_code);
-	        return movieMapper.hasBookedMovie(map);
+	        return movieMapper.hasBookedMovie(map) > 0;
 	    }
 
 	    @Override
@@ -179,6 +177,16 @@ public class MovieServiceImpl implements MovieService {
 	        map.put("m_code", m_code);
 	        return movieMapper.getMovieReviews(map);
 	    }
+
+	    @Override
+	    public Long getBookingDetailNum(Long mem_num, Long m_code) {
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("mem_num", mem_num);
+	        map.put("m_code", m_code);
+	        return movieMapper.getBookingDetailNum(map);
+	    }
+
+
 
 
 
