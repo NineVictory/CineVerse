@@ -1,1 +1,37 @@
-@charset "UTF-8";
+.branch-title{
+	text-align: center;
+	font-weight: bold;
+	font-size: 50px;
+	margin-top: 70px;
+}
+
+.branch-info{
+	margin-left: 200px;
+}
+
+.info-box{
+	margin-top: 10px;
+	margin-left: 200px;
+	font-size: 20px;
+}
+
+
+.time-box{
+	margin-top: 20px;
+	margin-left: 200px;
+}
+
+.time-image{
+	width: 100%;
+	height: 200px;
+}
+
+.movie-image{
+	width: 100%;
+	height: 700px;
+}
+
+.admin-button{
+	margin-top: 20px;
+	margin-left: 200px;
+}

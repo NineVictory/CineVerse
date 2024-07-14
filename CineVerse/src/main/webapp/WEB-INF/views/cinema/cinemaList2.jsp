@@ -5,7 +5,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <div class="page-main">
 	<h2 class="all-theater">전체 극장</h2>			
-	<input type="button"  value="영화관 등록" onclick="location.href='cinemaWrite'">
+	<input type="button"  value="영화관 등록" class="cinema-write" onclick="location.href='cinemaWrite'">
 	<div class="theater-box">
 		<div class="theater-location">
 			<ul>
@@ -27,20 +27,46 @@
 				</c:if>
 				<c:if test="${count > 0}">
 					<c:forEach var="cinema" items="${list}">
-						<ul>
-							<li><a href="detail?c_num=${cinema.c_num}">${cinema.c_branch}</a></li>
+						<ul class="place-list">
+							<li class="branch-list"><a href="detail?c_num=${cinema.c_num}" class="button">${cinema.c_branch}</a></li>
 						</ul>
 					</c:forEach>
 				</c:if>	
 			</div>	
 	</div>
-<div>
-	<h2 class="theater-event">극장 이벤트</h2>
-</div>
 	
+<h2 class="theater-event">극장 이벤트</h2>
+<input type="button" class="btn_more" value="더보기" onclick="">
+<div id="main_content" class="event_list">	
+	<div class="event_wrap">
+		<div class="img_lst_wrap">
+			<div class="img_w_01"><a href="#" title="화면이동"><img
+					src="https://img.megabox.co.kr/SharedImg/event/2024/07/11/xokr1EWDMW4qyH5pL4kAvUlREdXO6FCY.jpg"
+					alt=""></a></div>
+			<div class="img_w_01"><a href="#" title="화면이동"><img
+					src="https://img.megabox.co.kr/SharedImg/event/2024/07/10/CIO1jnh3YEnAez1infc4tVEiP7Quzqa7.jpg"
+					alt=""></a></div>
+		</div>
+	</div>
+</div>	
 
-<div>
-	<h2 class="theater-pay">요금 안내</h2>
+
+<h2 class="theater-pay">요금 안내</h2>
+<div class="pay-box">
+	<div>2D</div>
+	<div class="twodpay">
+	<table>
+		<tr>
+			<th>요일</th><th>상영시간</th><th>일반</th><th>청소년</th>
+		</tr>
+		<tr>
+			<td>1</td><td>2</td><td>3</td><td>4</td>
+		</tr>
+		<tr>
+			<td>1</td><td>2</td><td>3</td><td>4</td>
+		</tr>
+	</table>
+	</div>
 </div>	
 </div>
 <!-- 영화관 목록 끝 -->

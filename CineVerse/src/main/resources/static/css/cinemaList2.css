@@ -11,12 +11,12 @@
 
 .theater-box {
     display: block;
-    width: 1000px;
+    width: 1100px;
     height: 250px;
     border: 4px solid #686571;
     border-radius: 10px;
     padding: 20px;
-    margin-left: 200px;  
+    margin-left: 160px;  
 }
 
 .theater-location{
@@ -52,6 +52,39 @@
 .theater-place{
 	margin-top: 20px;
 	font-size: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.result-display{
+	margin-top: 50px;
+	margin-left: 350px;
+}
+
+.place-list{
+	flex-direction: row; /* 가로 정렬 설정 */
+}
+
+.branch-list{
+	padding: 10px 20px 10px 20px;
+}
+
+.branch-list a.button:hover{
+	background-color: #696969; /* 호버 시 배경색 변경 */
+	padding: 5px 5px 5px 5px;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.cinema-write{
+	margin-left: 1200px;
+}
+
+
+/* 이벤트 배너 */
+.event_list {
+    width: 1022px;
+    padding: 5px;
 }
 
 .theater-event{
@@ -59,7 +92,34 @@
 	margin-left: 200px;
 }
 
+.event_wrap {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.img_lst_wrap {
+	margin-left: 160px;
+	display: flex; /* Flexbox를 사용하여 가로 정렬 */
+    flex-direction: row; /* 가로 정렬 설정 */
+    gap: 30px; /* 항목 사이의 간격 설정 */
+}
+
+.btn_more {
+	margin-left: 1200px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+
+
+/* 요금 안내 */
 .theater-pay{
-	margin-top: 70px;
+	margin-top: 40px;
+	margin-left: 200px;
+}
+
+.pay-box{
+	margin-top: 20px;
 	margin-left: 200px;
 }
