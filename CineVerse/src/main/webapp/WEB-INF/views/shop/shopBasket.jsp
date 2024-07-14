@@ -15,6 +15,7 @@
             <c:if test="${not empty list}">
             	<c:forEach var="product" items="${list}">
             		<c:if test="${product.pb_status==1}">
+						<input type="checkbox" class="product-select" checked data-pnum="${product.p_num}" data-pprice="${product.p_price}" data-pbquantity="${product.pb_quantity}" data-mnum="${product.mem_num}">
 						<div class="order-product">
 		                    <div class="order-header">
 		                        <hr size="4px" color="black" width="53%">
@@ -96,15 +97,14 @@
         <c:if test="${not empty list}">
         <div class="basket-price">
              <p>
-                 <span>상품 금액 ${total}원</span> 
+                 <span class="ptt">상품 금액 ${total}원</span> 
                  <span> + </span>
-                 <span> 배송비
+                 <span class="pdd"> 배송비
 					<c:if test="${total>=50000}">0</c:if>
-					<c:if test="${total<50000}">3000</c:if>
-					원
+					<c:if test="${total<50000}">3000</c:if>원
 				</span>
                  <span> + </span>
-                 <span><c:if test="${total>=50000}">${total}원</c:if>
+                 <span class="ttt"><c:if test="${total>=50000}">${total}원</c:if>
 					<c:if test="${total<50000}">${total+3000}원</c:if></span>
             </p>
       	</div>

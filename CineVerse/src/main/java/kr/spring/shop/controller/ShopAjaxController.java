@@ -267,5 +267,28 @@ public class ShopAjaxController {
 		return mapJson;
 	}
 
+	// 장바구니 체크 
+	@PostMapping("/shop/updateBasketNav")
+	@ResponseBody
+	public Map<String, Object> yesnoBasket(@RequestParam long p_price, @RequestParam long pb_quantity, @RequestParam long now_total, @RequestParam long now_pb_quantity, @RequestParam long mem_num, HttpSession session){
+		log.debug("<<장바구니 체크 - p_price>> ::: " + p_price);
+		log.debug("<<장바구니 체크 - pb_quantiy>> ::: " + pb_quantity);
+		log.debug("<<장바구니 체크 - now_pb_quantiy>> ::: " + now_pb_quantity);
+		log.debug("<<장바구니 체크 - now_total>> ::: " + now_total);
+		
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		
+		if (user == null) { // 로그아웃 상태
+			mapJson.put("result", "logout");
+		} else if(user.getMem_num()!=mem_num) {
+			mapJson.put("result", "wrongAccess");
+		} else {
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
+	
+	// 장바구니 체크 해제
 
 }

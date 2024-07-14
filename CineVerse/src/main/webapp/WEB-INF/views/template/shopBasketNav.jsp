@@ -12,14 +12,14 @@
 		</div>
 		<div class="price-detail">
 			<div class="total_count">
-				<span>총 수량</span><span>${count}개</span>
+				<span>총 수량</span><span class="cc">${count}개</span>
 			</div>
 			<div class="total_price">
-				<span>총 상품 금액</span><span>${total}원</span>
+				<span>총 상품 금액</span><span class="tt">${total}원</span>
 			</div>
 			<div class="deliveryfee">
 				<span>배송비</span>
-				<span>
+				<span class="dd">
 					<c:if test="${total>=50000}">
 						0
 					</c:if>
@@ -35,7 +35,7 @@
 			<hr size="3px" color="black" width="88%">
 		</div>
 		<div class="price-result">
-			<span>
+			<span class="ttt">
 				<c:if test="${total>=50000}">
 						${total}원
 					</c:if>
