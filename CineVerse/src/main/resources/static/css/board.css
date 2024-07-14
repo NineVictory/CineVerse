@@ -46,9 +46,16 @@
     padding:3px 8px;
     cursor:pointer;
 }
-.write-btn:hover, .default-btn:hover, .default-btn1:hover, .default-btn2:hover, .chatBtn:hover{
-	box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+
+.my-photo{
+	object-fit:cover;
+	/*정사각형이 아니라 직사각형일 경우 원 안에 보여지게 할 중심 이미지의 위치를 지정*/
+	object-position:top;
+	border-radius:50%;
 }
+/* .write-btn:hover, .default-btn:hover, .default-btn1:hover, .default-btn2:hover, .chatBtn:hover{
+	box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+} */
 .default-btn{
 	border:none;
 	border-radius:5px;
@@ -56,6 +63,7 @@
 	height:28px;
     background-color:#3F66ED;
     color:#fff;
+    cursor:pointer;
 }
 .default-btn1{/*버튼 복수개일때 우측 여백*/
 	border:none;
@@ -64,6 +72,7 @@
 	height:28px;
     background-color:#3F66ED;
     color:#fff;
+    cursor:pointer;
     
     margin-right:10px;
 }
@@ -74,6 +83,7 @@
 	height:28px;
     background-color:#fff;
     color:#000;
+    cursor:pointer;
 }
 
 .default-btn3{
@@ -84,6 +94,7 @@
     background-color:#3F66ED;
     color:#fff;
     font-size:16px;
+    cursor:pointer;
     
     margin-right:10px;
 }
@@ -95,6 +106,7 @@
     background-color:#fff;
     color:#000;
     font-size:16px;
+    cursor:pointer;
 }
 .board-table{
 	width:100%;
@@ -380,6 +392,9 @@ ul.btn-hide li a:hover {
     width: 100%;
     max-width: 100%;
 }
+img#output_fav{
+	cursor:pointer;
+}
 
 /*커뮤니티 글상세 댓글*/
 #output{
@@ -404,6 +419,7 @@ ul.btn-hide li a:hover {
 	color:#666666;
 	padding:3px 7px;
 	margin-top:5px;
+	cursor:pointer;
 }
 .comment-container{
 	margin:20px 0;
@@ -423,9 +439,86 @@ ul.btn-hide li a:hover {
 	right:0;
 	top:-10px;
 }
-.btn-hide.show {
+.cc-btn-hide.show {
     display: block;
 }
+ul.cc-btn-hide {
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    z-index: 995;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    padding: 0;
+    margin: 0;
+    display: none;
+    width:70px;
+}
+ul.cc-btn-hide li {
+    padding: 5px 10px;
+    text-align:right;
+}
+
+ul.cc-btn-hide li a:hover {
+    color: #ccc;
+}
+.cc-like-btn{
+	background:#fff;
+	border:1px solid #c7c7c7;
+	font-size:13px;
+	color:#666666;
+	padding:3px 7px 2px 7px;
+	cursor:pointer;
+}
+
+.text-con{
+	text-align:center;
+}
+textarea.mcc-content {
+    resize: none;
+    overflow-y: auto;
+    width:94%;
+    height:100px;
+    margin-top:10px;
+   
+}
+.mcc-container{
+	margin:20px 0;
+}
+.mcc-btn{
+	margin:5px 3% 10px 0;
+	text-align:right;
+}
+.mcc-submit{
+	border:none;
+	border-radius:5px;
+	width:55px;
+	height:28px;
+    background-color:#3F66ED;
+    color:#fff;
+    cursor:pointer;
+    margin:5px;
+}
+.cc-reset{
+	border:1px solid #3F66ED;
+	border-radius:5px;
+	width:55px;
+	height:28px;
+    background-color:#fff;
+    color:#000;
+    cursor:pointer;
+}
+/*커뮤니티 답글*/
+.clicked-resp-btn{
+	background:#e0e0e0;
+}
+.response-container{
+	background:#f7f7f7;
+	padding:5%;
+	margin-top:10px;
+}
+
 
 
 
@@ -560,6 +653,9 @@ ul.status-df li.font14 label{
 	display:flex;
     align-items: center;
 }
+.p-start{
+	align-items: flex-start
+}
 
 .border-bottom{
 	border-bottom: 1px solid rgb(246, 246, 246);
@@ -651,6 +747,9 @@ input[type="number"]::-webkit-inner-spin-button {
 .item-price input[type="number"]{
 	width:300px;
 	height:40px;
+}
+.price-container{
+	width:300px;
 }
 .won{
     position: absolute;

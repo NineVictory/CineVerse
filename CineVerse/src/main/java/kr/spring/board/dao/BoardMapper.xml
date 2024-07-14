@@ -89,15 +89,77 @@
 	
 	<!-- 댓글 목록 -->
 	<select id="selectListComment" parameterType="map" resultType="boardCommentVO">
-		SELECT * FROM (SELECT a.*, rownum rnum FROM 
-										(SELECT * FROM community_comment JOIN member USING(mem_num) 
-											<!-- 로그인 한 상태에서 클릭한 사람의 정보 읽기, 로그인하지 않으면 0 전달 -->
-											LEFT OUTER JOIN (SELECT cc_num, mem_num click_num FROM community_comment_fav WHERE mem_num=#{mem_num}) USING (cc_num)
-											LEFT OUTER JOIN (SELECT cc_num, COUNT(*) refav_cnt FROM community_comment_fav GROUP BY cc_num) USING (cc_num)
-											WHERE cb_num=#{cb_num} ORDER BY cc_num ASC)a)
-		<![CDATA[
-		WHERE rnum >= #{start} AND rnum <= #{end}]]>
-	</select>		<!--map 키 -->
+         SELECT * FROM (SELECT a.*, rownum rnum FROM 
+							(SELECT cc_num,
+									<![CDATA[
+									REPLACE(REPLACE(cc_content,'<','&lt;'),'>','&gt;') cc_content,
+									]]> 
+									cc_reg_date, 
+									cc_modify_date, 
+									cb_num,
+									mem_num,
+									mem_id,
+									mem_nickname,
+									click_num,
+									refav_cnt,
+									resp_cnt
+							FROM community_comment JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num)
+        				 	LEFT OUTER JOIN (SELECT cc_num, mem_num click_num FROM community_comment_fav WHERE mem_num=#{mem_num}) USING(cc_num)
+        					LEFT OUTER JOIN (SELECT cc_num, COUNT(*) refav_cnt FROM community_comment_fav GROUP BY cc_num) USING(cc_num)
+         					LEFT OUTER JOIN (SELECT cc_num, COUNT(*) resp_cnt FROM community_response GROUP BY cc_num) USING(cc_num)
+        					WHERE cb_num=#{cb_num} ORDER BY cc_num DESC)a)
+      <![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>
+	</select>
+	
+	<!-- 답글 등록 -->
+ 	<insert id="insertResponse" parameterType="boardResponseVO">
+ 		INSERT INTO community_response(
+ 			te_num,
+ 			te_content,
+ 			te_parent_num,
+ 			te_depth,
+ 			te_ip,
+ 			cc_num,
+ 			mem_num)
+ 		VALUES (
+ 		    community_response_seq.nextval,
+ 			#{te_content},
+ 			#{te_parent_num},
+ 			#{te_depth},
+ 			#{te_ip},
+ 			#{cc_num},
+ 			#{mem_num})	
+ 	</insert>
+ 	
+ 	<!-- 답글 목록 -->
+ 	<select id="selectListResponse" parameterType="long" resultType="boardResponseVO">
+ 		
+	SELECT
+ 			r.te_num,
+ 			r.te_content,
+ 			r.mem_num,
+ 			a.mem_id,
+ 			d.mem_nickname,
+ 			r.te_date,
+ 			r.te_mdate,
+ 			r.te_ip,
+ 			r.cc_num,
+ 			r.te_depth,
+ 			r.te_parent_num,
+ 			m.mem_id parent_id,
+ 			p.mem_nickname pnick_name,
+ 			z.click_num,
+ 			x.respfav_cnt
+ 		FROM community_response r JOIN member a ON r.mem_num=a.mem_num
+        LEFT OUTER JOIN member_detail d ON a.mem_num=d.mem_num
+        	LEFT OUTER JOIN (SELECT te_num, mem_num click_num FROM community_response_fav WHERE mem_num=#{mem_num})z ON z.te_num=r.te_num
+        	LEFT OUTER JOIN (SELECT te_num, COUNT(*) respfav_cnt FROM community_response_fav GROUP BY te_num)x ON x.te_num=r.te_num
+ 		LEFT OUTER JOIN community_response s ON r.te_parent_num=s.te_num
+ 		LEFT OUTER JOIN member m ON s.mem_num=m.mem_num
+        LEFT OUTER JOIN member_detail p ON s.mem_num=p.mem_num
+ 		WHERE r.cc_num=#{cc_num}
+ 		START WITH r.te_depth=0 CONNECT BY PRIOR r.te_num=r.te_parent_num ORDER SIBLINGS BY r.te_num DESC
+ 	</select> 
 </mapper>							
 
 

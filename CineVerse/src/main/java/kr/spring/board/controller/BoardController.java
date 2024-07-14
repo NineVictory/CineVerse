@@ -74,7 +74,7 @@ public class BoardController {
 		model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
 		model.addAttribute("url", request.getContextPath() + "/board/list");
 		return "common/resultAlert";
-		}
+	}
 	
 	
 	/*====================

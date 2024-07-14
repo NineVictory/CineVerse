@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.spring.board.dao.BoardMapper;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 
@@ -53,12 +54,13 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteBoard(Long cb_num) {
 		//답글 삭제
+		//boardMepper.deleteResponseByBoardNum(cb_num);
 		//댓글 좋아요 삭제
-		//boardMapper.deleteReFavByBoardNum(cb_num);
+		boardMapper.deleteReFavByBoardNum(cb_num);
 		//댓글 삭제
-		//boardMapper.deleteReplyByBoardNum(cb_num);
+		boardMapper.deleteCommentByBoardNum(cb_num);
 		//부모글 좋아요 삭제
-		//boardMapper.deleteFavByBoardNum(cb_num);
+		boardMapper.deleteFavByBoardNum(cb_num);
 		//부모글 삭제
 		boardMapper.deleteBoard(cb_num);
 	}
@@ -117,6 +119,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteComment(Long cc_num) {
 		//답글
+		//boardMapper.deleteResponseByReNum(cc_num);
 		//댓글 좋아요
 		boardMapper.deleteReFavByReNum(cc_num);
 		boardMapper.deleteComment(cc_num);
@@ -143,13 +146,33 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void deleteReFavByReNum(Long cc_num) {
-		
+	public List<BoardResponseVO> selectListResponse(Long cc_num) {
+		return boardMapper.selectListResponse(cc_num);
 	}
 
 	@Override
-	public void deleteReFavByBoardNum(Long cb_num) {
-		// TODO Auto-generated method stub
-		
+	public BoardResponseVO selectResponse(Long te_num) {
+		return boardMapper.selectResponse(te_num);
 	}
+
+	@Override
+	public void insertResponse(BoardResponseVO boardResponse) {
+		boardMapper.insertResponse(boardResponse);
+	}
+
+	@Override
+	public void updateResponse(BoardResponseVO boardResponse) {
+		boardMapper.updateResponse(boardResponse);
+	}
+
+	@Override
+	public void deleteResponse(Long te_num) {
+		boardMapper.deleteResponse(te_num);
+	}
+
+	@Override
+	public Integer selectResponseCount(Long cc_num) {
+		return boardMapper.selectResponseCount(cc_num);
+	}
+
 }

@@ -85,14 +85,14 @@
 		</div>
 		
 		<div class="flexbox-h side">
-			<span class="ml10">댓글(<span id="output_rcount">0</span>)</span>
+			<span class="ml10">댓글(<span class="output-rcount">0</span>)</span>
 			<div class="likes">
 				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
 				<span>${board.cb_hit}</span>
 				
 				<%-- 댓글수 --%>
 				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-				<span id="output_rcount">0</span>
+				<span class="output-rcount">0</span>
 				
 				<%-- 좋아요 --%>
 					<img id="output_fav" data-num="${board.cb_num}" src="${pageContext.request.contextPath}/images/kbm/heart01.png">
@@ -124,9 +124,6 @@
 										<c:if test="${!empty user}">placeholder="내용을 입력해주세요."</c:if>
 									><c:if test="${empty user}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 							<c:if test="${!empty user}">
-							<!-- <div id="re_first">
-								<span class="letter-count">300/300</span>
-							</div> -->
 								<input type="submit" class="default-btn ml10" value="등록">
 							</c:if>
 						</div>

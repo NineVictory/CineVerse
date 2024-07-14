@@ -18,10 +18,12 @@ import kr.spring.board.service.BoardService;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.board.vo.BoardResponseVO;
 //import kr.spring.board.vo.BoardReplyVO;
 //import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.myPage.service.MyPageService;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +34,9 @@ public class BoardAjaxController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private MyPageService myPageService;
 	
 	/*===================
 	 * 부모글 좋아요
@@ -190,27 +195,27 @@ public class BoardAjaxController {
 	/*===================
 	 * 댓글 수정
 	 *===================*/
-	/*@PostMapping("/board/updateComment")
+	@PostMapping("/board/updateComment")
 	@ResponseBody
-	public Map<String,String> modifyReply(BoardReplyVO boardReplyVO, HttpSession session, HttpServletRequest request){
-		log.debug("<<댓글 수정>> : " + boardReplyVO);
+	public Map<String,String> modifyComment(BoardCommentVO boardCommentVO, HttpSession session, HttpServletRequest request){
+		log.debug("<<댓글 수정>> : " + boardCommentVO);
 		
 		Map<String,String> mapJson = new HashMap<String,String>();
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
-		BoardReplyVO db_reply = boardService.selectReply(boardReplyVO.getcc_num());
+		BoardCommentVO db_comment = boardService.selectComment(boardCommentVO.getCc_num());
 		
 		if(user == null) {
 			//로그인이 되지 않은 경우
 			mapJson.put("result", "logout");
-		}else if(user != null && user.getMem_num() == db_reply.getMem_num()) {
+		}else if(user != null && user.getMem_num() == db_comment.getMem_num()) {
 			//로그인 회원번호와 작성자 회원번호 일치
 			
 			//ip 저장
-			boardReplyVO.setRe_ip(request.getRemoteAddr());
+			boardCommentVO.setCc_ip(request.getRemoteAddr());
 			//댓글 수정
-			boardService.updateReply(boardReplyVO);
+			boardService.updateComment(boardCommentVO);
 			mapJson.put("result", "success");
 		}else {
 			//로그인 회원번호와 작성자 회원번호 불일치
@@ -218,38 +223,38 @@ public class BoardAjaxController {
 		}
 		
 		return mapJson;
-	}*/
+	}
 	
 	/*===================
 	 * 댓글 삭제
 	 *===================*/
-	/*@PostMapping("/board/deleteComment")
+	@PostMapping("/board/deleteComment")
 	@ResponseBody
-	public Map<String,String> deleteReply(long cc_num, HttpSession session){
+	public Map<String,String> deleteComment(long cc_num, HttpSession session){
 		log.debug("<<댓글 삭제 - cc_num>> : " + cc_num);
 		
 		Map<String,String> mapJson = new HashMap<String,String>();
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		BoardReplyVO db_reply = boardService.selectReply(cc_num);
+		BoardCommentVO db_comment = boardService.selectComment(cc_num);
 		if(user == null) {
 			//로그인이 되지 않은 경우
 			mapJson.put("result", "logout");
-		}else if(user != null && user.getMem_num() == db_reply.getMem_num()) {
+		}else if(user != null && user.getMem_num() == db_comment.getMem_num()) {
 			//로그인한 회원번호와 작성자 회원번호 일치
-			boardService.deleteReply(cc_num);
+			boardService.deleteComment(cc_num);
 			mapJson.put("result", "success");
 		}else {
 			//로그인한 회원번호와 작성자 회원번호 불일치
 			mapJson.put("result", "wrongAccess");
 		}
 		return mapJson;
-	}*/
+	}
 	
 	/*===================
 	 * 댓글 좋아요 읽기
 	 *===================*/
-	/*@GetMapping("/board/getReFav")
+	@GetMapping("/board/getReFav")
 	@ResponseBody
 	public Map<String,Object> getReFav(BoardReFavVO fav, HttpSession session){
 		log.debug("<<댓글 좋아요>> : " + fav);
@@ -270,14 +275,14 @@ public class BoardAjaxController {
 				mapJson.put("result", "noFav");
 			}
 		}
-		mapJson.put("count", boardService.selectReFavCount(fav.getcc_num()));
+		mapJson.put("count", boardService.selectReFavCount(fav.getCc_num()));
 		return mapJson;
-	}*/
+	}
 	
 	/*===================
 	 * 댓글 좋아요 등록/삭제	- 토글
 	 *===================*/
-	/*@PostMapping("/board/writeReFav")
+	@PostMapping("/board/writeReFav")
 	@ResponseBody
 	public Map<String,Object> writeReFav(BoardReFavVO fav, HttpSession session){
 		log.debug("<<댓글 좋아요 등록/삭제>> : " + fav);
@@ -297,15 +302,44 @@ public class BoardAjaxController {
 				mapJson.put("status", "yesFav");
 			}
 			mapJson.put("result", "success");
-					mapJson.put("count", boardService.selectReFavCount(fav.getcc_num()));
+					mapJson.put("count", boardService.selectReFavCount(fav.getCc_num()));
 		}
 		return mapJson;
-	}*/
+	}
+	/*====================
+	 * 답글 클릭시 로그인 확인
+	 =====================*/
+	@GetMapping("/board/responseLoginCheck")
+	@ResponseBody
+	public Map<String,Object> getListResp(HttpSession session){
+		log.debug("<<답글 클릭 로그인 확인>> : ");
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		if(user == null) {
+			mapJson.put("result","logout");
+		}else {
+			user.setMem_nickname(myPageService.selectMember(user.getMem_num()).getMem_nickName());
+			String name = "";
+			if(user.getMem_nickname() != null) {
+				name = user.getMem_nickname();
+			}else {
+				name = user.getMem_id();
+			}
+			
+			mapJson.put("result", "login");
+			mapJson.put("user_num", user.getMem_num());
+			mapJson.put("name", name);
+			
+		}
+		return mapJson;
+	}
+	
 	
 	/*====================
 	 * 답글 등록
 	 =====================*/
-	/*@PostMapping("/board/writeResponse")
+	@PostMapping("/board/writeResponse")
 	@ResponseBody
 	public Map<String,String> writeResponse(BoardResponseVO boardResponseVO, HttpSession session, HttpServletRequest request){
 		log.debug("<<답글 등록>> : " + boardResponseVO);
@@ -326,12 +360,12 @@ public class BoardAjaxController {
 		}
 		
 		return mapJson;
-	}*/
+	}
 	
 	/*====================
 	 * 답글 목록
 	 =====================*/
-	/*@GetMapping("/board/getListResp")
+	@GetMapping("/board/getListResp")
 	@ResponseBody
 	public Map<String,Object> getListResp(long cc_num, HttpSession session){
 		log.debug("<<답글 목록 - cc_num>> : " + cc_num);
@@ -341,11 +375,12 @@ public class BoardAjaxController {
 		
 		Map<String,Object> mapJson = new HashMap<String,Object>();
 		mapJson.put("list", list);
+		
 		if(user != null) {
 			mapJson.put("user_num", user.getMem_num());
 		}
 		return mapJson;
-	}*/
+	}
 	
 	/*====================
 	 * 답글 수정

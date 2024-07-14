@@ -3,8 +3,13 @@ package kr.spring.board.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 
@@ -38,6 +43,16 @@ public interface BoardService {
 	public Integer selectReFavCount(Long cc_num);
 	public void insertReFav(BoardReFavVO fav);
 	public void deleteReFav(BoardReFavVO fav);
-	public void deleteReFavByReNum(Long cc_num);
-	public void deleteReFavByBoardNum(Long cb_num);
+
+	//답글
+	public List<BoardResponseVO> selectListResponse(Long re_num);
+	public BoardResponseVO selectResponse(Long te_num);
+	public void insertResponse(BoardResponseVO boardResponse);
+	public void updateResponse(BoardResponseVO boardResponse);
+	public void deleteResponse(Long te_num);
+	//답글의 개수 구하기
+	public Integer selectResponseCount(Long cc_num);
+
+
+
 }

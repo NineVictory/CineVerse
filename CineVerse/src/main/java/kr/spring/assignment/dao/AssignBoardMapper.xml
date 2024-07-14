@@ -2,10 +2,10 @@
 <!DOCTYPE mapper   
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="kr.spring.assignment.dao.AssignBoardMapper"><!--인터페이스명-자동매핑-->
+<mapper namespace="kr.spring.assignment.dao.AssignBoardMapper">
 	<insert id="ab_insertBoard" parameterType="assignVO">
-		INSERT INTO assignment_board (ab_num,ab_title,ab_content,ab_price,ab_filename,ab_ip,mem_num) 
-				VALUES (assignment_board_seq.nextval,#{ab_title},#{ab_content},#{ab_price},#{ab_filename,jdbcType=VARCHAR},#{ab_ip},#{mem_num})
+		INSERT INTO assignment_board (ab_num,ab_title,ab_content,ab_type,ab_price,ab_filename,ab_ip,mem_num) 
+				VALUES (assignment_board_seq.nextval,#{ab_title},#{ab_content},#{#ab_type},#{ab_price},#{ab_filename,jdbcType=VARCHAR},#{ab_ip},#{mem_num})
 	</insert>
 	
 	<!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->	<!--sub_sql처럼-->
@@ -24,34 +24,34 @@
 	</select>
 
 	<!-- 게시판 전체 목록/검색 목록 -->
-	<!-- <select id="ab_selectList" parameterType="map" resultType="assignVO">
+	<select id="ab_selectList" parameterType="map" resultType="assignVO">
 		SELECT * FROM
-				(SELECT a.*, rownum rnum FROM			좋아요가 없을 때 누락
+				(SELECT a.*, rownum rnum FROM
 								(SELECT 
-									board_num,
+									ab_num,
 									<![CDATA[
-									REPLACE(REPLACE(title,'<','&lt;'),'>','&gt;') title,
+									REPLACE(REPLACE(ab_title,'<','&lt;'),'>','&gt;') ab_title,
 									]]>
-									hit,
-									filename,
-									reg_date,
+									ab_hit,
+									ab_filename,
+									ab_reg_date,
 									mem_num,
-									id,
-									nick_name,
-									re_cnt,
-									fav_cnt
+									mem_id,
+									mem_nickname,
+									ac_cnt,
+									bookmark_cnt
 								
-									FROM spboard 
-									LEFT OUTER JOIN (SELECT COUNT(*) re_cnt, board_num FROM spboard_reply GROUP BY board_num) USING(board_num)
-									LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, board_num FROM spboard_fav GROUP BY board_num) USING(board_num)
-												JOIN spmember USING(mem_num)
-												<include refid="boardSearch"></include>
-												<include refid="boardOrder"></include>
+									FROM assignment_board 
+									LEFT OUTER JOIN (SELECT COUNT(*) ac_cnt, ab_num FROM ab_comment GROUP BY ab_num) USING(ab_num)
+									LEFT OUTER JOIN (SELECT COUNT(*) bookmark_cnt, ab_num FROM ab_bookmark GROUP BY ab_num) USING(ab_num)
+												JOIN member USING(mem_num)
+												LEFT OUTER JOIN member_detail USING(mem_num)
+												<include refid="ab_boardSearch"></include>
 												)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]> 
-	</select>-->
+	</select>
 	
 	<!-- 게시판 글 수정 -->
 	<!-- <update id="updateBoard" parameterType="boardVO">
