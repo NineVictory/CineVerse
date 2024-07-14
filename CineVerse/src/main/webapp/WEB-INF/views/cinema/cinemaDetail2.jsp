@@ -10,13 +10,24 @@
 		<!-- 극장 정보 -->
 		<h2 class="branch-info">극장 정보</h2>
 		<div class="info-box">	
-		<div class="branch-address">위치 : <b>${cinema.c_address}</b></div>
+		<div class="branch-address">위치 : <b>${cinema.c_address}</b></div>					
+           <div class="branch-phone">문의전화 : <b>${cinema.c_phone}</b></div>
+           <div class="branch-theater">상영관수 : <b>${cinema.c_theater}관, ${cinema.c_seat}석</b></div>
+           <c:if test="${cinema.c_parkable == 0}">
+           <div class="branch-parkable">주차정보 : <b>불가능</b></div>
+		</c:if>
+		<c:if test="${cinema.c_parkable == 1}">
+           <div class="branch-parkable">주차정보 : <b>가능</b></div>
+		</c:if>
+		</div>
 		
+		<!-- 위치 상세 보기 -->
+		<h2 class="branch-position">극장 위치 상세 보기</h2>
 		<div class="location-button"> 
     <div id="branch-list">
         <!-- 지점명 목록이 동적으로 여기에 추가됩니다 -->
     </div>
-    <div class="location-button-list" id="modal_open_btn">위치/지도보기</div>
+    <div class="location-button-list" id="modal_open_btn">위치/지도보기(클릭하면 지도를 보실 수 있습니다.)</div>
 </div>
 <div id="modal" style="display: none;">
     <div class="modal_content">
@@ -85,7 +96,7 @@
 
                 // 인포윈도우로 장소에 대한 설명을 표시합니다
                 var infowindow = new kakao.maps.InfoWindow({
-                    content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+                    content: '<div style="width:150px;text-align:center;padding:6px 0;">영화관 위치</div>'
                 });
                 infowindow.open(map, marker);
 
@@ -100,16 +111,8 @@
         document.getElementById("modal").style.display = "none";
     }
 </script>
-				
-           <div class="branch-phone">문의전화 : <b>${cinema.c_phone}</b></div>
-           <div class="branch-theater">상영관수 : <b>${cinema.c_theater}관, ${cinema.c_seat}석</b></div>
-           <c:if test="${cinema.c_parkable == 0}">
-           <div class="branch-parkable">주차정보 : <b>불가능</b></div>
-		</c:if>
-		<c:if test="${cinema.c_parkable == 1}">
-           <div class="branch-parkable">주차정보 : <b>가능</b></div>
-		</c:if>
-		</div>
+		
+		
 		
 		<!-- 상영 시간표 -->
 		<div class="time-box">

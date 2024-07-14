@@ -36,7 +36,7 @@
 	</div>
 	
 <h2 class="theater-event">극장 이벤트</h2>
-<input type="button" class="btn_more" value="더보기" onclick="">
+<input type="button" class="btn_more" value="더보기" onclick="location.href='${pageContext.request.contextPath}/event/event'">
 <div id="main_content" class="event_list">	
 	<div class="event_wrap">
 		<div class="img_lst_wrap">
@@ -52,7 +52,9 @@
 
 
 <h2 class="theater-pay">요금 안내</h2>
-<div class="pay-box">
+			<img class="pay-image" src="${pageContext.request.contextPath}/images/hjt/pay.png" alt="">
+			<img class="payment-image" src="${pageContext.request.contextPath}/images/hjt/pay2.png" alt="">
+<!-- <div class="pay-box">
 	<div>2D</div>
 	<div class="twodpay">
 	<table>
@@ -67,7 +69,7 @@
 		</tr>
 	</table>
 	</div>
-</div>	
+</div>	 -->
 </div>
 <!-- 영화관 목록 끝 -->
 
