@@ -705,7 +705,25 @@
 	background-color: #fff;
 	border: 1px solid #eaeaea;
 }
-
+.login_form_inputs_id_zipcode {
+    height: 50px;
+    width:280px;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    border-radius: 6px;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+}
+.zipcode-btn{
+	margin:70px;
+    border-radius: 7px;
+    color: #fff;
+    background-color: #666;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+}
 .input_style {
 	font-size: 14px;
 	line-height: 22.4px;
@@ -743,6 +761,90 @@
 #member_modify .error-color {
 	font-size: 12px;
 	color: red;
+}
+
+/* address */
+.login_form_inputs_my {
+	margin: 38px 0 46px;
+}
+
+#member_modify_my {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login_form_all_my {
+	width: 380px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.login_form_inputs_id_passwd_my {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	border-radius: 6px;
+	background-color: #fff;
+	border: 1px solid #eaeaea;
+}
+
+.login_form_inputs_id_zipcode_my {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.input_zipcode_my {
+    height: 50px;
+    width: 260px;
+    border-radius: 6px;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    padding-left: 20px;
+}
+
+.zipcode-btn_my {
+    height: 50px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #666;
+    border: none;
+    cursor: pointer;
+    padding: 0 20px;
+}
+
+.modify_btn_all_my {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.user_modify_btn_my {
+	background-color: #666;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+.input_zipcode {
+    font-size: 14px;
+    line-height: 22.4px;
+    font-weight: 400;
+    word-break: keep-all;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding-left:20px;
+    color: #000;
+    border: none;
+    outline: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* =======================
@@ -1179,7 +1281,7 @@
 	background-color: #F7F7F7;
     border-radius: 12px;
     padding: 20px 30px;
-    gap: 430px;
+    /* gap: 430px; */
     flex-grow: 1;
     align-items: stretch;
     text-align: left;
@@ -1187,9 +1289,12 @@
 .my_address_1,.my_address_2,.my_address_number{
 	font-size: 15px;
 	font-weight: 600;
-	 margin-bottom: 4px;
+	margin-bottom: 4px;
 }
 .my_address_btn{
+	margin-left: auto;
+}
+.add_btn{
 	margin-left: auto;
 }
 .add_del_btn,.add_modi_btn{

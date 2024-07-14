@@ -30,7 +30,7 @@ public class MyPageController2 {
 	@Autowired
 	public MyPageService2 mypageService2;
 	
-	//회원 정보 - 배송지 관리
+	// 회원 정보 - 배송지 관리
 	@GetMapping("/myPage/addressList")
 	public String myPageAddressList(MyPageVO myPageVO, HttpSession session, Model model) {
 	    log.debug("<<배송지 관리>> ::: 진입 성공");
@@ -46,28 +46,33 @@ public class MyPageController2 {
 	    model.addAttribute("address", new AddressVO()); // 폼에 사용될 객체 추가
 	    return "addressList";
 	}
-	
-	
-	
+
 	// 배송지 추가
-	@PostMapping("/myPage/addAddress")
-	public String addAddress(@Valid AddressVO address, BindingResult result, HttpServletRequest request, HttpSession session, Model model)throws IllegalStateException,IOException {
-		log.debug("<<배송지 추가>> ::: " + address);
-		
-		//유효성 체크 결과 오류가 있으면 폼 호출
-		if(result.hasErrors()) {
-			return "addressList";
-		}
-		
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		
-		address.setMem_num(user.getMem_num());
-		
-		mypageService2.addAddress(address);
-		
-		model.addAttribute("message", "성공적으로 배송지가 추가되었습니다.");
-		model.addAttribute("url", request.getContextPath() + "/myPage/addressList");
-		return "common/resultAlert";
+	@PostMapping("/myPage/addressList")
+	public String addAddress(@Valid AddressVO address, BindingResult result, HttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException {
+	    log.debug("<<배송지 추가>> ::: " + address);
+
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+
+	    // 유효성 체크 결과 오류가 있으면 폼 호출
+	    if (result.hasErrors()) {
+	        MyPageVO member = mypageService.selectMember(user.getMem_num());
+	        Integer count = mypageService2.countAddress(user.getMem_num());
+	        List<AddressVO> addressList = mypageService2.addressList(user.getMem_num());
+
+	        model.addAttribute("member", member);
+	        model.addAttribute("count", count);
+	        model.addAttribute("addressList", addressList);
+	        model.addAttribute("address", address); // 오류가 발생한 객체 다시 모델에 추가
+	        return "addressList";
+	    }
+
+	    address.setMem_num(user.getMem_num());
+	    mypageService2.addAddress(address);
+
+	    model.addAttribute("message", "성공적으로 배송지가 추가되었습니다.");
+	    model.addAttribute("url", request.getContextPath() + "/myPage/addressList");
+	    return "common/resultAlert";
 	}
 	
 

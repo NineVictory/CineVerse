@@ -7,95 +7,109 @@
 	<div class="reservation_display">
 		<span class="myPage_title_re">배송지 관리</span>
 	</div>
-	<form:form action="addAddress" id="member_modify" modelAttribute="address" method="post">
-		<div class="login_form_inputs">
-			<div class="login_form_all">
-				<div class="login_form_inputs_id_passwd" style="border: none; margin-left: 10px;">
+	<form:form action="${pageContext.request.contextPath}/myPage/addressList" id="member_modify_my"
+		modelAttribute="address" method="post">
+		<div class="login_form_inputs_my">
+			<div class="login_form_all_my">
+				<div class="login_form_inputs_id_passwd_my"
+					style="border: none; margin-left: 10px;">
 					<input type="radio" id="a_default" name="a_default" value="1">기본
 					<input type="radio" id="a_default" name="a_default" value="2">기본 X
 				</div>
 			</div>
-			<div class="login_form_all">
-				<div class="login_form_inputs_id_passwd">
+			<div class="login_form_all_my">
+				<div class="login_form_inputs_id_passwd_my">
 					<form:input path="a_name" placeholder="배송지 이름을 입력해주세요"
 						class="input_style" autocomplete="off" />
 				</div>
 				<form:errors element="div" path="a_name" cssClass="error-color" />
 			</div>
-			<div class="login_form_all">
-				<div class="login_form_inputs_id_passwd">
-					<form:input path="a_zipcode" placeholder="우편번호를 입력해주세요" class="input_style" autocomplete="off"/>
-					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="default-btn">
+			<div class="login_form_all_my">
+				<div class="login_form_inputs_id_zipcode_my">
+					<form:input path="a_zipcode" id="zipcode" placeholder="우편번호를 입력해주세요"
+						class="input_zipcode_my" autocomplete="off" />
 					<form:errors path="a_zipcode" cssClass="error-color" />
+					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"
+						class="zipcode-btn_my">
 				</div>
 			</div>
-			<div class="login_form_all">
-				<div class="login_form_inputs_id_passwd">
-					<form:input path="a_address1" placeholder="주소를 입력해주세요"
+			<div class="login_form_all_my">
+				<div class="login_form_inputs_id_passwd_my">
+					<form:input path="a_address1" id="address1" placeholder="주소를 입력해주세요"
 						class="input_style" autocomplete="off" />
 					<form:errors path="a_address1" cssClass="error-color" />
 				</div>
 			</div>
-			<div class="login_form_all">
-				<div class="login_form_inputs_id_passwd">
-					<form:input path="a_address2" placeholder="상세 주소를 입력해주세요"
+			<div class="login_form_all_my">
+				<div class="login_form_inputs_id_passwd_my">
+					<form:input path="a_address2" id="address2" placeholder="상세 주소를 입력해주세요"
 						class="input_style" autocomplete="off" />
 					<form:errors path="a_address2" cssClass="error-color" />
 				</div>
 			</div>
-			<div class="login_form_all">
-				<div class="login_form_inputs_id_passwd">
+			<div class="login_form_all_my">
+				<div class="login_form_inputs_id_passwd_my">
 					<form:input path="a_phone" placeholder="전화번호를 입력해주세요"
 						class="input_style" />
 				</div>
 				<form:errors element="div" path="a_phone" cssClass="error-color" />
 			</div>
-			<div class="modify_btn_all">
+			<div class="modify_btn_all_my">
 				<input type="submit" value="배송지 추가" class="user_modify_btn">
 			</div>
 		</div>
 	</form:form>
+
 	<div class="myPage_address">
-    <c:if test="${count==0}">
+		<c:if test="${count == 0}">
         등록된 주소가 없습니다.
     </c:if>
-    <c:if test="${count>=1}">
-        <c:forEach var="a" items="${addressList}">
-            <c:if test="${a.a_default==1}">
-                <!-- 기본 주소 -->
-                <div class="my_address_del_modi">
-                    <div class="my_address_info">
-                        <div class="myPage_address">
-                            <span class="my_address_1">${a.a_address1}</span> <span
-                                class="my_address_2">${a.a_address2}</span> <span
-                                class="my_address_number">(${a.a_zipcode})</span>
-                        </div>
-                        <div>
-                            <span class="add_del_btn">삭제</span> <span class="add_modi_btn">수정</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- 기본 주소 -->
-            </c:if>
-            <c:if test="${a.a_default!=1}">
-                <!-- 기타 주소 -->
-                <div class="my_address_del_modi">
-                    <div class="my_address_info">
-                        <div class="myPage_address">
-                            <span class="my_address_1">${a.a_address1}</span> <span
-                                class="my_address_2">${a.a_address2}</span> <span
-                                class="my_address_number">(${a.a_zipcode})</span>
-                        </div>
-                        <div>
-                            <span class="add_del_btn">삭제</span> <span class="add_modi_btn">수정</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- 기타 주소 -->
-            </c:if>
-        </c:forEach>
-    </c:if>
+		<c:if test="${count >= 1}">
+			<c:forEach var="a" items="${addressList}">
+				<c:if test="${a.a_default == 1}">
+					<!-- 기본 주소 -->
+					<div class="my_address_del_modi">
+						<div class="my_address_info">
+							<div class="myPage_address">
+								<span class="my_address_1">${a.a_address1}</span> <span
+									class="my_address_2">${a.a_address2}</span> <span
+									class="my_address_number">(${a.a_zipcode})</span>
+							</div>
+							<div class="add_btn">
+								<span class="add_del_btn">삭제</span> <span class="add_modi_btn">수정</span>
+							</div>
+						</div>
+					</div>
+					<!-- 기본 주소 -->
+				</c:if>
+				<c:if test="${a.a_default != 1}">
+					<!-- 기타 주소 -->
+					<div class="my_address_del_modi">
+						<div class="my_address_info">
+							<div class="myPage_address">
+								<span class="my_address_1">${a.a_address1}</span> <span
+									class="my_address_2">${a.a_address2}</span> <span
+									class="my_address_number">(${a.a_zipcode})</span>
+							</div>
+							<div class="add_btn">
+								<span class="add_del_btn">삭제</span> <span class="add_modi_btn">수정</span>
+							</div>
+						</div>
+					</div>
+					<!-- 기타 주소 -->
+				</c:if>
+			</c:forEach>
+		</c:if>
+	</div>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/myPage.address.js"></script>
+	<!-- 우편번호 시작 -->
+	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     // 우편번호 찾기 화면을 넣을 element

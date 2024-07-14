@@ -129,56 +129,68 @@ public class MyPageController {
 
 	// 게시판 - 내가 쓴 글
 	@GetMapping("/myPage/boardWrite")
-	public String myPageBoardWrite(@RequestParam(defaultValue = "") String cb_type, HttpSession session, Model model) {
+	public String myPageBoardWrite(@RequestParam(defaultValue = "") String cb_type,
+								   @RequestParam(defaultValue = "0") int category, 
+								   HttpSession session, 
+								   Model model) {
 
 		log.debug("<<카테고리 타입 >> : " + cb_type);
+		log.debug("<<카테고리 >> : " + category);
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cb_type", cb_type);
+		map.put("category", category);
 		map.put("mem_num", user.getMem_num());
 
-		List<BoardVO> list = null;
 		int count = mypageService.cBoardWriteListcnt(map);
+		log.debug("<<게시글 수>> : " + count);
+
+		List<BoardVO> list = null;
 		if (count > 0) {
 			list = mypageService.selectMemcBoardWriteList(map);
-
-			log.debug("<< 글 목록 >> : " + list);
+			log.debug("<<글 목록>> : " + list);
 		}
 
 		model.addAttribute("member", member);
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
+
 		return "myBoardWrite";
 	}
 
 	// 게시판 - 내가 쓴 댓글
 	@GetMapping("/myPage/boardReply")
-	public String myPageBoardReply(@RequestParam(defaultValue = "") String cb_type,HttpSession session, Model model) {
-		
-		log.debug("<<카테고리 타입 >> : " + cb_type);
-		
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(cb_type, cb_type);
-		map.put("mem_num", user.getMem_num());
-		
-		List<BoardCommentVO> list = null;
-		int count = mypageService.cBoardReplyListcnt(map);
-		if(count > 0) {
-			list = mypageService.cBoardReplyList(map);
-			
-			log.debug("<< 댓글 목록 >> : " + list);
-		}
-		
-		model.addAttribute("member", member);
-		model.addAttribute("list", list);
-		model.addAttribute("count", count);
-		return "myBoardReply";
+	public String myPageBoardReply(@RequestParam(defaultValue = "") String cb_type,
+	                               @RequestParam(defaultValue = "0") int category,
+	                               HttpSession session,
+	                               Model model) {
+
+	    log.debug("<<카테고리 타입 >> : " + cb_type);
+	    log.debug("<<카테고리 >> : " + category);
+
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("cb_type", cb_type);
+	    map.put("category", category);
+	    map.put("mem_num", user.getMem_num());
+
+	    List<BoardCommentVO> list = null;
+	    int count = mypageService.cBoardReplyListcnt(map);
+	    if(count > 0) {
+	        list = mypageService.cBoardReplyList(map);
+
+	        log.debug("<< 댓글 목록 >> : " + list);
+	    }
+
+	    model.addAttribute("member", member);
+	    model.addAttribute("list", list);
+	    model.addAttribute("count", count);
+	    return "myBoardReply";
 	}
 
 	// 내 캘린더

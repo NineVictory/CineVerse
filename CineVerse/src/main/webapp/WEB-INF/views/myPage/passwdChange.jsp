@@ -19,14 +19,16 @@
 
 			<div class="login_form_all">
 				<div class="login_form_inputs_id_passwd">
-					<form:password path="now_passwd" placeholder="현재 비밀번호 입력(영문,숫자만 4~12자)" class="input_style" />
+					<form:password path="now_passwd"
+						placeholder="현재 비밀번호 입력(영문,숫자만 4~12자)" class="input_style" />
 				</div>
 				<form:errors element="div" path="now_passwd" cssClass="error-color" />
 			</div>
 
 			<div class="login_form_all">
 				<div class="login_form_inputs_id_passwd">
-					<form:password path="mem_passwd" placeholder="변경할 비밀번호 입력(영문,숫자만 4~12자)" class="input_style" />
+					<form:password path="mem_passwd"
+						placeholder="변경할 비밀번호 입력(영문,숫자만 4~12자)" class="input_style" />
 				</div>
 				<form:errors element="div" path="mem_passwd" cssClass="error-color" />
 			</div>
@@ -66,16 +68,17 @@
 				});
 			</script>
 			<div class="login_form_all">
-			<div class="login_form_inputs_id_passwd">
-				<form:input path="captcha_chars" placeholder="캡챠 문자 확인" class="input_style"/>
+				<div class="login_form_inputs_id_passwd">
+					<form:input path="captcha_chars" placeholder="캡챠 문자 확인"
+						class="input_style" />
 				</div>
 				<form:errors path="captcha_chars" cssClass="error-color" />
-			
+
 			</div>
-			
+
 			<div class="modify_btn_all">
 				<form:button class="user_modify_btn">변경하기</form:button>
 			</div>
-			</div>
+		</div>
 	</form:form>
 </div>
