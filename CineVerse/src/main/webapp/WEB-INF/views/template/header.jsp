@@ -58,7 +58,7 @@
                     <a href="#">영화관</a>
                     <div>
                         <ul>
-                        <li class=""><a href="${pageContext.request.contextPath}/cinema/cinemaDetail" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
+                        <li class=""><a href="${pageContext.request.contextPath}/cinema/cinemaList2" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
                         <li class=""><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>    
                         </ul>
                     </div>

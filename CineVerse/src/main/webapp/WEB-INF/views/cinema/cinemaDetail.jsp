@@ -27,7 +27,7 @@
        					<!-- 지도를 표시할 div 입니다 -->
 						<div id="modal_map" style="width: 100%; height: 700px;"></div>
 						<div class="map_wrap">
-						<!--     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> -->
+						     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
 
 				    <div id="map" class="bg_white">
 				        <div class="option">
