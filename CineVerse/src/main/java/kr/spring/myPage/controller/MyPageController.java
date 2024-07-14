@@ -346,24 +346,40 @@ public class MyPageController {
 	// 회원 정보 - 개인정보 변경
 	@GetMapping("/myPage/modifyUser")
 	public String modifyUser(MyPageVO myPageVO, HttpSession session, Model model) {
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		model.addAttribute("member", member);
-		return "modifyUser";
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    model.addAttribute("member", member);
+	    return "modifyUser";
 	}
 
 	@PostMapping("/myPage/modifyUser")
-	public String postModifyUser1(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model) {
+	public String postModifyUser1(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
 
-		if (result.hasErrors()) {
-			return "modifyUser";
-		}
-
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		model.addAttribute("member", member);
-		return "postModifyUser";
+	    if (result.hasErrors()) {
+	        return "modifyUser";
+	    }
+	    
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    myPageVO.setMem_num(user.getMem_num());
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    
+	    // 데이터베이스 업데이트 수행
+	    mypageService.updateMember_detail(myPageVO);
+	    
+	    log.debug("<<개인정보 변경>> : " + myPageVO);
+	    // 세션에 저장된 정보 변경
+	    user.setMem_name(myPageVO.getMem_name());
+	    user.setMem_nickname(myPageVO.getMem_nickName());
+	    user.setMem_email(myPageVO.getMem_email());
+	    
+	    model.addAttribute("member",member);
+	    model.addAttribute("message", "개인정보 변경 완료");
+	    model.addAttribute("url", request.getContextPath() + "/myPage/modifyUser");
+	    return "common/resultAlert";
 	}
+	
+	
+	
 
 	// 회원 정보 - 회원 탈퇴
 	@GetMapping("/myPage/deleteMember")

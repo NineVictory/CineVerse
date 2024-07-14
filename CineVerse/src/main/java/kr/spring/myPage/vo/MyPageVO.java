@@ -19,6 +19,7 @@ public class MyPageVO {
 	private long mem_num;
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_id;
+	@NotBlank
 	private String mem_nickName;
 	private int mem_auth;
 	private String auto;
@@ -29,9 +30,6 @@ public class MyPageVO {
 
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_passwd;
-
-	@Pattern(regexp = "^[0-9a-zA-Z]+$")
-	private String captcha_cahrs;
 
 	@NotBlank
 	private String mem_phone;

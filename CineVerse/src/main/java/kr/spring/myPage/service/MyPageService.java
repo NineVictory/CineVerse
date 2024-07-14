@@ -18,4 +18,5 @@ public interface MyPageService {
 	public void updatePassword(MyPageVO mypage);//비밀번호 수정
 	public Integer pointHistoryCnt(long mem_num);//포인트
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map);
+	public void updateMember_detail(MyPageVO myPageVO);
 }

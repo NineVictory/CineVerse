@@ -29,6 +29,6 @@ public interface MyPageMapper {
 	public Integer pointHistoryCnt(long mem_num);
 	@Select("SELECT * FROM point_history WHERE mem_num=#{mem_num}")
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map); // 회원 포인트 충전 내역 목록 가져오기
-	
+	public void updateMember_detail(MyPageVO myPageVO);
 
 }

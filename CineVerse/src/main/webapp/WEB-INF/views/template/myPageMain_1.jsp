@@ -77,7 +77,7 @@
 		</div>
 		<hr size="1" width="90%" class="line">
 		<div class="point_list">
-			<a href="#">포인트 내역</a>
+			<a href="/myPage/pointList">포인트 내역</a>
 		</div>
 		<!--마이페이지-구매-포인트충전 링크  -->
 	</div>

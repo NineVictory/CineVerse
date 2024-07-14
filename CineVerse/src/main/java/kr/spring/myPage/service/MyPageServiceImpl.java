@@ -68,5 +68,10 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.cBoardReplyListcnt(map);
 	}
 
+	@Override
+	public void updateMember_detail(MyPageVO mypage) {
+		myPageMapper.updateMember_detail(mypage);
+	}
+
 	
 }
