@@ -6,7 +6,7 @@
 
 	<div class="main_body_reservation">
 		<div class="my_reserv_info">
-			<span class="reserv_font">나의 굿즈 결제 내역</span><span class="main_count">1건</span>
+			<span class="reserv_font">나의 굿즈 결제 내역</span><span class="main_count">${count}건</span>
 		</div>
 <c:if test="${count==0 }">
 					<div class="mpMovie_info">
@@ -15,13 +15,13 @@
 				</c:if>
 				<c:if test="${count>0 }">
 				
-					<c:forEach var="o" items="#{orders}">
+					<c:forEach var="o" items="${orders}">
 		<div class="myPageReservation_list">
 			<!--  css 수정 예매추가로 하면 박스 늘어나게 -->
 			<div class="mp_reserv">
 				<!-- 근데 이 부분 css를 똑같이 썼더니 하얀색으로 삐죽... --><!-- 영화사진 비율로 느낌만 낸거라 삐죽/css를 다르게 해야될수도! -->
 				<div class="m_movie_photo">
-					<img src="${pagecontext.reuqest.contextPath}/upload/${od.p_filename}"
+					<img src="${pagecontext.reuqest.contextPath}/upload/${o.p_filename}"
 						alt="결제 내역" width="160" height="160" onclick="location.href='/myPage/boughtDetail?order_num=${o.order_num}'">
 				</div>
 				
@@ -32,7 +32,7 @@
 								<span class="mp_movie_number_3">${o.od_number}</span>
 								<span class="my_delivery_process">상품 준비 중</span>
 							</div>
-							<div class="mp_movie_title">${od.p_name} 외 ${o.total_quantity - od.order_quantity}건</div>
+							<div class="mp_movie_title">${o.p_name} 외 ${o.total_quantity - o.order_quantity}건</div>
 		
 							<div class="reservation_list">
 								<div class="reserv_info">

@@ -136,7 +136,7 @@ public interface ShopMapper {
 	List<PBasketVO> selectFromPBasket(@Param("pb_num") List<Integer> pb_num);
 	
 	// 구매 건 불러오기 
-	@Select("SELECT * FROM orders WHERE mem_num=#{mem_num}")
+	@Select("SELECT * FROM orders o JOIN order_detail od ON o.order_num = od.order_num JOIN product p ON od.p_num = p.p_num WHERE o.order_num = #{order_num} AND ROWNUM = 1")
 	List<OrdersVO> selectOrders(long mem_num);
 	
 	// 구매 1건 불러오기

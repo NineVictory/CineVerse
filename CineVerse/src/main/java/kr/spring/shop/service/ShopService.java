@@ -62,7 +62,7 @@ public interface ShopService {
 	
 	// 마이페이지
 	List<OrdersVO> selectOrders(long mem_num);
-	int countOrders(long mem_num);
+	public int countOrders(long mem_num);
 	public List<Integer> howMuch(long order_num);
 	public List<Integer> howManyQuantity(long order_num);
 	public OrdersVO selectOrderDetailOne(long mem_num);

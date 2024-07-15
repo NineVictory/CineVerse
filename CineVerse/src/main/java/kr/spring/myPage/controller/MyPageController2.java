@@ -88,13 +88,14 @@ public class MyPageController2 {
 	// 마이페이지 구매 내역 페이지로 가기
 	@GetMapping("/myPage/bought")
 	public String getMyPageBought(MemberVO memberVO,HttpSession session, Model model) {
+		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		log.debug("<<구매 페이지 : : : >>" + user.getMem_num());
 		model.addAttribute("member",member);
 		
 		
 		int count = shopService.countOrders(user.getMem_num());
-		PagingUtil page = new PagingUtil(1, count, 4, 10, "bought");
 		
 		List<Integer> total_quantity = shopService.howManyQuantity(user.getMem_num());
 		List<Integer> total_price = shopService.howMuch(user.getMem_num());
@@ -114,7 +115,6 @@ public class MyPageController2 {
 		model.addAttribute("od", od);
 		model.addAttribute("count", count);
 		model.addAttribute("orders", orders);
-		model.addAttribute("page", page.getPage());
 		
 		return "bought";
 	}
