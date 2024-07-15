@@ -13,6 +13,15 @@
     )
 	</insert>
 	
+	<insert id="insertKakaoMemberDetail" parameterType="memberVO">
+    INSERT INTO member_detail (
+        mem_num, mem_name, mem_passwd, mem_phone, mem_email, mem_reg_date, social_kakao,mem_nickname
+    ) VALUES (
+        #{mem_num},
+        #{mem_name}, #{mem_passwd}, #{mem_phone}, #{mem_email}, SYSDATE, #{social_kakao, jdbcType=VARCHAR},#{mem_nickname}
+    )
+	</insert>
+	
 	<!-- 아이디 중복 체크 -->
 	<select id="selectCheckMember" parameterType="string" resultType="memberVO">
 		SELECT mem_num, mem_id, mem_auth, au_id, mem_name, mem_passwd, mem_email,mem_phone

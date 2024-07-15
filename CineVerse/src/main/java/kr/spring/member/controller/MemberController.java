@@ -15,12 +15,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.AuthCheckException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Slf4j
 @Controller
@@ -231,10 +235,49 @@ public class MemberController {
 		return "memberPointCharge";
 	}
 	
-	@GetMapping("/member/extraInfo")
-	public String kakaoLoginForm() {
-		return "extraInfo";
+	// 카카오 회원가입 폼 띄우기
+	@RequestMapping(value = "/member/kakaoRegisterForm", method = RequestMethod.GET)
+	public String kakaoRegisterForm(@RequestParam String mem_email, @RequestParam String mem_nickname,
+									@RequestParam String social_kakao, Model model) {
+	    MemberVO member = new MemberVO();
+	    member.setMem_email(mem_email);
+	    member.setMem_nickname(mem_nickname);
+	    member.setSocial_kakao(social_kakao);
+	    model.addAttribute("memberVO", member);
+	    return "member/kakaoRegisterForm";
 	}
+	
+	
+	@PostMapping("/member/kakaoRegisterForm")
+	public String kakaoRegister(@Valid MemberVO memberVO, BindingResult result, Model model,
+			HttpServletRequest request) {
+		log.debug("<<카카오 회원 가입>> : " + memberVO);
+
+		if (result.hasErrors()) {
+			return "member/kakaoRegisterForm";
+		}
+
+		memberService.insertKakaoMemberDetail(memberVO);
+		
+		// 초기 쿠폰 리스트 조회
+        List<Long> initialCoupons = memberService.selectInitialCoupons();
+        
+        // 회원 쿠폰 테이블에 초기 쿠폰 삽입
+        for (Long coupon_num : initialCoupons) {
+        	CouponVO coupon = new CouponVO();
+            coupon.setMem_num(memberVO.getMem_num());
+            coupon.setCoupon_num(coupon_num);
+            memberService.insertNewMemCoupon(coupon);
+        }
+		
+
+		// UI 문구 처리
+		model.addAttribute("message", "회원 가입이 완료되었습니다");
+		model.addAttribute("url", request.getContextPath() + "/main/main");
+		return "common/resultAlert";
+	}
+
+	
 	
 	@GetMapping("/admin/admin")
 	public String adminMain() {
@@ -246,5 +289,4 @@ public class MemberController {
 		return "eventMain";
 	}
 	
-
 }

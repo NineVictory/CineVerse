@@ -19,6 +19,10 @@ public interface MemberMapper {
 	public Long selectMem_num();
 	@Insert("INSERT INTO member (mem_num, mem_id, mem_auth, mem_rank, mem_membership) VALUES (#{mem_num}, #{mem_id}, 3, 1, 1)")
 	public void insertMember(MemberVO member);
+	
+	// 카카오 로그인으로 회원가입
+	public void insertKakaoMemberDetail(MemberVO member);
+	
 	// 회원가입시 회원가입 축하 쿠폰 증정
 	@Insert("INSERT INTO member_coupon (mc_num, mem_num, coupon_num) VALUES (member_coupon_seq.nextval,#{mem_num}, #{coupon_num})")
 	public void insertNewMemCoupon(CouponVO coupon);

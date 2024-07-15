@@ -98,43 +98,70 @@
 	<script type="text/javascript">
 	Kakao.init('955f6631974929bbdb7f5e7e2a3cc510');
 	
+	 // 카카오 로그인 함수
     function loginWithKakao() {
         Kakao.Auth.login({
-            success: function (authObj) {
-                console.log(authObj); // access토큰 값
-                Kakao.Auth.setAccessToken(authObj.access_token); // access토큰값 저장
+            success: function(authObj) {
+                console.log(authObj); // 로그인 성공 시 토큰 정보 출력
+                Kakao.Auth.setAccessToken(authObj.access_token); // access 토큰 저장
                 
-                getInfo();
+                // 로그인 성공 후 추가 작업 (예: 회원 가입 확인 등)
+                checkKakaoUser(authObj.access_token);
             },
-            fail: function (err) {
-                console.log(err);
+            fail: function(err) {
+                console.error(err); // 로그인 실패 시 에러 처리
             }
         });
     }
     
-    function getInfo() {
+    // 카카오 사용자 확인 함수
+    function checkKakaoUser(accessToken) {
         Kakao.API.request({
             url: '/v2/user/me',
-            success: function (res) {
+            success: function(res) {
                 console.log(res);
-                // 이메일, 성별, 닉네임, 프로필이미지
-                var email = res.kakao_account.email;
-                var profile_nickname = res.kakao_account.profile.nickname;
+                var email = res.kakao_account.email; 
+                var nickname = res.kakao_account.profile.nickname;
                 var profile_image = res.kakao_account.profile.thumbnail_image_url;
-
-                console.log(email, profile_nickname, profile_image);
-                
-                window.location.href = '${pageContext.request.contextPath}/member/extraInfo'
-                    + '?email=' + encodeURIComponent(email)
-                    + '&nickname=' + encodeURIComponent(profile_nickname)
-                    + '&profile_image=' + encodeURIComponent(profile_image);
+				//var id = res.id;
+				
+                // 서버에 회원 정보 전송
+                $.ajax({
+                    url: '/member/kakaoRegister',
+                    type: 'post',
+                    data: {
+                        mem_email: email,
+                        mem_nickname: nickname,
+                        social_kakao: accessToken,
+                        profile_image: profile_image
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.result === 'success') {
+                            alert('카카오 소셜 로그인되었습니다.');
+                            window.location.href = '/main/main';
+                        } else if (response.result == 'registerkakao'){
+                        	var redirectUrl = '/member/kakaoRegisterForm' +
+                            '?mem_email=' + encodeURIComponent(email) +
+                            '&mem_nickname=' + encodeURIComponent(nickname)+
+                            '&social_kakao='+encodeURIComponent(accessToken)+
+                            '&profile_image=' + encodeURIComponent(profile_image);
+         					 window.location.href = redirectUrl;
+                        } else {
+                            alert('회원 가입 및 로그인 실패');
+                        }
+                    },
+                    error: function() {
+                        alert('네트워크 오류가 발생했습니다.');
+                    }
+                });
             },
-            fail: function (error) {
-                alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
+            fail: function(err) {
+                console.error(err); // 사용자 정보 가져오기 실패 시 처리
             }
         });
     }
-	
 </script>
 </body>
 </html>

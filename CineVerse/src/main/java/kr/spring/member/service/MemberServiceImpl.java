@@ -23,6 +23,13 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.insertMember(member);
 		memberMapper.insertMember_detail(member);
 	}
+	
+	@Override
+	public void insertKakaoMemberDetail(MemberVO member) {
+		member.setMem_num(memberMapper.selectMem_num());
+		memberMapper.insertMember(member);
+		memberMapper.insertKakaoMemberDetail(member);
+	}
 
 	@Override
 	public MemberVO selectCheckMember(String mem_id) {
@@ -89,5 +96,7 @@ public class MemberServiceImpl implements MemberService{
 	public void totalPoint(Long mem_num) {
 		memberMapper.totalPoint(mem_num);
 	}
+
+	
 
 }

@@ -34,5 +34,7 @@ public interface MemberService {
 	
 	public void totalPoint(Long mem_num);
 	
+	public void insertKakaoMemberDetail(MemberVO member);
+	
 	
 }
