@@ -11,8 +11,8 @@
 			c_location,
 			c_address,
 			c_phone,
-			c_theater,
-			c_seat,
+			<!-- c_theater,
+			c_seat, -->
 			c_parkable)
 		VALUES (
 			cinema_num.nextval,
@@ -20,8 +20,8 @@
 			#{c_location},
 			#{c_address},
 			#{c_phone},
-			#{c_theater},
-			#{c_seat},
+			<!-- #{c_theater},
+			#{c_seat}, -->
 			#{c_parkable})
 	</insert>
 

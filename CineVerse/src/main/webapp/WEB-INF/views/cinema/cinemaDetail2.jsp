@@ -12,7 +12,7 @@
 		<div class="info-box">	
 		<div class="branch-address">위치 : <b>${cinema.c_address}</b></div>					
            <div class="branch-phone">문의전화 : <b>${cinema.c_phone}</b></div>
-           <div class="branch-theater">상영관수 : <b>${cinema.c_theater}관, ${cinema.c_seat}석</b></div>
+           <div class="branch-theater">상영관수 : <%-- <b>${cinema.c_theater}관, ${cinema.c_seat}석</b> --%></div>
            <c:if test="${cinema.c_parkable == 0}">
            <div class="branch-parkable">주차정보 : <b>불가능</b></div>
 		</c:if>
