@@ -292,6 +292,14 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 .boardview-main > div.flexbox-h > div{
 	margin-right:10px;
 }
+
+div#comment_div{
+	width:100%;
+	margin:30px auto;
+}
+div#comment_div > div{
+	justify-content: center
+}
 .ml10{
 	margin-left:10px;
 }
@@ -396,7 +404,19 @@ img#output_fav{
 	cursor:pointer;
 }
 
+
+
+
+
 /*커뮤니티 글상세 댓글*/
+div#re_second{
+	display:inline-block;
+}
+div#comment_div>div{
+	gap:5px;
+}
+
+
 #output{
 	width:95%;
 	margin:10px auto;

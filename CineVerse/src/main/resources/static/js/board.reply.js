@@ -97,8 +97,6 @@ $(function(){
 
 					//답글출력
 					output +='     <div class="response-container">';
-					
-
 					output +='     </div>';
 					
 					
@@ -106,9 +104,17 @@ $(function(){
 					output += '</div>';
 											
 					//문서 객체에 추가
+
 					$('#output').append(output);
-					getListResponse(item.cc_num, $('.response-container'));
-				});
+					var responseContainers = $('.response-container');
+					getListResponse(item.cc_num, responseContainers);
+					
+					if (responseContainers.children().length == 0) {
+	           			 responseContainers.hide();
+	        		}
+					
+	  		  });
+					
 				
 			$(document).ready(function() {
 			    // 메뉴 이미지 클릭 이벤트 처리
