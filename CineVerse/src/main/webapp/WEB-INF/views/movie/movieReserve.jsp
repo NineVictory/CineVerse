@@ -10,111 +10,16 @@
 		<div class="theater-container">
 			<div class="theater-wrapper">
 				<ul class="theater-location-wrapper">
-					<li class="theater-location" id="seoul-location"><a
-						href="#none">서울(10)</a>
+					<li class="theater-location" id="seoul-location">
+					<a href="cinemaList2?c_location=1" class="button">서울</a>
 						<div class="location" id="seoul" style="display: none;">
+						<c:forEach var="cinema" items="${list}">
 							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">가산디지털</a></li>
-								<li class="theater-place"><a href="#none">가양</a></li>
-								<li class="theater-place"><a href="#none">강동</a></li>
-								<li class="theater-place"><a href="#none">건대입구</a></li>
-								<li class="theater-place"><a href="#none">김포공항</a></li>
-								<li class="theater-place"><a href="#none">노원</a></li>
-								<li class="theater-place"><a href="#none">도곡</a></li>
-								<li class="theater-place"><a href="#none">독산</a></li>
-								<li class="theater-place"><a href="#none">서울대입구</a></li>
-								<li class="theater-place"><a href="#none">수락산</a></li>
+								<li class="theater-place"><a href="detail?c_num=${cinema.c_num}" class="button">${cinema.c_branch}</a></li>
 							</ul>
+							</c:forEach>
 						</div></li>
-					<li class="theater-location" id="gyeonggi-location"><a
-						href="#none">경기/인천(10)</a>
-						<div class="location" id="gyeonggi" style="display: none; top: -50px;">
-							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">광교</a></li>							
-								<li class="theater-place"><a href="#none">광명</a></li>
-								<li class="theater-place"><a href="#none">인덕원</a></li>
-								<li class="theater-place"><a href="#none">구리</a></li>
-								<li class="theater-place"><a href="#none">동탄</a></li>
-								<li class="theater-place"><a href="#none">라페스타</a></li>
-								<li class="theater-place"><a href="#none">마석</a></li>
-								<li class="theater-place"><a href="#none">별내</a></li>
-								<li class="theater-place"><a href="#none">병점</a></li>
-								<li class="theater-place"><a href="#none">평촌(범계)</a></li>
-							</ul>
-						</div></li> 
-					<li class="theater-location" id="chungcheong-location"><a
-						href="#none">충청/대전(8)</a>
-						<div class="location" id="chungcheong" style="display: none; top: -100px;">
-							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">당진</a></li>
-								<li class="theater-place"><a href="#none">대전</a></li>
-								<li class="theater-place"><a href="#none">서산</a></li>
-								<li class="theater-place"><a href="#none">서청주</a></li>
-								<li class="theater-place"><a href="#none">아산터미널</a></li>
-								<li class="theater-place"><a href="#none">천안</a></li>
-								<li class="theater-place"><a href="#none">청주용암</a></li>
-								<li class="theater-place"><a href="#none">충주</a></li>
-							</ul>
-						</div></li>
-					<li class="theater-location" id="jeolla-location"><a
-						href="#none">전라/광주(4)</a>
-						<div class="location" id="jeolla" style="display: none; top: -151px;">
-							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">광주</a></li>				
-								<li class="theater-place"><a href="#none">군산</a></li>
-								<li class="theater-place"><a href="#none">익산</a></li>
-								<li class="theater-place"><a href="#none">전주</a></li>
-							</ul>
-						</div></li>
-					<li class="theater-location" id="gyeongbuk-location"><a
-						href="#none">경북/대구(8)</a>
-						<div class="location" id="gyeongbuk" style="display: none; top:-201px;">
-							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">경주</a></li>
-								<li class="theater-place"><a href="#none">구미</a></li>
-								<li class="theater-place"><a href="#none">대구</a></li>
-								<li class="theater-place"><a href="#none">상인</a></li>
-								<li class="theater-place"><a href="#none">동성로</a></li>
-								<li class="theater-place"><a href="#none">상주</a></li>
-								<li class="theater-place"><a href="#none">포항</a></li>
-								<li class="theater-place"><a href="#none">영주</a></li>
-							</ul>
-						</div></li>
-						<li class="theater-location" id="gyeongnam-location"><a
-						href="#none">경남/부산/울산(10)</a>
-						<div class="location" id="gyeongnam" style="display: none; top: -251px;">
-							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">거창</a></li>
-								<li class="theater-place"><a href="#none">마산</a></li>
-								<li class="theater-place"><a href="#none">김해</a></li>
-								<li class="theater-place"><a href="#none">부산</a></li>
-								<li class="theater-place"><a href="#none">사천</a></li>
-								<li class="theater-place"><a href="#none">광복</a></li>
-								<li class="theater-place"><a href="#none">서면</a></li>
-								<li class="theater-place"><a href="#none">울산</a></li>
-								<li class="theater-place"><a href="#none">창원</a></li>
-								<li class="theater-place"><a href="#none">통영</a></li>
-							</ul>
-						</div></li>
-						<li class="theater-location" id="gangwon-location"><a
-						href="#none">강원(5)</a>
-						<div class="location" id="gangwon" style="display: none; top: -301px;">
-							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">원주</a></li>
-								<li class="theater-place"><a href="#none">동해</a></li>
-								<li class="theater-place"><a href="#none">춘천</a></li>
-								<li class="theater-place"><a href="#none">철원</a></li>
-								<li class="theater-place"><a href="#none">강릉</a></li>
-							</ul>
-						</div></li>
-						<li class="theater-location" id="jeju-location"><a
-						href="#none">제주(2)</a>
-						<div class="location" id="jeju" style="display: none; top: -351px;">
-							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#none">서귀포</a></li>
-								<li class="theater-place"><a href="#none">제주</a></li>
-							</ul>
-						</div></li>
+					
 				</ul>
 			</div>
 		</div>
