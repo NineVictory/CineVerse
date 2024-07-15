@@ -71,4 +71,7 @@ public class OrdersVO {
 	private long total;
 	private int agree;
 	
+	private int total_quantity;
+	private int total_price;
+	
 }

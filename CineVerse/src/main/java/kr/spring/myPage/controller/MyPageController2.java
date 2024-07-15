@@ -1,7 +1,9 @@
 package kr.spring.myPage.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,22 +16,29 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.service.MyPageService2;
 import kr.spring.myPage.vo.AddressVO;
 import kr.spring.myPage.vo.MyPageVO;
+import kr.spring.shop.service.ShopService;
+import kr.spring.shop.vo.OrdersVO;
+import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 public class MyPageController2 {
 	@Autowired
-	public MyPageService mypageService;
+	private ShopService shopService;
 
 	@Autowired
-	public MyPageService2 mypageService2;
+	private MyPageService2 mypageService2;
+
+	@Autowired
+	private MyPageService mypageService;
 	
 	// 회원 정보 - 배송지 관리
 	@GetMapping("/myPage/addressList")
@@ -82,15 +91,50 @@ public class MyPageController2 {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		model.addAttribute("member",member);
+		
+		
+		int count = shopService.countOrders(user.getMem_num());
+		PagingUtil page = new PagingUtil(1, count, 4, 10, "bought");
+		
+		List<Integer> total_quantity = shopService.howManyQuantity(user.getMem_num());
+		List<Integer> total_price = shopService.howMuch(user.getMem_num());
+		
+		List<OrdersVO> orders = shopService.selectOrders(user.getMem_num());
+		
+		
+		for (int i = 0; i < orders.size(); i++) {
+		    OrdersVO order = orders.get(i);
+		    order.setTotal_quantity(total_quantity.get(i));
+		    order.setTotal_price(total_price.get(i));
+		    
+		}
+		
+		OrdersVO od = shopService.selectOrderDetailOne(user.getMem_num());
+		
+		model.addAttribute("od", od);
+		model.addAttribute("count", count);
+		model.addAttribute("orders", orders);
+		model.addAttribute("page", page.getPage());
+		
 		return "bought";
 	}
 
 	// 마이페이지 구매 내역 상세 페이지로 가기
 	@GetMapping("/myPage/boughtDetail")
-	public String getMyPageDetailBought(MemberVO memberVO,HttpSession session, Model model) {
+	public String getMyPageDetailBought(@RequestParam long order_num, MemberVO memberVO,HttpSession session, Model model) {
+		log.debug("<<구매 내역 상세 페이지 : order_num>> ::: " + order_num);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		model.addAttribute("member",member);
+		
+		List<OrdersVO> orderDetail = shopService.orderDetailList(order_num);
+		int order_price = shopService.orderPrice(order_num);
+		OrdersVO order = shopService.selectOrder(order_num);
+		
+		model.addAttribute("order", order);
+		model.addAttribute("orderDetail", orderDetail);
+		model.addAttribute("order_price", order_price);
+		
 		return "boughtDetail";
 	}
 }

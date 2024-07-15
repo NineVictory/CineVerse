@@ -198,6 +198,46 @@ public class ShopServiceImpl implements ShopService {
 	public void directOrderDetail(OrdersVO orders) {
 		shopMapper.directOrderDetail(orders);
 	}
+
+	@Override
+	public List<OrdersVO> selectOrders(long mem_num) {
+		return shopMapper.selectOrders(mem_num);
+	}
+
+	@Override
+	public List<Integer> howMuch(long order_num) {
+		return shopMapper.howMuch(order_num);
+	}
+
+	@Override
+	public List<Integer> howManyQuantity(long order_num) {
+		return shopMapper.howManyQuantity(order_num);
+	}
+
+	@Override
+	public int countOrders(long mem_num) {
+		return shopMapper.countOrders(mem_num);
+	}
+
+	@Override
+	public OrdersVO selectOrderDetailOne(long mem_num) {
+		return shopMapper.selectOrderDetailOne(mem_num);
+	}
+
+	@Override
+	public List<OrdersVO> orderDetailList(long order_num) {
+		return shopMapper.orderDetailList(order_num);
+	}
+
+	@Override
+	public Integer orderPrice(long order_num) {
+		return shopMapper.orderPrice(order_num);
+	}
+
+	@Override
+	public OrdersVO selectOrder(long order_num) {
+		return shopMapper.selectOrder(order_num);
+	}
 	
 	
 
