@@ -50,7 +50,7 @@
 								<option value="4" <c:if test="${param.order == 4}">selected</c:if>>댓글수</option>
 								</select>
 								<script type="text/javascript">
-									$('#order').change(function(){>
+									$('#order').change(function(){
 										location.href='list?cb_type=${param.cb_type}&keyword='+$('#keyword').val()+'&order='+$('#order').val();
 									});
 								</script>
