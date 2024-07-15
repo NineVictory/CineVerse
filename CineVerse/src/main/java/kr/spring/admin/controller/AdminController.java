@@ -155,22 +155,35 @@ public class AdminController {
 	 *==============================*/	
 	// 구독 정보 조회 및 페이지로 전달
 	@GetMapping("/admin/adminMembership")
-	public String selectMembership(Model model) {
-		try {
-			// 모든 회원 정보 조회
-			List<AdminVO> adminList = adminService.getAllMembership();
-
-			// 조회된 회원 정보를 모델에 추가하여 View로 전달
-			model.addAttribute("adminList", adminList);
-
-			return "adminMembership"; // 회원 정보를 보여줄 View 이름
-		} catch (Exception e) {
-			log.error("구독 회원 정보 조회 중 오류 발생", e);
-			model.addAttribute("errorMessage", "회원 정보 조회 중 오류가 발생하였습니다.");
-			log.debug("<<구독 회원 정보 조회 오류>>");
-			return "errorPage"; // 에러 페이지로 이동
-
+	public String getMembershipList(
+			 @RequestParam(defaultValue="1") int pageNum,
+			 String keyfield,String keyword,Model model) {
+		
+				Map<String,Object> map = 
+				            new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체,검색 레코드수
+		int count = adminService.selectMemberRowCount(map);
+		
+		//페이지 처리
+		PagingUtil page = 
+				new PagingUtil(keyfield,keyword,pageNum,
+						       count,20,10,"adminMembership");
+		List<AdminVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = adminService.selectMembershipList(map);
 		}
+		
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+		
+		return "adminMembership";
 	}
 
 	@PostMapping("/admin/adminMembership")
@@ -182,23 +195,35 @@ public class AdminController {
 	 *==============================*/	
 	//공지사항 조회
 	@GetMapping("/admin/adminNotice")
-	public String SelectAdminNotice(Model model){
-		try {
-			// 모든 회원 정보 조회
-			List<NoticeVO> adminList = adminService.getAllNotice();
-
+	public String getNoticeList(
+			 @RequestParam(defaultValue="1") int pageNum,
+			 String keyfield,String keyword,Model model) {
+		
+				Map<String,Object> map = 
+				            new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체,검색 레코드수
+		int count = adminService.selectNoticeRowCount(map);
+		
+		//페이지 처리
+		PagingUtil page = 
+				new PagingUtil(keyfield,keyword,pageNum,
+						       count,20,10,"adminNotice");
+		List<NoticeVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
 			
-			// 조회된 회원 정보를 모델에 추가하여 View로 전달
-			model.addAttribute("adminList", adminList);
-
-			
-			return "adminNotice"; // 회원 정보를 보여줄 View 이름
-		} catch (Exception e) {
-			log.error("회원 정보 조회 중 오류 발생", e);
-			model.addAttribute("errorMessage", "회원 정보 조회 중 오류가 발생하였습니다.");
-			log.debug("<<회원 정보 조회 오류>>");
-			return "errorPage"; // 에러 페이지로 이동
+			list = adminService.selectNoticeList(map);
 		}
+		
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+		
+		return "adminNotice";
 	}
 	// 공지사항 삭제 처리
 	@PostMapping("/deleteNotice")
@@ -258,23 +283,35 @@ public class AdminController {
 	 *==============================*/	
 	//이벤트 조회
 	@GetMapping("/admin/adminEvent")
-	public String SelectAdminEvent(Model model){
-		try {
-			// 모든 회원 정보 조회
-			List<EventVO> adminList = adminService.getAllEvent();
-
-			// 조회된 회원 정보를 모델에 추가하여 View로 전달
-			model.addAttribute("adminList", adminList);
-
+	public String getEventList(
+			 @RequestParam(defaultValue="1") int pageNum,
+			 String keyfield,String keyword,Model model) {
+		
+				Map<String,Object> map = 
+				            new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체,검색 레코드수
+		int count = adminService.selectEventRowCount(map);
+		
+		//페이지 처리
+		PagingUtil page = 
+				new PagingUtil(keyfield,keyword,pageNum,
+						       count,20,10,"adminEvent");
+		List<EventVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
 			
-			return "adminEvent"; // 회원 정보를 보여줄 View 이름
-		} catch (Exception e) {
-			log.error("회원 정보 조회 중 오류 발생", e);
-			model.addAttribute("errorMessage", "회원 정보 조회 중 오류가 발생하였습니다.");
-			log.debug("<<회원 정보 조회 오류>>");
-			return "errorPage"; // 에러 페이지로 이동
-
+			list = adminService.selectEventList(map);
 		}
+		
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+		
+		return "adminEvent";
 	}
 	// 이벤트 삭제 처리
 	@PostMapping("/deleteEvent")

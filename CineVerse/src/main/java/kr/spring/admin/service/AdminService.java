@@ -20,11 +20,14 @@ public interface AdminService {
 	public Integer totalMember();
 	public void updateMemberAuth(long mem_num);
 	public void deleteMemberAuth(long mem_num);
-	public List<AdminVO> getAllMembership();
-	public List<EventVO> getAllEvent();
+	public List<AdminVO> selectMembershipList(Map<String,Object> map);
+	public Integer selectMembershipRowCount(Map<String,Object> map);
+	public List<EventVO> selectEventList(Map<String,Object> map);
+	public Integer selectEventRowCount(Map<String,Object> map);
 	public void insertEvent(EventVO eventVO);
 	public void deleteEvent(long event_num);
-	public List<NoticeVO> getAllNotice();
+	public List<NoticeVO> selectNoticeList(Map<String,Object> map);
+	public Integer selectNoticeRowCount(Map<String,Object> map);
 	public void insertNotice(NoticeVO noticeVO);
 	public void deleteNotice(long nb_num);
 	public List<BoardVO> getAllCommunity();

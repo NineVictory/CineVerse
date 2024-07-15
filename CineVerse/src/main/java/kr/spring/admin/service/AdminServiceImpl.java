@@ -25,20 +25,8 @@ public class AdminServiceImpl implements AdminService{
 		adminMapper.updateMemberAuth(mem_num);
 	}
 	@Override
-	public List<AdminVO> getAllMembership() {
-		return adminMapper.getAllMembership();
-	}
-	@Override
-	public List<EventVO> getAllEvent() {
-		return adminMapper.getAllEvent();
-	} 
-	@Override
 	public void insertEvent(EventVO eventVO) {
 		adminMapper.insertEvent(eventVO);
-	}
-	@Override
-	public List<NoticeVO> getAllNotice() {
-		return adminMapper.getAllNotice();
 	}
 	@Override
 	public void insertNotice(NoticeVO noticeVO) {
@@ -116,5 +104,31 @@ public class AdminServiceImpl implements AdminService{
 	public Integer selectMemberRowCount(Map<String, Object> map) {
 		return adminMapper.selectMemberRowCount(map);
 	}
+	@Override
+	public List<AdminVO> selectMembershipList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminMapper.selectMembershipList(map);
+	}
+	@Override
+	public Integer selectMembershipRowCount(Map<String, Object> map) {
+		return adminMapper.selectMemberRowCount(map);
+	}
+	@Override
+	public List<EventVO> selectEventList(Map<String, Object> map) {
+		return adminMapper.selectEventList(map);
+	}
+	@Override
+	public Integer selectEventRowCount(Map<String, Object> map) {
+		return adminMapper.selectEventRowCount(map);
+	}
+	@Override
+	public List<NoticeVO> selectNoticeList(Map<String, Object> map) {
+		return adminMapper.selectNoticeList(map);
+	}
+	@Override
+	public Integer selectNoticeRowCount(Map<String, Object> map) {
+		return adminMapper.selectNoticeRowCount(map);
+	}
+
 	
 }

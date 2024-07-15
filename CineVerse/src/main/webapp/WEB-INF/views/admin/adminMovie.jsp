@@ -70,7 +70,7 @@
             </c:forEach>
         </tbody>
     </table>
-    			<c:if test="${count > 0}"><div class="align-center page-count">${page}</div></c:if>
 </div>
+	<div class="page-div">${page}</div> 
 </div>
 

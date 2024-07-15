@@ -29,11 +29,12 @@
 	<div class = "firstTitle">
 		<p id ="title">이벤트</p>
 	</div>
-		<form action="adminSearch" id="admin_search">
+		<form action="adminEvent" id="admin_search">
 			<ul>
 				<li>
-					<input type="search" name="search" placeholder="제목을 입력하세요">
-					<input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
+					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'event_name'}"> <!-- 기본값 설정 -->
+           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원명을 입력하세요">
+        		    <input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
 			</ul>
 		</form>
@@ -52,8 +53,13 @@
                 <th></th>
             </tr>
         </thead>
+        <c:if test="${empty list}">
+            <tr>
+                <td colspan="7" class="mem-data">데이터가 없습니다.</td>
+            </tr>
+        </c:if>
         <tbody>
-            <c:forEach var="event" items="${adminList}">
+            <c:forEach var="event" items="${list}">
                 <tr>
                     <td class="mem-data">${event.event_num}</td>
                     <td class="mem-data">${event.event_name}</td>
@@ -66,6 +72,6 @@
         </tbody>
     </table>
     </div>
-
 </div>
+	<div class="page-div">${page}</div> 
 </div>

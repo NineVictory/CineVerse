@@ -30,9 +30,11 @@
 	<div class="firstTitle">
 		<p id="title">공지사항</p>
 	</div>
-	<form action="adminSearch" id="admin_search">
+	<form action="adminNotice" id="admin_search">
 		<ul>
-			<li><input type="search" name="search" placeholder="회원명을 입력하세요">
+			<li>
+				<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'nb_title'}"> <!-- 기본값 설정 -->
+           		<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원명을 입력하세요">
 				<input type="submit" value="" class="search-button"
 				style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 			</li>
@@ -51,8 +53,13 @@
 				<th></th>
 			</tr>
 		</thead>
+		<c:if test="${empty list}">
+            <tr>
+                <td colspan="7" class="mem-data">데이터가 없습니다.</td>
+            </tr>
+        </c:if>
 		<tbody>
-			<c:forEach var="notice" items="${adminList}">
+			<c:forEach var="notice" items="${list}">
 				<tr>
 					<td class="mem-data">${notice.nb_num}</td>
 					<td class="mem-data">${notice.nb_title}</td>
@@ -64,4 +71,5 @@
 		</tbody>
 	</table>
 </div>
+	<div class="page-div">${page}</div> 
 </div>

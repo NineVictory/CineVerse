@@ -74,7 +74,7 @@
                 <th></th>
             </tr>
         </thead>
-            <c:if test="${empty list}">
+        <c:if test="${empty list}">
             <tr>
                 <td colspan="7" class="mem-data">데이터가 없습니다.</td>
             </tr>

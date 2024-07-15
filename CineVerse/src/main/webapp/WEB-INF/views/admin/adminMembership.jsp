@@ -8,10 +8,12 @@
 	<div class="firstTitle">
 		<p id="title">멤버십관리</p>
 	</div>
-	<form action="adminSearch" id="admin_search">
+	<form action="adminMembership" id="admin_search">
 		<ul>
-			<li><input type="search" name="search" placeholder="회원명을 입력하세요">
-				<input type="submit" value="" class="search-button"
+			<li>
+			<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'mem_name'}"> <!-- 기본값 설정 -->
+           	<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원명을 입력하세요">
+			<input type="submit" value="" class="search-button"
 				style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 			</li>
 		</ul>
@@ -28,8 +30,13 @@
 				<th></th>
 			</tr>
 		</thead>
+		<c:if test="${empty list}">
+            <tr>
+                <td colspan="7" class="mem-data">데이터가 없습니다.</td>
+            </tr>
+        </c:if>
 		<tbody>
-			<c:forEach var="member" items="${adminList}">
+			<c:forEach var="member" items="${list}">
 				<tr>
 					<td class="mem-data">${member.mem_num}</td>
 					<td class="mem-data">${member.mem_id}</td>
@@ -43,4 +50,5 @@
 		</tbody>
 	</table>
 </div>
+	<div class="page-div">${page}</div> 
 </div>
