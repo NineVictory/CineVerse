@@ -133,11 +133,10 @@ public interface ShopMapper {
 	public List<ProductVO> adminProductList(Map<String, Object> map);
 	
 	// 장바구니에서 선택한 상품 불러오기
-	List<PBasketVO> selectFromPBasket(@Param("pb_num") List<Integer> pb_num);
+	public List<PBasketVO> selectFromPBasket(@Param("pb_num") List<Integer> pb_num);
 	
-	// 구매 건 불러오기 
-	@Select("SELECT * FROM orders WHERE mem_num=#{mem_num}")
-	List<OrdersVO> selectOrders(long mem_num);
+	// 주문 목록과 대표 상품명, 이미지 가져오기
+	public List<OrdersVO> selectOrders(long mem_num);
 	
 	// 구매 1건 불러오기
 	@Select("SELECT * FROM orders WHERE order_num=#{order_num}")
@@ -148,12 +147,10 @@ public interface ShopMapper {
 	int countOrders(long mem_num);
 	
 	// 구매 건의 총 비용
-	@Select("SELECT SUM(od.order_quantity * p.p_price) AS total_price FROM order_detail od JOIN product p ON od.p_num = p.p_num JOIN orders o ON od.order_num = o.order_num WHERE o.mem_num = #{mem_num} GROUP BY od.order_num")
-	public List<Integer> howMuch(long order_num);
+	public List<OrdersVO> howMuch(long mem_num);
 	
 	// 구매 건의 총 개수
-	@Select("SELECT SUM(od.order_quantity) AS total_quantity FROM order_detail od JOIN orders o ON od.order_num = o.order_num WHERE o.mem_num = #{mem_num} GROUP BY od.order_num")
-	public List<Integer> howManyQuantity(long order_num);
+	public List<OrdersVO> howManyQuantity(long mem_num);
 	
 	// 구매 번호로 한 건만 내역 읽어오기 (대표)
 	@Select("SELECT * FROM order_detail od JOIN product p ON od.p_num = p.p_num JOIN orders o ON od.order_num = o.order_num WHERE mem_num = #{mem_num} AND ROWNUM = 1")

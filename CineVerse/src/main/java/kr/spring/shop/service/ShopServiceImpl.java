@@ -205,13 +205,13 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<Integer> howMuch(long order_num) {
-		return shopMapper.howMuch(order_num);
+	public List<OrdersVO> howMuch(long mem_num) {
+		return shopMapper.howMuch(mem_num);
 	}
 
 	@Override
-	public List<Integer> howManyQuantity(long order_num) {
-		return shopMapper.howManyQuantity(order_num);
+	public List<OrdersVO> howManyQuantity(long mem_num) {
+		return shopMapper.howManyQuantity(mem_num);
 	}
 
 	@Override

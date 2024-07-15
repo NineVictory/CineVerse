@@ -19,17 +19,17 @@ public interface ShopService {
 	public Integer productCount(Map<String, Object> map);
 	public Integer productAllCount(Map<String, Object> map);
 	public ProductVO productDetail(Long p_num);
-	
+
 	public void ProductFav(ProductVO fav);
 	public ProductVO selectProductFav(ProductVO fav);
 	public void ProductFavDelete(ProductVO fav);
 	public Integer productFavCount(Long p_num);
 	public List<ProductVO> productFavList(Long mem_num);
-	
+
 	public Integer productRemain(Long p_num);
-	
+
 	public Integer productPut(Long pb_num);
-	
+
 	public PBasketVO selectProductBasket(PBasketVO basket);
 	public void ProductBasket(PBasketVO basket);
 	public void ProductBasketDelete(PBasketVO basket);
@@ -40,7 +40,7 @@ public interface ShopService {
 	public void basketDelete(long pb_num);
 	public PBasketVO selectBasket(long pb_num);
 	public void basketUpdate(@Param(value="pb_num") Long pb_num, @Param(value="pb_quantity") Long pb_quantity);
-	
+
 	// 바로 구매
 	public void directOrder(OrdersVO orders);
 	/* public Integer selectOrderNUM(long mem_num); */
@@ -50,24 +50,24 @@ public interface ShopService {
 	public void directOrderDetail(OrdersVO orders);
 	public Integer getPoint(long mem_num);
 	long getNextOrderNum();
-	
+
 	// 쿠폰 조건
 	public CouponVO couponInfo(long mc_num);
-	
+
 	// 관리자
 	public List<ProductVO> adminProductList(Map<String, Object> map);
-	
+
 	List<PBasketVO> selectFromPBasket(@Param("pb_num") List<Integer> pb_num);
-	
-	
+
+
 	// 마이페이지
-	List<OrdersVO> selectOrders(long mem_num);
+	public List<OrdersVO> selectOrders(long mem_num);
 	public int countOrders(long mem_num);
-	public List<Integer> howMuch(long order_num);
-	public List<Integer> howManyQuantity(long order_num);
+	public List<OrdersVO> howMuch(long mem_num);
+	public List<OrdersVO> howManyQuantity(long mem_num);
 	public OrdersVO selectOrderDetailOne(long mem_num);
 	public List<OrdersVO> orderDetailList(long order_num);
 	public Integer orderPrice(long order_num);
 	public OrdersVO selectOrder(long order_num);
-	
+
 }

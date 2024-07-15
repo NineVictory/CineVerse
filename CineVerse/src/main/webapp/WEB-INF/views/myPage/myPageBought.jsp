@@ -32,7 +32,7 @@
 								<span class="mp_movie_number_3">${o.od_number}</span>
 								<span class="my_delivery_process">상품 준비 중</span>
 							</div>
-							<div class="mp_movie_title">${o.p_name} 외 ${o.total_quantity - o.order_quantity}건</div>
+							<div class="mp_movie_title">${o.p_name} 외 ${o.total_quantity}건</div>
 		
 							<div class="reservation_list">
 								<div class="reserv_info">
