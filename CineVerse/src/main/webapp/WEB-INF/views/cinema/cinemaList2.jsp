@@ -51,25 +51,96 @@
 </div>	
 
 
-<h2 class="theater-pay">요금 안내</h2>
-			<img class="pay-image" src="${pageContext.request.contextPath}/images/hjt/pay.png" alt="">
-			<img class="payment-image" src="${pageContext.request.contextPath}/images/hjt/pay2.png" alt="">
-<!-- <div class="pay-box">
-	<div>2D</div>
+<h2 class="theater-pay">관람료</h2>
+			
+ <div class="pay-box">
+ 	<div class="pay-container">
+	<div class="twod">2D</div>
 	<div class="twodpay">
-	<table>
-		<tr>
-			<th>요일</th><th>상영시간</th><th>일반</th><th>청소년</th>
+	<table class="pay-table">
+		<tr class="pay-all">
+			<th class="pay-thead">요일</th>
+			<th class="pay-thead">상영시간</th>
+			<th class="pay-thead">일반</th>
+			<th class="pay-thead">청소년</th>
 		</tr>
-		<tr>
-			<td>1</td><td>2</td><td>3</td><td>4</td>
+		<tr class="pay-all">
+			<td class="pay-tbody" scope="row" rowspan="2">월~목</td>
+			<td class="pay-tbody">조조 (06:00~)</td>
+			<td class="pay-tbody">10,000</td>
+			<td class="pay-tbody">8,000</td>
 		</tr>
-		<tr>
-			<td>1</td><td>2</td><td>3</td><td>4</td>
+		<tr class="pay-all">
+			<td class="pay-tbody">일반 (10:01~)</td>
+			<td class="pay-tbody">14,000</td>
+			<td class="pay-tbody">12,000</td>
+		</tr>
+		<tr class="pay-all">
+			<td class="pay-tbody" scope="row" rowspan="2">금~일<br>공휴일</td>
+			<td class="pay-tbody">조조 (06:00~)</td>
+			<td class="pay-tbody">11,000</td>
+			<td class="pay-tbody">9,000</td>
+		</tr>
+		<tr class="pay-all">
+			<td class="pay-tbody">일반 (10:01~)</td>
+			<td class="pay-tbody">15,000</td>
+			<td class="pay-tbody">13,000</td>
 		</tr>
 	</table>
 	</div>
-</div>	 -->
+	
+	<div class="twod">3D</div>
+	<div class="twodpay">
+	<table class="pay-table">
+		<tr class="pay-all">
+			<th class="pay-thead">요일</th>
+			<th class="pay-thead">상영시간</th>
+			<th class="pay-thead">일반</th>
+			<th class="pay-thead">청소년</th>
+		</tr>
+		<tr class="pay-all">
+			<td class="pay-tbody" scope="row" rowspan="2">월~목</td>
+			<td class="pay-tbody">조조 (06:00~)</td>
+			<td class="pay-tbody">12,000</td>
+			<td class="pay-tbody">10,000</td>
+		</tr>
+		<tr class="pay-all">
+			<td class="pay-tbody">일반 (10:01~)</td>
+			<td class="pay-tbody">16,000</td>
+			<td class="pay-tbody">14,000</td>
+		</tr>
+		<tr class="pay-all">
+			<td class="pay-tbody" scope="row" rowspan="2">금~일<br>공휴일</td>
+			<td class="pay-tbody">조조 (06:00~)</td>
+			<td class="pay-tbody">13,000</td>
+			<td class="pay-tbody">11,000</td>
+		</tr>
+		<tr class="pay-all">
+			<td class="pay-tbody">일반 (10:01~)</td>
+			<td class="pay-tbody">17,000</td>
+			<td class="pay-tbody">15,000</td>
+		</tr>
+	</table>
+	</div>
+	</div>
+</div>	 
+
+<h2 class="explain">요금제</h2>
+	<div class="explain-box">
+		<b class="bold-font">청소년 요금</b>  만7세~만18세 : 초등학생~고등학생(학생증, 교복, 청소년증, 의료보험증, 주민등록 등/초본, 그 외 청소년 확인 가능 서류)<br>
+		<b class="bold-font">경로 요금</b> : 만65세 이상 본인에 한함(신분증 확인)<br>
+		48개월 미만의 경우 증빙원(예 : 의료보험증, 주민등록 초/등본 등) 지참 시에만 무료 관람 가능
+	</div>
+
+ <h2 class="explain">우대적용</h2>
+ 	<div class="explain-box">
+ 		<b class="bold-font">국가유공자</b>  현장에서 국가유공자증을 소지한 본인 외 동반 1인까지 적용<br>
+ 		<b class="bold-font">장애인</b>  현장에서 복지카드를 소지한 장애인(1급~3급(중증)까지 동반 1인까지 적용 / 4급~6급(경증)은 본인에 한함)<br>
+ 		<b class="bold-font">미취학아동</b>  부모 동반한 만4세~ 만6세까지 본인(의료보험증, 주민등록 초/등본 확인)<br>
+ 		<b class="bold-font">소방종사자</b>  공무원증을 소지하거나 정복을 입은 소방관 본인
+ 	</div>
+<%-- <img class="pay-image" src="${pageContext.request.contextPath}/images/hjt/pay.png" alt="">
+	 <img class="payment-image" src="${pageContext.request.contextPath}/images/hjt/pay2.png" alt=""> --%>
 </div>
 <!-- 영화관 목록 끝 -->
 

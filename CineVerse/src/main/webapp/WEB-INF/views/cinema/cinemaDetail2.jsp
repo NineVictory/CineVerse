@@ -19,6 +19,10 @@
 		<c:if test="${cinema.c_parkable == 1}">
            <div class="branch-parkable">주차정보 : <b>가능</b></div>
 		</c:if>
+			<div class="cinema-icon">
+				<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon1.png" style="width: 50px; height: 50px;">
+				<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon2.png" style="width: 30px; height: 30px;">
+			</div>
 		</div>
 		
 		<!-- 위치 상세 보기 -->
