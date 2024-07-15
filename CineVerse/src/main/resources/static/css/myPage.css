@@ -1242,7 +1242,7 @@
 	justify-content: space-between;
 }
 
-.my_order_confirm, .my_order_return {
+.my_order_confirm, .my_order_return, .my_order_review {
 	border: 1px solid;
 	width: 70px;
 	font-size: 13px;

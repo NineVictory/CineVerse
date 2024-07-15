@@ -122,7 +122,7 @@ $(function() {
 		            alert('포인트가 부족합니다. 충전 후 진행해주세요.');
 		        } else if (param.result == 'success') {
 		            alert('주문이 완료되었습니다.');
-		            window.location.href = '../main/main';
+		            window.location.href = '../myPage/bought';
 		        } else {
 		            alert('결제 오류 발생');
 		        } 

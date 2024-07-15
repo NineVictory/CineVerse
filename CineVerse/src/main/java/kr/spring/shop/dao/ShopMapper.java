@@ -163,4 +163,9 @@ public interface ShopMapper {
 	// 구매 번호로 구매 총 비용 불러오기
 	@Select("SELECT SUM(od.order_quantity * p.p_price) FROM order_detail od JOIN product p ON od.p_num = p.p_num WHERE od.order_num = #{order_num}")
 	Integer orderPrice(long order_num);
+	
+	
+	// 주문 확정하기 (사용자)
+	@Update("UPDATE orders SET order_status=6 WHERE order_num=#{order_num}")
+	public void orderConfirm(long order_num);
 }
