@@ -35,13 +35,18 @@
 	</definition>
 	
 	<definition name="assignView" extends="boardList">
-		<put-attribute name="title" value="글상세"/>
+		<put-attribute name="title" value="양도/교환 글상세"/>
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignView.jsp"/>
 	</definition>
 	
 	<definition name="assignWrite" extends="boardList">
-		<put-attribute name="title" value="상품등록"/>
+		<put-attribute name="title" value="양도/교환 글등록"/>
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignWrite.jsp"/>
+	</definition>
+	
+	<definition name="assignModify" extends="boardList">
+		<put-attribute name="title" value="양도/교환 글수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignModify.jsp"/>
 	</definition>
 	
 	

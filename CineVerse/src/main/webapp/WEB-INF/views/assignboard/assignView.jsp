@@ -16,7 +16,7 @@
 				<span class="assboard-cbtn"><a href="" onclick="return false;"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></a></span>
 	
 				<ul class="btn-hide">
-	            	<li><a href="update">수정</a></li>
+	            	<li><a href="update?ab_num=${assign.ab_num}">수정</a></li>
 	            	<li><a href="#" id ="delete_btn">삭제</a></li>
 	        	</ul>
 	        	
@@ -28,7 +28,7 @@
 	        	$('#delete_btn').click(function(event) {
 		        	let choice = confirm('삭제하시겠습니까?');
 		    		if(choice){
-		    			location.replace('delete');
+		    			location.replace('delete?ab_num=${assign.ab_num}');
 		    		}
 		    		//기본 이벤트 제거
 		    		event.preventDefault();
@@ -163,7 +163,8 @@
 			<div id="reply_div" class=" mt10">
 				<div><span class="re-title">댓글쓰기</span></div>
 				<div class="flexbox-h">
-					<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${mem_num}" width="45" height="45" class="my-photo">
+					<c:if test="${!empty user}"><img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${user.mem_num}" width="45" height="45" class="my-photo"></c:if>
+					<c:if test="${empty user}"><img src="${pageContext.request.contextPath}/images/profile_none.png" width="45" height="45" class="my-photo"></c:if>
 					<form id="re_form">
 						<%-- <input type="hidden" name="ab_num" value="${board.ab_num}" id="ab_num"> --%>
 							<div class="flexbox-h">

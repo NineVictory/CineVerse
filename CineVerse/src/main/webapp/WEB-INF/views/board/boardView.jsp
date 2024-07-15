@@ -115,9 +115,14 @@
 		<!-- 댓글 작성 UI 시작 -->
       <div id="comment_div">
          <div class="flexbox-h">
+         	<c:if test="${!empty user}">
             <img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${user.mem_num}"
                width="35" height="35" class="my-photo">
- 		 
+ 		 	</c:if>
+ 		 	<c:if test="${empty user}">
+            <img src="${pageContext.request.contextPath}/images/profile_none.png"
+               width="35" height="35" class="my-photo">
+ 		 	</c:if>
 	         <div id="reply_div">
 	            <form id="comment_form">
 	               <input type="hidden" name="cb_num" id="cb_num" value="${board.cb_num }">

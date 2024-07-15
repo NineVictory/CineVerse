@@ -48,7 +48,7 @@
 						<div class="cell-content">
 							<div class="title"><a href="detail?ab_num=${board.ab_num}">${board.ab_title}</a></div>
 							<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.ab_hit}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.ac_cnt}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.bookmark_cnt}</span></div></div>
-							<div class="writer"><img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp; ${board.ab_reg_date}</div>
+							<div class="writer"><img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp; ${board.ab_reg_date}</div>
 						</div>
 					</td>
 				</tr>
