@@ -13,6 +13,7 @@ import lombok.ToString;
 public class AddressVO {
 	private long mem_num;
 	private long a_num;
+	private int a_status;
 	@NotBlank
 	private String a_name;
 	@NotBlank

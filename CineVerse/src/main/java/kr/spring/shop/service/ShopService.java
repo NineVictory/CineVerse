@@ -58,4 +58,15 @@ public interface ShopService {
 	public List<ProductVO> adminProductList(Map<String, Object> map);
 	
 	List<PBasketVO> selectFromPBasket(@Param("pb_num") List<Integer> pb_num);
+	
+	
+	// 마이페이지
+	List<OrdersVO> selectOrders(long mem_num);
+	int countOrders(long mem_num);
+	public List<Integer> howMuch(long order_num);
+	public List<Integer> howManyQuantity(long order_num);
+	public OrdersVO selectOrderDetailOne(long mem_num);
+	public List<OrdersVO> orderDetailList(long order_num);
+	public Integer orderPrice(long order_num);
+	public OrdersVO selectOrder(long order_num);
 }

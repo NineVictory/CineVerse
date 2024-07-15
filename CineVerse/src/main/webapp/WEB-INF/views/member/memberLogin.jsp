@@ -86,9 +86,11 @@
 				</div>
 			</form:form>
 
-			<a id="kakao-login-btn" href="javascript:loginWithKakao()"> <img
+			<a id="kakao-login-btn" href="javascript:loginWithKakao()"
+				style="margin-top: 20px; display: flex; justify-content: flex-start;">
+				<img
 				src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
-				width="222" alt="카카오 로그인 버튼" />
+				width="185" alt="카카오 로그인 버튼" />
 			</a>
 			<p id="token-result"></p>
 		</div>

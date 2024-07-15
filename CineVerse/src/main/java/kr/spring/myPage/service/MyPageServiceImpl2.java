@@ -37,4 +37,14 @@ public class MyPageServiceImpl2 implements MyPageService2{
 		myPageMapper.deleteAddress(a_num);
 	}
 
+	@Override
+	public AddressVO selectOrder(long mem_num) {
+		return myPageMapper.selectOrder(mem_num);
+	}
+
+	@Override
+	public void updateAddressStatus(Long a_num) {
+		myPageMapper.updateAddressStatus(a_num);
+	}
+
 }

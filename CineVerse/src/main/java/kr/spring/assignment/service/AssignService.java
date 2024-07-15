@@ -3,6 +3,11 @@ package kr.spring.assignment.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
+import kr.spring.assignment.vo.AssignFavVO;
 import kr.spring.assignment.vo.AssignVO;
 
 public interface AssignService {
@@ -15,4 +20,11 @@ public interface AssignService {
 	public void ab_updateBoard(AssignVO assign);
 	public void ab_deleteBoard(Long ab_num);
 	public void ab_deleteFile(Long ab_num);// 파일만 삭제
+	
+	//부모글 좋아요
+	public AssignFavVO ab_selectFav(AssignFavVO fav);
+	public Integer ab_selectFavCount(Long ab_num);
+	public void ab_insertFav(AssignFavVO fav);
+	public void ab_deleteFav(AssignFavVO fav);
+	
 }

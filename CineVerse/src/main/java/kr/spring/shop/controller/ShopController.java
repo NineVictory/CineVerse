@@ -47,10 +47,10 @@ public class ShopController {
 	private ShopService shopService;
 
 	@Autowired
-	public MyPageService2 mypageService2;
+	private MyPageService2 mypageService2;
 
 	@Autowired
-	public MyPageService mypageService;
+	private MyPageService mypageService;
 
 	// 벌스샵 메인 (목록)
 	@GetMapping("/shop/shopMain")

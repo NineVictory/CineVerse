@@ -60,7 +60,6 @@ public class AppConfig implements WebMvcConfigurer{
 				.addPathPatterns("/shop/addToCart")
 				.addPathPatterns("/shop/buyNow")
 				.addPathPatterns("/shop/shopFav")
-				.addPathPatterns("/shop/buyBasket")
 				.addPathPatterns("/support/consult");
 		
 				

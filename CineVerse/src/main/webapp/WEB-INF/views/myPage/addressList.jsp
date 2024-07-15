@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/addressList.js"></script>
 <!-- 배송지 관리 시작 -->
 <div class="myPage_main">
@@ -86,6 +87,7 @@
         </c:if>
 		<c:if test="${count >= 1}">
 			<c:forEach var="a" items="${addressList}">
+				<c:if test="${a.a_status == 1}">
 				<c:if test="${a.a_default == 1}">
 					<!-- 기본 주소 -->
 					<div class="my_address_del_modi">
@@ -97,7 +99,6 @@
 							</div>
 							<div class="add_btn">
 								<input type="button" class="add_del_btn" data-num="${a.a_num}" value="삭제">
-								<!-- <span class="add_del_btn" data-num="${a.a_num}">삭제</span> <span class="add_modi_btn">수정</span> -->
 							</div>
 						</div>
 					</div>
@@ -113,11 +114,12 @@
 									class="my_address_number">(${a.a_zipcode})</span>
 							</div>
 							<div class="add_btn">
-								<span class="add_del_btn" data-num="${a.a_num}">삭제</span> <span class="add_modi_btn">수정</span>
+								<input type="button" class="add_del_btn" data-num="${a.a_num}" value="삭제">
 							</div>
 						</div>
 					</div>
 					<!-- 기타 주소 -->
+				</c:if>
 				</c:if>
 			</c:forEach>
 		</c:if>

@@ -83,7 +83,7 @@
 							<div class="title"><a href="detail?cb_num=${board.cb_num}">${board.cb_title}</a></div>
 							<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.cb_hit}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.re_cnt}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12px;"><span>${board.fav_cnt}</span></div></div>
 							<div class="writer">
-								<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;
+								<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;
 								<c:if test="${empty board.mem_nickname}">
 									${board.mem_id}&nbsp;&nbsp; ${board.cb_reg_date}
 								</c:if>

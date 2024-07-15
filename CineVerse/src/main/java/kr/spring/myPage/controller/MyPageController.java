@@ -139,7 +139,7 @@ public class MyPageController {
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cb_type", cb_type);
 		map.put("category", category);
@@ -173,6 +173,7 @@ public class MyPageController {
 
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
 	    Map<String, Object> map = new HashMap<String, Object>();
 	    map.put("cb_type", cb_type);
@@ -200,6 +201,7 @@ public class MyPageController {
 	public String myPageEvent(HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member", member);
 		return "myEvent";
 	}
@@ -209,7 +211,7 @@ public class MyPageController {
 	public String myPagePointList(HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
 
@@ -234,6 +236,7 @@ public class MyPageController {
 	public String myPageChatList(HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member", member);
 		return "chatList";
 	}
@@ -243,6 +246,7 @@ public class MyPageController {
 	public String myPagePasswdChange(MyPageVO myPageVO, HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member", member);
 
 		return "passwdChange";
@@ -348,6 +352,7 @@ public class MyPageController {
 	public String modifyUser(MyPageVO myPageVO, HttpSession session, Model model) {
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 	    model.addAttribute("member", member);
 	    return "modifyUser";
 	}
@@ -386,6 +391,7 @@ public class MyPageController {
 	public String deleteMember(MyPageVO myPageVO, HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member", member);
 		return "deleteMember";
 	}
@@ -395,6 +401,7 @@ public class MyPageController {
 	public String myPageMemberShipSub(HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member", member);
 		return "memberShipSub";
 	}
@@ -404,6 +411,7 @@ public class MyPageController {
 	public String myPageConsult(HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member", member);
 		return "consult";
 	}

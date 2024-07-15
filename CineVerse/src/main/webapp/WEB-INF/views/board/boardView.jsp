@@ -41,7 +41,7 @@
 					
 		<div class="flexbox-h side">
 			<div class="writer ml10">
-				<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${board.mem_num}" width="20" height="20" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp;&nbsp;<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">
+				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="20" height="20" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp;&nbsp;<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">
 			</div>
 			<div>
 				<c:if test="${board.mem_num == user.mem_num}">
@@ -115,7 +115,7 @@
 		<!-- 댓글 작성 UI 시작 -->
       <div id="comment_div">
          <div class="flexbox-h">
-            <img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${user.mem_num}"
+            <img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${user.mem_num}"
                width="35" height="35" class="my-photo">
  		 
 	         <div id="reply_div">

@@ -23,6 +23,7 @@ import kr.spring.assignment.service.AssignService;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +64,7 @@ public class AssignBoardController {
 		assignVO.setMem_num(vo.getMem_num());
 		//ip 셋팅
 		assignVO.setAb_ip(request.getRemoteAddr());
-		
+		assignVO.setAb_filename(FileUtil.createFile(request, assignVO.getAb_upload()));
 		//글쓰기
 		assignservice.ab_insertBoard(assignVO);
 		
@@ -112,10 +113,18 @@ public class AssignBoardController {
 	 *양도게시판 글상세
 	 =====================*/
 	@GetMapping("/assignboard/detail")
-	public ModelAndView process() {
+	public ModelAndView process(long ab_num) {
+		log.debug("<<양도게시판 글 상세 - ab_num>> : " + ab_num);
 		
+		//해당 글의 조회수 증가
+		assignservice.ab_updateHit(ab_num);
 		
-		return new ModelAndView("assignView");
+		AssignVO assign = assignservice.ab_selectBoard(ab_num);
+		
+		//제목에 태그를 허용하지 않음
+		assign.setAb_title(StringUtil.useNoHTML(assign.getAb_title()));
+		
+		return new ModelAndView("assignView", "assign", assign);
 	}
 	
 	
