@@ -60,21 +60,21 @@
 	</select>
 	
 	<!-- 게시판 글 수정 -->
-	<!-- <update id="updateBoard" parameterType="boardVO">
-		UPDATE spboard SET
+<!-- 	<update id="ab_updateBoard" parameterType="assignVO">
+		UPDATE assignment_board SET
 						<if test="filename != null">
-							filename = #{filename},
+							ab_filename = #{ab_filename},
 						</if>
-												title = #{title}, content = #{content}, ip = #{ip}, modify_date = SYSDATE
-												WHERE board_num = #{board_num}
-	</update>
+												ab_title = #{ab_title}, ab_content = #{ab_content}, ab_ip = #{ab_ip}, ab_modify_date = SYSDATE
+												WHERE ab_num = #{ab_num}
+	</update> -->
 	
-	댓글 등록
-	<insert id="insertReply" parameterType="boardReplyVO">
+	<!-- 댓글 등록 -->
+	<!-- <insert id="insertReply" parameterType="boardReplyVO">
 		INSERT INTO spboard_reply (re_num, re_content, re_ip, board_num, mem_num)
 								VALUES (spreply_seq.nextval, #{re_content}, #{re_ip}, #{board_num}, #{mem_num})
-	</insert>
-	 -->
+	</insert> -->
+	
 	<!-- 댓글 목록 -->
 	<!-- <select id="selectListReply" parameterType="map" resultType="boardReplyVO">
          SELECT * FROM (SELECT a.*, rownum rnum FROM 

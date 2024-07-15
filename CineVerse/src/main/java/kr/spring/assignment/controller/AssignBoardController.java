@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AssignBoardController {
 
 	@Autowired
-	private AssignService assignservice;
+	private AssignService assignService;
 	
 	//자바빈(VO) 초기화
 	@ModelAttribute
@@ -66,7 +66,7 @@ public class AssignBoardController {
 		assignVO.setAb_ip(request.getRemoteAddr());
 		assignVO.setAb_filename(FileUtil.createFile(request, assignVO.getAb_upload()));
 		//글쓰기
-		assignservice.ab_insertBoard(assignVO);
+		assignService.ab_insertBoard(assignVO);
 		
 		//View 메시지 처리
 		model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
@@ -89,7 +89,7 @@ public class AssignBoardController {
 		map.put("keyword", keyword);
 		
 		//전체, 검색 레코드수
-		int count = assignservice.ab_selectRowCount(map);
+		int count = assignService.ab_selectRowCount(map);
 		
 		//페이지 처리
 		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,10,10,"list");
@@ -99,7 +99,7 @@ public class AssignBoardController {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
 			
-			list = assignservice.ab_selectList(map);
+			list = assignService.ab_selectList(map);
 		}
 		
 		model.addAttribute("count", count);
@@ -117,9 +117,9 @@ public class AssignBoardController {
 		log.debug("<<양도게시판 글 상세 - ab_num>> : " + ab_num);
 		
 		//해당 글의 조회수 증가
-		assignservice.ab_updateHit(ab_num);
+		assignService.ab_updateHit(ab_num);
 		
-		AssignVO assign = assignservice.ab_selectBoard(ab_num);
+		AssignVO assign = assignService.ab_selectBoard(ab_num);
 		
 		//제목에 태그를 허용하지 않음
 		assign.setAb_title(StringUtil.useNoHTML(assign.getAb_title()));
@@ -127,5 +127,36 @@ public class AssignBoardController {
 		return new ModelAndView("assignView", "assign", assign);
 	}
 	
+	/*====================
+	 *양도글 수정
+	 =====================*/
+	//수정 폼 호출
+	@GetMapping("/assignboard/update")
+	public String formUpdate(long ab_num, Model model) {
+		AssignVO assignVO = assignService.ab_selectBoard(ab_num);
+		model.addAttribute("assignVO", assignVO);
+		
+		return "assignModify";
+	}
+	//수정 폼에서 전송된 데이터 처리
+	@PostMapping("/assignboard/update")
+	public String submitUpdate(@Valid AssignVO assignVO, BindingResult result, Model model, HttpServletRequest request) throws IllegalStateException, IOException {
+		log.debug("<<양도글 수정>> : " + assignVO);
+		
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			
+			return "assignModify";
+		}
+		//ip 셋팅
+		assignVO.setAb_ip(request.getRemoteAddr());
+		//글 수정
+		assignService.ab_updateBoard(assignVO);
+		
+		//View에 표시할 메시지
+		model.addAttribute("message", "글 수정 완료");
+		model.addAttribute("url", request.getContextPath() + "/assignboard/detail?ab_num=" + assignVO.getAb_num());
+		return "common/resultAlert";
+	}
 	
 }
