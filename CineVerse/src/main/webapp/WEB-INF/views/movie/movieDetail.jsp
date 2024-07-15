@@ -80,35 +80,53 @@
             <span class="star" data-value="5"><img src="<c:url value='/images/ksh/star.png' />"></span>
         </div>
         <div class="review-choice">별점을 선택해주세요</div>
-		<div id="review_div">
-    <form id="mr_form">
-        <input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
-        <c:choose>
-            <c:when test="${empty user}">
-                <textarea rows="3" cols="50" name="mr_content" class="review-content" disabled>로그인해야 작성할 수 있습니다.</textarea>
-            </c:when>
-            <c:when test="${!empty user}">
+        <div id="review_div">
+            <!-- 디버그용 세션 정보 출력 -->
+            <c:if test="${!empty user}">
+                <p>로그인된 사용자: ${user.mem_num}</p>
+            </c:if>
+            <c:if test="${!empty user && canWriteReview}">
+                <p>예매한 사용자: ${user.mem_num}</p>
+            </c:if>
+            <c:if test="${!empty user && !canWriteReview}">
+                <p>예매하지 않은 사용자: ${user.mem_num}</p>
+            </c:if>
+            
+			
+            <!-- 댓글 작성 폼 -->
+            <form id="mr_form">
+                <input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
+                <%-- <input type="hidden" name="mb_num" value="${booking.mb_num}" id="mb_num"> <!-- 예매 번호 -->   --%>
+                  <input type="hidden" name="mb_num" value="${booking != null ? booking.mb_num : 0}" id="mb_num">
+                <input type="hidden" name="mr_grade" id="mr_grade" value="0"> <!-- 별점 값 저장 -->
+                <c:if test="${!empty booking}">
+    			<p>예매 번호: ${booking.mb_num}</p>
+				</c:if>
                 <c:choose>
-                    <c:when test="${!hasBooked}">
-                        <textarea rows="3" cols="50" name="mr_content" class="review-content" disabled>영화를 예매한 경우에만 댓글을 작성할 수 있습니다.</textarea>
+                    <c:when test="${empty user}">
+                        <textarea rows="3" cols="50" name="mr_content" class="review-content" disabled>로그인해야 작성할 수 있습니다.</textarea>
                     </c:when>
-                    <c:otherwise>
-                        <textarea rows="3" cols="50" name="mr_content" class="review-content"></textarea>
-                        <label for="mr_spoiler">스포일러 포함</label>
-                        <input type="checkbox" name="mr_spoiler" value="2" id="mr_spoiler">
-                        <div id="review_first">
-                            <span class="letter-count">300/300</span>
-                        </div>
-                        <div id="review_second" style="text-align: right;">
-                            <div class="review-button"><input type="submit" value="등록"></div>
-                        </div>
-                    </c:otherwise>
+                    <c:when test="${!empty user}">
+                        <c:choose>
+                            <c:when test="${!canWriteReview}">
+                                <textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content" disabled>영화를 예매한 경우에만 댓글을 작성할 수 있습니다.</textarea>
+                            </c:when>
+                            <c:otherwise>
+                                <textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content"></textarea>
+                                <label for="mr_spoiler">스포일러 포함</label>
+                                <input type="checkbox" name="mr_spoiler" value="1" id="mr_spoiler">
+                                <div id="review_first">
+                                    <span class="m_letter-count">300/300</span>
+                                </div>
+                                <div id="review_second" style="text-align: right;">
+                                    <div class="review-button"><input type="submit" value="등록"></div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
                 </c:choose>
-            </c:when>
-        </c:choose>
-    </form>
-</div>
-		
+            </form>
+        </div>
     </div>
     <div class="review-menu">
         <span id="recommendation">추천순</span>

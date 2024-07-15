@@ -14,4 +14,5 @@ public class MovieBookingVO {
 	private Long mb_price;
 	private Long mem_num;
 	private Long mt_num;
+	private Long m_code;
 }

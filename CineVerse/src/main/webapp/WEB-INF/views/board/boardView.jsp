@@ -112,39 +112,32 @@
 		<!-- 댓글 UI 끝 -->
 		
 		
-		<!-- 댓글 UI 시작 -->
-		<div id="comment_div" class="ml10 mt10">
-			<div class="flexbox-h">
-				<c:if test="${empty user}">
-					<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${user.mem_num}" width="40" height="40" class="my-photo">
-					<textarea rows="4" cols="105" name="cc_content" id="cc_content" class="rep-content"
-										<c:if test="${empty user}">disabled="disabled"</c:if>
-									>로그인해야 작성할 수 있습니다.</textarea>
-				</c:if>
-				<c:if test="${!empty user}">
-					<img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${user.mem_num}" width="40" height="40" class="my-photo">
-					<span>
-						<c:if test="${empty user.mem_nickname}">
-									${user.mem_id}
-						</c:if>
-						<c:if test="${!empty board.mem_nickname}">
-							${board.mem_nickname}
-						</c:if>
-					</span>
-					<form id="comment_form">
-						<input type="hidden" name="cb_num" value="${board.cb_num}" id="cb_num">
-							<div class="flexbox-h">
-								<textarea rows="4" cols="105" name="cc_content" id="cc_content" class="rep-content"
-											placeholder="내용을 입력해주세요."></textarea>
-								
-									<input type="submit" class="default-btn ml10" value="등록">
-								
-					
-							</div>
-					</form>
-				</c:if>
-			</div>
+		<!-- 댓글 작성 UI 시작 -->
+      <div id="comment_div">
+         <div class="flexbox-h">
+            <img src="${pageContext.request.contextPath}/member/viewProfile?mem_num=${user.mem_num}"
+               width="35" height="35" class="my-photo">
+ 		 
+	         <div id="reply_div">
+	            <form id="comment_form">
+	               <input type="hidden" name="cb_num" id="cb_num" value="${board.cb_num }">
+	               <div class="flexbox-h">
+	               <textarea rows="4" cols="115" name="cc_content" id="cc_content" class="rep-content"
+	                  <c:if test="${empty user}">disabled="disabled"</c:if>><c:if
+	                     test="${empty user}">로그인 후 작성 가능합니다.</c:if></textarea>
+	               <c:if test="${!empty user}">
+	                  <div id="re_second">
+	                     <input type="submit" class="default-btn ml10" value="등록">
+	                  </div>
+	               </c:if>
+	               </div>
+	            </form>
+	
+	         </div>
 		</div>
+        
+      </div>
+	
 		
 		
 		<div class="align-center">

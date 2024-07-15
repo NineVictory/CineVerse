@@ -1,87 +1,86 @@
-$(function() {
-    let rowCount = 10;
-    let currentPage = 1;
-
-    // 리뷰 목록
-    function selectMovieList(pageNum) {
-        $.ajax({
-            url: '/movie/movieDetail/getReviews',
-            type: 'post',
-            data: { page: pageNum, m_code: $('#m_code').val() },
-            dataType: 'json',
-            success: function(data) {
-                if (data.result === 'success') {
-                    displayReviews(data.reviews);
-                } else {
-                    alert('리뷰 목록을 불러오는 데 실패했습니다.');
-                }
-            },
-            error: function() {
-                alert('네트워크 오류 발생');
-            }
-        });
-    }
-
-    // 리뷰 목록 표시
-    function displayReviews(reviews) {
-        let html = '';
-        reviews.forEach(function(review) {
-            if (review.mr_spoiler === 2) {
-                html += `<div class="review">
-                            <button class="show-spoiler">스포일러 보기</button>
-                            <span class="spoiler-content" style="display:none;">${review.mr_content}</span>
-                         </div>`;
+$(document).ready(function() {
+    // 별점 클릭 이벤트
+    $(".star-rating .star").click(function() {
+        var rating = $(this).data("value");
+        $("#mr_grade").val(rating);
+        $(".review-choice").text("별점: " + rating + "점");
+                $(".star-rating .star").each(function() {
+            if ($(this).data("value") <= rating) {
+                $(this).addClass("selected");
             } else {
-                html += `<div class="review">${review.mr_content}</div>`;
-            }
-        });
-        $('#review_list').html(html);
-
-        $('.show-spoiler').click(function() {
-            $(this).next('.spoiler-content').toggle();
-        });
-    }
-
-    // 리뷰 등록
-    $('#mr_form').submit(function(event) {
-        if ($('#mr_content').val().trim() === '') {
-            alert('내용을 입력하세요');
-            $('#mr_content').val('').focus();
-            return false;
-        }
-
-        let form_data = $(this).serialize();
-
-        $.ajax({
-            url: '/movie/movieDetail/addReview',
-            type: 'post',
-            data: form_data,
-            dataType: 'json',
-            success: function(param) {
-                if (param.result === 'logout') {
-                    alert('로그인해야 작성할 수 있습니다.');
-                } else if (param.result === 'notBooked') {
-                    alert('영화를 예매한 경우에만 댓글을 작성할 수 있습니다.');
-                } else if (param.result === 'success') {
-                    initForm();
-                    selectMovieList(1);
-                } else {
-                    alert('리뷰 등록 오류 발생');
-                }
-            },
-            error: function() {
-                alert('네트워크 오류 발생');
+                $(this).removeClass("selected");
             }
         });
 
+ });
+
+    // 리뷰 작성 폼 제출 이벤트
+    $("#mr_form").submit(function(event) {
         event.preventDefault();
+        var formData = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "/movie/writeReview",
+            data: formData,
+            success: function(response) {
+                if (response === "success") {
+                    alert("리뷰가 성공적으로 등록되었습니다.");
+                    location.reload();
+                } else {
+                    alert("리뷰 등록에 실패했습니다.");
+                }
+            }
+        });
     });
 
-    // 리뷰 작성 폼 초기화
-    function initForm() {
-        $('textarea').val('');
-        $('#review_first .letter-count').text('300/300');
-    }
+    // 추천순, 최신순 클릭 이벤트
+    $("#recommendation").click(function() {
+        loadReviews("recommendation");
+    });
 
-    selectMovieList(1);
+    $("#latest").click(function() {
+        loadReviews("latest");
+    });
+
+    function loadReviews(order) {
+        var m_code = $("#m_code").val();
+        $.ajax({
+            type: "GET",
+            url: "/movie/reviews",
+            data: { m_code: m_code, order: order },
+            success: function(data) {
+                $("#review_list").html(data);
+            }
+        });
+    }
+    
+   /*===================
+		댓글(답글) 등록, 수정 공통
+	===================*/
+	//textarea에 내용 입력시 글자수 체크
+	$(document).on('keyup','textarea',function(){
+		//입력한 글자수 구하기
+		let inputLength = $(this).val().length;
+		
+		if(inputLength>300){//300자를 넘어선 경우
+			$(this).val($(this).val().substring(0,300));
+		}else{//300자 이하인경우
+			//남은 글자수 구하기
+			let remain = 300 - inputLength;
+			remain +='/300';
+			if($(this).attr('id')=='mr_content'){
+				//댓글 등록 폼 글자수
+				$('#re_first .letter-count').text(remain);
+			}else if($(this).attr('id')=='m_mre_content'){
+				//댓글 수정 폼 글자수
+				$('#m_mre_first .letter-count').text(remain);
+			}else if($(this).attr('id')=='m_resp_content'){
+				//답글 등록 폼 글자수
+				$('#m_resp_first .m_letter-count').text(remain);
+			}else{
+				//답글 수정 폼 글자수
+				$('#m_mresp_first .m_letter-count').text(remain);
+			}
+		}
+	});
 });

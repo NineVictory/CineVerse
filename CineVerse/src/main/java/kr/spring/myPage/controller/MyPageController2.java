@@ -72,7 +72,7 @@ public class MyPageController2 {
 
 	    model.addAttribute("message", "성공적으로 배송지가 추가되었습니다.");
 	    model.addAttribute("url", request.getContextPath() + "/myPage/addressList");
-	    return "common/resultAlert";
+	    return "common/resultAlert"; 
 	}
 	
 

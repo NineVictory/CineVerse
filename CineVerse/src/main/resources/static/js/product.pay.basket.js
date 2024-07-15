@@ -59,64 +59,79 @@ $(function() {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     
-    // 폼 제출 시 선택된 checkbox 값을 서버로 전송하고 폼을 제출
-    const form = document.querySelector('.bd');
-    const hiddenOption = document.getElementById('hidden_option');
-    const submitButton = document.querySelector('.bd input[type="submit"]');
-
-	
-	submitButton.addEventListener('click', function(event) {
+    
+	$('.realBuy').on('click', function(event) {
 	    event.preventDefault();
-
-        let a_num = $('input[name="a_num"]:checked').val();
-        $('#hidden_option').val(a_num);
+	
+	    // 배송지 선택 확인
+	    let a_num = $('input[name="a_num"]:checked').val();
+	    if (!a_num) {
+	        alert('배송지를 선택해 주세요.');
+	        return;
+	    }
+	    $('#hidden_option').val(a_num);
+	
+	    // 동의 여부 확인
+	    let agree = $('input[name="agree"]').is(':checked') ? 1 : 2;
+	    $('#hidden_agree').val(agree);
+	
+	    // mc_num 기본값 설정
+	    if ($('input[name="mc_num"]').val() === "") {
+	        $('input[name="mc_num"]').val(0);
+	    }
+	
+	    // 제품 목록 추가
+	    let count = 1;
+	    const allProducts = $('.product-list');
+	
+	    allProducts.each(function() {
+	        const pb_num = $(this).data("pbnum");
+	        const input = $('<input>', {
+	            type: 'hidden',
+	            name: 'pb_num' + count,
+	            value: pb_num
+	        });
+	        $(".bd").append(input);
+	        count++;
+	    });
+	
+	    const total_count = document.querySelector('.total_count .cc').textContent.replace('개', '');
+	    const total = document.querySelector('.total_price .tt').textContent.replace('원', '');
+	
+	    document.getElementById('hiddenTotalCount').value = total_count;
+	    document.getElementById('hiddenTotal').value = total;
+	    document.getElementById('hiddenCount').value = count - 1;
+	
+	    // 폼 데이터 직렬화
+	    let form_data = $('.bd').serialize();
+	
+	    // AJAX 요청
+	   $.ajax({
+		    url: 'buyWithBasket', 
+		    method: 'post',
+		    data: form_data,
+		    dataType: 'json',
+		    success: function(param) {
+		        if (param.result == 'logout') {
+		            alert('로그인 후 이용해주세요');
+		        } else if (param.result == 'noAddress') {
+		            alert('주소가 없습니다.');
+		        } else if(param.result == 'noAgree'){
+		            alert('결제 동의는 필수입니다.');
+		        } else if(param.result == 'noPoint'){
+		            alert('포인트가 부족합니다. 충전 후 진행해주세요.');
+		        } else if (param.result == 'success') {
+		            alert('주문이 완료되었습니다.');
+		            window.location.href = '../main/main';
+		        } else {
+		            alert('결제 오류 발생');
+		        } 
+		    },
+		    error: function() {
+		        alert('네트워크 오류 발생');
+		    }
+		});
+	});
 		
-		let agree;
-		if ($('input[name="agree"]').is(':checked')) {
-		    agree = 1; // 체크되어 있으면 동의
-		} else {
-		    agree = 2; // 체크 안 되어 있으면 동의 x
-		}
-
-
-		$('#hidden_agree').val(agree);
-
-        // hidden input 필드에 기본값 설정
-        if ($('input[name="a_num"]').val() === "") {
-            $('input[name="a_num"]').val(0);
-        }
-        if ($('input[name="mc_num"]').val() === "") {
-            $('input[name="mc_num"]').val(0);
-        }
-
-        let form_data = $('.bd').serialize();
-        $.ajax({
-            url: 'buyDirect',
-            method: 'POST',
-            data: form_data,
-            dataType: 'json',
-            success: function(param) {
-                if (param.result == 'logout') {
-                    alert('로그인 후 이용해주세요');
-                } else if (param.result == 'noAddress') {
-                    alert('주소가 없습니다.');
-                } else if(param.result == 'noAgree'){
-					alert('결제 동의는 필수입니다.')
-				} else if(param.result == 'noPoint'){
-					alert('포인트가 부족합니다. 충전 후 진행해주세요.');
-				} else if (param.result == 'success') {
-					alert('주문이 완료되었습니다.');
-					window.location.href = '../main/main';
-                } else {
-                    alert('결제 오류 발생');
-                } 
-            },
-            error: function() {
-                alert('네트워크 오류 발생');
-         	}
-        });
-    });
-	
-	
 	
 });

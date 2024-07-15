@@ -10,15 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.board.dao.BoardMapper;
 import kr.spring.board.vo.BoardFavVO;
+import kr.spring.movie.controller.MovieAjaxController;
 import kr.spring.movie.dao.MovieMapper;
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 @Transactional
 public class MovieServiceImpl implements MovieService {
@@ -155,36 +158,30 @@ public class MovieServiceImpl implements MovieService {
 		
 	}
 
-	 @Override
-	    public boolean hasBookedMovie(Long mem_num, Long m_code) {
-	        Map<String, Object> map = new HashMap<>();
-	        map.put("mem_num", mem_num);
-	        map.put("m_code", m_code);
-	        return movieMapper.hasBookedMovie(map) > 0;
-	    }
 
-	    @Override
-	    public void addMovieReview(MovieReviewVO review) {
-	        movieMapper.addMovieReview(review);
-	    }
 
-	    @Override
-	    public List<MovieReviewVO> getMovieReviews(int page, Long m_code) {
-	        int offset = (page - 1) * 10;
-	        Map<String, Object> map = new HashMap<>();
-	        map.put("offset", offset);
-	        map.put("limit", 10);
-	        map.put("m_code", m_code);
-	        return movieMapper.getMovieReviews(map);
-	    }
+    
+    @Override
+    @Transactional
+    public void addMovieTime(MovieTimeVO movieTimeVO) {
+        movieMapper.addMovieTime(movieTimeVO);
+    }
 
-	    @Override
-	    public Long getBookingDetailNum(Long mem_num, Long m_code) {
-	        Map<String, Object> map = new HashMap<>();
-	        map.put("mem_num", mem_num);
-	        map.put("m_code", m_code);
-	        return movieMapper.getBookingDetailNum(map);
-	    }
+	@Override
+	public boolean canWriteReview(long mem_num, long m_code) {
+		return movieMapper.hasBookedMovie(mem_num, m_code) > 0;
+	}
+
+	@Override
+	public MovieBookingVO getBookingInfo(long mem_num, long m_code) {
+		return movieMapper.getBookingInfo(mem_num, m_code);
+	}
+
+
+
+
+
+
 
 
 

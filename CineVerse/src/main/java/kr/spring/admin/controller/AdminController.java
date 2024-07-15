@@ -2,7 +2,9 @@ package kr.spring.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,6 +30,7 @@ import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.util.FileUtil;
+import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -238,11 +241,12 @@ public class AdminController {
 		return "success";
 		
 	}
-	//이벤트 삭제폼 호출
+	//이벤트 등록 폼 호출
 	@GetMapping("/admin/adminEventForm")
 	public String AdminEventForm(){
 		return "adminEventForm";
 	}
+	//이벤트 등록
 	@PostMapping("admin/adminEventForm")
 	public String insertEvent(@Valid EventVO eventVO,
 								BindingResult result,
@@ -323,12 +327,54 @@ public class AdminController {
 	
 	// 영화
 	@GetMapping("/admin/adminMovie")
-	public String adminShopMovie(){
-		return "adminMovie";
+    public String adminMovie(
+            @RequestParam(defaultValue = "1") int pageNum,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "keyfield", required = false) String keyfield,
+            Model model) {
+		// keyfield가 없으면 기본값을 설정
+	    if (keyfield == null || keyfield.isEmpty()) {
+	        keyfield = "m_name"; // 기본 검색 필드를 설정합니다.
+	    }
+	    
+        // 파라미터를 맵에 추가
+        Map<String, Object> map = new HashMap<>();
+        map.put("keyword", keyword);
+        map.put("keyfield", keyfield);
+
+        // 전체, 검색 레코드 수
+        int count = adminService.selectRowCount(map);
+
+        // 페이지 처리
+        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "list");
+        
+        List<MovieVO> list = null; 
+        if (count > 0) {
+            map.put("start", page.getStartRow());
+            map.put("end", page.getEndRow());
+            
+            list = adminService.selectMovie(map); 
+        }
+        
+        model.addAttribute("count", count);
+        model.addAttribute("list", list);
+        model.addAttribute("page", page.getPage());
+        
+        return "adminMovie";
+    
+	}
+	// 영화 삭제 처리
+	@PostMapping("/deleteMovie")
+	@ResponseBody
+	public String deleteMovie(@RequestParam("m_code") int m_code) {
+		adminService.deleteMovie(m_code);
+		log.debug("<<영화 삭제 완료>>");
+		return "success";
+		
 	}
 	// 영화
 	@GetMapping("/admin/adminMovieTime")
-	public String adminShopMovieTime(){
+	public String adminMovieTime(){
 		return "adminMovieTime";
 	}
 	// 영화등록

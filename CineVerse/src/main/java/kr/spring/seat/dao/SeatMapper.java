@@ -3,9 +3,12 @@ package kr.spring.seat.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import kr.spring.seat.vo.SeatReviewVO;
 import kr.spring.seat.vo.SeatVO;
 
+@Mapper
 public interface SeatMapper {
 	//좌석
 	public List<SeatVO> selectSeatList(Map<String,Object>map);

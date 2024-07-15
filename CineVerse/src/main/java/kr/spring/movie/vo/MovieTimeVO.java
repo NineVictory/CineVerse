@@ -10,10 +10,10 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MovieTimeVO {
-	private long mt_num;
+	private Long mt_num;
 	private Date mt_date;
 	private String mt_start;
 	private String mt_end;
 	private Long m_code;
-	private long c_num;
+	private Long c_num;
 }

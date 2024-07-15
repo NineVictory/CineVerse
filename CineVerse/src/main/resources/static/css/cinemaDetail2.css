@@ -7,6 +7,7 @@
 
 .branch-info{
 	margin-left: 200px;
+	color: #6a5acd;
 }
 
 .info-box{
@@ -36,6 +37,7 @@
 }
 
 .branch-position{
+	color: #6a5acd;
 	margin-top: 50px;
 	margin-left: 200px;
 }
@@ -55,6 +57,10 @@
 .time-box{
 	margin-top: 50px;
 	margin-left: 200px;
+}
+
+.time-table{
+	color: #6a5acd;
 }
 
 .time-image{

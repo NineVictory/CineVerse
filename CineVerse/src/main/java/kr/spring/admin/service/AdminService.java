@@ -1,7 +1,9 @@
 package kr.spring.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 
 import kr.spring.admin.vo.AdminVO;
@@ -9,6 +11,7 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.movie.vo.MovieVO;
 
 public interface AdminService {
 
@@ -24,5 +27,7 @@ public interface AdminService {
 	public void deleteNotice(long nb_num);
 	public List<BoardVO> getAllCommunity();
 	public List<AssignVO> getAllAssignment();
-	
-}
+	public List<MovieVO> selectMovie(Map<String,Object> map);
+	public Integer selectRowCount(Map<String,Object> map);
+	public void deleteMovie(long m_code);
+}	

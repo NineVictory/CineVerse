@@ -17,7 +17,7 @@ public class MovieReviewVO {
 	private String mr_regdate;
 	private long mr_spoiler;
 	private long mr_grade;
-	private long md_num;
+	private long mb_num;
 	private long m_code;
 	private long mem_num;
 	
