@@ -21,7 +21,7 @@
 		<!-- 여기도 검은색삐죽... -->
 			<div class="wa_photo" style="background:none;">
 					<img src="${pagecontext.reuqest.contextPath}/upload/${od.p_filename}"
-						alt="결제 내역" width="160" height="160" onclick="location.href=''">
+						alt="결제 내역" width="160" height="160" onclick="location.href='${pageContext.request.contextPath}/shop/shopDetail?p_num=${od.p_num}'">
 			</div>
 			<div class="reservation_info">
 				<div class="reservation_movie_name">
