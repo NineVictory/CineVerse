@@ -97,6 +97,7 @@ $(function(){
 
 					//답글출력
 					output +='     <div class="response-container">';
+					
 
 					output +='     </div>';
 					
