@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.board.vo.BoardVO;
+import kr.spring.cinema.service.CinemaService;
+import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieVO;
@@ -29,6 +31,9 @@ public class MovieController {
 	
 	@Autowired
 	private MovieService movieService;
+	
+	@Autowired
+	private CinemaService cinemaService;
 		
 	/*=======================
 	 * 영화 목록
@@ -40,6 +45,7 @@ public class MovieController {
 			  String keyfield, String keyword, Model model) {
 		
 		log.debug("<<게시판 목록 - movieorder>> :"+movieorder); //정렬
+		
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 
@@ -86,12 +92,45 @@ public class MovieController {
     }
 	
 	/*=======================
-	 * 영화 예매
+	 * 영화 예매 
 	 *=======================*/
-	@GetMapping("/movie/movieReserve")
-	public String movieReserve(){
-		return "movieReserve";
-	}
+	 @GetMapping("/movie/movieReserve")
+	    public String movieReserve(@RequestParam(defaultValue = "1") int pageNum,
+	                               @RequestParam(defaultValue = "1") int order,
+	                               @RequestParam(defaultValue = "1") String c_location,
+	                               String keyfield, String keyword, Model model) {
+		 	
+		 
+			log.debug("<<영화관 목록 - c_location>> : " + c_location);
+			log.debug("<<영화관 목록 - order>> : " + order);
+			
+			
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("c_location", c_location);
+	        map.put("keyfield", keyfield);
+	        map.put("keyword", keyword);
+
+	        // 전체, 검색 레코드 수
+	        int count = cinemaService.selectCinemaCount(map);
+
+	        // 페이지 처리
+	        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "movieReserve", "&c_location=" + c_location + "&order=" + order);
+	        List<CinemaVO> list = null;
+	        if (count > 0) {
+	            map.put("order", order);
+	            map.put("start", page.getStartRow());
+	            map.put("end", page.getEndRow());
+
+	            list = cinemaService.selectCinemaList(map);
+	        }
+	        
+
+	        model.addAttribute("count", count);
+	        model.addAttribute("list", list);
+	        model.addAttribute("page", page.getPage());
+
+	        return "movieReserve";
+	    }
 	
 	/*=======================
 	 * 영화 좌석 선택
