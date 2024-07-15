@@ -81,8 +81,20 @@
  	</update> 
 	
 	
-	
-	
+	<!-- 상영관 등록 -->
+	<insert id="insertTheater" parameterType="theaterVO">
+		INSERT INTO theater(
+			th_num,
+			th_name,
+			th_position,
+			c_num)
+		VALUES (
+			theater_seq.nextval,
+			#{th_num},
+			#{th_name},
+			#{th_position},
+			#{c_num})
+	</insert>
 	
 	
 	

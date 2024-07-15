@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.cinema.dao.CinemaMapper;
 import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.cinema.vo.TheaterVO;
 
 @Service
 @Transactional
@@ -45,6 +46,41 @@ public class CinemaServiceImpl implements CinemaService{
 	@Override
 	public void deleteCinema(Long c_num) {
 		cinemaMapper.deleteCinema(c_num); 
+	}
+
+	@Override
+	public List<TheaterVO> selectTheaterList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer selectTheaterCount(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertTheater(TheaterVO theater) {
+		cinemaMapper.insertTheater(theater);
+	}
+ 
+	@Override
+	public TheaterVO selectTheater(Long th_num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateTheater(TheaterVO theater) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteTheater(Long th_num) {
+		// TODO Auto-generated method stub
+		
 	}	
 	
 	
