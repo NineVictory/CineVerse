@@ -55,8 +55,8 @@
 	                  c_branch,
 	                  c_address,
 	                  c_phone,
-	                  c_theater,
-	                  c_seat,
+	                 <!--  c_theater,
+	                  c_seat, -->
 	                  c_parkable
 	                FROM cinema               
 	                <include refid="cinemaSearch"></include>
@@ -74,8 +74,8 @@
  		   c_location = #{c_location},
  		   c_address = #{c_address},
  		   c_phone = #{c_phone},
- 		   c_theater = #{c_theater},
- 		   c_seat = #{c_seat},
+ 		  <!--  c_theater = #{c_theater},
+ 		   c_seat = #{c_seat}, -->
  		   c_parkable = #{c_parkable}
  		WHERE c_num = #{c_num}
  	</update> 

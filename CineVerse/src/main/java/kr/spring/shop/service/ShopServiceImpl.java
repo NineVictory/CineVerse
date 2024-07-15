@@ -239,6 +239,11 @@ public class ShopServiceImpl implements ShopService {
 		return shopMapper.selectOrder(order_num);
 	}
 
+	@Override
+	public void orderConfirm(long order_num) {
+		shopMapper.orderConfirm(order_num);
+	}
+
 	
 
 }

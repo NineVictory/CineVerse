@@ -70,4 +70,5 @@ public interface ShopService {
 	public Integer orderPrice(long order_num);
 	public OrdersVO selectOrder(long order_num);
 
+	public void orderConfirm(long order_num);
 }

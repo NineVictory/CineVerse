@@ -59,7 +59,7 @@ public class MyPageController2 {
 
 	// 배송지 추가
 	@PostMapping("/myPage/addressList")
-	public String addAddress(@Valid @ModelAttribute("address") AddressVO address, BindingResult result, HttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException {
+	public String addAddress(@Valid AddressVO address, BindingResult result, HttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException {
 	    log.debug("<<배송지 추가>> ::: " + address);
 
 	    MemberVO user = (MemberVO) session.getAttribute("user");

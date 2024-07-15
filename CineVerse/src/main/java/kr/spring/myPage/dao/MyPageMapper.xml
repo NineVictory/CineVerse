@@ -63,6 +63,10 @@
 		ORDER BY cc.cc_num DESC
 	</select>
 	
+	
+	
+	
+	
 	<update id="updateMember_detail" parameterType="myPageVO">
 		UPDATE member_detail
 			SET 

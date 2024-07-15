@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/myPage.bought.js"></script>
 <!--  굿즈 내역 시작 -->
 <div class="myPage_main">
 
@@ -54,8 +56,13 @@
 								</div>
 								<!-- 버튼들 -->
 								<div class="my_bought_btn">
-								<span class="my_order_confirm">주문확정</span>
-								<span class="my_order_return">교환/반품</span>
+									<c:if test="${o.order_status!=6}">
+										<span class="my_order_confirm" data-num="${o.order_num}" data-mnum="${o.mem_num}">주문확정</span>
+										<span class="my_order_return">교환/반품</span>
+									</c:if>
+									<c:if test="${o.order_status==6}">
+										<span class="my_order_review">리뷰쓰기</span>
+									</c:if>
 								</div>
 							</div>
 						</div>
