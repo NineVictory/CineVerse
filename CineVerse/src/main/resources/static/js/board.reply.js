@@ -46,7 +46,7 @@ $(function(){
 
 					output += '        <div class="flexbox-h side writer-btns">';
 					output += '        		<div class="flexbox-h cc-writer-info">';
-						output += '				<img src="../member/viewProfile?mem_num=' +item.mem_num+ '" width="30" height="30" class="my-photo">';
+						output += '				<img src="../myPage/viewProfile?mem_num=' +item.mem_num+ '" width="30" height="30" class="my-photo">';
 											if(item.nick_name){
 												output += item.mem_nickname;
 												name += item.mem_nickname;
@@ -228,7 +228,7 @@ $(function(){
 
 					modifyUI += '        <div class="flexbox-h side writer-btns">';
 					modifyUI += '        		<div class="flexbox-h cc-writer-info">';
-					modifyUI += '					<img src="../member/viewProfile?mem_num=' +mem_num+ '" width="30" height="30" class="my-photo">';
+					modifyUI += '					<img src="../myPage/viewProfile?mem_num=' +mem_num+ '" width="30" height="30" class="my-photo">';
 					modifyUI += '					<span>' + name + '</span>';
 					modifyUI += '				</div>';
 					modifyUI += '		</div>';
@@ -423,7 +423,7 @@ $(function(){
 					    responseUI += '   <input type="hidden" name="te_parent_num" value="'+te_parent_num+'">';
 					    responseUI += '   <input type="hidden" name="te_depth" value="'+te_depth+'">';
 					    responseUI += '		<div class="flexbox-h cc-writer-info">';
-						responseUI += '			<img src="../member/viewProfile?mem_num=' +user_num+ '" width="30" height="30" class="my-photo">';
+						responseUI += '			<img src="../myPage/viewProfile?mem_num=' +user_num+ '" width="30" height="30" class="my-photo">';
 						responseUI += '			<span>' +name+ '</span>';
 						responseUI += '		</div>';
 					    
@@ -539,7 +539,7 @@ $(function(){
 					output += ' 	<div class="resp-detail-info">';
 					output +='  	 	 <div class="답글 작성자 정보">';
 					
-					output += '  	  		 <img src="../member/viewProfile?mem_num='+ item.mem_num +'" width="30" height="30" class="my-photo">';
+					output += '  	  		 <img src="../myPage/viewProfile?mem_num='+ item.mem_num +'" width="30" height="30" class="my-photo">';
 					if(item.mem_nickname){
 											output += item.mem_nickname;
 					}else{
