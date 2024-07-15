@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/addressList.js"></script>
 <!-- 배송지 관리 시작 -->
 <div class="myPage_main">
 	<div class="reservation_display">
@@ -15,9 +16,26 @@
 				<div class="login_form_inputs_id_passwd_my"
 					style="border: none; margin-left: 10px;">
 					<input type="radio" id="a_default" name="a_default" value="1">기본
-					<input type="radio" id="a_default" name="a_default" value="2">기본 X
+					<input type="radio" id="a_default" name="a_default" value="2">기본
+					X
 				</div>
 			</div>
+			<script>
+				document.addEventListener("DOMContentLoaded",
+								function() {
+									const radios = document.getElementsByName('a_default');
+									let isChecked = false;
+									for (let i = 0; i < radios.length; i++) {
+										if (radios[i].checked) {
+											isChecked = true;
+											break;
+										}
+									}
+									if (!isChecked) {
+										document.querySelector('input[name="a_default"][value="2"]').checked = true;
+									}
+								});
+			</script>
 			<div class="login_form_all_my">
 				<div class="login_form_inputs_id_passwd_my">
 					<form:input path="a_name" placeholder="배송지 이름을 입력해주세요"
@@ -51,7 +69,7 @@
 			</div>
 			<div class="login_form_all_my">
 				<div class="login_form_inputs_id_passwd_my">
-					<form:input path="a_phone" placeholder="전화번호를 입력해주세요"
+					<form:input path="a_phone" placeholder="전화번호를 입력해주세요(-하이픈 제외)"
 						class="input_style" />
 				</div>
 				<form:errors element="div" path="a_phone" cssClass="error-color" />
@@ -78,7 +96,8 @@
 									class="my_address_number">(${a.a_zipcode})</span>
 							</div>
 							<div class="add_btn">
-								<span class="add_del_btn">삭제</span> <span class="add_modi_btn">수정</span>
+								<input type="button" class="add_del_btn" data-num="${a.a_num}" value="삭제">
+								<!-- <span class="add_del_btn" data-num="${a.a_num}">삭제</span> <span class="add_modi_btn">수정</span> -->
 							</div>
 						</div>
 					</div>
@@ -94,7 +113,7 @@
 									class="my_address_number">(${a.a_zipcode})</span>
 							</div>
 							<div class="add_btn">
-								<span class="add_del_btn">삭제</span> <span class="add_modi_btn">수정</span>
+								<span class="add_del_btn" data-num="${a.a_num}">삭제</span> <span class="add_modi_btn">수정</span>
 							</div>
 						</div>
 					</div>
@@ -104,8 +123,7 @@
 		</c:if>
 	</div>
 
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 	<!-- 우편번호 시작 -->
 	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 	<div id="layer"

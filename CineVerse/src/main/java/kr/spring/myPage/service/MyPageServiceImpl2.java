@@ -31,4 +31,10 @@ public class MyPageServiceImpl2 implements MyPageService2{
 	public List<AddressVO> addressList(long mem_num) {
 		return myPageMapper.addressList(mem_num);
 	}
+
+	@Override
+	public void deleteAddress(Long a_num) {
+		myPageMapper.deleteAddress(a_num);
+	}
+
 }

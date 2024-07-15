@@ -1301,8 +1301,6 @@
 .add_del_btn,.add_modi_btn{
 	font-size:14px;
 	text-align: center;
-	/* border: 1px solid; */
-	border-radius: 15px;
 	margin-right: 10px;
 }
 

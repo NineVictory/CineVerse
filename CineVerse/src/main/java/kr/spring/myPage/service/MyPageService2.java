@@ -10,5 +10,6 @@ import kr.spring.myPage.vo.MyPageVO;
 public interface MyPageService2 {
 	public void addAddress(AddressVO address);
 	public Integer countAddress(Long mem_num);
-	public List<AddressVO> addressList(long mem_num); 
+	public List<AddressVO> addressList(long mem_num);
+	public void deleteAddress(Long a_num);
 }

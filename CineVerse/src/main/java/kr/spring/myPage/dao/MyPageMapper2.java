@@ -3,6 +3,7 @@ package kr.spring.myPage.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -19,4 +20,7 @@ public interface MyPageMapper2 {
 	
 	@Select("SELECT * FROM address WHERE mem_num=#{mem_num}")
 	public List<AddressVO> addressList(Long mem_num); 
+	
+	@Delete("DELETE FROM address WHERE a_num=#{a_num}")
+	public void deleteAddress(Long a_num);
 }
