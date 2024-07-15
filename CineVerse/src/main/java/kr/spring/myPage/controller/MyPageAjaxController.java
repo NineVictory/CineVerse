@@ -52,11 +52,11 @@ public class MyPageAjaxController {
 	}
 
 	
+	//배송지 삭제
 	@PostMapping("/myPage/deleteAddress")
 	@ResponseBody
 	public Map<String, Object> deleteAddress(long a_num, HttpSession session) {
 	    log.debug("<<배송지 삭제 - a_num>> : " + a_num);
-	    
 	    Map<String, Object> mapJson = new HashMap<String, Object>();
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 	    AddressVO address = mypageService2.selectOrder(a_num);

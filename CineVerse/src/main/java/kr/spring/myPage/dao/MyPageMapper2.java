@@ -26,7 +26,7 @@ public interface MyPageMapper2 {
 	public void deleteAddress(Long a_num);
 	
 	@Select("SELECT * FROM orders WHERE a_num=#{a_num}")
-	public AddressVO selectOrder(long mem_num);
+	public AddressVO selectOrder(Long mem_num);
 	@Update("UPDATE address SET a_status=2 WHERE a_num=#{a_num}")
 	public void updateAddressStatus(Long a_num);
 	
