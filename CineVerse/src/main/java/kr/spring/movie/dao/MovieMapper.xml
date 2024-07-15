@@ -139,7 +139,7 @@
 			mr_content,
 			mr_spoiler,
 			mr_grade,
-			md_num,
+			mb_num,
 			m_code,
 			mem_num)
 		VALUES(
@@ -147,7 +147,7 @@
 			#{mr_content},
 			#{mr_spoiler},
 			#{mr_grade},
-			#{md_num},
+			#{mb_num},
 			#{m_code},
 			#{mem_num})
 	</insert>
@@ -169,42 +169,20 @@
             #{c_num})
     </insert>
     
- <!-- 예매 여부 확인 쿼리 -->
-   <select id="hasBookedMovie" parameterType="map" resultType="int">
-        SELECT COUNT(*)
-        FROM movie_booking mb
-        JOIN mb_detail md ON mb.mb_num = md.mb_num
-        WHERE mb.mem_num = #{mem_num} AND md.m_code = #{m_code}
-    </select>
 
-    <insert id="addMovieReview" parameterType="kr.spring.movie.vo.MovieReviewVO">
-        INSERT INTO movie_review (mr_num, mr_content, mr_regdate, mr_spoiler, mr_grade, md_num, m_code, mem_num)
-        VALUES (movie_review_seq.nextval, #{mr_content}, SYSDATE, #{mr_spoiler}, #{mr_grade}, #{md_num}, #{m_code}, #{mem_num})
+<!-- 영화 시간표 등록 -->
+    <insert id="addMovieTime" parameterType="kr.spring.movie.vo.MovieTimeVO">
+        INSERT INTO movie_time (mt_num, mt_date, mt_start, mt_end, m_code, c_num)
+        VALUES (#{mt_num}, #{mt_date}, #{mt_start}, #{mt_end}, #{m_code}, #{c_num})
     </insert>
 
-    <select id="getMovieReviews" parameterType="map" resultType="kr.spring.movie.vo.MovieReviewVO">
-        <![CDATA[
-        SELECT * FROM (
-            SELECT a.*, ROWNUM rnum
-            FROM (
-                SELECT * FROM movie_review
-                WHERE m_code = #{m_code}
-                ORDER BY mr_regdate DESC
-            ) a
-            WHERE ROWNUM <= #{offset} + #{limit}
-        )
-        WHERE rnum > #{offset}
-        ]]>
+	<select id="getBookingInfo" parameterType="map" resultType="kr.spring.movie.vo.MovieBookingVO">
+        SELECT mb_num
+        FROM movie_booking
+        WHERE mem_num = #{mem_num} AND m_code = #{m_code}
     </select>
+    
 
-    <select id="getBookingDetailNum" parameterType="map" resultType="java.lang.Long">
-        <![CDATA[
-        SELECT md.md_num
-        FROM movie_booking mb
-        JOIN mb_detail md ON mb.mb_num = md.mb_num
-        WHERE mb.mem_num = #{mem_num} AND md.m_code = #{m_code}
-        ]]>
-    </select>
 </mapper>							
 
 

@@ -5,11 +5,13 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
@@ -60,8 +62,12 @@ public interface MovieMapper {
 	public void updateReview(MovieReviewVO movieReview);
 	public void deleteReview(Long mr_num);
 	
-    int hasBookedMovie(Map<String, Object> map);
-    void addMovieReview(MovieReviewVO review);
-    List<MovieReviewVO> getMovieReviews(Map<String, Object> map);
-    Long getBookingDetailNum(Map<String, Object> map); // 메서드 추가
+
+    
+    void addMovieTime(MovieTimeVO movieTimeVO);
+    
+    // 영화 예매 여부 확인
+    @Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num = #{mem_num} AND m_code = #{m_code}")
+    int hasBookedMovie(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
+    MovieBookingVO getBookingInfo(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
 }
