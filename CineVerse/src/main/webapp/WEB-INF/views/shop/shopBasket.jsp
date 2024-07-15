@@ -86,8 +86,8 @@
 								<div class="button-div">
 									<div class="update-btn" data-num="${product.pb_num}" data-memnum="${product.mem_num}">장바구니 수량 변경</div>
 									<div class="delete-btn" data-num="${product.pb_num}" data-memnum="${product.mem_num}">장바구니 삭제</div>
-								</div>
-		                    </div>
+								</div> 
+		                    </div> 
 		                </div>
 						</div>
 		               </c:if>
