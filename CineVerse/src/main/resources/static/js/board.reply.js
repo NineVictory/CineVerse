@@ -96,7 +96,7 @@ $(function(){
 							output += '</div>';
 
 					//답글출력
-					output +='     <div class="response-container" style="display:none;">';
+					output +='     <div class="response-container">';
 
 					output +='     </div>';
 					
@@ -470,6 +470,7 @@ $(function(){
 						alert('로그인해야 답글을 작성할 수 있습니다.');
 					}else if(param.result=='success'){
 						initResponseForm();
+						
 						/*//답글 개수
 						if(resp_form.parent().attr('class')=='sub-item'){//답글을 최초 작성시에 .sub-item에 자식으로 form이 생성됨
 							//답글을 처음 등록할 때 숨겨져 있는 버튼을 노출함
@@ -479,6 +480,7 @@ $(function(){
 						}else{//답글에 답글을 작성할 때
 							resp_form.parents('.sub-item').find('div .rescontent-btn').val('▼ 답글 ' + (Number(resp_form.parents('.sub-item').find('div .rescontent-btn').val().substring(5)) + 1));
 						}*/
+						
 						let responseContainer = resp_form.parent();
 						getListResponse(cc_num,responseContainer);
 						

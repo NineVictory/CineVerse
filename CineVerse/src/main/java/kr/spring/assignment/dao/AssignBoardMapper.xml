@@ -5,7 +5,7 @@
 <mapper namespace="kr.spring.assignment.dao.AssignBoardMapper">
 	<insert id="ab_insertBoard" parameterType="assignVO">
 		INSERT INTO assignment_board (ab_num,ab_title,ab_content,ab_type,ab_price,ab_filename,ab_ip,mem_num) 
-				VALUES (assignment_board_seq.nextval,#{ab_title},#{ab_content},#{#ab_type},#{ab_price},#{ab_filename,jdbcType=VARCHAR},#{ab_ip},#{mem_num})
+				VALUES (assignment_board_seq.nextval,#{ab_title},#{ab_content},#{ab_type},#{ab_price},#{ab_filename,jdbcType=VARCHAR},#{ab_ip},#{mem_num})
 	</insert>
 	
 	<!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->	<!--sub_sql처럼-->
