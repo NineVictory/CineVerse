@@ -13,6 +13,7 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.movie.vo.MovieVO;
 
 @Mapper
 public interface AdminMapper {
@@ -62,5 +63,24 @@ public interface AdminMapper {
     		+ "	FROM assignment_board"
     		+ "	ORDER BY ab_reg_date DESC")
     public List<AssignVO> getAllAssignment();
-
+    
+    // 영화
+	public List<MovieVO> selectMovie(Map<String,Object> map);
+	public Integer selectRowCount(Map<String,Object> map);
+	@Delete("DELETE FROM movie WHERE m_code = #{m_code}")
+	public void deleteMovie(long m_code);
+	@Delete("DELETE FROM movie_actor WHERE m_code = #{m_code}")
+	public void deleteMovieActor(long m_code);
+	@Delete("DELETE FROM movie_booking WHERE m_code = #{m_code}")
+	public void deleteMovieBooking(long m_code);
+	@Delete("DELETE FROM movie_bookmark WHERE m_code = #{m_code}")
+	public void deleteMovieBookmark(long m_code);
+	@Delete("DELETE FROM movie_review WHERE m_code = #{m_code}")
+	public void deleteMovieReview(long m_code);
+	@Delete("DELETE FROM movie_time WHERE m_code = #{m_code}")
+	public void deleteMovietime(long m_code);
+	@Delete("DELETE FROM movie_genre WHERE m_code = #{m_code}")
+	public void deleteMovieGenre(long m_code);	
+	@Delete("DELETE FROM movie_director WHERE m_code = #{m_code}")
+	public void deleteMovieDirector(long m_code);	
 }
