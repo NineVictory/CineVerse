@@ -12,4 +12,6 @@ public interface MyPageService2 {
 	public Integer countAddress(Long mem_num);
 	public List<AddressVO> addressList(long mem_num);
 	public void deleteAddress(Long a_num);
+	public AddressVO selectOrder(long mem_num);
+	public void updateAddressStatus(Long a_num);
 }

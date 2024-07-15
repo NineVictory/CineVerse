@@ -50,7 +50,7 @@
 							<hr size="1" width="100%" class="reserv_line">
 							<div class="reserv_pay_cancle">
 								<div>
-									<span class="m_pay">총 결제금액 </span><span class="my_blue_font">78,000원</span>
+									<span class="m_pay">총 결제금액 </span><span class="my_blue_font">${o.total_price }</span>
 								</div>
 								<!-- 버튼들 -->
 								<div class="my_bought_btn">

@@ -52,7 +52,6 @@ public class MyPageAjaxController {
 	}
 
 	
-	/*배송지 삭제*/
 	@PostMapping("/myPage/deleteAddress")
 	@ResponseBody
 	public Map<String, Object> deleteAddress(long a_num, HttpSession session) {
@@ -60,31 +59,20 @@ public class MyPageAjaxController {
 	    
 	    Map<String, Object> mapJson = new HashMap<String, Object>();
 	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    
+	    AddressVO address = mypageService2.selectOrder(a_num);
 	    if (user == null) {
 	        mapJson.put("result", "logout");
+	    } else if(address != null){
+	    	mypageService2.updateAddressStatus(a_num);
+	    	mapJson.put("result", "success");
 	    } else {
-	        List<AddressVO> addressList = mypageService2.addressList(user.getMem_num());
-	        
-	        boolean isOwner = false;
-	        
-	        for (AddressVO address : addressList) {
-	            if (address.getA_num() == a_num) {
-	                if (address.getMem_num() == user.getMem_num()) {
-	                    isOwner = true;
-	                    break;
-	                }
-	            }
-	        }
-	        if (isOwner) {
-	            mypageService2.deleteAddress(a_num);
-	            mapJson.put("result", "success");
-	        } else {
-	            mapJson.put("result", "wrongAccess");
-	        }
+	    	mypageService2.deleteAddress(a_num);
+	    	mapJson.put("result", "success");
 	    }
+	    
 	    return mapJson;
 	}
+
 	
 	
 }
