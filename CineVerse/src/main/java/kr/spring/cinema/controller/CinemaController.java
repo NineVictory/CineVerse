@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -172,6 +173,54 @@ public class CinemaController {
 		
 		return "common/resultAlert";
 	}
+	
+	
+	
+	
+	/*=====================
+	 * 상영관 등록
+	 *=====================*/
+	// 등록 폼 호출
+	@GetMapping("/cinema/theaterWrite")
+	public String formtwo() {
+		return "theaterWrite";
+	}
+
+	// 등록 폼에서 전송된 데이터 처리
+	@PostMapping("cinema/theaterWrite")
+	public String theaterWrite(@Valid TheaterVO theaterVO, BindingResult result, HttpServletRequest request,
+			HttpSession session, Model model) throws IllegalStateException, IOException {
+		log.debug("<<상영관 등록>> : " + theaterVO);
+
+		// 유효성 체크 실패시 폼으로 다시 돌아가기
+		if (result.hasErrors()) {
+			return formtwo();
+		}
+
+		// 영화 등록 메서드
+		cinemaService.insertTheater(theaterVO);
+
+		// view 메시지 처리
+		model.addAttribute("message", "상영관이 성공적으로 등록되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/cinema/cinemaList2");
+
+		return "common/resultAlert";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
