@@ -7,7 +7,6 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
-<script src="${pageContext.request.contextPath}/js/assign.img.upload.js"></script>
 
 <script type="text/javascript">
 <%-- 	window.onload=function(){
@@ -87,7 +86,7 @@
 
 <div class="page-container page-main">
 	<div class="board-main">
-	<h2>상품등록</h2>
+	<h2>상품수정</h2>
 	
 	<hr size="1" width="100%">
 	<form:form action="write" id="assignboard_register" enctype="multipart/form-data" modelAttribute="assignVO">
@@ -122,7 +121,9 @@
 					<div>상품 이미지는 PC에서 1:1로 보여집니다.</div>
 					<form:errors path="ab_upload" cssClass="error-color"/>
 				</div>
-				<div id="preview"></div>
+				<div>
+					사진 미리보기. 클릭시 삭제
+				</div>
 			</div>
 			<div class="flexbox-h info-container border-bottom">
 				<div class="item-label p-start">

@@ -1,6 +1,7 @@
 package kr.spring.assignment.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -30,7 +31,7 @@ public class AssignVO {
 	private long ab_status;
 	
 	private MultipartFile ab_upload;
-	private String ab_filename;
+	private String ab_filenames;
 	private long mem_num;
 	private String ab_ip;
 	//추가

@@ -12,6 +12,7 @@
 
 <div class="page-container page-main">
 	<div class="boardview-main">
+		<c:if test="${assign.mem_num == user.mem_num}">
 		<div class="assboard-btn">
 				<span class="assboard-cbtn"><a href="" onclick="return false;"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></a></span>
 	
@@ -35,6 +36,7 @@
 	        	});
 	        	</script>
 		</div>
+		</c:if>
 
 	
 		<hr size="1" width="100%">
@@ -43,12 +45,60 @@
 		
 			<div class="flexbox-h side">
 				<div class="marg440">
-				<c:if test="${!empty assign.ab_filename}">
-				<img src="${pageContext.request.contextPath}/upload/${assign.ab_filename}" width="420">
+				
+				<c:if test="${!empty filenames}">
+				<div class="slider-container">
+				    <div class="slide">
+				        <img src="${request.contextPath}/upload/${filenames[0]}" width="420" class="item-img" alt="Image 1">
+				    </div>
+				    <%-- 배열에 2번째 이미지가 있을 경우만 표시 --%>
+				    <c:if test="${fn:length(filenames) > 1}">
+				        <div class="slide">
+				            <img src="${request.contextPath}/upload/${filenames[1]}" width="420" class="item-img" alt="Image 2">
+				        </div>
+				    </c:if>
+				    <%-- 배열에 3번째 이미지가 있을 경우만 표시 --%>
+				    <c:if test="${fn:length(filenames) > 2}">
+				        <div class="slide">
+				            <img src="${request.contextPath}/upload/${filenames[2]}" width="420" class="item-img" alt="Image 3">
+				        </div>
+				    </c:if>
+				    <a class="prev">&#10094;</a>
+				    <a class="next">&#10095;</a>
+				</div>
+				<script>
+				    $(document).ready(function() {
+				        var slideIndex = 0;
+				        showSlide(slideIndex);
+				
+				        $('.prev').click(function() {
+				            slideIndex--;
+				            showSlide(slideIndex);
+				        });
+				
+				        $('.next').click(function() {
+				            slideIndex++;
+				            showSlide(slideIndex);
+				        });
+				
+				        function showSlide(index) {
+				            var slides = $('.slide');
+				            if (index >= slides.length) { slideIndex = 0; }
+				            if (index < 0) { slideIndex = slides.length - 1; }
+				            slides.hide();
+				            slides.eq(slideIndex).show();
+				        }
+				    });
+				</script>
 				</c:if>
-				<c:if test="${empty assign.ab_filename}">
-				<img src="${pageContext.request.contextPath}/images/kbm/noimage.jpg" width="420">
-				</c:if>
+				
+				<%-- <c:if test="${!empty filenames}">
+				<img src="${pageContext.request.contextPath}/upload/${filenames[0]}" width="420" class="item-img">
+				</c:if>--%>
+				<c:if test="${empty filenames}">
+				<img src="${pageContext.request.contextPath}/images/kbm/noimage.jpg" width="420" class="item-img">
+				</c:if> 
+				
 				</div>
 				<div class="marg440">
 					<div class="flexbox-p simple-info">
@@ -146,9 +196,8 @@
 			<hr size="1" width="100%">
 		</div>	
 		
-		<div class="assign-comment">
 			<!-- 댓글 목록 출력 -->
-			 //댓글 출력//
+			 
 			<div id="output"></div>
 			<div id="loading" style="display:none;">
 				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="30" height="30">
@@ -160,29 +209,29 @@
 		
 		
 			<!-- 댓글 작성 UI 시작 -->
-			<div id="reply_div" class=" mt10">
-				<div><span class="re-title">댓글쓰기</span></div>
+			<div id="comment_div">
 				<div class="flexbox-h">
-					<c:if test="${!empty user}"><img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${user.mem_num}" width="45" height="45" class="my-photo"></c:if>
-					<c:if test="${empty user}"><img src="${pageContext.request.contextPath}/images/profile_none.png" width="45" height="45" class="my-photo"></c:if>
-					<form id="re_form">
-						<%-- <input type="hidden" name="ab_num" value="${board.ab_num}" id="ab_num"> --%>
-							<div class="flexbox-h">
-								<textarea rows="4" cols="105" name="re_content" id="ac_content" class="rep-content"
-											<c:if test="${empty user}">disabled="disabled"</c:if>
-											<c:if test="${!empty user}">placeholder="내용을 입력해주세요."</c:if>
-										><c:if test="${empty user}">로그인해야 작성할 수 있습니다.</c:if></textarea>
-								<c:if test="${!empty user}">
-								<!-- <div id="re_first">
-									<span class="letter-count">300/300</span>
-								</div> -->
-									<input type="submit" class="default-btn ml10" value="등록">
-								</c:if>
-							</div>
-					</form>
+					<c:if test="${!empty user}"><img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${user.mem_num}" width="40" height="40" class="my-photo"></c:if>
+					<c:if test="${empty user}"><img src="${pageContext.request.contextPath}/images/profile_none.png" width="40" height="40" class="my-photo"></c:if>
+
+					<div id="reply_div">
+			            <form id="ass-comment_form">
+			               <input type="hidden" name="ab_num" id="ab_num" value="${assign.ab_num}">
+			               <div class="flexbox-h">
+			               <textarea rows="4" cols="115" name="ac_content" id="ac_content" class="rep-content"
+			                  <c:if test="${empty user}">disabled="disabled"</c:if>><c:if
+			                     test="${empty user}">로그인 후 작성 가능합니다.</c:if></textarea>
+			               <c:if test="${!empty user}">
+			                  <div id="re_second">
+			                     <input type="submit" class="default-btn ml10" value="등록">
+			                  </div>
+			               </c:if>
+			               </div>
+			            </form>
+	
+	        		 </div>
 				</div>
 			</div>
-		</div>
 		
 
 		<div class="align-center">

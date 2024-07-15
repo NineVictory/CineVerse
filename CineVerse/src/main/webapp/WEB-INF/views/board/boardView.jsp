@@ -117,11 +117,11 @@
          <div class="flexbox-h">
          	<c:if test="${!empty user}">
             <img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${user.mem_num}"
-               width="35" height="35" class="my-photo">
+               width="40" height="40" class="my-photo">
  		 	</c:if>
  		 	<c:if test="${empty user}">
             <img src="${pageContext.request.contextPath}/images/profile_none.png"
-               width="35" height="35" class="my-photo">
+               width="40" height="40" class="my-photo">
  		 	</c:if>
 	         <div id="reply_div">
 	            <form id="comment_form">

@@ -4,8 +4,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.assignment.dao.AssignBoardMapper">
 	<insert id="ab_insertBoard" parameterType="assignVO">
-		INSERT INTO assignment_board (ab_num,ab_title,ab_content,ab_type,ab_price,ab_filename,ab_ip,mem_num) 
-				VALUES (assignment_board_seq.nextval,#{ab_title},#{ab_content},#{ab_type},#{ab_price},#{ab_filename,jdbcType=VARCHAR},#{ab_ip},#{mem_num})
+		INSERT INTO assignment_board (ab_num,ab_title,ab_content,ab_type,ab_price,ab_filenames,ab_ip,mem_num) 
+				VALUES (assignment_board_seq.nextval,#{ab_title},#{ab_content},#{ab_type},#{ab_price},#{ab_filenames,jdbcType=CLOB},#{ab_ip},#{mem_num})
 	</insert>
 	
 	<!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->	<!--sub_sql처럼-->
@@ -39,7 +39,7 @@
 									REPLACE(REPLACE(ab_title,'<','&lt;'),'>','&gt;') ab_title,
 									]]>
 									ab_hit,
-									ab_filename,
+									ab_filenames,
 									ab_reg_date,
 									mem_num,
 									mem_id,
@@ -60,14 +60,14 @@
 	</select>
 	
 	<!-- 게시판 글 수정 -->
-<!-- 	<update id="ab_updateBoard" parameterType="assignVO">
+	<update id="ab_updateBoard" parameterType="assignVO">
 		UPDATE assignment_board SET
-						<if test="filename != null">
-							ab_filename = #{ab_filename},
+						<if test="ab_filename != null">
+							ab_filenames = #{ab_filenames},
 						</if>
 												ab_title = #{ab_title}, ab_content = #{ab_content}, ab_ip = #{ab_ip}, ab_modify_date = SYSDATE
 												WHERE ab_num = #{ab_num}
-	</update> -->
+	</update>
 	
 	<!-- 댓글 등록 -->
 	<!-- <insert id="insertReply" parameterType="boardReplyVO">
