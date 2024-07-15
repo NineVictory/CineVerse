@@ -2,7 +2,7 @@
 
 #main_body{
 	width:100%;
-	min-height:400px;
+	min-height:500px;
 }
 .page-main{
 	margin-top:30px;
@@ -293,7 +293,7 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 	margin-right:10px;
 }
 
-div#comment_div{
+div#comment_div, div#reply_div{
 	width:100%;
 	margin:30px auto;
 }
@@ -538,6 +538,9 @@ textarea.mcc-content {
 	padding:5%;
 	margin-top:10px;
 }
+.respitem:not(:last-child){
+	margin-bottom:20px;
+}
 
 
 
@@ -604,6 +607,10 @@ textarea.mcc-content {
 	color:#808080;
 	font-size:15px;
 
+}
+span.ab-status{
+	color:#000;
+	font-weight:bold;
 }
 ul.status-df{
 	padding-left:2px;

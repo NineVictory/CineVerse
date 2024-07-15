@@ -115,11 +115,11 @@
 				<div class="image-upload-ul">
 					<div class="image-upload">
 						이미지 등록
-						<input type="file" name="upload" id="upload" accept="image/jpg, image/jpeg, image/png" multiple>
+						<input type="file" name="ab_upload" id="ab_upload" accept="image/jpg, image/jpeg, image/png" multiple>
 					</div>
 				</div>
 				<div>상품 이미지는 PC에서 1:1로 보여집니다.</div>
-				<form:errors path="ab_filename" cssClass="error-color"/>
+				<form:errors path="ab_upload" cssClass="error-color"/>
 				</div>
 			</div>
 			<div class="flexbox-h info-container border-bottom">

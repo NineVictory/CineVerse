@@ -311,7 +311,7 @@ public class BoardAjaxController {
 	 =====================*/
 	@GetMapping("/board/responseLoginCheck")
 	@ResponseBody
-	public Map<String,Object> getListResp(HttpSession session){
+	public Map<String,Object> respLoginCheck(HttpSession session){
 		log.debug("<<답글 클릭 로그인 확인>> : ");
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		

@@ -81,6 +81,10 @@ public interface BoardMapper {
 	
 	//답글
 	public List<BoardResponseVO> selectListResponse(Long cc_num);
+	
+	@Select("SELECT COUNT(*) FROM community_response WHERE cc_num=#{cc-num}")
+	public Integer selectRowCountResponse(Map<String,Object> map);
+	
 	@Select("SELECT * FROM community_response WHERE te_num=#{te_num}")
 	public BoardResponseVO selectResponse(Long te_num);
 	public void insertResponse(BoardResponseVO boardResponse);

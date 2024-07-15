@@ -8,7 +8,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
 <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>
-<script src="${pageContext.request.contextPath}/js/assignboard.view.js"></script>
+<script src="${pageContext.request.contextPath}/js/assignboard.bookmark.js"></script>
 
 <div class="page-container page-main">
 	<div class="boardview-main">
@@ -43,25 +43,47 @@
 		
 			<div class="flexbox-h side">
 				<div class="marg440">
-				<img src="${pageContext.request.contextPath}/images/kbm/ot.png" width="420">
+				<c:if test="${!empty assign.ab_filename}">
+				<img src="${pageContext.request.contextPath}/upload/${assign.ab_filename}" width="420">
+				</c:if>
+				<c:if test="${empty assign.ab_filename}">
+				<img src="${pageContext.request.contextPath}/images/kbm/noimage.jpg" width="420">
+				</c:if>
 				</div>
 				<div class="marg440">
 					<div class="flexbox-p simple-info">
-						<span class="font15">양도</span><%--양도 or 교환 카테고리 --%>
-						<h2>퓨리오사 오리지널 티켓 2종 굿즈 길이테스트입니다아아아아아아아아아아아아아아아아아아아아아아아아아아</h2><%--ab_title--%>
-						<span class="assign-price"><b><fmt:formatNumber value="30000" type="number"/></b>원</span>
+						<span class="font15">
+							<c:if test="${assign.ab_type == 'handover'}">
+								양도
+							</c:if>
+							<c:if test="${assign.ab_type == 'exchange'}">
+								교환
+							</c:if>
+						</span><%--양도 or 교환 카테고리 --%>
+						<h2>${assign.ab_title}</h2><%--ab_title--%>
+						<span class="assign-price"><b><fmt:formatNumber value="${assign.ab_price}" type="number"/></b>원</span>
 						<hr size="1" width="100%" class="middle-hr">
 						<div class="flexbox-h side assign-likes">
 							<div class="">
 								<div>
 								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-								<span>5</span><%-- 북마크 --%>
+								<span class="output-fcount"></span><%-- 북마크 --%>
 								&nbsp;&nbsp;
 								
 								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-								<span>25</span><%-- 조회수 --%>
+								<span>${assign.ab_hit}</span><%-- 조회수 --%>
 								&nbsp;&nbsp;
-								<span>예약중</span>
+								<span class="ab-status">
+									<c:if test="${assign.ab_status == 1}">
+										판매중
+									</c:if>
+									<c:if test="${assign.ab_status == 2}">
+										예약중
+									</c:if>
+									<c:if test="${assign.ab_status == 3}">
+										거래완료
+									</c:if>
+								</span>
 								</div>
 							</div>
 							<div class="assign-report">
@@ -70,14 +92,33 @@
 						</div>
 						<div>
 							<ul class="status-df">
-							 	<li class="font14"><label>상품상태</label> <span>새 상품</span></li>
+							 	<li class="font14"><label>상품상태</label> <span>
+																		 	<c:if test="${assign.ab_status == 0}">
+																				새 상품(미사용)
+																			</c:if>
+																			<c:if test="${assign.ab_status == 1}">
+																				사용감 없음
+																			</c:if>
+																			<c:if test="${assign.ab_status == 2}">
+																				사용감 적음
+																			</c:if>
+																			<c:if test="${assign.ab_status == 3}">
+																				사용감 많음
+																			</c:if>
+																			<c:if test="${assign.ab_status == 4}">
+																				고장/파손 상품
+																			</c:if></span>
+								</li>
 						
-							 	<li class="font14"><label>배송비</label> <span><fmt:formatNumber value="3000" type="number"/>원</span></li>
+							 	<%-- <li class="font14"><label>배송비</label> <span><fmt:formatNumber value="3000" type="number"/>원</span></li> --%>
 							 </ul>
 						</div>
 						<div class="assView-btn flexbox-h side">
-							<button class="likeBtn"><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="17"><span> 찜 </span><span>5</span></button>
-							<button class="ass-chatBtn"><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="17"><span>채팅</span></button>
+							<button class="likeBtn" data-num="${assign.ab_num}" 
+							
+							 <c:if test="${assign.ab_status == 3}">disabled</c:if>><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="16"><span> 찜 </span><span class="output-fcount"></span></button>
+							<button class="ass-chatBtn"
+							 <c:if test="${assign.ab_status == 3}">disabled style="background:#c7c7c7;"</c:if>><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="16"><span>채팅</span></button>
 						</div>
 					</div>
 				</div>
@@ -92,9 +133,7 @@
 			</div>
 			<div>
 				<div class="info-detail-main">
-					퓨리오사 오리지널 티켓 메가박스 굿즈 특전<br>
-					총 3장 일괄 판매합니다.
-					편의점 반값택배로 보내드리고 반값택배비는 1800원입니다.
+					${assign.ab_content}
 				</div>
 			</div>
 		</div>

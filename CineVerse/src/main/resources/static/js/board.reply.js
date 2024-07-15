@@ -104,13 +104,13 @@ $(function(){
 					output += '</div>';
 											
 					//문서 객체에 추가
-
 					$('#output').append(output);
-					var responseContainers = $('.response-container');
-					getListResponse(item.cc_num, responseContainers);
 					
-					if (responseContainers.children().length == 0) {
-	           			 responseContainers.hide();
+					var responseContainer = $('.response-container');
+					getListResponse(item.cc_num, responseContainer);
+					
+					if (responseContainer.children().length == 0) {
+	           			 responseContainer.hide();
 	        		}
 					
 	  		  });
@@ -452,57 +452,57 @@ $(function(){
 	});
 	
 	//답글 등록
-		$(document).on('submit','#resp_form',function(event){
-			let resp_form = $(this);
-			
-			if($('#resp_content').val().trim()==''){
-				alert('내용을 입력하세요');
-				$('#resp_content').val('').focus();
-				return false;
-			}
-	
-			//폼에 입력한 데이터 반환
-			let form_data = $(this).serialize();
-			
-			let cc_num = $(this).find('#resp_num').val();
-			
-			//서버와 통신
-			$.ajax({
-				url:'writeResponse',
-				type:'post',
-				data:form_data,
-				dataType:'json',
-				success:function(param){
-					if(param.result=='logout'){
-						alert('로그인해야 답글을 작성할 수 있습니다.');
-					}else if(param.result=='success'){
-						initResponseForm();
-						
-						/*//답글 개수
-						if(resp_form.parent().attr('class')=='sub-item'){//답글을 최초 작성시에 .sub-item에 자식으로 form이 생성됨
-							//답글을 처음 등록할 때 숨겨져 있는 버튼을 노출함
-							resp_form.parent().find('div .rescontent-btn').show();
-							resp_form.parent().find('div .rescontent-btn').attr('data-status',1);
-							resp_form.parent().find('div .rescontent-btn').val('▼ 답글 ' + (Number(resp_form.parent().find('div .rescontent-btn').val().substring(5)) + 1));
-						}else{//답글에 답글을 작성할 때
-							resp_form.parents('.sub-item').find('div .rescontent-btn').val('▼ 답글 ' + (Number(resp_form.parents('.sub-item').find('div .rescontent-btn').val().substring(5)) + 1));
-						}*/
-						
-						let responseContainer = resp_form.parent();
-						getListResponse(cc_num,responseContainer);
-						
-					}else{
-						alert('답글 작성 오류 발생');
-					}
-				},
-				error:function(){
-					alert('네크워크 오류 발생');
-				}
-			});
-			//기본 이벤트 제거
-			event.preventDefault();
+	$(document).on('submit','#resp_form',function(event){
+		let resp_form = $(this);
 		
+		if($('#resp_content').val().trim()==''){
+			alert('내용을 입력하세요');
+			$('#resp_content').val('').focus();
+			return false;
+		}
+
+		//폼에 입력한 데이터 반환
+		let form_data = resp_form.serialize();
+		
+		let cc_num = resp_form.find('#resp_num').val();
+		
+		//서버와 통신
+		$.ajax({
+			url:'writeResponse',
+			type:'post',
+			data:form_data,
+			dataType:'json',
+			success:function(param){
+				if(param.result=='logout'){
+					alert('로그인해야 답글을 작성할 수 있습니다.');
+				}else if(param.result=='success'){
+					initResponseForm();
+					
+					/*//답글 개수
+					if(resp_form.parent().attr('class')=='sub-item'){//답글을 최초 작성시에 .sub-item에 자식으로 form이 생성됨
+						//답글을 처음 등록할 때 숨겨져 있는 버튼을 노출함
+						resp_form.parent().find('div .rescontent-btn').show();
+						resp_form.parent().find('div .rescontent-btn').attr('data-status',1);
+						resp_form.parent().find('div .rescontent-btn').val('▼ 답글 ' + (Number(resp_form.parent().find('div .rescontent-btn').val().substring(5)) + 1));
+					}else{//답글에 답글을 작성할 때
+						resp_form.parents('.sub-item').find('div .rescontent-btn').val('▼ 답글 ' + (Number(resp_form.parents('.sub-item').find('div .rescontent-btn').val().substring(5)) + 1));
+					}*/
+					
+					let responseContainer = resp_form.parent('.response-container');
+					getListResponse(cc_num,responseContainer);
+					
+				}else{
+					alert('답글 작성 오류 발생');
+				}
+			},
+			error:function(){
+				alert('네크워크 오류 발생');
+			}
 		});
+		//기본 이벤트 제거
+		event.preventDefault();
+	
+	});
 
 	//답글 작성 폼 초기화
 	function initResponseForm(){
@@ -530,12 +530,11 @@ $(function(){
 			dataType:'json',
 			success:function(param){
 				//respitem 아이디가 존재하면 답글을 모두 지운 후 다시 처리함
-				responseContainer.find('.respitem').remove();
-				/*responseContainer.empty();*/
+				//responseContainer.find('.respitem').remove();
+				responseContainer.empty();
 				
 				let output = '';
 				$(param.list).each(function(index,item){
-
 				    output += '<div class="respitem">';
 					output += ' 	<div class="resp-detail-info">';
 					output +='  	 	 <div class="답글 작성자 정보">';
@@ -572,7 +571,7 @@ $(function(){
 						}
 					}
 					
-					output += item.te_content.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+					output += 		 item.te_content.replace(/</g,'&lt;').replace(/>/g,'&gt;');
 					output +='   	 </div>';
 					output +='   	 <div>';
 					if(item.te_mdate){
@@ -584,7 +583,7 @@ $(function(){
 					output += '  </div>'; //답글내용,작성일
 					
 						output += '<div class="flexbox-h side">'
-						output += '  <div><input type="button" data-num="'+item.cc_num+'" data-parent="' +item.cb_num+ '" data-depth="1"  value="답글" class="response-btn"></div>';
+						output += '  <div><input type="button" data-num="'+item.cc_num+'" data-parent="' +item.cb_num+ '" data-depth="0"  value="답글" class="response-btn"></div>';
 						if(item.click_num==0 || param.user_num!==item.click_num){
 							output += '  <div class="resp-like-btn" data-num="'+item.cc_num+'"><img class="cc-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-rfcount">'+item.refav_cnt+'</span></div>';
 						}else{
@@ -595,8 +594,8 @@ $(function(){
 
 					output += '</div>';
 				
-				//답글 노출
-				responseContainer.append(output);
+					//답글 노출
+					responseContainer.append(output);
 				
 				});
 				

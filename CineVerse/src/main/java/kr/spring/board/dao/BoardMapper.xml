@@ -152,8 +152,8 @@
  			x.respfav_cnt
  		FROM community_response r JOIN member a ON r.mem_num=a.mem_num
         LEFT OUTER JOIN member_detail d ON a.mem_num=d.mem_num
-        	LEFT OUTER JOIN (SELECT te_num, mem_num click_num FROM community_response_fav WHERE mem_num=#{mem_num})z ON z.te_num=r.te_num
-        	LEFT OUTER JOIN (SELECT te_num, COUNT(*) respfav_cnt FROM community_response_fav GROUP BY te_num)x ON x.te_num=r.te_num
+        	RIGHT OUTER JOIN (SELECT te_num, mem_num click_num FROM community_response_fav WHERE mem_num=#{mem_num})z ON z.te_num=r.te_num
+        	RIGHT OUTER JOIN (SELECT te_num, COUNT(*) respfav_cnt FROM community_response_fav GROUP BY te_num)x ON x.te_num=r.te_num
  		LEFT OUTER JOIN community_response s ON r.te_parent_num=s.te_num
  		LEFT OUTER JOIN member m ON s.mem_num=m.mem_num
         LEFT OUTER JOIN member_detail p ON s.mem_num=p.mem_num

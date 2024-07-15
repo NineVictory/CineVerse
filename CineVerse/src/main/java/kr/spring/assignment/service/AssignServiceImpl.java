@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.assignment.dao.AssignBoardMapper;
+import kr.spring.assignment.vo.AssignFavVO;
 import kr.spring.assignment.vo.AssignVO;
 
 @Service
@@ -55,6 +56,26 @@ public class AssignServiceImpl implements AssignService{
 	@Override
 	public void ab_deleteFile(Long ab_num) {
 		assignBoardMapper.ab_deleteFile(ab_num);
+	}
+
+	@Override
+	public AssignFavVO ab_selectFav(AssignFavVO fav) {
+		return assignBoardMapper.ab_selectFav(fav);
+	}
+
+	@Override
+	public Integer ab_selectFavCount(Long ab_num) {
+		return assignBoardMapper.ab_selectFavCount(ab_num);
+	}
+
+	@Override
+	public void ab_insertFav(AssignFavVO fav) {
+		assignBoardMapper.ab_insertFav(fav);
+	}
+
+	@Override
+	public void ab_deleteFav(AssignFavVO fav) {
+		assignBoardMapper.ab_deleteFav(fav);
 	}
 
 }
