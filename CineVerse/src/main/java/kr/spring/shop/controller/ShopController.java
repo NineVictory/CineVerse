@@ -2,9 +2,11 @@ package kr.spring.shop.controller;
 
 import java.net.http.HttpRequest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -145,9 +147,9 @@ public class ShopController {
 		if(member.getCoupon_cnt() > 0) {
 			couponList = mypageService.selectMemCouponList(map);
 		}
-		
+
 		long total = (product.getP_price() * pb_quantity);
-		
+
 		model.addAttribute("total", total);
 		model.addAttribute("couponList",couponList);
 		model.addAttribute("member",member);
@@ -164,9 +166,9 @@ public class ShopController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		list = shopService.productBasketList(user.getMem_num());
 
-		
+
 		/* List<Integer> price = shopService.basketPrice(user.getMem_num()); */
-		
+
 		Map<String, Object> map = new HashMap<>();
 		/* map.put("price", price); */
 
@@ -183,7 +185,7 @@ public class ShopController {
 		for (PBasketVO basket : list) {
 			int remain = shopService.productRemain(basket.getP_num());
 			int quantity = shopService.productPut(basket.getPb_num());
-			
+
 			if(remain<quantity) {
 				basket.setPb_status(2);
 			} else {
@@ -256,13 +258,61 @@ public class ShopController {
 
 		return new ModelAndView("shopFav", map);
 	}
-	
+
 	@PostMapping("/shop/buyBasket")
-	public String handleSubmit(@RequestParam Map<String, String> formData) {
-	    log.debug("<<장바구니에서 결제하기>> ::: " + formData);
-	    
-	    return "shopMain";
+	public ModelAndView handleSubmit(@RequestParam Map<String, String> formData, HttpSession session) {
+		log.debug("<<장바구니에서 결제하기>> ::: " + formData);
+
+		String countStr = formData.get("count");
+		
+		int count;
+		count = Integer.parseInt(countStr.replace(",", ""));
+		
+
+		List<Integer> pb_num = new ArrayList<>();
+
+		for (int i = 1; i <= count; i++) {
+			String pb_numStr = formData.get("pb_num" + i);
+			pb_num.add(Integer.parseInt(pb_numStr.replace(",", ""))); 
+		}
+
+		List<PBasketVO> selectBasket = shopService.selectFromPBasket(pb_num);
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("basketList", selectBasket);
+
+		String totalCountStr = formData.get("total_count");
+		int total_count = Integer.parseInt(totalCountStr.replace(",", ""));
+
+		String totalStr = formData.get("total");
+		int total = Integer.parseInt(totalStr.replace(",", "")); 
+
+		// 배송지 정보
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		List<AddressVO> address = mypageService2.addressList(user.getMem_num());
+		Integer addressCount = mypageService2.countAddress(user.getMem_num());
+		map.put("addressCount", addressCount);
+		map.put("address", address);
+
+		// 보유 쿠폰 정보
+		List<MyPageVO> couponList = null;
+		map.put("mem_num", user.getMem_num());
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		if(member.getCoupon_cnt() > 0) {
+			couponList = mypageService.selectMemCouponList(map);
+		}
+
+		map.put("couponList",couponList);
+		map.put("total_count", total_count);
+		map.put("count", count);
+		map.put("total", total);
+		map.put("member",member);
+
+		return new ModelAndView("shopBuyWithBasket", map);
 	}
 
+	
+	
 }
 

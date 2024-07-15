@@ -3,14 +3,13 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/product.pay.js"></script>
+	<script src="${pageContext.request.contextPath}/js/product.pay.basket.js"></script>
 <!-- 벌스샵 결제 시작 -->
 <div class="main_content">
 	<div class="buy-main">
 		<!-- css 변경 필요 -->
 		<c:if test="${count==0}">
-	    	배송지 없으면 주문이 불가합니다.
-	    	<div class="add-address" onclick="location.href='${pageContext.request.contextPath}/myPage/addressList'">배송지 추가하러 가기</div>		
+	    	<div class="add-address" onclick="location.href='${pageContext.request.contextPath}/shop/shopBasket'">주문 오류. 장바구니로 돌아가기.</div>		
 	    </c:if>
 	    <c:if test="${count>0}">
 		<h2>결제하기</h2>
@@ -46,31 +45,33 @@
 	    </div>
 	    <div class="order-product">
 	    	<div class="order-header">
-				<h3>주문 상품 <span class="order_quantity">1건</span></h3>
+				<h3>주문 상품 <span class="order_quantity">${count}건</span></h3>
 				<hr size="4px" color="black" width="53%">
 			</div>	    
-			<div class="order-body">
-				 <span class="order-category">
-				 	<c:if test="${product.p_category == 1}"> MARVEL </c:if>
-					<c:if test="${product.p_category == 2}"> DISNEY </c:if>
-					<c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>
-					<c:if test="${product.p_category == 4}"> PIXAR </c:if>
-					<c:if test="${product.p_category == 5}"> Studio GHIBLI </c:if>
-					<c:if test="${product.p_category == 6}"> Warner Bros. </c:if>
-					<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
-				 </span>
-				<hr size="2px" color="#969696" width="53%">
-				<div class="product-list">
-					<div class="pimg">
+			<c:forEach var="product" items="${basketList}">
+				<div class="order-body">
+					 <span class="order-category">
+					 	<c:if test="${product.p_category == 1}"> MARVEL </c:if>
+						<c:if test="${product.p_category == 2}"> DISNEY </c:if>
+						<c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>
+						<c:if test="${product.p_category == 4}"> PIXAR </c:if>
+						<c:if test="${product.p_category == 5}"> Studio GHIBLI </c:if>
+						<c:if test="${product.p_category == 6}"> Warner Bros. </c:if>
+						<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
+					 </span>
+					<hr size="2px" color="#969696" width="53%">
+					<div class="product-list" data-pbnum="${product.pb_num}"> 
+						<div class="pimg">
 							<img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
-						</div>	
-					<div class="product-name">
-		                <h3>${product.p_name} (${pb_quantity}개)</h3>
-		             </div>
-						<p>가격 <span>${total}원</span></p>
+						</div>
+						<div class="product-name">
+			                <h3>${product.p_name} (${product.pb_quantity}개)</h3>
+			             </div>
+							<p>가격 <span>${product.pb_quantity*product.p_price}원</span></p>
+					</div>
+					<hr size="4px" color="black" width="53%">	
 				</div>
-				<hr size="4px" color="black" width="53%">	
-			</div>
+			</c:forEach>
 	    </div>
 	    
 	

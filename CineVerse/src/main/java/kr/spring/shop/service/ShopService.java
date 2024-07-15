@@ -47,7 +47,7 @@ public interface ShopService {
 	public void usePoint(OrdersVO orders);
 	public void useCoupon(long mc_num);
 	public void sellProduct(@Param(value="p_quantity") Long p_quantity, @Param(value="p_num") Long p_num);
-	/* public void directOrderDetail(OrdersVO orders); */
+	public void directOrderDetail(OrdersVO orders);
 	public Integer getPoint(long mem_num);
 	long getNextOrderNum();
 	
@@ -56,4 +56,6 @@ public interface ShopService {
 	
 	// 관리자
 	public List<ProductVO> adminProductList(Map<String, Object> map);
+	
+	List<PBasketVO> selectFromPBasket(@Param("pb_num") List<Integer> pb_num);
 }

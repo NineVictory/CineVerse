@@ -130,8 +130,6 @@ public class ShopServiceImpl implements ShopService {
 		 * orders.setOrder_num(order_num);
 		 */
 		shopMapper.directOrder(orders);
-		shopMapper.directOrderDetail(orders);
-		
 	}
 
 	@Override
@@ -189,6 +187,16 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public void basketUpdate(Long pb_num, Long pb_quantity) {
 		shopMapper.basketUpdate(pb_num, pb_quantity);
+	}
+
+	@Override
+	public List<PBasketVO> selectFromPBasket(List<Integer> pb_num) {
+		return shopMapper.selectFromPBasket(pb_num);
+	}
+
+	@Override
+	public void directOrderDetail(OrdersVO orders) {
+		shopMapper.directOrderDetail(orders);
 	}
 	
 	

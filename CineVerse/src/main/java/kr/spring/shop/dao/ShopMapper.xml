@@ -167,5 +167,16 @@
 		SELECT COUNT(*) FROM product
 		<include refid="adminProductSearch"></include>
 	</select>
+	
+	<!-- 장바구니에서 선택한 상품 목록 불러오기 -->
+	<select id="selectFromPBasket" resultType="pBasketVO">
+	    SELECT * FROM p_basket
+	    JOIN product USING (p_num)
+	    WHERE pb_num IN
+	    <foreach item="num" collection="pb_num" open="(" separator="," close=")">
+	        #{num}
+	    </foreach>
+	</select>
+	
 
  </mapper>

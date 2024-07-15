@@ -31,6 +31,12 @@
         <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
     </definition>
     
+    
+    <definition name="shopBuyWithBasket" extends="shopBuy">
+    	<put-attribute name="body" value="/WEB-INF/views/shop/shopBuyWithBasket.jsp"/>
+    	<put-attribute name="shopPaymentNav" value="/WEB-INF/views/template/shopPaymentNav2.jsp"/>
+    </definition>
+    
     <definition name="shopBasket" template="/WEB-INF/views/template/layout_shopPayment.jsp">
         <put-attribute name="title" value="벌스샵 장바구니"/>
         <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
@@ -64,6 +70,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPageBoughtDetail.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
 	</definition>
+	
+	
 	
 	<!--관리자-->
 	<!-- 회원관리 -->

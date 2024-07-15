@@ -132,6 +132,8 @@ public interface ShopMapper {
 	// 관리자 - 벌스샵
 	public List<ProductVO> adminProductList(Map<String, Object> map);
 	
+	// 장바구니에서 선택한 상품 불러오기
+	List<PBasketVO> selectFromPBasket(@Param("pb_num") List<Integer> pb_num);
 	
 	
 }

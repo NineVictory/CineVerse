@@ -127,12 +127,15 @@ input [type="checkbox"]{
 .order-body .product-list {
     display: flex;
     align-items: center;
+    
 }
 
 
 .product-list img {
-    margin-right: 10px; 
-    width: 140px;
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
     box-shadow: 12px 0px 10px rgba(0, 0, 0, 0.1);
 }
 

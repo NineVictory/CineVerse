@@ -10,7 +10,7 @@
         <h2>장바구니</h2>
         <form action="shopPay" id="shop_pay" method="post">
             <c:if test="${empty list}">
-                <img src="${pageContext.request.contextPath}/images/cje/empty.png" width="500px" style="margin-left:150px; margin-top:50px; cursor: pointer;" onclick="location.href='shopDetail?p_num=${product.p_num}'">
+                <img src="${pageContext.request.contextPath}/images/cje/empty.png" width="500px" style="margin-left:150px; margin-top:50px; cursor: pointer;" onclick="location.href='shopMain'">
             </c:if>
             <c:if test="${not empty list}">
             	<c:forEach var="product" items="${list}">
@@ -93,8 +93,9 @@
 		               </c:if>
 					   
                 </c:forEach >
-				 <hr size="6px" color="black" width="83%" style="margin-right:180px;">
+				 
         <c:if test="${not empty list}">
+        <hr size="6px" color="black" width="83%" style="margin-right:180px;">
         <div class="basket-price">
              <p>
                  <span class="ptt">상품 금액 ${total}원</span> 

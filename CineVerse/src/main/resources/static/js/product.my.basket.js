@@ -169,7 +169,7 @@ $(function(){
 		
 	// 체크된 항목의 pb_num과 그런 것들을 보내면서 
 	$('.buy-basket').on('submit', function(event) {
-	    event.preventDefault(); // 오타 수정
+	    event.preventDefault(); 
 
 	    let count = 1;
 	    const checkedProducts = $('.product-select:checked');
