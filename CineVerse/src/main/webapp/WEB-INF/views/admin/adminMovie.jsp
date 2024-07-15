@@ -33,7 +33,7 @@
 			<ul>
 				<li>
 					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'm_name'}"> <!-- 기본값 설정 -->
-           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="영화제목을 입력하세요">>
+           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="영화제목을 입력하세요">
 					<input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
 			</ul>
@@ -70,6 +70,7 @@
             </c:forEach>
         </tbody>
     </table>
+    			<c:if test="${count > 0}"><div class="align-center page-count">${page}</div></c:if>
 </div>
 </div>
 

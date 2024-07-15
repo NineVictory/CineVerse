@@ -25,10 +25,6 @@ public class AdminServiceImpl implements AdminService{
 		adminMapper.updateMemberAuth(mem_num);
 	}
 	@Override
-	public List<AdminVO> getAllMembers() {
-		return adminMapper.getAllMembers();
-	}
-	@Override
 	public List<AdminVO> getAllMembership() {
 		return adminMapper.getAllMembership();
 	}
@@ -73,8 +69,8 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.selectMovie(map);
 	}
 	@Override
-	public Integer selectRowCount(Map<String, Object> map) {
-		return adminMapper.selectRowCount(map);
+	public Integer selectMovieRowCount(Map<String, Object> map) {
+		return adminMapper.selectMovieRowCount(map);
 	}
 	@Override
 	@Transactional
@@ -88,6 +84,37 @@ public class AdminServiceImpl implements AdminService{
 		adminMapper.deleteMovieGenre(m_code);
 		adminMapper.deleteMovie(m_code);
 	}
-
-
+	@Override
+	public Integer totalMember() {
+		return adminMapper.totalMember();
+	}
+	@Override
+	public Integer totalCommunity() {
+		return adminMapper.totalCommunity();
+	}
+	@Override
+	public Integer totalAssignment() {
+		return adminMapper.totalAssignment();
+	}
+	@Override
+	public Integer totalProduct() {
+		return adminMapper.totalProduct();
+	}
+	@Override
+	public Integer totalMovie() {
+		return adminMapper.totalMovie();
+	}
+	@Override
+	public Integer totalCinema() {
+		return adminMapper.totalCinema();
+	}
+	@Override
+	public List<AdminVO> selectMemberList(Map<String, Object> map) {
+		return adminMapper.selectMemberList(map);
+	}
+	@Override
+	public Integer selectMemberRowCount(Map<String, Object> map) {
+		return adminMapper.selectMemberRowCount(map);
+	}
+	
 }

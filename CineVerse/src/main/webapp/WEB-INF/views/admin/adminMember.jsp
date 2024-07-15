@@ -27,7 +27,7 @@
     function deleteMember(mem_num) {
         $.ajax({
             type: "POST",
-            url: "${pageContext.request.contextPath}/stopMember",
+            url: "${pageContext.request.contextPath}/deleteMember",
             data: { mem_num: mem_num },
             success: function(response) {
                 if (response === "success") {
@@ -50,14 +50,15 @@
 	<div class = "firstTitle">
 		<p id ="title">회원관리</p>
 	</div>
-		<form action="adminSearch" id="admin_search">
-			<ul>
-				<li>
-					<input type="search" name="search" placeholder="회원명을 입력하세요">
-					<input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
-				</li>
-			</ul>
-		</form>
+		<form action="adminMember" id="admin_search">
+  	 	 <ul> 
+        <li>
+        	<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'mem_name'}"> <!-- 기본값 설정 -->
+           	<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원명을 입력하세요">
+            <input type="submit" value="" class="search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
+        </li>
+    </ul>
+</form>
     <table class="adminMember-table">
         <thead>
             <tr>
@@ -73,8 +74,13 @@
                 <th></th>
             </tr>
         </thead>
+            <c:if test="${empty list}">
+            <tr>
+                <td colspan="7" class="mem-data">데이터가 없습니다.</td>
+            </tr>
+        </c:if>
         <tbody>
-            <c:forEach var="member" items="${adminList}">
+            <c:forEach var="member" items="${list}">
                 <tr>
                     <td class="mem-data">${member.mem_num}</td>
                     <td class="mem-data">${member.mem_id}</td>
@@ -106,5 +112,6 @@
         </tbody>
     </table>
 	</div>
+	<div class="page-div">${page}</div> 
 </div>
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -17,13 +18,24 @@ import kr.spring.movie.vo.MovieVO;
 
 @Mapper
 public interface AdminMapper {
-    // 회원 관리
-    @Select("SELECT m.mem_num, m.mem_id, m.mem_auth, m.mem_rank, m.mem_membership, "
-            + "md.mem_name, md.mem_phone, md.mem_email, md.mem_reg_date "
-            + "FROM member m "
-            + "JOIN member_detail md ON m.mem_num = md.mem_num WHERE m.mem_auth = 3 ORDER BY md.mem_reg_date DESC")
-    public List<AdminVO> getAllMembers();
-    @Update("UPDATE member SET mem_auth = 1 WHERE mem_num=#{mem_num}")
+	//메인페이지 통계
+	@Select("SELECT COUNT(*) FROM member WHERE mem_auth = 2 OR mem_auth = 3")
+	public Integer totalMember();
+	@Select("SELECT COUNT(*) FROM community_board")
+	public Integer totalCommunity();
+	@Select("SELECT COUNT(*) FROM assignment_board")
+	public Integer totalAssignment();
+	@Select("SELECT COUNT(*) FROM product WHERE p_status = 2")
+	public Integer totalProduct();
+	@Select("SELECT COUNT(*) FROM movie WHERE m_status = 2")
+	public Integer totalMovie();
+	@Select("SELECT COUNT(*) FROM cinema")
+	public Integer totalCinema();
+	// 회원 관리
+
+	public List<AdminVO> selectMemberList(Map<String,Object> map);
+	public Integer selectMemberRowCount(Map<String,Object> map);
+	@Update("UPDATE member SET mem_auth = 1 WHERE mem_num=#{mem_num}")
     public void updateMemberAuth(long mem_num);
     @Update("UPDATE member SET mem_auth = 2 WHERE mem_num=#{mem_num}")
     public void deleteMemberAuth(long mem_num);
@@ -66,7 +78,7 @@ public interface AdminMapper {
     
     // 영화
 	public List<MovieVO> selectMovie(Map<String,Object> map);
-	public Integer selectRowCount(Map<String,Object> map);
+	public Integer selectMovieRowCount(Map<String,Object> map);
 	@Delete("DELETE FROM movie WHERE m_code = #{m_code}")
 	public void deleteMovie(long m_code);
 	@Delete("DELETE FROM movie_actor WHERE m_code = #{m_code}")

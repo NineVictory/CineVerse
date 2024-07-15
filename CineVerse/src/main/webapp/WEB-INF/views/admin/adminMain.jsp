@@ -17,17 +17,17 @@
 				<div class="section" class="col">
 					<img src="${pageContext.request.contextPath}/images/cmj/user_setting.png" width="70" height="70">
 					<span class="setting_name">회원</span>
-					<div class="result_data">50</div>
+					<div class="result_data">${memTotal}</div>
 				</div>
 				<div class="section" class="col">
 					<img src="${pageContext.request.contextPath}/images/cmj/post_setting.png" width="70" height="70">
 					<span class="setting_name">커뮤니티</span>
-					<div class="result_data">50</div>
+					<div class="result_data">${boardTotal}</div>
 				</div>
 				<div class="section" class="col">
 					<img src="${pageContext.request.contextPath}/images/cmj/goods_setting.png" width="70" height="70">
 					<span class="setting_name">벌스샵</span>
-					<div class="result_data">50</div>
+					<div class="result_data">${productTotal}</div>
 				</div>
 			</div>
 			<div class="row2">
@@ -39,12 +39,12 @@
 				<div class="section" class="col">
 					<img src="${pageContext.request.contextPath}/images/cmj/movie_setting.png" width="70" height="70">
 					<span class="setting_name">영화</span>
-					<div class="result_data">400</div>
+					<div class="result_data">${movieTotal}</div>
 				</div>
 				<div class="section" class="col">
 					<img src="${pageContext.request.contextPath}/images/cmj/cinema_setting.png" width="70" height="70">
 					<span class="setting_name">영화관</span>
-					<div class="result_data">50</div>
+					<div class="result_data">${cinemaTotal}</div>
 				</div>
 			</div>
 		</div>

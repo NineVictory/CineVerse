@@ -58,24 +58,32 @@ public class AdminController {
 	 *==============================*/	
 	@GetMapping("/admin/adminMain")
 	public String process(HttpSession session,Model model) {
-
-		return "adminMain";
-	}
-	/*==============================
-	 * 회원관리
-	 *==============================*/	
-
-	// 회원 정보 조회 및 페이지로 전달
-	@GetMapping("/admin/adminMember")
-	public String selectMember(Model model) {
 		try {
-			// 모든 회원 정보 조회
-			List<AdminVO> adminList = adminService.getAllMembers();
-
+			// 모든 회원 수
+			int memTotal = adminService.totalMember();
+			// 모든 게시글
+			int commuTotal = adminService.totalCommunity();
+			int assignTotal = adminService.totalAssignment();
+			
+			int boardTotal = commuTotal + assignTotal;
+			
+			// 모든 판매 상품 수
+			int productTotal = adminService.totalProduct();
+			
+			// 모든 상영 영화 수
+			int movieTotal = adminService.totalMovie();
+			
+			// 모든 자체영화관 수
+			int cinemaTotal = adminService.totalCinema();
+			
 			// 조회된 회원 정보를 모델에 추가하여 View로 전달
-			model.addAttribute("adminList", adminList);
-
-			return "adminMember"; // 회원 정보를 보여줄 View 이름
+			model.addAttribute("memTotal", memTotal);
+			model.addAttribute("boardTotal", boardTotal);
+			model.addAttribute("productTotal", productTotal);
+			model.addAttribute("movieTotal", movieTotal);
+			model.addAttribute("cinemaTotal", cinemaTotal);
+			
+			return "adminMain"; // 회원 정보를 보여줄 View 이름
 		} catch (Exception e) {
 			log.error("회원 정보 조회 중 오류 발생", e);
 			model.addAttribute("errorMessage", "회원 정보 조회 중 오류가 발생하였습니다.");
@@ -83,6 +91,42 @@ public class AdminController {
 			return "errorPage"; // 에러 페이지로 이동
 
 		}
+	}
+	/*==============================
+	 * 회원관리
+	 *==============================*/	
+
+	// 회원 정보 조회 및 페이지로 전달
+	@GetMapping("/admin/adminMember")
+	public String getMemberList(
+			 @RequestParam(defaultValue="1") int pageNum,
+			 String keyfield,String keyword,Model model) {
+		
+				Map<String,Object> map = 
+				            new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체,검색 레코드수
+		int count = adminService.selectMemberRowCount(map);
+		
+		//페이지 처리
+		PagingUtil page = 
+				new PagingUtil(keyfield,keyword,pageNum,
+						       count,10,10,"adminMember");
+		List<AdminVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = adminService.selectMemberList(map);
+		}
+		
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+		
+		return "adminMember";
 	}
 
 	// 회원 정지 처리
@@ -343,10 +387,10 @@ public class AdminController {
         map.put("keyfield", keyfield);
 
         // 전체, 검색 레코드 수
-        int count = adminService.selectRowCount(map);
+        int count = adminService.selectMovieRowCount(map);
 
         // 페이지 처리
-        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "list");
+        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminMovie");
         
         List<MovieVO> list = null; 
         if (count > 0) {
