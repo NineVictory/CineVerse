@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/myPage.bought.js"></script>
+	<script src="${pageContext.request.contextPath}/js/product.review.js"></script>
 <!--  굿즈 내역 시작 -->
 <div class="myPage_main">
 
@@ -77,4 +78,33 @@
 
 
 </div>
+
+
+<div id="mate_review" style="display:none;">
+    <div class="mate_review_window">
+        
+		
+        <div class="content">
+            <div class="mate_review_profile">
+                <h2>상품은 만족하셨나요?</h2>
+            </div>
+			<div class="star">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star1">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star2">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star3">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star4">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star5">
+			</div>
+            <div class="mr_content_div">
+                <form id="mr_form">
+                    <textarea id="mr_content" name="pr_content"></textarea>
+                    <div class="btn-div">
+						<input type="button" class="mate_review_close" id="close-btn" value="취소">
+                        <input type="submit" id="submit-btn" value="제출">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 	
 <!--  내가 본 영화 끝 -->

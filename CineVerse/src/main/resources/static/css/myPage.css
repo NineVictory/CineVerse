@@ -1316,3 +1316,131 @@
 /* =======================
      		myPageMemberShipSub.jsp
    ======================= */
+   
+   
+   
+   
+   
+   
+   
+   
+   /*리뷰*/
+
+   #mate_review {
+   	width: 100%;
+	height: 200%;
+   	position: absolute;
+   	left: 0;
+   	top: 0;
+   	display: none;
+   	align-items: center;
+   	justify-content: center;
+   	background: rgba(71, 58, 58, 0.8);
+   }
+
+   /********************************
+   /* 모달 창*/
+   .mate_review_window {
+       background: #ffffff;
+       width: 600px;
+       position: relative;
+       border-radius: 15px;
+       max-height: 80vh; 
+       overflow-y: auto; 
+       z-index : 11000;
+   }
+
+   /********************************
+   /*모달 창 제목 바 DIV*/
+   
+
+   /*메이트 프로필 모달 창 제목의 닫기 버튼*/
+   .mate_review_close {
+   	cursor: pointer;
+   	color: black;
+   }
+
+   .mate_review_profile h2{
+	text-align: center;
+	margin-top:30px;
+	margin-bottom: 25px;
+   }
+   /********************************
+   /*모달 창 본문 DIV*/
+   .content {
+   	margin-top: 20px;
+   	color: black;
+   }
+
+
+   /********************************/
+   /*리뷰 쓰기 컨텐츠란 전체 DIV*/
+   .mr_content_div {
+   	padding-top: 5px;
+	margin-left:73px;
+   }
+
+   /*메이트 프로필에 쓰이는 내용란 (회색 박스) DIV*/
+
+   .mr_content p{
+   	padding: 15px;
+   }
+
+   #mr_content{
+   	border-radius: 8px;
+   	background: #e0e0e0;
+   	border : none;
+   	width: 450px;
+   	height: 300px;
+   	margin: 0 auto;
+   	resize: none;
+   }
+
+
+   /*****************************/
+   /*버튼*/
+   .btn-div {
+       display: flex;
+       justify-content: space-evenly;
+       align-items: center;
+       margin-top: 25px;
+       margin-bottom: 40px;
+	   margin-right: 75px;
+	   
+}
+
+   /*닫기 버튼*/
+   #close-btn, #submit-btn {
+   	font-size : 13pt;
+       width: 210px;
+       height: 60px;
+       display: flex;
+       align-items: center;
+       text-align: center;
+       border-radius: 15px;
+       margin: 0 10px;
+       cursor: pointer;
+       justify-content: space-around;
+       color: white;
+   }
+   
+   #submit-btn{
+	background: #3F66ED;
+	border: none;
+   }
+   
+   #close-btn{
+	background: none;
+	color:black;
+   }
+   
+   .star{
+	margin-left: 165px;
+	margin-bottom: 20px;
+   }
+   
+   .reStar{
+	width:50px;
+   }
+   
+   
