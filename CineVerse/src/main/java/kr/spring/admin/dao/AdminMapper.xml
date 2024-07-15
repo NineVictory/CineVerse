@@ -38,6 +38,53 @@
 		#{mem_num}
 		)
 	</insert>
+	
+	<sql id="movieSearch">
+		<where>
+			<if test="keyfield != null and keyword != null">
+            AND
+            ${keyfield} LIKE '%' || #{keyword} || '%'
+     	   </if>
+		</where>
+	</sql>
+
+	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<select id="selectRowCount" parameterType="map"
+		resultType="integer">
+		SELECT
+		COUNT(*)
+		FROM movie
+		<include refid="movieSearch"></include>
+	</select>
+
+	<!-- 게시판 전체/검색 목록 -->
+	<select id="selectMovie" parameterType="map"
+		resultType="MovieVO">
+		SELECT
+		*
+		FROM (
+		SELECT
+		a.*,
+		rownum rnum
+		FROM (
+		SELECT
+		m_code,
+                <![CDATA[
+                REPLACE(REPLACE(m_name, '<', '&lt;'), '>', '&gt;') AS m_name,
+                ]]>
+		m_opendate,
+		m_companys,
+		m_status,
+		m_filename
+		FROM movie
+		<include refid="movieSearch"></include>
+		) a
+		)
+    <![CDATA[
+    WHERE rnum >= #{start} AND rnum <= #{end}
+    ]]>
+	</select>
+
 </mapper>							
 
 

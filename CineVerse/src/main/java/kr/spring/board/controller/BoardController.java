@@ -119,14 +119,13 @@ public class BoardController {
 	 *게시판 글상세
 	 =====================*/
 	@GetMapping("/board/detail")
-	public ModelAndView process(long cb_num, HttpSession session) {
+	public ModelAndView process(long cb_num) {
 		log.debug("<<게시판 글 상세 - cb_num>> : " + cb_num);
 		
 		//해당 글의 조회수 증가
 		boardService.updateHit(cb_num);
 		
 		BoardVO board = boardService.selectBoard(cb_num);
-		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 		//제목에 태그를 허용하지 않음
 		board.setCb_title(StringUtil.useNoHTML(board.getCb_title()));
@@ -134,11 +133,7 @@ public class BoardController {
 		//내용에 태그를 허용하지 않으면서 줄바꿈 처리(CKEditor 사용시 주석 처리)
 		//board.setContent(StringUtil.useBrNoHTML(board.getContent()));
 		
-		ModelAndView modelAndView = new ModelAndView("boardView");
-	    modelAndView.addObject("board", board);
-	    modelAndView.addObject("user", user);
-	    
-		return modelAndView;
+		return new ModelAndView("boardView", "board", board);
 	}
 	
 	/*====================

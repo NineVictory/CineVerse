@@ -153,7 +153,7 @@ public class BoardAjaxController {
 	 *===================*/
 	@GetMapping("/board/listComment")
 	@ResponseBody
-	public Map<String,Object> getList(int cb_num, int pageNum, int rowCount, HttpSession session){
+	public Map<String,Object> getList(long cb_num, int pageNum, int rowCount, HttpSession session){
 		log.debug("<<댓글 목록 - cb_num>> : " + cb_num);
 		log.debug("<<댓글 목록 - pageNum>> : " + pageNum);
 		log.debug("<<댓글 목록 - rowCount>> : " + rowCount);
@@ -165,7 +165,7 @@ public class BoardAjaxController {
 		int count = boardService.selectRowCountComment(map);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(pageNum,count,rowCount);	// startRow,endRow 연산해줌
+		PagingUtil page = new PagingUtil(pageNum,count,rowCount);
 		map.put("start", page.getStartRow());
 		map.put("end", page.getEndRow());
 		

@@ -1,6 +1,7 @@
 package kr.spring.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,12 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.movie.vo.MovieVO;
 @Service
 @Transactional
 public class AdminServiceImpl implements AdminService{
 	@Autowired
 	AdminMapper adminMapper;
-
-
 
 	@Override
 	public void updateMemberAuth(long mem_num) {
@@ -67,6 +67,26 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteNotice(long nb_num) {
 		adminMapper.deleteNotice(nb_num);
+	}
+	@Override
+	public List<MovieVO> selectMovie(Map<String, Object> map) {
+		return adminMapper.selectMovie(map);
+	}
+	@Override
+	public Integer selectRowCount(Map<String, Object> map) {
+		return adminMapper.selectRowCount(map);
+	}
+	@Override
+	@Transactional
+	public void deleteMovie(long m_code) {
+		adminMapper.deleteMovieActor(m_code);
+		adminMapper.deleteMovieBooking(m_code);
+		adminMapper.deleteMovieBookmark(m_code);
+		adminMapper.deleteMovieReview(m_code);
+		adminMapper.deleteMovietime(m_code);
+		adminMapper.deleteMovieDirector(m_code);
+		adminMapper.deleteMovieGenre(m_code);
+		adminMapper.deleteMovie(m_code);
 	}
 
 
