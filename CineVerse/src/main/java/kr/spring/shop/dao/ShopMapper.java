@@ -136,7 +136,7 @@ public interface ShopMapper {
 	List<PBasketVO> selectFromPBasket(@Param("pb_num") List<Integer> pb_num);
 	
 	// 구매 건 불러오기 
-	@Select("SELECT * FROM orders o JOIN order_detail od ON o.order_num = od.order_num JOIN product p ON od.p_num = p.p_num WHERE o.order_num = #{order_num} AND ROWNUM = 1")
+	@Select("SELECT * FROM orders WHERE mem_num=#{mem_num}")
 	List<OrdersVO> selectOrders(long mem_num);
 	
 	// 구매 1건 불러오기
@@ -156,7 +156,7 @@ public interface ShopMapper {
 	public List<Integer> howManyQuantity(long order_num);
 	
 	// 구매 번호로 한 건만 내역 읽어오기 (대표)
-	@Select("SELECT * FROM order_detail od JOIN product p ON od.p_num = p.p_num JOIN orders o ON od.order_num = o.order_num WHERE mem_num=#{mem_num} AND ROWNUM = 1")
+	@Select("SELECT * FROM order_detail od JOIN product p ON od.p_num = p.p_num JOIN orders o ON od.order_num = o.order_num WHERE mem_num = #{mem_num} AND ROWNUM = 1")
 	public OrdersVO selectOrderDetailOne(long mem_num);
 	
 	// 구매 번호로 구매 내역 리스트 불러오기 
@@ -165,5 +165,5 @@ public interface ShopMapper {
 	
 	// 구매 번호로 구매 총 비용 불러오기
 	@Select("SELECT SUM(od.order_quantity * p.p_price) FROM order_detail od JOIN product p ON od.p_num = p.p_num WHERE od.order_num = #{order_num}")
-	public Integer orderPrice(long order_num);
+	Integer orderPrice(long order_num);
 }

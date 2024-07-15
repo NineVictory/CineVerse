@@ -238,7 +238,7 @@ public class ShopServiceImpl implements ShopService {
 	public OrdersVO selectOrder(long order_num) {
 		return shopMapper.selectOrder(order_num);
 	}
-	
+
 	
 
 }

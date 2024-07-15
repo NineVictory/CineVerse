@@ -69,4 +69,5 @@ public interface ShopService {
 	public List<OrdersVO> orderDetailList(long order_num);
 	public Integer orderPrice(long order_num);
 	public OrdersVO selectOrder(long order_num);
+	
 }
