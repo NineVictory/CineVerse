@@ -18,6 +18,7 @@ import kr.spring.board.service.BoardService;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.board.vo.BoardResponseFavVO;
 import kr.spring.board.vo.BoardResponseVO;
 //import kr.spring.board.vo.BoardReplyVO;
 //import kr.spring.board.vo.BoardResponseVO;
@@ -367,20 +368,29 @@ public class BoardAjaxController {
 	 =====================*/
 	@GetMapping("/board/getListResp")
 	@ResponseBody
-	public Map<String,Object> getListResp(long cc_num, HttpSession session){
-		log.debug("<<답글 목록 - cc_num>> : " + cc_num);
-		
-		List<BoardResponseVO> list = boardService.selectListResponse(cc_num);
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		
-		Map<String,Object> mapJson = new HashMap<String,Object>();
-		mapJson.put("list", list);
-		
-		if(user != null) {
-			mapJson.put("user_num", user.getMem_num());
-		}
-		return mapJson;
+	public Map<String, Object> getListResp(long cc_num, HttpSession session) {
+	    log.debug("<<답글 목록 - cc_num>> : " + cc_num);
+
+	    List<BoardResponseVO> list = boardService.selectListResponse(cc_num);
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+
+	    Map<String, Object> mapJson = new HashMap<>();
+	    
+	    for (BoardResponseVO response : list) {
+	        // 각 답글에 대한 좋아요 개수 읽어서 지정해줌 response vo에 respfav_cnt 세팅함
+	        int favCount = boardService.selectFavCount(response.getTe_num());
+	        response.setRespfav_cnt(favCount);
+	    }
+	    
+	    mapJson.put("list", list);
+
+	    if (user != null) {
+	        mapJson.put("user_num", user.getMem_num());
+	    }
+
+	    return mapJson;
 	}
+
 	
 	/*====================
 	 * 답글 수정
@@ -442,4 +452,5 @@ public class BoardAjaxController {
 		}
 		return mapJson;
 	}*/
+	
 }

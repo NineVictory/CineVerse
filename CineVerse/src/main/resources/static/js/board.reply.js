@@ -583,9 +583,9 @@ $(function() {
 					}
 
 					if (item.click_num == 0 || param.user_num !== item.click_num) {
-						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-rfcount">' + item.refav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
+						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-rfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
 					} else {
-						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart02.png" height="11">&nbsp;<span class="output-rfcount">' + item.refav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
+						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart02.png" height="11">&nbsp;<span class="output-rfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
 					}
 					output += '</div>'; // side 닫기
 

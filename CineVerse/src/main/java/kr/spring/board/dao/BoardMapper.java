@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.board.vo.BoardResponseFavVO;
 import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
@@ -100,6 +101,12 @@ public interface BoardMapper {
 	//답글의 개수 구하기
 	@Select("SELECT COUNT(*) FROM community_response WHERE cc_num=#{cc_num}")
 	public Integer selectResponseCount(Long cc_num);
+	// 답글 좋아요 불러오기
+	@Select("SELECT * FROM community_response_fav WHERE te_num=#{te_num} AND mem_num=#{mem_num}")
+	public BoardResponseFavVO selectResponseFav(BoardResponseFavVO boardResponseFav);
+	// 답글 좋아요 개수 구하기
+	@Select("SELECT COUNT(*) FROM community_response_fav WHERE te_num=#{te_num}")
+	public Integer selectResponseFavCnt(Long te_num);
 
 	
 }
