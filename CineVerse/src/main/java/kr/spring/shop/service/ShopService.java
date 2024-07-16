@@ -45,7 +45,7 @@ public interface ShopService {
 	public void directOrder(OrdersVO orders);
 	/* public Integer selectOrderNUM(long mem_num); */
 	public void usePoint(OrdersVO orders);
-	public void useCoupon(long mc_num);
+	public void useCoupon(@Param("mem_coupon_use") long mem_coupon_use, @Param("mc_num") long mc_num);
 	public void sellProduct(@Param(value="p_quantity") Long p_quantity, @Param(value="p_num") Long p_num);
 	public void directOrderDetail(OrdersVO orders);
 	public Integer getPoint(long mem_num);
@@ -76,4 +76,5 @@ public interface ShopService {
 	public Long selectOrderNum(long od_num);
 	public Integer countOrderDetail(long order_num);
 	public void updateOrderReStatus(long order_num);
+	public CouponVO usedCoupon(long order_num);
 }

@@ -24,7 +24,10 @@ $(function() {
                 success: function(param) {
                     if (param.result == 'logout') {
                         alert('로그인 후 이용해주세요');
-                    } else if(param.result == 'minus'){
+                    } else if(param.result=='noMin'){
+						$('.single-select').prop('checked', false);
+						alert('최소 금액 부족으로 쿠폰을 사용할 수 없습니다.')
+					} else if(param.result == 'minus'){
 						$('.single-select').prop('checked', false);
 						alert('쿠폰을 사용할 수 없습니다.')
 					} else if (param.result == 'success') {

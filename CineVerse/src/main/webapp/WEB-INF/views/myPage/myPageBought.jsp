@@ -24,7 +24,7 @@
 			<div class="mp_reserv">
 				<!-- 근데 이 부분 css를 똑같이 썼더니 하얀색으로 삐죽... --><!-- 영화사진 비율로 느낌만 낸거라 삐죽/css를 다르게 해야될수도! -->
 				<div class="m_movie_photo">
-					<img src="${pagecontext.reuqest.contextPath}/upload/${o.p_filename}"
+					<img src="${pagecontext.request.contextPath}/upload/${o.p_filename}"
 						alt="결제 내역" width="160" height="160" onclick="location.href='/myPage/boughtDetail?order_num=${o.order_num}'">
 				</div>
 				

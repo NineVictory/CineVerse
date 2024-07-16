@@ -84,7 +84,7 @@
 			</c:if>			
 			<c:if test="${member.coupon_cnt > 0 }">
 				<c:forEach  var="couponList" items="${couponList}">
-					<c:if test="${couponList.coupon_where==2}">
+					<c:if test="${couponList.coupon_where==2 && couponList.coupon_use==1}">
 						<div style="margin-left:15px; margin-top:20px; margin-bottom:0;">
 							<input type="checkbox" class="single-select" name="option" value="${couponList.mc_num}" data-num="${couponList.mc_num}" data-point="${couponList.coupon_sale}" data-nosaletotal="${total}">
 						</div>
@@ -94,7 +94,7 @@
 			 				<span class="coupon_detail_all">${couponList.coupon_regdate } ~ ${couponList.coupon_enddate }<!-- <span class="coupon_time">D - DAY</span> --></span> 
 			 			</div>
 		 			</c:if>
-					<c:if test="${couponList.coupon_where==1}">
+					<c:if test="${couponList.coupon_where==1 || couponList.coupon_where==2 && couponList.coupon_use==2}">
 						<div class="coupon_detail" style="background-color:#BDBDBD">
 							<span class="coupon_name">(영화 전용 - 사용 불가) ${couponList.coupon_name}</span>
 							<span class="coupon_detail_all">${couponList.coupon_content }</span>

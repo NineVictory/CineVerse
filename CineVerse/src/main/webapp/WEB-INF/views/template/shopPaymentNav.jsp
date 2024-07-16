@@ -12,10 +12,10 @@
 		</div>
 		<div class="price-detail">
 			<div class="total_count">
-			      <span>총 수량</span><span class="quantity">0개</span>
+			      <span>총 수량</span><span class="quantity">${pb_quantity}개</span>
 			  </div>
 			  <div class="total_price">
-			      <span>총 상품 금액</span><span class="tt">0원</span>
+			      <span>총 상품 금액</span><span class="tt">${total}원</span>
 			  </div>
 			<div class="coupon_discount">
 				<span>쿠폰 할인</span><span class="cr">0원</span>
