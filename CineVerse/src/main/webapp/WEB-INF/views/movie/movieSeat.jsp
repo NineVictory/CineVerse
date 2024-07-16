@@ -71,6 +71,12 @@
 				<div class="seat-wrapper">
 					<div class="screen-view-wrapper">
 						<span class="title_screen1">SCREEN</span>
+						<div id="container">
+        					<div class="seatContainer" id="seatContainer">
+            					<div class="screen"></div>
+            					<!-- JavaScript로 생성된 좌석이 여기에 추가됩니다 -->
+        					</div>
+    					</div>
 					</div>
 				</div>
 			</div>
@@ -98,3 +104,35 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const seatContainer = document.getElementById('seatContainer');
+
+            // 좌석 생성하는데 div, span으로 생성하도록 반복문 작성
+            function createSeats(rows, cols) {
+                for (let i = 0; i < rows; i++) {
+                    const row = document.createElement('div');
+                    row.classList.add('row');
+                    for (let j = 0; j < cols; j++) {
+                        const seat = document.createElement('span');
+                        seat.classList.add('seat');
+                        row.appendChild(seat);
+                    }
+                    seatContainer.appendChild(row);
+                }
+            }
+
+            createSeats(9,12);
+
+            // 좌석 클릭 시 색 변경해주는 - 토글 형태
+            seatContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('seat')) {
+                    e.target.classList.toggle('selectedSeat');
+                    countSelectedSeats();
+                }
+            });
+
+        });
+    </script>
