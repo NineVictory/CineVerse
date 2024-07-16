@@ -57,10 +57,12 @@ public interface MovieMapper {
 	public MovieTimeVO selectMovieTime(Long mt_num);
 	//영화 리뷰
 	public List<MovieReviewVO> selectMovieListReview(Map<String,Object> map);
+	@Select("SELECT COUNT(*) FROM movie_review WHERE m_code =#{m_code}")
 	public Integer selectMovieRowCountReview(Map<String,Object>map); //mybatis는 객체형태로 처리하기 때문에 int보다 Integer로 명시한다. int를 써도 자동으로 바뀌긴함. 그냥 명시를 맞게 해주는게 좋아서 
 	public void insertReview(MovieReviewVO movieReview);
 	public void updateReview(MovieReviewVO movieReview);
 	public void deleteReview(Long mr_num);
+	
 	
 
     

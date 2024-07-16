@@ -112,14 +112,14 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<MovieReviewVO> selectMovieListReview(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return movieMapper.selectMovieListReview(map);
 	}
 
 	@Override
 	public Integer selectMovieRowCountReview(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return movieMapper.selectMovieRowCountReview(map);
 	}
 
 	@Override
