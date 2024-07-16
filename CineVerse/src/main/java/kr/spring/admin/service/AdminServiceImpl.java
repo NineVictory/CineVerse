@@ -13,6 +13,8 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 @Service
@@ -129,6 +131,15 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Integer selectPointRowCount(Map<String, Object> map) {
 		return adminMapper.selectPointRowCount(map);
+	}
+	@Override
+    @Transactional
+    public void insertCinema(CinemaVO cinemaVO) {
+        adminMapper.insertCinema(cinemaVO);
+    }
+	@Override
+	public void insertTheater(TheaterVO theaterVO) {
+		adminMapper.insertTheater(theaterVO);
 	}
 
 	

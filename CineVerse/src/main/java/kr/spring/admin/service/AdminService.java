@@ -12,6 +12,8 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 
@@ -43,4 +45,8 @@ public interface AdminService {
 	public Integer totalProduct();
 	public Integer totalMovie();
 	public Integer totalCinema();
+	public void insertCinema(CinemaVO cinemaVO);
+	public void insertTheater(TheaterVO theaterVO);
+
+
 }	

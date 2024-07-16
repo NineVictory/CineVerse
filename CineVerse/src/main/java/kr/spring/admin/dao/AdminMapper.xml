@@ -332,6 +332,40 @@
     WHERE rnum >= #{start} AND rnum <= #{end}
     ]]>
 	</select>
+	
+	<!-- 영화관 등록 -->
+	<insert id="insertCinema" parameterType="CinemaVO">
+		INSERT INTO cinema(
+		c_num,
+		c_branch,
+		c_location,
+		c_address,
+		c_phone,
+		c_parkable
+		)
+		VALUES (
+		cinema_num.nextval,
+		#{c_branch},
+		#{c_location},
+		#{c_address},
+		#{c_phone},
+		#{c_parkable})
+	</insert>
+	
+	<!-- 상영관 등록 -->
+	<insert id="insertTheater" parameterType="TheaterVO">
+		INSERT INTO theater(
+		th_num,
+		c_num,
+		th_name,
+		th_position
+		)
+		VALUES (
+		theater_seq.nextval,
+		cinema_num.nextval,
+		#{th_name},
+		#{th_position})
+	</insert>
 </mapper>							
 
 

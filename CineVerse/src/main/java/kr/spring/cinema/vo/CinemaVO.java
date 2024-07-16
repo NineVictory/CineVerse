@@ -1,5 +1,8 @@
 package kr.spring.cinema.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,4 +17,9 @@ public class CinemaVO {
 	private String c_address;		//주소
 	private String c_phone;			//전화번호
 	private String c_parkable;		//주차 가능 여부
+	
+	
+
+    private List<TheaterVO> theaterList;
+
 }

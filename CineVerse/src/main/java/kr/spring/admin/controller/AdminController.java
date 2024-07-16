@@ -27,6 +27,8 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
@@ -54,6 +56,15 @@ public class AdminController {
 	public NoticeVO initCommand3() {
 		return new NoticeVO();
 	}
+	@ModelAttribute
+	public CinemaVO initComman4() {
+		return new CinemaVO();
+	}
+	//자바빈(VO) 초기화
+	@ModelAttribute
+	public TheaterVO initCommand4() {
+		return new TheaterVO();
+	}
 	/*==============================
 	 * 관리자메인
 	 *==============================*/	
@@ -65,25 +76,25 @@ public class AdminController {
 			// 모든 게시글
 			int commuTotal = adminService.totalCommunity();
 			int assignTotal = adminService.totalAssignment();
-			
+
 			int boardTotal = commuTotal + assignTotal;
-			
+
 			// 모든 판매 상품 수
 			int productTotal = adminService.totalProduct();
-			
+
 			// 모든 상영 영화 수
 			int movieTotal = adminService.totalMovie();
-			
+
 			// 모든 자체영화관 수
 			int cinemaTotal = adminService.totalCinema();
-			
+
 			// 조회된 회원 정보를 모델에 추가하여 View로 전달
 			model.addAttribute("memTotal", memTotal);
 			model.addAttribute("boardTotal", boardTotal);
 			model.addAttribute("productTotal", productTotal);
 			model.addAttribute("movieTotal", movieTotal);
 			model.addAttribute("cinemaTotal", cinemaTotal);
-			
+
 			return "adminMain"; // 회원 정보를 보여줄 View 이름
 		} catch (Exception e) {
 			log.error("회원 정보 조회 중 오류 발생", e);
@@ -100,56 +111,56 @@ public class AdminController {
 	// 회원 정보 조회 및 페이지로 전달
 	@GetMapping("/admin/adminMember")
 	public String getMemberList(
-			 @RequestParam(defaultValue="1") int pageNum,
-			 String keyfield,String keyword,Model model) {
-		
-				Map<String,Object> map = 
-				            new HashMap<String,Object>();
+			@RequestParam(defaultValue="1") int pageNum,
+			String keyfield,String keyword,Model model) {
+
+		Map<String,Object> map = 
+				new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
-		
+
 		//전체,검색 레코드수
 		int count = adminService.selectMemberRowCount(map);
-		
+
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						       count,10,10,"adminMember");
+						count,10,10,"adminMember");
 		List<AdminVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
-			
+
 			list = adminService.selectMemberList(map);
 		}
-		
+
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
-		
+
 		return "adminMember";
 	}
 
 	// 회원 정지 처리
 	@PostMapping("/stopMember")
-    @ResponseBody
-    public String stopMember(@RequestParam("mem_num") int mem_num) {
-        // auth 값을 0으로 업데이트하는 예시입니다.
-        adminService.updateMemberAuth(mem_num);
-        log.debug("<<회원정지 완료>>");
-        return "success";
-    
+	@ResponseBody
+	public String stopMember(@RequestParam("mem_num") int mem_num) {
+		// auth 값을 0으로 업데이트하는 예시입니다.
+		adminService.updateMemberAuth(mem_num);
+		log.debug("<<회원정지 완료>>");
+		return "success";
+
 	}
-	
+
 	// 회원 정지 처리
 	@PostMapping("/deleteMember")
-    @ResponseBody
-    public String deleteMember(@RequestParam("mem_num") int mem_num) {
-        // auth 값을 1으로 업데이트하는 예시입니다.
-        adminService.deleteMemberAuth(mem_num);
-        log.debug("<<회원탈퇴 완료>>");
-        return "success";
-    
+	@ResponseBody
+	public String deleteMember(@RequestParam("mem_num") int mem_num) {
+		// auth 값을 1으로 업데이트하는 예시입니다.
+		adminService.deleteMemberAuth(mem_num);
+		log.debug("<<회원탈퇴 완료>>");
+		return "success";
+
 	}
 	/*==============================
 	 * 구독 관리
@@ -157,33 +168,33 @@ public class AdminController {
 	// 구독 정보 조회 및 페이지로 전달
 	@GetMapping("/admin/adminMembership")
 	public String getMembershipList(
-			 @RequestParam(defaultValue="1") int pageNum,
-			 String keyfield,String keyword,Model model) {
-		
-				Map<String,Object> map = 
-				            new HashMap<String,Object>();
+			@RequestParam(defaultValue="1") int pageNum,
+			String keyfield,String keyword,Model model) {
+
+		Map<String,Object> map = 
+				new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
-		
+
 		//전체,검색 레코드수
 		int count = adminService.selectMemberRowCount(map);
-		
+
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						       count,20,10,"adminMembership");
+						count,20,10,"adminMembership");
 		List<AdminVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
-			
+
 			list = adminService.selectMembershipList(map);
 		}
-		
+
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
-		
+
 		return "adminMembership";
 	}
 
@@ -197,33 +208,33 @@ public class AdminController {
 	//공지사항 조회
 	@GetMapping("/admin/adminNotice")
 	public String getNoticeList(
-			 @RequestParam(defaultValue="1") int pageNum,
-			 String keyfield,String keyword,Model model) {
-		
-				Map<String,Object> map = 
-				            new HashMap<String,Object>();
+			@RequestParam(defaultValue="1") int pageNum,
+			String keyfield,String keyword,Model model) {
+
+		Map<String,Object> map = 
+				new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
-		
+
 		//전체,검색 레코드수
 		int count = adminService.selectNoticeRowCount(map);
-		
+
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						       count,20,10,"adminNotice");
+						count,20,10,"adminNotice");
 		List<NoticeVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
-			
+
 			list = adminService.selectNoticeList(map);
 		}
-		
+
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
-		
+
 		return "adminNotice";
 	}
 	// 공지사항 삭제 처리
@@ -233,7 +244,7 @@ public class AdminController {
 		adminService.deleteNotice(nb_num);
 		log.debug("<<공지사항 삭제완료>>");
 		return "success";
-		
+
 	}
 
 	//공지사항 등록폼 호출
@@ -243,23 +254,23 @@ public class AdminController {
 	}
 	@PostMapping("admin/adminNoticeForm")
 	public String insertNotice(@Valid NoticeVO noticeVO,
-								BindingResult result,
-								HttpServletRequest request,
-								HttpSession session,
-								Model model) throws IllegalStateException,IOException{
+			BindingResult result,
+			HttpServletRequest request,
+			HttpSession session,
+			Model model) throws IllegalStateException,IOException{
 		log.debug("<<이벤트 글 저장>> : " + noticeVO);
-		
+
 		//업로드된 파일이 없는 경우
 		if(noticeVO.getNb_upload()==null || noticeVO.getNb_upload().isEmpty()) {
 			result.rejectValue("nb_upload","fileNotFound");
 		}
-		 
+
 		// 폼 데이터 유효성 검사
 		if (result.hasErrors()) {
 			log.debug("<<유효성검사이상있음>> : " + noticeVO);
 			return "adminNoticeForm"; // 다시 폼을 보여줌
 		}
-		
+
 		MemberVO vo = (MemberVO)session.getAttribute("user");
 		//비로그인 상태 유효성 체크
 		if(vo == null) {
@@ -268,16 +279,16 @@ public class AdminController {
 		}
 		noticeVO.setMem_num(vo.getMem_num());
 		noticeVO.setNb_filename(FileUtil.createFile(request, 
-				                      noticeVO.getNb_upload()));
-		
+				noticeVO.getNb_upload()));
+
 		log.debug("파일명: " + noticeVO.getNb_filename());
 		adminService.insertNotice(noticeVO);
 		//View 메시지 처리
-				model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
-				model.addAttribute("url", 
-						 request.getContextPath()+"/admin/adminNotice");
-				
-				return "common/resultAlert";
+		model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+		model.addAttribute("url", 
+				request.getContextPath()+"/admin/adminNotice");
+
+		return "common/resultAlert";
 	}
 	/*==============================
 	 * 이벤트 관리
@@ -285,33 +296,33 @@ public class AdminController {
 	//이벤트 조회
 	@GetMapping("/admin/adminEvent")
 	public String getEventList(
-			 @RequestParam(defaultValue="1") int pageNum,
-			 String keyfield,String keyword,Model model) {
-		
-				Map<String,Object> map = 
-				            new HashMap<String,Object>();
+			@RequestParam(defaultValue="1") int pageNum,
+			String keyfield,String keyword,Model model) {
+
+		Map<String,Object> map = 
+				new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
-		
+
 		//전체,검색 레코드수
 		int count = adminService.selectEventRowCount(map);
-		
+
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						       count,20,10,"adminEvent");
+						count,20,10,"adminEvent");
 		List<EventVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
-			
+
 			list = adminService.selectEventList(map);
 		}
-		
+
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
-		
+
 		return "adminEvent";
 	}
 	// 이벤트 삭제 처리
@@ -321,7 +332,7 @@ public class AdminController {
 		adminService.deleteEvent(event_num);
 		log.debug("<<이벤트 삭제 완료>>");
 		return "success";
-		
+
 	}
 	//이벤트 등록 폼 호출
 	@GetMapping("/admin/adminEventForm")
@@ -331,34 +342,34 @@ public class AdminController {
 	//이벤트 등록
 	@PostMapping("admin/adminEventForm")
 	public String insertEvent(@Valid EventVO eventVO,
-								BindingResult result,
-								HttpServletRequest request,
-								HttpSession session,
-								Model model) throws IllegalStateException,IOException{
+			BindingResult result,
+			HttpServletRequest request,
+			HttpSession session,
+			Model model) throws IllegalStateException,IOException{
 		log.debug("<<이벤트 글 저장>> : " + eventVO);
-		
+
 		//업로드된 파일이 없는 경우
 		if(eventVO.getEvent_upload()==null || eventVO.getEvent_upload().isEmpty()) {
 			result.rejectValue("event_upload","fileNotFound");
 		}
-		
+
 		// 폼 데이터 유효성 검사
 		if (result.hasErrors()) {
 			log.debug("<<유효성검사이상있음>> : " + eventVO);
 			return "adminEventForm"; // 다시 폼을 보여줌
 		}
-		
+
 		eventVO.setEvent_filename(FileUtil.createFile(request, 
-				                      eventVO.getEvent_upload()));
-		
+				eventVO.getEvent_upload()));
+
 		log.debug("파일명: " + eventVO.getEvent_filename());
 		adminService.insertEvent(eventVO);
 		//View 메시지 처리
-				model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
-				model.addAttribute("url", 
-						 request.getContextPath()+"/admin/adminEvent");
-				
-				return "common/resultAlert";
+		model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+		model.addAttribute("url", 
+				request.getContextPath()+"/admin/adminEvent");
+
+		return "common/resultAlert";
 	}
 	/*==============================
 	 * 게시판관리
@@ -371,20 +382,20 @@ public class AdminController {
 			List<AssignVO> assignList = adminService.getAllAssignment();
 			// 자유 게시판 정보
 			List<BoardVO> commuList = adminService.getAllCommunity();
-			
+
 			//합치기			
-			  List<Object> adminList = new ArrayList<>(); 
-			  adminList.addAll(assignList);
-			  adminList.addAll(commuList);
-			 
-	        
+			List<Object> adminList = new ArrayList<>(); 
+			adminList.addAll(assignList);
+			adminList.addAll(commuList);
+
+
 			// 조회된 회원 정보를 모델에 추가하여 View로 전달
 			model.addAttribute("adminList", adminList);
-			 
+
 			model.addAttribute("assginList", assignList);
 			model.addAttribute("commuList", commuList);
 
-			
+
 			return "adminCommunity"; // 회원 정보를 보여줄 View 이름
 		} catch (Exception e) {
 			log.error("회원 정보 조회 중 오류 발생", e);
@@ -394,50 +405,50 @@ public class AdminController {
 
 		}
 	}
-	
+
 	// 게시판 댓글 관리
 	@GetMapping("/admin/adminReply")
 	public String adminAssignment(){
 		return "adminReply";
 	}
-	
+
 	// 영화
 	@GetMapping("/admin/adminMovie")
-    public String adminMovie(
-            @RequestParam(defaultValue = "1") int pageNum,
-            @RequestParam(value = "keyword", required = false) String keyword,
-            @RequestParam(value = "keyfield", required = false) String keyfield,
-            Model model) {
+	public String adminMovie(
+			@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "keyfield", required = false) String keyfield,
+			Model model) {
 		// keyfield가 없으면 기본값을 설정
-	    if (keyfield == null || keyfield.isEmpty()) {
-	        keyfield = "m_name"; // 기본 검색 필드를 설정합니다.
-	    }
-	    
-        // 파라미터를 맵에 추가
-        Map<String, Object> map = new HashMap<>();
-        map.put("keyword", keyword);
-        map.put("keyfield", keyfield);
+		if (keyfield == null || keyfield.isEmpty()) {
+			keyfield = "m_name"; // 기본 검색 필드를 설정합니다.
+		}
 
-        // 전체, 검색 레코드 수
-        int count = adminService.selectMovieRowCount(map);
+		// 파라미터를 맵에 추가
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("keyfield", keyfield);
 
-        // 페이지 처리
-        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminMovie");
-        
-        List<MovieVO> list = null; 
-        if (count > 0) {
-            map.put("start", page.getStartRow());
-            map.put("end", page.getEndRow());
-            
-            list = adminService.selectMovie(map); 
-        }
-        
-        model.addAttribute("count", count);
-        model.addAttribute("list", list);
-        model.addAttribute("page", page.getPage());
-        
-        return "adminMovie";
-    
+		// 전체, 검색 레코드 수
+		int count = adminService.selectMovieRowCount(map);
+
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminMovie");
+
+		List<MovieVO> list = null; 
+		if (count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+
+			list = adminService.selectMovie(map); 
+		}
+
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+
+		return "adminMovie";
+
 	}
 	// 영화 삭제 처리
 	@PostMapping("/deleteMovie")
@@ -446,7 +457,7 @@ public class AdminController {
 		adminService.deleteMovie(m_code);
 		log.debug("<<영화 삭제 완료>>");
 		return "success";
-		
+
 	}
 	// 영화
 	@GetMapping("/admin/adminMovieTime")
@@ -458,55 +469,93 @@ public class AdminController {
 	public String adminMovieForm(MovieVO movieVO){
 		return "adminMovieForm";
 	}
-	// 영화
-	@GetMapping("/admin/adminCinema")
-	public String adminCinema(){
-		return "adminCinema";
-	}
-	// 영화등록
-	@GetMapping("/admin/adminCinemaForm") 
-	public String adminCinemaForm(){
+	// 영화관등록 폼 호출
+	@GetMapping("/admin/adminCinemaForm")
+	public String showCinemaForm(Model model) {
+		model.addAttribute("cinemaVO", new CinemaVO());
+		model.addAttribute("theaterList", new ArrayList<>());
+
 		return "adminCinemaForm";
 	}
+    @ModelAttribute("theaterVOList")
+    public List<TheaterVO> initializeTheaterList() {
+        return new ArrayList<>();
+    }
+	//영화관 등록
+    @PostMapping("/admin/adminCinemaForm")
+    public String insertCinema(@ModelAttribute("cinemaVO") @Valid CinemaVO cinemaVO,
+                               BindingResult result,
+                               Model model) {
+        if (result.hasErrors()) {
+            return "adminCinemaForm"; // 유효성 검사 오류 시 폼을 다시 보여줌
+        }
+        
+        // 영화관 정보 저장
+        adminService.insertCinema(cinemaVO);
+
+        // 상영관 정보 저장
+        List<TheaterVO> theaterList = cinemaVO.getTheaterList();
+        if (theaterList != null && !theaterList.isEmpty()) {
+            for (TheaterVO theater : theaterList) {
+                adminService.insertTheater(theater);
+            }
+        }
+
+        // View 메시지 처리
+        model.addAttribute("message", "영화관 및 상영관이 성공적으로 등록되었습니다.");
+        model.addAttribute("url", "/admin/adminCinemaForm");
+        return "common/resultAlert";
+    }
+
 	
+	
+	// 상영관 등록
+	// 영화관등록 폼 호출
+		@GetMapping("/admin/adminCinemaTheaterForm")
+		public String showCinemaTheaterForm(Model model) {
+			model.addAttribute("TheaterVO", new TheaterVO());
+
+
+			return "adminCinemaTheaterForm";
+		}
 	// 포인트
 	// 영화
 	@GetMapping("/admin/adminPayment")
-    public String adminPayment(
-            @RequestParam(defaultValue = "1") int pageNum,
-            @RequestParam(value = "keyword", required = false) String keyword,
-            @RequestParam(value = "keyfield", required = false) String keyfield,
-            Model model) {
+	public String adminPayment(
+			@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "keyfield", required = false) String keyfield,
+			Model model) {
 		// keyfield가 없으면 기본값을 설정
-	    if (keyfield == null || keyfield.isEmpty()) {
-	        keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
-	    }
-	    
-        // 파라미터를 맵에 추가
-        Map<String, Object> map = new HashMap<>();
-        map.put("keyword", keyword);
-        map.put("keyfield", keyfield);
+		if (keyfield == null || keyfield.isEmpty()) {
+			keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+		}
 
-        // 전체, 검색 레코드 수
-        int count = adminService.selectPointRowCount(map);
+		// 파라미터를 맵에 추가
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("keyfield", keyfield);
 
-        // 페이지 처리
-        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminPayment");
-        
-        List<PointVO> list = null; 
-        if (count > 0) {
-            map.put("start", page.getStartRow());
-            map.put("end", page.getEndRow());
-            
-            list = adminService.selectPoint(map); 
-        }
-        
-        model.addAttribute("count", count);
-        model.addAttribute("list", list);
-        model.addAttribute("page", page.getPage());
-        
-        return "adminPayment";
-    
+		// 전체, 검색 레코드 수
+		int count = adminService.selectPointRowCount(map);
+
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminPayment");
+
+		List<PointVO> list = null; 
+		if (count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+
+			list = adminService.selectPoint(map); 
+		}
+
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+
+		return "adminPayment";
+
 	}
 	/*
 	 * // 결제 환불 처리
