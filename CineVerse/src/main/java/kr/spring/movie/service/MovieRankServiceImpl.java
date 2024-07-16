@@ -37,7 +37,7 @@ public class MovieRankServiceImpl implements MovieRankService {
     // 오늘 날짜 형식에 맞춰 변환 시켜주기
     private final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyyMMdd");
 
-    @Scheduled(cron = "0 0 2 * * *") // 매일 새벽 2시에 실행되도록 설정해놓음 초 분 시
+    @Scheduled(cron = "0 10 8 * * *") // 8시 10분에 실행되도록 설정해놓음 초 분 시 형태 뒤에는 일 달 이런거 문제는 해당 내용들이 실행되기 위해서는 서버가 켜져있어야한다.
     public void updateMovieRank() {
     	// 불러올 수 있는 날짜가 하루 전의 날짜기 때문에 당일보다 -1된 값으로 지정
         Calendar cal = Calendar.getInstance();
@@ -51,21 +51,26 @@ public class MovieRankServiceImpl implements MovieRankService {
         paramMap.put("itemPerPage", "10");
 
         try {
-        	// 요청 url과 각각의 값들을 넣어줘서 연결 시킨다 get 방식으로
+        	// 요청할 url과 각각의 값들을 넣어줘서 연결 시킨다 get 방식으로
             URL requestURL = new URL(REQUEST_URL + "?" + makeQueryString(paramMap));
-            HttpURLConnection conn = (HttpURLConnection) requestURL.openConnection();
-            conn.setRequestMethod("GET");
+            HttpURLConnection conn = (HttpURLConnection) requestURL.openConnection();	// conn 객체를 생성하여 get 요청 방식으로 결정 
+            conn.setRequestMethod("GET");												// 사이트에서 get으로 받아오라고 해서 그에 맞게 작성
             conn.setDoInput(true);
 
-            // 버퍼드 리더를 통해 읽어오며 utf-8
+            // 버퍼드 리더를 통해 서버 응답을 읽어오며 utf-8 인코딩 해주고
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             String readline;
-            StringBuilder response = new StringBuilder();
-            while ((readline = br.readLine()) != null) {
-                response.append(readline);
-            }
             
-            // json object들을 변환해주는데 각각의 내용과 배열들의 이름이 불러와지는 값에 알맞게 작성이 되면 된다
+            // 스트링 빌더를 통해서 각 줄을 하나의 문자열로 결합해준다
+            StringBuilder response = new StringBuilder();	
+            while ((readline = br.readLine()) != null) { //응답의 각 줄들을 읽어오면서 readline에 저장하고 더 읽어올게 없으면 null 반환 시킨다
+                response.append(readline);
+            }	
+            // 루프를 돌면서 읽어온 값들(readline)을 response에 저장한다
+            
+            // response에 저장한 문자열들을 JSONObject로 변환하여 responseBody에 저장시킨다
+            // responseBody에서 boxOfficeResult 객체를 추출합니다.
+            // boxOfficeResult(불러올때 지정된 명칭)에서 dailyBoxOfficeList 배열(지정된 명칭)을 추출.
             JSONObject responseBody = new JSONObject(response.toString());
             JSONObject boxOfficeResult = responseBody.getJSONObject("boxOfficeResult");
             JSONArray dailyBoxOfficeList = boxOfficeResult.getJSONArray("dailyBoxOfficeList");
