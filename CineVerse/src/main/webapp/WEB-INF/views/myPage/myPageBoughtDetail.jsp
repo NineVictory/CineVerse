@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/product.review.js"></script>
 <!-- 굿즈 결제 내역 상세 시작 -->
 <div class="myPage_main">
 
@@ -55,6 +57,13 @@
 					<div>
 						<span class="m_pay">총 결제금액 </span><span class="my_blue_font">${od.p_price*od.order_quantity}원</span>
 					</div>
+					<div class="my_bought_btn">
+						<div>
+							<c:if test="${od.order_status==6 && od.od_review_status==1}">
+								<span class="my_order_review" data-pnum="${od.p_num}" data-num="${od.od_num}" style="padding:3px;">리뷰쓰기</span>
+							</c:if>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -95,4 +104,38 @@
 	<div></div>
 
 </div>
+
+
+
+
+<div id="mate_review" style="display:none;">
+    <div class="mate_review_window">
+        
+		
+        <div class="content">
+            <div class="mate_review_profile">
+                <h2>상품은 만족하셨나요?</h2>
+            </div>
+			<div class="star">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star1">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star2">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star3">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star4">
+				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star5">
+			</div>
+            <div class="mr_content_div">
+                <form id="mr_form">
+                	<input type="hidden" name="pr_grade" class="pr_grade">
+                	<input type="hidden" name="od_num" class="od_num">
+                	<input type="hidden" name="p_num" class="p_num">
+                    <textarea id="mr_content" name="pr_content"></textarea>
+                    <div class="btn-div">
+						<input type="button" class="mate_review_close" id="close-btn" value="취소">
+                        <input type="submit" id="submit-btn" value="제출">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 	
 <!-- 굿즈 결제 내역 상세 끝-->

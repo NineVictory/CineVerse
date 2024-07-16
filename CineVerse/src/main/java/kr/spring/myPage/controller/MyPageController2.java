@@ -99,7 +99,7 @@ public class MyPageController2 {
 		    List<OrdersVO> orders = shopService.selectOrders(user.getMem_num());
 		    List<OrdersVO> total_quantity = shopService.howManyQuantity(user.getMem_num());
 		    List<OrdersVO> total_price = shopService.howMuch(user.getMem_num());
-
+		    
 		    for (OrdersVO order : orders) {
 		        for (OrdersVO qty : total_quantity) {
 		            if (order.getOrder_num() == qty.getOrder_num()) {
@@ -107,13 +107,16 @@ public class MyPageController2 {
 		                break;
 		            }
 		        }
+
 		        for (OrdersVO price : total_price) {
 		            if (order.getOrder_num() == price.getOrder_num()) {
 		                order.setTotal_price(price.getTotal_price());
 		                break;
 		            }
 		        }
+		        
 		    }
+
 
 		    model.addAttribute("orders", orders);
 		    model.addAttribute("count", count);

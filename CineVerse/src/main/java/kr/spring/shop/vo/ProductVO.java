@@ -45,7 +45,8 @@ public class ProductVO {
 	private Date pr_reg_date;
 	private String pr_filename;
 	private long od_num;
-	private int pr_grade;
+	private long pr_grade;
+	private int od_review_status;
 	
 	// fav_product (p_num은 알아서 사용)
 	private long mem_num;

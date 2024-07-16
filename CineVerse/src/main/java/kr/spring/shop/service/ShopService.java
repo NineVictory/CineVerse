@@ -71,4 +71,9 @@ public interface ShopService {
 	public OrdersVO selectOrder(long order_num);
 
 	public void orderConfirm(long order_num);
+	public void writeProductReview(ProductVO product); 
+	public Integer countReview(long order_num);
+	public Long selectOrderNum(long od_num);
+	public Integer countOrderDetail(long order_num);
+	public void updateOrderReStatus(long order_num);
 }

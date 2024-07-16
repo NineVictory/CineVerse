@@ -244,6 +244,32 @@ public class ShopServiceImpl implements ShopService {
 		shopMapper.orderConfirm(order_num);
 	}
 
+	@Override
+	public void writeProductReview(ProductVO product) {
+		shopMapper.updateReviewStatus(product.getOd_num());
+		shopMapper.writeProductReview(product);
+	}
+
+	@Override
+	public Integer countReview(long order_num) {
+		return shopMapper.countReview(order_num);
+	}
+
+	@Override
+	public Long selectOrderNum(long od_num) {
+		return shopMapper.selectOrderNum(od_num);
+	}
+
+	@Override
+	public Integer countOrderDetail(long order_num) {
+		return shopMapper.countOrderDetail(order_num);
+	}
+
+	@Override
+	public void updateOrderReStatus(long order_num) {
+		shopMapper.updateOrderReStatus(order_num);
+	}
+
 	
 
 }

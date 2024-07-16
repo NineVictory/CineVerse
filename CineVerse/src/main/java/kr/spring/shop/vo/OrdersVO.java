@@ -20,6 +20,7 @@ public class OrdersVO {
 	private int order_status;
 	private long a_num;
 	private String od_number;
+	private int order_re_status;
 	
 	// order_detail (order_num 알아서 쓰기)
 	private long od_num;
@@ -73,5 +74,7 @@ public class OrdersVO {
 	
 	private int total_quantity;
 	private int total_price;
+	
+	private int review_count;
 	
 }
