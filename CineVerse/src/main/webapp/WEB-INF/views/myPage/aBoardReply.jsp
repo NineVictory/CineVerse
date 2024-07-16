@@ -4,12 +4,12 @@
 <!-- 나의 북마크 시작 -->
 <div class="myPage_main">
 	<div class="reservation_display">
-		<span class="myPage_title_re">나의 북마크</span>
+		<span class="myPage_title_re">양도/교환 댓글</span>
 		<select
 			class="myCoupon_option">
-			<option value="0" <c:if test="${param.category == 0}">selected</c:if>>전체</option>
-            <option value="1" <c:if test="${param.category == 1}">selected</c:if>>영화톡톡</option>
-            <option value="2" <c:if test="${param.category == 2}">selected</c:if>>일상톡톡</option>
+			<option value="0" >전체</option>
+			<option value="1" >양도</option>
+			<option value="2" >교환</option>
 		</select>
 	</div>
 	<!-- 반복 -->

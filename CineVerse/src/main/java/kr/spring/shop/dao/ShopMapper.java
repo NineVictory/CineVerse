@@ -123,8 +123,8 @@ public interface ShopMapper {
 	public void usePoint(OrdersVO orders);
 	
 	// 쿠폰 사용하기
-	@Update("UPDATE member_coupon SET coupon_use=2 WHERE mc_num=#{mc_num}")
-	public void useCoupon(long mc_num);
+	@Update("UPDATE member_coupon SET coupon_use=2, mem_coupon_use=#{mem_coupon_use} WHERE mc_num=#{mc_num}")
+	public void useCoupon(@Param("mem_coupon_use") long mem_coupon_use, @Param("mc_num") long mc_num);
 	
 	// 쿠폰 조건 체크
 	@Select("SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) WHERE mc_num=#{mc_num}")
@@ -194,4 +194,8 @@ public interface ShopMapper {
 	// orders 테이블의 order_re_status 업데이트
 	@Update("UPDATE orders SET order_re_status=2 WHERE order_num=#{order_num}")
 	public void updateOrderReStatus(long order_num);
+	
+	// 사용한 쿠폰 있는지 찾아보기
+	@Select("SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) WHERE mem_coupon_use=#{mem_coupon_use}")
+	public CouponVO usedCoupon(long order_num);
 }

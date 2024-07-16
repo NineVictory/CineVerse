@@ -139,8 +139,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public void useCoupon(long mc_num) {
-		shopMapper.useCoupon(mc_num);
+	public void useCoupon(long mem_coupon_use, long mc_num) {
+		shopMapper.useCoupon(mem_coupon_use, mc_num);
 	}
 
 	@Override
@@ -268,6 +268,11 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public void updateOrderReStatus(long order_num) {
 		shopMapper.updateOrderReStatus(order_num);
+	}
+
+	@Override
+	public CouponVO usedCoupon(long order_num) {
+		return shopMapper.usedCoupon(order_num);
 	}
 
 	

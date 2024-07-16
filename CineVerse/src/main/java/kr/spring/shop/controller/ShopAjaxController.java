@@ -113,12 +113,16 @@ public class ShopAjaxController {
 		if(noSaleTotal<50000) {
 			deli =3000;
 		}
-
+		
+		long min = coupon.getCoupon_min_amount();
+				System.out.println(noSaleTotal-min);
 		// 쿠폰 쓰기 위한 최소 금액 -> coupon_db에 추가해야 함 -> else if 하나 더 추가 해야 함
 		if(user==null) {
 			mapJson.put("result", "logout");
 		} else if((noSaleTotal+deli-sale)<0) { // 쿠폰 할인 했더니 마이너스 되는 경우
 			mapJson.put("result", "minus");
+		} else if((noSaleTotal-min) <0) {
+			mapJson.put("result", "noMin");
 		} else {
 			mapJson.put("result", "success");
 		}
@@ -195,7 +199,7 @@ public class ShopAjaxController {
 				memberService.totalPoint(user.getMem_num());
 
 				if(orders.getMc_num()!=0) { // 쿠폰 사용했을 경우
-					shopService.useCoupon(orders.getMc_num());
+					shopService.useCoupon(order_num, orders.getMc_num());
 				}
 
 				mapJson.put("result", "success");
@@ -398,7 +402,7 @@ public class ShopAjaxController {
 	            memberService.totalPoint(user.getMem_num());
 
 	            if (mc_num != 0) { // 쿠폰 사용했을 경우
-	                shopService.useCoupon(orders.getMc_num());
+	                shopService.useCoupon(order_num, orders.getMc_num());
 	            }
 
 	            mapJson.put("result", "success");

@@ -75,12 +75,10 @@
 		<div class="pay_receipt">
 			<div class="reservation_pay">총 결제금액</div>
 			<div class="reservation_pay_blue_font">
-				<c:if test="${order_price<50000}">
-					${order_price+3000}원
-				</c:if>
-				<c:if test="${order_price>=50000}">
 					${order_price}원
-				</c:if>
+					<c:if test="${!empty deli}">
+						(배송비 ${deli}원)
+					</c:if>
 			</div>
 		</div>
 		<hr size="1" width="100%" class="wa_line">
@@ -93,8 +91,8 @@
 				<div class="pay_coupon">쿠폰 결제</div>
 			</div>
 			<div class="pay_way_count">
-				<div class="point_count">78,000원</div>
-				<div class="coupon_count">0원</div>
+				<div class="point_count">${point_price}원</div>
+				<div class="coupon_count">${coupon_price}원</div>
 			</div>
 		</div>
 	</div>
