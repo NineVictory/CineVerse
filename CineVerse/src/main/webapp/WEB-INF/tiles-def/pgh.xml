@@ -127,22 +127,27 @@
 
 	<!-- 영화관 관리 -->
 	<definition name="adminCinema" extends="adminMain">
-		<put-attribute name="title" value="영화등록" />
+		<put-attribute name="title" value="영화관" />
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminCinemaCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCinema.jsp" />
 	</definition>
 
 	<!-- 영화관 등록 -->
-	<definition name="adminCinameForm" extends="adminMain">
-		<put-attribute name="title" value="영화등록" />
+	<definition name="adminCinemaForm" extends="adminMain">
+		<put-attribute name="title" value="영화관등록" />
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminCinemaFormCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCinemaForm.jsp" />
 	</definition>
 
-	<definition name="adminMovieTime" extends="adminMain">
-		<put-attribute name="title" value="영화등록" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminMovieTimeCSS.jsp" />
-		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMovieTime.jsp" />
+	<definition name="adminCinemaTheaterForm" extends="adminMain">
+		<put-attribute name="title" value="상영관등록" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCinemaTheaterFormCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCinemaTheaterForm.jsp" />
+	</definition>
+	<definition name="adminCinemaSeatForm" extends="adminMain">
+		<put-attribute name="title" value="상영관등록" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCinemaSeatFormCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCinemaSeatForm.jsp" />
 	</definition>
 </tiles-definitions>
 

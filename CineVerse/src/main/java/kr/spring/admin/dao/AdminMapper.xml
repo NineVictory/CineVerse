@@ -238,9 +238,12 @@
 	<sql id="movieSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
-				AND
-				${keyfield} LIKE '%' || #{keyword} || '%'
+				AND m_delete = 1
+         	    AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
+			<if test="keyfield != null and keyword == null">
+           		AND m_delete = 1
+        </if>
 		</where>
 	</sql>
 
@@ -281,6 +284,88 @@
     ]]>
 	</select>
 
+	<!-- 포인트 시작 -->
+	<sql id="pointSearch">
+		<where>
+			<if test="keyfield != null and keyword != null">
+				AND ph_type = 2
+         	    AND ${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield != null and keyword == null">
+           		AND ph_type = 2
+        </if>
+		</where>
+	</sql>
+
+	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<select id="selectPointRowCount" parameterType="map"
+		resultType="integer">
+		SELECT
+		COUNT(*)
+		FROM point_history
+		<include refid="pointSearch"></include>
+	</select>
+
+	<!-- 게시판 전체/검색 목록 -->
+	<select id="selectPoint" parameterType="map"
+		resultType="PointVO">
+		SELECT
+		*
+		FROM (
+		SELECT
+		a.*,
+		rownum rnum
+		FROM (
+		SELECT
+		ph_num,
+		ph_point,
+		ph_date,
+                <![CDATA[
+                REPLACE(REPLACE(mem_num, '<', '&lt;'), '>', '&gt;') AS mem_num,
+                ]]>
+		ph_payment
+		FROM point_history
+		<include refid="pointSearch"></include>
+		) a
+		)
+    <![CDATA[
+    WHERE rnum >= #{start} AND rnum <= #{end}
+    ]]>
+	</select>
+	
+	<!-- 영화관 등록 -->
+	<insert id="insertCinema" parameterType="CinemaVO">
+		INSERT INTO cinema(
+		c_num,
+		c_branch,
+		c_location,
+		c_address,
+		c_phone,
+		c_parkable
+		)
+		VALUES (
+		cinema_num.nextval,
+		#{c_branch},
+		#{c_location},
+		#{c_address},
+		#{c_phone},
+		#{c_parkable})
+	</insert>
+	
+	<!-- 상영관 등록 -->
+	<insert id="insertTheater" parameterType="TheaterVO">
+		INSERT INTO theater(
+		th_num,
+		c_num,
+		th_name,
+		th_position
+		)
+		VALUES (
+		theater_seq.nextval,
+		cinema_num.nextval,
+		#{th_name},
+		#{th_position})
+	</insert>
 </mapper>							
 
 

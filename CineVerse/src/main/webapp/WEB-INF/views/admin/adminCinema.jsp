@@ -6,7 +6,7 @@
 	
 <div class = "admin_member">
 	<div class = "firstTitle">
-		<p id ="title">회원관리</p>
+		<p id ="title">영화관관리</p>
 	</div>
 		<form action="adminSearch" id="admin_search">
 			<ul>

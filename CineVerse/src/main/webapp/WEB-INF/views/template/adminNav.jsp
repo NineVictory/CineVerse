@@ -31,14 +31,26 @@
 				href="${pageContext.request.contextPath}/admin/adminMovie"
 				class="menu-link">영화</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}/admin/adminCinema"
-				class="menu-link">영화관</a></li>
-			<li><a
 				href="${pageContext.request.contextPath}/admin/adminReservation"
 				class="menu-link">예매</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminReview"
 				class="menu-link">리뷰관리</a></li>
+		</ul>
+		<a class="menu-item">영화관</a>
+		<ul class="sub_menus">
+			<li><a
+				href="${pageContext.request.contextPath}/admin/adminCinema"
+				class="menu-link">영화관</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/admin/adminCinemaForm"
+				class="menu-link">영화관등록</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/admin/adminCinemaTheaterForm"
+				class="menu-link">상영관등록</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/admin/adminCinemaSeatForm"
+				class="menu-link">좌석등록</a></li>
 		</ul>
 		<a href="${pageContext.request.contextPath}/admin/adminNotice"
 			class="menu-item">공지사항</a> <a
