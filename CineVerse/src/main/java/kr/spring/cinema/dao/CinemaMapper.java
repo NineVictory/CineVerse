@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
+import kr.spring.movie.vo.MovieTimeVO;
 
 @Mapper
 public interface CinemaMapper {
@@ -23,13 +24,23 @@ public interface CinemaMapper {
 	@Delete("DELETE FROM cinema WHERE c_num=#{c_num}")
 	public void deleteCinema(Long c_num);
 	
+
 	//상영관
-	public List<TheaterVO> selectTheaterList(Map<String,Object> map);
 	public Integer selectTheaterCount(Map<String,Object> map);
 	public void insertTheater(TheaterVO theater);
 	public TheaterVO selectTheater(Long th_num);
 	public void updateTheater(TheaterVO theater);	
 	public void deleteTheater(Long th_num);
+	
+	//상영관 목록
+	public List<TheaterVO> selectTheaterListByCinemaNum(long c_num);
+	public Integer selectTheaterCountByCinema(long c_num);
+	
+	
+	//상영 시간표 목록
+	public List<MovieTimeVO> selectMovieTimesByMovieAndTheater(long m_code, long th_num);
+	
+	
 	
 	
 	//영화관 (잠시보류)

@@ -8,6 +8,15 @@
 	<h2>상영관 등록</h2>
 	<form:form action="theaterWrite" id="theater_write"  modelAttribute="theaterVO">
 		<ul>
+			<li>
+            <form:select path="c_branch">
+                <form:option value="">지점을 선택하세요</form:option>
+                <c:forEach var="branch" items="${branchList}">
+                    <form:option value="${branch}">${branch}</form:option>
+                </c:forEach>
+            </form:select>
+            <form:errors path="c_branch" cssClass="error-color"/>
+        </li>	
 			<li>			
 				<form:input path="th_name" placeholder="몇 관인지 입력하세요"/>
 				<form:errors path="th_name" cssClass="error-color"/>

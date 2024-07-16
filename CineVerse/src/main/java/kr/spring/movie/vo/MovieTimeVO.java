@@ -15,5 +15,5 @@ public class MovieTimeVO {
 	private String mt_start;
 	private String mt_end;
 	private Long m_code;
-	private Long c_num;
+	private Long th_num;
 }
