@@ -124,7 +124,7 @@
 					<form:errors path="ab_upload" cssClass="error-color"/>
 				</div>
 				
-				<div id="preview"></div>
+				<div id="preview">사진미리보기</div>
 		
 			</div>
 			<div class="flexbox-h info-container border-bottom">
