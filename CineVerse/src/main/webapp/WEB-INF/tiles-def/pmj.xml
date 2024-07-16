@@ -44,6 +44,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/bookMark.jsp"/>
 	</definition>
 	
+	<definition name="boardFav" extends="myPageMain">
+		<put-attribute name="title" value="좋아요"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/boardFav.jsp"/>
+	</definition>
+	
 	<definition name="myBoardWrite" extends="myPageMain">
 		<put-attribute name="title" value="내가 쓴 게시글"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/boardWrite.jsp"/>
@@ -100,7 +105,7 @@
 	</definition>
 	
 	<definition name="memberShipSub" extends="myPageMain">
-		<put-attribute name="title" value="문의"/>
+		<put-attribute name="title" value="멤버십 구독"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/memberShipSub.jsp"/>
 	</definition>
 	

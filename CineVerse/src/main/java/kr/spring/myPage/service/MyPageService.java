@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
+import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.myPage.vo.MyPageVO;
 
@@ -29,4 +30,6 @@ public interface MyPageService {
 	public List<AssignVO> aBoardBookMarkList(Map<String, Object> map);
 	public Integer cBoardBookMark(Map<String, Object> map);
 	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
+	public Integer cBoardWriteFavCnt(Map<String, Object> map);
+	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
 }

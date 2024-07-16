@@ -43,6 +43,7 @@
         <li class="mp_li" id="mp_li_review"><a href="/myPage/review">내가 쓴 평점</a></li>
         <li class="mp_nav" id="mp_nav_boardWrite">커뮤니티</li>
         <li class="mp_li" id="mp_li_bookMark"><a href="/myPage/bookMark">북마크</a></li>
+        <li class="mp_li" id="mp_li_bookMark"><a href="/myPage/boardFav">좋아요</a></li>
         <li class="mp_li" id="mp_li_boardWrite"><a href="/myPage/boardWrite">내가 쓴 글</a></li>
         <li class="mp_li" id="mp_li_boardReply"><a href="/myPage/boardReply">내가 쓴 댓글</a></li>
         

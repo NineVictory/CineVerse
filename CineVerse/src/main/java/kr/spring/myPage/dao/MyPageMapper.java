@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
+import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.vo.MyPageVO;
@@ -34,31 +35,26 @@ public interface MyPageMapper {
 	public void updateMember_detail(MyPageVO myPageVO);
 	@Update("UPDATE member_detail SET photo=#{photo}, photo_name=#{photo_name} WHERE mem_num=#{mem_num}")
 	public void updateProfile(MyPageVO myPageVO);// 프로필 이미지 업데이트
-	
 	public Integer aBoardListcnt(Map<String, Object> map);//양도게시글
 	public List<AssignVO> aBoardList(Map<String, Object> map);
+	//양도북마크
+	public Integer aBoardBookMark(Map<String, Object> map);
+	public List<AssignVO> aBoardBookMarkList(Map<String, Object> map);
+	//일반 커뮤니티 좋아요
+	public Integer cBoardWriteFavCnt(Map<String, Object> map);
+	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
+
 	
-	//양도 댓글+보미언니가 assigncommentVO만들어주면 함
 	
 	//일반 커뮤니티 북마크
 	public Integer cBoardBookMark(Map<String, Object> map);
 	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
-	
-	public Integer aBoardBookMark(Map<String, Object> map);//양도북마크
-	public List<AssignVO> aBoardBookMarkList(Map<String, Object> map);
-	
-	
-	
-	
-	
-	@Delete("DELETE FROM community_board WHERE cb_num={#cb_num}")
-	public void deleteBoard(Long cb_num);//게시글 삭제
-	@Delete("DELETE FROM community_comment WHERE cc_num={#cc_num}")
-	public void deleteBoardComment(Long cc_num);//댓글 삭제
-	@Delete("DELETE FROM community_response WHERE te_num={#te_num}")
-	public void deleteResponse(Long te_num);//댓글의 답글 삭제
-	
-	
-	
-	
+
+
+	//양도 댓글+보미언니가 assigncommentVO만들어주면 함
+
+
+
+
+
 }

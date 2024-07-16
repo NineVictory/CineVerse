@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
+import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
@@ -118,7 +119,7 @@ public class MyPageController {
 		return "review";
 	}
 
-	// 북마크
+	// 커뮤니티 북마크
 	@GetMapping("/myPage/bookMark")
 	public String myPageBookMark(HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -127,6 +128,40 @@ public class MyPageController {
 		model.addAttribute("member", member);
 		return "bookMark";
 	}
+	
+	// 커뮤니티 좋아요
+	@GetMapping("/myPage/boardFav")
+	public String myPageboardFav(@RequestParam(defaultValue = "")String cb_type,
+								 @RequestParam(defaultValue = "0")int category,
+								 HttpSession session, 
+								 Model model) {
+		log.debug("<<카테고리 타입 >> : " + cb_type);
+		log.debug("<<카테고리 >> : " + category);
+		
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cb_type", cb_type);
+		map.put("category", category);
+		map.put("mem_num", user.getMem_num());
+		
+		int count = mypageService.cBoardWriteFavCnt(map);
+		log.debug("<<게시글 수>> : " + count);
+		
+		List<BoardFavVO> list = null;
+		if(count > 0) {
+			list = mypageService.cBoardWriteFavList(map);
+			log.debug("<<글 목록>> : " + list);
+		}
+		
+		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		return "boardFav";
+	}
+	
 
 	// 게시판 - 내가 쓴 글
 	@GetMapping("/myPage/boardWrite")
@@ -161,115 +196,133 @@ public class MyPageController {
 
 		return "myBoardWrite";
 	}
-	
-	//양도/교환 게시글
-		@GetMapping("/myPage/aBoardWrite")
-		public String myPageAboardWrite(@RequestParam(defaultValue = "") String ab_type,
-				   						@RequestParam(defaultValue = "0") int category,
-				   						HttpSession session,
-				   						Model model) {
-			log.debug("<<카테고리 타입 >> : " + ab_type);
-			log.debug("<<카테고리 >> : " + category);
-			
-			MemberVO user = (MemberVO) session.getAttribute("user");
-			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-			
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("ab_type", ab_type);
-			map.put("categoty", category);
-			map.put("mem_num", user.getMem_num());
-			
-			List<AssignVO> list = null;
-		    int count = mypageService.aBoardListcnt(map);
-		    if(count > 0) {
-		        list = mypageService.aBoardList(map);
 
-		        log.debug("<< 글 목록 >> : " + list);
-		    }
 
-		    model.addAttribute("member", member);
-		    model.addAttribute("list", list);
-		    model.addAttribute("count", count);
-			
-			return "aBoardWrite";
-		}
-	
-	
 	// 게시판 - 내가 쓴 댓글
 	@GetMapping("/myPage/boardReply")
 	public String myPageBoardReply(@RequestParam(defaultValue = "") String cb_type,
-	                               @RequestParam(defaultValue = "0") int category,
-	                               HttpSession session,
-	                               Model model) {
+								   @RequestParam(defaultValue = "0") int category,
+								   HttpSession session,
+								   Model model) {
 
-	    log.debug("<<카테고리 타입 >> : " + cb_type);
-	    log.debug("<<카테고리 >> : " + category);
+		log.debug("<<카테고리 타입 >> : " + cb_type);
+		log.debug("<<카테고리 >> : " + category);
 
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    MyPageVO member = mypageService.selectMember(user.getMem_num());
-	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
-	    Map<String, Object> map = new HashMap<String, Object>();
-	    map.put("cb_type", cb_type);
-	    map.put("category", category);
-	    map.put("mem_num", user.getMem_num());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cb_type", cb_type);
+		map.put("category", category);
+		map.put("mem_num", user.getMem_num());
 
-	    List<BoardCommentVO> list = null;
-	    int count = mypageService.cBoardReplyListcnt(map);
-	    if(count > 0) {
-	        list = mypageService.cBoardReplyList(map);
+		List<BoardCommentVO> list = null;
+		int count = mypageService.cBoardReplyListcnt(map);
+		if(count > 0) {
+			list = mypageService.cBoardReplyList(map);
 
-	        log.debug("<< 댓글 목록 >> : " + list);
-	    }
+			log.debug("<< 댓글 목록 >> : " + list);
+		}
 
-	    model.addAttribute("member", member);
-	    model.addAttribute("list", list);
-	    model.addAttribute("count", count);
-	    return "myBoardReply";
+		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		return "myBoardReply";
 	}
-	
-	
-	// 북마크
+
+
+	// 양도/교환 북마크
 	@GetMapping("/myPage/aBoardBookMark")
 	public String myPageAboardBookMark(@RequestParam(defaultValue = "") String ab_type,
-				@RequestParam(defaultValue = "0") int category,HttpSession session, Model model) {
+									   @RequestParam(defaultValue = "0") int category,
+									   HttpSession session, 
+									   Model model) {
+
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		model.addAttribute("member", member);
-	    
-	    Map<String, Object> map = new HashMap<String, Object>();
+
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ab_type", ab_type);
 		map.put("categoty", category);
 		map.put("mem_num", user.getMem_num());
-		
+
 		List<AssignVO> list = null;
 		int count=mypageService.aBoardBookMark(map);
-	    if(count > 0) {
-	    	list = mypageService.aBoardBookMarkList(map);
+		if(count > 0) {
+			list = mypageService.aBoardBookMarkList(map);
 
-	        log.debug("<< 글 목록 >> : " + list);
-	    }
-
-	    model.addAttribute("list", list);
-	    model.addAttribute("count", count);
-		return "aBoardBookMark";
+			log.debug("<< 글 목록 >> : " + list);
 		}
-	
-	
-	
+
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		return "aBoardBookMark";
+	}
+
 	//양도/교환 게시글
-	@GetMapping("/myPage/aBoardReply")
-	public String myPageAboardReply(HttpSession session, Model model) {
+	@GetMapping("/myPage/aBoardWrite")
+	public String myPageAboardWrite(@RequestParam(defaultValue = "") String ab_type,
+									@RequestParam(defaultValue = "0") int category,
+									HttpSession session,
+									Model model) {
+		log.debug("<<카테고리 타입 >> : " + ab_type);
+		log.debug("<<카테고리 >> : " + category);
+
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		model.addAttribute("member", member);
-		
-		return "aBoardReply";
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ab_type", ab_type);
+		map.put("categoty", category);
+		map.put("mem_num", user.getMem_num());
+
+		List<AssignVO> list = null;
+		int count = mypageService.aBoardListcnt(map);
+		if(count > 0) {
+			list = mypageService.aBoardList(map);
+
+			log.debug("<< 글 목록 >> : " + list);
 		}
-	
+
+		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+
+		return "aBoardWrite";
+	}
+
+	//양도/교환 댓글 + 추가
+	@GetMapping("/myPage/aBoardReply")
+	public String myPageAboardReply(@RequestParam(defaultValue = "") String ab_type,
+									@RequestParam(defaultValue = "0") int category,
+									HttpSession session, 
+									Model model) {
+		
+		log.debug("<<카테고리 타입>> : " + ab_type);
+		log.debug("<<카테고리>> : " + category);
+		
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ab_type", ab_type);
+		map.put("category", category);
+		map.put("mem_num", user.getMem_num());
+		
+		List<AssignVO> list = null;
+		
+		
+		
+		model.addAttribute("member", member);
+
+		return "aBoardReply";
+	}
+
 	// 내 캘린더
 
 	// 이벤트 참여 내역
@@ -426,41 +479,41 @@ public class MyPageController {
 	// 회원 정보 - 개인정보 변경
 	@GetMapping("/myPage/modifyUser")
 	public String modifyUser(MyPageVO myPageVO, HttpSession session, Model model) {
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    MyPageVO member = mypageService.selectMember(user.getMem_num());
-	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-	    model.addAttribute("member", member);
-	    return "modifyUser";
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		model.addAttribute("member", member);
+		return "modifyUser";
 	}
 
 	@PostMapping("/myPage/modifyUser")
 	public String postModifyUser1(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
 
-	    if (result.hasErrors()) {
-	        return "modifyUser";
-	    }
-	    
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    myPageVO.setMem_num(user.getMem_num());
-	    MyPageVO member = mypageService.selectMember(user.getMem_num());
-	    
-	    // 데이터베이스 업데이트 수행
-	    mypageService.updateMember_detail(myPageVO);
-	    
-	    log.debug("<<개인정보 변경>> : " + myPageVO);
-	    // 세션에 저장된 정보 변경
-	    user.setMem_name(myPageVO.getMem_name());
-	    user.setMem_nickname(myPageVO.getMem_nickName());
-	    user.setMem_email(myPageVO.getMem_email());
-	    
-	    model.addAttribute("member",member);
-	    model.addAttribute("message", "개인정보 변경 완료");
-	    model.addAttribute("url", request.getContextPath() + "/myPage/modifyUser");
-	    return "common/resultAlert";
+		if (result.hasErrors()) {
+			return "modifyUser";
+		}
+
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		myPageVO.setMem_num(user.getMem_num());
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+
+		// 데이터베이스 업데이트 수행
+		mypageService.updateMember_detail(myPageVO);
+
+		log.debug("<<개인정보 변경>> : " + myPageVO);
+		// 세션에 저장된 정보 변경
+		user.setMem_name(myPageVO.getMem_name());
+		user.setMem_nickname(myPageVO.getMem_nickName());
+		user.setMem_email(myPageVO.getMem_email());
+
+		model.addAttribute("member",member);
+		model.addAttribute("message", "개인정보 변경 완료");
+		model.addAttribute("url", request.getContextPath() + "/myPage/modifyUser");
+		return "common/resultAlert";
 	}
-	
-	
-	
+
+
+
 
 	// 회원 정보 - 회원 탈퇴
 	@GetMapping("/myPage/deleteMember")
@@ -492,63 +545,63 @@ public class MyPageController {
 		return "consult";
 	}
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	// 프로필 사진 출력하기(로그인 전용)
-    @GetMapping("/myPage/photoView")
-    public String getProfile(HttpSession session, HttpServletRequest request, Model model) {
-        MemberVO user = (MemberVO) session.getAttribute("user");
-        log.debug("<< 프로필 사진 출력 >> : " + user);
+	@GetMapping("/myPage/photoView")
+	public String getProfile(HttpSession session, HttpServletRequest request, Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		log.debug("<< 프로필 사진 출력 >> : " + user);
 
-        if (user == null) {
-            getBasicProfileImage(request, model);
-        } else {
-            if (user.getPhoto() == null) {
-                MyPageVO member = mypageService.selectMember(user.getMem_num());
-                log.debug("<< DB에서 가져온 멤버 >> : " + member);
-                viewProfile(member, request, model);
-            } else {
-                log.debug("<< 세션에서 가져온 사진 >> : " + user.getPhoto_name());
-                model.addAttribute("imageFile", user.getPhoto());
-                model.addAttribute("filename", user.getPhoto_name());
-            }
-        }
+		if (user == null) {
+			getBasicProfileImage(request, model);
+		} else {
+			if (user.getPhoto() == null) {
+				MyPageVO member = mypageService.selectMember(user.getMem_num());
+				log.debug("<< DB에서 가져온 멤버 >> : " + member);
+				viewProfile(member, request, model);
+			} else {
+				log.debug("<< 세션에서 가져온 사진 >> : " + user.getPhoto_name());
+				model.addAttribute("imageFile", user.getPhoto());
+				model.addAttribute("filename", user.getPhoto_name());
+			}
+		}
 
-        return "imageView";
-    }
+		return "imageView";
+	}
 
-    // 프로필 사진 출력하기
-    @GetMapping("/myPage/viewProfile")
-    public String getProfileByMem_num(long mem_num, HttpServletRequest request, Model model) {
-        MyPageVO member = mypageService.selectMember(mem_num);
-        
-        viewProfile(member, request, model);
+	// 프로필 사진 출력하기
+	@GetMapping("/myPage/viewProfile")
+	public String getProfileByMem_num(long mem_num, HttpServletRequest request, Model model) {
+		MyPageVO member = mypageService.selectMember(mem_num);
 
-        return "imageView";
-    }
+		viewProfile(member, request, model);
 
-    // 회원 프로필 사진 처리를 위한 공통 코드
-    public void viewProfile(MyPageVO member, HttpServletRequest request, Model model) {
-        if (member == null || member.getPhoto() == null) { // 수정: member.getPhoto()로 null 체크
-            getBasicProfileImage(request, model);
-        } else {
-            log.debug("<< viewProfile에서 가져온 사진 >> : " + member.getPhoto_name());
-            model.addAttribute("imageFile", member.getPhoto());
-            model.addAttribute("filename", member.getPhoto_name());
-        }
-    }
+		return "imageView";
+	}
 
-    // 기본 이미지 읽어오기
-    public void getBasicProfileImage(HttpServletRequest request, Model model) {
-        byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/profile_none.png"));
-        log.debug("<< 기본 프로필 사진 출력 >>");
-        model.addAttribute("imageFile", readbyte);
-        model.addAttribute("filename", "profile_none.png");
-    }
+	// 회원 프로필 사진 처리를 위한 공통 코드
+	public void viewProfile(MyPageVO member, HttpServletRequest request, Model model) {
+		if (member == null || member.getPhoto() == null) { // 수정: member.getPhoto()로 null 체크
+			getBasicProfileImage(request, model);
+		} else {
+			log.debug("<< viewProfile에서 가져온 사진 >> : " + member.getPhoto_name());
+			model.addAttribute("imageFile", member.getPhoto());
+			model.addAttribute("filename", member.getPhoto_name());
+		}
+	}
+
+	// 기본 이미지 읽어오기
+	public void getBasicProfileImage(HttpServletRequest request, Model model) {
+		byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/profile_none.png"));
+		log.debug("<< 기본 프로필 사진 출력 >>");
+		model.addAttribute("imageFile", readbyte);
+		model.addAttribute("filename", "profile_none.png");
+	}
 
 
 }

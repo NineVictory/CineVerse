@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
+import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.myPage.vo.MyPageVO;
@@ -108,6 +109,16 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map) {
 		return myPageMapper.cBoardBookMarkList(map);
+	}
+
+	@Override
+	public Integer cBoardWriteFavCnt(Map<String, Object> map) {
+		return myPageMapper.cBoardWriteFavCnt(map);
+	}
+
+	@Override
+	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map) {
+		return myPageMapper.cBoardWriteFavList(map);
 	}
 
 	

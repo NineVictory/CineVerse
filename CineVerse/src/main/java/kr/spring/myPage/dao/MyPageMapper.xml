@@ -49,9 +49,19 @@
 		<include refid="aBoardSearch"></include>
 	</select>
 	
+	<!-- 커뮤 좋아요 수 -->
+	<select id="cBoardWriteFavCnt" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM community_fav 
+		WHERE mem_num=#{mem_num}
+		<include refid="myPageBoardSearch"></include>
+	</select>
 	
-	
-	
+	<!-- 커뮤 좋아요 목록 -->
+	<select id="cBoardWriteFavList" parameterType="map" resultType="boardFavVO">
+		SELECT * FROM community_board cb JOIN community_fav cf 
+		USING(cb_num) WHERE cf.mem_num=#{mem_num}
+		<include refid="myPageBoardSearch"></include>
+	</select>
 	
 	<!-- 커뮤 북마크 수-->
 	<select id="cBoardBookMark">
@@ -61,10 +71,10 @@
 		<include refid="myPageBoardSearch"></include>
 	</select>
 	
+	
 	<!-- 커뮤 북마크 목록 -->
-	
-	
-	
+	<!-- 양도/교환 댓글 수 -->
+	<!-- 양도/교환 댓글 목록 -->
 	
 	
 	
@@ -87,8 +97,7 @@
 	</select>
 	
 	
-	<!-- 양도/교환 댓글 수 -->
-	<!-- 양도/교환 댓글 목록 -->
+	
 		
 		
 	
