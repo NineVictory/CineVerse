@@ -41,10 +41,16 @@
         <li class="mp_li" id="mp_li_expectingMovie"><a href="/myPage/expectingMovie">기대되는 영화</a></li>
         <li class="mp_li" id="mp_li_watchedMovie"><a href="/myPage/watchedMovie">내가 본 영화</a></li>
         <li class="mp_li" id="mp_li_review"><a href="/myPage/review">내가 쓴 평점</a></li>
-        <li class="mp_nav" id="mp_nav_boardWrite">게시판</li>
+        <li class="mp_nav" id="mp_nav_boardWrite">커뮤니티</li>
         <li class="mp_li" id="mp_li_bookMark"><a href="/myPage/bookMark">북마크</a></li>
         <li class="mp_li" id="mp_li_boardWrite"><a href="/myPage/boardWrite">내가 쓴 글</a></li>
         <li class="mp_li" id="mp_li_boardReply"><a href="/myPage/boardReply">내가 쓴 댓글</a></li>
+        
+        <li class="mp_nav" id="mp_nav_boardWrite">양도/교환</li>
+        <li class="mp_li" id="mp_li_bookMark"><a href="/myPage/aBoardBookMark">북마크</a></li>
+        <li class="mp_li" id="mp_li_boardWrite"><a href="/myPage/aBoardWrite">내가 쓴 글</a></li>
+        <li class="mp_li" id="mp_li_boardReply"><a href="/myPage/aBoardReply">내가 쓴 댓글</a></li>
+        
         
         <li class="mp_nav" id="mp_nav_calendar"><a href="#">내 캘린더</a></li><!-- controller부터 추가 -->
         
@@ -53,7 +59,6 @@
         <li class="mp_li" id="mp_li_pointCharge"><a href="/myPage/pointList">포인트 내역</a></li>
         <li class="mp_li" id="mp_li_goodsPayment"><a href="/myPage/bought">굿즈 결제 내역</a></li>
         
-        <li class="mp_li" id="mp_li_cart"><a href="#">장바구니</a></li><!-- controller부터 추가 -->
         <li class="mp_nav" id="mp_nav_chatHistory"><a href="/myPage/chatList">채팅이력</a></li><!-- jsp 내용 추가 -->
         
         <li class="mp_nav" id="mp_nav_memberInfo">회원정보</li>

@@ -3,6 +3,9 @@ package kr.spring.myPage.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Select;
+
+import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.myPage.vo.MyPageVO;
@@ -20,4 +23,10 @@ public interface MyPageService {
 	public List<MyPageVO> selectMemPointList(Map<String, Object> map);
 	public void updateMember_detail(MyPageVO myPageVO);
 	public void updateProfile(MyPageVO myPageVO);// 프로필 이미지 업데이트
+	public Integer aBoardListcnt(Map<String, Object> map);
+	public List<AssignVO> aBoardList(Map<String, Object> map);
+	public Integer aBoardBookMark(Map<String, Object> map);
+	public List<AssignVO> aBoardBookMarkList(Map<String, Object> map);
+	public Integer cBoardBookMark(Map<String, Object> map);
+	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
 }

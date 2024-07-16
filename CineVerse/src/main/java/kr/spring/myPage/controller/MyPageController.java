@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
@@ -160,7 +161,41 @@ public class MyPageController {
 
 		return "myBoardWrite";
 	}
+	
+	//양도/교환 게시글
+		@GetMapping("/myPage/aBoardWrite")
+		public String myPageAboardWrite(@RequestParam(defaultValue = "") String ab_type,
+				   						@RequestParam(defaultValue = "0") int category,
+				   						HttpSession session,
+				   						Model model) {
+			log.debug("<<카테고리 타입 >> : " + ab_type);
+			log.debug("<<카테고리 >> : " + category);
+			
+			MemberVO user = (MemberVO) session.getAttribute("user");
+			MyPageVO member = mypageService.selectMember(user.getMem_num());
+			member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("ab_type", ab_type);
+			map.put("categoty", category);
+			map.put("mem_num", user.getMem_num());
+			
+			List<AssignVO> list = null;
+		    int count = mypageService.aBoardListcnt(map);
+		    if(count > 0) {
+		        list = mypageService.aBoardList(map);
 
+		        log.debug("<< 글 목록 >> : " + list);
+		    }
+
+		    model.addAttribute("member", member);
+		    model.addAttribute("list", list);
+		    model.addAttribute("count", count);
+			
+			return "aBoardWrite";
+		}
+	
+	
 	// 게시판 - 내가 쓴 댓글
 	@GetMapping("/myPage/boardReply")
 	public String myPageBoardReply(@RequestParam(defaultValue = "") String cb_type,
@@ -193,7 +228,48 @@ public class MyPageController {
 	    model.addAttribute("count", count);
 	    return "myBoardReply";
 	}
+	
+	
+	// 북마크
+	@GetMapping("/myPage/aBoardBookMark")
+	public String myPageAboardBookMark(@RequestParam(defaultValue = "") String ab_type,
+				@RequestParam(defaultValue = "0") int category,HttpSession session, Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		model.addAttribute("member", member);
+	    
+	    Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ab_type", ab_type);
+		map.put("categoty", category);
+		map.put("mem_num", user.getMem_num());
+		
+		List<AssignVO> list = null;
+		int count=mypageService.aBoardBookMark(map);
+	    if(count > 0) {
+	    	list = mypageService.aBoardBookMarkList(map);
 
+	        log.debug("<< 글 목록 >> : " + list);
+	    }
+
+	    model.addAttribute("list", list);
+	    model.addAttribute("count", count);
+		return "aBoardBookMark";
+		}
+	
+	
+	
+	//양도/교환 게시글
+	@GetMapping("/myPage/aBoardReply")
+	public String myPageAboardReply(HttpSession session, Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		model.addAttribute("member", member);
+		
+		return "aBoardReply";
+		}
+	
 	// 내 캘린더
 
 	// 이벤트 참여 내역
