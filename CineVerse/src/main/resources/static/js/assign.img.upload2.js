@@ -105,4 +105,24 @@ $(document).ready(function() {
             $('#preview').append(container);
         });
     }
+    
+	titleLength = $('#ab_title').val().length;
+	$('.divcontainer').text('(' +titleLength+'/40)');
+	    
+     $(document).on('keyup','#ab_title',function(){
+		//입력한 글자수 구하기
+		let inputLength = $(this).val().length;
+		
+		
+		
+		if(inputLength>40){
+			$(this).val($(this).val().substring(0,40));
+		}else{
+			//남은 글자수 구하기
+			let remain = '(' + inputLength + '/40)';
+			
+			$('.divcontainer').text(remain);
+			
+		}
+	});
 });

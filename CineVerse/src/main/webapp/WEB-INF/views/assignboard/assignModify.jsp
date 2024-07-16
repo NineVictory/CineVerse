@@ -90,7 +90,8 @@
 	<h2>상품수정</h2>
 	
 	<hr size="1" width="100%">
-	<form:form action="write" id="assignboard_register" enctype="multipart/form-data" modelAttribute="assignVO">
+	<form:form action="update" id="assignboard_modify" enctype="multipart/form-data" modelAttribute="assignVO">
+		<form:hidden path="ab_num"/>
 		<div class="상품정보">
 			<div class="flexbox-h info-container border-bottom">
 				<div class="item-label p-center">카테고리</div>
@@ -217,7 +218,7 @@
 		
 		
 		<div class="align-right assign-btn">
-			<form:button class="default-btn3">등록</form:button>
+			<form:button class="default-btn3">수정</form:button>
 			<input type="button" value="목록" class="default-btn4" onclick="location.href='list'">
 		</div>
 	</form:form>

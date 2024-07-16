@@ -171,7 +171,8 @@ public class AssignBoardController {
 	
 	//수정 폼에서 전송된 데이터 처리
 	@PostMapping("/assignboard/update")
-	public String submitUpdate(@Valid AssignVO assignVO, BindingResult result, Model model, HttpServletRequest request) throws IllegalStateException, IOException {
+	public String submitUpdate(@Valid AssignVO assignVO, BindingResult result, Model model, 
+								HttpServletRequest request, @RequestParam("ab_upload") MultipartFile[] files) throws IllegalStateException, IOException {
 		log.debug("<<양도글 수정>> : " + assignVO);
 		
 		//유효성 체크 결과 오류가 있으면 폼 호출
@@ -181,6 +182,18 @@ public class AssignBoardController {
 		}
 		//ip 셋팅
 		assignVO.setAb_ip(request.getRemoteAddr());
+		
+		// 파일 업로드 처리
+        List<String> filenames = new ArrayList<>();
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                String filename = FileUtil2.createFile(request, file);
+                filenames.add(filename);
+            }
+        }
+        String filenamesString = String.join(",", filenames);
+        assignVO.setAb_filenames(filenamesString);
+        
 		//글 수정
 		assignService.ab_updateBoard(assignVO);
 		

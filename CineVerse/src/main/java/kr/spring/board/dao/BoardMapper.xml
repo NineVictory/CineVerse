@@ -173,7 +173,7 @@
 	WHERE r.cc_num = #{cc_num}
 	START WITH r.te_depth = 0
 	CONNECT BY PRIOR r.te_num = r.te_parent_num
-	ORDER SIBLINGS BY r.te_num DESC
+	ORDER SIBLINGS BY r.te_num ASC
  	</select> 
 </mapper>							
 
