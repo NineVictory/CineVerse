@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -27,6 +28,66 @@ public class MovieAjaxController {
 
     @Autowired
     private MovieService movieService;
+    /*===================
+	부모글 북마크 읽기
+	===================*/
+    // 영화 북마크 읽기
+    @GetMapping("/getbookMark")
+    @ResponseBody
+    public Map<String, Object> getbookMark(MovieBookMarkVO bookMark, HttpSession session) {
+        log.debug("<<영화디테일 북마크 - MovieBookMarkVO>> : " + bookMark);
+
+        Map<String, Object> mapJson = new HashMap<String, Object>();
+
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        if (user == null) {
+            mapJson.put("status", "nobookMark");
+        } else {
+            // 로그인된 회원번호 셋팅
+            bookMark.setMem_num(user.getMem_num());
+            MovieBookMarkVO moviebookMark = movieService.selectBookMark(bookMark);
+            if (moviebookMark != null) {
+                mapJson.put("status", "yesbookMark");
+            } else {
+                mapJson.put("status", "nobookMark");
+            }
+        }
+        mapJson.put("count", movieService.selectBookMarkCount(bookMark.getM_code()));
+
+        return mapJson;
+    }
+
+    // 영화 북마크 등록/삭제
+    @PostMapping("/writebookMark")
+    @ResponseBody
+    public Map<String, Object> writebookMark(MovieBookMarkVO bookMark, HttpSession session) {
+        log.debug("<<영화디테일 북마크 -등록 >>:" + bookMark);
+
+        Map<String, Object> mapJson = new HashMap<String, Object>();
+
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        if (user == null) {
+            mapJson.put("result", "logout");
+        } else {
+            // 로그인된 회원번호 세팅
+            bookMark.setMem_num(user.getMem_num());
+
+            MovieBookMarkVO moviebookMark = movieService.selectBookMark(bookMark);
+            if (moviebookMark != null) {
+                // 등록 -> 삭제
+                movieService.deleteBookMark(bookMark);
+                mapJson.put("status", "nobookMark");
+            } else {
+                // 등록
+                movieService.insertBookMark(bookMark);
+                mapJson.put("status", "yesbookMark");
+            }
+            mapJson.put("result", "success");
+            mapJson.put("count", movieService.selectBookMarkCount(bookMark.getM_code()));
+        }
+
+        return mapJson;
+    }
     /*=======================
 	 * 리뷰 등록
 	 *=======================*/
@@ -105,4 +166,32 @@ public Map<String,Object> getList(int m_code, int pageNum,
 	
 	return mapJson;
 }
+	/*===================
+	댓글 삭제
+	===================*/
+	@PostMapping("/movie/deleteReview")
+	@ResponseBody
+	public Map<String,String> deleteReply(long mr_num,
+											HttpSession session){
+		log.debug("<<댓글 삭제 - re_num>>:"+ mr_num);
+		
+		Map<String,String> mapJson = new HashMap<String, String>();
+		MemberVO user = (MemberVO)session.getAttribute("user"); //로그인을 했는지 확인하기위해 (회원제 서비스이기 떄문에)
+		MovieReviewVO db_reply = movieService.selectReview(mr_num);
+		
+		if(user == null) {
+			//로그인이 되지 않은 경우
+			mapJson.put("result","logout");
+		}else if(user !=null 
+				&& user.getMem_num()==db_reply.getMem_num()) {
+			//로그인 회원번호와 작성자 회원번호 일치	
+	        movieService.deleteReview(mr_num);
+			mapJson.put("result","success");
+		}else {
+			//로그인 회원번호와 작성자 회원번호 불일치
+			mapJson.put("result","wrongAccess");
+		}
+		
+		return mapJson;
+	}
 }

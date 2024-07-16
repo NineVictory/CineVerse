@@ -3,12 +3,13 @@ package kr.spring.movie.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import kr.spring.board.vo.BoardFavVO;
+
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -42,10 +43,15 @@ public interface MovieMapper {
 	 * ) public List<MovieVO> searchMovies(String query);
 	 */
 	//영화 북마크
+	@Select("SELECT * FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}")
 	public MovieBookMarkVO selectBookMark(MovieBookMarkVO bookMark);
+	@Select("SELECT COUNT(*) FROM movie_bookmark WHERE m_code=#{m_code}")
 	public Integer selectBookMarkCount(Long m_code);
+	@Insert("INSERT INTO movie_bookmark (m_code,mem_num) VALUES (#{m_code},#{mem_num})")
 	public void insertBookMark(MovieBookMarkVO bookMark);
-	public void deleteBookMark(BoardFavVO bookMark);
+	@Delete("DELETE FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}")
+	public void deleteBookMark(MovieBookMarkVO bookMark);
+	@Delete("DELETE FROM movie_bookmark WHERE m_code=#{m_code}")
 	public void deleteBookMarkByMovieNum(Long m_code);
 	
 	//영화예매
@@ -59,9 +65,16 @@ public interface MovieMapper {
 	public List<MovieReviewVO> selectMovieListReview(Map<String,Object> map);
 	@Select("SELECT COUNT(*) FROM movie_review WHERE m_code =#{m_code}")
 	public Integer selectMovieRowCountReview(Map<String,Object>map); //mybatis는 객체형태로 처리하기 때문에 int보다 Integer로 명시한다. int를 써도 자동으로 바뀌긴함. 그냥 명시를 맞게 해주는게 좋아서 
+	//리뷰 수정,삭제시 작성자 회원번호를 구하기 위해 사용
+		@Select("SELECT * FROM movie_review WHERE mr_num=#{mr_num}")
+	public MovieReviewVO selectReview(Long mr_num);
 	public void insertReview(MovieReviewVO movieReview);
 	public void updateReview(MovieReviewVO movieReview);
+	@Delete("DELETE FROM movie_review WHERE mr_num=#{mr_num}")
 	public void deleteReview(Long mr_num);
+	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
+	@Delete("DELETE FROM movie_review WHERE m_code=#{m_code}")
+	public void deleteReviewByM_code(Long m_code);
 	
 	
 

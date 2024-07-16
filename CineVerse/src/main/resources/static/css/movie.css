@@ -36,9 +36,10 @@
     padding: 5px 10px; /* 내부 여백을 추가하여 요소에 공간을 줍니다 */
     border-radius: 10px; /* 모서리를 둥글게 만듭니다 */
 }
-.movie-infolist{
-	font-size: 15px;
-    
+.movie-infolist {
+    font-size: 15px;
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
 }
 .movie-content{
 	margin: 20px;
@@ -63,9 +64,10 @@
 .detail-menu {
             margin-top: 30px;
             text-align: center;
+            
 } 
 .detail-menu span {
-            margin: 0 10px;
+            margin: 0 70px;
             cursor: pointer;
 }
 .menu-hr{
@@ -244,4 +246,78 @@
     color: red;
     font-weight: bold;
     /* padding-top: 50px; Adjust based on the height of your content */
+}
+.my-photo{
+	border-radius: 15px;
+}
+.detail-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user_profile_image {
+    margin-right: 10px;
+}
+
+.user_idOrname {
+    flex-grow: 1;
+}
+
+.user_re_day {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.mr-modify-date {
+    color: #888;
+    font-size: 0.9em;
+}
+.sub-item {
+    position: relative;
+}
+
+.output_reiv, .output_rvcount {
+    display: inline-flex;
+    align-items: center;
+}
+
+.output_rvcount {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.output_reiv {
+    position: absolute;
+    bottom: 0;
+    right: 40px; /* output_rvcount의 위치에 따라 조정 */
+}
+.mr-review-content{
+	margin:20px;
+}
+.spoiler-content{
+	margin: 20px;
+}
+#output_mrcount{
+	margin:5px;
+}
+#output_fav{
+
+	width: 16px; /* 원하는 너비로 설정 */
+    height: 16px; /* 원하는 높이로 설정 */
+}
+.movie-fav-button-detail {
+    display: flex; /* 아이콘과 텍스트를 가로로 배치 */
+    align-items: center; /* 가운데 정렬 */
+    border-radius: 5px;
+    background: white;
+    color: gray;
+    font-size: 10px; /* 폰트 크기 */
+    padding: 2px 5px; /* 패딩 조정 */
+    cursor: pointer;
+    margin-left: 5px; /* 좋아요 수와의 간격 */
+    border: 1px solid gray; /* 테두리 설정 */
+    height: 20px; /* 높이 조정 */
 }

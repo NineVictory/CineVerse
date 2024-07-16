@@ -88,25 +88,25 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public MovieBookMarkVO selectBookMark(MovieBookMarkVO bookMark) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return movieMapper.selectBookMark(bookMark);
 	}
 
 	@Override
 	public Integer selectBookMarkCount(Long m_code) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return movieMapper.selectBookMarkCount(m_code);
 	}
 
 	@Override
 	public void insertBookMark(MovieBookMarkVO bookMark) {
-		// TODO Auto-generated method stub
+		movieMapper.insertBookMark(bookMark);
 		
 	}
 
 	@Override
-	public void deleteBookMark(BoardFavVO bookMark) {
-		// TODO Auto-generated method stub
+	public void deleteBookMark(MovieBookMarkVO bookMark) {
+		movieMapper.deleteBookMark(bookMark);
 		
 	}
 
@@ -124,8 +124,7 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public MovieReviewVO selectReview(Long mr_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return movieMapper.selectReview(mr_num);
 	}
 
 	@Override
@@ -142,7 +141,7 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public void deleteReview(Long mr_num) {
-		// TODO Auto-generated method stub
+		movieMapper.deleteReview(mr_num);
 		
 	}
 
@@ -176,6 +175,8 @@ public class MovieServiceImpl implements MovieService {
 	public MovieBookingVO getBookingInfo(long mem_num, long m_code) {
 		return movieMapper.getBookingInfo(mem_num, m_code);
 	}
+
+
 
 
 

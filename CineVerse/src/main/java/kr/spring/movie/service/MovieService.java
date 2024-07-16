@@ -23,7 +23,7 @@ public interface MovieService {
     MovieBookMarkVO selectBookMark(MovieBookMarkVO bookMark);
     Integer selectBookMarkCount(Long m_code);
     void insertBookMark(MovieBookMarkVO bookMark);
-    void deleteBookMark(BoardFavVO bookMark);
+    void deleteBookMark(MovieBookMarkVO bookMark);
     
     // 영화 예매
     List<MovieVO> selectMovieTimeList(Map<String, Object> map);

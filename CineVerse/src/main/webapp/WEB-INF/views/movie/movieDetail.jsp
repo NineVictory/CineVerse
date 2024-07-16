@@ -8,6 +8,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
 <script src="${pageContext.request.contextPath}/js/movie.review.js"></script>
+<script src="${pageContext.request.contextPath}/js/movie.bookmark.js"></script>
 
 <div class="detail-main">
     <div class="movie-container">
@@ -32,7 +33,11 @@
                 <span>예매율</span>
                 <span>23.3%</span>
                 <span>좋아요 수 </span>
-                <span>5.7K</span>
+                <!-- 좋아요 -->
+				<div class="movie-fav-button-detail">
+				    <img id="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
+				    <span id="output_mfcount"></span>
+				</div>
             </div>
             <hr class="menu-hr" size="1" width="100%" noshade="noshade">
             
@@ -54,10 +59,10 @@
 
     <!-- 상세정보와 별점 및 후기 -->
     <div class="detail-menu">
-        <span class="detail-info">주요정보</span>
+        <span class="detail-infomation">주요정보</span>
         <span class="detail-grade">트레일러</span>
         <span class="detail-review">평점/리뷰</span>
-        <hr class="menu-hr" size="1" width="50%" noshade="noshade">
+        <hr class="menu-hr" size="1" width="100%" noshade="noshade">
     </div>
     <div class="movie-content">
         ${movie.m_content}
@@ -121,9 +126,7 @@
     </div>
 </div>
 
-<!-- 좋아요 -->
-<img id="output_fav" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
-<span id="output_mfcount"></span>
+
 <!-- 댓글수 -->
 		<span id="output_mrcount"></span>
 <!-- 댓글 목록 출력 -->
@@ -134,6 +137,7 @@
 <div class="paging-button" style="display:none;">
     <input type="button" value="더보기">
 </div>
-<button id="loadComments">리뷰보기</button>
+<!-- <button id="loadComments">리뷰보기</button>
 <div id="output"></div>
-</div>
+-->
+</div> 
