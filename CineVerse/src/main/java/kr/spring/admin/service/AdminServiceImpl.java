@@ -13,6 +13,7 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 @Service
 @Transactional
@@ -61,15 +62,7 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.selectMovieRowCount(map);
 	}
 	@Override
-	@Transactional
 	public void deleteMovie(long m_code) {
-		adminMapper.deleteMovieActor(m_code);
-		adminMapper.deleteMovieBooking(m_code);
-		adminMapper.deleteMovieBookmark(m_code);
-		adminMapper.deleteMovieReview(m_code);
-		adminMapper.deleteMovietime(m_code);
-		adminMapper.deleteMovieDirector(m_code);
-		adminMapper.deleteMovieGenre(m_code);
 		adminMapper.deleteMovie(m_code);
 	}
 	@Override
@@ -128,6 +121,14 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Integer selectNoticeRowCount(Map<String, Object> map) {
 		return adminMapper.selectNoticeRowCount(map);
+	}
+	@Override
+	public List<PointVO> selectPoint(Map<String, Object> map) {
+		return adminMapper.selectPoint(map);
+	}
+	@Override
+	public Integer selectPointRowCount(Map<String, Object> map) {
+		return adminMapper.selectPointRowCount(map);
 	}
 
 	

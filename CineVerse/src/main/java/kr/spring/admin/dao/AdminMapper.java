@@ -14,6 +14,7 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 
 @Mapper
@@ -27,7 +28,7 @@ public interface AdminMapper {
 	public Integer totalAssignment();
 	@Select("SELECT COUNT(*) FROM product WHERE p_status = 2")
 	public Integer totalProduct();
-	@Select("SELECT COUNT(*) FROM movie WHERE m_status = 2")
+	@Select("SELECT COUNT(*) FROM movie WHERE m_status = 2 AND m_delete = 1")
 	public Integer totalMovie();
 	@Select("SELECT COUNT(*) FROM cinema")
 	public Integer totalCinema();
@@ -73,20 +74,10 @@ public interface AdminMapper {
     // 영화
 	public List<MovieVO> selectMovie(Map<String,Object> map);
 	public Integer selectMovieRowCount(Map<String,Object> map);
-	@Delete("DELETE FROM movie WHERE m_code = #{m_code}")
-	public void deleteMovie(long m_code);
-	@Delete("DELETE FROM movie_actor WHERE m_code = #{m_code}")
-	public void deleteMovieActor(long m_code);
-	@Delete("DELETE FROM movie_booking WHERE m_code = #{m_code}")
-	public void deleteMovieBooking(long m_code);
-	@Delete("DELETE FROM movie_bookmark WHERE m_code = #{m_code}")
-	public void deleteMovieBookmark(long m_code);
-	@Delete("DELETE FROM movie_review WHERE m_code = #{m_code}")
-	public void deleteMovieReview(long m_code);
-	@Delete("DELETE FROM movie_time WHERE m_code = #{m_code}")
-	public void deleteMovietime(long m_code);
-	@Delete("DELETE FROM movie_genre WHERE m_code = #{m_code}")
-	public void deleteMovieGenre(long m_code);	
-	@Delete("DELETE FROM movie_director WHERE m_code = #{m_code}")
-	public void deleteMovieDirector(long m_code);	
+	@Update("UPDATE movie SET m_delete = 2 WHERE m_code = #{m_code}")
+	public void deleteMovie(long m_code);	
+	
+	//결제
+	public List<PointVO> selectPoint(Map<String,Object> map);
+	public Integer selectPointRowCount(Map<String,Object> map);
 }

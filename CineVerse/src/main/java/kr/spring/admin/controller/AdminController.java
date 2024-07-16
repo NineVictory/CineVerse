@@ -28,6 +28,7 @@ import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
@@ -359,11 +360,6 @@ public class AdminController {
 				
 				return "common/resultAlert";
 	}
-	// 포인트(결제) 관리
-	@GetMapping("/admin/adminPayment")
-	public String adminPayment(){
-		return "adminPayment";
-	}
 	/*==============================
 	 * 게시판관리
 	 *==============================*/	
@@ -376,8 +372,7 @@ public class AdminController {
 			// 자유 게시판 정보
 			List<BoardVO> commuList = adminService.getAllCommunity();
 			
-			//합치기
-			
+			//합치기			
 			  List<Object> adminList = new ArrayList<>(); 
 			  adminList.addAll(assignList);
 			  adminList.addAll(commuList);
@@ -447,7 +442,7 @@ public class AdminController {
 	// 영화 삭제 처리
 	@PostMapping("/deleteMovie")
 	@ResponseBody
-	public String deleteMovie(@RequestParam("m_code") int m_code) {
+	public String deleteMovie(@RequestParam("m_code") long m_code) {
 		adminService.deleteMovie(m_code);
 		log.debug("<<영화 삭제 완료>>");
 		return "success";
@@ -473,6 +468,57 @@ public class AdminController {
 	public String adminCinemaForm(){
 		return "adminCinemaForm";
 	}
+	
+	// 포인트
+	// 영화
+	@GetMapping("/admin/adminPayment")
+    public String adminPayment(
+            @RequestParam(defaultValue = "1") int pageNum,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "keyfield", required = false) String keyfield,
+            Model model) {
+		// keyfield가 없으면 기본값을 설정
+	    if (keyfield == null || keyfield.isEmpty()) {
+	        keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+	    }
+	    
+        // 파라미터를 맵에 추가
+        Map<String, Object> map = new HashMap<>();
+        map.put("keyword", keyword);
+        map.put("keyfield", keyfield);
+
+        // 전체, 검색 레코드 수
+        int count = adminService.selectPointRowCount(map);
+
+        // 페이지 처리
+        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminPayment");
+        
+        List<PointVO> list = null; 
+        if (count > 0) {
+            map.put("start", page.getStartRow());
+            map.put("end", page.getEndRow());
+            
+            list = adminService.selectPoint(map); 
+        }
+        
+        model.addAttribute("count", count);
+        model.addAttribute("list", list);
+        model.addAttribute("page", page.getPage());
+        
+        return "adminPayment";
+    
+	}
+	/*
+	 * // 결제 환불 처리
+	 * 
+	 * @PostMapping("/delete")
+	 * 
+	 * @ResponseBody public String deleteMovie(@RequestParam("m_code") long m_code)
+	 * { adminService.deleteMovie(m_code); log.debug("<<영화 삭제 완료>>"); return
+	 * "success";
+	 * 
+	 * }
+	 */
 }
 
 

@@ -7,47 +7,39 @@
 	<div class = "firstTitle">
 		<p id ="title">결제 관리</p>
 	</div>
-		<form action="adminSearch" id="admin_search">
+		<form action="adminPayment" id="admin_search">
 			<ul>
 				<li>
-					<input type="search" name="search" placeholder="회원명을 입력하세요">
+					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'mem_num'}"> <!-- 기본값 설정 -->
+           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원번호를 입력하세요">
 					<input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
 			</ul>
 		</form>
-<table class="adminMember-table">
+	<table class="adminMember-table">
         <thead>
             <tr>
+                <th>결제번호</th>
+                <th>충전금액</th>
+                <th>충전일</th>
                 <th>회원번호</th>
-                <th>아이디</th>
-                <th>상태</th>
-                <th>등급</th>
-                <th>맴버십</th>
-                <th>이름</th>
-                <th>전화번호</th>
-                <th>이메일</th>
-                <th>가입일</th>
-                <th></th>
+                <th>결제수단</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="member" items="${adminList}">
+            <c:forEach var="point" items="${list}">
                 <tr>
-                    <td class="mem-data">${member.mem_num}</td>
-                    <td class="mem-data">${member.mem_id}</td>
-                    <td class="mem-data">${member.mem_auth}</td>
-                    <td class="mem-data">${member.mem_rank}</td>
-                    <td class="mem-data">${member.mem_membership}</td>
-                    <td class="mem-data">${member.mem_name}</td>
-                    <td class="mem-data">${member.mem_phone}</td>
-                    <td class="mem-data">${member.mem_email}</td>
-                    <td class="mem-data">${member.mem_reg_date}</td>
-                    <td class="button1"><input type="button" value="정지" /></td>
-                    <td class="button2"><input type="button" value="탈퇴" /></td>
+                    <td class="mem-data">${point.ph_num}</td>
+                    <td class="mem-data">${point.ph_point}</td>
+                    <td class="mem-data">${point.ph_date}</td>
+                    <td class="mem-data">${point.mem_num}</td>
+                    <td class="mem-data">${point.ph_payment}</td>
+                    <td class="button2"><input type="button" value="결제취소" /></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </div>
+	<div class="page-div">${page}</div> 
 </div>
