@@ -132,7 +132,7 @@
 	WHERE rnum >= #{start} AND rnum <= #{end}
 	]]>
 	</select>
-	
+	<!-- 영화 리뷰 등록 -->
 	<insert id="insertReview" parameterType="MovieReviewVO">
 		INSERT INTO movie_review(
 			mr_num,
@@ -151,6 +151,23 @@
 			#{m_code},
 			#{mem_num})
 	</insert>
+	<!-- 리뷰 목록 -->
+	<select id="selectMovieListReview" parameterType="map" resultType="MovieReviewVO">
+		SELECT
+				*
+			FROM (SELECT
+					a.*,
+					rownum rnum
+				  FROM (SELECT
+				  		  *
+				  		FROM movie_review
+				  		JOIN member USING(mem_num)
+				  		WHERE m_code=#{m_code}
+				  		ORDER BY mr_num DESC)a)
+			<![CDATA[
+			WHERE rnum >=#{start} AND rnum <=#{end}
+			]]>
+	</select>
 	<!-- 영화 시간표 등록 -->
 	 <insert id="insertMovieTime" parameterType="MovieTimeVO">
 	 	  INSERT INTO movie_time (

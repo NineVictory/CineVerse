@@ -35,11 +35,17 @@ public interface MyPageMapper {
 	@Update("UPDATE member_detail SET photo=#{photo}, photo_name=#{photo_name} WHERE mem_num=#{mem_num}")
 	public void updateProfile(MyPageVO myPageVO);// 프로필 이미지 업데이트
 	
-	public Integer aBoardListcnt(Map<String, Object> map);
-	public List<AssignVO> aBoardList(Map<String, Object> map);//양도게시판
+	public Integer aBoardListcnt(Map<String, Object> map);//양도게시글
+	public List<AssignVO> aBoardList(Map<String, Object> map);
 	
+	//양도 댓글+보미언니가 assigncommentVO만들어주면 함
 	
+	//일반 커뮤니티 북마크
+	public Integer cBoardBookMark(Map<String, Object> map);
+	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
 	
+	public Integer aBoardBookMark(Map<String, Object> map);//양도북마크
+	public List<AssignVO> aBoardBookMarkList(Map<String, Object> map);
 	
 	
 	

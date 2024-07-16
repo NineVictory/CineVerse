@@ -405,6 +405,10 @@ img#output_fav{
 	cursor:pointer;
 }
 
+/*커뮤니티 답글*/
+.resp-container:not(:last-child){
+	margin-bottom:35px;	
+}
 
 
 
@@ -424,6 +428,7 @@ div#comment_div>div{
 }
 .cc-writer-info{
 	font-size:14px;
+	gap:5px;
 }
 .cc-content{
 	font-size:14px;
@@ -451,6 +456,9 @@ div#comment_div>div{
 	background:#d1cfcf;
 }
 
+.writer-btns{
+	margin-bottom:5px;
+}
 .writer-btns > div{
 	align-items:center;
 }
@@ -536,15 +544,27 @@ textarea.mcc-content {
 }
 .response-container{
 	background:#f7f7f7;
-	padding:5%;
-	margin-top:10px;
+	padding:2% 4%;
+	margin:10px 0;
 }
-.respitem:not(:last-child){
+/* .respitem:not(:last-child){
 	margin-bottom:20px;
+} */
+.respitem{
+	margin-bottom:5px;
 }
-
-
-
+.resp-detail-info{
+	display:flex;
+	align-items: center;
+	gap:5px;
+	font-size:14px;
+}
+.resp-item-main{
+	font-size:14px;
+}
+.resp-modify-date{
+	font-size:13px;
+}
 
 
 /*assign 글상세 */
@@ -849,11 +869,11 @@ textarea#ab_content{
 input#ab_title, textarea#ab_content, input#ab_price{
 	padding:10px;
 }
-.item-price input[type="number"]::-webkit-outer-spin-button,
+.item-price input#ab_price::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-.item-price input[type="number"]{
+.item-price input#ab_price{
 	width:300px;
 	height:40px;
 }

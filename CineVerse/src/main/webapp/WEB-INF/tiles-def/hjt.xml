@@ -43,6 +43,16 @@
     </definition>
 	 
 	 
+	  <!-- 상영관 등록 -->
+    <definition name="theaterWrite" extends="cinemaList2">
+        <put-attribute name="title" value="상영관 등록"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/cinema/theaterWriteCSS.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/cinema/theaterWrite.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>
+	 
+	 
 	<!-- 좌석 등록
 	 <definition name="seatWrite" extends="cinemaList2">
         <put-attribute name="title" value="좌석 등록"/>

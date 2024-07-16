@@ -180,17 +180,19 @@
 	
 	<!-- 주문 목록과 대표 상품명, 이미지 가져오기 -->
   <select id="selectOrders" resultType="OrdersVO">
-    SELECT o.order_num, o.order_date, o.mem_num, o.order_status,
-           sub.p_name,
-           sub.p_filename
-    FROM orders o
-    LEFT JOIN (
-        SELECT od.order_num, p.p_name, p.p_filename,
-               ROW_NUMBER() OVER (PARTITION BY od.order_num ORDER BY od.od_num) AS rn
-        FROM order_detail od
-        JOIN product p ON od.p_num = p.p_num
-    ) sub ON o.order_num = sub.order_num AND sub.rn = 1
-    WHERE o.mem_num = #{mem_num}
+   SELECT o.order_num, o.order_date, o.mem_num, o.order_status, o.order_re_status,
+	       sub.od_review_status, 
+	       sub.p_name,
+	       sub.p_filename
+	FROM orders o
+	LEFT JOIN (
+	    SELECT od.od_review_status, od.order_num, p.p_name, p.p_filename,
+	           ROW_NUMBER() OVER (PARTITION BY od.order_num ORDER BY od.od_num) AS rn
+	    FROM order_detail od
+	    JOIN product p ON od.p_num = p.p_num
+	) sub ON o.order_num = sub.order_num AND sub.rn = 1
+	WHERE o.mem_num = #{mem_num}
+
   </select>
 
   <!-- 구매 건의 총 비용 -->
@@ -211,5 +213,6 @@
     WHERE o.mem_num = #{mem_num}
     GROUP BY od.order_num
   </select>
+  
 
  </mapper>

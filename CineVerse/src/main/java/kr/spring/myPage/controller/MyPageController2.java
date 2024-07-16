@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.service.MyPageService2;
@@ -99,7 +100,7 @@ public class MyPageController2 {
 		    List<OrdersVO> orders = shopService.selectOrders(user.getMem_num());
 		    List<OrdersVO> total_quantity = shopService.howManyQuantity(user.getMem_num());
 		    List<OrdersVO> total_price = shopService.howMuch(user.getMem_num());
-
+		    
 		    for (OrdersVO order : orders) {
 		        for (OrdersVO qty : total_quantity) {
 		            if (order.getOrder_num() == qty.getOrder_num()) {
@@ -107,13 +108,21 @@ public class MyPageController2 {
 		                break;
 		            }
 		        }
+
 		        for (OrdersVO price : total_price) {
 		            if (order.getOrder_num() == price.getOrder_num()) {
 		                order.setTotal_price(price.getTotal_price());
+		                CouponVO coupon = shopService.usedCoupon(order.getOrder_num());
+		                if(coupon!= null){
+		                	order.setTotal_price(price.getTotal_price() - coupon.getCoupon_sale());
+		                }
+
 		                break;
 		            }
 		        }
+		        
 		    }
+
 
 		    model.addAttribute("orders", orders);
 		    model.addAttribute("count", count);
@@ -132,6 +141,25 @@ public class MyPageController2 {
 		List<OrdersVO> orderDetail = shopService.orderDetailList(order_num);
 		int order_price = shopService.orderPrice(order_num);
 		OrdersVO order = shopService.selectOrder(order_num);
+		CouponVO coupon = shopService.usedCoupon(order_num);
+		int deli=0;
+		
+		if(order_price<50000) {
+			order_price += 3000;
+			deli = 3000;
+		}
+		
+		int point_price = order_price;
+		int coupon_price = 0;
+		
+		if(coupon != null) {
+			coupon_price = coupon.getCoupon_sale();
+			point_price -= coupon_price;
+		}
+		
+		model.addAttribute("deli", deli);
+		model.addAttribute("coupon_price", coupon_price);
+		model.addAttribute("point_price", point_price);
 		
 		model.addAttribute("order", order);
 		model.addAttribute("orderDetail", orderDetail);

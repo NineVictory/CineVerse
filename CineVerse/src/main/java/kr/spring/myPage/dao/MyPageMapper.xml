@@ -24,6 +24,74 @@
 		</if>
 	</sql>
 	
+	<sql id="aBoardSearch">
+		<if test="ab_type != null and ab_type != ''">
+			AND ab_type = #{ab_type}
+		</if>
+		<if test="categoty == 1">
+			AND ab_type = 'handover'
+		</if>
+		<if test="categoty == 2">
+			AND ab_type = 'exchange'
+		</if>
+	</sql>
+	
+	<!-- 양도/교환 북마크 -->
+	<select id="aBoardBookMark" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM ab_bookmark ab JOIN assignment_board aa USING(ab_num) 
+		WHERE ab.mem_num=${mem_num}
+		<include refid="aBoardSearch"></include>
+	</select>
+	
+	<select id="aBoardBookMarkList" parameterType="map" resultType="assignVO">
+		SELECT * FROM ab_bookmark ab JOIN assignment_board 
+		USING(ab_num)WHERE ab.mem_num = #{mem_num}
+		<include refid="aBoardSearch"></include>
+	</select>
+	
+	
+	
+	
+	
+	<!-- 커뮤 북마크 수-->
+	<select id="cBoardBookMark">
+		SELECT COUNT(*)
+		FROM community_bookmark cb JOIN community_board cc USING(cb_num)
+		WHERE cb.mem_num=#{mem_num}
+		<include refid="myPageBoardSearch"></include>
+	</select>
+	
+	<!-- 커뮤 북마크 목록 -->
+	
+	
+	
+	
+	
+	
+	<!-- 양도/교환 게시글 수 -->
+	<select id="aBoardListcnt" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+		FROM assignment_board 
+		WHERE mem_num=#{mem_num}
+		<include refid="aBoardSearch"></include>
+	</select>
+	
+	<!-- 양도/교환 게시글 목록 -->
+	<select id="aBoardList" parameterType="map" resultType="assignVO">
+		SELECT * 
+		FROM assignment_board 
+		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,ab_num FROM ab_bookmark GROUP BY ab_num) USING(ab_num)
+		WHERE mem_num=#{mem_num}
+		<include refid="aBoardSearch"></include>
+		ORDER BY ab_num DESC
+	</select>
+	
+	
+	<!-- 양도/교환 댓글 수 -->
+	<!-- 양도/교환 댓글 목록 -->
+		
+		
+	
 	<!-- 게시글 수 -->
 	<select id="cBoardWriteListcnt" parameterType="map" resultType="integer">
 		SELECT COUNT(*) 

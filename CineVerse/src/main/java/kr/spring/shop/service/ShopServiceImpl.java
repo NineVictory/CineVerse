@@ -139,8 +139,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public void useCoupon(long mc_num) {
-		shopMapper.useCoupon(mc_num);
+	public void useCoupon(long mem_coupon_use, long mc_num) {
+		shopMapper.useCoupon(mem_coupon_use, mc_num);
 	}
 
 	@Override
@@ -242,6 +242,37 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public void orderConfirm(long order_num) {
 		shopMapper.orderConfirm(order_num);
+	}
+
+	@Override
+	public void writeProductReview(ProductVO product) {
+		shopMapper.updateReviewStatus(product.getOd_num());
+		shopMapper.writeProductReview(product);
+	}
+
+	@Override
+	public Integer countReview(long order_num) {
+		return shopMapper.countReview(order_num);
+	}
+
+	@Override
+	public Long selectOrderNum(long od_num) {
+		return shopMapper.selectOrderNum(od_num);
+	}
+
+	@Override
+	public Integer countOrderDetail(long order_num) {
+		return shopMapper.countOrderDetail(order_num);
+	}
+
+	@Override
+	public void updateOrderReStatus(long order_num) {
+		shopMapper.updateOrderReStatus(order_num);
+	}
+
+	@Override
+	public CouponVO usedCoupon(long order_num) {
+		return shopMapper.usedCoupon(order_num);
 	}
 
 	

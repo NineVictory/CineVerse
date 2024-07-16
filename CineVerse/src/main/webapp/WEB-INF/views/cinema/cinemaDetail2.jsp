@@ -12,7 +12,7 @@
 		<div class="info-box">	
 		<div class="branch-address">위치 : <b>${cinema.c_address}</b></div>					
            <div class="branch-phone">문의전화 : <b>${cinema.c_phone}</b></div>
-           <div class="branch-theater">상영관수 : <%-- <b>${cinema.c_theater}관, ${cinema.c_seat}석</b> --%></div>
+           <div class="branch-theater">상영관수 :  <b>${theaterCount}관</b></div>
            <c:if test="${cinema.c_parkable == 0}">
            <div class="branch-parkable">주차정보 : <b>불가능</b></div>
 		</c:if>
@@ -121,9 +121,15 @@
 		<!-- 상영 시간표 -->
 		<div class="time-box">
 			<h2 class="time-table">상영시간표</h2>
-			<img class="time-image" src="${pageContext.request.contextPath}/images/hjt/timetable.png" alt="">
-			<img class="movie-image" src="${pageContext.request.contextPath}/images/hjt/movietime.png" alt="">
+				<img class="time-image" src="${pageContext.request.contextPath}/images/hjt/timetable.png" alt="">
+					<ul class="theater-list">
+						<c:forEach var="theater" items="${theaterList}">
+							<li>${theater.th_name}</li>
+						</c:forEach>
+					</ul>
 		</div>
+		
+
 		
 		
 		<!-- 관리자 버튼 -->

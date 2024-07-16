@@ -208,28 +208,6 @@
     height: 30px;
 }
 
-.seat {
-    font-size: 13px;
-    background-color: #555555;
-    color: white;
-    border: 1px solid rgba(255, 0, 0, 0.6);
-}
-
-.seat:hover {
-    background-color: red;
-    color: white;
-    cursor: pointer;
-}
-
-.seat:active {
-    background-color: red;
-    color: white;
-}
-
-.clicked {
-    background-color: red;
-    color: white;
-}
 
 .seatButtonWrapper {
     text-align: center;
@@ -267,4 +245,75 @@
 	border: none;
 	font-size: 18px;
 	font-weight: bold;
+}
+
+
+
+
+.screen{
+   background-color: #fff;
+   margin: 25px;
+   padding: 5px;
+   width: 140px;
+   height: 80px;
+   transform: rotateX(-45deg);
+   box-shadow: 0 3px 10px rgb(255 255 255 / 70%);
+}
+
+.seat{
+    background-color: #444451;
+    margin: 3px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-color: #444451;
+}
+
+
+.selectedSeatIcon{
+    background-color: #6feaf6;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: default;
+}
+
+.seat:hover{
+    scale: 1.2;
+}
+
+.selectedSeat:hover{
+    scale: 1.2;
+}
+
+.seat:nth-of-type(4){
+    margin-right: 18px;
+}
+
+.seat:nth-of-type(9){
+    margin-left: 18px;
+}
+
+.selectedSeat{
+    background-color: #6feaf6;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+}
+
+.seatContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row{
+    display: flex;
 }

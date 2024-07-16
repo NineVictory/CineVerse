@@ -1,6 +1,7 @@
 package kr.spring.cinema.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
+import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,12 +33,18 @@ public class CinemaController {
 	@Autowired
 	private CinemaService cinemaService;
 
-	// 자바빈(VO) 초기화
-	@ModelAttribute
-	public CinemaVO initCommand() {
-		return new CinemaVO();
-	}
+	// 자바빈(CinemaVO) 초기화
+    @ModelAttribute("cinemaVO")
+    public CinemaVO initCinemaCommand() {
+        return new CinemaVO();
+    }
 
+    // 자바빈(TheaterVO) 초기화
+    @ModelAttribute("theaterVO")
+    public TheaterVO initTheaterCommand() {
+        return new TheaterVO();
+    }
+	
 
 	/*=====================
 	 * 영화관 등록
@@ -118,7 +126,20 @@ public class CinemaController {
 	
 		CinemaVO cinema = cinemaService.selectCinema(c_num);
 					
-		return new ModelAndView("cinemaDetail2","cinema",cinema);
+		// 상영관 목록 조회
+        List<TheaterVO> theaterList = cinemaService.selectTheaterListByCinemaNum(c_num);
+        
+        // 상영관 수 조회
+        Integer theaterCount = cinemaService.selectTheaterCountByCinema(c_num);
+        
+        
+        ModelAndView mav = new ModelAndView("cinemaDetail2");
+        mav.addObject("cinema", cinema);
+        mav.addObject("theaterList", theaterList);
+        mav.addObject("theaterList", theaterList);
+        mav.addObject("theaterCount", theaterCount); 
+        return mav;
+		/* return new ModelAndView("cinemaDetail2","cinema",cinema); */
 	}
 	
 	
@@ -177,52 +198,40 @@ public class CinemaController {
 	
 	
 	
+	
+	
 	/*=====================
 	 * 상영관 등록
 	 *=====================*/
-	// 등록 폼 호출
-	@GetMapping("/cinema/theaterWrite")
-	public String formtwo() {
-		return "theaterWrite";
-	}
+	/*
+	 * @GetMapping("/cinema/theaterWrite") public String showTheaterWriteForm(Model
+	 * model, @RequestParam String c_location) { List<String> branchList =
+	 * cinemaService.selectCinemaBranches(c_location);
+	 * 
+	 * model.addAttribute("branchList", branchList); model.addAttribute("theaterVO",
+	 * new TheaterVO()); // TheaterVO 초기화
+	 * 
+	 * return "theaterWrite"; }
+	 * 
+	 * // 등록 폼에서 전송된 데이터 처리
+	 * 
+	 * @PostMapping("cinema/theaterWrite") public String theaterWrite(@Valid
+	 * TheaterVO theaterVO, BindingResult result, HttpServletRequest request,
+	 * HttpSession session, Model model) throws IllegalStateException, IOException {
+	 * log.debug("<<상영관 등록>> : " + theaterVO);
+	 * 
+	 * // 유효성 체크 실패시 폼으로 다시 돌아가기 if (result.hasErrors()) { return "theaterWrite"; }
+	 * 
+	 * // 상영관 등록 메서드 cinemaService.insertTheater(theaterVO);
+	 * 
+	 * // view 메시지 처리 model.addAttribute("message", "상영관이 성공적으로 등록되었습니다.");
+	 * model.addAttribute("url", request.getContextPath() + "/cinema/cinemaList2");
+	 * 
+	 * return "common/resultAlert"; }
+	 */
+	
+	
 
-	// 등록 폼에서 전송된 데이터 처리
-	@PostMapping("cinema/theaterWrite")
-	public String theaterWrite(@Valid TheaterVO theaterVO, BindingResult result, HttpServletRequest request,
-			HttpSession session, Model model) throws IllegalStateException, IOException {
-		log.debug("<<상영관 등록>> : " + theaterVO);
-
-		// 유효성 체크 실패시 폼으로 다시 돌아가기
-		if (result.hasErrors()) {
-			return formtwo();
-		}
-
-		// 영화 등록 메서드
-		cinemaService.insertTheater(theaterVO);
-
-		// view 메시지 처리
-		model.addAttribute("message", "상영관이 성공적으로 등록되었습니다.");
-		model.addAttribute("url", request.getContextPath() + "/cinema/cinemaList2");
-
-		return "common/resultAlert";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	/*

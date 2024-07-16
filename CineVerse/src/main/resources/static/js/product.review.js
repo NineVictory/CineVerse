@@ -1,48 +1,42 @@
 $(function() {
+	
+
+	
     $('#mr_form').submit(function(event) {
         // 내용이 비어있는지 확인
         if ($('#mr_content').val().trim() == '') {
-            alert('내용을 입력해주세요@@@@@@');
+            alert('내용을 입력해주세요!');
             $('#mr_content').val('').focus();
             return false;
         }
+        
+        let grade = getHiddenInputValue('.pr_grade');
+		if(grade==0 && grade==''){
+			alert('별점을 매겨주세요!');
+			return false;
+		}        
 
         // form 데이터 serialize
         let form_data = $(this).serialize();
         
         // 서버와 통신
         $.ajax({
-            url: 'writeMateReview.do',
+            url: 'productReview',
             type: 'post',
             data: form_data, 
             dataType: 'json',
             success: function(param) {
-                if (param.result === 'logout') {
-                    alert('로그인 후 사용하세요!');
-                } else if (param.result === 'success') {
-                    $.ajax({
-                        url: 'howManyReview.do',
-                        type: 'post',
-                        data: form_data,
-                        dataType: 'json',
-                        success: function(param) {
-                            if(param.result=='logout'){
-								alert('로그인 후 사용하세요!')
-							} else if(param.result=='finish'){
-								alert('모든 팀원의 리뷰를 작성하였으므로 프로젝트가 완료되었습니다.');
-								location.reload();
-							} else if(param.result=='ing'){
-								alert('리뷰 작성이 완료되었습니다.')
-								location.reload();
-							}
-                        },
-                        error: function() {
-                            alert('리뷰 데이터 가져오기 실패');
-                        }
-                    });
-                } else {
-                    alert('리뷰 작성 실패했습니다.');
-                }
+               if(param.result=='logout'){
+					alert('로그인 후 작성할 수 있습니다.');
+			   } else if(param.result=='success') {
+					alert('리뷰를 작성했습니다.');
+					location.reload();
+			   } else if (param.result=='complete'){
+					alert('리뷰 작성을 완료했습니다.');
+					location.reload();
+			   } else {
+				 	alert('리뷰 작성 오류');
+			   }
             },
             error: function() {
                 alert('네트워크 오류 발생');
@@ -66,10 +60,34 @@ $(function() {
 	function modalOff() {
 	    mate_review.hide();
 	}
+	
+	/*hidde의 value 값 넣는 함수*/
+	function setHiddenInputValue(selector, value) {
+	    const hiddenInput = document.querySelector(selector);
+	    if (hiddenInput) {
+	        hiddenInput.value = value;
+	    } 
+	}
 
+	/* 히든값 불러오는 함수 */
+	function getHiddenInputValue(selector) {
+	    const hiddenInput = document.querySelector(selector);
+	    if (hiddenInput) {
+	        return hiddenInput.value;
+	    }
+	}
+	
 	/* 리뷰 쓰기 메뉴 */
 	$(".my_order_review").click(function(e) {
 	    e.preventDefault();
+	    
+	    let od_num = $(this).attr('data-num');
+	    
+	    setHiddenInputValue('.od_num', od_num);
+	    
+	     let p_num = $(this).attr('data-pnum');
+	    
+	    setHiddenInputValue('.p_num', p_num);
 	    
 	    // 개인의 닉네임 가져와서 innerText 시키기
 	    const nickname = $(this).closest('.mem_personal').find('.team_mem_nickname').data('nickname');
@@ -130,7 +148,9 @@ $(function() {
 	            const star = $(`#star${j}`);
 	            star.attr('src', `../images/cje/star_no.png`);
 	        }
+	        setHiddenInputValue('.pr_grade', i);
 	    });
 	}
+	
 
 });

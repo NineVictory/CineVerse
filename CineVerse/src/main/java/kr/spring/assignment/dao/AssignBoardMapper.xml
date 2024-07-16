@@ -62,7 +62,7 @@
 	<!-- 게시판 글 수정 -->
 	<update id="ab_updateBoard" parameterType="assignVO">
 		UPDATE assignment_board SET
-						<if test="ab_filename != null">
+						<if test="ab_filenames != null">
 							ab_filenames = #{ab_filenames},
 						</if>
 												ab_title = #{ab_title}, ab_content = #{ab_content}, ab_ip = #{ab_ip}, ab_modify_date = SYSDATE

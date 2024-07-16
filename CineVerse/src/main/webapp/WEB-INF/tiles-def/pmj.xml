@@ -50,7 +50,7 @@
 	</definition>
 	
 	<definition name="myBoardReply" extends="myPageMain">
-		<put-attribute name="title" value="내가  쓴 댓글"/>
+		<put-attribute name="title" value="내가 쓴 댓글"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/boardReply.jsp"/>
 	</definition>
 	
@@ -59,9 +59,20 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/pointList.jsp"/>
 	</definition>
 	
+	<definition name="aBoardBookMark" extends="myPageMain">
+		<put-attribute name="title" value="양도/교환 북마크"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/aBoardBookMark.jsp"/>
+	</definition>
 	
+	<definition name="aBoardWrite" extends="myPageMain">
+		<put-attribute name="title" value="양도/교환 게시글"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/aBoardWrite.jsp"/>
+	</definition>
 	
-	
+	<definition name="aBoardReply" extends="myPageMain">
+		<put-attribute name="title" value="양도/교환 댓글"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/aBoardReply.jsp"/>
+	</definition>
 	
 	<definition name="myEvent" extends="myPageMain">
 		<put-attribute name="title" value="이벤트"/>

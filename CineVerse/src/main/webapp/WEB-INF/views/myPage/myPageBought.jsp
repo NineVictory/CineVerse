@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/myPage.bought.js"></script>
-	<script src="${pageContext.request.contextPath}/js/product.review.js"></script>
+	
 <!--  굿즈 내역 시작 -->
 <div class="myPage_main">
 
@@ -24,7 +24,7 @@
 			<div class="mp_reserv">
 				<!-- 근데 이 부분 css를 똑같이 썼더니 하얀색으로 삐죽... --><!-- 영화사진 비율로 느낌만 낸거라 삐죽/css를 다르게 해야될수도! -->
 				<div class="m_movie_photo">
-					<img src="${pagecontext.reuqest.contextPath}/upload/${o.p_filename}"
+					<img src="${pagecontext.request.contextPath}/upload/${o.p_filename}"
 						alt="결제 내역" width="160" height="160" onclick="location.href='/myPage/boughtDetail?order_num=${o.order_num}'">
 				</div>
 				
@@ -61,8 +61,8 @@
 										<span class="my_order_confirm" data-num="${o.order_num}" data-mnum="${o.mem_num}">주문확정</span>
 										<span class="my_order_return">교환/반품</span>
 									</c:if>
-									<c:if test="${o.order_status==6}">
-										<span class="my_order_review">리뷰쓰기</span>
+									<c:if test="${o.order_status==6 && o.order_re_status==1}">
+										<span class="my_order_review" onclick="location.href='/myPage/boughtDetail?order_num=${o.order_num}'">리뷰쓰기</span>
 									</c:if>
 								</div>
 							</div>
@@ -80,31 +80,5 @@
 </div>
 
 
-<div id="mate_review" style="display:none;">
-    <div class="mate_review_window">
-        
-		
-        <div class="content">
-            <div class="mate_review_profile">
-                <h2>상품은 만족하셨나요?</h2>
-            </div>
-			<div class="star">
-				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star1">
-				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star2">
-				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star3">
-				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star4">
-				<img src="${pageContext.request.contextPath}/images/cje/star_no.png" class="reStar" id="star5">
-			</div>
-            <div class="mr_content_div">
-                <form id="mr_form">
-                    <textarea id="mr_content" name="pr_content"></textarea>
-                    <div class="btn-div">
-						<input type="button" class="mate_review_close" id="close-btn" value="취소">
-                        <input type="submit" id="submit-btn" value="제출">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> 	
+
 <!--  내가 본 영화 끝 -->

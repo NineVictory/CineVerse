@@ -16,6 +16,7 @@ import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.service.MyPageService2;
 import kr.spring.shop.service.ShopService;
 import kr.spring.shop.vo.PBasketVO;
+import kr.spring.shop.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -51,5 +52,42 @@ public class MyPageAjaxController2 {
 
 		return mapJson;
 	}
+	
+	// 상품 리뷰 쓰기
+	@PostMapping("/myPage/productReview")
+	@ResponseBody
+	public Map<String, Object> productReview(@RequestParam long od_num, @RequestParam long p_num, @RequestParam long pr_grade, @RequestParam String pr_content, HttpSession session) {
+		log.debug("<<리뷰 쓰기 - od_num, p_num, pr_grade>> ::: " + od_num + ", " + p_num + ", " + pr_grade);
+		log.debug("<<리뷰 쓰기 - pr_content>> ::: " + pr_content);
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		ProductVO product = new ProductVO();
+		
+		MemberVO user = (MemberVO) session.getAttribute("user");
+
+		if (user == null) { // 로그아웃 상태
+			mapJson.put("result", "logout");
+		} else {
+			product.setPr_content(pr_content);
+			product.setOd_num(od_num);
+			product.setPr_grade(pr_grade);
+			product.setP_num(p_num);
+			shopService.writeProductReview(product);
+			
+			long order_num = shopService.selectOrderNum(od_num);
+			
+			int countReview = shopService.countReview(order_num);
+			int countOrderDetail = shopService.countOrderDetail(order_num);
+			if(countReview==countOrderDetail) {
+				shopService.updateOrderReStatus(order_num);
+				mapJson.put("result", "complete");
+			} else {
+				mapJson.put("result", "success");
+			}
+			
+		}
+		
+		return mapJson;
+	}
+	
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.myPage.dao.MyPageMapper;
@@ -76,6 +77,37 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public void updateProfile(MyPageVO myPageVO) {
 		myPageMapper.updateProfile(myPageVO);
+	}
+
+	@Override
+	public Integer aBoardListcnt(Map<String, Object> map) {
+		return myPageMapper.aBoardListcnt(map);
+	}
+
+	@Override
+	public List<AssignVO> aBoardList(Map<String, Object> map) {
+		return myPageMapper.aBoardList(map);
+	}
+
+
+	@Override
+	public List<AssignVO> aBoardBookMarkList(Map<String, Object> map) {
+		return myPageMapper.aBoardBookMarkList(map);
+	}
+
+	@Override
+	public Integer aBoardBookMark(Map<String, Object> map) {
+		return myPageMapper.aBoardBookMark(map);
+	}
+
+	@Override
+	public Integer cBoardBookMark(Map<String, Object> map) {
+		return myPageMapper.cBoardBookMark(map);
+	}
+
+	@Override
+	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map) {
+		return myPageMapper.cBoardBookMarkList(map);
 	}
 
 	

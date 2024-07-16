@@ -481,7 +481,7 @@ $(function() {
 						resp_form.parents('.sub-item').find('div .rescontent-btn').val('▼ 답글 ' + (Number(resp_form.parents('.sub-item').find('div .rescontent-btn').val().substring(5)) + 1));
 					}*/
 
-					let responseContainer = resp_form.parent('.response-container');
+					var responseContainer = resp_form.closest('.response-container');
 					getListResponse(cc_num, responseContainer);
 
 				} else {
@@ -503,12 +503,12 @@ $(function() {
 		$('#resp_form').remove();
 
 		// 답글 폼을 숨기기 전에 .response-container가 비어 있는지 확인하여 숨김 처리
-		var responseContainers = $('.response-container');
+	/*	var responseContainers = $('.response-container');
 		responseContainers.each(function() {
 			if ($(this).children().length == 0) {
 				$(this).hide();
 			}
-		});
+		});*/
 	}
 
 	/* ========================================================================
@@ -531,6 +531,7 @@ $(function() {
 					let output = '';
 
 					// respitem 시작
+					output += '<div class="resp-container">';
 					output += '<div class="respitem">';
 					output += '<div class="resp-detail-info">';
 					output += '<img src="../myPage/viewProfile?mem_num=' + item.mem_num + '" width="30" height="30" class="my-photo">';
@@ -556,13 +557,13 @@ $(function() {
 
 					// 답글 내용과 작성일 출력
 					output += '<div class="resp-sub-item">';
-					output += '<div>';
+					output += '<div class="resp-item-main">';
 					
 					if(item.te_parent_num>0){
                   		if(item.pnick_name){
-                     		output += '<b> @'+item.pnick_name + '</b>';
+                     		output += '<b>@' +item.pnick_name + ' </b>';
                   		}else{
-                     		output += '<b> @'+item.parent_id + '</b>';
+                     		output += '<b>' +item.parent_id + ' </b>';
                   		}
                		}	
 					output += item.te_content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -590,6 +591,7 @@ $(function() {
 					output += '</div>'; // side 닫기
 
 					output += '</div>'; // respitem 닫기
+					output += '</div>';
 
 					responseContainer.append(output);
 				});

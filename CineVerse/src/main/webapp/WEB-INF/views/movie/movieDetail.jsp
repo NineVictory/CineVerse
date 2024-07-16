@@ -114,8 +114,18 @@
             </c:choose>
         </form>
     </div>
+    <!-- 최신순, 추천순 선택 텍스트 -->
+    <div class="review-sort">
+        <span id="latest" class="sort-option active">최신순</span> | 
+        <span id="recommendation" class="sort-option">추천순</span>
+    </div>
 </div>
 
+<!-- 좋아요 -->
+<img id="output_fav" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
+<span id="output_mfcount"></span>
+<!-- 댓글수 -->
+		<span id="output_mrcount"></span>
 <!-- 댓글 목록 출력 -->
 <div id="output"></div>
 <div id="loading" style="display:none;">
@@ -124,4 +134,6 @@
 <div class="paging-button" style="display:none;">
     <input type="button" value="더보기">
 </div>
+<button id="loadComments">리뷰보기</button>
+<div id="output"></div>
 </div>

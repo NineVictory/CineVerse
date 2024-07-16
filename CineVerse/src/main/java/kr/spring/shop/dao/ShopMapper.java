@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.member.vo.CouponVO;
 import kr.spring.shop.vo.OrdersVO;
@@ -122,8 +123,8 @@ public interface ShopMapper {
 	public void usePoint(OrdersVO orders);
 	
 	// 쿠폰 사용하기
-	@Update("UPDATE member_coupon SET coupon_use=2 WHERE mc_num=#{mc_num}")
-	public void useCoupon(long mc_num);
+	@Update("UPDATE member_coupon SET coupon_use=2, mem_coupon_use=#{mem_coupon_use} WHERE mc_num=#{mc_num}")
+	public void useCoupon(@Param("mem_coupon_use") long mem_coupon_use, @Param("mc_num") long mc_num);
 	
 	// 쿠폰 조건 체크
 	@Select("SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) WHERE mc_num=#{mc_num}")
@@ -168,4 +169,33 @@ public interface ShopMapper {
 	// 주문 확정하기 (사용자)
 	@Update("UPDATE orders SET order_status=6 WHERE order_num=#{order_num}")
 	public void orderConfirm(long order_num);
+	
+	// 리뷰 쓰기
+	@Insert("INSERT INTO product_review (pr_num, pr_content, pr_reg_date, od_num, p_num, pr_grade) " +
+	        "VALUES (product_review_seq.nextval, #{pr_content}, SYSDATE, #{od_num}, #{p_num}, #{pr_grade})")
+	public void writeProductReview(ProductVO product);
+	
+	// 리뷰 상태 업데이트
+	@Update("UPDATE order_detail SET od_review_status=2 WHERE od_num=#{od_num}")
+	public void updateReviewStatus(long od_num);
+	
+	// 리뷰 카운트
+	@Select("SELECT Count(*) FROM order_detail WHERE od_review_status=2 AND order_num=#{order_num}")
+	public Integer countReview(long order_num);
+	
+	// od_num으로 order_num구하기
+	@Select("SELECT order_num FROM order_detail WHERE od_num=#{od_num}")
+	public Long selectOrderNum(long od_num);
+	
+	// order_num으로 order_detail 개수 구하기
+	@Select("SELECT count(*) FROM order_detail WHERE order_num=#{order_num}")
+	public Integer countOrderDetail(long order_num);
+	
+	// orders 테이블의 order_re_status 업데이트
+	@Update("UPDATE orders SET order_re_status=2 WHERE order_num=#{order_num}")
+	public void updateOrderReStatus(long order_num);
+	
+	// 사용한 쿠폰 있는지 찾아보기
+	@Select("SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) WHERE mem_coupon_use=#{mem_coupon_use}")
+	public CouponVO usedCoupon(long order_num);
 }

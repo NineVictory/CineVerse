@@ -48,5 +48,6 @@ public class AssignVO {
 	
 	//신고 report, 상태 status 나중에 추가?
 	
+	private int fav_cnt;
 	
 }
