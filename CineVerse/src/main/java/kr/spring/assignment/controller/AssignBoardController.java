@@ -161,9 +161,9 @@ public class AssignBoardController {
 	//수정 폼 호출
 	@GetMapping("/assignboard/update")
 	public String formUpdate(long ab_num, Model model) {
-		AssignVO assignVO = assignService.ab_selectBoard(ab_num);
-		model.addAttribute("assignVO", assignVO);
-		
+		AssignVO assign = assignService.ab_selectBoard(ab_num);
+		model.addAttribute("assignVO", assign);
+
 		return "assignModify";
 	}
 	//수정 폼에서 전송된 데이터 처리

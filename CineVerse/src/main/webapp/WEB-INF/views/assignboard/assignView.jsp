@@ -143,19 +143,19 @@
 						<div>
 							<ul class="status-df">
 							 	<li class="font14"><label>상품상태</label> <span>
-																		 	<c:if test="${assign.ab_status == 0}">
+																		 	<c:if test="${assign.ab_item_status == 0}">
 																				새 상품(미사용)
 																			</c:if>
-																			<c:if test="${assign.ab_status == 1}">
+																			<c:if test="${assign.ab_item_status == 1}">
 																				사용감 없음
 																			</c:if>
-																			<c:if test="${assign.ab_status == 2}">
+																			<c:if test="${assign.ab_item_status == 2}">
 																				사용감 적음
 																			</c:if>
-																			<c:if test="${assign.ab_status == 3}">
+																			<c:if test="${assign.ab_item_status == 3}">
 																				사용감 많음
 																			</c:if>
-																			<c:if test="${assign.ab_status == 4}">
+																			<c:if test="${assign.ab_item_status == 4}">
 																				고장/파손 상품
 																			</c:if></span>
 								</li>

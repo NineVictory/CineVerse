@@ -149,19 +149,19 @@
 				</div>
 				<div class="item-status-radio">
 					<div>
-					<form:radiobutton path="ab_item_status" value="0" /><span class="span1">새 상품(미사용)</span><span class="span2">사용하지 않은 새 상품</span>
+					<form:radiobutton path="ab_item_status" value="0" checked="${assign.ab_item_status == 0}"/><span class="span1">새 상품(미사용)</span><span class="span2">사용하지 않은 새 상품</span>
 					</div>
 					<div>
-					<form:radiobutton path="ab_item_status" value="1" /><span class="span1">사용감 없음</span><span class="span2">사용은 했지만 눈에 띄는 흔적이나 얼룩이 없음</span>
+					<form:radiobutton path="ab_item_status" value="1" checked="${assign.ab_item_status == 1}"/><span class="span1">사용감 없음</span><span class="span2">사용은 했지만 눈에 띄는 흔적이나 얼룩이 없음</span>
 					</div>
 					<div>
-					<form:radiobutton path="ab_item_status" value="2" /><span class="span1">사용감 적음</span><span class="span2">눈에 띄는 흔적이나 얼룩이 약간 있음</span>
+					<form:radiobutton path="ab_item_status" value="2" checked="${assign.ab_item_status == 2}"/><span class="span1">사용감 적음</span><span class="span2">눈에 띄는 흔적이나 얼룩이 약간 있음</span>
 					</div>
 					<div>
-					<form:radiobutton path="ab_item_status" value="3" /><span class="span1">사용감 많음</span><span class="span2">눈에 띄는 흔적이나 얼룩이 많이 있음</span>
+					<form:radiobutton path="ab_item_status" value="3" checked="${assign.ab_item_status == 3}"/><span class="span1">사용감 많음</span><span class="span2">눈에 띄는 흔적이나 얼룩이 많이 있음</span>
 					</div>
 					<div>
-					<form:radiobutton path="ab_item_status" value="4" /><span class="span1">고장/파손 상품</span><span class="span2">기능 이상이나 외관 손상 등으로 수리/수선 필요</span>
+					<form:radiobutton path="ab_item_status" value="4" checked="${assign.ab_item_status == 4}"/><span class="span1">고장/파손 상품</span><span class="span2">기능 이상이나 외관 손상 등으로 수리/수선 필요</span>
 					<form:errors path="ab_item_status" cssClass="error-color"/>
 					
 					</div>
@@ -173,7 +173,7 @@
 				</div>
 				<div class="flexbox-p">
 					<textarea name="ab_content" id="ab_content" placeholder="구매시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요.
-전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요."></textarea>
+전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요.">${assign.ab_content}</textarea>
 					<form:errors path="ab_content" cssClass="error-color"/>
 				</div>
 			</div>

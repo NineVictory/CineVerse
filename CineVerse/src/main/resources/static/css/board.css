@@ -268,7 +268,7 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 /*boardView 글상세*/
 .boardview-main{
 	width:950px;
-	margin:70px auto;
+	margin:80px auto;
 }
 .boardview-main .board-info h3{
 	margin:0 0 7px 10px;
