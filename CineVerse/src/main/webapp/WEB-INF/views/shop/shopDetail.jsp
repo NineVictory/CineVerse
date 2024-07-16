@@ -12,7 +12,6 @@
 	            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
 	        </div>
 	        <div class="product-info">
-	            <h1>
 					<c:if test="${product.p_category == 1}"> MARVEL </c:if>
 					<c:if test="${product.p_category == 2}"> DISNEY </c:if>
 					<c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>
@@ -92,28 +91,111 @@
 	        </c:if>
 	        <!-- 리뷰 -->
 	        
+			
+
+				
 	        <c:if test="${param.page == 'review'}">
-	        	<div class="product-review">
-	        		<div class="pReview">
-	        			<br><span>사용자 총 평점</span>
-	        			<div class="review-star">
-	        				<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
-	        				<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
-	        				<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
-	        				<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
-	        				<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="reStar">
-	        			</div>
-	        		</div>
-	        		<div class="review-container">
-	        			<h2>리뷰</h2>
-		        			<div class="review-item">
-		        				<div class="profile-photo">
-		        					<img src=${pageContext.request.contextPath}/images/pmj/myPage_photo.jpg class="review-profile">
-		        					<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="user-star">
-		        				</div>
-		        			</div>
-		        	</div>
-	    		</div>
+				<c:if test="${count==0}">
+					작성된 리뷰가 없습니다.
+				</c:if>
+				<c:if test="${count>0}">	
+					
+					
+			        	<div class="product-review">
+			        		<div class="bookMark_box">
+			        			<br><span>사용자 총 평점</span>
+			        			<div class="review-star">
+									<c:if test="${review_grade>=1}"> 
+			        					<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
+									</c:if>
+									<c:if test="${review_grade<1}">
+										<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="reStar">
+									</c:if>
+									
+									<c:if test="${review_grade>=2}"> 
+			        					<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
+									</c:if>
+									<c:if test="${review_grade<2}">
+										<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="reStar">
+									</c:if>
+									
+									<c:if test="${review_grade>=3}"> 
+			        					<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
+									</c:if>
+									<c:if test="${review_grade<3}">
+										<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="reStar">
+									</c:if>
+									
+									<c:if test="${review_grade>=4}"> 
+			        					<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
+									</c:if>
+									<c:if test="${review_grade<4}">
+										<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="reStar">
+									</c:if>
+									
+									<c:if test="${review_grade>=5}"> 
+										<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="reStar">
+									</c:if>
+									<c:if test="${review_grade<5}">
+										<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="reStar">
+									</c:if>
+									${review_grade}점
+			        			</div>
+			        		</div>
+							<c:forEach var="review" items="${reviewList}">
+								<div class="bookMark_box">
+								            <div class="bk_content">
+								                <div class="my_board_bk">
+								                    <div class="my_board_type">
+														<c:if test="${review.pr_grade>=1}"> 
+															<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="userReStar">
+														</c:if>
+														<c:if test="${review.pr_grade<1}">
+															<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="userReStar">
+														</c:if>
+														
+														<c:if test="${review.pr_grade>=2}"> 
+															<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="userReStar">
+														</c:if>
+														<c:if test="${review.pr_grade<2}">
+															<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="userReStar">
+														</c:if>
+														
+														<c:if test="${review.pr_grade>=3}"> 
+															<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="userReStar">
+														</c:if>
+														<c:if test="${review.pr_grade<3}">
+															<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="userReStar">
+														</c:if>
+														
+														<c:if test="${review.pr_grade>=4}"> 
+															<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="userReStar">
+														</c:if>
+														<c:if test="${review.pr_grade<4}">
+															<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="userReStar">
+														</c:if>
+														
+														<c:if test="${review.pr_grade>=5}"> 
+															<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="userReStar">
+														</c:if>
+														<c:if test="${review.pr_grade<5}">
+															<img src=${pageContext.request.contextPath}/images/cje/star_no.png class="userReStar">
+														</c:if>
+														 ${review.pr_grade}
+								                    </div>
+								                    <div class="my_boardWrite_bk">${review.pr_content}</div>
+								                </div>
+								                <div class="bk_delete_btn">
+								                    
+								                </div>
+								            </div>
+								            <div class="review_fav_date">
+												${review.mem_id} · ${review.pr_reg_date}
+								            </div>
+								        </div>
+				    		</div>
+					</c:forEach>
+				</c:if>
 	        </c:if>
 	        <!-- 반품 교환 정모 -->
 	        <c:if test="${param.page == 'info'}">

@@ -275,6 +275,21 @@ public class ShopServiceImpl implements ShopService {
 		return shopMapper.usedCoupon(order_num);
 	}
 
+	@Override
+	public Float reviewGrade(long p_num) {
+		return shopMapper.reviewGrade(p_num);
+	}
+
+	@Override
+	public List<ProductVO> reviewList(long p_num) {
+		return shopMapper.reviewList(p_num);
+	}
+
+	@Override
+	public Integer reviewCount(long p_num) {
+		return shopMapper.reviewCount(p_num);
+	}
+
 	
 
 }

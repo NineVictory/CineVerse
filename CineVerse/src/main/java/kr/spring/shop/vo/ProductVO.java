@@ -54,5 +54,6 @@ public class ProductVO {
 	private long pb_num;
 	private long pb_quantity;
 	private Date pb_reg_date;
-
+	
+	private String mem_id;
 }

@@ -77,4 +77,8 @@ public interface ShopService {
 	public Integer countOrderDetail(long order_num);
 	public void updateOrderReStatus(long order_num);
 	public CouponVO usedCoupon(long order_num);
+	
+	public Float reviewGrade(long p_num);
+	public List<ProductVO> reviewList(long p_num);
+	public Integer reviewCount(long p_num);
 }

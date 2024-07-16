@@ -198,4 +198,16 @@ public interface ShopMapper {
 	// 사용한 쿠폰 있는지 찾아보기
 	@Select("SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) WHERE mem_coupon_use=#{mem_coupon_use}")
 	public CouponVO usedCoupon(long order_num);
+	
+	// 리뷰 평점 
+	@Select("SELECT AVG(pr_grade) FROM product_review WHERE p_num = #{p_num} GROUP BY p_num")
+	public Float reviewGrade(long p_num);
+	
+	// 리뷰 리스트
+	@Select("SELECT * FROM product_review JOIN order_detail USING(od_num) JOIN orders USING(order_num) JOIN member USING(mem_num) WHERE product_review.p_num=#{p_num}")
+	public List<ProductVO> reviewList(long p_num);
+	
+	// 리뷰 카운트
+	@Select("select count(*) from product_review WHERE p_num=#{p_num}")
+	public Integer reviewCount(long p_num);
 }

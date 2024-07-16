@@ -175,25 +175,27 @@ body {
     padding-bottom: 50px;
 }
 
-.pReview{
-    background: #EBE9E9;
-    border-radius: 15px;
-    height:230px;
-    width:1000px;
-    
-}
-.pReview span {
+
+.bookMark_box span {
     text-align: center;
     font-size: 15pt;
     font-weight: 500;
     display: block;
-    margin-top: 20px;
 }
 
+.review-star {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
+	font-size: 14pt;
+	font-weight: 500;
+}
+
+
 .reStar {
-    margin-top: 40px;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .review-container {
@@ -249,4 +251,79 @@ review-profile {
 
 #output_fav{
 	width:140px;
+}
+
+
+
+.bookMark_box {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	background-color: #F7F7F7;
+	border-radius: 12px;
+	padding: 20px 30px;
+	flex-grow: 1;
+	float review_grade = Math.round(shopService.reviewGrade(p_num) * 100.0) / 100.0f;
+
+}
+
+
+.bk_content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: auto; /* 높이 자동 조정 */
+}
+
+.my_board_bk {
+	text-align: left;
+	font-size: 14px;
+	width: 840px;
+	display: flex;
+	flex-direction: column; /* 수직 정렬 */
+}
+
+.bk_delete_btn { /* 마이페이지 삭제 버튼 */
+	font-size: 14px;
+	font-weight: 500;
+	align-self: flex-start; /* 상단 정렬/하단 정렬이면 end 사용 */
+}
+
+.my_board_type {
+	font-size: 14.5px;
+	font-weight: 550;
+	color: #575757;
+}
+
+.my_board_reply {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.my_boardWrite_bk {
+	margin-top: 10px;
+	font-size: 16px;
+	font-weight: 550;
+	width: 100%; /* 너비를 부모 요소에 맞춤 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.my_board_reply {
+	margin-top: 5px;
+	font-size: 13px;
+}
+
+.userReStar{
+	width: 15px;
+	height: 15px;
+	padding:0;
+	margin-bottom:0;
+}
+
+.review_fav_date {
+	text-align: right;
+	font-size: 13px;
 }

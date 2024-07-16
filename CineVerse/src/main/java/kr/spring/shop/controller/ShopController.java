@@ -98,13 +98,25 @@ public class ShopController {
 
 	// 벌스샵 상세 (상품 상세)
 	@GetMapping("/shop/shopDetail")
-	public ModelAndView shopDetail(long p_num) {
+	public String shopDetail(long p_num, Model model) {
 		log.debug("<<벌스샵 상세 - p_num>> ::: " + p_num);
 
 		ProductVO product = shopService.productDetail(p_num);
 		product.setP_name(StringUtil.useNoHTML(product.getP_name()));
 
-		return new ModelAndView("shopDetail", "product", product);
+		int count = shopService.reviewCount(p_num);
+		
+		if (count!=0) {
+			float review_grade = Math.round(shopService.reviewGrade(p_num) * 10.0) / 10.0f;
+			List<ProductVO> reviewList = shopService.reviewList(p_num);
+
+			model.addAttribute("reviewList", reviewList);
+			model.addAttribute("review_grade", review_grade);
+		}
+		
+		model.addAttribute("count", count);
+		model.addAttribute("product", product);
+		return "shopDetail";
 	}
 
 	// 벌스샵 결제 (상품 결제) - 바로 가기
