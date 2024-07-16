@@ -4,11 +4,41 @@ $(document).ready(function() {
         var rating = $(this).data("value");
         $("#mr_grade").val(rating);
         $(".review-choice").text("별점: " + rating + "점");
-        $(".star-rating .star").each(function() {
-            if ($(this).data("value") <= rating) {
-                $(this).addClass("selected");
+
+        // 별점 이미지 변경
+        $(".star-rating .star img").each(function() {
+            if ($(this).parent().data("value") <= rating) {
+                $(this).attr("src", "../images/ksh/star_yellow.png"); // 노란 별 이미지 경로로 변경
             } else {
-                $(this).removeClass("selected");
+                $(this).attr("src", "../images/ksh/star.png"); // 흰색 별 이미지 경로로 변경
+            }
+        });
+    });
+
+    // 마우스 오버 이벤트
+    $(".star-rating .star").mouseover(function() {
+        var rating = $(this).data("value");
+
+        // 별점 이미지 임시 변경
+        $(".star-rating .star img").each(function() {
+            if ($(this).parent().data("value") <= rating) {
+                $(this).attr("src", "../images/ksh/star_yellow.png"); // 노란 별 이미지 경로로 변경
+            } else {
+                $(this).attr("src", "../images/ksh/star.png"); // 흰색 별 이미지 경로로 변경
+            }
+        });
+    });
+
+    // 마우스 아웃 이벤트
+    $(".star-rating .star").mouseout(function() {
+        var rating = $("#mr_grade").val();
+
+        // 별점 이미지 원래 상태로 복원
+        $(".star-rating .star img").each(function() {
+            if ($(this).parent().data("value") <= rating) {
+                $(this).attr("src", "../images/ksh/star_yellow.png"); // 노란 별 이미지 경로로 변경
+            } else {
+                $(this).attr("src", "../images/ksh/star.png"); // 흰색 별 이미지 경로로 변경
             }
         });
     });
@@ -16,6 +46,12 @@ $(document).ready(function() {
     // 리뷰 작성 폼 제출 이벤트
     $("#mr_form").submit(function(event) {
         event.preventDefault();
+        
+        var rating = $("#mr_grade").val();
+        if (rating === "" || rating === null) {
+            alert("별점을 선택해 주세요");
+            return false;
+        }
         
         if ($('#mr_content').val().trim() == '') {
             alert('내용을 입력하세요');
@@ -26,7 +62,7 @@ $(document).ready(function() {
         var formData = $(this).serialize();
         $.ajax({
             type: "POST",
-            url: "/movie/writeReview",
+            url: "writeReview", // 절대 경로 대신 상대 경로 사용
             data: formData,
             success: function(response) {
                 if (response === "success") {
@@ -60,7 +96,7 @@ $(document).ready(function() {
         var m_code = $("#m_code").val();
         $.ajax({
             type: "GET",
-            url: "/movie/reviews",
+            url: "reviews", // 절대 경로 대신 상대 경로 사용
             data: { m_code: m_code, order: order },
             success: function(data) {
                 $("#review_list").html(data);
@@ -95,6 +131,4 @@ $(document).ready(function() {
             }
         }
     });
-    
-    
 });

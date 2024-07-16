@@ -73,19 +73,19 @@
 <div class="menu-title">평점/리뷰</div>
 <div class="grade-review">
     <div class="star-rating">
-        <span class="star" data-value="1"><img src="<c:url value='/images/ksh/star.png' />"></span>
-        <span class="star" data-value="2"><img src="<c:url value='/images/ksh/star.png' />"></span>
-        <span class="star" data-value="3"><img src="<c:url value='/images/ksh/star.png' />"></span>
-        <span class="star" data-value="4"><img src="<c:url value='/images/ksh/star.png' />"></span>
-        <span class="star" data-value="5"><img src="<c:url value='/images/ksh/star.png' />"></span>
-    </div>
+    <span class="star" data-value="1"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+    <span class="star" data-value="2"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+    <span class="star" data-value="3"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+    <span class="star" data-value="4"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+    <span class="star" data-value="5"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+</div>									
     <div class="review-choice">별점을 선택해주세요</div>
     <div id="review_div">
         <!-- 댓글 작성 폼 -->
         <form id="mr_form">
             <input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
             <input type="hidden" name="mb_num" value="${booking != null ? booking.mb_num : 0}" id="mb_num">
-            <input type="hidden" name="mr_grade" id="mr_grade" value="0"> <!-- 별점 값 저장 -->
+            <input type="hidden" name="mr_grade" id="mr_grade"> <!-- 별점 값 저장 -->
             <c:if test="${!empty booking}">
                 <p>예매 번호: ${booking.mb_num}</p>
             </c:if>
@@ -123,4 +123,5 @@
 </div>
 <div class="paging-button" style="display:none;">
     <input type="button" value="더보기">
+</div>
 </div>
