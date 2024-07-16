@@ -189,6 +189,7 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 	font-size:14px;
 }
 
+
 .title {
     align-self: flex-start;
 }
@@ -199,15 +200,16 @@ div.cell-content > div.likes, div.cell-content > div.writer{
     top: 50%;
     transform: translateY(-50%);
 }
-.likes span:not(:last-child){
+.view-likes span:not(:last-child), .likes span:not(:last-child){
 	margin:0 8px 0 0.5px;
-	font-size:15px;
+	font-size:16px;
 }
 
 .writer {
     align-self: flex-start;
     display:flex;
     align-items:center;
+    gap:7px;
 }
 .page-count{
 	width:100%;
@@ -405,8 +407,23 @@ img#output_fav{
 	cursor:pointer;
 }
 
+.hit-comment, .like-report{
+	gap:2px;
+}
+.hit-comment span{
+	margin-right:2px;
+}
+
+
+
+
+
+
+
+
+
 /*커뮤니티 답글*/
-.resp-container:not(:last-child){
+.resp-container-all:not(:last-child){
 	margin-bottom:35px;	
 }
 
@@ -561,6 +578,8 @@ textarea.mcc-content {
 }
 .resp-item-main{
 	font-size:14px;
+	display:flex;
+	
 }
 .resp-modify-date{
 	font-size:13px;
@@ -658,6 +677,7 @@ img.item-img{
 }
 .assign-likes{
 	margin-bottom:15px;
+	align-items: flex-end;
 }
 .assign-likes span, .assign-report a{
 	color:#808080;
@@ -716,6 +736,10 @@ ul.status-df li.font14 label{
 .assign-comment{
 	margin:10px 30px;
 }
+.ass-detail-icon > div > img{
+	margin-right:2px;
+}
+
 
 /*assignWrite 양도/교환*/
 .item-label{

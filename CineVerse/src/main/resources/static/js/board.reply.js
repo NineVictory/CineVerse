@@ -37,6 +37,7 @@ $(function() {
 					if (index > 0) {
 						$('#output').append('<hr size="1" width="100%" class="comment-hr">'); // 다음 댓글부터는 수평선 추가
 					}
+				
 
 					let output = '<div class="cc-all-container">';
 					output += '<div class="flexbox-p comment-container">';
@@ -46,10 +47,13 @@ $(function() {
 					output += '<div class="flexbox-h side writer-btns">';
 					output += '<div class="flexbox-h cc-writer-info">';
 					output += '<img src="../myPage/viewProfile?mem_num=' + item.mem_num + '" width="30" height="30" class="my-photo">';
+					let name = '';
 					if (item.mem_nickname) {
 						output += item.mem_nickname;
+						name = item.mem_nickname;
 					} else {
 						output += item.mem_id;
+						name = item.mem_id;
 					}
 					output += '</div>';
 					if (param.user_num === item.mem_num) {
@@ -57,7 +61,7 @@ $(function() {
 						output += '<div class="cc-btn">';
 						output += '<span class="cc-cbtn"><img class="menu-img" src="../images/kbm/menu.png" height="18"></span>';
 						output += '<ul class="cc-btn-hide">';
-						output += '<li><a href="" class="cc-modify-btn" data-num="' + item.cc_num + '" data-memnum="' + item.mem_num + '">수정</a></li>';
+						output += '<li><a href="" class="cc-modify-btn" data-num="' + item.cc_num + '" data-memnum="' + item.mem_num + '" data-name="' +name+ '">수정</a></li>';
 						output += '<li><a href="" class="cc-delete-btn" data-num="' + item.cc_num + '">삭제</a></li>';
 						output += '</ul>';
 						output += '</div>';
@@ -208,8 +212,9 @@ $(function() {
 		//댓글 내용
 		let cc_content = $(this).closest('.comment-container').find('.cc-content').html().replace(/<br>/gi, '\r\n');
 		let mem_num = $(this).attr('data-memnum');
-		let name = $(this).attr('name');
-		let modifyUI = '<div class="flexbox-p mcc-container">';
+		let name = $(this).attr('data-name');
+		let modifyUI = '';
+	/*	modifyUI += '	<div class="flexbox-p mcc-container">';
 		modifyUI += '		<div>';
 
 		modifyUI += '        <div class="flexbox-h side writer-btns">';
@@ -217,8 +222,8 @@ $(function() {
 		modifyUI += '					<img src="../myPage/viewProfile?mem_num=' + mem_num + '" width="30" height="30" class="my-photo">';
 		modifyUI += '					<span>' + name + '</span>';
 		modifyUI += '				</div>';
-		modifyUI += '		</div>';
-		modifyUI += '		<div>';
+		modifyUI += '		</div>';*/
+		modifyUI += '		<div class="mcc-form-container">';
 		modifyUI += '			<form id="mcc_form">';
 		modifyUI += '  				<input type="hidden" name="cc_num" id="mcc_num" value="' + cc_num + '">';
 		modifyUI += '   			<div class="text-con"><textarea name="cc_content" id="mcc_content" class="mcc-content">' + cc_content + '</textarea></div>';
@@ -227,8 +232,8 @@ $(function() {
 		modifyUI += '					<input type="button" class="cc-reset" value="취소">';
 		modifyUI += '				</div>';
 		modifyUI += '			</form>';
-		modifyUI += '		</div>';
-		modifyUI += '     </div>';
+/*		modifyUI += '		</div>';
+		modifyUI += '     </div>';*/
 		modifyUI += '<hr size="1" width="100%" class="comment-hr">';
 		modifyUI += '  </div>';
 
@@ -238,11 +243,17 @@ $(function() {
 		initModifyForm();
 		//지금 클릭해서 수정하고자 하는 데이터는 감추기
 		//(수정버튼을 감싸고 있는 div)
-		$(this).closest('.comment-container').hide();
+/*		$(this).closest('.comment-container').hide();
 		$(this).closest('.cc-all-container').find('.response-btn').hide();
+		$(this).closest('.cc-all-container').find('.response-container').show();*/
+		$(this).closest('.comment-container').find('.cc-content').hide();
+		$(this).closest('.comment-container').find('.cc-modify-date').hide();
+		$(this).closest('.comment-container').find('.cc-btn').hide();
+		$(this).closest('.comment-container').find('.response-btn').hide();
+		$(this).closest('.comment-container').find('.cc-like-btn').hide();
 
 		//수정폼을 수정하고자하는 데이터가 있는 div에 노출
-		$(this).closest('.cc-all-container').append(modifyUI);
+		$(this).closest('.comment-container').find('.sub-item').prepend(modifyUI);
 
 	});
 
@@ -254,9 +265,16 @@ $(function() {
 
 	//댓글 수정 폼 초기화
 	function initModifyForm() {
-		$('.comment-container').show();
+/*		$('.comment-container').show();
 		$('.mcc-container').remove();
+		$('.response-btn').show();*/
+		
+		$('.cc-content').show();
+		$('.cc-modify-date').show();
+		$('.cc-btn').show();
 		$('.response-btn').show();
+		$('.cc-like-btn').show();
+		$('.mcc-form-container').remove();
 	}
 
 	//댓글 수정
@@ -284,6 +302,9 @@ $(function() {
 				} else if (param.result == 'success') {
 					let updatedContent = form.find('#mcc_content').val();
 					form.closest('.cc-all-container').find('.cc-content').html(updatedContent.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>'));
+					//등록일->수정일
+					this.closest('.cc-all-container').find('.cc-modify-date').html(param.cc_modify_date);
+					
 					//수정폼 초기화
 					initModifyForm();
 				} else if (param.result == 'wrongAccess') {
@@ -320,7 +341,7 @@ $(function() {
 					if (param.result == 'logout') {
 						alert('로그인해야 삭제할 수 있습니다.');
 					} else if (param.result == 'success') {
-						alert('댓글 삭제 완료');
+						alert('댓글이 삭제되었습니다.');
 						selectList(1);
 					} else if (param.result == 'wrongAccess') {
 						alert('타인의 글을 삭제할 수 없습니다.');
@@ -367,13 +388,18 @@ $(function() {
 			}
 		});
 	});
+	
+
+	
+/*-------------------------------------답글--------------------------------------------------------------------------------------------------- */
+
 
 
 	/* ========================================================================
 	 * 답글 등록
 	 * ======================================================================== */
-	//답글 작성 버튼 클릭시 답글 작성 폼 노출
-	$(document).on('click', '.response-btn,.response2-btn', function() {
+	//댓글의 답글 작성 버튼 클릭시 답글 작성 폼 노출
+	$(document).on('click', '.response-btn', function() {
 		var that = $(this);
 
 		$.ajax({
@@ -433,17 +459,83 @@ $(function() {
 			}
 		});
 	});
+	
+	
+	//답글의 답글 작성 버튼 클릭시 답글 작성 폼 노출
+	$(document).on('click', '.response2-btn', function() {
+		var that = $(this);
+
+		$.ajax({
+			url: 'responseLoginCheck',
+			type: 'get',
+			dataType: 'json',
+			success: function(param) {
+				if (param.result == 'logout') {
+					alert('로그인 후 답글 작성 가능합니다.');
+				} else if (param.result = 'success') {
+					var isOpen = that.hasClass('clicked-resp-btn');
+
+					//모든 폼을 초기화
+					initResponseForm();
+					
+					
+					//클릭하면 답글 작성 버튼 배경색 추가, 답글 작성 폼 노출
+					if (!isOpen) {
+						// 클릭된 버튼이 아닌 경우
+						that.addClass('clicked-resp-btn');
+
+						//댓글 글번호
+						let cc_num = that.attr('data-num');
+						//부모 글번호
+						let te_parent_num = that.attr('data-parent');
+						let user_num = param.user_num;
+						let name = param.name;
+						//깊이
+						let te_depth = that.attr('data-depth');
+						console.log(cc_num + ', ' + te_parent_num);
+						console.log(te_parent_num + ',' + te_depth);
+						//답글 작성 폼 UI
+						let responseUI = '<form id="resp_form">';
+						responseUI += '<input type="hidden" name="cc_num" id="resp_num" value="' + cc_num + '">';
+						responseUI += '<input type="hidden" name="te_parent_num" value="' + te_parent_num + '">';
+						responseUI += '<input type="hidden" name="te_depth" value="' + te_depth + '">';
+						responseUI += '<div class="flexbox-h cc-writer-info">';
+						responseUI += '<img src="../myPage/viewProfile?mem_num=' + user_num + '" width="30" height="30" class="my-photo">';
+						responseUI += '<span>' + name + '</span>';
+						responseUI += '</div>';
+						responseUI += '<textarea name="te_content" id="resp_content" class="rep-content"></textarea>';
+						responseUI += '<div id="resp_second" class="align-right">';
+						responseUI += ' <input type="submit" value="등록">';
+						responseUI += ' <input type="button" value="취소" class="resp-reset">';
+						responseUI += '</div>';
+						responseUI += '</form>';
+
+						//답글 작성폼을 답글을 작성하고자는 데이터가 있는 div에 노출
+						that.closest('.resp-container-all').after(responseUI);
+
+					}
+
+				} else {
+					alert('답글 등록 로그인체크 오류');
+				}
+			},
+			error: function() {
+				alert('네트워크 발생 오류');
+			}
+		});
+	});
+	
 
 	// 답글 취소 버튼 클릭시 답글 폼 초기화
 	$(document).on('click', '.resp-reset', function() {
 		initResponseForm();
 	})
 
-	// 답글 작성 폼 초기화 하기
+	/*// 답글 작성 폼 초기화 하기
 	function initResponseForm() {
 		$('.response-btn,.response2-btn').show();
 		$('#resp_form').remove();
-	}
+	}*/
 
 	//답글 등록
 	$(document).on('submit', '#resp_form', function(event) {
@@ -531,24 +623,29 @@ $(function() {
 					let output = '';
 
 					// respitem 시작
+					
+					output += '<div class="resp-container-all">';
 					output += '<div class="resp-container">';
 					output += '<div class="respitem">';
 					output += '<div class="resp-detail-info">';
 					output += '<img src="../myPage/viewProfile?mem_num=' + item.mem_num + '" width="30" height="30" class="my-photo">';
+					let name = '';
 					if (item.mem_nickname) {
 						output += item.mem_nickname;
+						name = item.mem_nickname;
 					} else {
 						output += item.mem_id;
+						name = item.mem_id;
 					}
 					output += '</div>';
 
 					// 답글 수정/삭제 버튼
 					if (param.user_num == item.mem_num) {
-						output += '<div class="cc-btn">';
+						output += '<div class="cc-btn mhide">';
 						output += '<span class="cc-cbtn"><img class="menu-img" src="../images/kbm/menu.png" height="18"></span>';
 						output += '<ul class="cc-btn-hide">';
-						output += '<li><a href="" class="resp-modify-btn" data-num="' + item.te_num + '">수정</a></li>'; // 수정 버튼 데이터 수정
-						output += '<li><a href="" class="cc-delete-btn" data-num="' + item.te_num + '">삭제</a></li>'; // 삭제 버튼 데이터 수정
+						output += '<li><a href="" class="resp-modify-btn" data-num="' + item.te_num + '" data-memnum="' +item.mem_num+ '" data-name="' +name+ '">수정</a></li>'; // 수정 버튼 데이터 수정
+						output += '<li><a href="" class="resp-delete-btn" data-num="' + item.te_num + '" data-rnum="'+item.cc_num+'" data-mem="'+item.mem_num+'" >삭제</a></li>'; // 삭제 버튼 데이터 수정
 						output += '</ul>';
 						output += '</div>';
 					}
@@ -557,31 +654,31 @@ $(function() {
 
 					// 답글 내용과 작성일 출력
 					output += '<div class="resp-sub-item">';
-					output += '<div class="resp-item-main">';
+					output += '<div class="resp-item-main mhide">';
 					
 					if(item.te_parent_num>0){
                   		if(item.pnick_name){
-                     		output += '<b>@' +item.pnick_name + ' </b>';
+                     		output += '<b>@' +item.pnick_name + ' &nbsp;</b>';
                   		}else{
-                     		output += '<b>' +item.parent_id + ' </b>';
+                     		output += '<b>@' +item.parent_id + ' &nbsp;</b>';
                   		}
                		}	
-					output += item.te_content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+					output += '<span class="te-content mhide">'+item.te_content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
 					output += '</div>';
 					output += '<div>';
 					if (item.te_mdate) {
-						output += '<span class="resp-modify-date">수정일 ' + item.te_mdate + '</span>'; // 수정일 데이터 수정
+						output += '<span class="resp-modify-date mhide">수정일 ' + item.te_mdate + '</span>'; // 수정일 데이터 수정
 					} else {
-						output += '<span class="resp-modify-date">' + item.te_date + '</span>'; // 작성일 데이터 수정
+						output += '<span class="resp-modify-date mhide">' + item.te_date + '</span>'; // 작성일 데이터 수정
 					}
 					output += '</div>';
 					output += '</div>'; // resp-sub-item 닫기
 
 					// 답글 작성 버튼 및 좋아요 버튼 출력
-					output += '<div class="flexbox-h side">';
-					if (param.user_num) {
-						output += '<div><input type="button" data-num="' + item.te_num + '" data-parent="' + item.te_parent_num + '" data-depth="' + (item.te_depth + 1) + '" value="답글" class="response-btn"></div>'; // 답글 작성 버튼 데이터 수정
-					}
+					output += '<div class="flexbox-h side mhide">';
+					/*if (param.user_num) {*/
+						output += '<div><input type="button" data-num="' + item.cc_num + '" data-parent="' + item.te_num + '" data-depth="' + (item.te_depth + 1) + '" value="답글" class="response2-btn"></div>'; // 답글 작성 버튼 데이터 수정
+					
 
 					if (item.click_num == 0 || param.user_num !== item.click_num) {
 						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-rfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
@@ -592,6 +689,7 @@ $(function() {
 
 					output += '</div>'; // respitem 닫기
 					output += '</div>';
+					output += '</div>';
 
 					responseContainer.append(output);
 				});
@@ -601,6 +699,154 @@ $(function() {
 			}
 		});
 	}
+	
+	/* ========================================================================
+	 * 답글 수정
+	 * ======================================================================== */	
+	//답글 수정 버튼 클릭시 수정폼 노출
+	$(document).on('click','.resp-modify-btn',function(){
+		event.preventDefault();
+		//답글 번호
+		let te_num = $(this).attr('data-num');
+		//답글 내용
+		let content = $(this).parents('.resp-container').find('.te-content').html().replace(/<br>/gi,'\r\n');
+		//답글 작성자 번호
+		let mem_num = $(this).attr('data-memnum');
+		//작성자 아이디 또는 닉네임
+		let name = $(this).attr('data-name');
+		//답글 수정 폼 UI
+		let responseUI = '';
+/*			responseUI += '<div class="mresp-form-container">';
+			responseUI += '	<div class="">';
+			responseUI += '		<img src="../myPage/viewProfile?mem_num=' +mem_num+ '" width="30" height="30" class="my-photo">';
+			responseUI += '		<span>' +name+ '</span>';
+			responseUI += '	</div>';*/
+			responseUI += '	<div class="mresp-form-container">';
+			responseUI += '		<form id="mresp_form">'
+			responseUI += '  		 <input type="hidden" name="te_num" id="mresp_num" value="'+te_num+'">';
+			responseUI += '  		 <textarea rows="3" cols="50" name="te_content" id="mresp_content" class="rep-content">'+content+'</textarea>';			      
+			responseUI += '   		<div id="mresp_second" class="align-right">';
+			responseUI += '     		 <input type="submit" value="수정">';
+			responseUI += '    			  <input type="button" value="취소" class="mresp-reset">';
+			responseUI += '  		 </div>';
+			responseUI += '		</form>';
+			responseUI += '	</div>';
+			responseUI += '</div>';
+		
+		//이전에 이미 수정하는 답글이 있을 경우 수정버튼을 클릭하면
+		//숨김 resp-sub-item를 환원시키고 수정폼을 초기화함
+		initResponseModifyForm();
+		//지금 클릭해서 수정하고 하는 데이터는 감추기
+		$(this).closest('.resp-container').find('.mhide').hide();
+		
+		//수정폼을 수정하고자하는 데이터가 있는 div에 노출
+		$(this).parents('.resp-container').find('.resp-sub-item').append(responseUI);
+		
+
+	});
+	//답글 수정 폼 초기화
+	function initResponseModifyForm(){
+		$('.mhide').show();
+		$('.mresp-form-container').remove();
+	}
+	//답글 수정 취소 버튼 클릭시 답글 폼 초기화
+	$(document).on('click','.mresp-reset',function(){
+		initResponseModifyForm();
+	});
+	
+	//답글 수정
+	$(document).on('submit','#mresp_form',function(event){
+		if($('#mresp_content').val().trim()==''){
+			alert('내용을 입력하세요');
+			$('#mresp_content').val('').focus();
+			return false;
+		}
+		//폼에 입력한 데이터 반환
+		let form_data = $(this).serialize();
+		
+		//서버와 통신
+		$.ajax({
+			url:'updateResponse',
+			type:'post',
+			data:form_data,
+			dataType:'json',
+			success:function(param){
+				if(param.result=='logout'){
+					alert('로그인해야 수정할 수 있습니다.');
+				}else if(param.result=='success'){
+                    $('#mresp_form').closest('.resp-container').find('.te-content')
+				      .html($('#mresp_content').val()
+				          .replace(/</g,'&lt;')
+				          .replace(/>/g,'&gt;')
+				          .replace(/\r\n/g,'<br>')
+				          .replace(/\r/g,'<br>')
+				          .replace(/\n/g,'<br>'));
+					//수정일
+					$('#mresp_form').closest('.resp-container').find('.resp-modify-date').html(param.resp_modify_date);
+
+					//수정 폼 초기화
+					initResponseModifyForm();                        
+				}else if(param.result=='wrongAccess'){
+					alert('타인의 글은 수정할 수 없습니다.');
+				}else{
+					alert('답글 수정 오류 발생');
+				}
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
+		});
+		//기본 이벤트 제거
+		event.preventDefault();
+	});
+	
+	
+	/* ========================================================================
+	 * 답글 삭제
+	 * ======================================================================== */		
+	$(document).on('click','.resp-delete-btn',function(){
+		let resdelete_btn = $(this);
+		//댓글 번호
+		let cc_num = $(this).attr('data-rnum');
+		//답글 번호
+		let te_num = $(this).attr('data-num');
+		//작성자 회원번호
+		let mem_num = $(this).attr('data-mem');
+		
+		let check = confirm('댓글을 삭제하시겠습니까?');
+
+		if(check){
+			//서버와 통신
+			$.ajax({
+				url:'deleteResponse',
+				type:'post',
+				data:{te_num:te_num,mem_num:mem_num},
+				dataType:'json',
+				success:function(param){
+					if(param.result=='logout'){
+						alert('로그인해야 삭제할 수 있습니다.');
+					}else if(param.result=='success'){
+						alert('댓글이 삭제되었습니다.');
+						
+						if(param.cnt>0){
+							getListResponse(cc_num,	resdelete_btn.closest('.cc-all-container').find('.response-container'));
+						}else{
+							resdelete_btn.closest('.cc-all-container').find('.response-container').hide();            
+						}             
+					}else if(param.result=='wrongAccess'){
+						alert('타인의 글을 삭제할 수 없습니다.');
+					}else{
+						alert('답글 삭제 오류 발생');
+					}
+				},
+				error:function(){
+					alert('네트워크 오류 발생');
+				}
+			});
+		}
+	});
+	
+	
 
 
 	/* ========================================================================

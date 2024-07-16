@@ -57,8 +57,12 @@ $(function(){
 		//문서 객체에 추가
 		$('#output_fav').attr('src',output);
 		$('#output_fcount').text(param.count);
-	}/*공통호출*/
+	}
 	
+		
+	/*공통호출*/
 	//초기 데이터 표시
 	selectFav($('#output_fav').attr('data-num'));
+	
+	
 });

@@ -55,7 +55,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteBoard(Long cb_num) {
 		//답글 삭제
-		//boardMepper.deleteResponseByBoardNum(cb_num);
+		boardMapper.deleteResponseByBoardNum(cb_num);
 		//댓글 좋아요 삭제
 		boardMapper.deleteReFavByBoardNum(cb_num);
 		//댓글 삭제
@@ -120,7 +120,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteComment(Long cc_num) {
 		//답글
-		//boardMapper.deleteResponseByReNum(cc_num);
+		boardMapper.deleteResponseByReNum(cc_num);
 		//댓글 좋아요
 		boardMapper.deleteReFavByReNum(cc_num);
 		boardMapper.deleteComment(cc_num);

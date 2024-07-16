@@ -7,8 +7,8 @@
 <!-- 게시판 글상세 시작 -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
-<script src="${pageContext.request.contextPath}/js/board.fav.js"></script>
-<script src="${pageContext.request.contextPath}/js/assignboard.bookmark.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>
+ --%><script src="${pageContext.request.contextPath}/js/assignboard.bookmark.js"></script>
 
 <div class="page-container page-main">
 	<div class="boardview-main">
@@ -114,13 +114,13 @@
 						<span class="assign-price"><b><fmt:formatNumber value="${assign.ab_price}" type="number"/></b>원</span>
 						<hr size="1" width="100%" class="middle-hr">
 						<div class="flexbox-h side assign-likes">
-							<div class="">
-								<div>
-								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-								<span class="output-fcount"></span><%-- 북마크 --%>
+							<div class="ass-detail-icon">
+								<div class="p-center">
+								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" id="ass_view_like_img">
+								<span class="output-fcount"></span><%-- 찜 --%>
 								&nbsp;&nbsp;
 								
-								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
+								<img src="${pageContext.request.contextPath}/images/kbm/hit.png" width="18px;">
 								<span>${assign.ab_hit}</span><%-- 조회수 --%>
 								&nbsp;&nbsp;
 								<span class="ab-status">
@@ -136,8 +136,8 @@
 								</span>
 								</div>
 							</div>
-							<div class="assign-report">
-								<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15" height="15"><span style="margin-left:2px;" id="board-report"><a href="#">신고하기</a></span>
+							<div class="assign-report p-center">
+								<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15"><span style="margin-left:2px;" id="board-report"><a href="#">신고하기</a></span>
 							</div>
 						</div>
 						<div>

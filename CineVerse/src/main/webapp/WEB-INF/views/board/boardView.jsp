@@ -32,16 +32,20 @@
 		
 		<div class="flexbox-h side">
 			<h3>${board.cb_title}</h3>
-			<div>
-				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="12" height="12"><span style="margin-left:2px;" id="board-report">신고</span>
+			<div class="p-center hit-comment">
+				<img src="${pageContext.request.contextPath}/images/kbm/hit.png" width="18">
+				<span>${board.cb_hit}</span>
 				
+				<img src="${pageContext.request.contextPath}/images/kbm/comment.png" width="18">
+				<span class="output-rcount">0</span>
 			</div>
 		</div>			
 					
 					
 		<div class="flexbox-h side">
 			<div class="writer ml10">
-				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="20" height="20" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp;&nbsp;<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">
+				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="22" height="22" class="my-photo">&nbsp;${board.mem_id}
+				<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">
 			</div>
 			<div>
 				<c:if test="${board.mem_num == user.mem_num}">
@@ -86,17 +90,14 @@
 		
 		<div class="flexbox-h side">
 			<span class="ml10">댓글(<span class="output-rcount">0</span>)</span>
-			<div class="likes">
-				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-				<span>${board.cb_hit}</span>
+			<div class="view-likes p-center like-report">
+		
+				<img id="output_fav" data-num="${board.cb_num}" src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15">
+				<span id="output_fcount">0</span>
+					
+				<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15">
+				<span style="margin-left:2px;" id="board-report">신고</span>
 				
-				<%-- 댓글수 --%>
-				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-				<span class="output-rcount">0</span>
-				
-				<%-- 좋아요 --%>
-					<img id="output_fav" data-num="${board.cb_num}" src="${pageContext.request.contextPath}/images/kbm/heart01.png">
-					<span id="output_fcount">0</span>
 			</div>
 		</div>
 		<hr size="1" width="100%">

@@ -217,6 +217,7 @@ public class BoardAjaxController {
 			boardCommentVO.setCc_ip(request.getRemoteAddr());
 			//댓글 수정
 			boardService.updateComment(boardCommentVO);
+			mapJson.put("cc_modify_date",boardService.selectComment(boardCommentVO.getCc_num()).getCc_modify_date());
 			mapJson.put("result", "success");
 		}else {
 			//로그인 회원번호와 작성자 회원번호 불일치
@@ -395,7 +396,7 @@ public class BoardAjaxController {
 	/*====================
 	 * 답글 수정
 	 =====================*/
-	/*@PostMapping("/board/updateResponse")
+	@PostMapping("/board/updateResponse")
 	@ResponseBody
 	public Map<String,String> modifyResponse(BoardResponseVO boardResponseVO, HttpSession session, HttpServletRequest request){
 		log.debug("<<답글 수정>> : " + boardResponseVO);
@@ -413,20 +414,21 @@ public class BoardAjaxController {
 			boardResponseVO.setTe_ip(request.getRemoteAddr());
 			//답글 수정
 			boardService.updateResponse(boardResponseVO);
+			mapJson.put("resp_modify_date",boardService.selectResponse(boardResponseVO.getTe_num()).getTe_mdate());
 			mapJson.put("result", "success");
 		}else {
 			//로그인 회원번호와 작성자 회원번호 불일치
 			mapJson.put("result", "wrongAccess");
 		}
 		return mapJson;
-	}*/
+	}
 	
 	/*====================
 	 * 답글 삭제
 	 =====================*/
-	/*@PostMapping("/board/deleteResponse")
+	@PostMapping("/board/deleteResponse")
 	@ResponseBody
-	public Map<String,Object> deleteResponse(long te_num, int mem_num, HttpSession session){
+	public Map<String,Object> deleteResponse(long te_num, long mem_num, HttpSession session){
 		log.debug("<<답글 삭제 - te_num>> : " + te_num);
 		log.debug("<<답글 삭제 - mem_num>> : " + mem_num);
 		
@@ -441,7 +443,7 @@ public class BoardAjaxController {
 			BoardResponseVO response = boardService.selectResponse(te_num);
 			//답글 삭제
 			boardService.deleteResponse(te_num);
-			int cnt = boardService.selectResponseCount(response.getcc_num());
+			int cnt = boardService.selectResponseCount(response.getCc_num());
 			log.debug("<<답글 삭제 후 나머지 답글 개수>> : " + cnt);
 			
 			mapJson.put("cnt", cnt);
@@ -451,6 +453,6 @@ public class BoardAjaxController {
 			mapJson.put("result", "wrongAccess");
 		}
 		return mapJson;
-	}*/
+	}
 	
 }

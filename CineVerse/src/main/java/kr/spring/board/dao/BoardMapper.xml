@@ -107,7 +107,7 @@
         				 	LEFT OUTER JOIN (SELECT cc_num, mem_num click_num FROM community_comment_fav WHERE mem_num=#{mem_num}) USING(cc_num)
         					LEFT OUTER JOIN (SELECT cc_num, COUNT(*) refav_cnt FROM community_comment_fav GROUP BY cc_num) USING(cc_num)
          					LEFT OUTER JOIN (SELECT cc_num, COUNT(*) resp_cnt FROM community_response GROUP BY cc_num) USING(cc_num)
-        					WHERE cb_num=#{cb_num} ORDER BY cc_num DESC)a)
+        					WHERE cb_num=#{cb_num} ORDER BY cc_num ASC)a)
       <![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>
 	</select>
 	
@@ -161,9 +161,11 @@
  		START WITH r.te_depth=0 CONNECT BY PRIOR r.te_num=r.te_parent_num ORDER SIBLINGS BY r.te_num DESC
  	</select>  -->
  	<select id="selectListResponse" parameterType="long" resultType="boardResponseVO">
-	SELECT r.te_num, r.te_content, r.mem_num, a.mem_id, b.mem_nickname,
+	SELECT 
+	r.te_num, r.te_content, r.mem_num, a.mem_id, b.mem_nickname,
 	r.te_date, r.te_ip, r.cc_num, r.te_depth, r.te_parent_num, n.mem_id
 	parent_id, m.mem_nickname pnick_name
+	
 	FROM community_response r
 	JOIN member a ON r.mem_num = a.mem_num
 	LEFT JOIN member_detail b ON r.mem_num = b.mem_num
@@ -171,10 +173,21 @@
 	LEFT JOIN member_detail m ON s.mem_num = m.mem_num
 	LEFT JOIN member n ON s.mem_num = n.mem_num
 	WHERE r.cc_num = #{cc_num}
+	
 	START WITH r.te_depth = 0
 	CONNECT BY PRIOR r.te_num = r.te_parent_num
 	ORDER SIBLINGS BY r.te_num ASC
  	</select> 
+ 	
+ 	<!-- 답글 삭제 -->
+ 	<delete id="deleteResponse" parameterType="long">
+ 		DELETE FROM community_response WHERE te_num IN (
+ 			SELECT te_num
+ 			FROM community_response
+ 			START WITH te_num=#{te_num}
+ 			CONNECT BY PRIOR te_num = te_parent_num
+ 		)
+ 	</delete>
 </mapper>							
 
 

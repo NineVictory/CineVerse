@@ -1,6 +1,11 @@
 $(function(){
 	let isLiked = false;
+	/*if($('.output-fcount').val() > 0){
+			$('#ass_view_like_img').attr('src', '../images/kbm/heart02.png');
+	}else{
+		$('#ass_view_like_img').attr('src', '../images/kbm/heart01.png');
 
+	}*/
 
 	/*--------------------------------------
 	 *	찜 읽기 (좋아요 선택 여부와 선택한 총개수 표시)
@@ -80,5 +85,4 @@ $(function(){
 	
 	//초기 데이터 표시
 	selectFav($('.likeBtn').attr('data-num'));
-	
 });
