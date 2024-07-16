@@ -849,11 +849,11 @@ textarea#ab_content{
 input#ab_title, textarea#ab_content, input#ab_price{
 	padding:10px;
 }
-.item-price input[type="number"]::-webkit-outer-spin-button,
+.item-price input#ab_price::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-.item-price input[type="number"]{
+.item-price input#ab_price{
 	width:300px;
 	height:40px;
 }

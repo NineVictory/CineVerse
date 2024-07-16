@@ -7,6 +7,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
+<script src="${pageContext.request.contextPath}/js/assign.img.upload2.js"></script>
 
 <script type="text/javascript">
 <%-- 	window.onload=function(){
@@ -121,9 +122,9 @@
 					<div>상품 이미지는 PC에서 1:1로 보여집니다.</div>
 					<form:errors path="ab_upload" cssClass="error-color"/>
 				</div>
-				<div>
-					사진 미리보기. 클릭시 삭제
-				</div>
+				
+				<div id="preview"></div>
+		
 			</div>
 			<div class="flexbox-h info-container border-bottom">
 				<div class="item-label p-start">
@@ -149,19 +150,19 @@
 				</div>
 				<div class="item-status-radio">
 					<div>
-					<form:radiobutton path="ab_item_status" value="0" checked="${assign.ab_item_status == 0}"/><span class="span1">새 상품(미사용)</span><span class="span2">사용하지 않은 새 상품</span>
+					<form:radiobutton path="ab_item_status" value="0"/><span class="span1">새 상품(미사용)</span><span class="span2">사용하지 않은 새 상품</span>
 					</div>
 					<div>
-					<form:radiobutton path="ab_item_status" value="1" checked="${assign.ab_item_status == 1}"/><span class="span1">사용감 없음</span><span class="span2">사용은 했지만 눈에 띄는 흔적이나 얼룩이 없음</span>
+					<form:radiobutton path="ab_item_status" value="1"/><span class="span1">사용감 없음</span><span class="span2">사용은 했지만 눈에 띄는 흔적이나 얼룩이 없음</span>
 					</div>
 					<div>
-					<form:radiobutton path="ab_item_status" value="2" checked="${assign.ab_item_status == 2}"/><span class="span1">사용감 적음</span><span class="span2">눈에 띄는 흔적이나 얼룩이 약간 있음</span>
+					<form:radiobutton path="ab_item_status" value="2"/><span class="span1">사용감 적음</span><span class="span2">눈에 띄는 흔적이나 얼룩이 약간 있음</span>
 					</div>
 					<div>
-					<form:radiobutton path="ab_item_status" value="3" checked="${assign.ab_item_status == 3}"/><span class="span1">사용감 많음</span><span class="span2">눈에 띄는 흔적이나 얼룩이 많이 있음</span>
+					<form:radiobutton path="ab_item_status" value="3"/><span class="span1">사용감 많음</span><span class="span2">눈에 띄는 흔적이나 얼룩이 많이 있음</span>
 					</div>
 					<div>
-					<form:radiobutton path="ab_item_status" value="4" checked="${assign.ab_item_status == 4}"/><span class="span1">고장/파손 상품</span><span class="span2">기능 이상이나 외관 손상 등으로 수리/수선 필요</span>
+					<form:radiobutton path="ab_item_status" value="4"/><span class="span1">고장/파손 상품</span><span class="span2">기능 이상이나 외관 손상 등으로 수리/수선 필요</span>
 					<form:errors path="ab_item_status" cssClass="error-color"/>
 					
 					</div>
@@ -173,7 +174,7 @@
 				</div>
 				<div class="flexbox-p">
 					<textarea name="ab_content" id="ab_content" placeholder="구매시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요.
-전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요.">${assign.ab_content}</textarea>
+전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요.">${assignVO.ab_content}</textarea>
 					<form:errors path="ab_content" cssClass="error-color"/>
 				</div>
 			</div>
@@ -191,8 +192,8 @@
 					<div style="position:relative" class="price-container">
 						<!-- <input type="number" name="ab_price" id="ab_price" placeholder="가격을 입력해주세요" value=""
 		   					 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -->
-						<input type="number" name="ab_price" id="ab_price" placeholder="가격을 입력해주세요" value=""
-		       				oninput="limitInputLength(this, 9);" min="0" max="999999999">
+						<form:input path="ab_price" placeholder="가격을 입력해주세요" value=""
+		       				oninput="limitInputLength(this, 9);" min="0" max="999999999"/>
 		       				<script type="text/javascript">
 			       				function limitInputLength(input, maxLength) {
 			       				    // 입력된 값에서 숫자와 소수점만 남기고 나머지는 제거합니다.
