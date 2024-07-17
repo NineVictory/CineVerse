@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.spring.movie.service.MovieDetailService;
 import kr.spring.movie.service.MovieRankService;
+import kr.spring.movie.vo.MovieDetailKFAPIVO;
 import kr.spring.movie.vo.MovieRankAPIVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 public class MovieAPIController {
     @Autowired
     private MovieRankService movieRankService;
+    
+    @Autowired
+    private MovieDetailService movieDetailService;
 
     // 매일 새벽 2시마다 자동 업데이트 되도록 설정해놨는데 업데이트가 안 되었다면 링크로 들어가면 업데이트 가능함
     @GetMapping("/movie/updateMovieRank")
@@ -27,23 +32,12 @@ public class MovieAPIController {
         movieRankService.updateMovieRank();
         return "영화 랭크가 업데이트되었습니다.";
     }
+    
+    @GetMapping("/movie/insertMovieDetail")
+    public String insertMovieDetail(MovieDetailKFAPIVO movieDetailKFAPIVO) {
+        log.debug("<< 영화 세부 정보 업데이트 >>");
+        movieDetailService.insertMovieDetail(movieDetailKFAPIVO);
+        return "영화 세부 정보 업데이트되었습니다.";
+    }
 
-	/*
-	 * @GetMapping("/movie/movieRanks") public String getMovieRanks(MovieRankAPIVO
-	 * movieRankAPIVO, Model model) { SimpleDateFormat DATE_FMT = new
-	 * SimpleDateFormat("yyyyMMdd"); Calendar cal = Calendar.getInstance();
-	 * cal.setTime(new Date()); cal.add(Calendar.DATE, -1);
-	 * 
-	 * String showrange =
-	 * DATE_FMT.format(cal.getTime())+"~"+DATE_FMT.format(cal.getTime());
-	 * 
-	 * Integer count = movieRankService.getMovieRankCnt(showrange);
-	 * List<MovieRankAPIVO> movieRankList =
-	 * movieRankService.getMovieRank(showrange);
-	 * 
-	 * model.addAttribute("count", count); model.addAttribute("movieRankList",
-	 * movieRankList);
-	 * 
-	 * return "main"; }
-	 */
 }

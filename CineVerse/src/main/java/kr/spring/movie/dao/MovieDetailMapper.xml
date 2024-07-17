@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.movie.dao.MovieDetailMapper">
+<insert id="insertMovieDetail" parameterType="movieDetailKFAPIVO">
+INSERT INTO movie_detail_kf_api (
+        DOCID,
+        movieSeq,
+        title,
+        titleOrg,
+        directorNm,
+        actorNm,
+        nation,
+        company,
+        plot,
+        runtime,
+        rating,
+        genre,
+        keywords, 
+        repRlsDate,
+        posters
+    ) VALUES (
+        #{DOCID, jdbcType=VARCHAR},
+        #{movieSeq, jdbcType=VARCHAR},
+        #{title, jdbcType=VARCHAR},
+        #{titleOrg, jdbcType=VARCHAR},
+        #{directorNm, jdbcType=VARCHAR},
+        #{actorNm, jdbcType=VARCHAR},
+        #{nation, jdbcType=VARCHAR},
+        #{company, jdbcType=VARCHAR},
+        #{plot, jdbcType=VARCHAR},
+        #{runtime, jdbcType=VARCHAR},
+        #{rating, jdbcType=VARCHAR},
+        #{genre, jdbcType=VARCHAR},
+        #{keywords, jdbcType=VARCHAR},
+        #{repRlsDate, jdbcType=VARCHAR},
+        #{posters, jdbcType=VARCHAR}
+    )
+</insert>
+
+</mapper>							
+
+
+
+
+
+
