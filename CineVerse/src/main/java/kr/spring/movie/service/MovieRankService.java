@@ -5,9 +5,11 @@ import java.util.List;
 import kr.spring.movie.vo.MovieRankAPIVO;
 
 public interface MovieRankService {
-    void insertMovieRank(MovieRankAPIVO movieRankAPI);
+    public void insertMovieRank(MovieRankAPIVO movieRankAPI);
 
-    List<MovieRankAPIVO> getMovieRank();
+   public List<MovieRankAPIVO> getMovieRank(String showrange);
     
-    void updateMovieRank();
+   public void updateMovieRank();
+   
+   public Integer getMovieRankCnt(String showrange);
 }

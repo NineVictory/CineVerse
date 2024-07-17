@@ -11,10 +11,6 @@
 		#{salesAmt}, #{salesAcc}, #{audiCnt}, #{audiAcc})
 	</insert>
 
-	<select id="getMovieRank"
-		resultType="movieRankAPIVO">
-		SELECT * FROM movie_rank_api
-	</select>
 </mapper>							
 
 
