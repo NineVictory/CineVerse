@@ -9,9 +9,8 @@
 	<div class="reservation_display">
 		<span class="myPage_title_re">배송지 관리</span>
 	</div>
-	<form:form
-		action="${pageContext.request.contextPath}/myPage/addressList"
-		id="member_modify" modelAttribute="address" method="post">
+	<form:form action="addressList" id="member_modify"
+		modelAttribute="addressVO" method="post">
 		<div class="login_form_inputs_my">
 			<div class="login_form_all_my">
 				<div class="login_form_inputs_id_passwd_my"
@@ -21,22 +20,6 @@
 					X
 				</div>
 			</div>
-			<script>
-				document.addEventListener("DOMContentLoaded",
-								function() {
-									const radios = document.getElementsByName('a_default');
-									let isChecked = false;
-									for (let i = 0; i < radios.length; i++) {
-										if (radios[i].checked) {
-											isChecked = true;
-											break;
-										}
-									}
-									if (!isChecked) {
-										document.querySelector('input[name="a_default"][value="2"]').checked = true;
-									}
-								});
-			</script>
 			<div class="login_form_all_my">
 				<div class="login_form_inputs_id_passwd_my">
 					<form:input path="a_name" placeholder="배송지 이름을 입력해주세요"
@@ -88,44 +71,66 @@
 		<c:if test="${count >= 1}">
 			<c:forEach var="a" items="${addressList}">
 				<c:if test="${a.a_status == 1}">
-				<c:if test="${a.a_default == 1}">
-					<!-- 기본 주소 -->
-					<div class="my_address_del_modi">
-						<div class="my_address_info">
-							<div class="myPage_address">
-								<span class="my_address_1">${a.a_address1}</span> <span
-									class="my_address_2">${a.a_address2}</span> <span
-									class="my_address_number">(${a.a_zipcode})</span>
-							</div>
-							<div class="add_btn">
-								<input type="button" class="add_del_btn" data-num="${a.a_num}" value="삭제">
-							</div>
-						</div>
-					</div>
-					<!-- 기본 주소 -->
-				</c:if>
-				<c:if test="${a.a_default != 1}">
-					<!-- 기타 주소 -->
-					<div class="my_address_del_modi">
-						<div class="my_address_info">
-							<div class="myPage_address">
-								<span class="my_address_1">${a.a_address1}</span> <span
-									class="my_address_2">${a.a_address2}</span> <span
-									class="my_address_number">(${a.a_zipcode})</span>
-							</div>
-							<div class="add_btn">
-								<input type="button" class="add_del_btn" data-num="${a.a_num}" value="삭제">
+					<c:if test="${a.a_default == 1}">
+						<!-- 기본 주소 -->
+						<div class="my_address_del_modi">
+							<div class="my_address_info">
+								<div class="myPage_address">
+									<span class="my_address_1">${a.a_address1}</span> <span
+										class="my_address_2">${a.a_address2}</span> <span
+										class="my_address_number">(${a.a_zipcode})</span>
+								</div>
+								<div class="add_btn">
+									<input type="button" class="add_del_btn" data-num="${a.a_num}"
+										value="삭제">
+								</div>
 							</div>
 						</div>
-					</div>
-					<!-- 기타 주소 -->
-				</c:if>
+						<!-- 기본 주소 -->
+					</c:if>
+					<c:if test="${a.a_default != 1}">
+						<!-- 기타 주소 -->
+						<div class="my_address_del_modi">
+							<div class="my_address_info">
+								<div class="myPage_address">
+									<span class="my_address_1">${a.a_address1}</span> <span
+										class="my_address_2">${a.a_address2}</span> <span
+										class="my_address_number">(${a.a_zipcode})</span>
+								</div>
+								<div class="add_btn">
+									<input type="button" class="add_del_btn" data-num="${a.a_num}"
+										value="삭제">
+								</div>
+							</div>
+						</div>
+						<!-- 기타 주소 -->
+					</c:if>
 				</c:if>
 			</c:forEach>
 		</c:if>
 	</div>
-
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+	<script>
+		document
+				.addEventListener(
+						"DOMContentLoaded",
+						function() {
+							const radios = document
+									.getElementsByName('a_default');
+							let isChecked = false;
+							for (let i = 0; i < radios.length; i++) {
+								if (radios[i].checked) {
+									isChecked = true;
+									break;
+								}
+							}
+							if (!isChecked) {
+								document
+										.querySelector('input[name="a_default"][value="2"]').checked = true;
+							}
+						});
+	</script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 	<!-- 우편번호 시작 -->
 	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 	<div id="layer"

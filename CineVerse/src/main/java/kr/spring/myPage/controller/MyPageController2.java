@@ -41,6 +41,11 @@ public class MyPageController2 {
 	@Autowired
 	private MyPageService mypageService;
 	
+	@ModelAttribute
+	public AddressVO initCommand() {
+		return new AddressVO();
+	}
+	 
 	// 회원 정보 - 배송지 관리
 	@GetMapping("/myPage/addressList")
 	public String myPageAddressList(HttpSession session, Model model) {
@@ -60,28 +65,25 @@ public class MyPageController2 {
 
 	// 배송지 추가
 	@PostMapping("/myPage/addressList")
-	public String addAddress(@Valid AddressVO address, BindingResult result, HttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException {
-	    log.debug("<<배송지 추가>> ::: " + address);
+	public String addAddress(@Valid AddressVO addressVO, BindingResult result, HttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException {
+	    log.debug("<<배송지 추가>> ::: " + addressVO);
 
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 
 	    // 유효성 체크 결과 오류가 있으면 폼 호출
 	    if (result.hasErrors()) {
-	    	log.debug("유효성 체크 시작");
-	        MyPageVO member = mypageService.selectMember(user.getMem_num());
-            Integer count = mypageService2.countAddress(user.getMem_num());
-            List<AddressVO> addressList = mypageService2.addressList(user.getMem_num());
-            
-            model.addAttribute("member", member);
-            model.addAttribute("count", count);
-            model.addAttribute("addressList", addressList);
+	    	log.debug("<<유효성 체크 시작>>");
+	    	
+	    	 result.getFieldErrors().forEach(error -> {
+	             log.debug("유효성 검사 오류: " + error.getField() + " - " + error.getDefaultMessage());
+	         });
 	        
-            log.debug("유효성 체크 완료");
+            log.debug("<<유효성 체크 완료>>");
             return myPageAddressList(session, model);
 	    }
 	    
-        address.setMem_num(user.getMem_num());
-	    mypageService2.addAddress(address);
+	    addressVO.setMem_num(user.getMem_num());
+	    mypageService2.addAddress(addressVO);
 
 	    model.addAttribute("message", "성공적으로 배송지가 추가되었습니다.");
 	    model.addAttribute("url", request.getContextPath() + "/myPage/addressList");

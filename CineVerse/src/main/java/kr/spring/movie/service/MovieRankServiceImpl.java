@@ -102,8 +102,6 @@ public class MovieRankServiceImpl implements MovieRankService {
         movieRankMapper.insertMovieRank(movieRankAPI);
     }
 
-   
-
     private String makeQueryString(Map<String, String> paramMap) {
         StringBuilder sb = new StringBuilder();
         paramMap.entrySet().forEach(entry -> {
