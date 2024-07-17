@@ -1,5 +1,6 @@
 package kr.spring.myPage.controller;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -149,11 +150,9 @@ public class MyPageController {
 	
 	// 커뮤니티 좋아요
 	@GetMapping("/myPage/boardFav")
-	public String myPageboardFav(@RequestParam(defaultValue = "")String cb_type,
-								 @RequestParam(defaultValue = "0")int category,
+	public String myPageboardFav(@RequestParam(defaultValue = "0")int category,
 								 HttpSession session, 
 								 Model model) {
-		log.debug("<<카테고리 타입 >> : " + cb_type);
 		log.debug("<<카테고리 >> : " + category);
 		
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -161,7 +160,6 @@ public class MyPageController {
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("cb_type", cb_type);
 		map.put("category", category);
 		map.put("mem_num", user.getMem_num());
 		
@@ -183,19 +181,16 @@ public class MyPageController {
 
 	// 게시판 - 내가 쓴 글
 	@GetMapping("/myPage/boardWrite")
-	public String myPageBoardWrite(@RequestParam(defaultValue = "") String cb_type,
-								   @RequestParam(defaultValue = "0") int category, 
+	public String myPageBoardWrite(@RequestParam(defaultValue = "0") int category, 
 								   HttpSession session, 
 								   Model model) {
 
-		log.debug("<<카테고리 타입 >> : " + cb_type);
 		log.debug("<<카테고리 >> : " + category);
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("cb_type", cb_type);
 		map.put("category", category);
 		map.put("mem_num", user.getMem_num());
 
@@ -218,42 +213,52 @@ public class MyPageController {
 
 	// 게시판 - 내가 쓴 댓글
 	@GetMapping("/myPage/boardReply")
-	public String myPageBoardReply(@RequestParam(defaultValue = "") String cb_type,
-								   @RequestParam(defaultValue = "0") int category,
-								   HttpSession session,
-								   Model model) {
+	public String myPageBoardReply(@RequestParam(defaultValue = "0") int category,
+	                               HttpSession session,
+	                               Model model) {
 
-		log.debug("<<카테고리 타입 >> : " + cb_type);
-		log.debug("<<카테고리 >> : " + category);
+	    log.debug("<<카테고리 >> : " + category);
 
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("cb_type", cb_type);
-		map.put("category", category);
-		map.put("mem_num", user.getMem_num());
-		
-		List<BoardCommentVO> list = null;
-		int count = mypageService.cBoardReplyListcnt(map);
-		if(count > 0) {
-			list = mypageService.cBoardReplyList(map);
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("category", category);
+	    map.put("mem_num", user.getMem_num());
 
-			log.debug("<< 댓글 목록 >> : " + list);
-		}
+	    // 댓글 목록
+	    List<BoardCommentVO> commentList = null;
+	    int commentCount = mypageService.cBoardReplyListcnt(map);
+	    if (commentCount > 0) {
+	        commentList = mypageService.cBoardReplyList(map);
+	        log.debug("<< 댓글 목록 >> : " + commentList);
+	    }
 
-		model.addAttribute("member", member);
-		model.addAttribute("list", list);
-		model.addAttribute("count", count);
-		return "myBoardReply";
+	    // 답글 목록
+	    List<BoardCommentVO> responseList = null;
+	    int responseCount = mypageService.cBoardResponsecnt(map);
+	    if (responseCount > 0) {
+	        responseList = mypageService.cBoardResponseList(map);
+	        log.debug("<< 답글 목록 >> : " + responseList);
+	    }
+
+	    // 댓글과 답글 목록을 배열 형태로 모델에 추가
+	    List<List<BoardCommentVO>> combinedList = new ArrayList<>(2);
+	    combinedList.add(commentList != null ? commentList : new ArrayList<>());
+	    combinedList.add(responseList != null ? responseList : new ArrayList<>());
+
+	    model.addAttribute("member", member);
+	    model.addAttribute("combinedList", combinedList);
+	    model.addAttribute("commentCount", commentCount);
+	    model.addAttribute("responseCount", responseCount);
+	    return "myBoardReply";
 	}
 
 
 	// 양도/교환 북마크
 	@GetMapping("/myPage/aBoardBookMark")
-	public String myPageAboardBookMark(@RequestParam(defaultValue = "") String ab_type,
-									   @RequestParam(defaultValue = "0") int category,
+	public String myPageAboardBookMark(@RequestParam(defaultValue = "0") int category,
 									   HttpSession session, 
 									   Model model) {
 
@@ -263,7 +268,6 @@ public class MyPageController {
 		model.addAttribute("member", member);
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ab_type", ab_type);
 		map.put("categoty", category);
 		map.put("mem_num", user.getMem_num());
 
@@ -282,11 +286,9 @@ public class MyPageController {
 
 	//양도/교환 게시글
 	@GetMapping("/myPage/aBoardWrite")
-	public String myPageAboardWrite(@RequestParam(defaultValue = "") String ab_type,
-									@RequestParam(defaultValue = "0") int category,
+	public String myPageAboardWrite(@RequestParam(defaultValue = "0") int category,
 									HttpSession session,
 									Model model) {
-		log.debug("<<카테고리 타입 >> : " + ab_type);
 		log.debug("<<카테고리 >> : " + category);
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -294,7 +296,6 @@ public class MyPageController {
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ab_type", ab_type);
 		map.put("categoty", category);
 		map.put("mem_num", user.getMem_num());
 
@@ -313,33 +314,30 @@ public class MyPageController {
 		return "aBoardWrite";
 	}
 
-	//양도/교환 댓글 + 추가
-	@GetMapping("/myPage/aBoardReply")
-	public String myPageAboardReply(@RequestParam(defaultValue = "") String ab_type,
-									@RequestParam(defaultValue = "0") int category,
-									HttpSession session, 
-									Model model) {
-		
-		log.debug("<<카테고리 타입>> : " + ab_type);
-		log.debug("<<카테고리>> : " + category);
-		
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ab_type", ab_type);
-		map.put("category", category);
-		map.put("mem_num", user.getMem_num());
-		
-		List<AssignVO> list = null;
-		
-		
-		
-		model.addAttribute("member", member);
-
-		return "aBoardReply";
-	}
+	/*
+	 * //양도/교환 댓글 + 추가
+	 * 
+	 * @GetMapping("/myPage/aBoardReply") public String
+	 * myPageAboardReply(@RequestParam(defaultValue = "0") int category, HttpSession
+	 * session, Model model) {
+	 * 
+	 * log.debug("<<카테고리>> : " + category);
+	 * 
+	 * MemberVO user = (MemberVO) session.getAttribute("user"); MyPageVO member =
+	 * mypageService.selectMember(user.getMem_num());
+	 * member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+	 * 
+	 * Map<String, Object> map = new HashMap<String, Object>(); map.put("category",
+	 * category); map.put("mem_num", user.getMem_num());
+	 * 
+	 * List<AssignVO> list = null;
+	 * 
+	 * 
+	 * 
+	 * model.addAttribute("member", member);
+	 * 
+	 * return "aBoardReply"; }
+	 */
 
 	// 내 캘린더
 

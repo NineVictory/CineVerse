@@ -1,5 +1,7 @@
 $(function(){
     $(document).on('click', '.add_del_btn', function(){
+		const check = confirm('삭제하시겠습니까?');
+		if(check){
         // 주소 번호
         let a_num = $(this).attr('data-num');
         // 서버와 통신
@@ -15,7 +17,7 @@ $(function(){
                     alert('삭제 완료!');
                     location.reload();
                 } else if(param.result == 'wrongAccess'){
-                    alert('타인의 글을 삭제할 수 없습니다.');
+                    alert('타인의 주소를 삭제할 수 없습니다.');
                 } else {
                     alert('삭제 오류 발생');
                 }
@@ -24,5 +26,6 @@ $(function(){
                 alert('네트워크 오류 발생!');
             }
         });
+        }
     });
 });

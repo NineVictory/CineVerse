@@ -60,7 +60,8 @@
 	</select>
 
 	<!-- 커뮤 북마크 수 -->
-	<select id="cBoardBookMark">
+	<select id="cBoardBookMark" parameterType="map"
+		resultType="integer">
 		SELECT COUNT(*)
 		FROM community_bookmark cb JOIN community_board cc
 		USING(cb_num)
@@ -69,7 +70,8 @@
 	</select>
 
 	<!-- 커뮤 북마크 목록 -->
-	<select id="cBoardBookMarkList">
+	<select id="cBoardBookMarkList" parameterType="map"
+		resultType="boardVO">
 		SELECT * FROM community_bookmark cb JOIN
 		community_board cbb
 		USING(cb_num)
@@ -135,20 +137,29 @@
 	</select>
 
 	<!-- 대댓글 수 -->
-	<!-- <select id="cBoardResponsecnt">
-		
-	</select> -->
+	<select id="cBoardResponsecnt" parameterType="map"
+		resultType="integer">
+		SELECT COUNT(*)
+		FROM community_response cr
+		JOIN community_comment cc ON
+		cr.cc_num = cc.cc_num
+		WHERE cr.mem_num = #{mem_num}
+	</select>
 	<!-- 대댓글 목록 -->
-	<!-- <select id="cBoardResponseList">
-		
-	</select> -->
-
-	<!-- <select id="cBoardResponseList" parameterMap="map" resultType="boardCommentVO"> 
-		SELECT * FROM community_response WHERE mem_num=#{mem_num} </select> -->
-
-
-
-
+	<select id="cBoardResponseList" parameterType="map" resultType="boardCommentVO">
+		SELECT cr.*, fav_data.fav_cnt, cb.cb_type, cb.cb_title,cb.cb_num
+		FROM
+		community_response cr
+		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,
+		te_num FROM
+		community_response_fav GROUP BY te_num) fav_data
+		ON cr.te_num
+		= fav_data.te_num
+		JOIN community_board cb ON cr.mem_num =
+		cb.mem_num
+		WHERE
+		cr.mem_num = #{mem_num}
+	</select>
 
 	<!-- 양도/교환 찜 -->
 	<select id="aBoardBookMark" parameterType="map"

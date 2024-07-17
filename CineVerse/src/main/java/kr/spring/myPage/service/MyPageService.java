@@ -34,4 +34,5 @@ public interface MyPageService {
 	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
 	public Integer cBoardWriteFavCnt(Map<String, Object> map);
 	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
+	
 }
