@@ -102,8 +102,7 @@ public class MemberController {
 				// 비밀번호 일치 여부 체크
 				check = member.ischeckedPassword(memberVO.getMem_passwd());
 			}
-			// true 라면 if(check) 내부로 진입함
-			if (check) { // 인증 성공
+			if (check) { 
 				// 자동 로그인 체크 시작
 				boolean autoLogin = memberVO.getAuto() != null && memberVO.getAuto().equals("on");
 				if(autoLogin) {
@@ -111,14 +110,13 @@ public class MemberController {
 					String au_id = member.getAu_id();
 					
 					if(au_id == null) {
-						// 자동 로그인 체크 식별값을 생성해준다.
-						au_id = UUID.randomUUID().toString();	// 랜덤 값으로 생성해줌
+						au_id = UUID.randomUUID().toString();
 						log.debug(" << au_id >>  : " + au_id);
 						member.setAu_id(au_id);
 						memberService.updateAu_id(member.getAu_id(), member.getMem_num());
 					}
 					Cookie auto_cookie = new Cookie("au-log", au_id);
-					auto_cookie.setMaxAge(60*60*24*7);	// 쿠키의 유효기간은 일주일로 설정
+					auto_cookie.setMaxAge(60*60*24*7);
 					auto_cookie.setPath("/");
 					
 					response.addCookie(auto_cookie);

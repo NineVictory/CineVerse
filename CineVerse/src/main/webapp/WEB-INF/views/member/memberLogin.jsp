@@ -70,7 +70,7 @@
 						</a>
 					</div>
 					<div class="auto_login">
-						<input type="checkbox"> 자동 로그인
+						<input type="checkbox" name="auto" id="auto"> 자동 로그인
 					</div>
 				</div>
 				<div class="login_button">
