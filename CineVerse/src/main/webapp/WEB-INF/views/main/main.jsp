@@ -125,7 +125,7 @@
 										alt="탈주"></span>
 								</div>
 								<div class="btm_info">
-									<strong class="tit_info"> <span class="ic_grade gr_12">${list.rank }</span>${list.movienm}</strong>
+									<strong class="tit_info"> <span class="ic_grade gr_12">${list.rank }</span>${list.movieNm}</strong>
 									<span class="sub_info1"> <span class="rate_info">예매율&nbsp;<em>0%</em></span>
 										<span class="star_info" style="cursor: pointer;">0</span>
 									</span>

@@ -81,14 +81,14 @@ public class MovieRankServiceImpl implements MovieRankService {
                 MovieRankAPIVO movieRank = new MovieRankAPIVO();
                 movieRank.setRnum(boxOffice.getString("rnum"));
                 movieRank.setRank(boxOffice.getString("rank"));
-                movieRank.setShowrange(boxOfficeResult.getString("showRange"));
-                movieRank.setMovienm(boxOffice.getString("movieNm"));
-                movieRank.setMoviecd(boxOffice.getString("movieCd"));
-                movieRank.setOpendt(boxOffice.getString("openDt"));
-                movieRank.setSalesamt(boxOffice.getString("salesAmt"));
-                movieRank.setSalesacc(boxOffice.getString("salesAcc"));
-                movieRank.setAudicnt(boxOffice.getString("audiCnt"));
-                movieRank.setAudiacc(boxOffice.getString("audiAcc"));
+                movieRank.setShowRange(boxOfficeResult.getString("showRange"));
+                movieRank.setMovieNm(boxOffice.getString("movieNm"));
+                movieRank.setMovieCd(boxOffice.getString("movieCd"));
+                movieRank.setOpenDt(boxOffice.getString("openDt"));
+                movieRank.setSalesAmt(boxOffice.getString("salesAmt"));
+                movieRank.setSalesAcc(boxOffice.getString("salesAcc"));
+                movieRank.setAudiCnt(boxOffice.getString("audiCnt"));
+                movieRank.setAudiAcc(boxOffice.getString("audiAcc"));
 
                 movieRankMapper.insertMovieRank(movieRank);
             }
