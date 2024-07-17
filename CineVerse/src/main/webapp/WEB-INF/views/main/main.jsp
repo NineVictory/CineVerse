@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
 <style>
 /* wrapper가 기본으로 overflow이기 때문에 넘치는 부분 숨겨주고 높이 설정시켜주기 */
 .swiper-container {
@@ -109,139 +111,36 @@
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 <div class="movie_rank">
-    <div class="contents">
-        <div class="swiper-container ranks">
-            <div class="swiper-wrapper movie-wrapper">
-                <!-- 아이템들을 swiper-slide로 감싸기 -->
-                <div class="swiper-slide">
-                    <div class="item">
-                        <!-- 각 아이템의 내용 -->
-                        <div class="top_info">
-                            <span class="poster_info">
-                                <img class="poster_info_image" src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202406/20970_101_1.jpg" alt="인사이드 아웃 2">
-                            </span>
-                        </div>
-                        <div class="btm_info">
-                            <strong class="tit_info">
-                                <span class="ic_grade gr_all">전체</span>인사이드 아웃 2
-                            </strong>
-                            <span class="sub_info1">
-                                <span class="rate_info">예매율 <em>35.8%</em></span>
-                                <span class="star_info">9.5</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            <div class="swiper-slide">
-                <div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21144_101_1.jpg"
-						alt="탈주"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_12">12</span>탈주</strong><span
-						class="sub_info1"><span class="rate_info">예매율&nbsp;<em>26.6%</em></span><span
-						class="star_info" style="cursor: pointer;">8.9</span></span>
-				</div>
-				</div>
-			</div>
-			
-			<div class="swiper-slide">
-                <div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21144_101_1.jpg"
-						alt="탈주"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_12">12</span>탈주</strong><span
-						class="sub_info1"><span class="rate_info">예매율&nbsp;<em>26.6%</em></span><span
-						class="star_info" style="cursor: pointer;">8.9</span></span>
-				</div>
-				</div>
-			</div>
-			
-			<div class="swiper-slide">
-                <div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21144_101_1.jpg"
-						alt="탈주"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_12">12</span>탈주</strong><span
-						class="sub_info1"><span class="rate_info">예매율&nbsp;<em>26.6%</em></span><span
-						class="star_info" style="cursor: pointer;">8.9</span></span>
-				</div>
-				</div>
-			</div>
+	<div class="contents">
+		<div class="swiper-container ranks">
+			<div class="swiper-wrapper movie-wrapper">
+				<!-- 아이템들을 swiper-slide로 감싸기 -->
+				<c:if test="${count > 0 }">
+					<c:forEach var="list" items="${movieRankList }">
+						<div class="swiper-slide">
+							<div class="item">
+								<div class="top_info">
+									<span class="poster_info"><img class="poster_info_image"
+										src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21144_101_1.jpg"
+										alt="탈주"></span>
+								</div>
+								<div class="btm_info">
+									<strong class="tit_info"> <span class="ic_grade gr_12">${list.rank }</span>${list.movienm}</strong>
+									<span class="sub_info1"> <span class="rate_info">예매율&nbsp;<em>0%</em></span>
+										<span class="star_info" style="cursor: pointer;">0</span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</c:if>
 
-		<div class="swiper-slide">
-			<div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202406/21170_101_1.jpg"
-						alt="핸섬가이즈"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_15">15</span>핸섬가이즈</strong><span
-						class="sub_info1"><span class="rate_info">예매율&nbsp;<em>14.1%</em></span><span
-						class="star_info" style="cursor: pointer;">9.2</span></span>
-				</div>
 			</div>
+			<!-- 이전/다음 버튼 -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
 		</div>
-
-		<div class="swiper-slide">
-			<div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202406/21173_101_1.jpg"
-						alt="하이재킹"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_12">12</span>하이재킹</strong><span
-						class="sub_info1"><span class="rate_info">예매율&nbsp;<em>6.8%</em></span><span
-						class="star_info" style="cursor: pointer;">9.2</span></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="swiper-slide">
-			<div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21252_101_1.jpg"
-						alt="러브 라이즈 블리딩"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_19">청불</span>러브
-						라이즈 블리딩</strong><span class="sub_info1"><span class="rate_info">예매율&nbsp;<em>6.4%</em></span><span
-						class="remain_info">D-7</span></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="swiper-slide">			
-			<div class="item">
-				<div class="top_info">
-					<span class="poster_info"><img class="poster_info_image"
-						src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21252_101_1.jpg"
-						alt="러브 라이즈 블리딩"></span>
-				</div>
-				<div class="btm_info">
-					<strong class="tit_info"><span class="ic_grade gr_19">청불</span>러브
-						라이즈 블리딩</strong><span class="sub_info1"><span class="rate_info">예매율&nbsp;<em>6.4%</em></span><span
-						class="remain_info">D-7</span></span>
-				</div>
-			</div>
-		</div>
-            </div>
-            <!-- 이전/다음 버튼 -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-    </div>
+	</div>
 </div>
 
 <!-- Swiper.js JavaScript -->
