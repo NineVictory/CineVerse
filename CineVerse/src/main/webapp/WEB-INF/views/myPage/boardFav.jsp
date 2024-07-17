@@ -4,8 +4,8 @@
 <!-- 나의 게시글 시작 -->
 <div class="myPage_main">
     <div class="reservation_display">
-        <span class="myPage_title_re">나의 게시글</span>
-        <select class="myCoupon_option" onchange="location.href='/myPage/boardWrite?category=' + this.value;">
+        <span class="myPage_title_re">게시글 좋아요</span>
+        <select class="myCoupon_option" onchange="location.href='/myPage/boardFav?category=' + this.value;">
             <option value="0" <c:if test="${param.category == 0}">selected</c:if>>전체</option>
             <option value="1" <c:if test="${param.category == 1}">selected</c:if>>영화톡톡</option>
             <option value="2" <c:if test="${param.category == 2}">selected</c:if>>일상톡톡</option>
@@ -15,7 +15,7 @@
     <c:if test="${count > 0}">
     <!-- 반복 -->
     <c:forEach var="board" items="${list}">
-        <div class="bookMark_box">
+        <div class="bookMark_box" onclick="location.href='${pagecontext.request.contextPath}/board/detail?cb_num=${board.cb_num}'">
             <div class="bk_content">
                 <div class="my_board_bk">
                     <div class="my_board_type">

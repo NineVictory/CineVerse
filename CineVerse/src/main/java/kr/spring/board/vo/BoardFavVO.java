@@ -18,6 +18,5 @@ public class BoardFavVO {
 	private Date cb_reg_date;
 	private Date cb_modify_date;
 	private int fav_cnt;
-	/* private BoardCommentVO boardCommentVO; */
 	
 }

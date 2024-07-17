@@ -15,7 +15,7 @@
     <c:if test="${count > 0}">
     <!-- 반복 -->
     <c:forEach var="aboard" items="${list}">
-        <div class="bookMark_box">
+        <div class="bookMark_box" onclick="location.href='${pagecontext.request.contextPath}/assignboard/detail?ab_num=${aboard.ab_num}'">
             <div class="bk_content">
                 <div class="my_board_bk">
                     <div class="my_board_type">
