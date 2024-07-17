@@ -933,3 +933,9 @@ input[type="number"]::-webkit-inner-spin-button {
     line-height: 20px;
     color: rgb(140, 140, 140);
 }
+
+
+.img-count{
+	font-size:15px;
+	display:inline-block;
+}

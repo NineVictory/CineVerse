@@ -166,6 +166,8 @@ public class AssignBoardController {
 		log.debug("상품상태>> " + assignVO.getAb_item_status());
 		log.debug("상품내용>> " + assignVO.getAb_content());
 		log.debug("상품가격>> " + assignVO.getAb_price());
+		String[] filenamesArray = assignVO.getAb_filenames().split(",");
+		model.addAttribute("ab_filenames", filenamesArray);
 		return "assignModify";
 	}
 	

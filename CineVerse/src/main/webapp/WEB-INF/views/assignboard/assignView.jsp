@@ -7,8 +7,7 @@
 <!-- 게시판 글상세 시작 -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
-<%-- <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>
- --%><script src="${pageContext.request.contextPath}/js/assignboard.bookmark.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>--%><script src="${pageContext.request.contextPath}/js/assignboard.bookmark.js"></script>
 
 <div class="page-container page-main">
 	<div class="boardview-main">

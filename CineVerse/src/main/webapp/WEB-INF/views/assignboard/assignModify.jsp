@@ -10,79 +10,7 @@
 <script src="${pageContext.request.contextPath}/js/assign.img.upload2.js"></script>
 
 <script type="text/javascript">
-<%-- 	window.onload=function(){
-		const myForm = document.getElementById('assignboard_register');
-		myForm.onsubmit=function(){
-			const type = document.getElementsByName('ab_type');
-			var typeValid = false;
-		    for (var i = 0; i < type.length; i++) {
-				if (type[i].checked) {
-					typeValid = true;
-					break;
-				}
-			}
-			if (!typeValid) {
-				alert('카테고리를 선택하세요');
-				return false;
-			}
-						
-			
-			/* const type = document.getElementById('ab_type');
-			if(type.value.trim() == '' || type.value === 'select'){
-				alert('카테고리를 선택하세요');
-				type.value = '';
-				type.focus();
-				return false;
-			} */
-			const file = document.getElementById('ab_filename');
-			if(file.value.trim() == ''){
-				alert('상품이미지를 선택하세요');
-				file.value = '';
-				file.focus();
-				return false;
-			}
-			
-			const title = document.getElementById('ab_title');
-			if(title.value.trim() == ''){
-				alert('상품명을 입력하세요');
-				title.value = '';
-				title.focus();
-				return false;
-			}
-						
-			const radios = document.getElementsByName('ab_item_status');
-			var formValid = false;
-		    for (var i = 0; i < radios.length; i++) {
-				if (radios[i].checked) {
-					formValid = true;
-					break;
-				}
-			}
-			if (!formValid) {
-				alert('상품상태를 선택하세요');
-				return false;
-			}
-			/* document.getElementById('error-message').style.display = 'block';
-			        return false; // 폼 제출 방지 */
 
-			const content = document.getElementById('ab_content');
-			if(content.value.trim() == ''){
-				alert('상품설명을 입력하세요');
-				content.value = '';
-				content.focus();
-				return false;
-			}
-			
-			const price = document.getElementById('ab_price');
-			if(price.value.trim() == ''){
-				alert('가격을 입력하세요');
-				price.value = '';
-				price.focus();
-				return false;
-			}
-		};
-	};
- --%>
 </script>
 
 <div class="page-container page-main">
@@ -110,7 +38,7 @@
 				<div class="item-label">
 					<div>
 					상품이미지
-					<small>(0/3)</small>
+					<div class="img-count">(0/3)</div>
 					</div>
 				</div>
 				<div class="flexbox-p">
@@ -124,7 +52,13 @@
 					<form:errors path="ab_upload" cssClass="error-color"/>
 				</div>
 				
-				<div id="preview">사진미리보기</div>
+				<div id="preview"></div>
+				
+				<script>
+        // JSP에서 전달받은 이미지 파일명 목록을 JavaScript 변수로 설정
+        var ab_filenames = ${ab_filenames != null ? ab_filenames : '[]'};
+    </script>
+				
 		
 			</div>
 			<div class="flexbox-h info-container border-bottom">
