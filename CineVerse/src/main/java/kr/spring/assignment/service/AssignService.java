@@ -21,10 +21,11 @@ public interface AssignService {
 	public void ab_deleteBoard(Long ab_num);
 	public void ab_deleteFile(Long ab_num);// 파일만 삭제
 	
-	//부모글 좋아요
+	//부모글 찜
 	public AssignFavVO ab_selectFav(AssignFavVO fav);
 	public Integer ab_selectFavCount(Long ab_num);
 	public void ab_insertFav(AssignFavVO fav);
 	public void ab_deleteFav(AssignFavVO fav);
+	
 	
 }

@@ -216,8 +216,20 @@ public class AssignBoardController {
 		assignService.ab_deleteBoard(ab_num);
 		
 		if(db_assign.getAb_filenames() != null) {
+			
+			String[] filenamesArray = db_assign.getAb_filenames().split(",");
+
+			/*
+			 * // 배열을 리스트로 변환 (선택사항) List<String> filenamesList =
+			 * Arrays.asList(filenamesArray);
+			 */
 			//파일 삭제
-			FileUtil.removeFile(request, db_assign.getAb_filenames());
+			for (String filename : filenamesArray) {
+				FileUtil2.removeFile(request, filename);
+			}
+			/*
+			 * //파일 삭제 FileUtil2.removeFile(request, db_assign.getAb_filenames());
+			 */
 		}
 		
 		return "redirect:/assignboard/list";
