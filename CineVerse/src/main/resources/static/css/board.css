@@ -209,7 +209,7 @@ div.cell-content > div.likes, div.cell-content > div.writer{
     align-self: flex-start;
     display:flex;
     align-items:center;
-    gap:7px;
+    gap:2px;
 }
 .page-count{
 	width:100%;
