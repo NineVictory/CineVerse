@@ -3,10 +3,15 @@ package kr.spring.movie.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieReviewVO;
+import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
 
@@ -36,6 +41,13 @@ public interface MovieService {
     void insertReview(MovieReviewVO movieReview);
     void updateReview(MovieReviewVO movieReview);
     void deleteReview(Long mr_num);
+    
+    //영화 리뷰 좋아요
+    public MovieReviewfavVO selecReFav(MovieReviewfavVO fav);
+	public Integer selectReFavCount(Long mr_num);
+	public void insertReFav(MovieReviewfavVO fav);
+	public void deleteReFav(MovieReviewfavVO fav);
+    
     
     // 영화 시간표
     void addMovieTime(MovieTimeVO movieTimeVO);

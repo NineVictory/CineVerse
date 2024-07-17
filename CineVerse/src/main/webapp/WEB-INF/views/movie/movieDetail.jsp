@@ -34,10 +34,10 @@
                 <span>23.3%</span>
                 <span>좋아요 수 </span>
                 <!-- 좋아요 -->
-				<div class="movie-fav-button-detail">
-				    <img id="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
-				    <span id="output_mfcount"></span>
-				</div>
+                <div class="movie-fav-button-detail">
+                    <img class="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
+                    <span class="output_mfcount"></span>
+                </div>
             </div>
             <hr class="menu-hr" size="1" width="100%" noshade="noshade">
             

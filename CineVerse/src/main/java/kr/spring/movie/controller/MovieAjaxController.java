@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -32,7 +33,7 @@ public class MovieAjaxController {
 	부모글 북마크 읽기
 	===================*/
     // 영화 북마크 읽기
-    @GetMapping("/getbookMark")
+    @GetMapping("/movie/getbookMark")
     @ResponseBody
     public Map<String, Object> getbookMark(MovieBookMarkVO bookMark, HttpSession session) {
         log.debug("<<영화디테일 북마크 - MovieBookMarkVO>> : " + bookMark);
@@ -58,7 +59,7 @@ public class MovieAjaxController {
     }
 
     // 영화 북마크 등록/삭제
-    @PostMapping("/writebookMark")
+    @PostMapping("/movie/writebookMark")
     @ResponseBody
     public Map<String, Object> writebookMark(MovieBookMarkVO bookMark, HttpSession session) {
         log.debug("<<영화디테일 북마크 -등록 >>:" + bookMark);
@@ -123,57 +124,58 @@ public class MovieAjaxController {
     /*===================
 	리뷰 목록
 ===================*/
-@GetMapping("/movie/listReview")
-@ResponseBody
-public Map<String,Object> getList(int m_code, int pageNum, 
-									int rowCount, HttpSession session){
-	log.debug("<<리뷰 목록 - m_code>> : "+m_code);
-	log.debug("<<리뷰 목록 - page_num>> : "+pageNum);
-	log.debug("<<리뷰 목록 - rowCount>> : "+rowCount);
-	
-	Map<String,Object> map = new HashMap<String, Object>();
-	map.put("m_code",m_code);
-	
-	//총글의 개수
-	int count = movieService.selectMovieRowCountReview(map);
-	
-	//페이지 처리
-	PagingUtil page = new PagingUtil(pageNum, count, rowCount); //start row_num과 end row_num 번호를 알아서 연산해줌
-	map.put("start",page.getStartRow());
-	map.put("end",page.getEndRow());
-	
-	MemberVO user = (MemberVO)session.getAttribute("user");
-	if(user!=null) {
-		map.put("mem_num",user.getMem_num());
-	}else {
-		map.put("mem_num",0);
-	}
-	
-	List<MovieReviewVO> list = null;
-	
-	if(count > 0) {
-		list = movieService.selectMovieListReview(map);
-	}else {
-		list = Collections.emptyList(); //null보단 비어있는 리스트로 인식하게 한다.
-	}
-	
-	Map<String,Object> mapJson = new HashMap<String, Object>();
-	mapJson.put("count",count);
-	mapJson.put("list",list);
-	if(user!=null) {
-		mapJson.put("user_num",user.getMem_num());
-	}
-	
-	return mapJson;
-}
+    @GetMapping("/movie/listReview")
+    @ResponseBody
+    public Map<String, Object> getList(int m_code, int pageNum, int rowCount, String order, HttpSession session) {
+        log.debug("<<리뷰 목록 - m_code>> : " + m_code);
+        log.debug("<<리뷰 목록 - page_num>> : " + pageNum);
+        log.debug("<<리뷰 목록 - rowCount>> : " + rowCount);
+        log.debug("<<리뷰 목록 - order>> : " + order);
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("m_code", m_code);
+        map.put("order", order); // 추가된 부분
+
+        // 총글의 개수
+        int count = movieService.selectMovieRowCountReview(map);
+
+        // 페이지 처리
+        PagingUtil page = new PagingUtil(pageNum, count, rowCount);
+        map.put("start", page.getStartRow());
+        map.put("end", page.getEndRow());
+
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        if (user != null) {
+            map.put("mem_num", user.getMem_num());
+        } else {
+            map.put("mem_num", 0);
+        }
+
+        List<MovieReviewVO> list = null;
+
+        if (count > 0) {
+            list = movieService.selectMovieListReview(map);
+        } else {
+            list = Collections.emptyList();
+        }
+
+        Map<String, Object> mapJson = new HashMap<String, Object>();
+        mapJson.put("count", count);
+        mapJson.put("list", list);
+        if (user != null) {
+            mapJson.put("user_num", user.getMem_num());
+        }
+
+        return mapJson;
+    }
 	/*===================
-	댓글 삭제
+	리뷰 삭제
 	===================*/
 	@PostMapping("/movie/deleteReview")
 	@ResponseBody
 	public Map<String,String> deleteReply(long mr_num,
 											HttpSession session){
-		log.debug("<<댓글 삭제 - re_num>>:"+ mr_num);
+		log.debug("<<리뷰 삭제 - re_num>>:"+ mr_num);
 		
 		Map<String,String> mapJson = new HashMap<String, String>();
 		MemberVO user = (MemberVO)session.getAttribute("user"); //로그인을 했는지 확인하기위해 (회원제 서비스이기 떄문에)
@@ -193,5 +195,68 @@ public Map<String,Object> getList(int m_code, int pageNum,
 		}
 		
 		return mapJson;
+	}
+	/*===================
+	리뷰 좋아요 읽기
+	===================*/
+	@GetMapping("/movie/getReFav")
+	@ResponseBody
+	public Map<String,Object> getReFav(
+								MovieReviewfavVO fav,
+								HttpSession session){
+		log.debug("<<리뷰 좋아요>>:" +fav);
+		
+		Map<String,Object> mapJson = new HashMap<String, Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user"); //로그인을 했는지 확인하기위해 (회원제 서비스이기 떄문에)
+		if(user == null) {
+			mapJson.put("result","success");
+			mapJson.put("result","noFav");
+		}else {
+			fav.setMem_num(user.getMem_num());
+			MovieReviewfavVO boardReFav = movieService.selecReFav(fav);
+			if(boardReFav!=null) {
+				mapJson.put("result","success");
+				mapJson.put("result","yesFav");
+			}else {
+				mapJson.put("result","success");
+				mapJson.put("result","noFav");
+			}
+		}
+		mapJson.put("count",movieService.selectReFavCount(fav.getMr_num()));
+		return mapJson;
+	}
+	/*===================
+	리뷰 좋아요 등록/삭제
+	===================*/
+	@PostMapping("/movie/writeReFav")
+	@ResponseBody
+	public Map<String,Object>writeReFav(
+	                            MovieReviewfavVO fav,
+	                            HttpSession session){
+	    log.debug("<<리뷰 좋아요 등록/삭제>>:" +fav);
+
+	    Map<String,Object> mapJson = new HashMap<String, Object>();
+
+	    MemberVO user = (MemberVO)session.getAttribute("user"); //로그인을 했는지 확인하기위해 (회원제 서비스이기 떄문에)
+	    if(user == null) {
+	        mapJson.put("result","logout");
+	    }else {
+	        fav.setMem_num(user.getMem_num());
+	        MovieReviewfavVO movieReFav = movieService.selecReFav(fav);
+	        if(movieReFav!=null) {
+	            log.debug("좋아요 삭제");
+	            movieService.deleteReFav(fav);
+	            mapJson.put("status","noFav");
+	        }else {
+	            log.debug("좋아요 추가");
+	            movieService.insertReFav(fav);
+	            mapJson.put("status","yesFav");
+	        }
+	        mapJson.put("result","success");
+	        mapJson.put("count",movieService.selectReFavCount(fav.getMr_num()));
+	    }
+
+	    return mapJson;
 	}
 }

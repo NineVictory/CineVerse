@@ -442,7 +442,13 @@ CREATE TABLE movie_review (
 );
 
 create sequence movie_review_seq;
-
+--영화 리뷰 좋아요
+CREATE TABLE mr_fav (
+    mr_num NUMBER NOT NULL,
+    mem_num NUMBER NOT NULL,
+    CONSTRAINT review_fav_fk1 FOREIGN KEY (mr_num) REFERENCES movie_review (mr_num),
+    CONSTRAINT review_fav_fk2 FOREIGN KEY (mem_num) REFERENCES member (mem_num)
+);
 -- 상품
 CREATE TABLE product (
     p_num NUMBER NOT NULL,

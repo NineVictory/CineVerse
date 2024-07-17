@@ -9,13 +9,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-
+import kr.spring.board.vo.BoardReFavVO;
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
+import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
 
@@ -76,7 +77,24 @@ public interface MovieMapper {
 	@Delete("DELETE FROM movie_review WHERE m_code=#{m_code}")
 	public void deleteReviewByM_code(Long m_code);
 	
-	
+	//리뷰 좋아요
+	@Select("SELECT * FROM mr_fav WHERE mr_num=#{mr_num} AND mem_num=#{mem_num}")
+	public MovieReviewfavVO selecReFav(MovieReviewfavVO fav);
+	@Select("SELECT COUNT(*) FROM mr_fav WHERE mr_num=#{mr_num}")
+	public Integer selectReFavCount(Long mr_num);
+	@Insert("INSERT INTO mr_fav (mr_num,mem_num) VALUES (#{mr_num},#{mem_num})")
+	public void insertReFav(MovieReviewfavVO fav);
+	@Delete("DELETE FROM mr_fav WHERE mr_num=#{mr_num} AND mem_num=#{mem_num}")
+	public void deleteReFav(MovieReviewfavVO fav);
+	@Delete("DELETE FROM mr_fav WHERE mr_num = #{mr_num}")
+	public void deleteReFavByMrnum(Long mr_num);
+	@Delete("DELETE FROM mr_fav WHERE mr_num IN (SELECT mr_num FROM spboard_reply WHERE m_code=#{m_code})")
+	public void deleteReFavByM_code(Long m_code); 		
+		
+		
+		
+		
+		
 
     
     void addMovieTime(MovieTimeVO movieTimeVO);

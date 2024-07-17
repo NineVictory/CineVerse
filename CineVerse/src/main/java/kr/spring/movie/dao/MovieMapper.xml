@@ -153,17 +153,30 @@
 	</insert>
 	<!-- 리뷰 목록 -->
 	<select id="selectMovieListReview" parameterType="map" resultType="MovieReviewVO">
-		SELECT
-				*
-			FROM (SELECT
-					a.*,
-					rownum rnum
-				  FROM (SELECT
-				  		  *
-				  		FROM movie_review
-				  		JOIN member USING(mem_num)
-				  		WHERE m_code=#{m_code}
-				  		ORDER BY mr_num DESC)a)
+    SELECT
+        *
+    FROM (SELECT
+                a.*,
+                rownum rnum
+              FROM (SELECT
+                      *
+                    FROM movie_review
+                    JOIN member USING(mem_num)
+                    LEFT OUTER JOIN (SELECT mr_num, mem_num click_num 
+                                     FROM mr_fav 
+                                     WHERE mem_num=#{mem_num}) 
+                    USING(mr_num) 
+                    LEFT OUTER JOIN (SELECT mr_num, COUNT(*) review_cnt 
+                                     FROM mr_fav GROUP BY mr_num)
+                    USING(mr_num)
+                    WHERE m_code=#{m_code}
+                    <if test="order != null and order == 'latest'">
+                        ORDER BY mr_regdate DESC
+                    </if>
+                    <if test="order != null and order == 'recommendation'">
+                        ORDER BY review_cnt ASC, mr_regdate DESC
+                    </if>
+                    ) a)
 			<![CDATA[
 			WHERE rnum >=#{start} AND rnum <=#{end}
 			]]>

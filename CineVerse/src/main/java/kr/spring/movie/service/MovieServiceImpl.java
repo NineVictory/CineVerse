@@ -18,6 +18,7 @@ import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
+import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
 import lombok.extern.slf4j.Slf4j;
@@ -83,7 +84,8 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void deleteMovie(Long m_code) {
 
-	
+		//리뷰 좋아요 삭제
+		movieMapper.deleteReFavByM_code(m_code);
 	}
 
 	@Override
@@ -142,7 +144,9 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void deleteReview(Long mr_num) {
 		movieMapper.deleteReview(mr_num);
-		
+			
+		//댓글 좋아요
+		movieMapper.deleteReFavByMrnum(mr_num);
 	}
 
 	@Override
@@ -174,6 +178,30 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public MovieBookingVO getBookingInfo(long mem_num, long m_code) {
 		return movieMapper.getBookingInfo(mem_num, m_code);
+	}
+
+	@Override
+	public MovieReviewfavVO selecReFav(MovieReviewfavVO fav) {
+		
+		return movieMapper.selecReFav(fav);
+	}
+
+	@Override
+	public Integer selectReFavCount(Long mr_num) {
+		
+		return movieMapper.selectReFavCount(mr_num);
+	}
+
+	@Override
+	public void insertReFav(MovieReviewfavVO fav) {
+		movieMapper.insertReFav(fav);
+		
+	}
+
+	@Override
+	public void deleteReFav(MovieReviewfavVO fav) {
+		movieMapper.deleteReFav(fav);
+		
 	}
 
 

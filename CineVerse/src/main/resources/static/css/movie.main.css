@@ -150,7 +150,7 @@ input[type="search"]::placeholder {
     margin-top: 5px;
 }
 
-.movie-fav-button {
+.movie-fav-button-detail {
     display: flex; /* 아이콘과 텍스트를 가로로 배치하기 위해 */
     align-items: center; /* 가운데 정렬 */
     border-radius: 5px;

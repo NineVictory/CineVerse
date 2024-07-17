@@ -1,7 +1,6 @@
 $(document).ready(function() {
     let rowCount = 10;
     let currentPage = 1;
-    let count;
     let sortOption = "latest"; // 기본 정렬 옵션
 
     // 초기 리뷰 목록 로드
@@ -136,7 +135,7 @@ $(document).ready(function() {
                 m_code: m_code, 
                 pageNum: pageNum, 
                 rowCount: rowCount,
-                order: order
+                order: order // 정렬 옵션 추가
             },
             dataType: 'json',
             beforeSend: function() {
@@ -284,6 +283,38 @@ $(document).ready(function() {
 			},
 			error:function(){
 				alert('네트워크 오류 발생');
+			}
+		});
+	});
+		/* ========================================================================
+	 * 리뷰 좋아요 등록
+	 * ======================================================================== */
+	$(document).on('click','.output_reiv',function(){
+		let heart = $(this);
+		$.ajax({
+			url:'writeReFav',
+			type:'post',
+			data:{mr_num:heart.attr('data-num')},
+			dataType:'json',
+			success:function(param){
+				if(param.result=='logout'){
+					alert('로그인 후 좋아요를 눌러주세요!');
+				}else if(param.result=='success'){
+					let output;
+					if(param.status=='noFav'){
+						output = '../images/like01.png';
+					}else{
+						output = '../images/like02.png';
+					}			
+					//문서 객체에 추가
+					heart.attr('src',output);
+					heart.parent().find('.output_rvcount').text(param.count);
+				}else{
+					alert('리뷰 좋아요 등록/삭제 오류');
+				}
+			},
+			error:function(){
+				alert('네트워크 오류!');
 			}
 		});
 	});
