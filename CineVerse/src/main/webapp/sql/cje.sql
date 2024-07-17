@@ -359,9 +359,9 @@ CREATE TABLE seat (
     seat_rank VARCHAR2(1) NOT NULL,
     seat_row VARCHAR2(1) NOT NULL,
     seat_column NUMBER NOT NULL,
-    c_num NUMBER NOT NULL,
+    th_num NUMBER NOT NULL,
     CONSTRAINT PK_SEAT PRIMARY KEY (seat_num),
-    CONSTRAINT FK_seat_1 FOREIGN KEY (c_num) REFERENCES cinema (c_num)
+    CONSTRAINT FK_seat_1 FOREIGN KEY (th_num) REFERENCES theater (th_num)
 );
 create sequence seat_num_seq;
 
@@ -383,10 +383,10 @@ CREATE TABLE movie_time (
     mt_start VARCHAR2(7) NOT NULL,
     mt_end VARCHAR2(7) NOT NULL,
     m_code NUMBER NOT NULL,
-    c_num NUMBER NOT NULL,
+    th_num NUMBER NOT NULL,
     CONSTRAINT PK_MOVIE_TIME PRIMARY KEY (mt_num),
     CONSTRAINT FK_movie_time_1 FOREIGN KEY (m_code) REFERENCES movie (m_code),
-    CONSTRAINT FK_movie_time_2 FOREIGN KEY (c_num) REFERENCES cinema (c_num)
+    CONSTRAINT FK_movie_time_2 FOREIGN KEY (th_num) REFERENCES theater (th_num)
 );
 create sequence movie_time_seq;
 

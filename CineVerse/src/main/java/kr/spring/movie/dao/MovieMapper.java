@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.movie.vo.MbDetailVO;
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -55,7 +56,7 @@ public interface MovieMapper {
 	@Delete("DELETE FROM movie_bookmark WHERE m_code=#{m_code}")
 	public void deleteBookMarkByMovieNum(Long m_code);
 	
-	//영화예매
+	//영화 시간 등록
 	@Select("SELECT cinema_num.nextval FROM dual")
 	public Long selectC_num();
 	public List<MovieVO> selectMovieTimeList(Map<String,Object>map);
@@ -96,11 +97,18 @@ public interface MovieMapper {
 		
 		
 
-    
+    //영화 시간표 등록
     void addMovieTime(MovieTimeVO movieTimeVO);
     
     // 영화 예매 여부 확인
     @Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num = #{mem_num} AND m_code = #{m_code}")
     int hasBookedMovie(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
     MovieBookingVO getBookingInfo(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
+    
+    //영화 예매
+    @Insert("INSERT INTO movie_booking (mb_num, mb_date, mb_price, mem_num, mt_num, m_code) VALUES (movie_booking_seq.nextval, SYSDATE, #{mb_price}, #{mem_num}, #{mt_num},#{m_code})")
+    void insertBooking(MovieBookingVO movieBooking);
+
+    @Insert("INSERT INTO mb_detail (md_num, md_type, mb_num, seat_num) VALUES (mb_detail_seq.nextval, #{md_type}, #{mb_num}, #{seat_num})")
+    void insertBookingDetail(MbDetailVO mbDetail);
 }

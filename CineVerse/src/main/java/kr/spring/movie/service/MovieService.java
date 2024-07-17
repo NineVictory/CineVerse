@@ -30,9 +30,12 @@ public interface MovieService {
     void insertBookMark(MovieBookMarkVO bookMark);
     void deleteBookMark(MovieBookMarkVO bookMark);
     
-    // 영화 예매
+    // 영화시간 등록
     List<MovieVO> selectMovieTimeList(Map<String, Object> map);
     void insertMovieTime(MovieTimeVO movietime);
+    
+    
+    
     
     // 영화 리뷰
     List<MovieReviewVO> selectMovieListReview(Map<String, Object> map);
@@ -55,4 +58,9 @@ public interface MovieService {
     // 사용자가 해당 영화를 예매했는지 확인
     boolean canWriteReview(long mem_num, long m_code);
     MovieBookingVO getBookingInfo(long mem_num, long m_code);
+    
+    //영화예매
+    void saveBooking(Long mb_price, Long mem_num, Long mt_num, Long m_code, String selectedSeats);
+
+
 }

@@ -12,6 +12,7 @@ import kr.spring.board.dao.BoardMapper;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.movie.controller.MovieAjaxController;
 import kr.spring.movie.dao.MovieMapper;
+import kr.spring.movie.vo.MbDetailVO;
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -203,6 +204,32 @@ public class MovieServiceImpl implements MovieService {
 		movieMapper.deleteReFav(fav);
 		
 	}
+
+	@Override
+	public void saveBooking(Long mb_price, Long mem_num, Long mt_num, Long m_code, String selectedSeats) {
+        MovieBookingVO movieBooking = new MovieBookingVO();
+        movieBooking.setMb_price(mb_price);
+        movieBooking.setMem_num(mem_num);
+        movieBooking.setMt_num(mt_num);
+        movieBooking.setM_code(m_code);
+
+        // MovieBooking 테이블에 예약 정보 저장
+        movieMapper.insertBooking(movieBooking);
+
+        // mb_detail 테이블에 좌석별 상세 예약 정보 저장
+        String[] seats = selectedSeats.split(",");
+        for (String seat : seats) {
+            MbDetailVO mbDetail = new MbDetailVO();
+            mbDetail.setMd_type(1);  // 예시로 사용, 실제로는 필요한 값 설정
+            mbDetail.setMb_num(movieBooking.getMb_num());
+            mbDetail.setSeat_num(Long.valueOf(seat));
+            movieMapper.insertBookingDetail(mbDetail);
+        }
+    }
+
+
+
+
 
 
 
