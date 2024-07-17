@@ -41,11 +41,11 @@
 		</if>
 		<!--구매-->
 		<if test="shopOrder==2">
-			ORDER BY o_cnt DESC
+			ORDER BY o_cnt DESC NULLS LAST
 		</if>
 		<!--평점-->
 		<if test="shopOrder==3">
-			ORDER BY pr_grade DESC
+			ORDER BY pg_avg DESC NULLS LAST
 		</if>
 		<!--관심상품-->
 		<if test="shopOrder==4">
@@ -86,6 +86,8 @@
 						p_status
 						FROM product
 						LEFT OUTER JOIN (SELECT COUNT(*) pf_cnt, p_num FROM product_fav GROUP BY p_num) USING(p_num)
+						LEFT OUTER JOIN (SELECT COUNT(*) o_cnt, p_num FROM order_detail GROUP BY p_num) USING(p_num)
+						LEFT OUTER JOIN (SELECT AVG(pr_grade) pg_avg, p_num FROM product_review GROUP BY p_num) USING(p_num)
 							<include refid="productSearch"></include>
 							<include refid="productOrder"></include>
 							)a)
