@@ -80,10 +80,16 @@ public interface AdminMapper {
 	public void deleteMovie(long m_code);	
 	
 	// 영화관 등록
+	@Select("SELECT cinema_num.nextval FROM dual")
+	public Long selectC_num();
 	public void insertCinema(CinemaVO cinemaVO);
 	// 상영관 등록
 	public void insertTheater(TheaterVO theaterVO);
 	//결제
 	public List<PointVO> selectPoint(Map<String,Object> map);
 	public Integer selectPointRowCount(Map<String,Object> map);
+	
+	//영화,상영관 검색
+	public List<TheaterVO> selectTheater(int c_num);
+	
 }

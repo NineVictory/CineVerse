@@ -17,8 +17,6 @@ public class CinemaVO {
 	private String c_address;		//주소
 	private String c_phone;			//전화번호
 	private String c_parkable;		//주차 가능 여부
-	
-	
 
     private List<TheaterVO> theaterList;
 

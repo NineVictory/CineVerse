@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+.ck.ck-editor__editable_inline[dir=ltr] {
+    height: 300px;
+}
+.page-container {
+	margin-top: 30px;
+    max-width: 800px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.insert_seat_form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.insert_seat_form ul {
+    list-style: none;
+    padding: 0;
+}
+
+.insert_seat_form ul li {
+    margin-bottom: 15px;
+}
+
+.insert_seat_form ul li label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.insert_seat_form ul li input, 
+.insert_seat_form ul li textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.insert_seat_form ul li input[type="file"] {
+    padding: 10px;
+}
+
+.insert_seat_form ul li input[type="submit"], 
+.insert_seat_form ul li form\:button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.insert_seat_form ul li input[type="submit"]:hover, 
+.insert_seat_form ul li form\:button:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 5px;
+}
+#submit_btn{
+    font-weight: 500;
+    background-color: var(--main-color-strong);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: transform 0.2s ease-in-out;
+}
+
+#submit_btn:hover {
+transform: scale(1.05);
+}
+
+.btn_display_set {
+display: flex;
+    justify-content: flex-end;
+}
+
+.dates_all{
+	gap: 30px;
+    display: flex;
+    justify-content: flex-start;
+}

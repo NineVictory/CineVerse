@@ -17,8 +17,10 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
+import lombok.extern.slf4j.Slf4j;
 @Service
 @Transactional
+@Slf4j
 public class AdminServiceImpl implements AdminService{
 	@Autowired
 	AdminMapper adminMapper;
@@ -101,7 +103,6 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	public List<AdminVO> selectMembershipList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return adminMapper.selectMembershipList(map);
 	}
 	@Override
@@ -132,15 +133,23 @@ public class AdminServiceImpl implements AdminService{
 	public Integer selectPointRowCount(Map<String, Object> map) {
 		return adminMapper.selectPointRowCount(map);
 	}
-	@Override
-    @Transactional
-    public void insertCinema(CinemaVO cinemaVO) {
-        adminMapper.insertCinema(cinemaVO);
-    }
-	@Override
-	public void insertTheater(TheaterVO theaterVO) {
-		adminMapper.insertTheater(theaterVO);
-	}
 
-	
+	@Override
+	public void insertCinema(CinemaVO cinemaVO) {
+		// 상영관 정보 저장
+		cinemaVO.setC_num(adminMapper.selectC_num());
+		adminMapper.insertCinema(cinemaVO);
+		// 상영관 정보 저장
+		List<TheaterVO> theaterList = cinemaVO.getTheaterList();
+		if (theaterList != null && !theaterList.isEmpty()) {
+			for (TheaterVO theater : theaterList) {
+				theater.setC_num(cinemaVO.getC_num());
+				adminMapper.insertTheater(theater); // theater 객체를 사용하여 상영관 정보 저장
+			}
+		}    
+	}
+	@Override
+	public List<TheaterVO> selectTheater(int c_num) {
+		return adminMapper.selectTheater(c_num);
+	}
 }

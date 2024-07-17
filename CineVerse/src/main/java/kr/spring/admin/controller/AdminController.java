@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.seat.vo.SeatVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +66,10 @@ public class AdminController {
 	@ModelAttribute
 	public TheaterVO initCommand4() {
 		return new TheaterVO();
+	}
+	@ModelAttribute
+	public SeatVO initCommand5() {
+		return new SeatVO();
 	}
 	/*==============================
 	 * 관리자메인
@@ -483,23 +489,17 @@ public class AdminController {
     }
 	//영화관 등록
     @PostMapping("/admin/adminCinemaForm")
-    public String insertCinema(@ModelAttribute("cinemaVO") @Valid CinemaVO cinemaVO,
+    @Transactional
+    public String insertCinema(@ModelAttribute("cinemaVO") @Valid CinemaVO cinemaVO,@Valid TheaterVO theaterVO,
                                BindingResult result,
                                Model model) {
+    	log.debug("<<영화관 등록>> : " + cinemaVO);
         if (result.hasErrors()) {
             return "adminCinemaForm"; // 유효성 검사 오류 시 폼을 다시 보여줌
-        }
-        
-        // 영화관 정보 저장
-        adminService.insertCinema(cinemaVO);
-
-        // 상영관 정보 저장
-        List<TheaterVO> theaterList = cinemaVO.getTheaterList();
-        if (theaterList != null && !theaterList.isEmpty()) {
-            for (TheaterVO theater : theaterList) {
-                adminService.insertTheater(theater);
-            }
-        }
+        }		
+		  // 영화관 정보 저장 
+			
+			 adminService.insertCinema(cinemaVO);
 
         // View 메시지 처리
         model.addAttribute("message", "영화관 및 상영관이 성공적으로 등록되었습니다.");
@@ -511,12 +511,12 @@ public class AdminController {
 	
 	// 상영관 등록
 	// 영화관등록 폼 호출
-		@GetMapping("/admin/adminCinemaTheaterForm")
-		public String showCinemaTheaterForm(Model model) {
-			model.addAttribute("TheaterVO", new TheaterVO());
+		@GetMapping("/admin/adminCinemaSeatForm")
+		public String showCinemaSeatForm(Model model) {
+			model.addAttribute("SeatVO", new SeatVO());
 
 
-			return "adminCinemaTheaterForm";
+			return "adminCinemaSeatForm";
 		}
 	// 포인트
 	// 영화
@@ -568,6 +568,7 @@ public class AdminController {
 	 * 
 	 * }
 	 */
+
 }
 
 

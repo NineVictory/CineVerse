@@ -334,7 +334,7 @@
 	</select>
 	
 	<!-- 영화관 등록 -->
-	<insert id="insertCinema" parameterType="CinemaVO">
+	<insert id="insertCinema" parameterType="cinemaVO">
 		INSERT INTO cinema(
 		c_num,
 		c_branch,
@@ -344,7 +344,7 @@
 		c_parkable
 		)
 		VALUES (
-		cinema_num.nextval,
+		#{c_num},
 		#{c_branch},
 		#{c_location},
 		#{c_address},
@@ -353,7 +353,7 @@
 	</insert>
 	
 	<!-- 상영관 등록 -->
-	<insert id="insertTheater" parameterType="TheaterVO">
+	<insert id="insertTheater" parameterType="cinemaVO">
 		INSERT INTO theater(
 		th_num,
 		c_num,
@@ -362,10 +362,19 @@
 		)
 		VALUES (
 		theater_seq.nextval,
-		cinema_num.nextval,
+		#{c_num},
 		#{th_name},
 		#{th_position})
 	</insert>
+
+	
+	<select id="selectTheater" parameterType="String" resultType="TheaterVO">
+  		  SELECT th_name
+  		  FROM theater
+ 		  WHERE c_num = #{c_num}
+	</select>
+
+
 </mapper>							
 
 

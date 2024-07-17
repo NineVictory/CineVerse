@@ -46,7 +46,5 @@ public interface AdminService {
 	public Integer totalMovie();
 	public Integer totalCinema();
 	public void insertCinema(CinemaVO cinemaVO);
-	public void insertTheater(TheaterVO theaterVO);
-
-
+	public List<TheaterVO> selectTheater(int c_num);
 }	

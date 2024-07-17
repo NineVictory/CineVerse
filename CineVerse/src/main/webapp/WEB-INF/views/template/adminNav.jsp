@@ -46,9 +46,6 @@
 				href="${pageContext.request.contextPath}/admin/adminCinemaForm"
 				class="menu-link">영화관등록</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}/admin/adminCinemaTheaterForm"
-				class="menu-link">상영관등록</a></li>
-			<li><a
 				href="${pageContext.request.contextPath}/admin/adminCinemaSeatForm"
 				class="menu-link">좌석등록</a></li>
 		</ul>

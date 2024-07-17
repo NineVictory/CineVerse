@@ -60,18 +60,21 @@
                         <form:option value="1">가능</form:option>
                         <form:option value="0">불가능</form:option>
                     </form:select></li>
-            </ul>
 
             <!-- 상영관 등록 부분 -->
-            <h3>상영관 추가</h3>
+            </ul>
+            
+
+            <h3>상영관 등록</h3>
             <div id="theater-section">
                 <!-- 초기 상영관 폼 하나는 서버에서 렌더링하거나, JavaScript로 추가 가능 -->
             </div>
-            <button type="button" onclick="addTheaterForm()">상영관 추가하기</button>
+            <button type="button" onclick="addTheaterForm()">상영관 추가</button>
 
             <div class="btn_display_set">
                 <form:button id="submit_btn">등록하기</form:button>
             </div>
+            
         </form:form>
     </div>
 </div>
@@ -83,14 +86,13 @@
         var theaterSection = document.getElementById('theater-section');
         var newTheaterForm = document.createElement('div');
         newTheaterForm.classList.add('theater-form');
-        newTheaterForm.innerHTML = `
-            <h4>상영관 정보</h4>
-            <label>상영관 이름</label>
-            <input type="text" name="cinemaVO.theaterList[${theaterCount}].th_name" class="input-check" required>
+        newTheaterForm.innerHTML = '';
+        newTheaterForm.innerHTML += '<h4>' + (theaterCount + 1) + '번 상영관</h4>';
+        newTheaterForm.innerHTML+= '<label>상영관 이름</label>';
+        newTheaterForm.innerHTML+= '<input type="text" name="theaterList['+theaterCount+'].th_name" class="input-check" required>';
+		newTheaterForm.innerHTML+= '<label>상영관 위치</label>';
+		newTheaterForm.innerHTML+= '<input type="text" name="theaterList['+theaterCount+'].th_position" class="input-check" required>';
 
-            <label>상영관 위치</label>
-            <input type="text" name="cinemaVO.theaterList[${theaterCount}].th_position" class="input-check" required>
-        `;
         theaterSection.appendChild(newTheaterForm);
         theaterCount++;
     }
