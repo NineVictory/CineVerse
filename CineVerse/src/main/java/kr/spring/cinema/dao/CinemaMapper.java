@@ -25,21 +25,14 @@ public interface CinemaMapper {
 	public void deleteCinema(Long c_num);
 	
 
-	//상영관
-	public Integer selectTheaterCount(Map<String,Object> map);
-	public void insertTheater(TheaterVO theater);
-	public TheaterVO selectTheater(Long th_num);
-	public void updateTheater(TheaterVO theater);	
-	public void deleteTheater(Long th_num);
-	
-	//상영관 목록
+	//상영관 
 	public List<TheaterVO> selectTheaterListByCinemaNum(long c_num);
 	public Integer selectTheaterCountByCinema(long c_num);
 	
 	
-	//상영 시간표 목록
-	public List<MovieTimeVO> selectMovieTimesByMovieAndTheater(long m_code, long th_num);
-	
+	//영화시간표 
+	public List<MovieTimeVO> selectMovieTimeListByCinemaNum(long c_num);
+	public Integer selectMovieTimeCount(Map<String,Object> map);
 	
 	
 	

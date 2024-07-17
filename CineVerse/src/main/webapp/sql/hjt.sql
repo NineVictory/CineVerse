@@ -17,7 +17,7 @@ CREATE TABLE theater(
 	th_num NUMBER NOT NULL,
 	c_num NUMBER NOT NULL,
 	th_name VARCHAR2(15) NOT NULL,
-	th_position VARCHAR2(15) NOT NULL,
+	th_seat_count NUMBER NOT NULL,
 	CONSTRAINT theater_pk PRIMARY KEY (th_num),
     CONSTRAINT theater_fk FOREIGN KEY (c_num) REFERENCES cinema (c_num)
 );

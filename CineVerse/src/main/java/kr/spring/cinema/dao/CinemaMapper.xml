@@ -83,22 +83,6 @@
 
 	
 	
-	
-<!-- 	 상영관 등록 
-	<insert id="insertTheater" parameterType="theaterVO">
-		INSERT INTO theater(
-			th_num,
-			th_name,
-			th_position,
-			c_num)
-		VALUES (
-			theater_seq.nextval,
-			#{th_name},
-			#{th_position},
-			 (SELECT c_num FROM cinema WHERE c_branch = #{c_branch}))
-	</insert> -->
-	
-	
 	<!-- 상영관 총레코드수/검색 레코드수 -->
 	<select id="selectTheaterCountByCinema" parameterType="long" resultType="Integer">
 		SELECT COUNT(*)
@@ -116,11 +100,33 @@
 	</select>
 
 	
-	<select id="selectMovieTimesByMovieAndTheater" parameterType="map" resultType="movieTimeVO">
-		SELECT *
+	 <!-- 상영시간표 목록 -->
+    <select id="selectMovieTimeListByCinemaNum" parameterType="long" resultType="movietimeVO">
+        SELECT
+           mt.mt_num,
+           mt.mt_date,
+           mt.mt_start,
+           mt.mt_end,
+           mt.m_code,
+           mt.th_num,
+           m.m_name,
+           t.th_name
+        FROM movie_time mt
+        JOIN movie m ON mt.m_code = m.m_code
+        JOIN theater t ON mt.th_num = t.th_num
+        WHERE t.c_num = #{c_num}
+    </select>
+	
+	<!-- 상영시간표 총레코드수/검색 레코드수 -->
+	 <select id="selectMovieTimeCount" parameterType="map"  resultType="integer">
+	 	SELECT
+			COUNT(*)
 		FROM movie_time
-		WHERE m_code = #{m_code} AND th_num = #{th_num}
-	</select>
+	 </select>
+	
+	
+	
+	
 	
 	<!-- 영화관 목록(잠시 보류)
 	<select id="selectCinemaList" parameterType="integer" resultType="cinemaVO">
@@ -129,6 +135,21 @@
 		FROM cinema WHERE c_location=#{c_location} 
 	</select>
 	-->
+	
+	
+	<!-- 	 상영관 등록 
+	<insert id="insertTheater" parameterType="theaterVO">
+		INSERT INTO theater(
+			th_num,
+			th_name,
+			th_position,
+			c_num)
+		VALUES (
+			theater_seq.nextval,
+			#{th_name},
+			#{th_position},
+			 (SELECT c_num FROM cinema WHERE c_branch = #{c_branch}))
+	</insert> -->
 </mapper>							
 
 

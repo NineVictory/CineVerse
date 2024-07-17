@@ -18,6 +18,21 @@
 	background-color: #d3d3d3;
 	color: #000000;
 	padding: 40px 20px 40px 20px;
+	display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.info-content {
+    flex-grow: 1;
+}
+
+.cinema-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: center;
+    margin-right: 70px;
 }
 
 .branch-address{

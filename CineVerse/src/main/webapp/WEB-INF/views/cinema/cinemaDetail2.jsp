@@ -10,6 +10,7 @@
 		<!-- 극장 정보 -->
 		<h2 class="branch-info">극장 정보</h2>
 		<div class="info-box">	
+		<div class="info-content">
 		<div class="branch-address">위치 : <b>${cinema.c_address}</b></div>					
            <div class="branch-phone">문의전화 : <b>${cinema.c_phone}</b></div>
            <div class="branch-theater">상영관수 :  <b>${theaterCount}관</b></div>
@@ -19,9 +20,17 @@
 		<c:if test="${cinema.c_parkable == 1}">
            <div class="branch-parkable">주차정보 : <b>가능</b></div>
 		</c:if>
+		</div>
 			<div class="cinema-icon">
-				<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon1.png" style="width: 50px; height: 50px;">
-				<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon2.png" style="width: 30px; height: 30px;">
+				<c:if test="${cinema.c_parkable == 0}">
+					<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon1.png" style="width: 80px; height: 80px;">
+					<b>주차 불가능</b>
+				</c:if>
+				
+				<c:if test="${cinema.c_parkable == 1}">
+					<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon2.png" style="width: 80px; height: 80px;">
+					<b>주차 가능</b>
+				</c:if>
 			</div>
 		</div>
 		
@@ -127,6 +136,30 @@
 							<li>${theater.th_name}</li>
 						</c:forEach>
 					</ul>
+					<div class="movie-time-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>상영관</th>
+                        <th>상영일자</th>
+                        <th>시작 시간</th>
+                        <th>종료 시간</th>
+                        <th>영화 코드</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="time" items="${movieTimeList}">
+                        <tr>
+                            <td>${time.c_num}</td>
+                            <td>${time.mt_date}</td>
+                            <td>${time.mt_start}</td>
+                            <td>${time.mt_end}</td>
+                            <td>${time.m_code}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
 		</div>
 		
 

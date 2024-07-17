@@ -51,35 +51,6 @@ public class CinemaServiceImpl implements CinemaService{
 
 
 	@Override
-	public Integer selectTheaterCount(Map<String, Object> map) {
-		return cinemaMapper.selectTheaterCount(map);
-	}
- 
-	@Override
-	public void insertTheater(TheaterVO theater) {
-		cinemaMapper.insertTheater(theater);
-	}
- 
-	@Override
-	public TheaterVO selectTheater(Long th_num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void updateTheater(TheaterVO theater) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteTheater(Long th_num) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
 	public List<TheaterVO> selectTheaterListByCinemaNum(long c_num) {
 		return cinemaMapper.selectTheaterListByCinemaNum(c_num);
 	}
@@ -90,10 +61,16 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
-	public List<MovieTimeVO> selectMovieTimesByMovieAndTheater(long m_code, long th_num) {
-		return cinemaMapper.selectMovieTimesByMovieAndTheater(m_code, th_num);
-	}	
-	 
+	public List<MovieTimeVO> selectMovieTimeListByCinemaNum(long c_num) {
+		return cinemaMapper.selectMovieTimeListByCinemaNum(c_num);
+	}
+
+	@Override
+	public Integer selectMovieTimeCount(Map<String, Object> map) {
+		return cinemaMapper.selectMovieTimeCount(map);
+	}
+
+	
 	 
 	
 	/*

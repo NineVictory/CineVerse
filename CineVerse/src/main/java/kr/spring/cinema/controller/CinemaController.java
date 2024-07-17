@@ -1,7 +1,6 @@
 package kr.spring.cinema.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -132,12 +131,16 @@ public class CinemaController {
         // 상영관 수 조회
         Integer theaterCount = cinemaService.selectTheaterCountByCinema(c_num);
         
+     // 상영 시간표 조회
+        List<MovieTimeVO> movieTimeList = cinemaService.selectMovieTimeListByCinemaNum(c_num);
+        
+        
         
         ModelAndView mav = new ModelAndView("cinemaDetail2");
         mav.addObject("cinema", cinema);
         mav.addObject("theaterList", theaterList);
-        mav.addObject("theaterList", theaterList);
         mav.addObject("theaterCount", theaterCount); 
+        mav.addObject("movieTimeList", movieTimeList);
         return mav;
 		/* return new ModelAndView("cinemaDetail2","cinema",cinema); */
 	}

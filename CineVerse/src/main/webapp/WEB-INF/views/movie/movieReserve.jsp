@@ -11,16 +11,24 @@
 			<div class="theater-wrapper">
 				<ul class="theater-location-wrapper">
 					<li class="theater-location" id="seoul-location">
-					<a href="cinemaList2?c_location=1" class="button">서울</a>
+					<a href="movieReserve?c_location=1" class="button">서울</a>
+					<a href="movieReserve?c_location=2" class="button">경기</a>
+					<a href="movieReserve?c_location=3" class="button">인천</a> 
+					<a href="movieReserve?c_location=4" class="button">강원</a>
+					<a href="movieReserve?c_location=5" class="button">대전/충청</a>
+					<a href="movieReserve?c_location=6" class="button">경상</a>
+					<a href="movieReserve?c_location=7" class="button">광주/전라</a>
+					</li>
+					</ul>
 						<div class="location" id="seoul" style="display: none;">
 						<c:forEach var="cinema" items="${list}">
 							<ul class="theater-place-wrapper">
 								<li class="theater-place"><a href="detail?c_num=${cinema.c_num}" class="button">${cinema.c_branch}</a></li>
 							</ul>
 							</c:forEach>
-						</div></li>
+						</div>
 					
-				</ul>
+				
 			</div>
 		</div>
 	</div>
