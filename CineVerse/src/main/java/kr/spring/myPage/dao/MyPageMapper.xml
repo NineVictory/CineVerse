@@ -6,10 +6,12 @@
 <mapper namespace="kr.spring.myPage.dao.MyPageMapper">
 	<!-- 쿠폰 목록 -->
 	<select id="selectMemCouponList" parameterType="long">
-		SELECT mc.*, c.*, ADD_MONTHS(mc.coupon_regdate, 1) coupon_enddate 
+		SELECT mc.*, c.*,
+		ADD_MONTHS(mc.coupon_regdate, 1) coupon_enddate
 		FROM member_coupon mc
 		JOIN coupon_db c ON mc.coupon_num = c.coupon_num
-		WHERE mc.mem_num = #{mem_num}
+		WHERE mc.mem_num =
+		#{mem_num}
 	</select>
 
 	<sql id="myPageBoardSearch">
@@ -23,7 +25,7 @@
 			AND cb_type = 'dailyTalk'
 		</if>
 	</sql>
-	
+
 	<sql id="aBoardSearch">
 		<if test="ab_type != null and ab_type != ''">
 			AND ab_type = #{ab_type}
@@ -35,127 +37,187 @@
 			AND ab_type = 'exchange'
 		</if>
 	</sql>
-	
-	<!-- 양도/교환 북마크 -->
-	<select id="aBoardBookMark" parameterType="map" resultType="integer">
-		SELECT COUNT(*) FROM ab_bookmark ab JOIN assignment_board aa USING(ab_num) 
-		WHERE ab.mem_num=${mem_num}
-		<include refid="aBoardSearch"></include>
-		ORDER BY ab_num DESC
-	</select>
-	
-	<select id="aBoardBookMarkList" parameterType="map" resultType="assignVO">
-		SELECT * FROM ab_bookmark ab JOIN assignment_board 
-		USING(ab_num)WHERE ab.mem_num = #{mem_num}
-		<include refid="aBoardSearch"></include>
-	</select>
-	
+
+
+
 	<!-- 커뮤 좋아요 수 -->
-	<select id="cBoardWriteFavCnt" parameterType="map" resultType="integer">
-		SELECT COUNT(*) FROM community_fav 
-		WHERE mem_num=#{mem_num}
+	<select id="cBoardWriteFavCnt" parameterType="map"
+		resultType="integer">
+		SELECT COUNT(*) FROM community_fav cf JOIN community_board cb
+		USING(cb_num)
+		WHERE cf.mem_num=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
-	
+
 	<!-- 커뮤 좋아요 목록 -->
-	<select id="cBoardWriteFavList" parameterType="map" resultType="boardFavVO">
-		SELECT * FROM community_board cb JOIN community_fav cf 
+	<select id="cBoardWriteFavList" parameterType="map"
+		resultType="boardFavVO">
+		SELECT * FROM community_board cb JOIN community_fav cf USING(cb_num)
+		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM community_fav
+		GROUP BY cb_num)
 		USING(cb_num) WHERE cf.mem_num=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
-	
-	<!-- 커뮤 북마크 수-->
+
+	<!-- 커뮤 북마크 수 -->
 	<select id="cBoardBookMark">
 		SELECT COUNT(*)
-		FROM community_bookmark cb JOIN community_board cc USING(cb_num)
+		FROM community_bookmark cb JOIN community_board cc
+		USING(cb_num)
 		WHERE cb.mem_num=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
-	
-	
+
 	<!-- 커뮤 북마크 목록 -->
-	<!-- 양도/교환 댓글 수 -->
-	<!-- 양도/교환 댓글 목록 -->
-	
-	
-	
-	<!-- 양도/교환 게시글 수 -->
-	<select id="aBoardListcnt" parameterType="map" resultType="integer">
-		SELECT COUNT(*)
-		FROM assignment_board 
-		WHERE mem_num=#{mem_num}
-		<include refid="aBoardSearch"></include>
-		ORDER BY ab_num DESC
+	<select id="cBoardBookMarkList">
+		SELECT * FROM community_bookmark cb JOIN
+		community_board cbb
+		USING(cb_num)
+		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM
+		community_fav GROUP
+		BY cb_num) USING(cb_num)
+		WHERE cb.mem_num=#{mem_num}
+		<include refid="myPageBoardSearch"></include>
 	</select>
-	
-	<!-- 양도/교환 게시글 목록 -->
-	<select id="aBoardList" parameterType="map" resultType="assignVO">
-		SELECT * 
-		FROM assignment_board 
-		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,ab_num FROM ab_bookmark GROUP BY ab_num) USING(ab_num)
-		WHERE mem_num=#{mem_num}
-		<include refid="aBoardSearch"></include>
-		ORDER BY ab_num DESC
-	</select>
-	
-	
-	
-		
-		
-	
+
 	<!-- 게시글 수 -->
-	<select id="cBoardWriteListcnt" parameterType="map" resultType="integer">
-		SELECT COUNT(*) 
-		FROM community_board 
+	<select id="cBoardWriteListcnt" parameterType="map"
+		resultType="integer">
+		SELECT COUNT(*)
+		FROM community_board
 		WHERE mem_num = #{mem_num}
 		<include refid="myPageBoardSearch"></include>
 		ORDER BY cb_num DESC
 	</select>
 
 	<!-- 게시글 목록 -->
-	<select id="selectMemcBoardWriteList" parameterType="map" resultType="boardVO">
-		SELECT * 
-		FROM community_board 
-		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM community_fav GROUP BY cb_num) USING(cb_num) 
-		WHERE mem_num = #{mem_num}
+	<select id="selectMemcBoardWriteList" parameterType="map"
+		resultType="boardVO">
+		SELECT *
+		FROM community_board
+		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,
+		cb_num FROM community_fav GROUP
+		BY cb_num) USING(cb_num)
+		WHERE mem_num =
+		#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 		ORDER BY cb_num DESC
 	</select>
-	
+
 	<!-- 댓글 수 -->
-	<select id="cBoardReplyListcnt" parameterType="map" resultType="integer">
-		SELECT COUNT(*) 
+	<select id="cBoardReplyListcnt" parameterType="map"
+		resultType="integer">
+		SELECT COUNT(*)
 		FROM community_comment cc
-		JOIN community_board cb ON cc.cb_num = cb.cb_num
+		JOIN community_board cb ON
+		cc.cb_num = cb.cb_num
 		WHERE cc.mem_num = #{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
-	
+
 	<!-- 댓글 목록 -->
-	<select id="cBoardReplyList" parameterType="map" resultType="boardCommentVO">
-		SELECT cc.*, fav_data.fav_cnt, cb.cb_type, cb.cb_title 
-		FROM community_comment cc 
-		LEFT OUTER JOIN (SELECT COUNT(*) AS fav_cnt, cc_num FROM community_comment_fav GROUP BY cc_num) fav_data 
-		ON cc.cc_num = fav_data.cc_num
-		JOIN community_board cb ON cc.cb_num = cb.cb_num 
-		WHERE cc.mem_num = #{mem_num}
+	<select id="cBoardReplyList" parameterType="map"
+		resultType="boardCommentVO">
+		SELECT cc.*, fav_data.fav_cnt, cb.cb_type, cb.cb_title
+		FROM
+		community_comment cc
+		LEFT OUTER JOIN (SELECT COUNT(*) AS fav_cnt,
+		cc_num FROM
+		community_comment_fav GROUP BY cc_num) fav_data
+		ON cc.cc_num
+		= fav_data.cc_num
+		JOIN community_board cb ON cc.cb_num =
+		cb.cb_num
+		WHERE
+		cc.mem_num = #{mem_num}
 		<include refid="myPageBoardSearch"></include>
 		ORDER BY cc.cc_num DESC
 	</select>
-	
-	
-	
-	
-	
+
+	<!-- 대댓글 수 -->
+	<!-- <select id="cBoardResponsecnt">
+		
+	</select> -->
+	<!-- 대댓글 목록 -->
+	<!-- <select id="cBoardResponseList">
+		
+	</select> -->
+
+	<!-- <select id="cBoardResponseList" parameterMap="map" resultType="boardCommentVO"> 
+		SELECT * FROM community_response WHERE mem_num=#{mem_num} </select> -->
+
+
+
+
+
+	<!-- 양도/교환 찜 -->
+	<select id="aBoardBookMark" parameterType="map"
+		resultType="integer">
+		SELECT COUNT(*) FROM ab_bookmark ab JOIN assignment_board aa
+		USING(ab_num)
+		WHERE ab.mem_num=${mem_num}
+		<include refid="aBoardSearch"></include>
+		ORDER BY ab_num DESC
+	</select>
+
+	<select id="aBoardBookMarkList" parameterType="map"
+		resultType="assignVO">
+		SELECT * FROM ab_bookmark ab JOIN assignment_board
+		USING(ab_num) LEFT
+		OUTER JOIN (SELECT COUNT(*) fav_cnt, ab_num FROM ab_bookmark
+		GROUP BY
+		ab_num)
+		USING(ab_num) WHERE ab.mem_num = #{mem_num}
+		<include refid="aBoardSearch"></include>
+	</select>
+
+	<!-- 양도/교환 게시글 수 -->
+	<select id="aBoardListcnt" parameterType="map"
+		resultType="integer">
+		SELECT COUNT(*)
+		FROM assignment_board
+		WHERE mem_num=#{mem_num}
+		<include refid="aBoardSearch"></include>
+		ORDER BY ab_num DESC
+	</select>
+
+	<!-- 양도/교환 게시글 목록 -->
+	<select id="aBoardList" parameterType="map"
+		resultType="assignVO">
+		SELECT *
+		FROM assignment_board
+		LEFT OUTER JOIN (SELECT COUNT(*)
+		fav_cnt,ab_num FROM ab_bookmark GROUP BY
+		ab_num) USING(ab_num)
+		WHERE
+		mem_num=#{mem_num}
+		<include refid="aBoardSearch"></include>
+		ORDER BY ab_num DESC
+	</select>
+
+
+	<!-- 양도/교환 댓글 수 -->
+	<!-- 양도/교환 댓글 목록 -->
+
+
+
+
+
+
+
+
+
 	<update id="updateMember_detail" parameterType="myPageVO">
-		UPDATE member_detail
-			SET 
-			mem_name=#{mem_name},
-			mem_nickName=#{mem_nickName},
-			mem_phone=#{mem_phone},
-			mem_email=#{mem_email},
-			mem_modify_date = SYSDATE
-        WHERE mem_num = #{mem_num}	
+		UPDATE
+		member_detail
+		SET
+		mem_name=#{mem_name},
+		mem_nickName=#{mem_nickName},
+		mem_phone=#{mem_phone},
+		mem_email=#{mem_email},
+		mem_modify_date =
+		SYSDATE
+		WHERE mem_num = #{mem_num}
 	</update>
 
 </mapper>

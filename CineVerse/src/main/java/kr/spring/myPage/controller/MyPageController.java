@@ -121,11 +121,29 @@ public class MyPageController {
 
 	// 커뮤니티 북마크
 	@GetMapping("/myPage/bookMark")
-	public String myPageBookMark(HttpSession session, Model model) {
+	public String myPageBookMark(@RequestParam(defaultValue = "0")int category, HttpSession session, Model model) {
+		log.debug("<<카테고리 >> : " + category);
+		
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("category", category);
+		map.put("mem_num", user.getMem_num());
+		
+		int count = mypageService.cBoardBookMark(map);
+		log.debug("<<게시글 수>> : " + count);
+		
+		List<BoardVO> list = null;
+		if(count > 0) {
+			list = mypageService.cBoardBookMarkList(map);
+			log.debug("<<글 목록>> : " + list);
+		}
+		
 		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
 		return "bookMark";
 	}
 	
@@ -216,7 +234,7 @@ public class MyPageController {
 		map.put("cb_type", cb_type);
 		map.put("category", category);
 		map.put("mem_num", user.getMem_num());
-
+		
 		List<BoardCommentVO> list = null;
 		int count = mypageService.cBoardReplyListcnt(map);
 		if(count > 0) {

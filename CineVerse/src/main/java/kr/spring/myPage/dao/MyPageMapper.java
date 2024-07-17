@@ -24,8 +24,16 @@ public interface MyPageMapper {
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
 	public Integer cBoardWriteListcnt(Map<String, Object> map);
 	public List<BoardVO> selectMemcBoardWriteList(Map<String, Object> map);//내가 쓴 게시글 목록
+	
+	
 	public Integer cBoardReplyListcnt(Map<String, Object> map);
 	public List<BoardCommentVO> cBoardReplyList(Map<String, Object> map);//내가 쓴 댓글 목록
+	
+	public Integer cBoardResponsecnt(Map<String, Object> map);
+	public List<BoardCommentVO> cBoardResponseList(Map<String, Object> map); // 내가 쓴 답글 목록
+	
+	
+	
 	@Update("UPDATE member_detail SET mem_passwd=#{mem_passwd} WHERE mem_num=#{mem_num}")
 	public void updatePassword(MyPageVO mypage);//비밀번호 변경
 	@Select("SELECT COUNT(*) FROM point_history WHERE mem_num=#{mem_num}")//포인트
@@ -37,11 +45,9 @@ public interface MyPageMapper {
 	public void updateProfile(MyPageVO myPageVO);// 프로필 이미지 업데이트
 	public Integer aBoardListcnt(Map<String, Object> map);//양도게시글
 	public List<AssignVO> aBoardList(Map<String, Object> map);
-	//양도북마크
-	public Integer aBoardBookMark(Map<String, Object> map);
+	public Integer aBoardBookMark(Map<String, Object> map);//양도북마크
 	public List<AssignVO> aBoardBookMarkList(Map<String, Object> map);
-	//일반 커뮤니티 좋아요
-	public Integer cBoardWriteFavCnt(Map<String, Object> map);
+	public Integer cBoardWriteFavCnt(Map<String, Object> map);//일반 커뮤니티 좋아요
 	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
 
 	
@@ -51,7 +57,6 @@ public interface MyPageMapper {
 	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
 
 
-	//양도 댓글+보미언니가 assigncommentVO만들어주면 함
 
 
 

@@ -48,7 +48,7 @@
         <li class="mp_li" id="mp_li_boardReply"><a href="/myPage/boardReply">내가 쓴 댓글</a></li>
         
         <li class="mp_nav" id="mp_nav_boardWrite">양도/교환</li>
-        <li class="mp_li" id="mp_li_bookMark"><a href="/myPage/aBoardBookMark">북마크</a></li>
+        <li class="mp_li" id="mp_li_bookMark"><a href="/myPage/aBoardBookMark">찜한 게시글</a></li>
         <li class="mp_li" id="mp_li_boardWrite"><a href="/myPage/aBoardWrite">내가 쓴 글</a></li>
         <li class="mp_li" id="mp_li_boardReply"><a href="/myPage/aBoardReply">내가 쓴 댓글</a></li>
         

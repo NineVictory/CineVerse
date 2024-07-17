@@ -33,6 +33,20 @@ public class BoardCommentVO {
     private String cb_title;
     private int fav_cnt;
     
+    private long te_num;
+	private String te_content;
+	private long te_parent_num;		// 부모번호
+	private int te_depth;			// 깊이 숫자
+	private String te_date;
+	private String te_mdate;
+	private String te_ip;
+	private int te_report;
+	
+	private String parent_id;
+	private String pnick_name;
+	
+	private int respfav_cnt;
+    
 	public void setRe_date(String cc_reg_date) {
 		this.cc_reg_date = DurationFromNow.getTimeDiffLabel(cc_reg_date);
 	}

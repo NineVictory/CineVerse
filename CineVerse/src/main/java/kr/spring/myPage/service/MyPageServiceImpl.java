@@ -121,5 +121,16 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.cBoardWriteFavList(map);
 	}
 
+	@Override
+	public Integer cBoardResponsecnt(Map<String, Object> map) {
+		return myPageMapper.cBoardResponsecnt(map);
+	}
+
+	@Override
+	public List<BoardCommentVO> cBoardResponseList(Map<String, Object> map) {
+		return myPageMapper.cBoardResponseList(map);
+	}
+
+
 	
 }
