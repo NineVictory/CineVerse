@@ -42,6 +42,7 @@ public class AssignVO {
 	private long ab_report;
 
 	private String mem_id;
+	private String mem_nickname;
 	
 	private int ac_cnt;		//댓글수
 	private int bookmark_cnt;	//북마크수

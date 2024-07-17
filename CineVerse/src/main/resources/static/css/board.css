@@ -404,8 +404,19 @@ ul.btn-hide li a:hover {
 .rep-content {
     resize: none;
     overflow-y: auto;
-    width: 100%;
+    width: 93%;
     max-width: 100%;
+    height:100px;
+}
+.mrep-content {
+    resize: none;
+    overflow-y: auto;
+    width: 93%;
+    /* max-width: 100%; */
+    height:100px;
+}
+#mresp_form textarea{
+	margin:0 auto;
 }
 img#output_fav{
 	cursor:pointer;
@@ -459,7 +470,7 @@ div#comment_div>div{
 	font-size:12px;
 	color:#808080;
 }
-.response-btn{
+.response-btn, .response2-btn{
 	background:#fff;
 	border:1px solid #c7c7c7;
 	font-size:13px;
@@ -513,7 +524,7 @@ ul.cc-btn-hide li {
 ul.cc-btn-hide li a:hover {
     color: #ccc;
 }
-.cc-like-btn{
+.cc-like-btn, .resp-like-btn{
 	background:#fff;
 	border:1px solid #c7c7c7;
 	font-size:13px;
@@ -525,10 +536,11 @@ ul.cc-btn-hide li a:hover {
 .text-con{
 	text-align:center;
 }
+
 textarea.mcc-content {
     resize: none;
     overflow-y: auto;
-    width:94%;
+    width:93%;
     height:100px;
     margin-top:10px;
    
@@ -537,7 +549,11 @@ textarea.mcc-content {
 	margin:20px 0;
 }
 .mcc-btn{
-	margin:5px 3% 10px 0;
+	margin:5px 3.5% 10px 0;
+	text-align:right;
+}
+#mresp_second, #resp_second{
+	margin:5px 3.5% 10px 0;
 	text-align:right;
 }
 .mcc-submit{
@@ -550,7 +566,7 @@ textarea.mcc-content {
     cursor:pointer;
     margin:5px;
 }
-.cc-reset{
+.cc-reset, .mresp-reset, .resp-reset{
 	border:1px solid #3F66ED;
 	border-radius:5px;
 	width:55px;
@@ -632,7 +648,7 @@ img.item-img{
 }
 .assign-info-container{
 	margin:30px 30px 40px 30px;
-	min-height:200px;
+	min-height:250px;
 	gap:30px;
 }
 

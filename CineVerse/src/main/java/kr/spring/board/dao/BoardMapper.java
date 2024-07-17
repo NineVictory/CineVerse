@@ -120,4 +120,23 @@ public interface BoardMapper {
 	public Integer selectResponseFavCnt(Long te_num);
 
 	
+	//답글 좋아요
+	@Select("SELECT * FROM community_response_fav WHERE te_num=#{te_num} AND mem_num=#{mem_num}")
+	public BoardResponseFavVO selectRespFav(BoardResponseFavVO respfav);
+	@Select("SELECT COUNT(*) FROM community_response_fav WHERE te_num=#{te_num}")
+	public Integer selectRespFavCount(Long te_num);
+	@Insert("INSERT INTO community_response_fav (te_num,mem_num) VALUES (#{te_num},#{mem_num})")
+	public void insertRespFav(BoardResponseFavVO fav);
+	@Delete("DELETE FROM community_response_fav WHERE te_num=#{te_num} AND mem_num=#{mem_num}")
+	public void deleteRespFav(BoardResponseFavVO fav);
+	//댓글 삭제시 답글 좋아요 삭제
+	@Delete("DELETE FROM community_response_fav WHERE te_num IN (SELECT te_num FROM community_response_fav JOIN community_response USING (te_num) WHERE cc_num=#{cc_num}")
+	public void deleteRespFavByReNum(Long cc_num);
+	//답글 삭제시 자식답글 좋아요 삭제
+	@Delete("DELETE FROM community_response_fav WHERE te_parent_num IN (SELECT )")
+	public void deleteRespFavByTeNum(Long te_num);
+	//게시글 삭제시 답글의 좋아요 삭제
+	@Delete("DELETE FROM community_response_fav WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")
+	public void deleteRespFavByBoardNum(Long cb_num);
+	
 }

@@ -435,9 +435,9 @@ public class BoardAjaxController {
 	    Map<String, Object> mapJson = new HashMap<>();
 	    
 	    for (BoardResponseVO response : list) {
-//	        // 각 답글에 대한 좋아요 개수 읽어서 지정해줌 response vo에 respfav_cnt 세팅함
-//	        int favCount = boardService.selectResponseFavCnt(response.getTe_num());
-//	        response.setRespfav_cnt(favCount);
+	        // 각 답글에 대한 좋아요 개수 읽어서 지정해줌 response vo에 respfav_cnt 세팅함
+	        int favCount = boardService.selectResponseFavCnt(response.getTe_num());
+	        response.setRespfav_cnt(favCount);
 	    }
 	    
 	    mapJson.put("list", list);

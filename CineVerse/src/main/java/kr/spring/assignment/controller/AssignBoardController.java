@@ -203,4 +203,24 @@ public class AssignBoardController {
 		return "common/resultAlert";
 	}
 	
+	/*====================
+	 *양도글 글삭제
+	 =====================*/
+	@GetMapping("/assignboard/delete")
+	public String submitDelete(long ab_num, HttpServletRequest request) {
+		log.debug("<<양도글 삭제 - ab_num>> : " + ab_num);
+		
+		AssignVO db_assign = assignService.ab_selectBoard(ab_num);
+		
+		//글 삭제
+		assignService.ab_deleteBoard(ab_num);
+		
+		if(db_assign.getAb_filenames() != null) {
+			//파일 삭제
+			FileUtil.removeFile(request, db_assign.getAb_filenames());
+		}
+		
+		return "redirect:/assignboard/list";
+	}
+	
 }

@@ -35,7 +35,7 @@ public interface AssignBoardMapper {
 	@Update("UPDATE assignment_board SET filename='' WHERE ab_num=#{ab_num}")
 	public void ab_deleteFile(Long ab_num);// 파일만 삭제
 	
-	//부모글 좋아요
+	//부모글 찜
 	@Select("SELECT * FROM ab_bookmark WHERE ab_num = #{ab_num} AND mem_num = #{mem_num}")
 	public AssignFavVO ab_selectFav(AssignFavVO fav);
 	@Select("SELECT COUNT(*) FROM ab_bookmark WHERE ab_num = #{ab_num}")

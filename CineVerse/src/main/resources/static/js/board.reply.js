@@ -438,9 +438,9 @@ $(function() {
 						responseUI += '<img src="../myPage/viewProfile?mem_num=' + user_num + '" width="30" height="30" class="my-photo">';
 						responseUI += '<span>' + name + '</span>';
 						responseUI += '</div>';
-						responseUI += '<textarea name="te_content" id="resp_content" class="rep-content"></textarea>';
+						responseUI += '<div class="text-con"><textarea name="te_content" id="resp_content" class="mrep-content"></textarea></div>';
 						responseUI += '<div id="resp_second" class="align-right">';
-						responseUI += ' <input type="submit" value="등록">';
+						responseUI += ' <input type="submit" value="등록" class="mcc-submit">';
 						responseUI += ' <input type="button" value="취소" class="resp-reset">';
 						responseUI += '</div>';
 						responseUI += '</form>';
@@ -503,9 +503,9 @@ $(function() {
 						responseUI += '<img src="../myPage/viewProfile?mem_num=' + user_num + '" width="30" height="30" class="my-photo">';
 						responseUI += '<span>' + name + '</span>';
 						responseUI += '</div>';
-						responseUI += '<textarea name="te_content" id="resp_content" class="rep-content"></textarea>';
+						responseUI += '<div class="text-con"><textarea name="te_content" id="resp_content" class="mrep-content"></textarea></div>';
 						responseUI += '<div id="resp_second" class="align-right">';
-						responseUI += ' <input type="submit" value="등록">';
+						responseUI += ' <input type="submit" value="등록" class="mcc-submit">';
 						responseUI += ' <input type="button" value="취소" class="resp-reset">';
 						responseUI += '</div>';
 						responseUI += '</form>';
@@ -725,9 +725,9 @@ $(function() {
 			responseUI += '	<div class="mresp-form-container">';
 			responseUI += '		<form id="mresp_form">'
 			responseUI += '  		 <input type="hidden" name="te_num" id="mresp_num" value="'+te_num+'">';
-			responseUI += '  		 <textarea rows="3" cols="50" name="te_content" id="mresp_content" class="rep-content">'+content+'</textarea>';			      
+			responseUI += '  		 <div class="text-con"><textarea rows="3" cols="50" name="te_content" id="mresp_content" class="mrep-content">'+content+'</textarea></div>';			      
 			responseUI += '   		<div id="mresp_second" class="align-right">';
-			responseUI += '     		 <input type="submit" value="수정">';
+			responseUI += '     		 <input type="submit" value="수정" class="mcc-submit">';
 			responseUI += '    			  <input type="button" value="취소" class="mresp-reset">';
 			responseUI += '  		 </div>';
 			responseUI += '		</form>';

@@ -102,14 +102,25 @@
 				</div>
 				<div class="marg440">
 					<div class="flexbox-p simple-info">
-						<span class="font15">
-							<c:if test="${assign.ab_type == 'handover'}">
-								양도
-							</c:if>
-							<c:if test="${assign.ab_type == 'exchange'}">
-								교환
-							</c:if>
-						</span><%--양도 or 교환 카테고리 --%>
+						<div class="flexbox-h side">
+							<span class="font15">
+								<c:if test="${assign.ab_type == 'handover'}">
+									양도
+								</c:if>
+								<c:if test="${assign.ab_type == 'exchange'}">
+									교환
+								</c:if>
+							</span><%--양도 or 교환 카테고리 --%>
+							<div class="p-center font15">
+								<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${assign.mem_num}" width="22" height="22" class="my-photo">&nbsp;
+								<c:if test="${!empty assign.mem_nickname}">
+									<span>${assign.mem_nickname}</span>
+								</c:if>
+								<c:if test="${empty assign.mem_nickname}">
+									<span>${assign.mem_id}</span>
+								</c:if>
+							</div>
+						</div>	
 						<h2>${assign.ab_title}</h2><%--ab_title--%>
 						<span class="assign-price"><b><fmt:formatNumber value="${assign.ab_price}" type="number"/></b>원</span>
 						<hr size="1" width="100%" class="middle-hr">
@@ -188,14 +199,15 @@
 			</div>
 		</div>
 		
-		<div>
+	<%-- 	<div>
 			<div class="flexbox-h side">
 			<span class="ml10">댓글(0)</span>
 			
 			</div>
-			<hr size="1" width="100%">
-		</div>	
-		
+			
+		</div>	 --%>
+		<hr size="1" width="100%">
+			<%-- 
 			<!-- 댓글 목록 출력 -->
 			 
 			<div id="output"></div>
@@ -232,7 +244,7 @@
 	        		 </div>
 				</div>
 			</div>
-		
+		 --%>
 
 		<div class="align-center">
 			<input type="button" class="default-btn2 mt70" value="목록" onclick="location.href='list'">
