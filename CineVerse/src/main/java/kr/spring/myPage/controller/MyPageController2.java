@@ -67,6 +67,7 @@ public class MyPageController2 {
 
 	    // 유효성 체크 결과 오류가 있으면 폼 호출
 	    if (result.hasErrors()) {
+	    	log.debug("유효성 체크 시작");
 	        MyPageVO member = mypageService.selectMember(user.getMem_num());
             Integer count = mypageService2.countAddress(user.getMem_num());
             List<AddressVO> addressList = mypageService2.addressList(user.getMem_num());
@@ -74,7 +75,9 @@ public class MyPageController2 {
             model.addAttribute("member", member);
             model.addAttribute("count", count);
             model.addAttribute("addressList", addressList);
-	        return "addressList";
+	        
+            log.debug("유효성 체크 완료");
+            return myPageAddressList(session, model);
 	    }
 	    
         address.setMem_num(user.getMem_num());

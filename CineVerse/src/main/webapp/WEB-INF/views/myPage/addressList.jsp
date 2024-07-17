@@ -52,21 +52,21 @@
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"
 						class="zipcode-btn_my">
 				</div>
-				<form:errors path="a_zipcode" cssClass="error-color" />
+				<form:errors element="div" path="a_zipcode" cssClass="error-color" />
 			</div>
 			<div class="login_form_all_my">
 				<div class="login_form_inputs_id_passwd_my">
 					<form:input path="a_address1" id="address1"
 						placeholder="주소를 입력해주세요" class="input_style" autocomplete="off" />
 				</div>
-				<form:errors path="a_address1" cssClass="error-color" />
+				<form:errors element="div" path="a_address1" cssClass="error-color" />
 			</div>
 			<div class="login_form_all_my">
 				<div class="login_form_inputs_id_passwd_my">
 					<form:input path="a_address2" id="address2"
 						placeholder="상세 주소를 입력해주세요" class="input_style" autocomplete="off" />
 				</div>
-				<form:errors path="a_address2" cssClass="error-color" />
+				<form:errors element="div" path="a_address2" cssClass="error-color" />
 			</div>
 			<div class="login_form_all_my">
 				<div class="login_form_inputs_id_passwd_my">
