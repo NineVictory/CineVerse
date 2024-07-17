@@ -102,7 +102,7 @@
 					
 					
 			        	<div class="product-review">
-			        		<div class="bookMark_box">
+			        		<div class="bookMark_box" style="margin-bottom:70px;">
 			        			<br><span>사용자 총 평점</span>
 			        			<div class="review-star">
 									<c:if test="${review_grade>=1}"> 
@@ -143,7 +143,7 @@
 			        			</div>
 			        		</div>
 							<c:forEach var="review" items="${reviewList}">
-								<div class="bookMark_box">
+								<div class="bookMark_box" style="margin-bottom: 20px;">
 								            <div class="bk_content">
 								                <div class="my_board_bk">
 								                    <div class="my_board_type">
@@ -193,8 +193,9 @@
 												${review.mem_id} · ${review.pr_reg_date}
 								            </div>
 								        </div>
+								        </c:forEach>
 				    		</div>
-					</c:forEach>
+					
 				</c:if>
 	        </c:if>
 	        <!-- 반품 교환 정모 -->
