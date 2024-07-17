@@ -31,7 +31,9 @@
 		</div>
 		
 		<div class="flexbox-h side">
-			<h3>${board.cb_title}</h3>
+			<div class="p-center board-title-bm">
+				<h3>${board.cb_title}</h3><img src="${pageContext.request.contextPath}/images/kbm/bookmark01.png" width="25" height="22" id="bookmark" data-num="${board.cb_num}">
+			</div>
 			<div class="p-center hit-comment">
 				<img src="${pageContext.request.contextPath}/images/kbm/hit.png" width="18">
 				<span>${board.cb_hit}</span>

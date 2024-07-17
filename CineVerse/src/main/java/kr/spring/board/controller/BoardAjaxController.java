@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.board.service.BoardService;
+import kr.spring.board.vo.BoardBookmarkVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
@@ -95,6 +96,62 @@ public class BoardAjaxController {
 			}
 			mapJson.put("result", "success");
 			mapJson.put("count", boardService.selectFavCount(fav.getCb_num()));
+		}
+		return mapJson;
+	}
+	/*===================
+	 * 북마크
+	 *===================*/
+	@GetMapping("/board/getBM")
+	@ResponseBody
+	public Map<String,Object> getBM(BoardBookmarkVO bookmark, HttpSession session){
+		log.debug("<<게시판 북마크 - BoardBoormarkVO>> : " + bookmark);
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			mapJson.put("status", "noBM");
+		}else {
+			//로그인된 회원번호 셋팅
+			bookmark.setMem_num(user.getMem_num());
+			BoardBookmarkVO boardbookmark = boardService.selectBM(bookmark);
+			
+			if(boardbookmark != null) {
+				mapJson.put("status", "yesBM");
+			}else {
+				mapJson.put("status", "noBM");
+			}
+		}
+		return mapJson;
+	}
+	
+	//북마크 등록/삭제
+	@PostMapping("/board/writeBM")
+	@ResponseBody
+	public Map<String,Object> writeBM(BoardBookmarkVO bookmark, HttpSession session){
+		log.debug("<<게시판 북마크 - 등록>> : " + bookmark);
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else {
+			//로그인된 회원번호 셋팅
+			bookmark.setMem_num(user.getMem_num());
+			
+			BoardBookmarkVO boardbookmark = boardService.selectBM(bookmark);
+			if(boardbookmark != null) {
+				//등록 -> 삭제
+				boardService.deleteBM(bookmark);
+				mapJson.put("status", "noBM");
+			}else {
+				//등록
+				boardService.insertBM(bookmark);
+				mapJson.put("status", "yesBM");
+			}
+			mapJson.put("result", "success");
 		}
 		return mapJson;
 	}

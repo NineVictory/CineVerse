@@ -12,6 +12,7 @@ import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
 import kr.spring.board.vo.BoardResponseFavVO;
 import kr.spring.board.vo.BoardResponseVO;
+import kr.spring.board.vo.BoardBookmarkVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 
@@ -62,6 +63,8 @@ public class BoardServiceImpl implements BoardService{
 		boardMapper.deleteCommentByBoardNum(cb_num);
 		//부모글 좋아요 삭제
 		boardMapper.deleteFavByBoardNum(cb_num);
+		//북마크 삭제
+		boardMapper.deleteBMByBoardNum(cb_num);
 		//부모글 삭제
 		boardMapper.deleteBoard(cb_num);
 	}
@@ -184,6 +187,21 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardResponseFavVO selectResponseFav(BoardResponseFavVO boardResponseFav) {
 		return boardMapper.selectResponseFav(boardResponseFav);
+	}
+
+	@Override
+	public BoardBookmarkVO selectBM(BoardBookmarkVO bookmark) {
+		return boardMapper.selectBM(bookmark);
+	}
+
+	@Override
+	public void insertBM(BoardBookmarkVO bookmark) {
+		boardMapper.insertBM(bookmark);
+	}
+
+	@Override
+	public void deleteBM(BoardBookmarkVO bookmark) {
+		boardMapper.deleteBM(bookmark);
 	}
 
 }

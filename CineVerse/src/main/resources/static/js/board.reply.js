@@ -341,7 +341,6 @@ $(function() {
 					if (param.result == 'logout') {
 						alert('로그인해야 삭제할 수 있습니다.');
 					} else if (param.result == 'success') {
-						alert('댓글이 삭제되었습니다.');
 						selectList(1);
 					} else if (param.result == 'wrongAccess') {
 						alert('타인의 글을 삭제할 수 없습니다.');
@@ -390,8 +389,9 @@ $(function() {
 	});
 	
 
-	
-/*-------------------------------------답글--------------------------------------------------------------------------------------------------- */
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////  답글   ///////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 
@@ -573,8 +573,8 @@ $(function() {
 						resp_form.parents('.sub-item').find('div .rescontent-btn').val('▼ 답글 ' + (Number(resp_form.parents('.sub-item').find('div .rescontent-btn').val().substring(5)) + 1));
 					}*/
 
-					var responseContainer = resp_form.closest('.response-container');
-					getListResponse(cc_num, responseContainer);
+					getListResponse(cc_num, resp_form.closest('.cc-all-container').find('.response-container'));
+					selectList(1);
 
 				} else {
 					alert('답글 작성 오류 발생');
@@ -614,8 +614,9 @@ $(function() {
 			type: 'get',
 			data: { cc_num: cc_num },
 			dataType: 'json',
+			cache: false,
 			success: function(param) {
-				// responseContainer.find('.respitem').remove(); // 이 부분은 필요 없을 수 있음
+				// responseContainer.find('.respitem').remove();
 				responseContainer.empty();
 
 				// 각 답글 항목 생성 및 출력
@@ -826,8 +827,6 @@ $(function() {
 					if(param.result=='logout'){
 						alert('로그인해야 삭제할 수 있습니다.');
 					}else if(param.result=='success'){
-						alert('댓글이 삭제되었습니다.');
-						
 						if(param.cnt>0){
 							getListResponse(cc_num,	resdelete_btn.closest('.cc-all-container').find('.response-container'));
 						}else{

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -11,6 +12,7 @@ import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
 import kr.spring.board.vo.BoardResponseFavVO;
 import kr.spring.board.vo.BoardResponseVO;
+import kr.spring.board.vo.BoardBookmarkVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 
@@ -30,6 +32,11 @@ public interface BoardService {
 	public Integer selectFavCount(Long cb_num);
 	public void insertFav(BoardFavVO fav);
 	public void deleteFav(BoardFavVO fav);
+	
+	//북마크
+	public BoardBookmarkVO selectBM(BoardBookmarkVO bookmark);
+	public void insertBM(BoardBookmarkVO bookmark);
+	public void deleteBM(BoardBookmarkVO bookmark);
 	
 	//댓글
 	public List<BoardCommentVO> selectListComment(Map<String,Object> map);

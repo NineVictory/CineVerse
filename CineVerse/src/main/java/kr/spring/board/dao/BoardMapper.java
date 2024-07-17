@@ -13,6 +13,7 @@ import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
 import kr.spring.board.vo.BoardResponseFavVO;
 import kr.spring.board.vo.BoardResponseVO;
+import kr.spring.board.vo.BoardBookmarkVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 
@@ -46,7 +47,17 @@ public interface BoardMapper {
 	public void deleteFav(BoardFavVO fav);
 	@Delete("DELETE FROM community_fav WHERE cb_num = #{cb_num}")
 	public void deleteFavByBoardNum(Long cb_num);
-		
+	
+	
+	//부모글 좋아요
+	@Select("SELECT * FROM community_bookmark WHERE cb_num = #{cb_num} AND mem_num = #{mem_num}")
+	public BoardBookmarkVO selectBM(BoardBookmarkVO bookmark);
+	@Insert("INSERT INTO community_bookmark (cb_num, mem_num) VALUES (#{cb_num}, #{mem_num})")
+	public void insertBM(BoardBookmarkVO bookmark);
+	@Delete("DELETE FROM community_bookmark WHERE cb_num=#{cb_num} AND mem_num=#{mem_num}")
+	public void deleteBM(BoardBookmarkVO bookmark);
+	@Delete("DELETE FROM community_bookmark WHERE cb_num = #{cb_num}")
+	public void deleteBMByBoardNum(Long cb_num);
 	
 	//댓글
 	public List<BoardCommentVO> selectListComment(Map<String,Object> map);
