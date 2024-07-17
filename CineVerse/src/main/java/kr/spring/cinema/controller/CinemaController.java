@@ -131,8 +131,8 @@ public class CinemaController {
         // 상영관 수 조회
         Integer theaterCount = cinemaService.selectTheaterCountByCinema(c_num);
         
-     // 상영 시간표 조회
-        List<MovieTimeVO> movieTimeList = cinemaService.selectMovieTimeListByCinemaNum(c_num);
+        // 상영 시간표 조회
+        //List<MovieTimeVO> movieTimeList = cinemaService.selectMovieTimeListByCinemaNum(c_num);
         
         
         
@@ -140,7 +140,7 @@ public class CinemaController {
         mav.addObject("cinema", cinema);
         mav.addObject("theaterList", theaterList);
         mav.addObject("theaterCount", theaterCount); 
-        mav.addObject("movieTimeList", movieTimeList);
+        //mav.addObject("movieTimeList", movieTimeList);
         return mav;
 		/* return new ModelAndView("cinemaDetail2","cinema",cinema); */
 	}

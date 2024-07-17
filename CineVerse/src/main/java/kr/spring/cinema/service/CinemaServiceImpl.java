@@ -11,6 +11,7 @@ import kr.spring.cinema.dao.CinemaMapper;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
+import kr.spring.movie.vo.MovieVO;
 
 @Service
 @Transactional
@@ -68,6 +69,11 @@ public class CinemaServiceImpl implements CinemaService{
 	@Override
 	public Integer selectMovieTimeCount(Map<String, Object> map) {
 		return cinemaMapper.selectMovieTimeCount(map);
+	}
+
+	@Override
+	public List<MovieVO> getMoviesByCinema(long c_num) {
+		return cinemaMapper.getMoviesByCinema(c_num);
 	}
 
 	

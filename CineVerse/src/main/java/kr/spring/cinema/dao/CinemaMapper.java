@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
+import kr.spring.movie.vo.MovieVO;
 
 @Mapper
 public interface CinemaMapper {
@@ -30,11 +31,12 @@ public interface CinemaMapper {
 	public Integer selectTheaterCountByCinema(long c_num);
 	
 	
-	//영화시간표 
+	//영화시간표 (성공 못함)
 	public List<MovieTimeVO> selectMovieTimeListByCinemaNum(long c_num);
 	public Integer selectMovieTimeCount(Map<String,Object> map);
 	
-	
+	//예매하기 부분 영화 리스트 목록 불러오기
+	public List<MovieVO> getMoviesByCinema(long c_num);
 	
 	//영화관 (잠시보류)
 	//public List<CinemaVO> selectCinemaList(Integer c_location);

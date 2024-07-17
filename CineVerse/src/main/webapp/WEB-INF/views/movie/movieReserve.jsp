@@ -23,7 +23,7 @@
 						<div class="location" id="seoul" style="display: none;">
 						<c:forEach var="cinema" items="${list}">
 							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="detail?c_num=${cinema.c_num}" class="button">${cinema.c_branch}</a></li>
+								<li class="theater-place"><a href="#" class="button">${cinema.c_branch}</a></li>
 							</ul>
 							</c:forEach>
 						</div>
