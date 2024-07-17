@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.board.vo.BoardVO;
@@ -130,6 +131,13 @@ public class MovieController {
 	        model.addAttribute("page", page.getPage());
 
 	        return "movieReserve";
+	    }
+	 	
+	 	//지점명 선택했을 때 영화목록 불러오기
+	 	@GetMapping("/getMoviesByCinema")
+	    @ResponseBody
+	    public List<MovieVO> getMoviesByCinema(long c_num) {
+	        return cinemaService.getMoviesByCinema(c_num);
 	    }
 	
 	/*=======================

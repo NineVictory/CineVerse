@@ -94,7 +94,7 @@
 
 	<!-- 상영관 목록 조회 -->
 	<select id="selectTheaterListByCinemaNum" parameterType="map" resultType="theaterVO">
-		SELECT th_name, th_position
+		SELECT th_name
 		FROM theater th
 		WHERE th.c_num = #{c_num}
 	</select>

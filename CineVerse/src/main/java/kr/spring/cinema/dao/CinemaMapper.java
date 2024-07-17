@@ -35,7 +35,7 @@ public interface CinemaMapper {
 	public List<MovieTimeVO> selectMovieTimeListByCinemaNum(long c_num);
 	public Integer selectMovieTimeCount(Map<String,Object> map);
 	
-	//예매하기 부분 영화 리스트 목록 불러오기
+	//지점명에 해당하는 영화목록 조회
 	public List<MovieVO> getMoviesByCinema(long c_num);
 	
 	//영화관 (잠시보류)

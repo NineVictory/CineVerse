@@ -312,6 +312,17 @@ CREATE TABLE movie (
 create sequence movie_seq;
 
 
+-- 지점명마다 상영하는 영화 테이블
+CREATE TABLE cinema_movie (
+    cm_id NUMBER NOT NULL,
+    c_num NUMBER NOT NULL,
+    m_code NUMBER NOT NULL,
+    CONSTRAINT PK_CINEMA_MOVIE PRIMARY KEY (cm_id),
+    CONSTRAINT FK_CINEMA FOREIGN KEY (c_num) REFERENCES cinema(c_num),
+    CONSTRAINT FK_MOVIE FOREIGN KEY (m_code) REFERENCES movie(m_code)
+);
+
+
 -- 자체 영화 장르
 CREATE TABLE movie_genre (
     m_code NUMBER NOT NULL,
@@ -344,10 +355,7 @@ CREATE TABLE cinema (
     c_location VARCHAR2(10) NOT NULL,
     c_address VARCHAR2(150) NOT NULL,
     c_phone VARCHAR2(11) NOT NULL,
-    c_theater NUMBER NOT NULL,
-    c_seat NUMBER NOT NULL,
     c_parkable VARCHAR2(5), -- Oracle에서는 boolean 대신 VARCHAR2로 처리
-    c_filename CLOB NULL,
     CONSTRAINT PK_CINEMA PRIMARY KEY (c_num)
 );
 

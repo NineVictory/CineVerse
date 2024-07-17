@@ -3,6 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // 클릭 이벤트 핸들러
+        $('.theater-place > a').click(function(e) {
+            e.preventDefault(); // 기본 동작 중지
+            var c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
+            
+            $.ajax({
+                type: 'GET',
+                url: '${pageContext.request.contextPath}/getMoviesByCinema',
+                data: { c_num: c_num },
+                dataType: 'json',
+                success: function(data) {
+                    // 성공적으로 데이터를 받았을 때 처리
+                    var movieListHtml = '';
+                    $.each(data, function(index, movie) {
+                        movieListHtml += '<li class="select"><a href="#none">' + movie.m_name + '</a></li>';
+                    });
+                    $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
+                },
+                error: function() {
+                    alert('영화 목록을 불러오는 데 실패했습니다.');
+                }
+            });
+        });
+    });
+</script>
 <div class="reserve-container">
 	<!-- 지점명 -->
 	<div class="theater-part">
@@ -23,15 +50,16 @@
 						<div class="location" id="seoul" style="display: none;">
 						<c:forEach var="cinema" items="${list}">
 							<ul class="theater-place-wrapper">
-								<li class="theater-place"><a href="#" class="button">${cinema.c_branch}</a></li>
-							</ul>
-							</c:forEach>
-						</div>
-					
-				
-			</div>
-		</div>
-	</div>
+								<li class="theater-place"> <a href="#" class="button theater-branch" data-cnum="${cinema.c_num}">
+                                    ${cinema.c_branch}
+                                </a>
+                            </li>
+                        </ul>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
 	<script>
 	$(document).ready(function(){
 	    // 화면 첫 진입할 때 서울 지점명?들 호출하기
@@ -50,25 +78,21 @@
  </script>
  
 	<!-- 영화 -->
-	<div class="movie-part">
-		<div class="reserve-title">영화</div>
-		<div class="sort-wrapper">
-			<div class="sort-rate sort-selected">예매율순</div>
-			<div class="sort-korean">가나다순</div>	
-		</div>
-		<div class="movie-list-wrapper">
-			<div class="movie-list">
-				<ul class="movie-select">
-					<li class="select"><a href="#none"><span class="ic_grade gr_all">전체</span>인사이드아웃 2</a></li>
-					<li class="select"><a href="#none"><span class="ic_grade gr_12">12세</span>파일럿</a></li>
-					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>탈출</a></li>
-					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>콰이어트 플레이스</a></li>
-					<li class="select"><a href="#none"><span class="ic_grade gr_12">12세</span>존 오브 인터레스트</a></li>
-					<li class="select"><a href="#none"><span class="ic_grade gr_15">15세</span>귀멸의 칼날</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+    <div class="movie-part">
+        <div class="reserve-title">영화</div>
+        <div class="sort-wrapper">
+            <div class="sort-rate sort-selected">예매율순</div>
+            <div class="sort-korean">가나다순</div>
+        </div>
+        <div class="movie-list-wrapper">
+            <div class="movie-list">
+                <ul class="movie-select">
+                    <!-- Ajax로 받아온 영화 목록이 여기에 추가됩니다. -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
 	
 	<!-- 날짜 및 시간 -->
 	<div class="time-part">
