@@ -147,18 +147,19 @@
 	</select>
 	<!-- 대댓글 목록 -->
 	<select id="cBoardResponseList" parameterType="map" resultType="boardCommentVO">
-		SELECT cr.*, fav_data.fav_cnt, cb.cb_type, cb.cb_title,cb.cb_num
-		FROM
-		community_response cr
-		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,
-		te_num FROM
-		community_response_fav GROUP BY te_num) fav_data
-		ON cr.te_num
-		= fav_data.te_num
-		JOIN community_board cb ON cr.mem_num =
-		cb.mem_num
-		WHERE
-		cr.mem_num = #{mem_num}
+		SELECT cr.*, fav_data.fav_cnt, cb.cb_type, cb.cb_title, cb.cb_num
+		FROM community_response cr
+		LEFT JOIN (
+		    SELECT te_num, COUNT(*) AS fav_cnt
+		    FROM community_response_fav
+		    GROUP BY te_num
+		) fav_data ON cr.te_num = fav_data.te_num
+		JOIN (
+		    SELECT cc.cc_num, cb.cb_type, cb.cb_title, cb.cb_num
+		    FROM community_comment cc
+		    JOIN community_board cb ON cc.cb_num = cb.cb_num
+		) cb ON cr.cc_num = cb.cc_num
+		WHERE cr.mem_num = #{mem_num}
 	</select>
 
 	<!-- 양도/교환 찜 -->
