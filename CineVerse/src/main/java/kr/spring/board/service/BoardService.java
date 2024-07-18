@@ -40,7 +40,7 @@ public interface BoardService {
 	
 	//댓글
 	public List<BoardCommentVO> selectListComment(Map<String,Object> map);
-	public Integer selectRowCountComment(Map<String,Object> map);
+	public Integer selectRowCountComment(Long cb_num);
 	public BoardCommentVO selectComment(Long cc_num);
 	public void insertComment(BoardCommentVO boardComment);
 	public void updateComment(BoardCommentVO boardComment);
@@ -65,6 +65,7 @@ public interface BoardService {
 	// 답글의 좋아요 개수 구하기
 	public Integer selectResponseFavCnt(Long te_num);
 
-
+	//게시글의 답글 총 개수
+	public Integer selectResponseCountByCbNum(Long cb_num);
 
 }

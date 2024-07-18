@@ -100,8 +100,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Integer selectRowCountComment(Map<String, Object> map) {
-		return boardMapper.selectRowCountComment(map);
+	public Integer selectRowCountComment(Long cb_num) {
+		return boardMapper.selectRowCountComment(cb_num);
 	}
 
 	@Override
@@ -202,6 +202,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteBM(BoardBookmarkVO bookmark) {
 		boardMapper.deleteBM(bookmark);
+	}
+
+	@Override
+	public Integer selectResponseCountByCbNum(Long cb_num) {
+		return boardMapper.selectResponseCountByCbNum(cb_num);
 	}
 
 }

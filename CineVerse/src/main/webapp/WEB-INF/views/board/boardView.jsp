@@ -91,7 +91,7 @@
 		</div>
 		
 		<div class="flexbox-h side">
-			<span class="ml10">댓글(<span class="output-rcount">0</span>)</span>
+			<span class="ml10">댓글(<span class="output-rcount">${comment_cnt}</span>)</span>
 			<div class="view-likes p-center like-report">
 		
 				<img id="output_fav" data-num="${board.cb_num}" src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15">
