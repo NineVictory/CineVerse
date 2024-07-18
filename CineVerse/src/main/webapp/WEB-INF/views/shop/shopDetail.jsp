@@ -12,6 +12,7 @@
 	            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
 	        </div>
 	        <div class="product-info">
+	        	<h1>
 					<c:if test="${product.p_category == 1}"> MARVEL </c:if>
 					<c:if test="${product.p_category == 2}"> DISNEY </c:if>
 					<c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>
