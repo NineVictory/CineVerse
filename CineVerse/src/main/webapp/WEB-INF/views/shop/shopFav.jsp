@@ -11,7 +11,7 @@
 <div class="main_content">
     <div class="buy-main">
         <h2 style="margin-bottom:40px;">관심 상품</h2>
-        
+         
             <c:if test="${count==0}">
            		관심 상품이 없습니다.
                 <div class="add-address" onclick="location.href='${pageContext.request.contextPath}/shop/shopMain'">상품 찜하러 가기</div>
