@@ -33,7 +33,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		// 변수 설정
         Map<String, String> paramMap = new HashMap<String, String>();
         paramMap.put("collection", "kmdb_new2");
-        paramMap.put("releaseDts", "20231202");
+        paramMap.put("releaseDts", "20230802");
         paramMap.put("releaseDte", "20231231");
         paramMap.put("listCount", "500");
         paramMap.put("detail", "Y");
@@ -94,23 +94,32 @@ public class MovieDetailServiceImpl implements MovieDetailService {
                         actors = extractArrayData(actorArray, "actorNm");
                     }
                     
-                    movieDetail.setDOCID(movies.getString("DOCID"));
-                    movieDetail.setMovieSeq(movies.getString("movieSeq"));
-                    movieDetail.setTitle(movies.getString("title"));
-                    movieDetail.setTitleOrg(movies.getString("titleOrg"));
-                    movieDetail.setDirectorNm(directors);
-                    movieDetail.setActorNm(actors);
-                    movieDetail.setNation(movies.getString("nation"));
-                    movieDetail.setCompany(movies.getString("company"));
-                    movieDetail.setPlot(plots);
-                    movieDetail.setRuntime(movies.getString("runtime"));
-                    movieDetail.setRating(movies.getString("rating"));
-                    movieDetail.setGenre(movies.getString("genre"));
-                    movieDetail.setKeywords(movies.getString("keywords"));
-                    movieDetail.setRepRlsDate(movies.getString("repRlsDate"));
-                    movieDetail.setPosters(movies.getString("posters"));
-                    
-                    movieDetailMapper.insertMovieDetail(movieDetail);
+                    // 영화 코드 추출
+                    String CodeNo = "";
+                    JSONObject CodeNoObject = movies.getJSONObject("CommCodes");
+                    if (CodeNoObject.has("CommCode")) {
+                        JSONArray CodeArray = CodeNoObject.getJSONArray("CommCode");
+                        CodeNo = extractArrayData(CodeArray, "CodeNo");
+                    }
+
+                        movieDetail.setDOCID(movies.getString("DOCID"));
+                        movieDetail.setMovieSeq(movies.getString("movieSeq"));
+                        movieDetail.setTitle(movies.getString("title"));
+                        movieDetail.setTitleOrg(movies.getString("titleOrg"));
+                        movieDetail.setDirectorNm(directors);
+                        movieDetail.setActorNm(actors);
+                        movieDetail.setNation(movies.getString("nation"));
+                        movieDetail.setCompany(movies.getString("company"));
+                        movieDetail.setPlot(plots);
+                        movieDetail.setRuntime(movies.getString("runtime"));
+                        movieDetail.setRating(movies.getString("rating"));
+                        movieDetail.setGenre(movies.getString("genre"));
+                        movieDetail.setKeywords(movies.getString("keywords"));
+                        movieDetail.setRepRlsDate(movies.getString("repRlsDate"));
+                        movieDetail.setPosters(movies.getString("posters"));
+                        movieDetail.setCodeNo(CodeNo);
+
+                        movieDetailMapper.insertMovieDetail(movieDetail);
                 }
             }
         } catch (IOException e) {

@@ -19,7 +19,8 @@ INSERT INTO movie_detail_kf_api (
         genre,
         keywords, 
         repRlsDate,
-        posters
+        posters,
+        codeNo
     ) VALUES (
         #{DOCID, jdbcType=VARCHAR},
         #{movieSeq, jdbcType=VARCHAR},
@@ -35,7 +36,8 @@ INSERT INTO movie_detail_kf_api (
         #{genre, jdbcType=VARCHAR},
         #{keywords, jdbcType=VARCHAR},
         #{repRlsDate, jdbcType=VARCHAR},
-        #{posters, jdbcType=VARCHAR}
+        #{posters, jdbcType=VARCHAR},
+        #{codeNo, jdbcType=VARCHAR}
     )
 </insert>
 
