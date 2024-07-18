@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.movie.dao.MovieDetailMapper;
+import kr.spring.movie.vo.EMovieVO;
 import kr.spring.movie.vo.MovieDetailKFAPIVO;
 
 @Service
@@ -154,4 +156,9 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 
         return sb.toString();
     }
+
+	@Override
+	public List<EMovieVO> selectRankMovie(String showrange) {
+		return movieDetailMapper.selectRankMovie(showrange);
+	}
 }

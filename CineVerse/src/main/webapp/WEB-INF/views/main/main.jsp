@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
@@ -22,7 +23,6 @@
 .swiper-slide img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
 }
 
 /* 페이지네이션 위치 잡기 */
@@ -39,6 +39,7 @@
 	color: white;
 	z-index: 10;
 }
+
 </style>
 <div class="swiper-container">
 	<div class="swiper-wrapper">
@@ -115,26 +116,37 @@
 		<div class="swiper-container ranks">
 			<div class="swiper-wrapper movie-wrapper">
 				<!-- 아이템들을 swiper-slide로 감싸기 -->
-				<c:if test="${count > 0 }">
-					<c:forEach var="list" items="${movieRankList }">
-						<div class="swiper-slide">
-							<div class="item">
-								<div class="top_info">
-									<span class="poster_info"><img class="poster_info_image"
-										src="https://cf.lottecinema.co.kr//Media/MovieFile/MovieImg/202407/21144_101_1.jpg"
-										alt="탈주"></span>
+				<c:if test="${count > 0}">
+					<c:forEach var="list" items="${movieRankList}">
+						<c:forEach var="detail" items="${movieDetail}">
+								<div class="swiper-slide">
+									<div class="item">
+										<div class="top_info">
+											<span class="poster_info"> <img
+												class="poster_info_image" src="${fn:split(detail.em_posters, '|')[0]}"
+												alt="${detail.em_title}">	<!-- function 이용해서 | 단위로 끊고 첫 번째 url 읽어오기 -->
+												<em class="num_info">${detail.rank}</em>
+											</span>
+										</div>
+										<div class="btm_info">
+											<strong class="tit_info"> <span
+												class="ic_grade <c:choose><c:when test="${detail.em_rating eq '12세관람가' }">gr_12</c:when>
+													<c:when test="${detail.em_rating eq '12세이상관람가' }">gr_12</c:when>
+													<c:when test="${detail.em_rating eq '전체관람가' }">gr_all</c:when>
+													<c:when test="${detail.em_rating eq '15세관람가' }">gr_15</c:when>
+													<c:when test="${detail.em_rating eq '15세이상관람가' }">gr_15</c:when>
+													<c:when test="${detail.em_rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
+													<c:when test="${detail.em_rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
+											</span><span class="em_title">${detail.em_title}</span></strong><span class="sub_info1"> <span
+												class="rate_info">예매율&nbsp;<em>0%</em></span> <span
+												class="star_info" style="cursor: pointer;">0</span>
+											</span>
+										</div>
+									</div>
 								</div>
-								<div class="btm_info">
-									<strong class="tit_info"> <span class="ic_grade gr_12">${list.rank }</span>${list.movieNm}</strong>
-									<span class="sub_info1"> <span class="rate_info">예매율&nbsp;<em>0%</em></span>
-										<span class="star_info" style="cursor: pointer;">0</span>
-									</span>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 					</c:forEach>
 				</c:if>
-
 			</div>
 			<!-- 이전/다음 버튼 -->
 			<div class="swiper-button-prev"></div>
