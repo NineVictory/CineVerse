@@ -15,7 +15,11 @@ import kr.spring.assignment.service.AssignService;
 import kr.spring.assignment.vo.AssignFavVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.service.BoardService;
+import kr.spring.board.vo.BoardBookmarkVO;
+import kr.spring.board.vo.BoardFavVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.movie.service.MovieService;
+import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.service.MyPageService2;
 import kr.spring.myPage.vo.AddressVO;
@@ -36,6 +40,9 @@ public class MyPageAjaxController {
 	
 	@Autowired
 	AssignService assignService;
+	
+	@Autowired
+	MovieService movieService;
 	
 	@PostMapping("/myPage/updateMyPhoto")
 	@ResponseBody
@@ -103,6 +110,65 @@ public class MyPageAjaxController {
 	        fav.setMem_num(mem_num);
 			
 	        assignService.ab_deleteFav(fav);
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
+	
+	//게시글 북마크
+	@PostMapping("/myPage/deleteCBoardBookMark")
+	@ResponseBody
+	public Map<String, Object> deleteCBoardBookMark(BoardBookmarkVO board,HttpSession session){
+		log.debug("<<커뮤니티 북마크 삭제>> : " + board.getCb_num() + ", mem_num: " + board.getMem_num());
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else if(user.getMem_num() != board.getMem_num()) {
+			mapJson.put("result", "wrongAccess");
+		}else {
+			boardService.deleteBM(board);
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
+	
+	//게시글 좋아요
+	@PostMapping("/myPage/deleteCboardFav")
+	@ResponseBody
+	public Map<String, Object> deleteCBoardFav(BoardFavVO board, HttpSession session) {
+	    log.debug("<<커뮤니티 좋아요 삭제>> : " + board.getCb_num() + ", mem_num: " + board.getMem_num());
+	    Map<String, Object> mapJson = new HashMap<String, Object>();
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+
+	    if (user == null) {
+	        mapJson.put("result", "logout");
+	    } else if (user.getMem_num() != board.getMem_num()) {
+	        mapJson.put("result", "wrongAccess");
+	    } else {
+	       // board.setMem_num(user.getMem_num());
+	        boardService.deleteFav(board);
+	        mapJson.put("result", "success");
+	    }
+	    return mapJson;
+	}
+
+
+	//기대되는 영화
+	@PostMapping("/myPage/deleteMovieBookMark")
+	@ResponseBody
+	public Map<String, Object> deleteMovieBookMark(MovieBookMarkVO bookMark,HttpSession session){
+		log.debug("<<찜영화 삭제 - m_code>> : " + bookMark.getM_code());
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user==null) {
+			mapJson.put("result", "logout");
+		}else if(user.getMem_num()!=bookMark.getMem_num()) {
+			mapJson.put("result", "wrongAccess");
+		}else {
+			movieService.deleteBookMark(bookMark);
 			mapJson.put("result", "success");
 		}
 		return mapJson;
