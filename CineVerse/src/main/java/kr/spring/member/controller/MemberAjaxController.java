@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -167,7 +169,107 @@ public class MemberAjaxController {
 			member.setMem_passwd(passwd);	// 임시비밀번호를 db에 저장
 			memberService.updatePassword(member);
 			
-			email.setContent("새로 발급한 임시 비밀번호는 " + passwd + " 입니다.");
+			String content = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\" bgcolor=\"#ffffff\" style=\"border-collapse:collapse\">" +
+				    "<tbody>" +
+				    "<tr>" +
+				        "<td>" +
+				            "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\" bgcolor=\"#ffffff\" style=\"max-width:640px;margin:0 auto\">" +
+				                "<tbody>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"45\" colspan=\"3\" bgcolor=\"#DBE3FF\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"6%\" height=\"25\" bgcolor=\"#DBE3FF\"></td>" +
+				                    "<td width=\"88%\" height=\"25\" bgcolor=\"#DBE3FF\">" +
+				                        "<img src=\"https://i.imgur.com/LCDmQ9H.png\" width=\"180\" alt=\"CINEVERSE\" border=\"0\" style=\"display:block\">" +
+				                    "</td>" +
+				                    "<td width=\"6%\" height=\"25\" bgcolor=\"#DBE3FF\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"45\" colspan=\"3\" bgcolor=\"#DBE3FF\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"35\" colspan=\"3\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"6%\"></td>" +
+				                    "<td width=\"88%\" style=\"font-size:18px;line-height:22px;font-family:Arial, sans-serif;letter-spacing:-1px;font-weight:bold;color:#1e1e1e\">" +
+				                        "안녕하세요, " + member.getMem_id() + " 님" +
+				                    "</td>" +
+				                    "<td width=\"6%\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"31\" colspan=\"3\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"6%\"></td>" +
+				                    "<td width=\"88%\">" +
+				                        "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"line-height:22px;font-family:Arial, sans-serif;letter-spacing:-1px;color:#1e1e1e\">" +
+				                            "<tbody>" +
+				                            "<tr>" +
+				                                "<td width=\"100%\" height=\"1\" colspan=\"5\" bgcolor=\"#bebebe\"></td>" +
+				                            "</tr>" +
+				                            "<tr>" +
+				                                "<td width=\"100%\" height=\"25\" colspan=\"5\"></td>" +
+				                            "</tr>" +
+				                            "<tr>" +
+				                                "<td width=\"3%\"></td>" +
+				                                "<th width=\"22%\" valign=\"top\" align=\"left\" style=\"font-size:14px;font-weight:normal\">임시 비밀번호</th>" +
+				                                "<td width=\"2%\"></td>" +
+				                                "<td width=\"70%\" valign=\"top\" style=\"font-size:14px;font-weight:bold;word-break:break-all\"><strong>" + passwd + "</strong></td>" +
+				                                "<td width=\"3%\"></td>" +
+				                            "</tr>" +
+				                            "<tr>" +
+				                                "<td width=\"100%\" height=\"8\" colspan=\"5\"></td>" +
+				                            "</tr>" +
+				                            "</tbody>" +
+				                        "</table>" +
+				                    "</td>" +
+				                    "<td width=\"6%\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"24\" colspan=\"3\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"6%\"></td>" +
+				                    "<td width=\"88%\" style=\"font-size:14px;line-height:22px;font-family:Arial, sans-serif;letter-spacing:-1px;color:#1e1e1e\">" +
+				                        "발급된 임시 비밀번호로 로그인 후 비밀번호 변경을 꼭 해주시길 바랍니다.<br>감사합니다." +
+				                    "</td>" +
+				                    "<td width=\"6%\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"28\" colspan=\"3\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"1\" colspan=\"3\" bgcolor=\"#e6e6e6\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"16\" colspan=\"3\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"6%\"></td>" +
+				                    "<td width=\"88%\" style=\"font-size:12px;line-height:18px;font-family:Arial, sans-serif;letter-spacing:-1px;color:#767676\">" +
+				                        "본 메일은 발신전용입니다.<br>CINEVERSE 관련하여 궁금한 점이 있으시면 " +
+				                        "<a href=\"#\" style=\"color:#3c64e6;text-decoration:underline\" target=\"_blank\">도움말</a>을 확인해 보세요.<br>" +
+				                        "Copyright © CINEVERSE. All rights reserved." +
+				                    "</td>" +
+				                    "<td width=\"6%\"></td>" +
+				                "</tr>" +
+				                "<tr>" +
+				                    "<td width=\"100%\" height=\"18\" colspan=\"3\"></td>" +
+				                "</tr>" +
+				                "</tbody>" +
+				            "</table>" +
+				        "</td>" +
+				    "</tr>" +
+				    "<tr>" +
+				        "<td width=\"100%\" height=\"100\"></td>" +
+				    "</tr>" +
+				    "</tbody>" +
+				"</table>";
+
+			
+			email.setContent(content);
 			email.setReceiver(member.getMem_email());
 			email.setSubject(member.getMem_id() + " 님 임시 비밀번호 메일입니다.");
 			
