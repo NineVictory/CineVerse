@@ -98,7 +98,7 @@
 		FROM theater th
 		WHERE th.c_num = #{c_num}
 	</select>
-
+ 
 	
 	<!-- 지점명에 해당하는 영화목록 조회 -->
 	<select id="getMoviesByCinema" parameterType="long" resultType="movieVO">

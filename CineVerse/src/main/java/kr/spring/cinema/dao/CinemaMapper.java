@@ -36,7 +36,7 @@ public interface CinemaMapper {
 	//영화 시간표 목록 조회
 	public List<MovieTimeVO>selectMovieTimeList(long c_num, long m_code);
 	
-	
+	 
 	
 	//영화관 (잠시보류)
 	//public List<CinemaVO> selectCinemaList(Integer c_location);

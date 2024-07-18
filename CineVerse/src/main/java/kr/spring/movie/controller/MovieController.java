@@ -141,7 +141,7 @@ public class MovieController {
 	    public List<MovieVO> getMoviesByCinema(long c_num) {
 	        return cinemaService.getMoviesByCinema(c_num);
 	    }
-	 	
+	 	 
 	 	//지점명 선택했을 때 상영관 목록 불러오기
 	 	@GetMapping("/selectMovieTimeList")
 	    @ResponseBody
