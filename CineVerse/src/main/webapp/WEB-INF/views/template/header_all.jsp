@@ -7,6 +7,7 @@
         <nav class="main-navigation">
             <ul class="main-navigation-ul">
                 <li class="main-navigation-li"><a href="${pageContext.request.contextPath}/shop/shopBasket" class="main-navigation-a"><img src="${pageContext.request.contextPath}/images/cmj/shoppingcart.png" width="16" height="16"></a></li>
+                <li class="main-navigation-li"><a href="${pageContext.request.contextPath}/shop/shopFav" class="main-navigation-a"><img src="${pageContext.request.contextPath}/images/cje/heart.png" width="16" height="18"></a></li>
                 <li class="main-navigation-li"><a href="#" class="main-navigation-a">멤버십</a></li>
                 <li class="main-navigation-li"><a href="${pageContext.request.contextPath}/support/main" class="main-navigation-a">고객센터</a></li>
             </ul>
