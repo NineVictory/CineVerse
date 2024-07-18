@@ -263,15 +263,21 @@ public class ShopController {
 		log.debug("<<관심 상품 목록 진입>> ::: 성공");
 		List<ProductVO> list = null;
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		list = shopService.productFavList(user.getMem_num());
 
-		ProductVO userFav = shopService.selectMostCategory(user.getMem_num());
-		List<ProductVO> recommand = shopService.recommandProduct(userFav.getP_category());
 		
-		
+		int count = shopService.productFavCnt(user.getMem_num());
 		Map<String, Object> map = new HashMap<>();
-		map.put("list", list);
-		map.put("recommand", recommand);
+		
+		if(count>0) {
+			list = shopService.productFavList(user.getMem_num());
+
+			ProductVO userFav = shopService.selectMostCategory(user.getMem_num());
+			List<ProductVO> recommand = shopService.recommandProduct(userFav.getP_category());
+			map.put("recommand", recommand);
+			map.put("list", list);
+		}
+		
+		map.put("count", count);
 
 		return new ModelAndView("shopFav", map);
 	}
@@ -317,7 +323,7 @@ public class ShopController {
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		if(member.getCoupon_cnt() > 0) {
-			couponList = mypageService.selectMemCouponList(map);
+			couponList = shopService.selectMemCouponList(map);
 		}
 
 		map.put("couponList",couponList);

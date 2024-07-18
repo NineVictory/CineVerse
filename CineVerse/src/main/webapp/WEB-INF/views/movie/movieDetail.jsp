@@ -51,7 +51,7 @@
                 </ul>
             </div>
         
-            <div class="movie-reservation" onclick="location.href='/movie/'">
+            <div class="movie-reservation" onclick="location.href='/movie/movieReserve'">
                 <div class="movie-reservation-button">예매하기</div>
             </div>
         </div>

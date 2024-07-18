@@ -3,14 +3,15 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var currentUrl = window.location.href;
         
-        if (currentUrl.includes("?cb_type=movieTalk")) {
+        if (currentUrl.includes("cb_type=movieTalk")) {
             document.getElementById("link-type1").classList.add("active");
-        } else if (currentUrl.includes("?cb_type=dailyTalk")) {
+        } else if (currentUrl.includes("cb_type=dailyTalk")) {
             document.getElementById("link-type2").classList.add("active");
         } else {
             document.getElementById("link-all").classList.add("active");
@@ -49,15 +50,18 @@
 								<option value="3" <c:if test="${param.order == 3}">selected</c:if>>좋아요</option>
 								<option value="4" <c:if test="${param.order == 4}">selected</c:if>>댓글수</option>
 								</select>
-								<script type="text/javascript">
+																
+								<input type="hidden" name="cb_type" value="${param.cb_type}">
+								<input type="search" class="search-input" name="keyword" placeholder="제목,내용,작성자 검색" value="${param.keyword}">
+								<button type="submit" class="search-button" aria-label="검색"></button>
+								
+								<!-- <script type="text/javascript">
+							
 									$('#order').change(function(){
 										location.href='list?cb_type=${param.cb_type}&keyword='+$('#keyword').val()+'&order='+$('#order').val();
 									});
-								</script>
 								
-								<input type="hidden" name="cb_type" value="${param.cb_type}">
-								<input type="search" class="search-input" name="keyword" placeholder="제목,내용,작성자 검색">
-								<button type="submit" class="search-button" aria-label="검색"></button>
+								</script> -->
 								<%--<input type="image" src="${pageContext.request.contextPath}/images/kbm/search.png" width="20" alt="검색"> --%>
 		                   		
 		                   		
@@ -81,7 +85,7 @@
 					<td colspan="4">
 						<div class="cell-content">
 							<div class="title"><a href="detail?cb_num=${board.cb_num}">${board.cb_title}</a></div>
-							<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/hit.png" width="14px;">&nbsp;<span>${board.cb_hit}</span> <img src="${pageContext.request.contextPath}/images/kbm/comment.png" width="14px;">&nbsp;<span>${board.re_cnt}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="14px;">&nbsp;<span>${board.fav_cnt}</span></div></div>
+							<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/hit.png" width="14px;">&nbsp;<span>${board.cb_hit}</span> <img src="${pageContext.request.contextPath}/images/kbm/comment.png" width="14px;">&nbsp;<span>${board.all_comments}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="14px;">&nbsp;<span>${board.fav_cnt}</span></div></div>
 							<div class="writer">
 								<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">
 								<c:if test="${empty board.mem_nickname}">

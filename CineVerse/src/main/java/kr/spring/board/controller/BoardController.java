@@ -106,7 +106,13 @@ public class BoardController {
 			map.put("end", page.getEndRow());
 			
 			list = boardService.selectList(map);
+			
+			for(BoardVO boardVO : list) {
+				boardVO.setAll_comments(boardService.selectResponseCountByCbNum(boardVO.getCb_num())
+						+boardService.selectRowCountComment(boardVO.getCb_num()));
+			}
 		}
+		
 		
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
@@ -127,13 +133,20 @@ public class BoardController {
 		
 		BoardVO board = boardService.selectBoard(cb_num);
 		
+		long all_resp = boardService.selectResponseCountByCbNum(cb_num);
+		long re_cnt = boardService.selectRowCountComment(cb_num);
+		
+		long all_comments = all_resp + re_cnt;
+		
 		//제목에 태그를 허용하지 않음
 		board.setCb_title(StringUtil.useNoHTML(board.getCb_title()));
 		
 		//내용에 태그를 허용하지 않으면서 줄바꿈 처리(CKEditor 사용시 주석 처리)
 		//board.setContent(StringUtil.useBrNoHTML(board.getContent()));
-		
-		return new ModelAndView("boardView", "board", board);
+		ModelAndView modelAndView = new ModelAndView("boardView");
+		modelAndView.addObject("board", board);
+		modelAndView.addObject("comment_cnt", all_comments);
+		return modelAndView;
 	}
 	
 	/*====================

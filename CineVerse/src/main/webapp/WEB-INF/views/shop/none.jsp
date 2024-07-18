@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 벌스샵 찜 메뉴 시작 -->
-<c:if test="${not empty list}">
+<c:if test="${count>0}">
 <div class="shop-pay-nav">
 	<div class="rcNav">
 		<div class="price-box">

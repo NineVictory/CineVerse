@@ -55,7 +55,7 @@ public class AssignBoardController {
 	@PostMapping("/assignboard/write")
     public String submit(@Valid AssignVO assignVO, BindingResult result,
                          HttpServletRequest request, HttpSession session, Model model,
-                         @RequestParam("ab_upload") MultipartFile[] files) throws IOException {
+                         @RequestParam("ab_upload") List<MultipartFile> files) throws IOException {
         log.debug("<<양도글 등록>> : " + assignVO);
 
         // 유효성 체크 결과 오류가 있으면 폼 호출
@@ -72,15 +72,28 @@ public class AssignBoardController {
 
         // 파일 업로드 처리
         List<String> filenames = new ArrayList<>();
-        for (MultipartFile file : files) {
-            if (!file.isEmpty()) {
-                String filename = FileUtil2.createFile(request, file);
-                filenames.add(filename);
-            }
+        long totalSize = 0;
+        
+        
+        if(files != null) {
+        	for(int i=0;i<files.size();i++) {
+        		String filename = FileUtil2.createFile(request, files.get(i));
+        		filenames.add(filename);
+        		totalSize += files.get(i).getSize();
+        	}
         }
+
+		/*
+		 * for (MultipartFile file : files) { if (!file.isEmpty()) { String filename =
+		 * FileUtil2.createFile(request, file); filenames.add(filename); totalSize +=
+		 * file.getSize(); // } }
+		 */
+        
         String filenamesString = String.join(",", filenames);
         assignVO.setAb_filenames(filenamesString); // 여러 개의 파일명을 저장할 필드에 설정
-
+        
+        log.debug(filenamesString);
+        log.debug("파일전체 :::::" + totalSize + "bytes");
         // 글쓰기
         assignService.ab_insertBoard(assignVO);
 

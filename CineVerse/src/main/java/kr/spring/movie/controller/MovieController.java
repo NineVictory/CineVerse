@@ -22,6 +22,7 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
+import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
@@ -140,12 +141,12 @@ public class MovieController {
 	    public List<MovieVO> getMoviesByCinema(long c_num) {
 	        return cinemaService.getMoviesByCinema(c_num);
 	    }
-	 	
+	 	 
 	 	//지점명 선택했을 때 상영관 목록 불러오기
-	 	@GetMapping("/selectTheaterListByCinema")
+	 	@GetMapping("/selectMovieTimeList")
 	    @ResponseBody
-	    public List<TheaterVO> selectTheaterListByCinemaNum(long c_num) {
-	        return cinemaService.selectTheaterListByCinemaNum(c_num);
+	    public List<MovieTimeVO>selectMovieTimeList(long c_num, long m_code) {
+	        return cinemaService.selectMovieTimeList(c_num, m_code);
 	    }
 	
 	/*=======================

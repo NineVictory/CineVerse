@@ -78,6 +78,9 @@
 
 .event-list-main .event-infos {
 	width: 1160px;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .event-list {
@@ -88,14 +91,14 @@
 }
 
 .event-list li {
-	width: calc(25%);
+	width: 25%;
 	background: #fff;
 	margin-bottom: 50px
 }
 
 .event-list li .event-title {
 	width: 256px;
-	display: flex;
+	/* display: flex; */
 	min-height: 90px;
 	padding-bottom: 15px;
 	border: 1px solid #dddfe2;
@@ -103,6 +106,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	padding-left: 7px;
+	display:inline-block;
 }
 
 .event-dday {

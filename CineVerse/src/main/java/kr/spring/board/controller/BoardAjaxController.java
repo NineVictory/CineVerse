@@ -220,7 +220,7 @@ public class BoardAjaxController {
 		map.put("cb_num", cb_num);
 		
 		//총글의 개수
-		int count = boardService.selectRowCountComment(map);
+		int count = boardService.selectRowCountComment(cb_num);
 		
 		//페이지 처리
 		PagingUtil page = new PagingUtil(pageNum,count,rowCount);
@@ -241,8 +241,13 @@ public class BoardAjaxController {
 			list = Collections.emptyList(); // null이 아닌 비어있는 리스트 -> 빈 배열로 인식함
 		}
 		
+		long all_comments = boardService.selectResponseCountByCbNum(cb_num)
+					+ boardService.selectRowCountComment(cb_num);
+		
+		
 		Map<String,Object> mapJson = new HashMap<String,Object>();
-		mapJson.put("count", count);
+		/* mapJson.put("count", count); */
+		mapJson.put("count", all_comments);
 		mapJson.put("list", list);
 		if(user != null) {
 			mapJson.put("user_num", user.getMem_num());

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/cboardBookMark.js"></script>
 <!-- 나의 게시글 시작 -->
 <div class="myPage_main">
     <div class="reservation_display">
-        <span class="myPage_title_re">북마크 커뮤니티</span>
+        <span class="myPage_title_re">게시글 북마크</span>
         <select class="myCoupon_option" onchange="location.href='/myPage/bookMark?category=' + this.value;">
             <option value="0" <c:if test="${param.category == 0}">selected</c:if>>전체</option>
             <option value="1" <c:if test="${param.category == 1}">selected</c:if>>영화톡톡</option>
@@ -15,7 +17,7 @@
     <c:if test="${count > 0}">
     <!-- 반복 -->
     <c:forEach var="board" items="${list}">
-        <div class="bookMark_box"  onclick="location.href='${pagecontext.request.contextPath}/board/detail?cb_num=${board.cb_num}'">
+        <div class="bookMark_box">
             <div class="bk_content">
                 <div class="my_board_bk">
                     <div class="my_board_type">
@@ -25,11 +27,11 @@
                             <c:otherwise>${board.cb_type}</c:otherwise>
                         </c:choose>
                     </div>
-                    <div class="my_boardWrite_bk">${board.cb_title}</div>
+                    <div class="my_boardWrite_bk" onclick="location.href='${pagecontext.request.contextPath}/board/detail?cb_num=${board.cb_num}'">${board.cb_title}</div>
                 </div>
                 <div class="bk_delete_btn">
-                    <div>삭제</div>
-                </div>
+						<input type="button" class="add_del_btn" data-num="${board.cb_num}" data-mnum="${board.mem_num}" value="삭제">
+				</div>
             </div>
             <div class="review_fav_date">
                 <span>이미지</span> <span>${board.fav_cnt}</span> | 

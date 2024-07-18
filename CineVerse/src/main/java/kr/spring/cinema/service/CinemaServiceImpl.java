@@ -62,20 +62,20 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
-	public List<MovieTimeVO> selectMovieTimeListByCinemaNum(long c_num) {
-		return cinemaMapper.selectMovieTimeListByCinemaNum(c_num);
-	}
-
-	@Override
-	public Integer selectMovieTimeCount(Map<String, Object> map) {
-		return cinemaMapper.selectMovieTimeCount(map);
-	}
-
-	@Override
 	public List<MovieVO> getMoviesByCinema(long c_num) {
 		return cinemaMapper.getMoviesByCinema(c_num);
 	}
 
+	@Override
+	public List<MovieTimeVO> selectMovieTimeList(long c_num, long m_code) {
+		return cinemaMapper.selectMovieTimeList(c_num, m_code); 
+	}
+
+	
+	
+	 
+	
+	
 	
 	 
 	

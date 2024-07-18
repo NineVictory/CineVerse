@@ -2,6 +2,10 @@ $(document).ready(function() {
     $('#ab_upload').on('change', function(event) {
         const preview = $('#preview');
         const files = event.target.files;
+        
+        const MAX_FILE_SIZE = 4000 * 1024 * 1024; // 4000MB
+  	  	const MAX_TOTAL_SIZE = 6000 * 1024 * 1024; // 6000MB
+   		const MAX_FILE_COUNT = 3;
 
         // 이미 존재하는 파일명 목록 가져오기
         const existingFileNames = preview.find('.preview-image').map(function() {
@@ -28,7 +32,32 @@ $(document).ready(function() {
             clearFileInput(); // 파일 입력 요소 초기화
             return;
         }
+        
+        let totalSize = 0;
+        let isValid = true;
+		for (let i = 0; i < files.length; i++) {
+            totalSize += files[i].size;
+        }
 
+        if (totalSize > MAX_TOTAL_SIZE) {
+            alert("총 파일 크기는 6000MB를 초과할 수 없습니다.");
+            isValid = false;
+        }
+
+        for (let i = 0; i < files.length; i++) {
+            if (files[i].size > MAX_FILE_SIZE) {
+                alert("각 파일 크기는 4000MB를 초과할 수 없습니다: " + files[i].name);
+                isValid = false;
+                break;
+            }
+        }
+
+        if (!isValid) {
+            event.target.value = ""; // 파일 입력 초기화
+        }
+        
+        
+        
         // 파일별로 미리보기 생성
         uniqueFiles.forEach(file => {
             const reader = new FileReader();

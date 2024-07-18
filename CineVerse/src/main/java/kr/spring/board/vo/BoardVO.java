@@ -18,13 +18,13 @@ import lombok.ToString;
 public class BoardVO {
 	private long cb_num;
 	private long mem_num;
-	//@NotBlank
+	@NotBlank
 	private String cb_title;
-	//@NotEmpty
+	@NotEmpty
 	private String cb_content;
 	private String cb_filename;
 	private MultipartFile upload;	//파일
-	//@NotNull
+	@NotNull
 	private String cb_type;	//카테고리
 	private Date cb_reg_date;
 	private Date cb_modify_date;
@@ -36,6 +36,7 @@ public class BoardVO {
 	private String mem_id;				//아이디
 	private String mem_nickname;
 	
-	private int re_cnt;				//댓글 개수
+	private int cc_cnt;				//댓글 개수
 	private int fav_cnt;			//좋아요 개수
+	private int all_comments;		// 댓글+답글
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.member.vo.CouponVO;
+import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.shop.dao.ShopMapper;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
@@ -298,6 +299,16 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public ProductVO selectMostCategory(long mem_num) {
 		return shopMapper.selectMostCategory(mem_num);
+	}
+
+	@Override
+	public List<MyPageVO> selectMemCouponList(Map<String, Object> map) {
+		return shopMapper.selectMemCouponList(map);
+	}
+
+	@Override
+	public Integer productFavCnt(long mem_num) {
+		return shopMapper.productFavCnt(mem_num);
 	}
 
 	

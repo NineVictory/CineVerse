@@ -262,3 +262,38 @@ textarea#consult_content{
 .font-red{
 	color:red;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*공지 뉴스*/
+.news-search-container{
+	margin:15px 0;
+}
+form#news_search_form{
+	margin-left:0 !important;
+}
+#news_search_form > *{
+	height:28px;
+	padding:4px;
+}
+#news_search_form select{
+	width:80px;
+}
+#news_search_form input{
+	width:300px;
+	margin:0 3px;
+}
+
+
