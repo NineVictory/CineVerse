@@ -10,8 +10,7 @@
 		ADD_MONTHS(mc.coupon_regdate, 1) coupon_enddate
 		FROM member_coupon mc
 		JOIN coupon_db c ON mc.coupon_num = c.coupon_num
-		WHERE mc.mem_num =
-		#{mem_num}
+		WHERE mc.mem_num = #{mem_num}
 	</select>
 
 	<sql id="myPageBoardSearch">
@@ -100,8 +99,7 @@
 		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,
 		cb_num FROM community_fav GROUP
 		BY cb_num) USING(cb_num)
-		WHERE mem_num =
-		#{mem_num}
+		WHERE mem_num =#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 		ORDER BY cb_num DESC
 	</select>

@@ -25,7 +25,9 @@
 		보유한 쿠폰이 없습니다.
 		</c:if>
 		<c:if test="${member.coupon_cnt > 0 }">
+		
 		<c:forEach  var="couponList" items="${couponList}">
+		<c:if test="${couponList.coupon_type == 2}">
 			<div class="coupon_info_list">
 			<div class="coupon_info_name">
 				<div>${couponList.coupon_name }</div>
@@ -48,6 +50,7 @@
 			</div>
 		</div>
 		<hr size="1" class="coupon_line">
+		</c:if>
 		</c:forEach>
 		</c:if>
 	

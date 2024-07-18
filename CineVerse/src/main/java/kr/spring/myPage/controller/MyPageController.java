@@ -28,6 +28,7 @@ import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.util.CaptchaUtil;
 import kr.spring.util.FileUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -201,8 +202,10 @@ public class MyPageController {
 		if (count > 0) {
 			list = mypageService.selectMemcBoardWriteList(map);
 			log.debug("<<글 목록>> : " + list);
+			
 		}
-
+		
+		
 		model.addAttribute("member", member);
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
