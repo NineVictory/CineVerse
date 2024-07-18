@@ -116,7 +116,8 @@
 					<div class="image-upload-ul">
 						<div class="image-upload">
 							이미지 등록
-							<input type="file" name="ab_upload" id="ab_upload" accept="image/jpg, image/jpeg, image/png" multiple>
+							<form:input type="file" path="ab_upload" accept="image/jpg, image/jpeg, image/png" multiple="multiple"/>
+							<!-- <input type="file" name="ab_upload" id="ab_upload" accept="image/jpg, image/jpeg, image/png" multiple> -->
 						</div>
 					</div>
 					<div>상품 이미지는 PC에서 1:1로 보여집니다.</div>
@@ -171,8 +172,8 @@
 					설명
 				</div>
 				<div class="flexbox-p">
-					<textarea name="ab_content" id="ab_content" placeholder="구매시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요.
-전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요."></textarea>
+					<form:textarea path="ab_content" placeholder="구매시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요.
+전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요."/>
 					<form:errors path="ab_content" cssClass="error-color"/>
 				</div>
 			</div>
@@ -190,8 +191,8 @@
 					<div style="position:relative" class="price-container">
 						<!-- <input type="number" name="ab_price" id="ab_price" placeholder="가격을 입력해주세요" value=""
 		   					 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -->
-						<input type="number" name="ab_price" id="ab_price" placeholder="가격을 입력해주세요" value=""
-		       				oninput="limitInputLength(this, 9);" min="0" max="999999999">
+						<form:input path="ab_price" placeholder="가격을 입력해주세요" value=""
+		       				oninput="limitInputLength(this, 9);" min="0" max="999999999"/>
 		       				<script type="text/javascript">
 			       				function limitInputLength(input, maxLength) {
 			       				    // 입력된 값에서 숫자와 소수점만 남기고 나머지는 제거합니다.

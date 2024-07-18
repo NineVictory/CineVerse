@@ -64,7 +64,7 @@ public class AssignBoardController {
         }
 
         // 회원번호 셋팅
-        MemberVO vo = (MemberVO) session.getAttribute("user");
+        MemberVO vo = (MemberVO)session.getAttribute("user");
         assignVO.setMem_num(vo.getMem_num());
 
         // IP 셋팅

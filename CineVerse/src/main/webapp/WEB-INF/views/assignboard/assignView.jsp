@@ -63,10 +63,12 @@
 				            <img src="${request.contextPath}/upload/${filenames[2]}" width="420" class="item-img" alt="Image 3">
 				        </div>
 				    </c:if>
-				    <div <c:if test="${fn:length(filenames) == 1}"></c:if>>
+				    <c:if test="${fn:length(filenames) != 1}">
+				    <div>
 					    <a class="prev">&#10094;</a>
 					    <a class="next">&#10095;</a>
 					 </div>   
+					 </c:if>
 				</div>
 				<script>
 				    $(document).ready(function() {

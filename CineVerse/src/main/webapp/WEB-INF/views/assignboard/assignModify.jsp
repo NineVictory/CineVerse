@@ -45,7 +45,7 @@
 					<div class="image-upload-ul">
 						<div class="image-upload">
 							이미지 등록
-							<input type="file" name="ab_upload" id="ab_upload" accept="image/jpg, image/jpeg, image/png" multiple>
+							<form:input type="file" path="ab_upload" accept="image/jpg, image/jpeg, image/png" multiple="multiple"/>
 						</div>
 					</div>
 					<div>상품 이미지는 PC에서 1:1로 보여집니다.</div>
@@ -108,8 +108,8 @@
 					설명
 				</div>
 				<div class="flexbox-p">
-					<textarea name="ab_content" id="ab_content" placeholder="구매시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요.
-전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요.">${assignVO.ab_content}</textarea>
+					<form:textarea path="ab_content" placeholder="구매시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요.
+전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요." value="${assignVO.ab_content}"/>
 					<form:errors path="ab_content" cssClass="error-color"/>
 				</div>
 			</div>
