@@ -235,7 +235,7 @@ input [type="checkbox"]{
     margin-bottom: 24px;
     display: flex;
     width: 280px;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .price-result span{
