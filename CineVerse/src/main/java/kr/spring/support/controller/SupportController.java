@@ -22,21 +22,24 @@ public class SupportController {
 		return new ConsultVO();
 	}
 	
+	//고객센터 메인
 	@GetMapping("/support/main")
 	public String main() {
 		return "supportMain";
 	}
 	
+	//자주묻는질문
 	@GetMapping("/support/faq")
 	public String faqList() {
 		return "supportFaq";
 	}
 	
+	//공지/뉴스
 	@GetMapping("/support/notice")
 	public String noticeList() {
 		return "supportNotice";
 	}
-	
+	//1:1문의
 	@GetMapping("/support/consult")
 	public String consultForm() {
 		return "supportConsult";

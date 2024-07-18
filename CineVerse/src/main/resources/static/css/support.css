@@ -86,6 +86,10 @@ li.support_nav{
 .left-lower-menu{
 	width:290px;
 }
+.p-center{
+	display:flex;
+    align-items: center;
+}
 .right-lower-menu{
 	width:600px;
 }
@@ -103,6 +107,10 @@ li.support_nav{
 .flex-start{
 	align-items:flex-start;
 }
+
+.imenu a {
+	text-align:left;
+}
 .imenu > a > span{
 	display:inline-block;
 	width:130px;
@@ -113,6 +121,11 @@ li.support_nav{
 	vertical-align:middle;
 	border:1px solid #BEBABA;
 	border-radius:7px;
+}
+
+/*로그인시 아이디찾기 비활성화*/
+.disabled{
+	color:gray;
 }
 .right-lower-menu table{
 	width:100%;
