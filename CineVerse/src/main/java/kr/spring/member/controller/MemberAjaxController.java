@@ -144,8 +144,8 @@ public class MemberAjaxController {
 	            mapAjax.put("result", "registerkakao");
 	        }
 	    } catch (Exception e) {
+	    	log.error(e.toString());
 	        mapAjax.put("result", "error");
-	        e.printStackTrace();
 	    }
 	    return mapAjax;
 	}

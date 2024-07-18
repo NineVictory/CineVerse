@@ -8,7 +8,7 @@ $(function(){
 	$('#mem_id').on('focusout', function(){
 		if($('#mem_id').val().trim() == ''){
 			$('#message_id').css('color', 'red').text('아이디를 입력하세요');
-			$('#mem_id').val('').focus();
+			$('#mem_id').val('');
 			return;
 		}
 		
@@ -23,12 +23,12 @@ $(function(){
 				if(param.result == 'idDuplicated'){
 					checkId = 0;
 					$('#message_id').css('color', 'red').text('중복된 아이디');
-					$('#mem_id').val('').focus();
+					$('#mem_id').val('');
 				}
 				else if(param.result == 'notMatchPattern'){
 					checkId = 0;
 					$('#message_id').css('color', 'red').text('잘못된 형식');
-					$('#mem_id').val('').focus();
+					$('#mem_id').val('');
 				}
 				else if(param.result == 'idNotFound'){
 					checkId = 1;
@@ -56,7 +56,7 @@ $(function(){
 			$('#message_id').css('color', 'red').text('ID 중복 체크는 필수');
 
 			if($('#mem_id').val().trim() == ''){
-				$('#mem_id').val('').focus();
+				$('#mem_id').val('');
 			}
 			return false;
 		}
@@ -66,7 +66,7 @@ $(function(){
 	$('#mem_phone').on('focusout', function(){
 		if($('#mem_phone').val().trim() == ''){
 			$('#message_phone').css('color', 'red').text('전화번호를 입력하세요');
-			$('#mem_phone').val('').focus();
+			$('#mem_phone').val('');
 			return;
 		}
 		
@@ -81,7 +81,7 @@ $(function(){
 				if(param.result == 'phoneDuplicated'){
 					checkPhone = 0;
 					$('#message_phone').css('color', 'red').text('중복된 번호');
-					$('#mem_phone').val('').focus();
+					$('#mem_phone').val('');
 				}
 				else if(param.result == 'phoneNotFound'){
 					checkPhone = 1;
@@ -108,7 +108,7 @@ $(function(){
 			$('#message_phone').css('color', 'red').text('번호 중복 체크는 필수');
 
 			if($('#mem_phone').val().trim() == ''){
-				$('#mem_phone').val('').focus();
+				$('#mem_phone').val('');
 			}
 			return false;
 		}
@@ -118,7 +118,7 @@ $(function(){
 	$('#mem_email').on('focusout', function(){
 		if($('#mem_email').val().trim() == ''){
 			$('#message_email').css('color', 'red').text('이메일을 입력하세요');
-			$('#mem_email').val('').focus();
+			$('#mem_email').val('');
 			return;
 		}
 		
@@ -133,7 +133,7 @@ $(function(){
 				if(param.result == 'emailDuplicated'){
 					checkEmail = 0;
 					$('#message_email').css('color', 'red').text('중복된 이메일');
-					$('#mem_email').val('').focus();
+					$('#mem_email').val('');
 				}
 				else if(param.result == 'emailNotFound'){
 					checkEmail = 1;
@@ -160,7 +160,7 @@ $(function(){
 			$('#message_email').css('color', 'red').text('이메일 중복 체크는 필수');
 
 			if($('#mem_email').val().trim() == ''){
-				$('#mem_email').val('').focus();
+				$('#mem_email').val('');
 			}
 			return false;
 		}
