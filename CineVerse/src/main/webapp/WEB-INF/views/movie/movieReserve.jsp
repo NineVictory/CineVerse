@@ -8,7 +8,7 @@ $(document).ready(function() {
     // 지점 클릭 이벤트 핸들러
     $('.theater-place > a').click(function(e) {
         e.preventDefault(); // 기본 동작 중지
-       let c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
+        let c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
 
         // 영화 목록 불러오기
         $.ajax({
@@ -23,19 +23,17 @@ $(document).ready(function() {
                     movieListHtml += '<li class="select"><a href="#" class="movie-item" data-cnum="' + c_num + '" data-mcode="' + movie.m_code + '">' + movie.m_name + '</a></li>';
                 });
                 $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
-
-               
             },
             error: function() {
                 alert('영화 목록을 불러오는 데 실패했습니다.');
             }
         });
     });
-    
+
     // 영화 클릭 이벤트 핸들러 설정
-    $(document).on('click','.movie-item',function(e) {
+    $(document).on('click', '.movie-item', function(e) {
         e.preventDefault(); // 기본 동작 중지
-       
+
         let c_num = $(this).attr('data-cnum');
         let m_code = $(this).attr('data-mcode'); // 클릭한 영화의 m_code 값 가져오기
 
@@ -49,10 +47,11 @@ $(document).ready(function() {
                 // 성공적으로 데이터를 받았을 때 처리
                 let selectMovieTimeListHtml = '';
                 $.each(data, function(index, movietime) {
-                	selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.th_name + '</a></li>';
-                    selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_date + '</a></li>';
-                    selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_start + '</a></li>';
-                    selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_end + '</a></li>';
+                	selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + movietime.mt_end + '">';
+                    selectMovieTimeListHtml += '<div class="mt-start">' + movietime.mt_start + '</div>';
+                    selectMovieTimeListHtml += '<div class="mt-date">' + movietime.mt_date + '</div>';
+                    selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name + '</div>';
+                    selectMovieTimeListHtml += '</li>';
                 });
                 $('.movietime-select').html(selectMovieTimeListHtml); // 영화 시간표 목록 업데이트
             },
@@ -61,8 +60,31 @@ $(document).ready(function() {
             }
         });
     });
-}); 
 
+    // 툴팁 생성
+    $(document).on('mouseenter', '.movietime-item', function() {
+        var endTime = $(this).data('end-time');
+        var tooltip = '<div class="tooltip">종료: ' + endTime + '</div>';
+        $('body').append(tooltip);
+        var tooltipElement = $('.tooltip');
+        tooltipElement.css({
+            top: event.pageY + 10,
+            left: event.pageX + 10
+        });
+    });
+
+    $(document).on('mousemove', '.movietime-item', function(event) {
+        var tooltipElement = $('.tooltip');
+        tooltipElement.css({
+            top: event.pageY + 10,
+            left: event.pageX + 10
+        });
+    });
+
+    $(document).on('mouseleave', '.movietime-item', function() {
+        $('.tooltip').remove();
+    });
+});
 </script>
 <div class="reserve-container">
 	<!-- 지점명 -->
