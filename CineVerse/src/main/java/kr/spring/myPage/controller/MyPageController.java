@@ -317,31 +317,6 @@ public class MyPageController {
 		return "aBoardWrite";
 	}
 
-	/*
-	 * //양도/교환 댓글 + 추가
-	 * 
-	 * @GetMapping("/myPage/aBoardReply") public String
-	 * myPageAboardReply(@RequestParam(defaultValue = "0") int category, HttpSession
-	 * session, Model model) {
-	 * 
-	 * log.debug("<<카테고리>> : " + category);
-	 * 
-	 * MemberVO user = (MemberVO) session.getAttribute("user"); MyPageVO member =
-	 * mypageService.selectMember(user.getMem_num());
-	 * member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-	 * 
-	 * Map<String, Object> map = new HashMap<String, Object>(); map.put("category",
-	 * category); map.put("mem_num", user.getMem_num());
-	 * 
-	 * List<AssignVO> list = null;
-	 * 
-	 * 
-	 * 
-	 * model.addAttribute("member", member);
-	 * 
-	 * return "aBoardReply"; }
-	 */
-
 	// 내 캘린더
 
 	// 이벤트 참여 내역
