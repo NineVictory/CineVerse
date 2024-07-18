@@ -1,32 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/movie.bookmark.js"></script>
 
-<!-- 영화목록 시작 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#statusCheckbox").change(function() {
+            var status = $(this).is(':checked') ? 1 : '';
+            location.href = '${pageContext.request.contextPath}/movie/movieList?status=' + status;
+        });
+    });
+</script>
+
 <div class="page-container">
     <div class="movie-page">
-        <div class="movie-main">
-            <form action="movieList" id="movie_search">
+        <div class="movie-main">   
+            <form id="movie_search">
                 <div class="search-container">
-                    <!-- 상영작 체크 -->
                     <div class="movie-list-title">
-                        <input type="checkbox"> 현재 상영작만 보기
+                        <input type="checkbox" id="statusCheckbox" <c:if test="${param.status == 1}">checked</c:if>> 현재 상영작만 보기
                     </div>
                     <div class="select-wrapper">
                         <select name="movieorder" id="movieorder">
-                            <option value="1" <c:if test="${param.movieorder == 1 }">selected</c:if>>최신순</option>
-                            <option value="2" <c:if test="${param.movieorder == 2 }">selected</c:if>>북마크순</option>
-                            <option value="3" <c:if test="${param.movieorder == 3 }">selected</c:if>>인기순</option>
+                            <option value="1" <c:if test="${param.movieorder == 1}">selected</c:if>>최신순</option>
+                            <option value="2" <c:if test="${param.movieorder == 2}">selected</c:if>>북마크순</option>
+                            <option value="3" <c:if test="${param.movieorder == 3}">selected</c:if>>인기순</option>
                         </select>
                         <script type="text/javascript">
                             $('#movieorder').change(function(){
-                                location.href='list?keyfield='
-                                            +$('#keyfield').val()
-                                            +'&keyword='+$('#keyword').val()
-                                            +'&movieorder='+$('#movieorder').val();
+                                location.href='${pageContext.request.contextPath}/movie/movieList?keyfield=' + $('#keyfield').val() + '&keyword=' + $('#keyword').val() + '&movieorder=' + $('#movieorder').val();
                             });
                         </script>
                     </div>
@@ -43,14 +45,11 @@
             </form>
         </div>
 
-        <!-- 목록 -->
-        <div class="movie-list-page">
+        <div id="movieListContainer" class="movie-list-page">
+            <!-- 영화 목록이 여기에 로드됩니다 -->
             <ul class="movie-list">
-                <c:if test="${count <= 0}">
-                    상영중인 영화가 없습니다.
-                </c:if>
-                <c:if test="${count > 0}">
-                    <c:forEach var="movie" items="${movielist}">
+                <c:forEach var="movie" items="${movielist}">
+                    <c:if test="${param.status == 1 && movie.m_status == 1 || param.status != 1}">
                         <li class="movie">
                             <img alt="영화1" src="${pageContext.request.contextPath}/upload/${movie.m_filename}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
                             <p><a href="movieDetail?m_code=${movie.m_code}"><b>${movie.m_name}</b></a></p>
@@ -59,20 +58,15 @@
                             </div>
                             <div class="movie-button">
                                 <div class="movie-fav-button-detail">
-                                    <img class="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
-                                    <span class="output_mfcount"></span>
+                                    <img id="output_bookMark" data-num="${movie.m_code}" src="">
+                                    <span id="output_mfcount"></span>
                                 </div>
                                 <div class="movie-reservation-button-list">예매하기</div>
                             </div>
                         </li>
-                    </c:forEach>
-                </c:if>
+                    </c:if>
+                </c:forEach>
             </ul>
         </div>
-        <div class="page-movie">${page}</div>
-    </div>
-    <div class="load-more">
-        <button id="loadMoreButton">더 보기</button>
     </div>
 </div>
-<!-- 영화목록 끝 -->
