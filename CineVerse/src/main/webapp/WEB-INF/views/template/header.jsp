@@ -40,7 +40,6 @@
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/movie/movieReserve" title="예매하기">예매하기</a></li>
                             <li><a href="${pageContext.request.contextPath}/movie/movieTime" title="상영시간표">상영시간표</a></li>
-                            <li><a href="#" title="할인안내">할인안내</a></li>
                         </ul>
                     </div>
                 </li>
