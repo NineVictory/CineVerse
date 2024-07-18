@@ -7,17 +7,18 @@
 	<div class="news-sub-info">
 		CINEVERSE의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.
 	</div>
-	<div class="support-search">
-		<div class="search">
-			<select>
-				<option value="title">제목</option>
-           		<option value="content">내용</option>
-			</select> 나중에 수평배치 할게요
+	<div class="news-search-container">
+		<div class="search flexbox-h">
+			<form action="news" id="news_search_form" class="flexbox-h" method="get" style="margin-left: auto;">
 		
-			<form action="news" id="news_search_form" method="get" style="margin-left: auto;">
-			<input type="hidden" name="" value="">
-			<input type="search" class="search-input" name="keyword" placeholder="검색어를 입력해 주세요">
-			<button type="submit" class="search-button" aria-label="검색하기">검색</button>
+				<select>
+					<option value="title">제목</option>
+	           		<option value="content">내용</option>
+				</select>
+		
+				<input type="hidden" name="" value="">
+				<input type="search" class="search-input" name="keyword" placeholder="검색어를 입력해 주세요">
+				<button type="submit" class="search-button" aria-label="검색하기">검색</button>
 			<%--<input type="image" src="${pageContext.request.contextPath}/images/kbm/search.png" width="20" alt="검색"> --%>
             </form>
         </div>
