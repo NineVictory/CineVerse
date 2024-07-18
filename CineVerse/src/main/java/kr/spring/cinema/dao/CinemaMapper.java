@@ -30,13 +30,13 @@ public interface CinemaMapper {
 	public List<TheaterVO> selectTheaterListByCinemaNum(long c_num);
 	public Integer selectTheaterCountByCinema(long c_num);
 	
-	
-	//영화시간표 (성공 못함)
-	public List<MovieTimeVO> selectMovieTimeListByCinemaNum(long c_num);
-	public Integer selectMovieTimeCount(Map<String,Object> map);
-	
 	//지점명에 해당하는 영화목록 조회
 	public List<MovieVO> getMoviesByCinema(long c_num);
+	
+	//영화 시간표 목록 조회
+	public List<MovieTimeVO>selectMovieTimeList(long c_num, long m_code);
+	
+	
 	
 	//영화관 (잠시보류)
 	//public List<CinemaVO> selectCinemaList(Integer c_location);

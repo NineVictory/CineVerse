@@ -22,16 +22,14 @@ public interface CinemaService {
 	//상영관
 	public List<TheaterVO> selectTheaterListByCinemaNum(long c_num);
 	public Integer selectTheaterCountByCinema(long c_num);
-	
-	
-	
-	//영화시간표 (성공 못함)
-	public List<MovieTimeVO> selectMovieTimeListByCinemaNum(long c_num);
-	public Integer selectMovieTimeCount(Map<String,Object> map);
+
 	
 	//예매하기 부분 영화 리스트 목록 불러오기
 	public List<MovieVO> getMoviesByCinema(long c_num);
 	
+	
+	//영화 시간표 목록 조회
+	public List<MovieTimeVO>selectMovieTimeList(long c_num, long m_code);
 	
 	
 		//영화관(잠시 보류)

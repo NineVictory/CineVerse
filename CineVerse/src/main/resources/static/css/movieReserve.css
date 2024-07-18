@@ -232,19 +232,19 @@
     gap: 20px; /* 버튼들 사이의 간격 설정 */
 }
 
-.theaterselect {
+/* .movietime-select {
 	margin-top: 10px;
-	flex: 1; /* 버튼들이 동일한 너비를 가짐 */
-    padding: 10px; /* 버튼 내부 패딩 */
-    border: 1px solid #ccc; /* 버튼 테두리 */
-    background-color: #fff; /* 버튼 배경색 */
-    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+	flex: 1; 버튼들이 동일한 너비를 가짐
+    padding: 10px; 버튼 내부 패딩
+    border: 1px solid #ccc; 버튼 테두리
+    background-color: #fff; 버튼 배경색
+    cursor: pointer; 마우스 커서를 포인터로 변경
     text-align: center;
     border-radius: 10px;
     background-color: var(--main-color-light);
-}
+} */
 
-.theater-list:hover {
+.movietime-select:hover {
     background-color: #f0f0f0; /* 마우스 오버 시 배경 색상 변경 */
 }
 

@@ -8,8 +8,8 @@ $(document).ready(function() {
     // 지점 클릭 이벤트 핸들러
     $('.theater-place > a').click(function(e) {
         e.preventDefault(); // 기본 동작 중지
-        var c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
- 
+       let c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
+
         // 영화 목록 불러오기
         $.ajax({
             type: 'GET',
@@ -20,41 +20,50 @@ $(document).ready(function() {
                 // 성공적으로 데이터를 받았을 때 처리
                 var movieListHtml = '';
                 $.each(data, function(index, movie) {
-                    movieListHtml += '<li class="select"><a href="#" class="movie-item" data-cnum="' + c_num + '">' + movie.m_name + '</a></li>';
+                    movieListHtml += '<li class="select"><a href="#" class="movie-item" data-cnum="' + c_num + '" data-mcode="' + movie.m_code + '">' + movie.m_name + '</a></li>';
                 });
                 $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
 
-                // 영화 클릭 이벤트 핸들러 설정
-                $('.movie-item').click(function(e) {
-                    e.preventDefault(); // 기본 동작 중지
-                    var c_num = $(this).data('cnum'); // 클릭한 영화의 c_num 값 가져오기
-
-                    // 상영관 목록 불러오기
-                    $.ajax({
-                        type: 'GET',
-                        url: '${pageContext.request.contextPath}/selectTheaterListByCinema',
-                        data: { c_num: c_num },
-                        dataType: 'json',
-                        success: function(data) {
-                            // 성공적으로 데이터를 받았을 때 처리
-                            var theaterListHtml = '';
-                            $.each(data, function(index, theater) {
-                                theaterListHtml += '<li class="theaterselect"><a href="#none">' + theater.th_name + '</a></li>';
-                            });
-                            $('.theater-list ul').html(theaterListHtml); // 상영관 목록 업데이트
-                        },
-                        error: function() {
-                            alert('상영관 목록을 불러오는 데 실패했습니다.');
-                        }
-                    });
-                });
+               
             },
             error: function() {
                 alert('영화 목록을 불러오는 데 실패했습니다.');
             }
         });
     });
+    
+    // 영화 클릭 이벤트 핸들러 설정
+    $(document).on('click','.movie-item',function(e) {
+        e.preventDefault(); // 기본 동작 중지
+       
+        let c_num = $(this).attr('data-cnum');
+        let m_code = $(this).attr('data-mcode'); // 클릭한 영화의 m_code 값 가져오기
+        alert(c_num + ',' + m_code);
+
+        // 영화 시간표 목록 불러오기
+        $.ajax({
+            type: 'GET',
+            url: '${pageContext.request.contextPath}/selectMovieTimeList',
+            data: { c_num: c_num, m_code: m_code },
+            dataType: 'json',
+            success: function(data) {
+                // 성공적으로 데이터를 받았을 때 처리
+                console.log("영화 시간표 목록 불러오기 성공, data:", data)
+                var selectMovieTimeListHtml = '';
+                $.each(data, function(index, movietime) {
+                    selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_date + '</a></li>';
+                    selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_start + '</a></li>';
+                    selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_end + '</a></li>';
+                });
+                $('.movietime-list ul').html(selectMovieTimeListHtml); // 영화 시간표 목록 업데이트
+            },
+            error: function() {
+                alert('영화 시간표 목록을 불러오는 데 실패했습니다.');
+            }
+        });
+    });
 });
+
 </script>
 <div class="reserve-container">
 	<!-- 지점명 -->
@@ -181,8 +190,8 @@ $(document).ready(function() {
     </script>
     <!-- 날짜 끝 -->
 			<div class="reserve-time-wrapper">
-				<div class="theater-list">
-                <ul class="theater-select">
+				<div class="movitime-list">
+                <ul class="movietime-select">
                     <!-- Ajax로 받아온 영화 목록이 여기에 추가됩니다. -->
                 </ul>
             </div>
