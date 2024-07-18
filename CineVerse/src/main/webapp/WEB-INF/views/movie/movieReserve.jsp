@@ -9,7 +9,7 @@ $(document).ready(function() {
     $('.theater-place > a').click(function(e) {
         e.preventDefault(); // 기본 동작 중지
         var c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
-
+ 
         // 영화 목록 불러오기
         $.ajax({
             type: 'GET',
