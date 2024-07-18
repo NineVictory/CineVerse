@@ -11,6 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.spring.assignment.service.AssignService;
+import kr.spring.assignment.vo.AssignFavVO;
+import kr.spring.assignment.vo.AssignVO;
+import kr.spring.board.service.BoardService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.service.MyPageService2;
@@ -26,6 +30,12 @@ public class MyPageAjaxController {
 
 	@Autowired
 	MyPageService2 mypageService2;
+	
+	@Autowired
+	BoardService boardService;
+	
+	@Autowired
+	AssignService assignService;
 	
 	@PostMapping("/myPage/updateMyPhoto")
 	@ResponseBody
@@ -72,7 +82,31 @@ public class MyPageAjaxController {
 	    
 	    return mapJson;
 	}
-
+	
+	
+	//양도/교환 북마크 삭제
+	@PostMapping("/myPage/deleteABoardBookMark")
+	@ResponseBody
+	public Map<String, Object> deleteABoardBookMark(long ab_num,long mem_num,HttpSession session){
+		log.debug("<<양도/교환 북마크 삭제 - ab_num>> : " + ab_num);
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else if(user.getMem_num() != mem_num) {
+			mapJson.put("result", "wrongAccess");
+		}else{
+			// AssignFavVO 객체 생성 및 설정
+	        AssignFavVO fav = new AssignFavVO();
+	        fav.setAb_num(ab_num);
+	        fav.setMem_num(mem_num);
+			
+	        assignService.ab_deleteFav(fav);
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
 	
 	
 }

@@ -105,7 +105,7 @@ padding-left: 20px;
 				class="menu-link">회원관리</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminMembership"
-				class="menu-link">구독맴버십</a></li>
+				class="menu-link">구독멤버십</a></li>
 
 		</ul>
 		<a class="menu-item">영화</a>

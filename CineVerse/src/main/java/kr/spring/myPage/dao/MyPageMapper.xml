@@ -160,6 +160,8 @@
 		    JOIN community_board cb ON cc.cb_num = cb.cb_num
 		) cb ON cr.cc_num = cb.cc_num
 		WHERE cr.mem_num = #{mem_num}
+		<include refid="myPageBoardSearch"></include>
+		ORDER BY cr.te_num DESC
 	</select>
 
 	<!-- 양도/교환 찜 -->

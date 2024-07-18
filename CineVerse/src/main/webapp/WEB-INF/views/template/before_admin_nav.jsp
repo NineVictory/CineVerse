@@ -9,7 +9,7 @@
                 <li onclick="toggleSubMenu('menuMember')"><h2>회원</h2></li>
                 <ul id="menuMember">
                     <li><a href="${pageContext.request.contextPath}/admin/adminMember">회원관리</a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/adminMembership">구독맴버십</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/adminMembership">구독멤버십</a></li>
                 </ul>
 
                 <li onclick="toggleSubMenu('menuMovie')"><h2>영화</h2></li>
