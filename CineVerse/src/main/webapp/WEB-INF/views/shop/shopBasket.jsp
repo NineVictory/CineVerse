@@ -34,7 +34,7 @@
 								</div>
 		                        <hr size="2px" color="#969696" width="53%">
 		                        <div class="product-list">
-		                            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
+		                            <img src="${pageContext.request.contextPath}/upload/${product.p_filename}" onclick="location.href='shopDetail?p_num=${product.p_num}'">
 		                            <div class="product-name">
 		                                <h3>${product.p_name}</h3>
 		                            </div>

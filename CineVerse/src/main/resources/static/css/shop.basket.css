@@ -266,3 +266,45 @@ body {
 	margin-top: 30px;
 	margin-left: 34px;
 }
+
+.add-address{
+	width: 200px;
+	height: 50px;
+	color: white;
+	text-align: center;
+	align-content: center;
+	margin: 0 auto;
+	margin-top: 40px;
+	background: #3F66ED;
+	border-radius: 10px;
+}
+
+.pn{
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	font-weight:500; 
+	margin-bottom:14px; 
+}
+
+.rc-img{
+	width:90px;
+	height: 90px;
+	margin-right: 30px;
+}
+
+
+
+.rcNav{
+	border: 3px solid black;
+	width: 400px;
+	height: 420px;
+	border-radius: 10px;
+}
+
+.rc-box{
+	margin-top:20px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	width: 330px;
+}
