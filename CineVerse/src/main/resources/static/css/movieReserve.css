@@ -244,9 +244,7 @@
     background-color: var(--main-color-light);
 } */
  
-.movietime-select:hover {
-    background-color: #f0f0f0; /* 마우스 오버 시 배경 색상 변경 */
-}
+
 
 .reserve-time-want {
 	letter-spacing: 1px;
@@ -264,6 +262,52 @@
 	font-size: 11px;
 }
 
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 1000;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.movietime-item {
+    display: inline-block;
+    width: 160px; /* 크기 조정 */
+    height: 80px; /* 크기 조정 */
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.movietime-item:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경 색상 변경 */
+}
+
+.movietime-item .mt-start {
+    font-weight: bold;
+    font-size: 16px; /* 폰트 크기 조정 */
+    margin-bottom: 5px; /* 시작 시간과 날짜 사이 간격 */
+}
+
+.movietime-item .mt-date {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+.movietime-item .th-name {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+} 
 .reserve-time-active {
 	background-color: #333333;
 	color: white;
