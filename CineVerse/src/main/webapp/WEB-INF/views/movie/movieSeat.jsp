@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 	<div class="select-container">
 		<div class="select-wrapper">
@@ -22,8 +22,7 @@
 						<div class="theater-time"></div>
 					</div>
 					<div class="selected-seats-wrapper">
-						<span class="selected-seats-title">좌석번호</span> <span
-							class="selected-seats">선택한 좌석이 없습니다.</span>
+						<span class="selected-seats-title">좌석번호</span> <span class="selected-seats">선택한 좌석이 없습니다.</span>
 					</div>					
 				</div>
 				
@@ -33,33 +32,33 @@
 						<div class="select-seat">
 							<div class="select-seat-age">성인</div>
 							<div class="quantity-controls">
-	                        <button type="button" class="quantity-down">-</button>
-	                        <input type="number" min="1" value="0" max="4" readonly class="quantity-input"/>
-	                        <button type="button" class="quantity-up">+</button>
+	                        <button type="button" class="quantity-down" data-type="adult">-</button>
+	                        <input type="number" min="0" value="0" max="4" readonly class="quantity-input" data-type="adult"/>
+	                        <button type="button" class="quantity-up" data-type="adult">+</button>
 	                    </div>
 						</div>
 						<div class="select-seat">
 							<div class="select-seat-age">청소년</div>
 							<div class="quantity-controls">
-	                        <button type="button" class="quantity-down">-</button>
-	                        <input type="number" min="1" value="0" max="4" readonly class="quantity-input"/>
-	                        <button type="button" class="quantity-up">+</button>
+	                        <button type="button" class="quantity-down" data-type="youth">-</button>
+	                        <input type="number" min="0" value="0" max="4" readonly class="quantity-input" data-type="youth"/>
+	                        <button type="button" class="quantity-up" data-type="youth">+</button>
 	                    </div>
 						</div>
 						<div class="select-seat">
 							<div class="select-seat-age">경로</div>
 							<div class="quantity-controls">
-	                        <button type="button" class="quantity-down">-</button>
-	                        <input type="number" min="1" value="0" max="4" readonly class="quantity-input"/>
-	                        <button type="button" class="quantity-up">+</button>
+	                        <button type="button" class="quantity-down" data-type="senior">-</button>
+	                        <input type="number" min="0" value="0" max="4" readonly class="quantity-input" data-type="senior"/>
+	                        <button type="button" class="quantity-up" data-type="senior">+</button>
 	                    </div>
 						</div>
 						<div class="select-seat">
 							<div class="select-seat-age">우대</div>
 							<div class="quantity-controls">
-	                        <button type="button" class="quantity-down">-</button>
-	                        <input type="number" min="1" value="0" max="4" readonly class="quantity-input"/>
-	                        <button type="button" class="quantity-up">+</button>
+	                        <button type="button" class="quantity-down" data-type="special">-</button>
+	                        <input type="number" min="0" value="0" max="4" readonly class="quantity-input" data-type="special"/>
+	                        <button type="button" class="quantity-up" data-type="special">+</button>
 	                    </div>
 						</div>
 					</div>
@@ -87,19 +86,18 @@
 						<div class="ticket-price-title">총 합계</div>
 						<div class="ticket-price">0원</div>
 					</div>
-					<form action="" class="seatForm" method="post">
+					<form action="moviereserve" class="seatForm" method="post">
 						<input type="hidden" class="title" name="title"> 
 						<input type="hidden" class="selectedTheater" name="selectedTheater">
 						<input type="hidden" class="reserveDate" name="movieDate">
 						<input type="hidden" class="runningTime" name="runningTime">
-						<input type="hidden" class="movieAge" name="movieAge"
-							value="">
+						<input type="hidden" class="movieAge" name="movieAge" value="">
 						<!-- 티켓의수(선택한 좌석) -->
 						<input type="hidden" class="ticketNumber" name="ticketNumber">
 						<input type="hidden" class="selectedSeat" name="selectedSeat">
 						<!-- 결제 정보 -->
 						<input type="hidden" class="payMoney" name="payMoney">
-						<input type="button" class="movePaymentButton" id="link_rpay" value="결제하기" onclick="location.href='moviePayment'">
+						<input type="submit" class="movePaymentButton" value="결제하기">
 					</form>
 			</div>
 		</div>
@@ -107,8 +105,14 @@
 	
 	<script>
         document.addEventListener('DOMContentLoaded', () => {
-
             const seatContainer = document.getElementById('seatContainer');
+            const ticketPriceElement = document.querySelector('.ticket-price');
+            const pricePerType = {
+                adult: 14000,
+                youth: 11000,
+                senior: 7000,
+                special: 5000
+            };
 
             // 좌석 생성하는데 div, span으로 생성하도록 반복문 작성
             function createSeats(rows, cols) {
@@ -124,7 +128,7 @@
                 }
             }
 
-            createSeats(9,12);
+            createSeats(9, 12);
 
             // 좌석 클릭 시 색 변경해주는 - 토글 형태
             seatContainer.addEventListener('click', (e) => {
@@ -134,5 +138,38 @@
                 }
             });
 
+            // 인원 수 조절 버튼 이벤트
+            document.querySelectorAll('.quantity-controls button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const input = e.target.parentElement.querySelector('input');
+                    let value = parseInt(input.value);
+
+                    if (e.target.classList.contains('quantity-up')) {
+                        if (value < parseInt(input.max)) {
+                            value++;
+                        }
+                    } else if (e.target.classList.contains('quantity-down')) {
+                        if (value > parseInt(input.min)) {
+                            value--;
+                        }
+                    }
+
+                    input.value = value;
+                    updateTotalPrice();
+                });
+            });
+
+            // 총 합계 금액 업데이트
+            function updateTotalPrice() {
+                let totalPrice = 0;
+
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    const count = parseInt(input.value);
+                    const type = input.getAttribute('data-type');
+                    totalPrice += count * pricePerType[type];
+                });
+
+                ticketPriceElement.textContent = totalPrice.toLocaleString() + '원';
+            }
         });
     </script>

@@ -4,14 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/support.main.js"></script>
+
 <!-- 고객센터 메인 -->
 <div id="support_main" class="flexbox-p">
 	<div class="flexbox-h main-upper-menu">
 		<div class="flexbox-p fast-menu">
 			<strong>자주 묻는 질문 빠른 검색</strong>
 			<div id="search_box">
-				<input type="text">
-				<button title="검색하기">검색</button>
+				<input type="text" class="faq-keyword">
+				<button title="검색하기" class="faq-mbutton">검색</button>
 			</div>
 		</div>
 		<div class="flexbox-p fast-menu">
@@ -29,10 +32,20 @@
 		<div class="left-lower-menu">
 			<h4>자주찾는 서비스</h4>
 			<div class="imenu">
-				<a href="#"><span>아이디/<br>비밀번호 찾기 ></span></a>
-				<a href="#"><span>예매/<br>취소내역 확인 ></span></a>
-				<a href="#"><span>멤버십 포인트<br> 내역 ></span></a>
-				<a href="#"><span>관람권/<br>할인 쿠폰 ></span></a>
+			 <c:if test="${empty user}">
+		        <a href="${pageContext.request.contextPath}/member/findId">
+		            <span>아이디/<br>비밀번호 찾기 ></span>
+		        </a>
+		    </c:if>
+		    <c:if test="${!empty user}">
+		        <a>
+		            <span class="disabled">아이디/<br>비밀번호 찾기 ></span>
+		        </a>
+		    </c:if>
+			<%--<a href="${pageContext.request.contextPath}/member/findId" data-user="${user}" class="loginCheck-findId"><span>아이디/<br>비밀번호 찾기 ></span></a>--%>
+				<a href="${pageContext.request.contextPath}/myPage/reservation" target="_blank" rel="noopener noreferrer"><span>예매/<br>취소내역 확인 ></span></a>
+				<a href="${pageContext.request.contextPath}/myPage/pointList" target="_blank" rel="noopener noreferrer"><span>멤버십 포인트<br> 내역 ></span></a>
+				<a href="${pageContext.request.contextPath}/myPage/coupon" target="_blank" rel="noopener noreferrer"><span>관람권/<br>할인 쿠폰 ></span></a>
 			</div>
 		</div>
 		<div class="right-lower-menu">
