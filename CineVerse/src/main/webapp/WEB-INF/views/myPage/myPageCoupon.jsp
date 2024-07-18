@@ -27,7 +27,7 @@
 		<c:if test="${member.coupon_cnt > 0 }">
 		
 		<c:forEach  var="couponList" items="${couponList}">
-		<c:if test="${couponList.coupon_type == 2}">
+		<c:if test="${couponList.coupon_use == 1}">
 			<div class="coupon_info_list">
 			<div class="coupon_info_name">
 				<div>${couponList.coupon_name }</div>
