@@ -4,56 +4,57 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        // 클릭 이벤트 핸들러
-        $('.theater-place > a').click(function(e) {
-            e.preventDefault(); // 기본 동작 중지
-            var c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
-            
-            $.ajax({
-                type: 'GET',
-                url: '${pageContext.request.contextPath}/getMoviesByCinema',
-                data: { c_num: c_num },
-                dataType: 'json',
-                success: function(data) {
-                    // 성공적으로 데이터를 받았을 때 처리
-                    var movieListHtml = '';
-                    $.each(data, function(index, movie) {
-                        movieListHtml += '<li class="select"><a href="#none">' + movie.m_name + '</a></li>';
+$(document).ready(function() {
+    // 지점 클릭 이벤트 핸들러
+    $('.theater-place > a').click(function(e) {
+        e.preventDefault(); // 기본 동작 중지
+        var c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
+
+        // 영화 목록 불러오기
+        $.ajax({
+            type: 'GET',
+            url: '${pageContext.request.contextPath}/getMoviesByCinema',
+            data: { c_num: c_num },
+            dataType: 'json',
+            success: function(data) {
+                // 성공적으로 데이터를 받았을 때 처리
+                var movieListHtml = '';
+                $.each(data, function(index, movie) {
+                    movieListHtml += '<li class="select"><a href="#" class="movie-item" data-cnum="' + c_num + '">' + movie.m_name + '</a></li>';
+                });
+                $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
+
+                // 영화 클릭 이벤트 핸들러 설정
+                $('.movie-item').click(function(e) {
+                    e.preventDefault(); // 기본 동작 중지
+                    var c_num = $(this).data('cnum'); // 클릭한 영화의 c_num 값 가져오기
+
+                    // 상영관 목록 불러오기
+                    $.ajax({
+                        type: 'GET',
+                        url: '${pageContext.request.contextPath}/selectTheaterListByCinema',
+                        data: { c_num: c_num },
+                        dataType: 'json',
+                        success: function(data) {
+                            // 성공적으로 데이터를 받았을 때 처리
+                            var theaterListHtml = '';
+                            $.each(data, function(index, theater) {
+                                theaterListHtml += '<li class="theaterselect"><a href="#none">' + theater.th_name + '</a></li>';
+                            });
+                            $('.theater-list ul').html(theaterListHtml); // 상영관 목록 업데이트
+                        },
+                        error: function() {
+                            alert('상영관 목록을 불러오는 데 실패했습니다.');
+                        }
                     });
-                    $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
-                },
-                error: function() {
-                    alert('영화 목록을 불러오는 데 실패했습니다.');
-                }
-            });
-        });
-        
-        
-     // 클릭 이벤트 핸들러
-        $('.theater-place > a').click(function(e) {
-            e.preventDefault(); // 기본 동작 중지
-            var c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
-            
-            $.ajax({
-                type: 'GET',
-                url: '${pageContext.request.contextPath}/selectTheaterListByCinema',
-                data: { c_num: c_num },
-                dataType: 'json',
-                success: function(data) {
-                    // 성공적으로 데이터를 받았을 때 처리
-                    var theaterListHtml = '';
-                    $.each(data, function(index, theater) {
-                    	theaterListHtml += '<li class="theaterselect"><a href="#none">' + theater.th_name + '</a></li>';
-                    });
-                    $('.theater-list ul').html(theaterListHtml); // 상영관 목록 업데이트
-                },
-                error: function() {
-                    alert('영화 목록을 불러오는 데 실패했습니다.');
-                }
-            });
+                });
+            },
+            error: function() {
+                alert('영화 목록을 불러오는 데 실패했습니다.');
+            }
         });
     });
+});
 </script>
 <div class="reserve-container">
 	<!-- 지점명 -->
