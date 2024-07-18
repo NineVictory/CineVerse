@@ -80,7 +80,7 @@ public class AssignBoardController {
         }
         String filenamesString = String.join(",", filenames);
         assignVO.setAb_filenames(filenamesString); // 여러 개의 파일명을 저장할 필드에 설정
-
+        log.debug(filenamesString);
         // 글쓰기
         assignService.ab_insertBoard(assignVO);
 
