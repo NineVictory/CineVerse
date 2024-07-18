@@ -210,4 +210,11 @@ public interface ShopMapper {
 	// 리뷰 카운트
 	@Select("select count(*) from product_review WHERE p_num=#{p_num}")
 	public Integer reviewCount(long p_num);
+	
+	
+	// 랜덤 상품 추천
+	public List<ProductVO> recommandProduct(long p_category);
+	
+	// 찜 목록 중 가장 많은 카테고리 구하기
+	public ProductVO selectMostCategory(long mem_num);
 }

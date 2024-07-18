@@ -81,4 +81,8 @@ public interface ShopService {
 	public Float reviewGrade(long p_num);
 	public List<ProductVO> reviewList(long p_num);
 	public Integer reviewCount(long p_num);
+	
+	public List<ProductVO> recommandProduct(long p_category);
+	
+	public ProductVO selectMostCategory(long mem_num);
 }

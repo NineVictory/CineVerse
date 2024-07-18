@@ -290,6 +290,16 @@ public class ShopServiceImpl implements ShopService {
 		return shopMapper.reviewCount(p_num);
 	}
 
+	@Override
+	public List<ProductVO> recommandProduct(long p_category) {
+		return shopMapper.recommandProduct(p_category);
+	}
+
+	@Override
+	public ProductVO selectMostCategory(long mem_num) {
+		return shopMapper.selectMostCategory(mem_num);
+	}
+
 	
 
 }

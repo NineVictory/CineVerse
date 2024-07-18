@@ -216,5 +216,28 @@
     GROUP BY od.order_num
   </select>
   
+   <select id="recommandProduct" resultType="ProductVO" parameterType="long">
+        SELECT *
+        FROM (
+            SELECT *
+            FROM product
+            WHERE p_category = #{p_category} AND p_status=2
+            ORDER BY DBMS_RANDOM.VALUE
+        ) 
+        WHERE ROWNUM = 2 OR ROWNUM = 1
+    </select>
+  
+    <select id="selectMostCategory" resultType="ProductVO" parameterType="long">
+        SELECT p_category
+        FROM (
+            SELECT p.p_category, COUNT(*) AS category_count
+            FROM product p
+            JOIN product_fav pf ON p.p_num = pf.p_num
+            WHERE pf.mem_num = #{mem_num}
+            GROUP BY p.p_category
+            ORDER BY category_count DESC
+        )
+        WHERE ROWNUM = 1
+    </select>
 
  </mapper>

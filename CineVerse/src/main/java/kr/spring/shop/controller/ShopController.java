@@ -265,8 +265,13 @@ public class ShopController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		list = shopService.productFavList(user.getMem_num());
 
+		ProductVO userFav = shopService.selectMostCategory(user.getMem_num());
+		List<ProductVO> recommand = shopService.recommandProduct(userFav.getP_category());
+		
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", list);
+		map.put("recommand", recommand);
 
 		return new ModelAndView("shopFav", map);
 	}

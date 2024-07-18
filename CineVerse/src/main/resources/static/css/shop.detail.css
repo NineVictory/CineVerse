@@ -263,8 +263,6 @@ review-profile {
 	border-radius: 12px;
 	padding: 20px 30px;
 	flex-grow: 1;
-	float review_grade = Math.round(shopService.reviewGrade(p_num) * 100.0) / 100.0f;
-
 }
 
 
@@ -327,3 +325,4 @@ review-profile {
 	text-align: right;
 	font-size: 13px;
 }
+
