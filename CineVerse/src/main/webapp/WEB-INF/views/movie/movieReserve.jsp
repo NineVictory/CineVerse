@@ -38,7 +38,6 @@ $(document).ready(function() {
        
         let c_num = $(this).attr('data-cnum');
         let m_code = $(this).attr('data-mcode'); // 클릭한 영화의 m_code 값 가져오기
-        alert(c_num + ',' + m_code);
 
         // 영화 시간표 목록 불러오기
         $.ajax({
@@ -48,14 +47,14 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 // 성공적으로 데이터를 받았을 때 처리
-                console.log("영화 시간표 목록 불러오기 성공, data:", data)
-                var selectMovieTimeListHtml = '';
+                let selectMovieTimeListHtml = '';
                 $.each(data, function(index, movietime) {
+                	selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.th_name + '</a></li>';
                     selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_date + '</a></li>';
                     selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_start + '</a></li>';
                     selectMovieTimeListHtml += '<li class="movietimeselect"><a href="#none">' + movietime.mt_end + '</a></li>';
                 });
-                $('.movietime-list ul').html(selectMovieTimeListHtml); // 영화 시간표 목록 업데이트
+                $('.movietime-select').html(selectMovieTimeListHtml); // 영화 시간표 목록 업데이트
             },
             error: function() {
                 alert('영화 시간표 목록을 불러오는 데 실패했습니다.');

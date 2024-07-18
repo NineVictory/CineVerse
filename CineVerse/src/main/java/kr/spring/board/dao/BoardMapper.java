@@ -62,7 +62,7 @@ public interface BoardMapper {
 	//댓글
 	public List<BoardCommentVO> selectListComment(Map<String,Object> map);
 	@Select("SELECT COUNT(*) FROM community_comment WHERE cb_num=#{cb_num}")
-	public Integer selectRowCountComment(Map<String,Object> map);
+	public Integer selectRowCountComment(Long cb_num);///////
 	//댓글 수정,삭제시 작성자 회원번호를 구하기 위해 사용
 	@Select("SELECT * FROM community_comment WHERE cc_num=#{cc_num}")
 	public BoardCommentVO selectComment(Long cc_num);
@@ -96,6 +96,9 @@ public interface BoardMapper {
 	
 	@Select("SELECT COUNT(*) FROM community_response WHERE cc_num=#{cc-num}")
 	public Integer selectRowCountResponse(Map<String,Object> map);
+	
+	//게시글의 답글 총 개수
+	public Integer selectResponseCountByCbNum(Long cb_num);
 	
 	@Select("SELECT * FROM community_response WHERE te_num=#{te_num}")
 	public BoardResponseVO selectResponse(Long te_num);

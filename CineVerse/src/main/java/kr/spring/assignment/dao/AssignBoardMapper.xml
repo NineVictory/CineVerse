@@ -17,6 +17,7 @@
 		</where>
 	</sql>
 	
+	
 	<!-- 게시판 상세 -->
 	<select id="ab_selectBoard">
 		SELECT * FROM assignment_board JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE ab_num=#{ab_num}
@@ -53,7 +54,7 @@
 												JOIN member USING(mem_num)
 												LEFT OUTER JOIN member_detail USING(mem_num)
 												<include refid="ab_boardSearch"></include>
-												)a ORDER BY ab_reg_date DESC)
+												 ORDER BY ab_reg_date DESC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]> 
@@ -69,63 +70,7 @@
 												WHERE ab_num = #{ab_num}
 	</update>
 	
-	<!-- 댓글 등록 -->
-	<!-- <insert id="insertReply" parameterType="boardReplyVO">
-		INSERT INTO spboard_reply (re_num, re_content, re_ip, board_num, mem_num)
-								VALUES (spreply_seq.nextval, #{re_content}, #{re_ip}, #{board_num}, #{mem_num})
-	</insert> -->
 	
-	<!-- 댓글 목록 -->
-	<!-- <select id="selectListReply" parameterType="map" resultType="boardReplyVO">
-         SELECT * FROM (SELECT a.*, rownum rnum FROM 
-							(SELECT re_num,
-									<![CDATA[
-									REPLACE(REPLACE(re_content,'<','&lt;'),'>','&gt;') re_content,
-									]]> 
-									re_date, 
-									re_mdate, 
-									board_num,
-									mem_num,
-									id,
-									nick_name,
-									click_num,
-									refav_cnt,
-									resp_cnt
-							FROM spboard_reply JOIN spmember USING(mem_num)
-        				 	LEFT OUTER JOIN (SELECT re_num, mem_num click_num FROM spreply_fav WHERE mem_num=#{mem_num}) USING(re_num)
-        					LEFT OUTER JOIN (SELECT re_num, COUNT(*) refav_cnt FROM spreply_fav GROUP BY re_num) USING(re_num)
-         					LEFT OUTER JOIN (SELECT re_num, COUNT(*) resp_cnt FROM spboard_response GROUP BY re_num) USING(re_num)
-        					WHERE board_num=#{board_num} ORDER BY re_num DESC)a)
-      <![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>
-	</select> -->				<!--map 키 -->
-	
-	<!-- 답글 등록 -->
-	<!-- <insert id="insertResponse" parameterType="boardResponseVO">
-		INSERT INTO spboard_response(te_num, te_content, te_parent_num, te_depth, te_ip, re_num, mem_num)
-							VALUES (response_seq.nextval, #{te_content}, #{te_parent_num}, #{te_depth}, #{te_ip}, #{re_num}, #{mem_num})
-	</insert> -->
-	
-	<!-- 답글 목록 -->
-	<!-- <select id="selectListResponse" parameterType="long" resultType="boardResponseVO">
-		SELECT 
-			r.te_num,
-			r.te_content,
-			r.mem_num,
-			a.id,
-			a.nick_name,
-			r.te_date,
-			r.te_ip,
-			r.re_num,
-			r.te_depth,
-			r.te_parent_num,
-			m.id parent_id,
-			m.nick_name pnick_name 
-		FROM spboard_response r JOIN spmember a ON r.mem_num=a.mem_num
-		LEFT OUTER JOIN spboard_response s ON r.te_parent_num=s.te_num
-		LEFT OUTER JOIN spmember m ON s.mem_num=m.mem_num WHERE r.re_num=#{re_num}
-		함수를 이용해 정렬-> 계층적으로
-		START WITH r.te_depth=0 CONNECT BY PRIOR r.te_num=r.te_parent_num ORDER SIBLINGS BY r.te_num DESC
-	</select> -->
 </mapper>							
 
 
