@@ -28,6 +28,31 @@
                 }
             });
         });
+        
+        
+     // 클릭 이벤트 핸들러
+        $('.theater-place > a').click(function(e) {
+            e.preventDefault(); // 기본 동작 중지
+            var c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
+            
+            $.ajax({
+                type: 'GET',
+                url: '${pageContext.request.contextPath}/selectTheaterListByCinema',
+                data: { c_num: c_num },
+                dataType: 'json',
+                success: function(data) {
+                    // 성공적으로 데이터를 받았을 때 처리
+                    var theaterListHtml = '';
+                    $.each(data, function(index, theater) {
+                    	theaterListHtml += '<li class="theaterselect"><a href="#none">' + theater.th_name + '</a></li>';
+                    });
+                    $('.theater-list ul').html(theaterListHtml); // 상영관 목록 업데이트
+                },
+                error: function() {
+                    alert('영화 목록을 불러오는 데 실패했습니다.');
+                }
+            });
+        });
     });
 </script>
 <div class="reserve-container">
@@ -98,72 +123,68 @@
 	<div class="time-part">
 		<div class="reserve-title">날짜 및 시간</div>
 		<div class="reserve-time">
-			<div class="reserve-month">7월			
-				<ul class="reserve-date">								
-					<li class="date"><a href="#">11<br>목</a></li>
-					<li class="date"><a href="#">12<br>금</a></li>
-					<li class="date saturday"><a href="#">13<br>토</a></li>
-					<li class="date sunday"><a href="#">14<br>일</a></li>
-					<li class="date"><a href="#">15<br>월</a></li>
-					<li class="date"><a href="#">16<br>화</a></li>
-					<li class="date"><a href="#">17<br>수</a></li>
-					<li class="date"><a href="#">18<br>목</a></li>
-					<li class="date"><a href="#">19<br>금</a></li>
-					<li class="date saturday"><a href="#">20<br>토</a></li>
-					<li class="date sunday"><a href="#">21<br>일</a></li>
-					<li class="date"><a href="#">22<br>월</a></li>
-					<li class="date"><a href="#">23<br>화</a></li>
-					<li class="date"><a href="#">24<br>수</a></li>
-					<li class="date"><a href="#">25<br>목</a></li>
-					<li class="date"><a href="#">26<br>금</a></li>
-					<li class="date saturday"><a href="#">27<br>토</a></li>
-					<li class="date sunday"><a href="#">28<br>일</a></li>
-					<li class="date"><a href="#">29<br>월</a></li>
-					<li class="date"><a href="#">30<br>화</a></li>
-					<li class="date"><a href="#">31<br>수</a></li>
-				</ul>
-			</div>
+			<!-- 날짜 시작-->
+    <div class="cinema-gallery"></div>
+    <!-- 12일을 자동으로 업데이트 해주는 스크립트 -->
+    <script>
+        // 현재 날짜 객체 생성
+        var currentDate = new Date();
+
+        // 요일 배열 생성
+        var daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+
+        // 영화 날짜 생성 함수
+        //cinema-gallery 클래스를 가진 div 요소를 gallery에 저장
+        function generateMovieDays() {
+        	//querySelector는 주어진 CSS 선택자를 사용하여 첫 번째로 일치하는 요소를 선택하여 반환하는데 여기선 .cinema-gallery 클래스가 있는 첫번째 요소로를 선택했다. 그외에 <div>,id 등등 다양하게 선택 가능하다.
+            var gallery = document.querySelector('.cinema-gallery'); 
+            gallery.innerHTML = ''; // 기존 내용을 비웁니다.
+
+            for (var i = 0; i < 12; i++) {
+            							//createElement는 document 객체의 메서드로 지정한 HTML 요소를 생성 시키는 역할이다. 여기선 div 요소를 생성시킴
+                var dayElement = document.createElement('div');//각 루프마다 dayElement라는 div 요소를 생성
+                		//Date객체함수들:  getFullYear:현재Date를 4자리 숫자로 반환	| getMonth:월을 0~11까지의 숫자로 반환 	| getDate: 1~31까지 숫자로 반환
+                var displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i); //현재날짜에 i일을 더함
+                var day = displayDate.getDate(); //displayDate 에 '일' 부분을 저장 
+                var dayOfWeek = daysOfWeek[displayDate.getDay()]; // getDay() 는 요일을 가져오는 Date 객체의 함수 : 숫자 0~6사이를 반환
+
+                var formattedDate = day + '<br>' + dayOfWeek; // 날짜와 요일 포맷
+                var dayClass = 'movie-day';
+
+                // 요일에 따라 클래스 추가
+                switch (displayDate.getDay()) {
+                    case 0:
+                        dayClass = 'movie-day-sun';
+                        break;
+                    case 6:
+                        dayClass = 'movie-day-sat';
+                        break;
+                }
+
+                dayElement.className = dayClass;
+                dayElement.innerHTML = formattedDate;
+
+                // 클릭 이벤트 추가
+                dayElement.addEventListener('click', function() {
+                    alert('Clicked date: ' + this.innerHTML);
+                    
+                    // 여기에 원하는 동작을 추가하세요
+                });
+				//gallery 요소에 dayElement를 자식 요소로 추가
+                gallery.appendChild(dayElement);
+            }
+        }
+
+        // 영화 날짜 생성 함수 호출
+        generateMovieDays();
+    </script>
+    <!-- 날짜 끝 -->
 			<div class="reserve-time-wrapper">
-				<button class="reserve-time-button">
-					<span class="reserve-time-want">18:50</span> 
-					<span class="reserve-time-remain">240/240</span><br>
-					<span class="reserve-time-place">1관</span>
-				</button>
-				<button class="reserve-time-button">
-					<span class="reserve-time-want">19:40</span> 
-					<span class="reserve-time-remain">240/240</span><br>
-					<span class="reserve-time-place">2관</span>
-				</button>
-				<button class="reserve-time-button">
-					<span class="reserve-time-want">20:20</span> 
-					<span class="reserve-time-remain">240/240</span><br>
-					<span class="reserve-time-place">3관</span>
-				</button>
-				<button class="reserve-time-button">
-					<span class="reserve-time-want">21:30</span> 
-					<span class="reserve-time-remain">240/240</span><br>
-					<span class="reserve-time-place">4관</span>
-				</button>
-				<button class="reserve-time-button">
-					<span class="reserve-time-want">22:10</span> 
-					<span class="reserve-time-remain">240/240</span><br>
-					<span class="reserve-time-place">5관</span>
-				</button>
-				<button class="reserve-time-button">
-					<span class="reserve-time-want">23:05</span> 
-					<span class="reserve-time-remain">240/240</span><br>
-					<span class="reserve-time-place">6관</span>
-				</button>
-				<button class="reserve-time-button">
-					<span class="reserve-time-want">00:10</span> 
-					<span class="reserve-time-remain">240/240</span><br>
-					<span class="reserve-time-place">7관</span>
-				</button>
-				<button class="reserve-time-button">
-					<span class="reserve-time-want">01:30</span> 
-					<span class="reserve-time-remain">240/240</span><br>
-					<span class="reserve-time-place">8관</span>
-				</button>
+				<div class="theater-list">
+                <ul class="theater-select">
+                    <!-- Ajax로 받아온 영화 목록이 여기에 추가됩니다. -->
+                </ul>
+            </div>
 			</div>
 		</div>
 

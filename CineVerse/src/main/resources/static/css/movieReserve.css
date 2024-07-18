@@ -165,51 +165,65 @@
 }
 
 .reserve-time {
-	width: 300px;
-	margin: 0 auto;
+	width: 395px;
+	
 }
 
-.reserve-month {
+.cinema-gallery {
+	width: 100%;
+	margin-left: 2px;
 	margin-top: 20px;
-	margin-left: 8px;
-	font-weight: bold;
-	border-bottom: 1px solid var(--gray-3);
-	margin-bottom: 70px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: row; /* 가로 방향으로 나열 */
+    flex-wrap: nowrap; /* 줄 바꿈 없이 한 줄에 표시 */
+    overflow-x: auto; /* 넘치는 요소들을 가로 스크롤로 표시 */
+    webkit-overflow-scrolling: touch; /* iOS에서의 스크롤 부드러움 적용 */
+    border-bottom: 1px solid #dddddd;
 }
 
-.reserve-date {
-    display: flex; 
-    justify-content: space-between; 
-    list-style-type: none; 
-    padding: 0; 
-    margin: 0; 
-    overflow-x: auto;
-    margin-bottom: 20px;
+.movie-day,
+.movie-day-sat,
+.movie-day-sun {  	
+    width: 50px;
+    margin: 0 5px; /* 간격을 줌 */
+    cursor: pointer;
+    color: #080808; /* 기본 텍스트 색상 설정 */
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    white-space: normal; /* 줄 바꿈을 허용 */
+    cursor: pointer;
 }
 
-.reserve-date .date {
-    flex: 1; 
-    text-align: center; 
+
+.movie-day-sat {
+    color: #6e9adb; /* 주말 색상 설정 */
 }
 
-.reserve-date .date a {
-    display: block; 
-    padding: 10px; 
-    text-decoration: none; 
-    color: black; 
+.movie-day-sun {
+    color: #e83431; /* 주말 색상 설정 */
 }
 
-.reserve-date .date a:hover {
-    background-color: #f0f0f0; /* 마우스 오버 시 배경 색상 변경 */
+.movie-day:hover {
+    background-color: #e0e0e0; /* hover 시 배경색 */
+    color: #333; /* hover 시 텍스트 색상 */
 }
 
-.reserve-date .saturday a {
-    color: blue; /* 토요일 텍스트 색상 */
+.movie-day-sat:hover {
+    background-color: #e0e0e0; /* hover 시 배경색 */
 }
 
-.reserve-date .sunday a {
-    color: red; /* 일요일 텍스트 색상 */
+.movie-day-sun:hover {
+    background-color: #e0e0e0; /* hover 시 배경색 */
 }
+
+
+.movie-day-selected {
+    background-color: #333333; /* 선택된 날짜 배경색 */
+    color: white; /* 선택된 날짜 텍스트 색상 */
+}
+
 
 .reserve-time-wrapper {
 	margin-top: 10px;
@@ -218,7 +232,7 @@
     gap: 20px; /* 버튼들 사이의 간격 설정 */
 }
 
-.reserve-time-button {
+.theaterselect {
 	margin-top: 10px;
 	flex: 1; /* 버튼들이 동일한 너비를 가짐 */
     padding: 10px; /* 버튼 내부 패딩 */
@@ -230,7 +244,7 @@
     background-color: var(--main-color-light);
 }
 
-.reserve-time-button:hover {
+.theater-list:hover {
     background-color: #f0f0f0; /* 마우스 오버 시 배경 색상 변경 */
 }
 

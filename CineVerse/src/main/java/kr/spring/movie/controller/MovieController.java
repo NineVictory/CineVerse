@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieVO;
@@ -138,6 +139,13 @@ public class MovieController {
 	    @ResponseBody
 	    public List<MovieVO> getMoviesByCinema(long c_num) {
 	        return cinemaService.getMoviesByCinema(c_num);
+	    }
+	 	
+	 	//지점명 선택했을 때 상영관 목록 불러오기
+	 	@GetMapping("/selectTheaterListByCinema")
+	    @ResponseBody
+	    public List<TheaterVO> selectTheaterListByCinemaNum(long c_num) {
+	        return cinemaService.selectTheaterListByCinemaNum(c_num);
 	    }
 	
 	/*=======================
