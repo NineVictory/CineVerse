@@ -19,7 +19,7 @@ public interface MyPageMapper2 {
 	@Select("SELECT COUNT(*) FROM address WHERE mem_num=#{mem_num} AND a_status=1")
 	public Integer countAddress(Long mem_num);
 	
-	@Select("SELECT * FROM address WHERE mem_num=#{mem_num}")
+	@Select("SELECT * FROM address WHERE mem_num=#{mem_num} AND a_status=1")
 	public List<AddressVO> addressList(Long mem_num); 
 	
 	@Delete("DELETE FROM address WHERE a_num=#{a_num}")

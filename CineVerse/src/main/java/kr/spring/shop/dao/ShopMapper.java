@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.member.vo.CouponVO;
+import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
@@ -34,6 +35,9 @@ public interface ShopMapper {
 	@Select("SELECT * FROM product WHERE p_num=#{p_num}")
 	public ProductVO productDetail(Long p_num);
 	
+	// 내 관심 상품 개수
+	@Select("SELECT COUNT(*) FROM product_fav WHERE mem_num=#{mem_num}")
+	public Integer productFavCnt(long mem_num);
 	// 관심 상품 여부 구하기
 	@Select("SELECT * FROM product_fav WHERE p_num=#{p_num} AND mem_num=#{mem_num}")
 	public ProductVO selectProductFav(ProductVO fav);
@@ -217,4 +221,6 @@ public interface ShopMapper {
 	
 	// 찜 목록 중 가장 많은 카테고리 구하기
 	public ProductVO selectMostCategory(long mem_num);
+	
+	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
 }

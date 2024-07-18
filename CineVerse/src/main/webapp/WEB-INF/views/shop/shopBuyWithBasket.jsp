@@ -8,10 +8,11 @@
 <div class="main_content">
 	<div class="buy-main">
 		<!-- css 변경 필요 -->
-		<c:if test="${count==0}">
-	    	<div class="add-address" onclick="location.href='${pageContext.request.contextPath}/shop/shopBasket'">주문 오류. 장바구니로 돌아가기.</div>		
+		<c:if test="${addressCount==0}">
+			배송지 없으면 주문이 불가합니다.
+				    	<div class="add-address" onclick="location.href='${pageContext.request.contextPath}/myPage/addressList'">배송지 추가하러 가기</div>		
 	    </c:if>
-	    <c:if test="${count>0}">
+	    <c:if test="${addressCount>0}">
 		<h2>결제하기</h2>
 		<span>배송지 정보</span> 
 		<div class="add-address" onclick="location.href='${pageContext.request.contextPath}/myPage/addressList'">추가</div>

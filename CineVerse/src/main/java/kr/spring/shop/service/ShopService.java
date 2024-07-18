@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.member.vo.CouponVO;
+import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.shop.vo.PBasketVO;
 import kr.spring.shop.vo.ProductVO;
@@ -83,6 +84,7 @@ public interface ShopService {
 	public Integer reviewCount(long p_num);
 	
 	public List<ProductVO> recommandProduct(long p_category);
-	
+	public Integer productFavCnt(long mem_num);
 	public ProductVO selectMostCategory(long mem_num);
+	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
 }
