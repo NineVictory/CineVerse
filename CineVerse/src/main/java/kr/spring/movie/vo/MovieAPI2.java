@@ -97,10 +97,19 @@ public class MovieAPI2 {
                         actors = extractArrayData(actorArray, "actorNm");
                     }
                     
+                    // 영화 코드 추출
+                    String CodeNo = "";
+                    JSONObject CodeNoObject = movies.getJSONObject("Codes");
+                    if (CodeNoObject.has("Code")) {
+                        JSONArray CodeArray = CodeNoObject.getJSONArray("Code");
+                        CodeNo = extractArrayData(CodeArray, "CodeNo");
+                    }
+                    
+                    
                     // 출력 또는 저장
                     System.out.printf("%s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s- %s \n",
-                        movies.get("DOCID"), movies.get("movieSeq"), movies.get("title"), plots,movies.get("company")
-                        ,movies.get("CommCodes"),movies.get("keywords"),movies.get("runtime"), movies.get("rating"), movies.get("genre"), movies.get("repRlsDate"),
+                        movies.get("DOCID"), movies.get("movieSeq"), movies.get("title"), plots,movies.get("company"),CodeNo
+                        ,movies.get("keywords"),movies.get("runtime"), movies.get("rating"), movies.get("genre"), movies.get("repRlsDate"),
                         directors, actors);
                 }
             }

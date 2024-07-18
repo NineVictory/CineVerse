@@ -216,45 +216,6 @@ public class MemberController {
 		return "memberFindPasswd";
 	}
 	
-	@PostMapping("/member/findPasswd")
-	public String findPasswd(@Valid MemberVO memberVO, BindingResult result, String mem_passwd,
-							 Model model,HttpServletRequest request) {
-		log.debug("<< 비밀번호 찾기 >> " + memberVO);
-		
-		if(result.hasFieldErrors("mem_id") || 
-				result.hasFieldErrors("mem_phone") || 
-					result.hasFieldErrors("mem_email")) {
-			return findPasswdForm();
-		}
-		
-	MemberVO member = memberService.updateRandomPasswd(memberVO);
-	
-	if(member == null) {
-		model.addAttribute("message", "정보에 맞는 회원이 없습니다. 재시도해주세요.");
-		model.addAttribute("url", request.getContextPath() + "/member/findPasswd");
-		return "common/resultAlert";
-	}
-		String temp_pw = "";
-		UUID uuid = UUID.randomUUID();
-		
-		log.debug("<< 임시 비밀번호 >> : " + uuid);
-		
-		temp_pw = uuid.toString().substring(0, 6);
-		
-		memberService.updatePassword(temp_pw, memberVO.getMem_id());
-		
-		model.addAttribute("accessTitle","임시 비밀번호 생성");
-		model.addAttribute("accessMsg","임시 비밀번호가 발급되었습니다.");
-		model.addAttribute("new_passwd",temp_pw);
-		model.addAttribute("accessBtn","로그인");
-		model.addAttribute("accessUrl", request.getContextPath()+"/member/login");
-		
-		// 설정되어있는 자동 로그인 기능 해제한다()
-		memberService.deleteAu_id(memberVO.getMem_num());
-		
-		return "common/resultFindPasswd";
-	}
-	
 	@GetMapping("/member/pointCharge")
 	public String pointChargeForm() {
 		return "memberPointCharge";

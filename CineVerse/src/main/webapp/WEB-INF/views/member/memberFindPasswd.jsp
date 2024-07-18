@@ -2,8 +2,29 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<style>
+    .loading-background {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+    }
 
+    .loading {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/member.findpw.js"></script>
  <main class="flex items-center justify-center">
         <div class="login_main">
             <div class="register_logo">
@@ -15,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <form:form action="findPasswd" id="member_findPasswd" modelAttribute="memberVO">
+            <form:form action="getPasswordInfo" id="member_findPasswd" modelAttribute="memberVO">
                 <div class="login_form_inputs">
                     <div class="login_form_all">
                         <div class="login_form_inputs_id_passwd">
@@ -49,4 +70,8 @@
                 </div>
             </form:form>
         </div>
+        <div class="loading-background"></div>
+		<div class="loading">
+    		<img src="${pageContext.request.contextPath}/images/loading.gif" alt="Loading..." width="50" height="50">
+		</div>
     </main>

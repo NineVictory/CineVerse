@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.spring.member.email.Email;
+import kr.spring.member.email.EmailSender;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -25,6 +28,12 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberAjaxController {
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private EmailSender	emailSender;
+	
+	@Autowired
+	private Email email;
 
 	@GetMapping("/member/confirmId")
 	@ResponseBody
@@ -138,5 +147,52 @@ public class MemberAjaxController {
 	    }
 	    return mapAjax;
 	}
+	
+	@PostMapping("/member/getPasswordInfo")
+	@ResponseBody
+	public Map<String, String> sendEmailAction (MemberVO memberVO){
+		
+		log.debug("<< 비밀번호 찾기 >> : " + memberVO);
+		
+		Map<String,String> mapJson = new HashMap<String, String>();
+		MemberVO member = memberService.selectCheckMember(memberVO.getMem_id());
+		
+		// 오류를 대비해서 원래 비번 저장하기
+		if(member != null && member.getMem_auth() > 2 
+				&& member.getMem_email().equals(memberVO.getMem_email()) 
+				&& member.getMem_phone().equals(memberVO.getMem_phone())) {
+			String origin_passwd = member.getMem_passwd();
+			
+			String passwd = StringUtil.randomPassword(10); // 10글자로 지정
+			member.setMem_passwd(passwd);	// 임시비밀번호를 db에 저장
+			memberService.updatePassword(member);
+			
+			email.setContent("새로 발급한 임시 비밀번호는 " + passwd + " 입니다.");
+			email.setReceiver(member.getMem_email());
+			email.setSubject(member.getMem_id() + " 님 임시 비밀번호 메일입니다.");
+			
+			try {
+				emailSender.sendEmail(email);
+				mapJson.put("result", "success");
+			} catch (Exception e) {
+				log.error("<< 비밀 번호 찾기>>" + e.toString());
+				
+				// 오류 발생시 비밀번호 원상 복구
+				member.setMem_passwd(origin_passwd);
+				memberService.updatePassword(member);
+				mapJson.put("result", "failure");
+			}
+			
+		} else if (member != null && member.getMem_auth() == 2) {
+			//  정지 회원의 경우
+			mapJson.put("result", "noAuthority");
+		} else {
+			mapJson.put("result", "invalidInfo");
+		}
+		
+		return mapJson;
+	}
+	
+	
 
 }

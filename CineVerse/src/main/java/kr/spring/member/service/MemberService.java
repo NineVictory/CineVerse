@@ -25,9 +25,10 @@ public interface MemberService {
 	// 아이디 찾기
 	public MemberVO findId(MemberVO member);
 	// 비밀번호 찾기
-	public MemberVO updateRandomPasswd(MemberVO member);
+	//public MemberVO updateRandomPasswd(MemberVO member);
 
-	public void updatePassword(String mem_passwd, String mem_id);
+	public void updatePassword(MemberVO member);
+	
 	public void chargePoint(Long ph_point, Long mem_num, String ph_payment);
 	public List<Long> selectInitialCoupons();
 	public void insertNewMemCoupon(CouponVO coupon);

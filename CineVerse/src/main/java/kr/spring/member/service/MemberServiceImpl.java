@@ -66,16 +66,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.findId(member);
 	}
 
-	@Override
-	public MemberVO updateRandomPasswd(MemberVO member) {
-		return memberMapper.updateRandomPasswd(member);
-	}
+	/*
+	 * @Override public MemberVO updateRandomPasswd(MemberVO member) { return
+	 * memberMapper.updateRandomPasswd(member); }
+	 */
 
-
-	@Override
-	public void updatePassword(String mem_passwd, String mem_id) {
-		memberMapper.updatePassword(mem_passwd, mem_id);
-	}
 
 	@Override
 	public void chargePoint(Long ph_point, Long mem_num,String ph_payment) {
@@ -95,6 +90,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void totalPoint(Long mem_num) {
 		memberMapper.totalPoint(mem_num);
+	}
+
+	@Override
+	public void updatePassword(MemberVO member) {
+		memberMapper.updatePassword(member);
 	}
 
 	
