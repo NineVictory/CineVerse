@@ -75,6 +75,22 @@
 							<span>100,000원</span>
 						</div>
 					</li>
+					<li>
+						<div class="inputs">
+							<input type="radio" name="cp_item" value="500000">500,000P
+						</div>
+						<div class="amount">
+							<span>500,000원</span>
+						</div>
+					</li>
+					<li>
+						<div class="inputs">
+							<input type="radio" name="cp_item" value="1000000">10,000,000P
+						</div>
+						<div class="amount">
+							<span>10,000,000원</span>
+						</div>
+					</li>
 				</ul>
 				
 				<h3>구매자 정보 입력하기</h3>
