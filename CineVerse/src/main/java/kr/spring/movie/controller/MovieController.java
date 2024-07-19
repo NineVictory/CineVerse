@@ -159,17 +159,19 @@ public class MovieController {
 	    }
 	
 		/*=======================
-		 * 영화 좌석 선택
+		 * 좌석 선택
 		 *=======================*/
-		@GetMapping("/movie/movieSeat")
-		public String movieSeat(long c_num, long m_code, String mt_date, Model model){
-	
-			// 선택한 영화 및 지점명 정보 목록 조회
-			List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(c_num, m_code, mt_date);
-			model.addAttribute("movieInfoList", movieInfoList);
-	
-	return "movieSeat";
-	}
+	 	@GetMapping("/movie/movieSeat")
+	 	public ModelAndView movieSeat(long mt_num) {
+	 	    // 선택한 영화 및 지점명 정보 목록 조회
+	 	    List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
+
+	 	    // ModelAndView 객체 생성 및 설정
+	 	    ModelAndView modelAndView = new ModelAndView("movieSeat"); // 'movieSeat'은 JSP 뷰의 이름
+	 	    modelAndView.addObject("movieInfoList", movieInfoList);
+
+	 	    return modelAndView;
+	 	}
 	
 	/*=======================
 	 * 영화 결제

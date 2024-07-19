@@ -33,7 +33,7 @@ public interface CinemaService {
 	public List<MovieTimeVO> selectMovieTimeList(long c_num, long m_code, String mt_date);
 	
 	//좌석 선택 페이지에서 선택한 영화 및 지점명 정보 목록 조회
-	public List<MovieTimeVO> selectAllInfoList(long c_num, long m_code, String mt_date);
+	public List<MovieTimeVO> selectAllInfoList(long mt_num);
 	
 	//선택한 영화에 대한 좌석 목록 조회
 	//public List<SeatVO> selectSeatList(long c_num, long m_code, String mt_date, String mt_start);

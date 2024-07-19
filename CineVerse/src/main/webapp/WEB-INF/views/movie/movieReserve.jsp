@@ -82,7 +82,7 @@ $(document).ready(function() {
                     // 성공적으로 데이터를 받았을 때 처리
                     let selectMovieTimeListHtml = '';
                     $.each(data, function(index, movietime) {
-                        selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + movietime.mt_end + '">';
+                        selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + movietime.mt_end + '" data-mtnum="' + movietime.mt_num + '">';
                         selectMovieTimeListHtml += '<div class="mt-start">' + movietime.mt_start + '</div>';
                         selectMovieTimeListHtml += '<div class="mt-date">' + movietime.mt_date + '</div>';
                         selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name + '</div>';
@@ -99,8 +99,8 @@ $(document).ready(function() {
 
     // 영화 시간 데이터 담기 클릭 이벤트 핸들러 추가
     $(document).on('click', '.movietime-item', function() {
-        selectedMtStart = $(this).data('start-time'); // 클릭한 상영시간의 값 가져오기
-
+        selectedMtStart = $(this).data('mtnum'); 
+		$('#mt_num').val(selectedMtStart);
         // 모든 상영시간 항목에서 active 클래스 제거
         $('.movietime-item').removeClass('active');
         
@@ -265,7 +265,10 @@ $(document).ready(function() {
         </div>
 
         <div class="seat-select-button">
-            <input type="button" class="moveSeatButton" value="좌석 선택" onclick="location.href='movieSeat'">
+        <form action="movieSeat" method="get">
+        	<input type="hidden" name="mt_num" id="mt_num">
+            <input type="submit" class="moveSeatButton" value="좌석 선택">
+        </form>    
         </div>
     </div>
 </div>

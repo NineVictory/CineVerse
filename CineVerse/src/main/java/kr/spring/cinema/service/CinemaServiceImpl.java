@@ -12,7 +12,6 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
-import kr.spring.seat.vo.SeatVO;
 
 @Service
 @Transactional
@@ -73,9 +72,11 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
-	public List<MovieTimeVO> selectAllInfoList(long c_num, long m_code, String mt_date) {
-		return cinemaMapper.selectAllInfoList(c_num, m_code, mt_date);
+	public List<MovieTimeVO> selectAllInfoList(long mt_num) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 	/*
 	 * @Override public List<SeatVO> selectSeatList(long c_num, long m_code, String
