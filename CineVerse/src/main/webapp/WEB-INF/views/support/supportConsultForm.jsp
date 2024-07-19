@@ -40,7 +40,7 @@
 
 	</div>
 	
-	<form:form action="consult" id="qna_register" enctype="multipart/form-data" modelAttribute="consultVO">
+	<form:form action="consultForm" id="qna_register" enctype="multipart/form-data" modelAttribute="consultVO">
 		<form:input type="hidden" path="mem_num" value="${user.mem_num}"/>
 		<div class="문의상세">
 		
@@ -62,7 +62,7 @@
 					&nbsp;
 					<div class="">
 						<%-- <form:label path="od_number" class="">주문번호</form:label> --%>
-						<form:select path="od_number" id="od_number" class="">
+						<form:select path="order_num" id="order_num" class="">
 							<option value="select" disabled selected>주문번호를 선택하세요</option>
 							<c:forEach var="order" items="${orderList}">
 								<form:option value="${order.order_num}">${order.od_number}</form:option>
@@ -99,8 +99,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="btn-container">
-			<!-- <input type="button" value="목록" class="default-btn4" onclick="location.href='list'"> -->
+		<div class="flexbox-h side btn-container">
+			<input type="button" value="목록" class="default-btn4" onclick="location.href='consultList'">
 			<form:button class="c-submit-btn">등록</form:button>
 		</div>
 	</form:form>

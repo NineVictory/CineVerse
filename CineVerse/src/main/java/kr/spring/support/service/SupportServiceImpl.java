@@ -19,6 +19,16 @@ public class SupportServiceImpl implements SupportService{
 	SupportMapper supportMapper;
 
 	@Override
+	public List<ConsultVO> selectConsultList(Map<String, Object> map) {
+		return supportMapper.selectConsultList(map);
+	}
+
+	@Override
+	public Integer selectConsultRowCount(Map<String, Object> map) {
+		return supportMapper.selectConsultRowCount(map);
+	}
+	
+	@Override
 	public void insertConsult(ConsultVO consult) {
 		supportMapper.insertConsult(consult);
 	}
@@ -27,6 +37,8 @@ public class SupportServiceImpl implements SupportService{
 	public List<OrdersVO> selectOdNumbersByMemNum(long mem_num) {
 		return supportMapper.selectOdNumbersByMemNum(mem_num);
 	}
+
+	
 	
 	
 

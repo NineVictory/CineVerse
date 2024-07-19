@@ -32,5 +32,12 @@ public class ConsultVO {
 	private String consult_ip;
 	
 	//조인
-	private long od_number;
+	private Long order_num;
+	private String mem_id;
+	/*
+	 * public void setOrder_num(String order_num) { // 빈 문자열을 null로 처리 try {
+	 * this.order_num = (order_num == null || order_num.trim().isEmpty()) ? null :
+	 * Long.valueOf(order_num); } catch (NumberFormatException e) { // 로그 기록 또는 예외
+	 * 처리 this.order_num = null; } }
+	 */
 }

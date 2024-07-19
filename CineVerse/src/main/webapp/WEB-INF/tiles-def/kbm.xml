@@ -69,10 +69,28 @@
 		<put-attribute name="body" value="/WEB-INF/views/support/supportNotice.jsp"/>
 	</definition>
 	
-	<definition name="supportConsult" extends="supportMain">
+	<definition name="supportConsultList" extends="supportMain">
 		<put-attribute name="title" value="1:1문의"/>
-		<put-attribute name="body" value="/WEB-INF/views/support/supportConsult.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportConsultList.jsp"/>
 	</definition>
+	
+	<definition name="supportConsultForm" extends="supportMain">
+		<put-attribute name="title" value="1:1문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportConsultForm.jsp"/>
+	</definition>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<definition name="eventMain"  template="/WEB-INF/views/template/layout_event.jsp">
 		<put-attribute name="title" value="이벤트 화면"/>

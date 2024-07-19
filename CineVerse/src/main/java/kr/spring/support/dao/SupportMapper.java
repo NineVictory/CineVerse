@@ -15,11 +15,9 @@ import kr.spring.support.vo.ConsultVO;
 
 @Mapper
 public interface SupportMapper {
-	/*
-	 * public List<ConsultVO> selectConsultList(Map<String,Object> map); public
-	 * Integer selectRowCount(Map<String,Object> map);
-	 */
 	
+	public List<ConsultVO> selectConsultList(Map<String,Object> map); 
+	public Integer selectConsultRowCount(Map<String,Object> map);
 	
 	public void insertConsult(ConsultVO consult);
 	@Select("SELECT * FROM orders WHERE mem_num=#{mem_num}")
