@@ -18,4 +18,5 @@ public class MovieTimeVO {
 	private Long th_num;
 	
 	private String th_name;
+	private String m_name;
 }

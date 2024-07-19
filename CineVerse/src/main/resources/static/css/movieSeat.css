@@ -82,6 +82,7 @@
 
 .select-seat-information-wrapper {
     display: flex;
+    font-size: 10px;
 }
 
 .select-theater-place {

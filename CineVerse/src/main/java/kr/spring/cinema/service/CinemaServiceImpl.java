@@ -73,8 +73,7 @@ public class CinemaServiceImpl implements CinemaService{
 
 	@Override
 	public List<MovieTimeVO> selectAllInfoList(long mt_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return cinemaMapper.selectAllInfoList(mt_num);
 	}
 
 

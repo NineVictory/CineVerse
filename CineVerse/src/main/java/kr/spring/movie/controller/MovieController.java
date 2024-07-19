@@ -162,15 +162,15 @@ public class MovieController {
 		 * 좌석 선택
 		 *=======================*/
 	 	@GetMapping("/movie/movieSeat")
-	 	public ModelAndView movieSeat(long mt_num) {
+	 	public String movieSeat(long mt_num, Model model) {
 	 	    // 선택한 영화 및 지점명 정보 목록 조회
 	 	    List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
 
-	 	    // ModelAndView 객체 생성 및 설정
-	 	    ModelAndView modelAndView = new ModelAndView("movieSeat"); // 'movieSeat'은 JSP 뷰의 이름
-	 	    modelAndView.addObject("movieInfoList", movieInfoList);
+	 	    // Model 객체에 데이터 추가
+	 	    model.addAttribute("movieInfoList", movieInfoList);
 
-	 	    return modelAndView;
+	 	    // 뷰 이름 반환
+	 	    return "movieSeat"; // 'movieSeat'은 JSP 뷰의 이름
 	 	}
 	
 	/*=======================

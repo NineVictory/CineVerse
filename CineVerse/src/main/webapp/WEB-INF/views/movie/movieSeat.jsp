@@ -187,12 +187,12 @@
 					<div class="selected-movie"></div>
 					<div class="select-seat-information-wrapper">
 						  <c:forEach var="movieInfo" items="${movieInfoList}">
-                                <p>영화명: ${movieInfo.m_name}</p>
-                                <p>상영일자: ${movieInfo.mt_date}</p>
-                                <p>상영 시작 시간: ${movieInfo.mt_start}</p>
-                                <p>상영 종료 시간: ${movieInfo.mt_end}</p>
-                                <p>지점명: ${movieInfo.th_name}</p>
-                                <!-- 필요시 추가 필드도 여기에 표시 -->
+                                <p>${movieInfo.m_name}<br></p>
+                                <p>${movieInfo.mt_date}<br></p>
+                                <p>${movieInfo.mt_start}<br></p>
+                                <p>${movieInfo.mt_end}<br></p>
+                                <p>${movieInfo.th_name}</p>
+				              <!-- 필요시 추가 필드도 여기에 표시 -->
                             </c:forEach>
 					</div>
 					<div class="select-theater-date">

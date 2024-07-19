@@ -126,7 +126,7 @@
 		JOIN movie USING(m_code) 
 		JOIN theater USING(th_num) 
 		JOIN cinema USING(c_num)
-		WHERE mt_num = #{mt_num};
+		WHERE mt_num = #{mt_num}
 	</select>
 	
 	<!-- 선택한 영화에 대한 좌석 목록 조회 -->
