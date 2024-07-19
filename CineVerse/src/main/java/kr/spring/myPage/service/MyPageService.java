@@ -9,6 +9,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.vo.MyPageVO;
 
 public interface MyPageService {
@@ -34,5 +35,6 @@ public interface MyPageService {
 	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
 	public Integer cBoardWriteFavCnt(Map<String, Object> map);
 	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
-	
+	public Integer movieBookMarkcnt(Long mem_num);
+	public List<MovieBookMarkVO> movieBookMarkList(Map<String, Object> map);
 }

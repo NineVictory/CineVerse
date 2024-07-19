@@ -11,6 +11,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.myPage.vo.MyPageVO;
 
@@ -129,6 +130,16 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<BoardCommentVO> cBoardResponseList(Map<String, Object> map) {
 		return myPageMapper.cBoardResponseList(map);
+	}
+
+	@Override
+	public Integer movieBookMarkcnt(Long mem_num) {
+		return myPageMapper.movieBookMarkcnt(mem_num);
+	}
+
+	@Override
+	public List<MovieBookMarkVO> movieBookMarkList(Map<String, Object> map) {
+		return myPageMapper.movieBookMarkList(map);
 	}
 
 

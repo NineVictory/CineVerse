@@ -97,6 +97,8 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		
 		model.addAttribute("member", member);
 		return "expectingMovie";
 	}
@@ -525,6 +527,10 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		
+		
+		
 		model.addAttribute("member", member);
 		return "memberShipSub";
 	}

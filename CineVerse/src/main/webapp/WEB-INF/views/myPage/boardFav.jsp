@@ -30,7 +30,7 @@
                     <div class="my_boardWrite_bk" onclick="location.href='${pagecontext.request.contextPath}/board/detail?cb_num=${board.cb_num}'">${board.cb_title}</div>
                 </div>
                 <div class="bk_delete_btn">
-						<input type="button" class="add_del_btn" data-num="${board.cb_num}" data-mnum="${board.mem_num}" value="삭제">
+						<input type="button" class="add_del_btn" data-num="${board.cb_num}" data-mnum="${user.mem_num}" value="삭제">
 				</div>
             </div>
             <div class="review_fav_date">

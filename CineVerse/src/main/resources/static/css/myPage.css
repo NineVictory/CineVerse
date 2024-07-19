@@ -1312,22 +1312,101 @@
 }
 
 
-
-
-
-
-
-
-
-
 /* =======================
      		myPageMemberShipSub.jsp
    ======================= */
+.myPage_title_ship {
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: 25px;
+}
+
+.membership_box {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	background-color: #fff;
+	width: 290px;
+	margin: 0 auto;
+	padding: 25px 40px 40px 30px ;
+	border-radius:15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.monthly{
+	font-size: 18px;
+	font-weight: 700;
+	text-align: left;
+	color:#949292;
+}
+.membership{
+	font-size: 18px;
+	font-weight: 700;
+	text-align: left;
+	color:#3F66ED;
+	margin-bottom: 30px;
+}
+.price_box{
+	display: flex;
+	margin-bottom: 20px;
+} 
+.price{
+	font-size: 38px;
+	font-weight: 600;
+	color:#3A3A3A;
+}  
+.month{
+	font-size: 15px;
+	font-weight: 600;
+	color:#949292;
+	padding: 14px 0 0 7px;
+}
+.check_box{
+	display: flex;
+	flex-direction: column;
+}   
+.coupon_ship1{
+	display: flex;
+	margin-bottom: 10px;
+}   
+.membership_coupon{
+	padding-left: 14px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #3D3D3D;
+}   
+.sub_btn{
+	margin-top:40px;
+	background-color: #000;
+	border-radius: 22px;
+	border:none;
+	width:100px;
+	height:37px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: 500;
+	cursor: pointer;
+	text-align:center;
+}
+.sub_btn_2{
+	margin-top:40px;
+	background-color: #000;
+	border-radius: 22px;
+	border:none;
+	width:100px;
+	height:37px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: 500;
+	text-align:center;
+}
+.sub_btn:hover{
+	background-color:#3F66ED;
+}  
+.sub_left{
+	text-align: left;
+}  
    
-   
-   
-   
-   
+
    
    
    

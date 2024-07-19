@@ -147,7 +147,7 @@ public class MyPageAjaxController {
 	    } else if (user.getMem_num() != board.getMem_num()) {
 	        mapJson.put("result", "wrongAccess");
 	    } else {
-	       // board.setMem_num(user.getMem_num());
+	    	//board.setMem_num(user.getMem_num());
 	        boardService.deleteFav(board);
 	        mapJson.put("result", "success");
 	    }
