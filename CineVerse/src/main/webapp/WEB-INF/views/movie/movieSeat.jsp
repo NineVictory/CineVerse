@@ -24,7 +24,7 @@
 						<span class="selected-seats-title">좌석번호</span> <span class="selected-seats">선택한 좌석이 없습니다.</span>
 					</div>					
 				</div>
-				
+				 
 				<!-- 인원 수 체크 -->
 				<div class="select-seat-number-container">
 					<div class="select-seat-number-wrapper">
@@ -253,6 +253,9 @@
         					<div class="seatContainer" id="seatContainer">
             					<div class="screen"></div>
             					<!-- JavaScript로 생성된 좌석이 여기에 추가됩니다 -->
+            					<c:forEach var="seat" items="${seatList}">
+                                	<div>${seat.seat_row}${seat.seat_column}</div>
+				              	</c:forEach>
         					</div>
     					</div>
 					</div>

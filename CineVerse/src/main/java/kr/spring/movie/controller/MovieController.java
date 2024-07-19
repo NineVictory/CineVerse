@@ -28,6 +28,7 @@ import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.seat.vo.SeatVO;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class MovieController {
-	
+	 
 	@Autowired
 	private MovieService movieService;
 	
@@ -165,12 +166,14 @@ public class MovieController {
 	 	public String movieSeat(long mt_num, Model model) {
 	 	    // 선택한 영화 및 지점명 정보 목록 조회
 	 	    List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
-
+	 	    List<SeatVO> seatList = cinemaService.selectSeatList(mt_num);
+	 	    
 	 	    // Model 객체에 데이터 추가
 	 	    model.addAttribute("movieInfoList", movieInfoList);
-
+	 	    model.addAttribute("seatList", seatList);
+	 	    
 	 	    // 뷰 이름 반환
-	 	    return "movieSeat"; // 'movieSeat'은 JSP 뷰의 이름
+	 	    return "movieSeat"; 
 	 	}
 	
 	/*=======================

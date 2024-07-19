@@ -18,7 +18,7 @@
     text-align: center;
     padding: 10px;
 }
-
+ 
 .select-seat-container {
     display: flex;
     /* align-items: center; */
@@ -313,6 +313,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
 }
 
 .row{

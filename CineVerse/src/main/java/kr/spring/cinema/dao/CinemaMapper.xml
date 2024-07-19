@@ -42,7 +42,7 @@
 	 	<include refid="cinemaSearch"></include>
 	 </select>
 	
-	
+	 
 	<!-- 영화관 전체/검색 목록 -->
 	 <select id="selectCinemaList" parameterType="map" resultType="cinemaVO">
 	 	SELECT
@@ -128,6 +128,21 @@
 		JOIN cinema USING(c_num)
 		WHERE mt_num = #{mt_num}
 	</select>
+	
+	
+	<!-- 좌석 선택 페이지에서 선택한 영화 및 지점명 정보 목록 조회 -->
+	<select id="selectSeatList" parameterType="long" resultType="seatVO">
+		SELECT * 
+		FROM seat
+        JOIN theater USING(th_num) 
+        JOIN movie_time USING(th_num)
+		JOIN movie USING(m_code) 	
+		JOIN cinema USING(c_num)
+		WHERE mt_num = #{mt_num}
+	</select>
+	
+	
+	
 	
 	<!-- 선택한 영화에 대한 좌석 목록 조회 -->
 	<!-- <select id="selectSeatList" parameterType="object" resultType="seatVO">

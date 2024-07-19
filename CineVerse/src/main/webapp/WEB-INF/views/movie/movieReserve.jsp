@@ -14,7 +14,7 @@ $(document).ready(function() {
     $('.theater-place > a').click(function(e) {
         e.preventDefault(); // 기본 동작 중지
         let c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
-
+ 
         // 영화 목록 불러오기
         $.ajax({
             type: 'GET',
@@ -48,8 +48,6 @@ $(document).ready(function() {
         // 클릭한 영화 항목에 active 클래스 추가
         $(this).addClass('active');
         
-
-        loadMovieTimeTable(); // 영화 시간표 목록을 불러오는 함수 호출
     });
 
     // 날짜 클릭 이벤트 핸들러 설정
@@ -67,11 +65,6 @@ $(document).ready(function() {
 
     function loadMovieTimeTable() {
         if (selectedCNum && selectedMCode && selectedDate) {
-        	console.log('Request Data:', {
-                c_num: selectedCNum,
-                m_code: selectedMCode,
-                mt_date: selectedDate
-            });
             // 영화 시간표 목록 불러오기
             $.ajax({
                 type: 'GET',
@@ -267,7 +260,7 @@ $(document).ready(function() {
         <div class="seat-select-button">
         <form action="movieSeat" method="get">
         	<input type="hidden" name="mt_num" id="mt_num">
-            <input type="submit" class="moveSeatButton" value="좌석 선택">
+            <input type="submit" class="movieSeatButton" value="좌석 선택">
         </form>    
         </div>
     </div>

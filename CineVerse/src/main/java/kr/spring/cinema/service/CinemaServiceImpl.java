@@ -12,11 +12,12 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.seat.vo.SeatVO;
 
 @Service
 @Transactional
 public class CinemaServiceImpl implements CinemaService{
-
+ 
 	@Autowired
 	CinemaMapper cinemaMapper;
 
@@ -74,6 +75,11 @@ public class CinemaServiceImpl implements CinemaService{
 	@Override
 	public List<MovieTimeVO> selectAllInfoList(long mt_num) {
 		return cinemaMapper.selectAllInfoList(mt_num);
+	}
+
+	@Override
+	public List<SeatVO> selectSeatList(long mt_num) {
+		return cinemaMapper.selectSeatList(mt_num);
 	}
 
 
