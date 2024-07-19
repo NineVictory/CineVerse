@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
@@ -30,12 +31,12 @@ public interface AdminMapper {
 	public Integer totalAssignment();
 	@Select("SELECT COUNT(*) FROM product WHERE p_status = 2")
 	public Integer totalProduct();
-	@Select("SELECT COUNT(*) FROM movie WHERE m_status = 2 AND m_delete = 1")
+	@Select("SELECT COUNT(*) FROM movie WHERE m_status = 1 AND m_delete = 1")
 	public Integer totalMovie();
 	@Select("SELECT COUNT(*) FROM cinema")
 	public Integer totalCinema();
 	// 회원 관리
-
+		   
 	public List<AdminVO> selectMemberList(Map<String,Object> map);
 	public Integer selectMemberRowCount(Map<String,Object> map);
 	@Update("UPDATE member SET mem_auth = 1 WHERE mem_num=#{mem_num}")
@@ -51,7 +52,7 @@ public interface AdminMapper {
     public void insertNotice(NoticeVO noticeVO);
     @Delete("DELETE FROM notice_board WHERE nb_num = #{nb_num}")
     public void deleteNotice(long nb_num);
-
+    		
     // 이벤트
 	public List<EventVO> selectEventList(Map<String,Object> map);
 	public Integer selectEventRowCount(Map<String,Object> map);
@@ -60,19 +61,19 @@ public interface AdminMapper {
 	public void deleteEvent(long event_num);
 	
 
-	
-    // 결제
+    
     // 게시판
-    @Select("SELECT cb_num, mem_num, cb_title, cb_type, cb_report, cb_hit, cb_reg_date"
-    		+ "	FROM community_board"
-    		+ " ORDER BY cb_reg_date DESC")
-    public List<BoardVO> getAllCommutnity();
-    
-    @Select("SELECT ab_num, mem_num, ab_title, ab_type, ab_report, ab_hit, ab_reg_date"
-    		+ "	FROM assignment_board"
-    		+ "	ORDER BY ab_reg_date DESC")
-    public List<AssignVO> getAllAssignment();
-    
+	// 자유
+    public List<BoardVO> selectCommunityList(Map<String,Object> map);
+	public Integer selectCommunityRowCount(Map<String,Object> map);
+    //양도/교환
+	public List<AssignVO> selectAssignList(Map<String,Object> map);
+	public Integer selectAssignRowCount(Map<String,Object> map);
+	
+	//댓글관리
+	public List<ReplyVO> selectReplyList(Map<String,Object> map);
+	public Integer selectReplyRowCount(Map<String,Object> map);
+	
     // 영화
 	public List<MovieVO> selectMovie(Map<String,Object> map);
 	public Integer selectMovieRowCount(Map<String,Object> map);
@@ -82,14 +83,20 @@ public interface AdminMapper {
 	// 영화관 등록
 	@Select("SELECT cinema_num.nextval FROM dual")
 	public Long selectC_num();
+	//영화관 목록
+	public List<CinemaVO> selectCinema(Map<String,Object> map);
+	public Integer selectCinemaRowCount(Map<String,Object> map);
 	public void insertCinema(CinemaVO cinemaVO);
+	@Update("UPDATE cinema SET c_status = 0 WHERE c_num = #{c_num}")
+	public void deleteCinema(long c_num);
 	// 상영관 등록
 	public void insertTheater(TheaterVO theaterVO);
+	//영화,상영관 검색
+	public List<TheaterVO> selectTheater(int c_num);
+
 	//결제
 	public List<PointVO> selectPoint(Map<String,Object> map);
 	public Integer selectPointRowCount(Map<String,Object> map);
-	
-	//영화,상영관 검색
-	public List<TheaterVO> selectTheater(int c_num);
+	public void refundPoint(long ph_num);
 	
 }

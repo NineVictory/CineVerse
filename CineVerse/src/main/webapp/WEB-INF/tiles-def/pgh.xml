@@ -62,13 +62,20 @@
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminPayment.jsp" />
 	</definition>
 
-	<!-- 게시판 통합 관리 -->
+	<!-- 자유게시판 관리 -->
 	<definition name="adminCommunity" extends="adminMain">
-		<put-attribute name="title" value="게시판 통합 관리" />
+		<put-attribute name="title" value="자유게시판 관리" />
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminCommunityCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCommunity.jsp" />
 	</definition>
 
+	<!-- 양도 관리 -->
+	<definition name="adminAssign" extends="adminMain">
+		<put-attribute name="title" value="양도시판 관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminCommunityCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminAssign.jsp" />
+	</definition>
+	
 	<!-- 댓글 통합 관리 -->
 	<definition name="adminReply" extends="adminMain">
 		<put-attribute name="title" value="게시판댓글 관리" />

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
@@ -33,8 +34,12 @@ public interface AdminService {
 	public Integer selectNoticeRowCount(Map<String,Object> map);
 	public void insertNotice(NoticeVO noticeVO);
 	public void deleteNotice(long nb_num);
-	public List<BoardVO> getAllCommunity();
-	public List<AssignVO> getAllAssignment();
+	public List<BoardVO> selectCommunityList(Map<String,Object> map);
+	public Integer selectCommunityRowCount(Map<String,Object> map);
+	public List<AssignVO> selectAssginList(Map<String,Object> map);
+	public Integer selectAssignRowCount(Map<String,Object> map);
+	public List<ReplyVO> selectReplyList(Map<String,Object> map);
+	public Integer selectReplyRowCount(Map<String,Object> map);
 	public List<MovieVO> selectMovie(Map<String,Object> map);
 	public Integer selectMovieRowCount(Map<String,Object> map);
 	public List<PointVO> selectPoint(Map<String,Object> map);
@@ -47,4 +52,8 @@ public interface AdminService {
 	public Integer totalCinema();
 	public void insertCinema(CinemaVO cinemaVO);
 	public List<TheaterVO> selectTheater(int c_num);
+	public List<CinemaVO> selectCinema(Map<String,Object> map);
+	public Integer selectCinemaRowCount(Map<String,Object> map);
+	public void deleteCinema(long c_num);
+	public void refundPoint(long ph_num);
 }	

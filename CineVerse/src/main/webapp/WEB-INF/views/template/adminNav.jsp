@@ -45,9 +45,6 @@
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminCinemaForm"
 				class="menu-link">영화관등록</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/admin/adminCinemaSeatForm"
-				class="menu-link">좌석등록</a></li>
 		</ul>
 		<a href="${pageContext.request.contextPath}/admin/adminNotice"
 			class="menu-item">공지사항</a> <a
@@ -58,10 +55,14 @@
 		<ul class="sub_menus">
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminCommunity"
-				class="menu-link">통합게시판 관리</a></li>
+				class="menu-link">자유게시판 관리</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/admin/adminAssign"
+				class="menu-link">양도/교환 관리</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminReply"
 				class="menu-link">게시판 댓글 관리</a></li>
+
 		</ul>
 		<a class="menu-item">벌스샵</a>
 		<ul class="sub_menus">
@@ -76,9 +77,6 @@
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminAddress"
 				class="menu-link">배송지</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/admin/adminShopQna"
-				class="menu-link">문의</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminShopReview"
 				class="menu-link">후기</a></li>

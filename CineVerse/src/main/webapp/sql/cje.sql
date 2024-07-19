@@ -356,6 +356,7 @@ CREATE TABLE cinema (
     c_address VARCHAR2(150) NOT NULL,
     c_phone VARCHAR2(11) NOT NULL,
     c_parkable VARCHAR2(5), -- Oracle에서는 boolean 대신 VARCHAR2로 처리
+    c_status NUMBER DEFAULT 1
     CONSTRAINT PK_CINEMA PRIMARY KEY (c_num)
 );
 

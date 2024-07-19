@@ -11,6 +11,7 @@ import kr.spring.admin.dao.AdminMapper;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
@@ -24,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminServiceImpl implements AdminService{
 	@Autowired
 	AdminMapper adminMapper;
-
+ 
 	@Override
 	public void updateMemberAuth(long mem_num) {
 		adminMapper.updateMemberAuth(mem_num);
@@ -36,14 +37,6 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void insertNotice(NoticeVO noticeVO) {
 		adminMapper.insertNotice(noticeVO);
-	}
-	@Override
-	public List<BoardVO> getAllCommunity() {
-		return adminMapper.getAllCommutnity();
-	}
-	@Override
-	public List<AssignVO> getAllAssignment() {
-		return adminMapper.getAllAssignment();
 	}
 	@Override
 	public void deleteMemberAuth(long mem_num) {
@@ -151,5 +144,46 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<TheaterVO> selectTheater(int c_num) {
 		return adminMapper.selectTheater(c_num);
+	}
+	@Override
+	public List<CinemaVO> selectCinema(Map<String, Object> map) {
+		return adminMapper.selectCinema(map);
+	}
+	@Override
+	public Integer selectCinemaRowCount(Map<String, Object> map) {
+		return adminMapper.selectCinemaRowCount(map);
+	}
+	@Override
+	public void deleteCinema(long c_num) {
+		adminMapper.deleteCinema(c_num);
+	}
+	@Override
+	@Transactional
+	public void refundPoint(long ph_num) {
+		adminMapper.refundPoint(ph_num);
+	}
+	@Override
+	public List<BoardVO> selectCommunityList(Map<String, Object> map) {
+		return adminMapper.selectCommunityList(map);
+	}
+	@Override
+	public Integer selectCommunityRowCount(Map<String, Object> map) {
+		return adminMapper.selectCommunityRowCount(map);
+	}
+	@Override
+	public List<AssignVO> selectAssginList(Map<String, Object> map) {
+		return adminMapper.selectAssignList(map);
+	}
+	@Override
+	public Integer selectAssignRowCount(Map<String, Object> map) {
+		return adminMapper.selectAssignRowCount(map);
+	}
+	@Override
+	public List<ReplyVO> selectReplyList(Map<String, Object> map) {
+		return adminMapper.selectReplyList(map);
+	}
+	@Override
+	public Integer selectReplyRowCount(Map<String, Object> map) {
+		return adminMapper.selectReplyRowCount(map);
 	}
 }

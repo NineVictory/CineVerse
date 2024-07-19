@@ -4,15 +4,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="page-container">
 	<div class="admin_member">
+		<!-- 양도 -->
 		<div class="firstTitle">
-			<p id="title">게시판 댓글 관리</p>
+			<p id="title">양도게시판 관리</p>
 		</div>
-		<form action="adminReply" id="admin_search">
+		<form action="adminAssign" id="admin_search">
 			<ul>
 				<li><input type="hidden" name="keyfield"
-					value="${param.keyfield != null ? param.keyfield : 'mem_num'}">
+					value="${param.keyfield != null ? param.keyfield : 'ab_title'}">
 					<!-- 기본값 설정 --> <input type="search" name="keyword" id="keyword"
-					value="${param.keyword}" placeholder="회원명을 입력하세요"> <input
+					value="${param.keyword}" placeholder="제목을 입력하세요"> <input
 					type="submit" value="" class="search-button"
 					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
@@ -24,9 +25,10 @@
 					<th>글 번호</th>
 					<th>작성자</th>
 					<th>제목</th>
-					<th>내용</th>
-					<th>작성일</th>
+					<th>종류</th>
 					<th>신고수</th>
+					<th>조회수</th>
+					<th>작성일</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -36,30 +38,22 @@
 				</tr>
 			</c:if>
 			<tbody>
-				<c:forEach var="re" items="${list}">
+				<c:forEach var="ab" items="${list}">
 					<tr>
-						<c:if test="${!empty re.cb_num}">
-						<td class="mem-data">${re.cb_num}</td>
-						<td class="mem-data">${re.mem_num}</td>
-						<td class="mem-data">${re.cb_content}</td>
-						<td class="mem-data">${re.cb_reg_date}</td>
-						
-						<c:if test="${!empty re.cc_report}">
-							<td class="mem-data">${re.cc_report}</td>
+						<td class="mem-data">${ab.ab_num}</td>
+						<td class="mem-data">${ab.mem_num}</td>
+						<td class="mem-data">${ab.ab_title}</td>
+						<c:if test="${ab.ab_type == 'handover'}">
+							<td class="mem-data">양도</td>
 						</c:if>
-						<c:if test="${empty re.cc_report}">
-							<td class="mem-data">0</td>
+						<c:if test="${ab.ab_type == 'exchange'}">
+							<td class="mem-data">교환</td>
 						</c:if>
-						<c:if test="${!empty re.cc_report}">
-							<td class="mem-data">${re.re_hit}</td>
-						</c:if>
-						<c:if test="${empty re.cc__report}">
-							<td class="mem-data">0</td>
-						</c:if>
-
-						</c:if>
+						<td class="mem-data">${ab.ab_report}</td>
+						<td class="mem-data">${ab.ab_hit}</td>
+						<td class="mem-data">${ab.ab_reg_date}</td>
 						<td class="button2"><input type="button" value="삭제"
-							onclick="deleteCommunity(${re.re_num})" /></td>
+							onclick="deleteAssign(${ab.ab_num})" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -67,3 +61,5 @@
 
 		<div class="page-div">${page}</div>
 	</div>
+
+</div>

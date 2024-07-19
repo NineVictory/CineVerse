@@ -90,9 +90,6 @@
         newTheaterForm.innerHTML += '<h4>' + (theaterCount + 1) + '번 상영관</h4>';
         newTheaterForm.innerHTML+= '<label>상영관 이름</label>';
         newTheaterForm.innerHTML+= '<input type="text" name="theaterList['+theaterCount+'].th_name" class="input-check" required>';
-		newTheaterForm.innerHTML+= '<label>상영관 위치</label>';
-		newTheaterForm.innerHTML+= '<input type="text" name="theaterList['+theaterCount+'].th_position" class="input-check" required>';
-
         theaterSection.appendChild(newTheaterForm);
         theaterCount++;
     }
