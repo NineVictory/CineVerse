@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 게시판 글상세 시작 -->
+<script src="${pageContext.request.contextPath}/js/talk.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
 <%-- <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>--%>
@@ -173,10 +174,10 @@
 						</div>
 						<div class="assView-btn flexbox-h side">
 							<button class="likeBtn" data-num="${assign.ab_num}" 
-							
-							 <c:if test="${assign.ab_status == 3}">disabled</c:if>><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="16"><span> 찜 </span><span class="output-fcount"></span></button>
-							<button class="ass-chatBtn"
+							<c:if test="${assign.ab_status == 3}">disabled</c:if>><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="16"><span> 찜 </span><span class="output-fcount"></span></button>
+<button class="ass-chatBtn" data-abnum="${assign.ab_num}" data-abmemnum="${assign.mem_num}" data-usernum="${user.mem_num }" onclick="openChatWindow()"
 							 <c:if test="${assign.ab_status == 3}">disabled style="background:#c7c7c7;"</c:if>><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="16"><span>채팅</span></button>
+
 						</div>
 					</div>
 				</div>

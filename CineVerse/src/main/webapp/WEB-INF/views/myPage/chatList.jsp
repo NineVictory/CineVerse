@@ -62,7 +62,7 @@ display: flex;
 		<c:forEach var="talk" items="${list}">
 		<tr>
 			<td style="text-align:left;">
-				<a href="${pageContext.request.contextPath}/talk/talkDetail?talkroom_num=${talk.talkroom_num}">
+				<a href="#" onclick="openInNewWindow('${pageContext.request.contextPath}/talk/talkDetail?talkroom_num=${talk.talkroom_num}'); return false;">
 					<b>${talk.talkMemberVO.room_name}(${talk.room_cnt})</b>
 					<br>	
 					<span>${fn:substring(talk.talkVO.message,0,45)}</span>
@@ -79,4 +79,12 @@ display: flex;
 	</c:if>
 	
 </div>
+
+
+
+<script>
+			function openInNewWindow(url) {
+    window.open(url, '_blank', 'width=800,height=600');
+}
+</script>
 <!-- 채팅 이력 끝 -->

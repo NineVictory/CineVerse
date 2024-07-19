@@ -34,41 +34,6 @@ public class TalkController {
 	@Autowired
 	private MemberService memberService;
 
-	/*
-	 * 채팅방 목록 가져오기
-	 * 
-	 */
-	/*
-	 * @GetMapping("/talk/talkList") public String
-	 * chatList(@RequestParam(defaultValue = "1") int pageNum, String keyword,
-	 * HttpSession session, Model model) { MemberVO user = (MemberVO)
-	 * session.getAttribute("user");
-	 * 
-	 * Map<String, Object> map = new HashMap<String, Object>(); map.put("keyword",
-	 * keyword); map.put("mem_num", user.getMem_num());
-	 * 
-	 * int count = talkService.selectRowCount(map);
-	 * 
-	 * // 페이지 처리하기 PagingUtil page = new PagingUtil(null, keyword, pageNum, count,
-	 * 30, 10, "talkList");
-	 * 
-	 * List<TalkRoomVO> list = null; if (count > 0) { map.put("start",
-	 * page.getStartRow()); map.put("end", page.getEndRow());
-	 * 
-	 * list = talkService.selectTalkRoomList(map); } model.addAttribute("count",
-	 * count); model.addAttribute("list", list); model.addAttribute("page",
-	 * page.getPage());
-	 * 
-	 * return "talkList"; }
-	 */
-
-	/*
-	 * 채팅방 생성 폼 호출
-	 * 
-	 * @GetMapping("/talk/talkRoomWrite") public String talkRoomWrite() {
-	 * 
-	 * return "talkRoomWrite"; }
-	 */
 
 	// 전송된 데이터 처리하기
 	@PostMapping("/talk/talkRoomWrite")
@@ -101,15 +66,16 @@ public class TalkController {
             members[i] = membersObj[i]; // `Long`을 `long`으로 변환
         }
         try {
-            // 채팅방 생성 및 채팅방 번호 생성
-            TalkRoomVO talkRoomVO = new TalkRoomVO();
-            talkRoomVO.setBasic_name("1:1 채팅방"); // 채팅방 기본 이름 설정
-            talkRoomVO.setMembers(members); // 채팅방 멤버 설정
-            talkRoomVO.setTalkVO(new TalkVO()); // 메시지 객체 초기화
-
-            // 현재 세션의 사용자 정보를 가져와서 생성자 정보를 설정
+        	// 현재 세션의 사용자 정보를 가져와서 생성자 정보를 설정
             MemberVO user = (MemberVO) session.getAttribute("user");	// 양도글에서 버튼 누른 사람
             MemberVO abmem = memberService.selectMember(abmemnum);		// 양도글에 글 올린 사람
+        	
+            // 채팅방 생성 및 채팅방 번호 생성
+            TalkRoomVO talkRoomVO = new TalkRoomVO();
+            talkRoomVO.setBasic_name(user.getMem_id() + "&" + abmem.getMem_id() ); // 채팅방 기본 이름 설정
+            talkRoomVO.setMembers(members); // 채팅방 멤버 설정
+            talkRoomVO.setTalkVO(new TalkVO()); // 메시지 객체 초기화
+            
             talkRoomVO.setTalkVO(new TalkVO());
             talkRoomVO.getTalkVO().setMem_num(usernum);
             talkRoomVO.getTalkVO().setMessage(user.getMem_id() + "님이 " + abmem.getMem_id() + "님을 초대했습니다.");
@@ -133,27 +99,6 @@ public class TalkController {
     }
 	
 	
-	
-
-	/*
-	 * // 채팅 회원 검색
-	 * 
-	 * @GetMapping("/talk/memberSearchAjax")
-	 * 
-	 * @ResponseBody public Map<String, Object> memberSearchAjax(String id ,
-	 * HttpSession session) {
-	 * 
-	 * Map<String, Object> mapJson = new HashMap<String, Object>(); MemberVO user =
-	 * (MemberVO)session.getAttribute("user");
-	 * 
-	 * if(user == null) { mapJson.put("result", "logout"); } else { List<MemberVO>
-	 * member = memberService.selectSearchMember(id);
-	 * 
-	 * mapJson.put("result", "success"); mapJson.put("member", member); }
-	 * 
-	 * return mapJson; }
-	 */
-
 //	채팅 메세지 처리하기
 	@GetMapping("/talk/talkDetail")
 	public String talkDetail(long talkroom_num, Model model, HttpSession session) {
