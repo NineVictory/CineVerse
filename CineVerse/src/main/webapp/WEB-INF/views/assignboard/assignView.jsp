@@ -5,8 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 게시판 글상세 시작 -->
-<script src="${pageContext.request.contextPath}/js/talk.js"></script>
+
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/talk.js"></script>
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
 <%-- <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>--%>
 <script src="${pageContext.request.contextPath}/js/assignboard.bookmark.js"></script>
@@ -175,7 +176,7 @@
 						<div class="assView-btn flexbox-h side">
 							<button class="likeBtn" data-num="${assign.ab_num}" 
 							<c:if test="${assign.ab_status == 3}">disabled</c:if>><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="16"><span> 찜 </span><span class="output-fcount"></span></button>
-<button class="ass-chatBtn" data-abnum="${assign.ab_num}" data-abmemnum="${assign.mem_num}" data-usernum="${user.mem_num }" onclick="openChatWindow()"
+							<button class="ass-chatBtn" data-abnum="${assign.ab_num}" data-abmemnum="${assign.mem_num}" data-usernum="${user.mem_num }" onclick="openChatWindow()"
 							 <c:if test="${assign.ab_status == 3}">disabled style="background:#c7c7c7;"</c:if>><img src="${pageContext.request.contextPath}/images/kbm/heartwhite.png" width="16"><span>채팅</span></button>
 
 						</div>
@@ -250,3 +251,35 @@
 		
 	</div>
 </div>
+
+<script type="text/javascript">
+function openChatWindow() {
+    var button = document.querySelector('.ass-chatBtn');
+    var abnum = button.getAttribute('data-abnum'); // 해당하는 양도글의 번호
+    var abmemnum = button.getAttribute('data-abmemnum'); // 초대된 사람 - 양도/교환글 작성자
+    var usernum = button.getAttribute('data-usernum'); // 초대한 사람 - 양도/교환글 구매하려는 사람
+
+    $.ajax({
+        url: '/talk/createTalkRoom',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            abmemnum: abmemnum,
+            usernum: usernum
+        },
+        success: function(param) {
+            if (param.result == 'success') {
+                var talkRoomNum = param.talkRoomNum;
+                alert('채팅방이 성공적으로 생성되었습니다. 채팅방 번호: ' + talkRoomNum);
+                window.open('/talk/talkDetail?talkroom_num=' + talkRoomNum, '_blank', 'width=800,height=600');
+                connectWebSocket(); // 웹소켓 생성하기
+            } else {
+                alert('채팅방 생성에 실패했습니다');
+            }
+        },
+        error: function() {
+            alert('네트워크 오류가 발생하였습니다.');
+        }
+    });
+}
+</script>
