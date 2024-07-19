@@ -27,8 +27,8 @@
 			고객님은 2024년 1월
 			<c:if test="${member.mem_rank==1 }"><b>BASIC</b></c:if>
 			<c:if test="${member.mem_rank==2 }"><b>MEMBER</b></c:if>
-			<c:if test="${member.mem_rank==3 }"><b> REGULAR</b></c:if>
-			<c:if test="${member.mem_rank==4 }"><b> VIP</b></c:if>
+			<c:if test="${member.mem_rank==3 }"><b>REGULAR</b></c:if>
+			<c:if test="${member.mem_rank==4 }"><b>VIP</b></c:if>
 			<c:if test="${member.mem_rank==5 }"><b>VVIP</b></c:if>
 			입니다
 		</div>
@@ -108,5 +108,32 @@
     align-items: center; /* 수직 중앙 정렬 */
     cursor: pointer; /* 커서 설정 */
     z-index: 1; /* z-index를 높여 다른 요소보다 앞에 표시 */
+}
+
+.camera {
+	line-height: 0;
+}
+
+#photo_choice {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+}
+#photo_choice input[type="file"] {
+	margin-bottom: 10px;
+}
+#photo_choice input[type="button"] {
+	width: 70px;
+	padding: 5px;
+	margin: 2px;
+	border: none;
+	border-radius: 5px;
+	background-color: #3F66ED;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+#photo_choice input[type="button"]:hover {
+	background-color: #2C4BB8;
 }
 </style>
