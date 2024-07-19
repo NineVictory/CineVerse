@@ -276,8 +276,8 @@
 
 .movietime-item {
     display: inline-block;
-    width: 160px; /* 크기 조정 */
-    height: 80px; /* 크기 조정 */
+    width: 120px; /* 크기 조정 */
+    height: 70px; /* 크기 조정 */
     border: 2px solid #ccc;
     border-radius: 10px;
     margin: 10px;
@@ -293,7 +293,7 @@
 
 .movietime-item .mt-start {
     font-weight: bold;
-    font-size: 16px; /* 폰트 크기 조정 */
+    font-size: 17px; /* 폰트 크기 조정 */
     margin-bottom: 5px; /* 시작 시간과 날짜 사이 간격 */
 }
 
@@ -301,12 +301,14 @@
     position: absolute;
     bottom: 5px;
     left: 5px;
+    font-size: 13px;
 }
 
 .movietime-item .th-name {
     position: absolute;
     bottom: 5px;
     right: 5px;
+    font-size: 13px;
 } 
 .reserve-time-active {
 	background-color: #333333;
