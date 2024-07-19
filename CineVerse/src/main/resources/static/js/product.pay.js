@@ -1,6 +1,6 @@
 $(function() {
     var spanElement = document.querySelector('.price-result span');
-    var totalValue = parseFloat(spanElement[1].textContent.trim().replace(',', '')); // 콤마 제거 후 숫자로 변환
+    var totalValue = parseFloat(spanElement.textContent.trim().replace(',', '')); // 콤마 제거 후 숫자로 변환
 
     // 페이지 로드 시 초기 total 값 설정
     $('.ttt').text(`${numberWithCommas(totalValue)}원`);

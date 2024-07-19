@@ -35,7 +35,7 @@
 			<hr size="3px" color="black" width="88%">
 		</div>
 		<div class="price-result">
-			<span>최종 결제 금액</span>
+			<b>최종 결제 금액</b>
 			<span class="ttt">
 			<c:if test="${total>=50000}">
 						${total}원
