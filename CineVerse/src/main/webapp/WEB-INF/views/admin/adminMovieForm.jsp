@@ -114,7 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			</li>
 			<li>
 				<form:label path="m_content">영화소개</form:label>
-				<form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/>
+				<form:input path="m_content" id="m_content" cssClass="input-check"/>
+				<%-- <form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/> --%>
 <!-- 				<script>
 					function MyCustomUploadAdapterPlugin(editor) {
 						editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							console.error(error);
 						});
 				</script>  -->
-    <script>
+   <!--  <script>
         function MyCustomUploadAdapterPlugin(editor) {
             editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
                 return new UploadAdapter(loader);
@@ -175,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error(error);
             });
-    </script>				
+    </script>				 -->
 			</li>
 		</ul>
 		<div class="btn_display_set">
