@@ -53,57 +53,54 @@ public class AssignBoardController {
 	}
 		
 	@PostMapping("/assignboard/write")
-    public String submit(@Valid AssignVO assignVO, BindingResult result,
-                         HttpServletRequest request, HttpSession session, Model model,
-                         @RequestParam("ab_upload") List<MultipartFile> files) throws IOException {
-        log.debug("<<양도글 등록>> : " + assignVO);
+	public String submit(@Valid AssignVO assignVO, BindingResult result,
+	                     HttpServletRequest request, HttpSession session, Model model,
+	                     @RequestParam("ab_upload") List<MultipartFile> files) throws IOException {
+	    log.debug("<<양도글 등록>> : " + assignVO);
 
-        // 유효성 체크 결과 오류가 있으면 폼 호출
-        if (result.hasErrors()) {
-            return assignform();
-        }
+	    // 유효성 체크 결과 오류가 있으면 폼 호출
+	    if (result.hasErrors()) {
+	        return assignform();
+	    }
 
-        // 회원번호 셋팅
-        MemberVO vo = (MemberVO)session.getAttribute("user");
-        assignVO.setMem_num(vo.getMem_num());
+	    // 회원번호 셋팅
+	    MemberVO vo = (MemberVO) session.getAttribute("user");
+	    assignVO.setMem_num(vo.getMem_num());
 
-        // IP 셋팅
-        assignVO.setAb_ip(request.getRemoteAddr());
+	    // IP 셋팅
+	    assignVO.setAb_ip(request.getRemoteAddr());
 
-        // 파일 업로드 처리
-        List<String> filenames = new ArrayList<>();
-        long totalSize = 0;
-        
-        
-        if(files != null) {
-        	for(int i=0;i<files.size();i++) {
-        		String filename = FileUtil2.createFile(request, files.get(i));
-        		filenames.add(filename);
-        		totalSize += files.get(i).getSize();
-        	}
-        }
+	    // 파일 업로드 처리
+	    if (files != null && !files.isEmpty()) {
+	        List<String> filenames = new ArrayList<>();
+	        long totalSize = 0;
 
-		/*
-		 * for (MultipartFile file : files) { if (!file.isEmpty()) { String filename =
-		 * FileUtil2.createFile(request, file); filenames.add(filename); totalSize +=
-		 * file.getSize(); // } }
-		 */
-        
-        String filenamesString = String.join(",", filenames);
-        assignVO.setAb_filenames(filenamesString); // 여러 개의 파일명을 저장할 필드에 설정
-        
-        log.debug(filenamesString);
-        log.debug("파일전체 :::::" + totalSize + "bytes");
-        // 글쓰기
-        assignService.ab_insertBoard(assignVO);
+	        for (MultipartFile file : files) {
+	            if (!file.isEmpty()) {
+	                String filename = FileUtil2.createFile(request, file);
+	                filenames.add(filename);
+	                totalSize += file.getSize();
+	            }
+	        }
 
-        // View 메시지 처리
-        model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
-        model.addAttribute("url", request.getContextPath() + "/assignboard/list");
-        return "common/resultAlert";
-    }
+	        String filenamesString = String.join(",", filenames);
+	        assignVO.setAb_filenames(filenamesString); // 파일명을 저장할 필드에 설정
+	        log.debug("파일 전체 크기: " + totalSize + " bytes");
+	    } else {
+	        // 파일을 업로드하지 않은 경우 처리
+	        assignVO.setAb_filenames(null);
+	        log.debug("파일을 업로드하지 않았습니다.");
+	    }
 
-		
+	    // 글쓰기
+	    assignService.ab_insertBoard(assignVO);
+
+	    // View 메시지 처리
+	    model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+	    model.addAttribute("url", request.getContextPath() + "/assignboard/list");
+	    return "common/resultAlert";
+	}
+
 	
 	/*====================
 	 *양도게시판 목록
@@ -153,11 +150,14 @@ public class AssignBoardController {
 		
 		ModelAndView modelAndView = new ModelAndView("assignView");
 		
+		
+		
+		log.debug("<<assign.getAb_filenames()*****************>>: " + assign.getAb_filenames());
 		if(assign.getAb_filenames() != null) {
 			String[] filenamesArray = assign.getAb_filenames().split(",");
 			modelAndView.addObject("filenames", filenamesArray);
+			log.debug("<<filenames*****************>>" + filenamesArray[0]);
 		}
-		
 		//제목에 태그를 허용하지 않음
 		assign.setAb_title(StringUtil.useNoHTML(assign.getAb_title()));
 		//내용에 태그를 허용하지 않으면서 줄바꿈 처리
@@ -179,8 +179,10 @@ public class AssignBoardController {
 		log.debug("상품상태>> " + assignVO.getAb_item_status());
 		log.debug("상품내용>> " + assignVO.getAb_content());
 		log.debug("상품가격>> " + assignVO.getAb_price());
-		String[] filenamesArray = assignVO.getAb_filenames().split(",");
-		model.addAttribute("ab_filenames", filenamesArray);
+		if(assignVO.getAb_filenames() != null) {
+			String[] filenamesArray = assignVO.getAb_filenames().split(",");
+			model.addAttribute("ab_filenames", filenamesArray);
+		}
 		return "assignModify";
 	}
 	

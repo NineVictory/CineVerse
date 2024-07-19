@@ -46,30 +46,22 @@
 			<div class="flexbox-h side">
 				<div class="marg440">
 				
-				<c:if test="${!empty filenames}">
-				<div class="slider-container">
-				    <div class="slide">
-				        <img src="${request.contextPath}/upload/${filenames[0]}" width="420" class="item-img" alt="Image 1">
-				    </div>
-				    <%-- 배열에 2번째 이미지가 있을 경우만 표시 --%>
-				    <c:if test="${fn:length(filenames) > 1}">
-				        <div class="slide">
-				            <img src="${request.contextPath}/upload/${filenames[1]}" width="420" class="item-img" alt="Image 2">
-				        </div>
-				    </c:if>
-				    <%-- 배열에 3번째 이미지가 있을 경우만 표시 --%>
-				    <c:if test="${fn:length(filenames) > 2}">
-				        <div class="slide">
-				            <img src="${request.contextPath}/upload/${filenames[2]}" width="420" class="item-img" alt="Image 3">
-				        </div>
-				    </c:if>
-				    <c:if test="${fn:length(filenames) != 1}">
-				    <div>
-					    <a class="prev">&#10094;</a>
-					    <a class="next">&#10095;</a>
-					 </div>   
-					 </c:if>
-				</div>
+				<c:if test="${not empty filenames}">
+			    <div class="slider-container">
+			        <c:forEach items="${filenames}" var="filename" varStatus="loop">
+			            <c:if test="${loop.index < 3}">
+			                <div class="slide">
+			                    <img src="${pageContext.request.contextPath}/upload/${filename}" width="420" class="item-img" alt="Image ${loop.index + 1}">
+			                </div>
+			            </c:if>
+			        </c:forEach>
+			        <c:if test="${fn:length(filenames) > 1}">
+			            <div>
+			                <a class="prev">&#10094;</a>
+			                <a class="next">&#10095;</a>
+			            </div>
+			        </c:if>
+			    </div>
 				<script>
 				    $(document).ready(function() {
 				        var slideIndex = 0;
@@ -99,8 +91,9 @@
 				<%-- <c:if test="${!empty filenames}">
 				<img src="${pageContext.request.contextPath}/upload/${filenames[0]}" width="420" class="item-img">
 				</c:if>--%>
+				
 				<c:if test="${empty filenames}">
-				<img src="${pageContext.request.contextPath}/images/kbm/noimage.jpg" width="420" class="item-img">
+				    <img src="${pageContext.request.contextPath}/images/kbm/noimage.jpg" width="420" class="item-img">
 				</c:if> 
 				
 				</div>
