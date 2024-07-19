@@ -236,6 +236,7 @@ textarea#consult_content{
 	margin-top:7px;
 }
 .btn-container{
+	text-align:right;
 	margin-top:30px;
 }
 /*버튼*/
@@ -259,11 +260,19 @@ textarea#consult_content{
     color:#000;
     font-size:15px;
 }
-.font-red{
+
+.c-submit-btn{
+	border:none;
+	border-radius:5px;
+	width:80px;
+	height:32px;
+    background-color:#3F66ED;
+    color:#fff;
+    font-size:15px;
+}
+.font-red, .error-color{
 	color:red;
 }
-
-
 
 
 

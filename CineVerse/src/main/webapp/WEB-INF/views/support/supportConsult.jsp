@@ -13,13 +13,13 @@
 
 	<div class="qna-member-info">
 		<div class="align-right check-info">체크(<span class="font-red">*</span>)된 항목은 필수 입력 사항입니다.</div>
-		<div class="member-info-gap"><span class="info-label">이름</span><span>홍길동</span></div>
+		<div class="member-info-gap"><span class="info-label">이름</span><span>${user.mem_name}</span></div>
 		<div class="flexbox-h phone-email">
 			<div class="member-info-gap">
-			<span class="info-label">휴대전화</span><span>010-****-1234</span>
+			<span class="info-label">휴대전화</span>${user.mem_phone}<span></span>
 			</div>
 			<div class="member-info-gap">
-			<span class="info-label">이메일</span><span>test@test.com</span>
+			<span class="info-label">이메일</span><span>${user.mem_email}</span>
 			</div>
 		</div>
 	</div>
@@ -36,15 +36,15 @@
 
 	</div>
 	
-	<form:form action="write" id="qna_register" enctype="multipart/form-data" modelAttribute="consultVO">
-		
+	<form:form action="consult" id="qna_register" enctype="multipart/form-data" modelAttribute="consultVO">
+		<form:input type="hidden" path="mem_num" value="${user.mem_num}"/>
 		<div class="문의상세">
 		
 			<div class="flexbox-h form-items">
 				<div class="form-label p-center">문의유형&nbsp;<span class="font-red">*</span></div>
 				<div class="p-center">
 
-					<form:radiobutton path="consult_type" value="inquiry" />문의
+					<form:radiobutton path="consult_type" value="inquiry" checked="checked"/>문의
 					&nbsp;
 					<form:radiobutton path="consult_type" value="dissatisfaction" />불만
 					&nbsp;
@@ -53,7 +53,10 @@
 					<form:radiobutton path="consult_type" value="proposal" />제안
 					&nbsp;
 					<form:radiobutton path="consult_type" value="missing" />분실물
-
+					&nbsp;
+					<form:radiobutton path="consult_type" value="교환/환불" />교환/환불
+					&nbsp;
+					<form:input path="od_number" value="주문번호 select 변경하기" />
 				</div>
 			</div>
 			
@@ -61,18 +64,18 @@
 				<div class="form-label p-center">영화관 선택</div>
 				<div class="p-center">
 
-					<form:radiobutton path="cinema" value="none"/>선택하지 않음
+					<form:radiobutton path="cinema" value="none" checked="checked"/>선택하지 않음
 					&nbsp;
 					<form:radiobutton path="cinema" value="selected" />선택함
 					&nbsp;
 					
-					<form:select path="" id="" class="">
+					<form:select path="c_num" class="">
 						<option value="select" disabled selected>지역선택</option>
 						<form:option value="1">1</form:option>
 	            		<form:option value="2">2</form:option>
 					</form:select>
 					
-					<form:select path="" id="" class="">
+					<form:select path="c_num" class="">
 						<option value="select" disabled selected>영화관 선택</option>
 						<form:option value="1">1</form:option>
 	            		<form:option value="2">2</form:option>
@@ -82,29 +85,32 @@
 			</div>
 			<div class="flexbox-h form-items">
 				<div class="form-label">제목&nbsp;<span class="font-red">*</span></div>
-				<form:input path="consult_title" class="custom-title" placeholder=" 제목을 입력해 주세요"/>
-				<form:errors path="consult_title" cssClass="error-color"/>
+				<div>
+					<form:input path="consult_title" class="custom-title" placeholder="제목을 입력해 주세요"/>
+					<form:errors path="consult_title" cssClass="error-color"/>
+				</div>
 			</div>
 			<div class="flexbox-h form-items">
 				<div class="form-label">내용&nbsp;<span class="font-red">*</span></div>
+				<div>
 				<form:textarea path="consult_content" placeholder="※문의 내용 및 첨부파일 내에 개인정보(신용카드번호, 계좌번호, 주민번호 등)가 포함되지 않도록 유의하시기 바랍니다.
 ※이벤트 굿즈 재고 문의 안내
   경품 특성상 실시간으로 소진되어 재고 안내가 어려운 관계로 문의 글에 대한 답변이 어렵습니다."/>
 				<form:errors path="consult_content" cssClass="error-color"/>
-				 
+				</div> 
 			</div>
 			<div class="flexbox-h form-items">
 				<div class="form-label">첨부파일</div>
 				<div class="file-info">
-					<input type="file" name="consult_file" id="consult_file">
+					<form:input path="c_upload" type="file"/>
 					<form:errors path="consult_file" cssClass="error-color"/>
 					<div><b>*첨부가능 확장자</b>: 이미지(jpg,gif,png,jpeg), 워드문서(hwp,ppt,pptx,xls,xlsx,doc,docx,zip,pdf,txt)</div>
 				</div>
 			</div>
 		</div>
-		<div class="flexbox-h side btn-container">
-			<input type="button" value="목록" class="default-btn4" onclick="location.href='list'">
-			<form:button class="default-btn3">등록</form:button>
+		<div class="btn-container">
+			<!-- <input type="button" value="목록" class="default-btn4" onclick="location.href='list'"> -->
+			<form:button class="c-submit-btn">등록</form:button>
 		</div>
 	</form:form>
 	

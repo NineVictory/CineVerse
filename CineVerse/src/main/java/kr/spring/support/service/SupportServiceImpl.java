@@ -16,35 +16,12 @@ public class SupportServiceImpl implements SupportService{
 
 	@Autowired
 	SupportMapper supportMapper;
-	
-	@Override
-	public List<ConsultVO> selectConsultList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer selectRowCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void insertConsult(ConsultVO consult) {
-		// TODO Auto-generated method stub
-		
+		supportMapper.insertConsult(consult);
 	}
-
-	@Override
-	public ConsultVO selectConsult(Long consult_num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteConsult(Long consult_num) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 
 }
