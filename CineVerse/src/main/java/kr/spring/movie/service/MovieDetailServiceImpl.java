@@ -35,7 +35,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		// 변수 설정
         Map<String, String> paramMap = new HashMap<String, String>();
         paramMap.put("collection", "kmdb_new2");
-        paramMap.put("releaseDts", "20230802");
+        paramMap.put("releaseDts", "20230901");
         paramMap.put("releaseDte", "20231231");
         paramMap.put("listCount", "500");
         paramMap.put("detail", "Y");
@@ -103,6 +103,14 @@ public class MovieDetailServiceImpl implements MovieDetailService {
                         JSONArray CodeArray = CodeNoObject.getJSONArray("CommCode");
                         CodeNo = extractArrayData(CodeArray, "CodeNo");
                     }
+                    
+                    // 예고편 추출
+                    String teasers = "";
+                    JSONObject TeaserUrlObject = movies.getJSONObject("vods");
+                    if (TeaserUrlObject.has("vod")) {
+                        JSONArray TeaserArray = TeaserUrlObject.getJSONArray("vod");
+                        teasers = extractArrayData(TeaserArray, "vodUrl");
+                    }
 
                         movieDetail.setDOCID(movies.getString("DOCID"));
                         movieDetail.setMovieSeq(movies.getString("movieSeq"));
@@ -120,6 +128,8 @@ public class MovieDetailServiceImpl implements MovieDetailService {
                         movieDetail.setRepRlsDate(movies.getString("repRlsDate"));
                         movieDetail.setPosters(movies.getString("posters"));
                         movieDetail.setCodeNo(CodeNo);
+                        movieDetail.setTeasers(teasers);
+                        movieDetail.setStlls(movies.getString("stlls"));
 
                         movieDetailMapper.insertMovieDetail(movieDetail);
                 }

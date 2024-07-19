@@ -105,10 +105,18 @@ public class MovieAPI2 {
                         CodeNo = extractArrayData(CodeArray, "CodeNo");
                     }
                     
+                    // 예고편 추출
+                    String teasers = "";
+                    JSONObject TeaserUrlObject = movies.getJSONObject("vods");
+                    if (TeaserUrlObject.has("vod")) {
+                        JSONArray TeaserArray = TeaserUrlObject.getJSONArray("vod");
+                        teasers = extractArrayData(TeaserArray, "vodUrl");
+                    }
+                    
                     
                     // 출력 또는 저장
-                    System.out.printf("%s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s- %s \n",
-                        movies.get("DOCID"), movies.get("movieSeq"), movies.get("title"), plots,movies.get("company"),CodeNo
+                    System.out.printf("%s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s- %s \n",
+                        movies.get("stlls"),movies.get("DOCID"), movies.get("movieSeq"), movies.get("title"), plots,movies.get("company"),CodeNo,teasers
                         ,movies.get("keywords"),movies.get("runtime"), movies.get("rating"), movies.get("genre"), movies.get("repRlsDate"),
                         directors, actors);
                 }

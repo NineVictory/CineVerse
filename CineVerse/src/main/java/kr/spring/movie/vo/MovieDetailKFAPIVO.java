@@ -23,5 +23,7 @@ public class MovieDetailKFAPIVO {
     private String keywords;      // 키워드
     private String repRlsDate;      // 개봉일
     private String posters;      // 포스터
+    private String stlls;      // 스틸컷
     private String CodeNo;      // 영화 코드
+    private String teasers;      // 티저 영상
 }
