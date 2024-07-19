@@ -1,5 +1,6 @@
 package kr.spring.cinema.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 

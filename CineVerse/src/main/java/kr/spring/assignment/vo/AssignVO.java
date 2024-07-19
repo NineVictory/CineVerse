@@ -30,6 +30,7 @@ public class AssignVO {
 	private long ab_hit;
 	private long ab_status;
 	
+	@NotNull
 	private MultipartFile ab_upload;
 	private String ab_filenames;
 	private long mem_num;
