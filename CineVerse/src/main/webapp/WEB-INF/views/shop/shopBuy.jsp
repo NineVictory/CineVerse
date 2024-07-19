@@ -30,7 +30,7 @@
                                 </li>
                             </c:if>
                             <c:if test="${a.a_default!=1}">
-                                <li><input type="radio" name="a_num" value="${a.a_num}"> <span>${a.a_name}</span></li>
+                                <li><input type="radio" name="a_num" value="${a.a_num}" <c:if test="${count==1}"> checked</c:if>> <span>${a.a_name}</span></li>
                                 <li class="address-box">
                                     <div class="address-list">
                                         <span class="a_zipcode">(${a.a_zipcode})</span>
