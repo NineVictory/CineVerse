@@ -326,6 +326,7 @@ public class ShopController {
 			couponList = shopService.selectMemCouponList(map);
 		}
 
+		
 		map.put("couponList",couponList);
 		map.put("total_count", total_count);
 		map.put("count", count);

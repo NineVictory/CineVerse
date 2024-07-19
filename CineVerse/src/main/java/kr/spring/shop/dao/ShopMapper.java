@@ -223,4 +223,5 @@ public interface ShopMapper {
 	public ProductVO selectMostCategory(long mem_num);
 	
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
+	
 }
