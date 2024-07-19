@@ -1,6 +1,5 @@
 package kr.spring.cinema.service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +7,7 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.seat.vo.SeatVO;
 
 public interface CinemaService {
 	
@@ -30,7 +30,15 @@ public interface CinemaService {
 	
 	
 	//영화 시간표 목록 조회
-	public List<MovieTimeVO>selectMovieTimeList(long c_num, long m_code);
+	public List<MovieTimeVO> selectMovieTimeList(long c_num, long m_code, String mt_date);
+	
+	//좌석 선택 페이지에서 선택한 영화 및 지점명 정보 목록 조회
+	public List<MovieTimeVO> selectAllInfoList(long c_num, long m_code, String mt_date);
+	
+	//선택한 영화에 대한 좌석 목록 조회
+	//public List<SeatVO> selectSeatList(long c_num, long m_code, String mt_date, String mt_start);
+	
+	
 	
 	
 		//영화관(잠시 보류)

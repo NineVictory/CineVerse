@@ -8,6 +8,7 @@ $(document).ready(function() {
     let selectedCNum = null;
     let selectedMCode = null;
     let selectedDate = null;
+    let selectedMtStart = null;
 
     // 지점 클릭 이벤트 핸들러
     $('.theater-place > a').click(function(e) {
@@ -24,7 +25,7 @@ $(document).ready(function() {
                 // 성공적으로 데이터를 받았을 때 처리
                 let movieListHtml = '';
                 $.each(data, function(index, movie) {
-                    movieListHtml += '<li class="select"><a href="#" class="movie-item" data-cnum="' + c_num + '" data-mcode="' + movie.m_code + '">' + movie.m_name + '</a></li>';
+                    movieListHtml += '<li class="select" data-cnum="' + c_num + '" data-mcode="' + movie.m_code + '"><a href="#" class="movie-item" >' + movie.m_name + '</a></li>';
                 });
                 $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
             },
@@ -35,11 +36,18 @@ $(document).ready(function() {
     });
 
     // 영화 클릭 이벤트 핸들러 설정
-    $(document).on('click', '.movie-item', function(e) {
+    $(document).on('click', '.select', function(e) {
         e.preventDefault(); // 기본 동작 중지
 
         selectedCNum = $(this).attr('data-cnum');
         selectedMCode = $(this).attr('data-mcode');
+        
+        // 모든 영화 항목에서 active 클래스 제거
+        $('.select').removeClass('active');
+        
+        // 클릭한 영화 항목에 active 클래스 추가
+        $(this).addClass('active');
+        
 
         loadMovieTimeTable(); // 영화 시간표 목록을 불러오는 함수 호출
     });
@@ -47,6 +55,13 @@ $(document).ready(function() {
     // 날짜 클릭 이벤트 핸들러 설정
     $(document).on('click', '.movie-day, .movie-day-sun, .movie-day-sat', function() {
         selectedDate = $(this).data('date'); // 클릭한 날짜의 값 가져오기
+        
+     	// 모든 날짜 항목에서 active 클래스 제거
+        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+        
+        // 클릭한 날짜 항목에 active 클래스 추가
+        $(this).addClass('active');
+        
         loadMovieTimeTable(); // 영화 시간표 목록을 불러오는 함수 호출
     });
 
@@ -61,7 +76,7 @@ $(document).ready(function() {
             $.ajax({
                 type: 'GET',
                 url: '${pageContext.request.contextPath}/selectMovieTimeList',
-                data: { c_num: selectedCNum, m_code: selectedMCode, mt_date: selectedDate },
+                data: { c_num: selectedCNum, m_code: selectedMCode, mt_date2: selectedDate },
                 dataType: 'json',
                 success: function(data) {
                     // 성공적으로 데이터를 받았을 때 처리
@@ -82,6 +97,18 @@ $(document).ready(function() {
         }
     }
 
+    // 영화 시간 데이터 담기 클릭 이벤트 핸들러 추가
+    $(document).on('click', '.movietime-item', function() {
+        selectedMtStart = $(this).data('start-time'); // 클릭한 상영시간의 값 가져오기
+
+        // 모든 상영시간 항목에서 active 클래스 제거
+        $('.movietime-item').removeClass('active');
+        
+        // 클릭한 상영시간 항목에 active 클래스 추가
+        $(this).addClass('active');
+    });  
+    
+    
     // 툴팁 생성
     $(document).on('mouseenter', '.movietime-item', function() {
         let endTime = $(this).data('end-time');
@@ -105,7 +132,11 @@ $(document).ready(function() {
     $(document).on('mouseleave', '.movietime-item', function() {
         $('.tooltip').remove();
     });
+    
+
 });
+
+
 </script>
 
 <div class="reserve-container">

@@ -29,6 +29,7 @@
 
 .theater-container {
     display: flex;
+    flex-direction: column;
 }
 
 .theater-wrapper {
@@ -142,6 +143,33 @@
 	padding: 0;
 	text-align: center;
 }
+
+
+.select.active {
+    background-color: #f0f0f0; /* 선택된 항목의 배경색 */
+    font-weight: bold; /* 선택된 항목의 글씨를 굵게 */
+}
+
+.movie-day.active {
+    background-color: #f0f0f0; /* 선택된 항목의 배경색 */
+    font-weight: bold; /* 선택된 항목의 글씨를 굵게 */
+}
+
+.movie-day-sun.active {
+    background-color: #f0f0f0; /* 선택된 항목의 배경색 */
+    font-weight: bold; /* 선택된 항목의 글씨를 굵게 */
+}
+
+.movie-day-sat.active {
+    background-color: #f0f0f0; /* 선택된 항목의 배경색 */
+    font-weight: bold; /* 선택된 항목의 글씨를 굵게 */
+}
+
+.movietime-item.active {
+    background-color: #f0f0f0; /* 선택된 항목의 배경색 */
+    font-weight: bold; /* 선택된 항목의 글씨를 굵게 */
+}
+
 
 .select {
 	font-size: 14px;

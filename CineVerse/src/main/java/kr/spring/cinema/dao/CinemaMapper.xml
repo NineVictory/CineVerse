@@ -110,16 +110,36 @@
     </select>
 	
 	<!-- 영화 시간표 목록 조회 -->
-	<!-- <select id="selectMovieTimeList" parameterType="long" resultType="movieTimeVO">
+	<select id="selectMovieTimeList" parameterType="object" resultType="movieTimeVO">
 		SELECT *
 		FROM movie_time m
 		JOIN theater t
 		ON m.th_num = t.th_num
 		WHERE t.c_num = #{c_num} AND m.m_code = #{m_code} AND m.mt_date = #{mt_date}
+	</select>
+	
+	
+	<!-- 좌석 선택 페이지에서 선택한 영화 및 지점명 정보 목록 조회 -->
+	<select id="selectAllInfoList" parameterType="object" resultType="movieTimeVO">
+		SELECT m.m_name, m.m_filename, c.c_branch, t.th_name, mt.mt_date,
+		mt.mt_start, mt.mt_end
+		FROM movie_time mt
+		JOIN movie m ON mt.m_code = m.m_code
+		JOIN theater t ON mt.th_num = t.th_num
+		JOIN cinema c ON t.c_num = c.c_num
+		WHERE t.c_num = #{c_num} AND m.m_code = #{m_code} AND m.mt_date = #{mt_date}
+	</select>
+	
+	<!-- 선택한 영화에 대한 좌석 목록 조회 -->
+	<!-- <select id="selectSeatList" parameterType="object" resultType="seatVO">
+		SELECT s.seat_num,s.seat_rank,s.seat_row,s.seat_column
+		FROM seat s
+		JOIN theater t ON s.th_num = t.th_num
+		JOIN movie_time mt ON t.th_num = mt.th_num
+		JOIN cinema c ON t.c_num = c.c_num
+		JOIN movie m ON mt.m_code = m.m_code
+		WHERE t.c_num = #{c_num} AND m.m_code = #{m_code} AND m.mt_date = #{mt_date} AND mt.mt_start = #{mt_start};
 	</select> -->
-	
-	
-	
 	
 	
 	

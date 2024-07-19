@@ -186,12 +186,15 @@
 				<div class="select-seat-information">
 					<div class="selected-movie"></div>
 					<div class="select-seat-information-wrapper">
-						<div class="select-theater-place selected-theater-place-info">CINEVERSE</div>
-						<div class="select-theater-place selected-theater-place-info">3관</div>
-						<div class="select-theater-place">
-							<span>남은좌석</span><span class="remain-seats">240</span>/<span class="all-seats">240</span>						
-						</div>
-
+						 <c:forEach var="info" items="${movieInfoList}">
+				            <p>영화명: ${info.m_name}</p>
+				            <p><img src="${info.m_filename}" alt="${info.m_name}" /></p>
+				            <p>지점명: ${info.c_branch}</p>
+				            <p>상영관 이름: ${info.th_name}</p>
+				            <p>상영일: ${info.mt_date}</p>
+				            <p>시작시간: ${info.mt_start}</p>
+				            <p>종료시간: ${info.mt_end}</p>
+				        </c:forEach>
 					</div>
 					<div class="select-theater-date">
 						<div class="theater-date"></div>

@@ -1,6 +1,5 @@
 package kr.spring.cinema.service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.seat.vo.SeatVO;
 
 @Service
 @Transactional
@@ -68,9 +68,20 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
-	public List<MovieTimeVO> selectMovieTimeList(long c_num, long m_code) {
-		return cinemaMapper.selectMovieTimeList(c_num, m_code); 
+	public List<MovieTimeVO> selectMovieTimeList(long c_num, long m_code, String mt_date) {
+		return cinemaMapper.selectMovieTimeList(c_num, m_code, mt_date); 
 	}
+
+	@Override
+	public List<MovieTimeVO> selectAllInfoList(long c_num, long m_code, String mt_date) {
+		return cinemaMapper.selectAllInfoList(c_num, m_code, mt_date);
+	}
+
+	/*
+	 * @Override public List<SeatVO> selectSeatList(long c_num, long m_code, String
+	 * mt_date, String mt_start) { return cinemaMapper.selectSeatList(c_num, m_code,
+	 * mt_date, mt_start); }
+	 */
 
 	
 	

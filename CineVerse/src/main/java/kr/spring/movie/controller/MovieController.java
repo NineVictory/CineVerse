@@ -1,5 +1,9 @@
 package kr.spring.movie.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,19 +138,37 @@ public class MovieController {
 	        return cinemaService.getMoviesByCinema(c_num);
 	    }
 	 	 
-	 	//지점명 선택했을 때 상영관 목록 불러오기
+	 	//상영시간표 불러오기
 	 	@GetMapping("/selectMovieTimeList")
 	    @ResponseBody
-	    public List<MovieTimeVO>selectMovieTimeList(long c_num, long m_code) {
-	        return cinemaService.selectMovieTimeList(c_num, m_code);
+
+	    public List<MovieTimeVO>selectMovieTimeList(long c_num, long m_code, String mt_date2) throws UnsupportedEncodingException, ParseException {
+
+	 		// URL 디코딩
+            String decodedDate = URLDecoder.decode(mt_date2, "UTF-8");
+
+            // 날짜 포맷 설정
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yy/MM/dd");
+            java.util.Date date = (java.util.Date) inputFormat.parse(decodedDate);
+
+            // 포맷을 적용하여 문자열로 변환
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd");
+            String mt_date = outputFormat.format(date);
+
+	        return cinemaService.selectMovieTimeList(c_num, m_code, mt_date);
 	    }
 	
-	/*=======================
-	 * 영화 좌석 선택
-	 *=======================*/
-	@GetMapping("/movie/movieSeat")
-	public String movieSeat(){
-		return "movieSeat";
+		/*=======================
+		 * 영화 좌석 선택
+		 *=======================*/
+		@GetMapping("/movie/movieSeat")
+		public String movieSeat(long c_num, long m_code, String mt_date, Model model){
+	
+			// 선택한 영화 및 지점명 정보 목록 조회
+			List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(c_num, m_code, mt_date);
+			model.addAttribute("movieInfoList", movieInfoList);
+	
+	return "movieSeat";
 	}
 	
 	/*=======================
