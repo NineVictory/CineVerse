@@ -84,7 +84,7 @@ display: flex;
 
 <script>
 			function openInNewWindow(url) {
-    window.open(url, '_blank', 'width=800,height=600');
+    window.open(url, '_blank', 'width=850,height=650');
 }
 </script>
 <!-- 채팅 이력 끝 -->
