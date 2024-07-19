@@ -97,6 +97,11 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.updatePassword(member);
 	}
 
+	@Override
+	public MemberVO selectMember(Long mem_num) {
+		return memberMapper.selectMember(mem_num);
+	}
+
 	
 
 }

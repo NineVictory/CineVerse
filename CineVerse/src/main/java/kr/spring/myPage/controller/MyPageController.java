@@ -26,8 +26,11 @@ import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
+import kr.spring.talk.service.TalkService;
+import kr.spring.talk.vo.TalkRoomVO;
 import kr.spring.util.CaptchaUtil;
 import kr.spring.util.FileUtil;
+import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +40,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MyPageController {
 	@Autowired
 	public MyPageService mypageService;
+	
+	@Autowired
+	private TalkService talkService;
+
 
 	// 자바빈(VO) 초기화
 	@ModelAttribute
@@ -357,15 +364,37 @@ public class MyPageController {
 	// 장바구니
 
 	// 채팅 이력
-	@GetMapping("/myPage/chatList")
-	public String myPageChatList(HttpSession session, Model model) {
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		model.addAttribute("member", member);
-		return "chatList";
-	}
+		@GetMapping("/myPage/chatList")
+		public String myPageChatList(@RequestParam(defaultValue = "1") int pageNum, String keyword,HttpSession session, Model model) {
+			MemberVO user = (MemberVO) session.getAttribute("user");
+			MyPageVO member = mypageService.selectMember(user.getMem_num());
+			member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("keyword", keyword);
+			map.put("mem_num", user.getMem_num());
 
+			int count = talkService.selectRowCount(map);
+
+			// 페이지 처리하기
+			PagingUtil page = new PagingUtil(null, keyword, pageNum,count,30,10,"talkList");
+
+			List<TalkRoomVO> list = null;
+			if(count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = talkService.selectTalkRoomList(map);
+			}
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+			model.addAttribute("member", member);
+			
+			return "chatList";
+		}
+		
+		
 	// 회원 정보 - 비밀번호 변경 폼
 	@GetMapping("/myPage/passwdChange")
 	public String myPagePasswdChange(MyPageVO myPageVO, HttpSession session, Model model) {

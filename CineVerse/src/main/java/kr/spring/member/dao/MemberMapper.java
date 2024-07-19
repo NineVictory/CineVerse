@@ -28,7 +28,10 @@ public interface MemberMapper {
 	public void insertNewMemCoupon(CouponVO coupon);
 	@Select("SELECT coupon_num FROM coupon_db WHERE coupon_num IN (1, 2)")
 	public List<Long> selectInitialCoupons();
-
+	
+	@Select("SELECT * FROM member JOIN member_detail USING(mem_num) WHERE mem_num=#{mem_num}")
+	public MemberVO selectMember(Long mem_num);
+	
 	// xml 작성
 	public void insertMember_detail(MemberVO member);
 	public MemberVO selectCheckMember(String mem_id);

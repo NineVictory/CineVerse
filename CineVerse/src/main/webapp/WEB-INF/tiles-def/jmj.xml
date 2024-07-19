@@ -57,6 +57,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/kakaoRegisterForm.jsp"/>
 	</definition>
 	
+	<definition name="talkDetail" template="/WEB-INF/views/template/layout_talk.jsp">
+		<put-attribute name="title" value="채팅방"/>
+		<put-attribute name="css" value="/WEB-INF/views/member/memberloginCSS.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/talk/talkDetail.jsp"/>
+	</definition>
+	
 	
 </tiles-definitions>
 

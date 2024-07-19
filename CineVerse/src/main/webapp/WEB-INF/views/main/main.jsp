@@ -40,6 +40,15 @@
 	z-index: 10;
 }
 
+.em_title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+}
+
+
+
 </style>
 <div class="swiper-container">
 	<div class="swiper-wrapper">
@@ -137,7 +146,9 @@
 													<c:when test="${detail.em_rating eq '15세이상관람가' }">gr_15</c:when>
 													<c:when test="${detail.em_rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
 													<c:when test="${detail.em_rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
-											</span><span class="em_title">${detail.em_title}</span></strong><span class="sub_info1"> <span
+											</span>
+											<span class="em_title">${detail.em_title}</span></strong>
+											<span class="sub_info1"> <span
 												class="rate_info">예매율&nbsp;<em>0%</em></span> <span
 												class="star_info" style="cursor: pointer;">0</span>
 											</span>
