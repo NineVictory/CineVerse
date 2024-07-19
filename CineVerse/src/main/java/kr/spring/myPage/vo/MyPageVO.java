@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString(exclude = {"photo"})
 public class MyPageVO {
-	private long mem_num;
+	private Long mem_num;
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_id;
 	@NotBlank

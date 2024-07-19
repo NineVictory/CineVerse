@@ -142,6 +142,21 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.movieBookMarkList(map);
 	}
 
+	@Override
+	public void updateMembership(Long mem_num) {
+		myPageMapper.updateMembership(mem_num);
+	}
+
+	@Override
+	public void insertMembership(Long mem_num) {
+		myPageMapper.insertMembership(mem_num);
+	}
+
+	@Override
+	public void usePoint(Long mem_num) {
+		myPageMapper.usePoint(mem_num);
+	}
+
 
 	
 }

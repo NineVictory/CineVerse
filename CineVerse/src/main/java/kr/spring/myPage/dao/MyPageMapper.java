@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -53,7 +54,13 @@ public interface MyPageMapper {
 	public MyPageVO selectMembership(Long mem_num);
 	//구독중 2로 변경
 	@Update("UPDATE member SET mem_membership=2 WHERE mem_num=#{mem_num} AND mem_membership=1")
-	public void udpateMembership(Long mem_num);
+	public void updateMembership(Long mem_num);
+	
+	@Select("INSERT INTO membership_update(mu_num,mem_num,mu_type,mu_date) VALUES(membership_update_seq.nextval,#{mem_num},1,SYSDATE)")
+	public void insertMembership(Long mem_num);
+	
+	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num,ph_type,ph_payment) VALUES(point_history_seq.nextval,10000,SYSDATE,#{mem_num},1,'membership')")
+	public void usePoint(Long mem_num);
 	
 	
 	

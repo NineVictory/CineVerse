@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
@@ -37,4 +38,7 @@ public interface MyPageService {
 	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
 	public Integer movieBookMarkcnt(Long mem_num);
 	public List<MovieBookMarkVO> movieBookMarkList(Map<String, Object> map);
+	public void updateMembership(Long mem_num);
+	public void insertMembership(Long mem_num);
+	public void usePoint(Long mem_num);
 }
