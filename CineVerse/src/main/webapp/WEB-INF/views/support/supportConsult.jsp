@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/consult.form.js"></script>
 
 <!-- 1:1 문의 -->
 <div id="support_main" class="">
@@ -54,35 +58,22 @@
 					&nbsp;
 					<form:radiobutton path="consult_type" value="missing" />분실물
 					&nbsp;
-					<form:radiobutton path="consult_type" value="교환/환불" />교환/환불
+					<form:radiobutton path="consult_type" value="exchange" />교환/환불
 					&nbsp;
-					<form:input path="od_number" value="주문번호 select 변경하기" />
+					<div class="">
+						<%-- <form:label path="od_number" class="">주문번호</form:label> --%>
+						<form:select path="od_number" id="od_number" class="">
+							<option value="select" disabled selected>주문번호를 선택하세요</option>
+							<c:forEach var="order" items="${orderList}">
+								<form:option value="${order.order_num}">${order.od_number}</form:option>
+		            		</c:forEach>
+						</form:select>
+					</div>
+					
+					<%-- <form:input path="od_number" id="od_num_select" value="주문번호 select 변경하기" /> --%>
 				</div>
 			</div>
 			
-			<div class="flexbox-h form-items">
-				<div class="form-label p-center">영화관 선택</div>
-				<div class="p-center">
-
-					<form:radiobutton path="cinema" value="none" checked="checked"/>선택하지 않음
-					&nbsp;
-					<form:radiobutton path="cinema" value="selected" />선택함
-					&nbsp;
-					
-					<form:select path="c_num" class="">
-						<option value="select" disabled selected>지역선택</option>
-						<form:option value="1">1</form:option>
-	            		<form:option value="2">2</form:option>
-					</form:select>
-					
-					<form:select path="c_num" class="">
-						<option value="select" disabled selected>영화관 선택</option>
-						<form:option value="1">1</form:option>
-	            		<form:option value="2">2</form:option>
-					</form:select>
-
-				</div>
-			</div>
 			<div class="flexbox-h form-items">
 				<div class="form-label">제목&nbsp;<span class="font-red">*</span></div>
 				<div>

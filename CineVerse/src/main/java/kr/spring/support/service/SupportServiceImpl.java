@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.dao.SupportMapper;
 import kr.spring.support.vo.ConsultVO;
 
@@ -20,6 +21,11 @@ public class SupportServiceImpl implements SupportService{
 	@Override
 	public void insertConsult(ConsultVO consult) {
 		supportMapper.insertConsult(consult);
+	}
+
+	@Override
+	public List<OrdersVO> selectOdNumbersByMemNum(long mem_num) {
+		return supportMapper.selectOdNumbersByMemNum(mem_num);
 	}
 	
 	

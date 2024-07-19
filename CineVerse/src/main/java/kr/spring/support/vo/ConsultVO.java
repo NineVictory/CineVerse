@@ -27,12 +27,10 @@ public class ConsultVO {
 	
 	//테이블 컬럼 추가함
 	private String consult_type;
-	private String cinema;
 	private MultipartFile c_upload;
 	private String consult_file;
 	private String consult_ip;
 	
 	//조인
 	private long od_number;
-	private long c_num;
 }

@@ -3,9 +3,10 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.support.dao.SupportMapper">
+
 	<insert id="insertConsult" parameterType="consultVO">
-		INSERT INTO consult (consult_num,consult_title,consult_content,consult_ip,mem_num,consult_type,cinema,consult_filename) 
-				VALUES (consult_seq.nextval,#{consult_title},#{consult_content},#{consult_ip},#{mem_num},#{consult_type},#{cinema},#{consult_filename})
+		INSERT INTO consult (consult_num,consult_title,consult_content,consult_ip,mem_num,consult_type,consult_file, ) 
+				VALUES (consult_seq.nextval,#{consult_title},#{consult_content},#{consult_ip},#{mem_num},#{consult_type},#{consult_file, jdbcType=CLOB})
 	</insert>
 </mapper>							
 

@@ -1,5 +1,8 @@
 package kr.spring.support.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.board.service.BoardService;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.ConsultVO;
 import lombok.extern.slf4j.Slf4j;
@@ -58,16 +62,31 @@ public class SupportController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 		MemberVO db_member = memberService.selectCheckMember(user.getMem_id());
+		
+		db_member.setMem_phone(db_member.getMem_phone().replaceAll("(\\d{3})(\\d{4})(\\d{4})", "$1-****-$3"));
+
+		List<OrdersVO> order_list = new ArrayList<>();
+		order_list = supportService.selectOdNumbersByMemNum(user.getMem_num());
+		/* log.debug("주문번호 리스트*******" + order_list); */
+		
 		ModelAndView modelAndView = new ModelAndView("supportConsult");
-		
 		model.addAttribute("user", db_member);
-		
+		model.addAttribute("orderList", order_list);
 		return modelAndView;
 	}
 	
 	@PostMapping("/support/consult")
-	public String consultSubmit(@Valid ConsultVO consultVO, BindingResult result, Model model, HttpServletRequest request) {
+	public String consultSubmit(@Valid ConsultVO consultVO, BindingResult result, Model model, HttpServletRequest request, HttpSession session) {
 		log.debug("<<문의>> : " + consultVO);
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MemberVO db_member = memberService.selectCheckMember(user.getMem_id());
+		db_member.setMem_phone(db_member.getMem_phone().replaceAll("(\\d{3})(\\d{4})(\\d{4})", "$1-****-$3"));
+		List<OrdersVO> order_list = new ArrayList<>();
+		order_list = supportService.selectOdNumbersByMemNum(user.getMem_num());
+		model.addAttribute("user", db_member);
+		model.addAttribute("orderList", order_list);
+		
 		
 		if(result.hasErrors()) {
 			return "supportConsult";
