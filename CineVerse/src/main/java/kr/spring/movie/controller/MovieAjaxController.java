@@ -12,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieReviewfavVO;
+import kr.spring.movie.vo.MovieVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -259,4 +261,29 @@ public class MovieAjaxController {
 
 	    return mapJson;
 	}
+    @GetMapping("/movie/loadMoreMovies")
+    @ResponseBody
+    public Map<String, Object> loadMoreMovies(@RequestParam(defaultValue = "1") int pageNum,
+                                              @RequestParam(defaultValue = "8") int rowCount,
+                                              @RequestParam(defaultValue = "1") int movieorder,
+                                              String keyfield, String keyword) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("keyfield", keyfield);
+        map.put("keyword", keyword);
+
+        int count = movieService.selectMovieRowCount(map);
+
+        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, rowCount, 10, "movieList", "&movieorder=" + movieorder);
+        map.put("movieorder", movieorder);
+        map.put("start", page.getStartRow());
+        map.put("end", page.getEndRow());
+
+        List<MovieVO> movielist = movieService.selectMovieList(map);
+        Map<String, Object> result = new HashMap<>();
+        result.put("movielist", movielist);
+        result.put("count", count);
+
+        return result;
+    }
 }

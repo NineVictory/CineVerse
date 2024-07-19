@@ -60,39 +60,35 @@
 
 	 
 	 	 <!-- sql 태그와 include 태그를 이용해서 SQL문을 재사용 -->
-	 <sql id="movieSearch"> <!-- 검색할 떄 -->
-	 	<where>
-	 		<if test="m_status != null and m_status != ''"> <!-- status가 있을 때 where절과 카테고리값 생성 -->
-	 			m_status = #{m_status}
-	 		</if>
-	 		<!-- 검색어가 있을 때만 호출 -->
-	 		<if test="keyword !=null and keyword !=''">
-	 			And
-	 		</if>
-	 		<!-- 1:영화이름 -->
-	 		<if test="keyfield ==1">
+<sql id="movieSearch">
+    <where>
+        <if test="m_status != null and m_status != ''">
+            m_status = #{m_status}
+        </if>
+        <if test="keyword != null and keyword != ''">
+        	And
+        </if>
+            <if test="keyfield ==1">
 	 			m_name LIKE '%' || #{keyword} || '%'
 	 		</if>
-	 		<!-- 2:상영일 -->
-	 		<if test="keyfield ==2">
-	 			m_opendate LIKE '%' || #{keyword} || '%'
-	 		</if>
-	 		<!-- 3:제작사 -->
-	 		<if test="keyfield ==3">
-	 			m_companys LIKE '%' || #{keyword} || '%'
-	 		</if>
+        	<if test="keyfield ==2">
+	 			m_code IN (
+                        SELECT m_code
+                        FROM movie_actor
+                        WHERE actor LIKE '%' || #{keyword} || '%'
+                    )
 
-	 	</where>
-	 </sql>
+	 			
+	 		</if>   
+        
+    </where>
+</sql>
 	 <sql id="movieOrder"> <!-- 정렬할 때 -->
 	 	<if test="movieorder ==1">
 	 		ORDER BY m_code DESC
 	 	</if>
 	 	<if test="movieorder ==2">
 	 		ORDER BY bookmark_cnt DESC NULLS LAST
-	 	</if>
-	 	<if test="movieorder ==3">
-	 		ORDER BY m_opendate DESC NULLS LAST
 	 	</if>
 	 </sql>
 	 
@@ -103,35 +99,35 @@
 	 	FROM movie 
 	 	<include refid="movieSearch"></include>
 	 </select>
-	 <!-- 게시판 전체 목록/검색 목록 -->
-	 <select id="selectMovieList" parameterType="map" resultType="movieVO">
-	 
-	 
-	 	SELECT
-	 		*
-	 	FROM (SELECT
-	 			a.*,
-	 			rownum rnum
-	 		  FROM (SELECT
-	 		  		  m_code,
-	 		  		  <![CDATA[
-	 		  		  REPLACE(REPLACE(m_name,'<','&lt;'),'>','&gt;') m_name,
-	 		  		  ]]>  
-	 		  		  m_filename,
-	 		  		  m_opendate,
-	 		  		  m_companys,
-	 		  		  m_status,  
-	 		  		  m_content
-	 		  		FROM movie 
-	 		  		LEFT OUTER JOIN (SELECT COUNT (*) bookmark_cnt, m_code FROM movie_bookmark GROUP BY m_code) USING(m_code) <!-- bookmark_cnt는 알리아스 명칭임 이 괄호는 인라인 뷰 -->
-	 		  		<!-- JOIN member USING(mem_num) -->
-	 		  		<include refid="movieSearch"></include>
-	 		  		<include refid="movieOrder"></include>
-	 		  		)a) 
-	<![CDATA[
-	WHERE rnum >= #{start} AND rnum <= #{end}
-	]]>
-	</select>
+
+    <!-- 게시판 전체 목록/검색 목록 -->
+    <select id="selectMovieList" parameterType="map" resultType="MovieVO">
+        SELECT
+            *
+        FROM (SELECT
+                    a.*,
+                    rownum rnum
+                  FROM (SELECT
+                          m_code,
+                          <![CDATA[
+                          REPLACE(REPLACE(m_name,'<','&lt;'),'>','&gt;') m_name,
+                          ]]>  
+                          m_filename,
+                          m_opendate,
+                          m_companys,
+                          m_status,  
+                          m_content
+                        FROM movie 
+                        LEFT OUTER JOIN (SELECT COUNT (*) bookmark_cnt, m_code FROM movie_bookmark GROUP BY m_code) USING(m_code) <!-- bookmark_cnt는 알리아스 명칭임 이 괄호는 인라인 뷰 -->
+                        <!-- JOIN member USING(mem_num) -->
+                        <include refid="movieSearch"></include>
+                        <include refid="movieOrder"></include>
+                        )a) 
+        <![CDATA[
+        WHERE rnum >= #{start} AND rnum <= #{end}
+        ]]>
+    </select>
+
 	<!-- 영화 리뷰 등록 -->
 	<insert id="insertReview" parameterType="MovieReviewVO">
 		INSERT INTO movie_review(
