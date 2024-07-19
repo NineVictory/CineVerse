@@ -205,6 +205,8 @@ public class MyPageAjaxController {
 				mypageService.usePoint(user.getMem_num());
 				//포인트 갱신
 				memberService.totalPoint(user.getMem_num());
+				//멤버쿠폰에 디비에있는 쿠폰을 불러서 삽입
+				
 				mapJson.put("result", "success");
 			}
 			 

@@ -25,6 +25,7 @@
 					<c:if test="${point.ph_payment == 'kakaopay' }">카카오페이</c:if>
 					<c:if test="${point.ph_payment == 'tosspay' }">토스페이</c:if>
 					<c:if test="${point.ph_payment == 'goods' }">굿즈 구매</c:if>
+					<c:if test="${point.ph_payment == 'membership' }">멤버십 구독</c:if>
 					<c:if test="${point.ph_payment == '' }">영화 예매</c:if>
 				</div>
 				<div class="my_point_now">

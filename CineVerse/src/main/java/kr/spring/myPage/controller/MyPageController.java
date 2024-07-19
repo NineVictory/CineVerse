@@ -557,9 +557,7 @@ public class MyPageController {
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		
-		
-		
-		
+
 		model.addAttribute("member", member);
 		return "memberShipSub";
 	}
