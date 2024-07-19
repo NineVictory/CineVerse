@@ -55,6 +55,19 @@ body {
 	border-radius: 10px;
 }
 
+
+.add-address{
+	width: 200px;
+	height: 50px;
+	color: white;
+	text-align: center;
+	align-content: center;
+	margin: 0 auto;
+	margin-top: 40px;
+	background: #3F66ED;
+	border-radius: 10px;
+}
+
 .delete-btn{
 	margin-left: 20px;
 }
@@ -268,17 +281,6 @@ body {
 	margin-left: 34px;
 }
 
-.add-address{
-	width: 200px;
-	height: 50px;
-	color: white;
-	text-align: center;
-	align-content: center;
-	margin: 0 auto;
-	margin-top: 40px;
-	background: #3F66ED;
-	border-radius: 10px;
-}
 
 .pn{
 	overflow: hidden; 

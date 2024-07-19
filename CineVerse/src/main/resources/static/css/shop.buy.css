@@ -367,7 +367,13 @@ input[type="submit"] {
 }
 
 .add-address{
+	width: 70px;
+}
+
+.no-address{
 	width: 200px;
 	margin: 0 auto;
 	margin-top: 40px;
+	
 }
+	

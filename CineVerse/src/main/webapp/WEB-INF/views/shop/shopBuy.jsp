@@ -10,7 +10,7 @@
 		<!-- css 변경 필요 -->
 		<c:if test="${count==0}">
 	    	배송지 없으면 주문이 불가합니다.
-	    	<div class="add-address" onclick="location.href='${pageContext.request.contextPath}/myPage/addressList'">배송지 추가하러 가기</div>		
+	    	<div class="no-address" onclick="location.href='${pageContext.request.contextPath}/myPage/addressList'">배송지 추가하러 가기</div>		
 	    </c:if>
 	    <c:if test="${count>0}">
 		<h2>결제하기</h2>
