@@ -48,6 +48,11 @@ public class MovieServiceImpl implements MovieService {
 		
 		movie.setM_code(movieMapper.selectM_code()); 
 		movieMapper.insertMovie(movie);
+		
+	    log.debug("Inserting movie: {}", movie);
+	    log.debug("Inserted movie genre: {}", movie.getM_genre());
+		
+		
 		// movie_actor 테이블에 데이터 삽입
 	    MovieActorVO actor = new MovieActorVO();
 	    actor.setM_code(movie.getM_code());
@@ -61,10 +66,30 @@ public class MovieServiceImpl implements MovieService {
 	    movieMapper.insertMovieDirector(director);
 	    
 	    // movie_genre 테이블에 데이터 삽입
-	    MovieGenreVO genre = new MovieGenreVO();
-	    genre.setM_code(movie.getM_code());
-	    genre.setGenre(movie.getGenre());
-	    movieMapper.insertMovieGenre(genre);
+	    //MovieGenreVO genre = new MovieGenreVO();
+	    //genre.setM_code(movie.getM_code());
+	   // genre.setGenre(movie.getGenre());
+	    //movieMapper.insertMovieGenre(genre);
+	    
+        // movie_genre 테이블에 데이터 삽입
+		/*
+		 * String genres = movie.getGenre(); if (genres != null && !genres.isEmpty()) {
+		 * String[] genreArray = genres.split(","); for (String genre : genreArray) {
+		 * MovieGenreVO movieGenre = new MovieGenreVO();
+		 * movieGenre.setM_code(movie.getM_code()); movieGenre.setGenre(genre.trim());
+		 * movieMapper.insertMovieGenre(movieGenre); } }
+		 */
+	    
+	 // 영화 장르를 쉼표로 구분하여 movie_genre 테이블에 삽입
+	    if (movie.getM_genre() != null) {
+	        String[] genres = movie.getM_genre().split(",");
+	        for (String genreName : genres) {
+	            MovieGenreVO genre = new MovieGenreVO();
+	            genre.setM_code(movie.getM_code());
+	            genre.setGenre(genreName.trim());
+	            movieMapper.insertMovieGenre(genre);
+	        }
+	    }
 		
 	}
 

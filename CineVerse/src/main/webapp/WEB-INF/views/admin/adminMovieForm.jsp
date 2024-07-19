@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -35,6 +34,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('insert_form');
+    form.onsubmit = function() {
+        const contentTextarea = document.getElementById('m_content');
+        let content = contentTextarea.value;
+
+        // 정규식을 이용해 URL을 <video> 태그로 변환
+        const videoUrls = content.match(/https?:\/\/\S+\.mp4/g);
+        if (videoUrls) {
+            videoUrls.forEach(url => {
+                const videoTag = `<video width="320" height="240" controls><source src="${url}" type="video/mp4">Your browser does not support the video tag.</video>`;
+                content = content.replace(url, videoTag);
+            });
+        }
+
+        contentTextarea.value = content;
+    };
+});
 </script>
 <div class="page-container">
 	<h2>영화 등록</h2>
@@ -63,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				<form:input path="m_upload" id="m_upload" type="file" cssClass="input-check" accept="image/gif,image/png,image/jpeg"/>
 			</li>
 			<li>
-				<form:label path="genre">장르명</form:label>
-				<form:input path="genre" id="genre" cssClass="input-check"/>
+				<form:label path="m_genre">장르명</form:label>
+				<form:input path="m_genre" id="m_genre" cssClass="input-check"/>
 			</li>
 			<li>
 				<form:label path="director">감독이름</form:label>
@@ -74,10 +91,31 @@ document.addEventListener('DOMContentLoaded', function() {
 				<form:label path="actor">영화배우</form:label>
 				<form:input path="actor" id="actor" cssClass="input-check"/>
 			</li>
+            <li>
+				<form:label path="plot">영화 줄거리</form:label>
+				<form:textarea path="plot" id="plot" rows="5" cols="30" cssClass="input-check"/>
+				<script>
+					function MyCustomUploadAdapterPlugin(editor) {
+						editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+							return new UploadAdapter(loader);
+						}
+					}
+					ClassicEditor
+						.create(document.querySelector('#plot'), {
+							extraPlugins: [MyCustomUploadAdapterPlugin]
+						})
+						.then(editor => {
+							window.editor = editor;
+						})
+						.catch(error => {
+							console.error(error);
+						});
+				</script> 
+			</li>
 			<li>
 				<form:label path="m_content">영화소개</form:label>
 				<form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/>
-				<script>
+<!-- 				<script>
 					function MyCustomUploadAdapterPlugin(editor) {
 						editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
 							return new UploadAdapter(loader);
@@ -93,7 +131,51 @@ document.addEventListener('DOMContentLoaded', function() {
 						.catch(error => {
 							console.error(error);
 						});
-				</script> 
+				</script>  -->
+    <script>
+        function MyCustomUploadAdapterPlugin(editor) {
+            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                return new UploadAdapter(loader);
+            };
+        }
+        
+        ClassicEditor
+            .create(document.querySelector('#m_content'), {
+                extraPlugins: [MyCustomUploadAdapterPlugin],
+                // HTML 태그 허용 설정 추가
+                htmlSupport: {
+                    allow: [
+                        {
+                            name: 'video',
+                            attributes: true,
+                            classes: true,
+                            styles: true
+                        },
+                        {
+                            name: 'source',
+                            attributes: true,
+                            classes: true,
+                            styles: true
+                        },
+                        {
+                            name: 'oembed',
+                            attributes: true,
+                            classes: true,
+                            styles: true
+                        }
+                    ]
+                },
+                mediaEmbed: {
+                    previewsInData: true
+                }
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>				
 			</li>
 		</ul>
 		<div class="btn_display_set">

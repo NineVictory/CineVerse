@@ -10,9 +10,11 @@
             m_name,
             m_opendate,
             m_companys,
-            m_status,
+            m_status,	
             m_filename,
-            m_content
+            plot,
+            m_content,
+            m_genre
         ) VALUES (
             #{m_code},
             #{m_name},
@@ -20,7 +22,9 @@
             #{m_companys},
             #{m_status},
             #{m_filename},
-            #{m_content}
+            #{plot},
+            #{m_content},
+            #{m_genre}
         )
     </insert>
 

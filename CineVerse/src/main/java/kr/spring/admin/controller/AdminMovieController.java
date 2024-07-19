@@ -66,9 +66,11 @@ public class AdminMovieController {
          movieVO.setM_filename(FileUtil.createFile(request, movieVO.getM_upload()));
          //영화등록
          
+         log.debug("Before inserting movie: {}", movieVO.getM_genre());
+         
           movieService.insertMovie(movieVO); 
           
-         
+          log.debug("After inserting movie: {}", movieVO.getM_genre());
          
          
          //View 메시지 처리

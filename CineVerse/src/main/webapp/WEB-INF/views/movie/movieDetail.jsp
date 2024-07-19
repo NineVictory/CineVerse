@@ -44,7 +44,12 @@
             <!-- 영화정보 -->
             <div class="movie-info">
                 <ul>
-                    <li><b>장르 : </b> ${movie.genre}</li>
+                	<c:if test="${empty movie.m_genre}">
+                	<li><b>장르 : </b> 없음</li>
+                	</c:if>
+                	<c:if test="${!empty movie.m_genre}">
+                	<li><b>장르 : </b> ${movie.m_genre}</li>
+                	</c:if>
                     <li><b>감독 : </b> ${movie.director}</li>
                     <li><b>영화배우/출연 : </b> ${movie.actor}</li>
                     <li><b>개봉 :</b>${movie.m_opendate}</li>
@@ -64,14 +69,18 @@
         <span class="detail-review">평점/리뷰</span>
         <hr class="menu-hr" size="1" width="100%" noshade="noshade">
     </div>
-    <div class="movie-content">
-        ${movie.m_content}
-    </div>
-
+	<div class="menu-title">주요정보</div>
+	<div class="movie-plot">
+	${movie.plot}
+	</div>
     <!-- 영화 예고편 -->
     <div class="menu-title">트레일러</div>
-    <div class="movie-teaser">
+ <!--    <div class="movie-teaser">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/EiCmnIaj4u8?si=x1eQENSmEMIMFaxh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div> -->
+    <div class="movie-content">
+        <iframe src="${movie.m_content}"></iframe>
+        <iframe src="https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK059016_P02.mp4" width="1000" height="800"></iframe>
     </div>
 
 <!-- 별점 및 후기 -->            
