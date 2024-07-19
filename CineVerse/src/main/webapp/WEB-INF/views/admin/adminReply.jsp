@@ -41,8 +41,9 @@
 						<c:if test="${!empty re.cb_num}">
 						<td class="mem-data">${re.cb_num}</td>
 						<td class="mem-data">${re.mem_num}</td>
-						<td class="mem-data">${re.cb_content}</td>
-						<td class="mem-data">${re.cb_reg_date}</td>
+						<td class="mem-data">${re.cc_title}</td>						
+						<td class="mem-data">${re.cc_content}</td>
+						<td class="mem-data">${re.cc_reg_date}</td>
 						
 						<c:if test="${!empty re.cc_report}">
 							<td class="mem-data">${re.cc_report}</td>
@@ -53,13 +54,13 @@
 						<c:if test="${!empty re.cc_report}">
 							<td class="mem-data">${re.re_hit}</td>
 						</c:if>
-						<c:if test="${empty re.cc__report}">
+						<c:if test="${empty re.cc_report}">
 							<td class="mem-data">0</td>
 						</c:if>
 
 						</c:if>
 						<td class="button2"><input type="button" value="삭제"
-							onclick="deleteCommunity(${re.re_num})" /></td>
+							onclick="deleteReply(${re.mem_num})" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>

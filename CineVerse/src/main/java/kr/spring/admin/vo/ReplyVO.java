@@ -13,7 +13,7 @@ public class ReplyVO {
 	private long cc_num;
 	private long mem_num;
 	private long cb_num;
-	private String cn_content;
+	private String cc_content;
 	private Date cc_reg_date;
 	private long cc_report;
 
