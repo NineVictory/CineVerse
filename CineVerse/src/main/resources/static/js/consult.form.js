@@ -19,6 +19,8 @@ $(function(){
     }
 
 	$('#qna_register').submit(function(){
-		
+		if ($('input[name="consult_type"]:checked').val() === 'exchange') {
+			$('#od_number').val()
+    }
 	});
 });
