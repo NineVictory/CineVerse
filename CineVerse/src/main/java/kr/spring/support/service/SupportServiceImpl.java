@@ -38,6 +38,11 @@ public class SupportServiceImpl implements SupportService{
 		return supportMapper.selectOdNumbersByMemNum(mem_num);
 	}
 
+	@Override
+	public ConsultVO selectConsult(long consult_num) {
+		return supportMapper.selectConsult(consult_num);
+	}
+
 	
 	
 	

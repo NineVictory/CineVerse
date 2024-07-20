@@ -48,6 +48,9 @@
 		]]>
 	</select>
 	
+	<select id="selectConsult" parameterType="long" resultType="consultVO">
+		SELECT c.*, o.od_number FROM consult c LEFT OUTER JOIN orders o ON c.order_num=o.order_num WHERE c.consult_num=#{consult_num}
+	</select>
 	
 </mapper>							
 

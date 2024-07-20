@@ -13,6 +13,8 @@ public interface SupportService {
 
 	public void insertConsult(ConsultVO consult);
 	public List<OrdersVO> selectOdNumbersByMemNum(long mem_num);
+	
+	public ConsultVO selectConsult(long consult_num);
 	/*
 	 * public ConsultVO selectConsult(Long consult_num); public void
 	 * deleteConsult(Long consult_num);

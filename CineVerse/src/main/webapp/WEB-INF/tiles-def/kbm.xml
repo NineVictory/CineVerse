@@ -79,7 +79,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/support/supportConsultForm.jsp"/>
 	</definition>
 	
-	
+	<definition name="consultDetail" extends="supportMain">
+		<put-attribute name="title" value="1:1문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/consultDetail.jsp"/>
+	</definition>
 	
 	
 	

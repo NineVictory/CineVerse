@@ -26,6 +26,10 @@
             if(currentPath === '/support/consultForm'){
             	$('#cl').addClass('support_nav_active');
             }
+            if (currentPath.includes('/support/consultDetail')){
+            	$('#cl').addClass('support_nav_active');
+            }
+            
         });
         
         $('.supportNav a').click(function(event) {
@@ -37,6 +41,9 @@
 	        	$(this).parent().addClass('support_nav_active');
 	        }
             if(currentPath === '/support/consultForm'){
+            	$('#cl').addClass('support_nav_active');
+            }
+            if (currentPath.includes('/support/consultDetail')){
             	$('#cl').addClass('support_nav_active');
             }
             

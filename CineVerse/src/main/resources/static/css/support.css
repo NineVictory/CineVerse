@@ -144,7 +144,7 @@ li.support_nav{
 	width:930px;
 	font-size:15px;
 }
-.faq-table td, .news-table td, .qna-table td{
+.faq-table td, .news-table td, .qna-table td, .qna-table th{
 	border-top:1px solid #BEBABA;
 	padding:8px 7px;
 }
@@ -218,17 +218,23 @@ form#qna_register{
 }
 .form-label{
 	width:100px;
-	margin-right:20px;
+
 }
 .form-items{
 	 border-bottom:1px solid #edebeb;
 	 padding:20px 0;
 }
-input#consult_title, textarea#consult_content{
-	width:850px;
+
+input#consult_title{
+	width:790px;
 	padding:7px;
+} 
+.consult-form-title-container{
+	width:850px;
 }
 textarea#consult_content{
+	width:850px;
+	padding:7px;
 	height:170px;
 	overflow:auto;
 	resize:none;
@@ -283,6 +289,55 @@ textarea#consult_content{
 .page-div{
 	margin-top:30px;
 }
+
+
+
+
+/*문의디테일*/
+.consultDetail-main{
+	margin-top:50px;
+}
+.c-tc{
+	margin-top:5px;
+}
+.c-label{
+	width:100px;
+	margin-right:15px;
+}
+.c-category > *{
+	color:#808080;
+	font-size:15px;
+}
+.ctype{
+	color:#696969;
+}
+.corder-num{
+	color:#000;
+}
+.cquestion{
+	min-height:300px;
+}
+.canswer{
+	min-height:250px;
+}
+.ctitle{
+	display:flex;
+	align-items: center;
+	gap:5px;
+}
+.ccontent{
+	padding:7px;
+}
+.ccon{
+	display:flex;
+	align-items: center;
+}
+.c-hr{
+	margin:5px 0;
+}
+
+
+
 
 /*버튼*/
 .default-btn3{
@@ -362,6 +417,13 @@ form#news_search_form{
 #news_search_form input{
 	width:300px;
 	margin:0 3px;
+}
+
+
+
+.toList{
+	text-align:center;
+	margin-top:50px;
 }
 
 

@@ -23,63 +23,52 @@
 	</div>
 	
 	
-	<div class="문의상세">
+	<div class="consultDetail-main">
 	
-		<div class="flexbox-h form-items">
-			<div class="form-label p-center">문의유형&nbsp;</div>
-			<div class="p-center">
-
+		<div class="c-category">
+			<div>
+			<span class="c-label">문의유형</span>
+			<span class="ctype">
 				<c:if test="${consult.consult_type == 'inquiry'}">문의</c:if>
 				<c:if test="${consult.consult_type == 'dissatisfaction'}">불만</c:if>
 				<c:if test="${consult.consult_type == 'compliment'}">칭찬</c:if>
 				<c:if test="${consult.consult_type == 'proposal'}">제안</c:if>
 				<c:if test="${consult.consult_type == 'missing'}">분실물</c:if>
 				<c:if test="${consult.consult_type == 'exchange'}">교환/환불</c:if>
-		
-		
-				<div class="">
-					<%-- <form:label path="od_number" class="">주문번호</form:label> --%>
-					<form:select path="order_num" id="order_num" class="">
-						<option value="select" disabled selected>주문번호를 선택하세요</option>
-						<c:forEach var="order" items="${orderList}">
-							<form:option value="${order.order_num}">${order.od_number}</form:option>
-	            		</c:forEach>
-					</form:select>
-				</div>
-				
-				<%-- <form:input path="od_number" id="od_num_select" value="주문번호 select 변경하기" /> --%>
+			</span>
 			</div>
+			<c:if test="${!empty consult.od_number}">
+			<span class="c-label">주문번호</span> <a href="${pageContext.request.contextPath}/myPage/boughtDetail?order_num=${consult.order_num}" class="corder-num">${consult.od_number}</a>
+			</c:if>	
 		</div>
 		
-		<div class="flexbox-h form-items">
-			<div class="form-label">제목&nbsp;<span class="font-red">*</span></div>
-			<div>
-				<form:input path="consult_title" class="custom-title" placeholder="제목을 입력해 주세요"/>
-				<form:errors path="consult_title" cssClass="error-color"/>
-			</div>
-		</div>
-		<div class="flexbox-h form-items">
-			<div class="form-label">내용&nbsp;<span class="font-red">*</span></div>
-			<div>
-			<form:textarea path="consult_content" placeholder="※문의 내용 및 첨부파일 내에 개인정보(신용카드번호, 계좌번호, 주민번호 등)가 포함되지 않도록 유의하시기 바랍니다.
-※이벤트 굿즈 재고 문의 안내
-  경품 특성상 실시간으로 소진되어 재고 안내가 어려운 관계로 문의 글에 대한 답변이 어렵습니다."/>
-			<form:errors path="consult_content" cssClass="error-color"/>
-			</div> 
-		</div>
-		<div class="flexbox-h form-items">
-			<div class="form-label">첨부파일</div>
-			<div class="file-info">
-				<form:input path="c_upload" type="file"/>
-				<form:errors path="consult_file" cssClass="error-color"/>
-				<div><b>*첨부가능 확장자</b>: 이미지(jpg,gif,png,jpeg), 워드문서(hwp,ppt,pptx,xls,xlsx,doc,docx,zip,pdf,txt)</div>
-			</div>
-		</div>
-	</div>
-	<div class="flexbox-h side btn-container">
-		<input type="button" value="목록" class="default-btn4" onclick="location.href='consultList'">
-		<form:button class="c-submit-btn">등록</form:button>
-	</div>
-
+		<div class="c-tc">
+			<div class="cquestion">
+				<div class="ctitle"><img src="${pageContext.request.contextPath}/images/kbm/question_icon.png" width="25px;" height="24px;"><h3 style="display:inline-block;">${consult.consult_title}</h3></div>
 	
+				<hr size="1" width="100%" class="c-hr">
+				
+				<div class="ccontent">
+					<c:if test="${!empty consult.consult_file}">
+					<div><img src="${pageContext.request.contextPath}/upload/${consult.consult_file}" style="max-height:300px;"></div>
+					</c:if>
+					${consult.consult_content}
+				</div>
+			</div>
+			
+			<c:if test="${!empty consult.consult_answer}">
+			<div class="canswer">
+				<div class="ccon"><img src="${pageContext.request.contextPath}/images/kbm/arrow.png" width="30px;" height="30px;"><h3 style="display:inline-block;">답변</h3></div>
+				<hr size="1" width="100%" class="c-hr">
+				<div class="ccontent">${consult.consult_answer}</div>
+			</div>
+			</c:if>
+			
+			<hr size="1" width="100%" class="c-hr">
+			
+			<div class="toList">
+				<input type="button" value="목록" class="default-btn4" onclick="location.href='consultList'">
+			</div>
+		</div>
+	</div>
 </div>

@@ -76,14 +76,14 @@
 			
 			<div class="flexbox-h form-items">
 				<div class="form-label">제목&nbsp;<span class="font-red">*</span></div>
-				<div>
-					<form:input path="consult_title" class="custom-title" placeholder="제목을 입력해 주세요"/>
+				<div class="consult-form-title-container">
+					<div class="flexbox-h side"><form:input path="consult_title" class="custom-title" placeholder="제목을 입력해 주세요"/><span class="title-cnt">(0/55)</span></div>
 					<form:errors path="consult_title" cssClass="error-color"/>
 				</div>
 			</div>
 			<div class="flexbox-h form-items">
 				<div class="form-label">내용&nbsp;<span class="font-red">*</span></div>
-				<div>
+				<div class="flexbox-p">
 				<form:textarea path="consult_content" placeholder="※문의 내용 및 첨부파일 내에 개인정보(신용카드번호, 계좌번호, 주민번호 등)가 포함되지 않도록 유의하시기 바랍니다.
 ※이벤트 굿즈 재고 문의 안내
   경품 특성상 실시간으로 소진되어 재고 안내가 어려운 관계로 문의 글에 대한 답변이 어렵습니다."/>
@@ -93,9 +93,9 @@
 			<div class="flexbox-h form-items">
 				<div class="form-label">첨부파일</div>
 				<div class="file-info">
-					<form:input path="c_upload" type="file"/>
+					<form:input path="c_upload" type="file" accept="image/jpg, image/jpeg, image/png imgage/gif" />
 					<form:errors path="consult_file" cssClass="error-color"/>
-					<div><b>*첨부가능 확장자</b>: 이미지(jpg,gif,png,jpeg), 워드문서(hwp,ppt,pptx,xls,xlsx,doc,docx,zip,pdf,txt)</div>
+					<div><b>*첨부가능 확장자</b>: 이미지(jpg,gif,png,jpeg)</div> <%--, 워드문서(hwp,ppt,pptx,xls,xlsx,doc,docx,zip,pdf,txt) --%>
 				</div>
 			</div>
 		</div>

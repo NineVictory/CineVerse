@@ -1,5 +1,6 @@
 package kr.spring.support.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,12 +20,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.board.vo.BoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.ConsultVO;
+import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -92,7 +96,30 @@ public class SupportController {
 		return "supportConsultList";
 	}
 	
+	//문의 글상세
+	@GetMapping("/support/consultDetail")
+	public String process(@RequestParam("consult_num") long consult_num, Model model, HttpServletRequest request, HttpSession session) {
+		log.debug("<<consult_num>>*************" + consult_num);
+		
+		ConsultVO consult = supportService.selectConsult(consult_num);
+		log.debug("<<consult>>*************" + consult);
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MemberVO member = memberService.selectCheckMember(user.getMem_id());
+		if(consult.getMem_num() != member.getMem_num()) {
+			model.addAttribute("message", "타인의 문의글은 볼 수 없습니다.");
+			model.addAttribute("url", request.getContextPath() + "/support/consultList");
+			return "common/resultAlert";
+		}
+		
+		//제목에 태그를 허용하지 않음
+		consult.setConsult_title(StringUtil.useNoHTML(consult.getConsult_title()));
+		model.addAttribute("user", member);
+		model.addAttribute("consult", consult);
+	    return "consultDetail";
+	}
 	
+	
+	//1:1문의폼
 	@GetMapping("/support/consultForm")
 	public ModelAndView consultForm(Model model, HttpSession session) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
@@ -112,7 +139,7 @@ public class SupportController {
 	}
 	
 	@PostMapping("/support/consultForm")
-	public String consultSubmit(@Valid ConsultVO consultVO, BindingResult result, Model model, HttpServletRequest request, HttpSession session) {
+	public String consultSubmit(@Valid ConsultVO consultVO, BindingResult result, Model model, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
 		log.debug("<<문의>> : " + consultVO);
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
@@ -134,6 +161,8 @@ public class SupportController {
 		 * if("select".equals(consultVO.getOrder_num())) { consultVO.setOrder_num(null);
 		 * }
 		 */
+		consultVO.setConsult_file(FileUtil.createFile(request, 
+                consultVO.getC_upload()));
 		supportService.insertConsult(consultVO);
 		
 		model.addAttribute("message", "문의 등록 완료");

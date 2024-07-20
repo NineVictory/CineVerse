@@ -36,4 +36,18 @@ $(function(){
 			return false;
     	}*/
 	});
+	
+	titleLength = $('.custom-title').val().length;
+	$('.title-cnt').text('(' + titleLength + '/55)');
+	
+	$(document).on('keyup','.custom-title',function(){
+		let inputL = $(this).val().length;
+		if(inputL > 55){
+			$(this).val($(this).val().substring(0,55));
+		}else{
+			let remain = '(' + inputL + '/55)';
+			$('.title-cnt').text(remain);
+		}
+	});
+	
 });
