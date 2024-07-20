@@ -10,6 +10,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.vo.MyPageVO;
 
@@ -41,4 +42,7 @@ public interface MyPageService {
 	public void updateMembership(Long mem_num);
 	public void insertMembership(Long mem_num);
 	public void usePoint(Long mem_num);
+	public void insertNewMemCoupon(CouponVO coupon);
+	public List<Long> selectInitialCoupons();
+	public CouponVO selectMembershipSub(Long mem_num);
 }

@@ -23,6 +23,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
@@ -556,8 +557,9 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		CouponVO coupon = mypageService.selectMembershipSub(user.getMem_num());
 		
-
+		model.addAttribute("coupon",coupon);
 		model.addAttribute("member", member);
 		return "memberShipSub";
 	}

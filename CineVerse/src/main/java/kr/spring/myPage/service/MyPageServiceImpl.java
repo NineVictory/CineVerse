@@ -11,6 +11,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.myPage.vo.MyPageVO;
@@ -155,6 +156,21 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public void usePoint(Long mem_num) {
 		myPageMapper.usePoint(mem_num);
+	}
+
+	@Override
+	public void insertNewMemCoupon(CouponVO coupon) {
+		myPageMapper.insertNewMemCoupon(coupon);
+	}
+
+	@Override
+	public List<Long> selectInitialCoupons() {
+		return myPageMapper.selectInitialCoupons();
+	}
+
+	@Override
+	public CouponVO selectMembershipSub(Long mem_num) {
+		return myPageMapper.selectMembershipSub(mem_num);
 	}
 
 

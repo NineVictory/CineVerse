@@ -34,7 +34,7 @@
 				</div>
             </div>
             <div class="review_fav_date">
-                <span>이미지</span> <span>${board.fav_cnt}</span> | 
+                 <span class="favCount"><img src="${pageContext.request.contextPath}/images/like01.png"width="17"></span> <span>${board.fav_cnt}</span> | 
                 <span>
                     <c:choose>
                         <c:when test="${!empty board.cb_modify_date}">${board.cb_modify_date}</c:when>

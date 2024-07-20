@@ -18,7 +18,9 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.service.BoardService;
 import kr.spring.board.vo.BoardBookmarkVO;
 import kr.spring.board.vo.BoardFavVO;
+import kr.spring.board.vo.BoardVO;
 import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieBookMarkVO;
@@ -191,7 +193,6 @@ public class MyPageAjaxController {
 			mapJson.put("result", "logout");
 		}else {
 			
-		
 			MyPageVO member = mypageService.selectMember(user.getMem_num());
 			int point = member.getPoint();
 			if(point < 10000) {
@@ -201,11 +202,23 @@ public class MyPageAjaxController {
 				mypageService.updateMembership(user.getMem_num());
 				//멤버십 내역 히스토리
 				mypageService.insertMembership(user.getMem_num());
+				
+				// 초기 쿠폰 리스트 조회
+		        List<Long> initialCoupons = mypageService.selectInitialCoupons();
+		        
+		        //멤버쿠폰에 디비에있는 쿠폰을 불러서 삽입
+		        for (Long coupon_num : initialCoupons) {
+		        	CouponVO coupon = new CouponVO();
+		            coupon.setMem_num(mypage.getMem_num());
+		            coupon.setCoupon_num(coupon_num);
+		            log.debug("Inserting coupon: " + coupon); 
+		            mypageService.insertNewMemCoupon(coupon);
+		        }
+				
 				//포인트 절감(포인트 히스토리)
 				mypageService.usePoint(user.getMem_num());
 				//포인트 갱신
 				memberService.totalPoint(user.getMem_num());
-				//멤버쿠폰에 디비에있는 쿠폰을 불러서 삽입
 				
 				mapJson.put("result", "success");
 			}
@@ -214,5 +227,71 @@ public class MyPageAjaxController {
 		return mapJson;
 	}
 	
+	//게시글 삭제
+	@PostMapping("/myPage/deleteCBoard")
+	@ResponseBody
+	public Map<String, Object> deleteCBoard(Long cb_num,Long mem_num,HttpSession session){
+		log.debug("<<게시글 삭제>> : " +cb_num);
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {
+			mapJson.put("result", "logout");
+		}else if(user != null && user.getMem_num() == mem_num) {
+			boardService.deleteBoard(cb_num);	
+			mapJson.put("result", "success");
+		}else {
+			mapJson.put("result", "wrongAccess");
+		}
+		return mapJson;
+	}
+	
+	//게시글 댓글
+	@PostMapping("/myPage/deleteCBoardResponse")
+	@ResponseBody
+	public Map<String, Object> deleteCBoardResponse(Long cc_num, Long te_num, Long mem_num, HttpSession session) {
+	    log.debug("<<댓글 삭제>> : " + cc_num);
+	    log.debug("<<답글 삭제>> : " + te_num);
+	    Map<String, Object> mapJson = new HashMap<>();
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    if (user == null) {
+	        mapJson.put("result", "logout");
+	    } else if (user != null && user.getMem_num()==mem_num) {
+	        if (te_num != null && cc_num == null) {
+	            boardService.deleteResponse(te_num);
+	        }
+	        else if (cc_num != null && te_num == null) {
+	            boardService.deleteComment(cc_num);
+	        }
+	        else  {//(cc_num != null && te_num != null)
+	        	boardService.deleteResponse(te_num);
+	            boardService.deleteComment(cc_num);
+	        }
+	        mapJson.put("result", "success");
+	    } else {
+	        mapJson.put("result", "wrongAccess");
+	    }
+	    return mapJson;
+	}
+
+	//양도 게시글 삭제
+	@PostMapping("/myPage/deleteAboardWrite")
+	@ResponseBody
+	public Map<String, Object> deleteAboardWrite(Long ab_num,Long mem_num,HttpSession session){
+		log.debug("<<게시글 삭제>> : " +ab_num);
+		
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user==null) {
+			mapJson.put("result", "logout");
+		}else if(user.getMem_num() != mem_num) {
+			mapJson.put("result", "wrongAccess");
+		}else {
+			assignService.ab_deleteBoard(ab_num);
+			mapJson.put("result", "success");
+		}
+		
+		return mapJson;
+	}
 	
 }

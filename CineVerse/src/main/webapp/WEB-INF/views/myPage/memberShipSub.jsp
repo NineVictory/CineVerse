@@ -28,10 +28,7 @@
             <div class="membership_coupon">벌스샵 쿠폰</div>
             </div>
             
-            <div class="coupon_ship1">
-             <div class="check"><img src="${pageContext.request.contextPath}/images/like01.png"width="17"></div>
-            <div class="membership_coupon">포토플레이 쿠폰</div>
-            </div>
+            
             
             </div>
             <div class="sub_left">
@@ -41,6 +38,7 @@
             </c:if>
             <c:if test="${member.mem_membership==2}">
             	<input type="button" class="sub_btn_2" value="구독중">
+            	<div class="mu_date">${coupon.mu_date}</div>
             </c:if>
             
             </div>
