@@ -78,10 +78,18 @@ public class MovieController {
 	    model.addAttribute("count", count);
 	    model.addAttribute("movielist", movielist);
 	    model.addAttribute("page", page.getPage());
-
+	    
+	    // 장르 목록 추가
+	    List<String> genres = movieService.selectDistinctGenres();
+	    model.addAttribute("genres", genres);
+	    
 	    return "movieList";
 	}
-
+    @GetMapping("/movie/filterMoviesByGenres")
+    @ResponseBody
+    public List<MovieVO> filterMoviesByGenres(@RequestParam("genres") String[] genres) {
+        return movieService.filterMoviesByGenres(Arrays.asList(genres));
+    }
 	
 	/*=======================
 	 * 영화 상세

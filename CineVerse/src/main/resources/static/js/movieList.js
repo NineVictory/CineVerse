@@ -2,7 +2,8 @@ $(document).ready(function() {
     let currentPage = 1;
     const rowCount = 8;
     const displayedMovies = new Set();
-
+	const selectedGenres = new Set();
+	
     // 상영 중인 영화 필터링
     $("#statusCheckbox").change(function() {
         var status = $(this).is(':checked') ? 1 : '';
@@ -88,6 +89,94 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 console.error("Error loading more movies:", error);
+            }
+        });
+    }
+ /*       // 장르 선택
+    $('.genre-checkbox').change(function() {
+        if ($(this).is(':checked')) {
+            selectedGenres.add($(this).val());
+        } else {
+            selectedGenres.delete($(this).val());
+        }
+        filterMoviesByGenres();
+    });
+
+    // 장르로 영화 필터링
+    function filterMoviesByGenres() {
+        $.ajax({
+            url: '/movie/filterMovies',
+            type: 'GET',
+            data: { genres: Array.from(selectedGenres) },
+            dataType: 'json',
+            success: function(response) {
+                $("#movieListContainer ul.movie-list").empty();
+                response.forEach(function(movie) {
+                    let html = `
+                        <li class='movie'>
+                            <img alt='영화1' src='/upload/${movie.m_filename}' onclick="location.href='movieDetail?m_code=${movie.m_code}'">
+                            <p><a href='movieDetail?m_code=${movie.m_code}'><b>${movie.m_name}</b></a></p>
+                            <div class='bookAopen'>
+                                <div>예매율 34.1% | 개봉일 ${movie.m_opendate}</div>
+                            </div>
+                            <div class='movie-button'>
+                                <div class='movie-fav-button-detail'>
+                                    <img class='output_bookMark' data-num='${movie.m_code}' src='/images/heart01.png'>
+                                    <span class='output_mfcount'></span>
+                                </div>
+                                <div class='movie-reservation-button-list'>예매하기</div>
+                            </div>
+                        </li>`;
+                    $("#movieListContainer ul.movie-list").append(html);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error filtering movies:', error);
+            }
+        });
+    }*/
+   // 장르 체크박스 클릭 이벤트
+    $('.genre-checkbox').change(function() {
+        let genre = $(this).val();
+        if ($(this).is(':checked')) {
+            selectedGenres.add(genre);
+        } else {
+            selectedGenres.delete(genre);
+        }
+        filterMoviesByGenres();
+    });
+
+    // 장르로 영화 필터링
+    function filterMoviesByGenres() {
+        $.ajax({
+            url: '/movie/filterMoviesByGenres',
+            type: 'GET',
+            traditional: true,  // 이 옵션을 사용하여 배열 형태의 데이터를 전송
+            data: { genres: Array.from(selectedGenres) },
+            dataType: 'json',
+            success: function(response) {
+                $("#movieListContainer ul.movie-list").empty();
+                response.forEach(function(movie) {
+                    let html = `
+                        <li class='movie'>
+                            <img alt='영화1' src='/upload/${movie.m_filename}' onclick="location.href='movieDetail?m_code=${movie.m_code}'">
+                            <p><a href='movieDetail?m_code=${movie.m_code}'><b>${movie.m_name}</b></a></p>
+                            <div class='bookAopen'>
+                                <div>예매율 34.1% | 개봉일 ${movie.m_opendate}</div>
+                            </div>
+                            <div class='movie-button'>
+                                <div class='movie-fav-button-detail'>
+                                    <img class='output_bookMark' data-num='${movie.m_code}' src='/images/heart01.png'>
+                                    <span class='output_mfcount'></span>
+                                </div>
+                                <div class='movie-reservation-button-list'>예매하기</div>
+                            </div>
+                        </li>`;
+                    $("#movieListContainer ul.movie-list").append(html);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error filtering movies:', error);
             }
         });
     }

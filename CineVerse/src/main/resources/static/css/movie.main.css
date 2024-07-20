@@ -66,7 +66,7 @@ input[type="submit"] {
     cursor: pointer;
     position: absolute;
     top: 145px;
-    left: 770px;
+    left: 740px;
     transform: translateY(-50%); 
     background-image: url('${pageContext.request.contextPath}/images/search_icon.png');
     background-size: contain; 
@@ -81,7 +81,8 @@ input[type="search"]::placeholder {
 .movie-list-title{
 	position: relative;
     top: 100px; /* 필요에 따라 조정 */
-   	right: 150px; /* 필요에 따라 조정 */
+   	left: 220px; /* 필요에 따라 조정 */
+   	width:200px;
 }
 .select-wrapper {
     position: relative;
@@ -91,7 +92,8 @@ input[type="search"]::placeholder {
 .select-list-checkbox{
 	position: relative;
 	  top: 20px; /* 필요에 따라 조정 */
-   	left: 360px; 
+   	left: 600px;
+   	width:250px; 
    	
 }
 .select-wrapper select {
