@@ -9,8 +9,8 @@ $(document).ready(function() {
         location.href = '/movie/movieList?status=' + status;
     });
 
-    // 최신순, 북마크순 체크박스 상태 관리
-    $("input[name='movieorder']").change(function(){
+   // 최신순, 북마크순 체크박스 상태 관리
+    $("input[name='movieorder']").change(function() {
         var selectedCheckboxes = $("input[name='movieorder']:checked");
 
         if (selectedCheckboxes.length > 1) {
@@ -20,12 +20,13 @@ $(document).ready(function() {
 
         // 기본 정렬 값 설정
         var movieorder = $("input[name='movieorder']:checked").val() || 1;
+        console.log('Selected movieorder:', movieorder);  // 디버그 로그 추가
 
-        location.href = '/movie/movieList?keyfield=' + $('#keyfield').val() + '&keyword=' + $('#keyword').val() + '&movieorder=' + movieorder;
+        location.href = '/movie/movieList?keyfield=' + $('#keyfield-select').val() + '&keyword=' + $('#keyword').val() + '&movieorder=' + movieorder;
     });
 
     // 체크박스 해제 방지
-    $("input[name='movieorder']").click(function(){
+    $("input[name='movieorder']").click(function() {
         if ($("input[name='movieorder']:checked").length === 0) {
             $(this).prop('checked', true);
         }

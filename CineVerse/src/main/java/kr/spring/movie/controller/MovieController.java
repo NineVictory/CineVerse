@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,34 +48,40 @@ public class MovieController {
 	/*=======================
 	 * 영화 목록
 	 *=======================*/
-    @GetMapping("/movie/movieList")
-    public String movieList(@RequestParam(defaultValue = "1") int pageNum,
-                            @RequestParam(defaultValue = "1") int movieorder,
-                            @RequestParam(defaultValue = "") String status,
-                            String keyfield, String keyword, Model model) {
-        
-        Map<String, Object> map = new HashMap<>();
-        map.put("keyfield", keyfield);
-        map.put("keyword", keyword);
-        map.put("status",status);
-        int count = movieService.selectMovieRowCount(map);
-        
-        PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "movieList", "&movieorder=" + movieorder);
-        List<MovieVO> movielist = null;
-        if (count > 0) {
-            map.put("movieorder", movieorder);
-            map.put("start", page.getStartRow());
-            map.put("end", page.getEndRow());
-            
-            movielist = movieService.selectMovieList(map);
-        }
-        model.addAttribute("count", count);
-        model.addAttribute("movielist", movielist);
-        model.addAttribute("page", page.getPage());
-        
-        return "movieList";
-    }
-    
+	@GetMapping("/movie/movieList")
+	public String movieList(@RequestParam(defaultValue = "1") int pageNum,
+	                        @RequestParam(defaultValue = "1") int movieorder,
+	                        @RequestParam(defaultValue = "") String status,
+	                        @RequestParam(defaultValue = "") String keyfield,
+	                        @RequestParam(defaultValue = "") String keyword,
+	                        Model model) {
+
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("keyfield", keyfield);
+	    map.put("keyword", keyword);
+	    map.put("status", status);
+
+	    // 디버그 로그 추가
+	    log.debug("movieList - movieorder: " + movieorder);
+
+	    int count = movieService.selectMovieRowCount(map);
+
+	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "movieList", "&movieorder=" + movieorder);
+	    List<MovieVO> movielist = null;
+	    if (count > 0) {
+	        map.put("movieorder", movieorder);
+	        map.put("start", page.getStartRow());
+	        map.put("end", page.getEndRow());
+
+	        movielist = movieService.selectMovieList(map);
+	    }
+	    model.addAttribute("count", count);
+	    model.addAttribute("movielist", movielist);
+	    model.addAttribute("page", page.getPage());
+
+	    return "movieList";
+	}
+
 	
 	/*=======================
 	 * 영화 상세
@@ -86,8 +94,14 @@ public class MovieController {
         MovieVO movie = movieService.selectMovie(m_code);
         boolean canWriteReview = movieService.canWriteReview(userMemNum, m_code);
         
+        List<String> videoUrls = new ArrayList<>();
+        if (movie.getM_content() != null && !movie.getM_content().trim().isEmpty()) {
+            videoUrls = Arrays.asList(movie.getM_content().split("\\s*,\\s*"));
+        }
+        
         model.addAttribute("movie", movie);
         model.addAttribute("canWriteReview", canWriteReview);
+        model.addAttribute("videoUrls", videoUrls);
         return "movieDetail";
     }
 	
