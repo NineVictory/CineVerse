@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							console.error(error);
 						});
 				</script> 
-			</li>
+			</li> 
 			<li>
 				<form:label path="m_content">영화소개</form:label>
 				<%-- <form:input path="m_content" id="m_content" cssClass="input-check"/> --%>

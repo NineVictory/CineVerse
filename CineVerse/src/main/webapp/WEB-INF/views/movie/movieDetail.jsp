@@ -107,7 +107,7 @@
    <!--      <iframe src="https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK059016_P02.mp4" width="1000" height="800"></iframe>  -->
     </div>
 
-<!-- 별점 및 후기 -->            
+<!-- 별점 및 후기 -->             
 <div class="menu-title">평점/리뷰</div>
 <div class="grade-review">
     <div class="star-rating">

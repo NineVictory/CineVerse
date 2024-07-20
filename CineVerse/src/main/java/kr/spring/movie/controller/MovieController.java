@@ -92,7 +92,7 @@ public class MovieController {
         long userMemNum = user != null ? user.getMem_num() : -1L; // long 타입으로 변경
         
         MovieVO movie = movieService.selectMovie(m_code);
-        boolean canWriteReview = movieService.canWriteReview(userMemNum, m_code);
+        boolean canWriteReview = movieService.canWriteReview(userMemNum, m_code); 
         
         List<String> videoUrls = new ArrayList<>();
         if (movie.getM_content() != null && !movie.getM_content().trim().isEmpty()) {

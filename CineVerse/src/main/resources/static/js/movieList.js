@@ -18,7 +18,7 @@ $(document).ready(function() {
             $("input[name='movieorder']").not(this).prop('checked', false);
         }
 
-        // 기본 정렬 값 설정
+        // 기본 정렬 값 설정 
         var movieorder = $("input[name='movieorder']:checked").val() || 1;
         console.log('Selected movieorder:', movieorder);  // 디버그 로그 추가
 
