@@ -148,7 +148,7 @@ li.support_nav{
 	border-top:1px solid #BEBABA;
 	padding:8px 7px;
 }
-.faq-table:last-child, .news-table:last-child, .qna-table:last-child{
+.faq-table:last-child, .news-table:last-child, .qna-table td:last-child{
 	border-bottom:1px solid #BEBABA;
 }
 

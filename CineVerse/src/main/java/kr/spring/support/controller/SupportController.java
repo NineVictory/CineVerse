@@ -70,10 +70,11 @@ public class SupportController {
 							  @RequestParam(defaultValue="") Long mem_num,
 							  Model model, HttpSession session) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		MemberVO member = memberService.selectCheckMember(user.getMem_id());
-		
-		log.debug("세션 회원번호***************" + user.getMem_id());
-		
+		if(user != null) {
+			MemberVO member = memberService.selectCheckMember(user.getMem_id());
+			model.addAttribute("member", member);
+			log.debug("세션 회원번호***************" + user.getMem_id());
+		}
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("mem_num", mem_num);
 		//전체, 검색 레코드수
@@ -88,7 +89,7 @@ public class SupportController {
 			
 			list = supportService.selectConsultList(map);
 		}
-		model.addAttribute("member", member);
+		
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());

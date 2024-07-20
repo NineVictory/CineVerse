@@ -23,11 +23,11 @@
 			<th class="qna-table-status">처리상태</th>
 		</tr>
 		<c:if test="${count == 0}">
-			<tr>
-				<td colspan="4">
-					<div style="height:250px; display:flex; align-items:center; justify-content: center;">문의글이 존재하지 않습니다.</div>
-				</td>
-			</tr>
+		<tr>
+			<td colspan="5">
+				<div style=" height:250px; display:flex; align-items:center; justify-content: center;">문의글이 존재하지 않습니다.</div>
+			</td>
+		</tr>
 		</c:if>
 		
 		<c:if test="${count > 0}">
