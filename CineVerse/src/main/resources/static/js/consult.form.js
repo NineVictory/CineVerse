@@ -38,14 +38,14 @@ $(function(){
 	});
 	
 	titleLength = $('.custom-title').val().length;
-	$('.title-cnt').text('(' + titleLength + '/55)');
+	$('.title-cnt').text('(' + titleLength + '/54)');
 	
 	$(document).on('keyup','.custom-title',function(){
 		let inputL = $(this).val().length;
-		if(inputL > 55){
-			$(this).val($(this).val().substring(0,55));
+		if(inputL > 54){
+			$(this).val($(this).val().substring(0,54));
 		}else{
-			let remain = '(' + inputL + '/55)';
+			let remain = '(' + inputL + '/54)';
 			$('.title-cnt').text(remain);
 		}
 	});

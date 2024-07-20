@@ -77,7 +77,7 @@
 			<div class="flexbox-h form-items">
 				<div class="form-label">제목&nbsp;<span class="font-red">*</span></div>
 				<div class="consult-form-title-container">
-					<div class="flexbox-h side"><form:input path="consult_title" class="custom-title" placeholder="제목을 입력해 주세요"/><span class="title-cnt">(0/55)</span></div>
+					<div class="flexbox-h side"><form:input path="consult_title" class="custom-title" placeholder="제목을 입력해 주세요"/><span class="title-cnt">(0/54)</span></div>
 					<form:errors path="consult_title" cssClass="error-color"/>
 				</div>
 			</div>
