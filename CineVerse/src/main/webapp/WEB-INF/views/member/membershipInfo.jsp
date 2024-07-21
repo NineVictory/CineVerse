@@ -1,145 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style>
-.membership-content {
-    width: 1330px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.membership-title {
-width: 1160px;
-    padding: 20px 0 10px;
-    margin-bottom: 10px;
-    font-size: 24px;
-    border-bottom: 1px solid #eee;
-}
-
-.vip_top_infor {
-	display: flex;
-	overflow: hidden;
-	position: relative;
-	margin: 0 auto 50px;
-	border-radius: 10px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
-	background-color: #FFF;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.vip_top_infor .nomem_page_box {
-	margin: 40px 38px 62px;
-}
-
-.vip_top_infor .nomem_page_box .user_info .bx_con {
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-.user_info {
-	display: flex;
-	width: 1160px;
-	align-items: center;
-	flex-direction: column;
-	justify-content: center;
-}
-
-a.btn_lnk2 {
-	border-bottom: 1px solid #666;
-	font-size: 12px;
-	color: #666;
-	vertical-align: middle;
-}
-
-a, a:link, a:visited, a:active, a:hover {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.vip_top_infor .nomem_page_box .user_info .bx_con .txt {
-	line-height: 1.4;
-	margin-bottom: 10px;
-	font-size: 18px;
-	color: #666;
-}
-
-.btn_col3 {
-	display: inline-block;
-	box-sizing: border-box;
-	border-radius: 4px;
-	border: 1px solid #000000;
-	font-size: 14px;
-	color: #000000 !important;
-	text-align: center;
-	vertical-align: middle;
-	background-color: #ffffff;
-	height: 28px;
-	line-height: 26px;
-	padding: 0 14px;
-	border-radius: 52px;
-}
-
-.bx_btm {
-	display: flex;
-	gap: 70px;
-	align-items: center;
-	justify-content: center;
-}
-
-.membership-rows {
-	padding: 0px;
-}
-
-.rank_2020_wrap .rank_2020_list_ty2 {
-    position: relative;
-    margin-top: 20px;
-    border-top: 1px solid #bbb;
-}
-
-.rank_2020_wrap .rank_2020_list_ty2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 79px;
-    width: 100%;
-    height: 1px;
-    background-color: #bbb;
-}
-
-.rank_2020_wrap .rank_2020_list_ty2::after {
-    display: block;
-    content: '';
-    clear: both;
-}
-
-.rank_2020_wrap .rank_2020_list_ty2 dl {
-    float: left;
-    width: 20%;
-    text-align: center;
-}
-
-.rank_2020_wrap .rank_2020_list_ty2 dl.tit {
-    width: 20%;
-}
-
-.rank_2020_wrap .rank_2020_list_ty2 dl dt {
-    margin-bottom: 16px;
-    padding-top: 40px;
-}
-
-.rank_2020_wrap .rank_2020_list_ty2 dl dd {
-    padding: 28px 0;
-    font-size: 15px;
-    border-bottom: 1px solid #eee;
-}
-
-
-</style>
-    
 <div class="page-container">
 	<div class="membership-content">
 		<h2 class="membership-title">멤버십</h2>
@@ -190,17 +51,99 @@ a, a:link, a:visited, a:active, a:hover {
                                     <dl>
                                         <dt class="ic_2020_platinum"><span class="txt_2020_rank4">VIP</span></dt>
                                         <dd><em>VIP 6</em>개월 유지</dd>
-                                        <dd><em>15 </em>만원 이상</dd>
+                                        <dd><em>20 </em>만원 이상</dd>
                                     </dl>
                                     <dl>
                                         <dt class="ic_2020_platinum"><span class="txt_2020_rank4">VVIP</span></dt>
                                         <dd><em>VVIP 6</em>개월 유지</dd>
-                                        <dd><em>20 </em>만원 이상</dd>
+                                        <dd><em>25 </em>만원 이상</dd>
                                     </dl>
                                 </div>
                             </div>
                             
-                            
+							<div class="benefit_wrap">
+								<h3 class="tit">
+									<em>VIP</em> 혜택
+								</h3>
+								<ul class="benefit_box_ty2 type2">
+									<li><strong class="ic_rank_vip">MEMBER</strong>
+									<div class="benefit">
+											<div class="listbox">
+												<ul class="list type1">
+													<li><strong>주중영화 2000원 할인권</strong><span><em>1</em>매</span></li>
+													<li>&nbsp;</li>
+													<li>&nbsp;</li>
+												</ul>
+											</div>
+										</div>
+										<div class="benefit">
+											<ul class="list">
+												<li><strong>벌스샵 2000원 할인권</strong><span><em>1</em> 매</span></li>
+												<li>&nbsp;</li>
+												<li>&nbsp;</li>
+												<li>&nbsp;</li>
+											</ul>
+										</div>
+										</li>
+									<li><strong class="ic_rank_vvip">REGULAR</strong>
+									<div class="benefit">
+											<div class="listbox">
+												<ul class="list type1">
+													<li><strong>주중영화 3000원 할인권</strong><span><em>1</em>매</span></li>
+													<li><strong>주중영화 4000원 할인권</strong><span><em>1</em>매</span></li>
+													<li>&nbsp;</li>
+												</ul>
+											</div>
+										</div>
+										<div class="benefit">
+											<ul class="list">
+												<li><strong>벌스샵 3000원 할인권</strong><span><em>2</em> 매</span></li>
+												<li>&nbsp;</li>
+												<li>&nbsp;</li>
+												<li>&nbsp;</li>
+											</ul>
+										</div>
+										</li>
+									<li><strong class="ic_rank_gold">VIP</strong>
+									<div class="benefit">
+											<div class="listbox">
+												<ul class="list type1">
+													<li><strong>주중영화 3000원 할인권</strong><span><em>2</em>매</span></li>
+													<li><strong>주중영화 5000원 할인권</strong><span><em>1</em>매</span></li>
+													<li>&nbsp;</li>
+												</ul>
+											</div>
+										</div>
+										<div class="benefit">
+											<ul class="list">
+												<li><strong>벌스샵 4000원 할인권</strong><span><em>1</em> 매</span></li>
+												<li><strong>벌스샵 5000원 할인권</strong><span><em>1</em> 매</span></li>
+												<li>&nbsp;</li>
+												<li>&nbsp;</li>
+											</ul>
+										</div>
+										</li>
+									<li><strong class="ic_rank_platinum">VVIP</strong>
+									<div class="benefit">
+											<div class="listbox">
+												<ul class="list type1">
+													<li><strong>주중영화 3000원 할인권</strong><span><em>2</em>매</span></li>
+													<li><strong>주중영화 5000원 할인권</strong><span><em>1</em>매</span></li>
+													<li><strong>주중영화관람권</strong><span><em>1</em>매</span></li>
+												</ul>
+											</div>
+										</div>
+										<div class="benefit">
+											<ul class="list">
+												<li><strong>벌스샵 4000원 할인권</strong><span><em>1</em> 매</span></li>
+												<li><strong>벌스샵 5000원 할인권</strong><span><em>1</em> 매</span></li>
+												<li><strong>벌스샵 6000원 할인권</strong><span><em>1</em> 매</span></li>
+												<li>&nbsp;</li>
+											</ul>
+										</div>
+										</li>
+								</ul>
+						</div>
 						</div>
 					</div>
 				</li>
