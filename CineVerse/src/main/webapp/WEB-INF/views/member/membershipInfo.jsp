@@ -161,7 +161,7 @@ a, a:link, a:visited, a:active, a:hover {
                                         </div>
                                         <div class="bx_btm">
                                         	<c:if test="${empty user }">
-                                        		<p class="txt">이미 L.POINT 회원이신가요?</p>
+                                        		<p class="txt">이미 CINEVERSE 회원이신가요?</p>
                                         		<a href="${pageContext.request.contextPath}/member/login" class="btn_lnk2">로그인</a>
                                        	 	</c:if>
                                         </div>
@@ -174,28 +174,28 @@ a, a:link, a:visited, a:active, a:hover {
                                 <div class="rank_2020_list_ty2">
                                     <dl class="tit">
                                         <dt class="ic_2020_vip"><span class="txt_2020_rank1">BASIC</span></dt>
-                                        <dd>일반회원 <em>26</em>만원 이상</dd>
-                                        <dd><em>26</em>만원 이상</dd>
+                                        <dd>일반회원</dd>
+                                        <dd> &thinsp; </dd>
                                     </dl>
                                     <dl>
                                         <dt class="ic_2020_vvip"><span class="txt_2020_rank2">MEMBER</span></dt>
-                                        <dd><em>VIP 1</em>년 유지</dd>
-                                        <dd><em>26</em>만원 이상</dd>
+                                        <dd><em>Member 6</em>개월 유지</dd>
+                                        <dd><em>5 </em>만원 이상</dd>
                                     </dl>
                                     <dl>
                                         <dt class="ic_2020_gold"><span class="txt_2020_rank3">REGULAR</span></dt>
-                                        <dd><em>VVIP 3</em>년 유지</dd>
-                                        <dd><em>32</em>만원 이상</dd>
+                                        <dd><em>Regular 6</em>개월 유지</dd>
+                                        <dd><em>10 </em>만원 이상</dd>
                                     </dl>
                                     <dl>
                                         <dt class="ic_2020_platinum"><span class="txt_2020_rank4">VIP</span></dt>
-                                        <dd><em>VIP GOLD 5</em>년 유지</dd>
-                                        <dd><em>40</em>만원 이상</dd>
+                                        <dd><em>VIP 6</em>개월 유지</dd>
+                                        <dd><em>15 </em>만원 이상</dd>
                                     </dl>
                                     <dl>
                                         <dt class="ic_2020_platinum"><span class="txt_2020_rank4">VVIP</span></dt>
-                                        <dd><em>VIP GOLD 5</em>년 유지</dd>
-                                        <dd><em>40</em>만원 이상</dd>
+                                        <dd><em>VVIP 6</em>개월 유지</dd>
+                                        <dd><em>20 </em>만원 이상</dd>
                                     </dl>
                                 </div>
                             </div>
