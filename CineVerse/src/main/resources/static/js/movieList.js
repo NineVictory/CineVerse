@@ -8,6 +8,9 @@ $(document).ready(function() {
     $("#statusCheckbox").change(function() {
         var status = $(this).is(':checked') ? 1 : '';
         location.href = '/movie/movieList?status=' + status;
+        
+        currentPage = 1;
+        loadMovies(true);
     });
 
    // 최신순, 북마크순 체크박스 상태 관리
@@ -17,6 +20,7 @@ $(document).ready(function() {
         if (selectedCheckboxes.length > 1) {
             // 이미 체크된 다른 체크박스를 해제
             $("input[name='movieorder']").not(this).prop('checked', false);
+         
         }
 
         // 기본 정렬 값 설정 
@@ -42,6 +46,15 @@ $(document).ready(function() {
     $("#loadMoreButton").click(function() {
         loadMoreMovies();
     });
+    
+    function loadMovies(reset = false) {
+        if (reset) {
+            currentPage = 1;
+            displayedMovies.clear();
+            $("#movieListContainer ul.movie-list").empty();
+        }
+        loadMoreMovies();
+    }
 
     function loadMoreMovies() {
         currentPage++;
@@ -144,6 +157,8 @@ $(document).ready(function() {
             selectedGenres.delete(genre);
         }
         filterMoviesByGenres();
+        currentPage = 1;
+        loadMovies(true);
     });
 
     // 장르로 영화 필터링
@@ -180,4 +195,6 @@ $(document).ready(function() {
             }
         });
     }
+      // 초기 로드
+    loadMovies();
 });

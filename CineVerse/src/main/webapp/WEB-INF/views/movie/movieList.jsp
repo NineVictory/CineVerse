@@ -25,11 +25,14 @@
                         <div id="selectedGenres"></div>
                     </div>
                     </div> -->
-                    <div class="genre-checkboxes">
-                        <c:forEach var="genre" items="${genres}">
-                            <label><input type="checkbox" name="genre" value="${genre}" class="genre-checkbox"> ${genre}</label>
-                        </c:forEach>
-                    </div>
+						<div class="genre-checkboxes">
+						    <c:forEach var="genre" items="${genres}" varStatus="status">
+						        <label><input type="checkbox" name="genre" value="${genre}" class="genre-checkbox"> ${genre}</label>
+						        <c:if test="${status.count % 5 == 0}">
+						            <br>
+						        </c:if>
+						    </c:forEach>
+						</div>
                      <div id="selectedGenres"></div>
                     <div class="select-wrapper">
                         <select name="keyfield" id="keyfield-select">
@@ -37,7 +40,7 @@
                             <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>배우 이름</option>
                         </select>
                     </div>
-                    <ul>
+                    <ul class="ul-search">
                         <li>
                             <input type="hidden" name="m_status" value="${param.m_status}">
                             <input type="hidden" name="m_code" value="${param.m_code}">
