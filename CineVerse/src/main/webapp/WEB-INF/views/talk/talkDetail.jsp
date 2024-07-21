@@ -23,9 +23,4 @@
         </div>
     </form>
 </div>
-
 <!-- 채팅 메시지 처리 끝 -->
-
-<script type="text/javascript">
-
-</script>
