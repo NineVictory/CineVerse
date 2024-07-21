@@ -46,7 +46,13 @@
 					
 		<div class="flexbox-h side">
 			<div class="writer ml10">
-				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="22" height="22" class="my-photo">&nbsp;${board.mem_id}
+				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="22" height="22" class="my-photo">&nbsp;
+				<c:if test="${!empty board.mem_nickname}">
+				${board.mem_nickname}
+				</c:if>
+				<c:if test="${empty board.mem_nickname}">
+				${board.mem_nickname}
+				</c:if>
 				<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">
 			</div>
 			<div>
@@ -98,7 +104,7 @@
 				<span id="output_fcount">0</span>
 					
 				<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15">
-				<span style="margin-left:2px;" id="board-report">신고</span>
+				<span style="margin-left:2px;" id="board_report">신고</span>
 				
 			</div>
 		</div>
@@ -153,4 +159,29 @@
 		</div>
 		
 	</div>
+</div>
+
+
+<!-- 신고 모달 -->
+<div class="modal" id="reportModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>신고하기</h2>
+        <form id="reportForm">
+            <div class="rform-group">
+                <label for="reportReason">신고 사유</label>
+                <select id="reportReason" required>
+                    <option value="">선택하세요</option>
+                    <option value="spam">스팸</option>
+                    <option value="abuse">악용</option>
+                    <option value="other">기타</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="reportDetails">상세 이유</label>
+                <textarea id="reportDetails" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn">제출</button>
+        </form>
+    </div>
 </div>

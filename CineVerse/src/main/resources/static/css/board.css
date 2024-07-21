@@ -332,7 +332,7 @@ input.chatBtn{
 }
 
 .detail-content{
-	width:80%;
+	width:90%;
 	min-height:350px;
 	margin:30px auto;
 }
@@ -349,6 +349,12 @@ input.chatBtn{
 .board-info{
 	margin-bottom:10px;
 }
+
+/*신고*/
+span#board_report:hover{
+	cursor:pointer;
+}
+
 
 /*수정/삭제버튼*/
 div.board-btn, div.cc-btn{
@@ -390,7 +396,7 @@ ul.btn-hide {
     padding: 0;
     margin: 0;
     display: none;
-    width:90px;
+    width:85px;
 }
 ul.btn-hide li {
     padding: 5px 10px;

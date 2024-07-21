@@ -56,5 +56,5 @@
 	</table>
 	<div class="align-center page-div">
 			${page}
-		</div>
+	</div>
 </div>

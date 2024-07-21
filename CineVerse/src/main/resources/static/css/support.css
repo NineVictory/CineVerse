@@ -314,6 +314,10 @@ textarea#consult_content{
 .corder-num{
 	color:#000;
 }
+.corder-num:hover{
+	text-decoration: underline;
+	color:#878787;
+}
 .cquestion{
 	min-height:300px;
 }

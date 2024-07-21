@@ -29,6 +29,9 @@
             if (currentPath.includes('/support/consultDetail')){
             	$('#cl').addClass('support_nav_active');
             }
+            if (currentPath.includes('/support/consultList')){
+            	$('#cl').addClass('support_nav_active');
+            }
             
         });
         
@@ -44,6 +47,9 @@
             	$('#cl').addClass('support_nav_active');
             }
             if (currentPath.includes('/support/consultDetail')){
+            	$('#cl').addClass('support_nav_active');
+            }
+            if (currentPath.includes('/support/consultList')){
             	$('#cl').addClass('support_nav_active');
             }
             
