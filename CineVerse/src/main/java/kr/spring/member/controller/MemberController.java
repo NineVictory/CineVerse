@@ -270,9 +270,10 @@ public class MemberController {
 		return "admin";
 	}
 	
-/*	@GetMapping("/event/event")
-	public String eventMain() {
-		return "eventMain";
-	}*/
+	@GetMapping("/member/membershipInfo")
+	public String membershipInfoMain() {
+		return "membershipInfo";
+	}
+	
 	
 }
