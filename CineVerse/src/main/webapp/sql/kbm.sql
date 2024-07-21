@@ -35,3 +35,33 @@ create table community_response_fav(
  constraint crfav_fk1 foreign key (cc_num) references community_comment (cc_num),
  constraint crfav_fk2 foreign key (mem_num) references member (mem_num)
 );
+
+
+--커뮤니티 신고
+create table community_report{
+ cr_num number not null,
+ cr_content varchar2(300)
+ cr_category number(1) not null,
+ mem_num number not null,
+ cb_num number not null,
+ constraint creport_fk1 foreign key (cb_num) references community_board (cb_num),
+ constraint creport_fk2 foreign key (mem_num) references member (mem_num)
+};
+
+create sequence community_report_seq;
+
+
+--양도글 신고
+create table assign_report{
+ ar_num number not null,
+ ar_content varchar2(300)
+ ar_category number(1) not null,
+ mem_num number not null,
+ ab_num number not null,
+ constraint creport_fk1 foreign key (ab_num) references assignment_board (ab_num),
+ constraint creport_fk2 foreign key (mem_num) references member (mem_num)
+};
+
+create sequence assign_report_seq;
+
+--댓글 신고

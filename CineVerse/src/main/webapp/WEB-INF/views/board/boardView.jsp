@@ -3,6 +3,7 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!-- 게시판 글상세 시작 -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -163,25 +164,27 @@
 
 
 <!-- 신고 모달 -->
-<div class="modal" id="reportModal">
-    <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <h2>신고하기</h2>
-        <form id="reportForm">
-            <div class="rform-group">
-                <label for="reportReason">신고 사유</label>
-                <select id="reportReason" required>
-                    <option value="">선택하세요</option>
-                    <option value="spam">스팸</option>
-                    <option value="abuse">악용</option>
-                    <option value="other">기타</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="reportDetails">상세 이유</label>
-                <textarea id="reportDetails" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn">제출</button>
-        </form>
+<%-- <div class="modal" id="reportModal">
+	<div class="modal-content">
+		<span class="close" id="closeModal">&times;</span>
+			<h2>신고하기</h2>
+			<form:form id="reportForm">
+				<div class="rform-group">
+				<form:label path="reportReason">신고 사유</form:label>
+				<form:radiobutton path="cr-category" value="1" checked="checked"/>스팸홍보/도배<br>
+				<form:radiobutton path="cr-category" value="2" />음란물
+				<form:radiobutton path="cr-category" value="3" />불법정보
+				<form:radiobutton path="cr-category" value="4" />청소년에게 유해한 내용
+				<form:radiobutton path="cr-category" value="5" />욕설/생명경시/혐오/차별적 표현
+				<form:radiobutton path="cr-category" value="6" />개인정보 노출
+				<form:radiobutton path="cr-category" value="7" />불쾌한 표현
+				<form:radiobutton path="cr-category" value="8" />기타
+				</div>
+	            <div class="form-group">
+	                <form:label path="cr-content">신고 내용</form:label>
+	                <form:textarea path="cr-content" rows="3" required="true"></form:textarea>
+	            </div>
+            <button type="submit" class="btn">신고하기</button>
+        </form:form>
     </div>
-</div>
+</div> --%>

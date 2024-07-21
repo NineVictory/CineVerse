@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+
 <div class="page-container page-main">
 	<div class="event-main">
 		<div class="event">
@@ -18,11 +22,24 @@
 				<input type="button" value="진행중인 이벤트" class="event_btn">
 			</div>
 		</div>
-		
+
 		<div class="event-list-main">
 			<div class="event-infos">
 				<ul class="event-list">
-					<li>
+					<c:forEach var="event" items="${list}" varStatus="status">
+						<li class="<c:if test="${(status.index + 1) % 4 == 0}">no-margin</c:if>">
+							<a href="#" class="event-img">
+								<img src="${pageContext.request.contextPath}/upload/${event.event_filename}" alt="이벤트 대표 사진" >
+								<span class="event-title">
+									<span style="font-size: 16px; font-weight: 600;">${event.event_name}</span>
+									<span style="font-size: 13px">${event.event_start}~{${event.event_end}<b class="event-dday">D-6</b></span>
+								</span>
+							
+							</a>
+	
+						</li>
+					</c:forEach>
+					<!-- <li>
 						<a href="#" class="event-img">
 							<img src="https://img.cgv.co.kr/WebApp/contents/eventV4/41106/17200776837670.jpg" alt="이벤트 대표 사진" >
 							<span class="event-title">
@@ -109,18 +126,9 @@
 						
 						</a>
 
-					</li>
-					<li>
-						<a href="#" class="event-img">
-							<img src="https://img.cgv.co.kr/WebApp/contents/eventV4/41106/17200776837670.jpg" alt="이벤트 대표 사진" >
-							<span class="event-title">
-								<span style="font-size: 16px; font-weight: 600;">[탈주] 디깅타임</span>
-								<span style="font-size: 13px">2024.07.10~2024.07.21<b class="event-dday">D-6</b></span>
-							</span>
-						
-						</a>
-
-					</li>
+					</li> -->
+					
+					
 					<!-- <li>
 						<div class="event-img">
 							<a href="#"><img src="https://img.cgv.co.kr/WebApp/contents/eventV4/41106/17200776837670.jpg" alt="이벤트 대표 사진" ></a>

@@ -30,4 +30,5 @@ public class EventVO {
 	private Date event_reg_date;
 	private Date event_modify_date;
 	private MultipartFile event_upload;	//파일
+	private String event_type;
 }
