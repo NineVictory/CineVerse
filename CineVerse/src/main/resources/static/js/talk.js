@@ -62,13 +62,10 @@ function openChatWindow() {
                         } else {
                             if (item.mem_num == param.user_num) {
                                 output += '<div class="from-position">';
-                                output += '<div class="profile-image">';
-                                output += '<img src="../myPage/viewProfile?mem_num=' + (item.mem_num ? item.mem_num : '') + '" width="40" height="40" class="my-photo">';
-                                output += '</div>';
                                 output += '<div class="space-message">';
-                                output += '<div class="member-id">' + (item.mem_id ? item.mem_id : '') + '</div>';
+                                output += '<div class="read_count">' + (item.read_count ? item.read_count : '') + '</div>';
                                 output += '<div class="item">';
-                                output += (item.read_count ? item.read_count : '') + ' <span>' + (item.message ? item.message.replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>') : '') + '</span>';
+                                output += ' <span>' + (item.message ? item.message.replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>') : '') + '</span>';
                                 output += '</div>';
                                 output += '</div>';
                                 output += '</div><div class="space-clear"></div>';
@@ -77,10 +74,11 @@ function openChatWindow() {
                                 output += '<div class="profile-image">';
                                 output += '<img src="../myPage/viewProfile?mem_num=' + (item.mem_num ? item.mem_num : '') + '" width="40" height="40" class="my-photo">';
                                 output += '</div>';
-                                output += '<div class="space-message">';
+                                output += '<div class="space-message2">';
+                                output += '<div class="read_count">' + (item.read_count ? item.read_count : '') + '</div>';
                                 output += '<div class="member-id">' + (item.mem_id ? item.mem_id : '') + '</div>';
                                 output += '<div class="item">';
-                                output += (item.read_count ? item.read_count : '') + ' <span>' + (item.message ? item.message.replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>') : '') + '</span>';
+                                output += ' <span>' + (item.message ? item.message.replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>') : '') + '</span>';
                                 output += '</div>';
                                 output += '</div>';
                                 output += '</div><div class="space-clear"></div>';
@@ -132,19 +130,27 @@ function openChatWindow() {
                             output += '<div class="member-message">' + (item.message ? item.message.substring(0, item.message.indexOf('@{member}@')) : '') + '</div>';
                         } else {
                             if (item.mem_num == param.user_num) {
-                                output += '<div class="from-position">' + (item.mem_id ? item.mem_id : '') + '<div>';
+                                output += '<div class="from-position">';
+                                output += '<div class="space-message">';
+                                output += '<div class="read_count">' + (item.read_count ? item.read_count : '') + '</div>';
+                                output += '<div class="item">';
+                                output += ' <span>' + (item.message ? item.message.replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>') : '') + '</span>';
+                                output += '</div>';
+                                output += '</div>';
+                                output += '</div><div class="space-clear"></div>';
                             } else {
                                 output += '<div class="to-position">';
-                                output += '<div class="space-photo">';
+                                output += '<div class="profile-image">';
                                 output += '<img src="../myPage/viewProfile?mem_num=' + (item.mem_num ? item.mem_num : '') + '" width="40" height="40" class="my-photo">';
-                                output += '</div><div class="space-message">' + (item.mem_id ? item.mem_id : '');
+                                output += '</div>';
+                                output += '<div class="space-message2">';
+                                output += '<div class="member-id">' + (item.mem_id ? item.mem_id : '') + '</div>';
+                                output += '<div class="item">';
+                                output +=  ' <span>' + (item.message ? item.message.replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>') : '') + '</span>';
+                                output += '</div>';
+                                output += '</div>';
+                                output += '</div><div class="space-clear"></div>';
                             }
-                            output += '<div class="item">';
-                            output += (item.read_count ? item.read_count : '') + ' <span>' + (item.message ? item.message.replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>') : '') + '</span>';
-                            output += '<div class="align-right">' + (item.chat_date ? item.chat_date.split(' ')[1] : '') + '</div>';
-                            output += '</div>';
-                            output += '</div><div class="space-clear"></div>';
-                            output += '</div>';
                         }
                         $('#chatting_message').append(output);
                         if ($('#chatting_message').length && $('#chatting_message')[0].scrollHeight) {
@@ -223,4 +229,125 @@ function openChatWindow() {
         connectWebSocket();
         selectMsg();
     }
+    
+    
+     // 대화 종료 버튼 클릭 이벤트 처리
+    $('#delete_talkroom').click(function() {
+        var talkroom_num = new URLSearchParams(window.location.search).get('talkroom_num');
+        
+        if (confirm('대화방 삭제시 복구 불가능합니다. 정말 삭제하시겠습니까?')) {
+        $.ajax({
+            url: '/talk/delete',
+            type: 'post',
+            dataType: 'json',
+            data: { talkroom_num: talkroom_num },
+            success: function(param) {
+                if (param.result == 'success') {
+                    alert('대화방이 삭제되었습니다.');
+                    window.close();
+                    window.location.href = '/talk/chatList';
+                } else if (param.result == 'logout') {
+                    alert('로그인 후 사용 가능합니다.');
+                    window.close();
+                } else if (param.result == 'not_member') {
+                    alert('대화방 멤버가 아닙니다.');
+                     window.close(); 
+                } else {
+                    alert('대화방 삭제에 실패했습니다.');
+                }
+            },
+            error: function() {
+                alert('네트워크 오류가 발생했습니다.');
+            }
+        });
+        
+        }
+    });
+    
+     // 채팅방 이름 변경 버튼 클릭 이벤트 처리
+    $('#change_name').click(function() {
+        var chatroomNameSpan = $('#chatroom_name');
+        var currentName = chatroomNameSpan.text();
+
+        // 기존 span을 숨기고 input을 추가
+        chatroomNameSpan.hide();
+        $(this).hide();
+
+        var editNameInput = $('<input>', {
+            type: 'text',
+            id: 'edit_name',
+            value: currentName,
+            class: 'form-control',
+            style: 'display: inline;'
+        });
+
+        var saveNameBtn = $('<input>', {
+            type: 'button',
+            value: '저장',
+            id: 'save_name',
+            class: 'btn btn-primary',
+            style: 'display: inline; margin-left: 5px; font-size:0.7em; font-weight: 800;'
+        });
+
+        var cancelNameBtn = $('<input>', {
+            type: 'button',
+            value: '취소',
+            id: 'cancel_name',
+            class: 'btn btn-secondary',
+            style: 'display: inline; margin-left: 5px;'
+        });
+
+        chatroomNameSpan.after(editNameInput);
+        editNameInput.after(saveNameBtn);
+        saveNameBtn.after(cancelNameBtn);
+
+        // 저장 버튼 클릭 이벤트 처리
+        $('#save_name').click(function() {
+            var newName = $('#edit_name').val().trim();
+            if (newName) {
+                $.ajax({
+                    url: '/talk/updateName',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        talkroom_num: $('#talkroom_num').val(),
+                        room_name: newName
+                    },
+                    success: function(param) {
+                        if (param.result == 'success') {
+                            chatroomNameSpan.text(newName).show();
+                            $('#edit_name').remove();
+                            $('#save_name').remove();
+                            $('#cancel_name').remove();
+                            $('#change_name').show();
+                        } else if(param.result == 'logout'){
+							alert('로그인 후 사용 가능합니다.');
+                   		 	window.close();
+						} else if(param.result == 'not_member'){
+							alert('대화방 멤버가 아닙니다.');
+                     		window.close(); 
+						} else {
+                            alert('채팅방 이름 변경에 실패했습니다.');
+                        }
+                    },
+                    error: function() {
+                        alert('네트워크 오류가 발생했습니다.');
+                    }
+                });
+            } else {
+                alert('새로운 채팅방 이름을 입력하세요.');
+            }
+        });
+
+        // 취소 버튼 클릭 이벤트 처리
+        $('#cancel_name').click(function() {
+            $('#edit_name').remove();
+            $('#save_name').remove();
+            $('#cancel_name').remove();
+            chatroomNameSpan.show();
+            $('#change_name').show();
+        });
+    });
+ 
+    
 });

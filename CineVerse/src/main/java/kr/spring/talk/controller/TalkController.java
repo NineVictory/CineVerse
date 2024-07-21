@@ -201,5 +201,58 @@ public class TalkController {
 		}
 		return member_id;
 	}
+	
+	@PostMapping("/talk/delete")
+    @ResponseBody
+    public Map<String, String> deleteTalkRoom(@RequestParam Long talkroom_num, HttpSession session) {
+
+        Map<String, String> mapAjax = new HashMap<>();
+        MemberVO user = (MemberVO) session.getAttribute("user");
+
+        if (user == null) {
+            mapAjax.put("result", "logout");
+        } else {
+        	
+        	Long user_num = user.getMem_num();
+        	
+        	if (talkService.isMember(talkroom_num, user_num)) {
+        		talkService.deleteTalkRoom(talkroom_num);
+                mapAjax.put("result", "success");
+        	} else {
+        		mapAjax.put("result", "not_member");
+        	}
+        }
+
+        return mapAjax;
+    }
+	
+	@PostMapping("/talk/updateName")
+    @ResponseBody
+    public Map<String, String> updateTalkRoomName(
+            @RequestParam Long talkroom_num,
+            @RequestParam String room_name,
+            HttpSession session) {
+
+        Map<String, String> mapAjax = new HashMap<String, String>();
+        MemberVO user = (MemberVO) session.getAttribute("user");
+
+        if (user == null) {
+            mapAjax.put("result", "logout");
+        } else {
+            Long user_num = user.getMem_num();
+
+            if (talkService.isMember(talkroom_num, user_num)) {
+                    TalkMemberVO talkMemberVO = new TalkMemberVO();
+                    talkMemberVO.setTalkroom_num(talkroom_num);
+                    talkMemberVO.setRoom_name(room_name);
+                    talkService.updateTalkRoomName(talkMemberVO);
+                    mapAjax.put("result", "success");
+            } else {
+                mapAjax.put("result", "not_member");
+            }
+        }
+
+        return mapAjax;
+    }
 
 }
