@@ -46,14 +46,14 @@
 					
 		<div class="flexbox-h side">
 			<div class="writer ml10">
-				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="22" height="22" class="my-photo">&nbsp;
+				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="22" height="22" class="my-photo">
 				<c:if test="${!empty board.mem_nickname}">
 				${board.mem_nickname}
 				</c:if>
 				<c:if test="${empty board.mem_nickname}">
-				${board.mem_nickname}
+				${board.mem_id}
 				</c:if>
-				<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">
+				<%--<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">--%>
 			</div>
 			<div>
 				<c:if test="${board.mem_num == user.mem_num}">
