@@ -5,11 +5,11 @@
 <mapper namespace="kr.spring.event.dao.EventMapper">
 
 	<sql id="eventSearch">
-		<where>
+		
 			<if test="event_type != null and event_type != ''">
-				event_type = #{event_type}
+				AND event_type = #{event_type}
 			</if>
-		</where>
+		
 	</sql>
 
 	<!-- 이벤트 전체 목록/검색 목록 -->
@@ -30,8 +30,9 @@
 									event_type
 														
 								FROM event 
-								<include refid="eventSearch"></include>
 								WHERE event_end > SYSDATE
+								<include refid="eventSearch"></include>
+								
 								ORDER BY event_reg_date DESC)a) 
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}

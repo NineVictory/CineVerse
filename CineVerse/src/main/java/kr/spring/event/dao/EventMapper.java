@@ -15,4 +15,7 @@ public interface EventMapper {
 	public Integer selectEventRowCount(Map<String,Object> map);
 	
 	public List<UserEventVO> selectEventList(Map<String,Object> map);
+	
+	@Select("SELECT * FROM event WHERE event_num=#{event_num}")
+	public UserEventVO selectEvent(long event_num);
 }

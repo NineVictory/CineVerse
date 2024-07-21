@@ -10,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.event.service.EventService;
 import kr.spring.event.vo.UserEventVO;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -62,5 +64,25 @@ public class EventController {
 		
 	
 		return "eventMain";
+	}
+	
+	
+	/*====================
+	 *이벤트 상세
+	 =====================*/
+	@GetMapping("/event/eventDetail")
+	public ModelAndView process(long event_num) {
+		log.debug("이벤트 상세 - cb_num**************" + event_num);
+		
+		UserEventVO eventVO = eventService.selectEvent(event_num);
+		
+		//제목에 태그를 허용하지 않음
+		eventVO.setEvent_name(StringUtil.useNoHTML(eventVO.getEvent_name()));
+		
+		//내용에 태그를 허용하지 않으면서 줄바꿈 처리(CKEditor 사용시 주석 처리)
+		//board.setContent(StringUtil.useBrNoHTML(board.getContent()));
+		ModelAndView modelAndView = new ModelAndView("eventDetail");
+		modelAndView.addObject("event", eventVO);
+		return modelAndView;
 	}
 }

@@ -27,4 +27,9 @@ public class EventServiceImpl implements EventService{
 		return eventMapper.selectEventList(map);
 	}
 
+	@Override
+	public UserEventVO selectEvent(long event_num) {
+		return eventMapper.selectEvent(event_num);
+	}
+
 }

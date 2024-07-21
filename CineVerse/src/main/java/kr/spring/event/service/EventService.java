@@ -9,4 +9,6 @@ public interface EventService {
 	public Integer selectEventRowCount(Map<String,Object> map);
 	
 	public List<UserEventVO> selectEventList(Map<String,Object> map);
+	
+	public UserEventVO selectEvent(long event_num);
 }
