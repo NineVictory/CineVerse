@@ -17,6 +17,7 @@ import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.vo.MyPageVO;
+import kr.spring.support.vo.ConsultVO;
 
 @Mapper
 public interface MyPageMapper {
@@ -48,7 +49,10 @@ public interface MyPageMapper {
 	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
 	public Integer cBoardBookMark(Map<String, Object> map);//일반 커뮤니티 북마크
 	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
-
+	public Integer consultcnt(Map<String, Object> map);//문의 갯수
+	public List<ConsultVO> consultList(Map<String, Object> map);//문의 목록
+	@Select("SELECT * FROM (SELECT * FROM consult  WHERE mem_num = #{mem_num} ORDER BY consult_num DESC) WHERE ROWNUM = 1")
+	public ConsultVO lastConsert(Long mem_num);//마지막 문의글
 
 	//구독 목록 보기
 	@Select("SELECT * FROM member WHERE mem_num=#{mem_num}")

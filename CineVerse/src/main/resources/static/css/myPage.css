@@ -1416,8 +1416,34 @@
 	padding-top: 3px;
 	margin-top: 3px;
 }   
+/* consult */
+.consult_date {
+	text-align: left;
+	font-size: 13px;
+}
+.conAnswer_btn {
+    font-size: 14px;
+    font-weight: 500;
+    /* padding-top: 35px; */
+    padding-bottom: 35px;
+}
+.consult_btn{
+    font-size: 14px;
+    text-align: center;
+    margin-right: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #3F66ED;
+    color: white;
+    width: 80px;
+    height: 27px;
+    cursor: pointer;
 
-   
+
+
+
+
+
    
    
    /*리뷰*/

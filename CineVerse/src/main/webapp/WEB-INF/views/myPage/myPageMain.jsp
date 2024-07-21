@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 마이페이지 시작 -->
 <div class="myPage_main">
 	<div class="myPage_active">
@@ -32,7 +33,7 @@
 			<!--  css 수정 예매추가로 하면 박스 늘어나게 -->
 			<div class="mp_reserv">
 				<div class="m_movie_photo">
-					<img src="${pagecontext.reuqest.contextPath }/images/pmj/dune.jpg"
+					<img src="${pageContext.request.contextPath}/images/pmj/dune.jpg"
 						alt="내가 본 영화2" width="150" height="210">
 				</div>
 				<div class="mpMovie_info">
@@ -70,13 +71,28 @@
 
 	<div class="qna_box">
 		<div class="my_reserv_info">
-			<span class="reserv_font">MY QnA</span><span class="main_count">0건</span>
+			<span class="reserv_font">MY QnA</span><span class="main_count">${count}건</span>
 		</div>
-
+		
+		<c:if test="${count == 0}">
 		<div class="qna">
 			<div class="mpQna">고객님의 1:1 문의내역이 존재하지 않습니다</div>
-			<!-- css box늘어나게 -->
 		</div>
+		</c:if>
+		<c:if test="${count > 0}">
+		<div class="qna">
+			<div class="mpQna">
+			<c:choose>
+                <c:when test="${lastConsult.consult_type == 'inquiry'}">[문의]</c:when>
+                <c:when test="${lastConsult.consult_type == 'dissatisfaction'}">[불만]</c:when>
+                <c:when test="${lastConsult.consult_type == 'compliment'}">[칭찬]</c:when>
+                <c:when test="${lastConsult.consult_type == 'proposal'}">[제안]</c:when>
+                <c:when test="${lastConsult.consult_type == 'missing'}">[분실물]</c:when>
+                <c:when test="${lastConsult.consult_type == 'exchange'}">[교환/환불]</c:when>
+            </c:choose>
+			${lastConsult.consult_content}</div>
+		</div>
+		</c:if>
 	</div>
 </div>
 <!-- 마이페이지 끝-->

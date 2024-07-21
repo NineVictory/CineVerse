@@ -36,7 +36,41 @@
 			AND ab_type = 'exchange'
 		</if>
 	</sql>
-
+	<sql id="consultSearch">
+		<if test="consult_type !=null and consult_type != ''">
+			AND consult_type = #{consult_type}
+		</if>
+		<if test="category == 1">
+			AND consult_type = 'inquiry'
+		</if>
+		<if test="category == 2">
+			AND consult_type = 'dissatisfaction'
+		</if>
+		<if test="category == 3">
+			AND consult_type = 'compliment'
+		</if>
+		<if test="category == 4">
+			AND consult_type = 'proposal'
+		</if>
+		<if test="category == 5">
+			AND consult_type = 'missing'
+		</if>
+		<if test="category == 6">
+			AND consult_type = 'exchange'
+		</if>
+	</sql>
+	
+	<!-- 문의 갯수 -->
+	<select id="consultcnt" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM consult WHERE mem_num=#{mem_num}
+	</select>
+	
+	<!-- 문의 목록 -->
+	<select id="consultList" parameterType="map" resultType="consultVO">
+		SELECT * FROM consult WHERE mem_num=#{mem_num}
+		<include refid="consultSearch"></include>
+		ORDER BY consult_num DESC
+	</select>
 
 
 	<!-- 커뮤 좋아요 수 -->
@@ -88,7 +122,6 @@
 		FROM community_board
 		WHERE mem_num = #{mem_num}
 		<include refid="myPageBoardSearch"></include>
-		ORDER BY cb_num DESC
 	</select>
 
 	<!-- 게시글 목록 -->
