@@ -182,7 +182,7 @@
 							</button>
 							<button class="ass-chatBtn" data-abnum="${assign.ab_num}"
 								data-abmemnum="${assign.mem_num}"
-								data-usernum="${user.mem_num }" onclick="openChatWindow()"
+								data-usernum="${user.mem_num }"
 								<c:if test="${assign.ab_status == 3}">disabled style="background:#c7c7c7;"</c:if>>
 								<img
 									src="${pageContext.request.contextPath}/images/kbm/heartwhite.png"

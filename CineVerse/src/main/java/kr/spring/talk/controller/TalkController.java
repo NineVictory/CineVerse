@@ -52,52 +52,56 @@ public class TalkController {
 		return "redirect:/talk/talkList";
 	}
 	
-	// 채팅방 생성하기
 	@PostMapping("/talk/createTalkRoom")
-    @ResponseBody
-    public Map<String, Object> createTalkRoom(@RequestParam("abmemnum") Long abmemnum,
-                                              @RequestParam("usernum") Long usernum,
-                                              HttpSession session) {
-        Map<String, Object> mapAjax = new HashMap<>();
-        
-        Long[] membersObj = new Long[] {usernum, abmemnum};
-        long[] members = new long[membersObj.length];
-        for (int i = 0; i < membersObj.length; i++) {
-            members[i] = membersObj[i]; // `Long`을 `long`으로 변환
-        }
-        try {
-        	// 현재 세션의 사용자 정보를 가져와서 생성자 정보를 설정
-            MemberVO user = (MemberVO) session.getAttribute("user");	// 양도글에서 버튼 누른 사람
-            MemberVO abmem = memberService.selectMember(abmemnum);		// 양도글에 글 올린 사람
-        	
-            // 채팅방 생성 및 채팅방 번호 생성
-            TalkRoomVO talkRoomVO = new TalkRoomVO();
-            talkRoomVO.setBasic_name(user.getMem_id() + "&" + abmem.getMem_id() ); // 채팅방 기본 이름 설정
-            talkRoomVO.setMembers(members); // 채팅방 멤버 설정
-            talkRoomVO.setTalkVO(new TalkVO()); // 메시지 객체 초기화
-            
-            talkRoomVO.setTalkVO(new TalkVO());
-            talkRoomVO.getTalkVO().setMem_num(usernum);
-            talkRoomVO.getTalkVO().setMessage(user.getMem_id() + "님이 " + abmem.getMem_id() + "님을 초대했습니다.");
-            
-            
-            // 채팅방 및 멤버 추가
-            talkService.insertTalkRoom(talkRoomVO);
+	@ResponseBody
+	public Map<String, Object> createTalkRoom(@RequestParam("abmemnum") Long abmemnum,
+	                                          @RequestParam("usernum") Long usernum,
+	                                          HttpSession session) {
+	    Map<String, Object> mapAjax = new HashMap<>();
+	    
+	    Long[] membersObj = new Long[] {usernum, abmemnum};
+	    long[] members = new long[membersObj.length];
+	    for (int i = 0; i < membersObj.length; i++) {
+	        members[i] = membersObj[i]; // `Long`을 `long`으로 변환
+	    }
+	    try {
+	        // 현재 세션의 사용자 정보를 가져와서 생성자 정보를 설정
+	        MemberVO user = (MemberVO) session.getAttribute("user"); // 양도글에서 버튼 누른 사람
+	        MemberVO abmem = memberService.selectMember(abmemnum); // 양도글에 글 올린 사람
+	        
+	        // 채팅방 생성 및 채팅방 번호 생성
+	        TalkRoomVO talkRoomVO = new TalkRoomVO();
+	        talkRoomVO.setBasic_name(user.getMem_id() + " 님과 " + abmem.getMem_id() + " 님의 채팅방"); // 채팅방 기본 이름 설정
+	        talkRoomVO.setMembers(members); // 채팅방 멤버 설정
+	        talkRoomVO.setTalkVO(new TalkVO()); // 메시지 객체 초기화
+	        
+	        talkRoomVO.getTalkVO().setMem_num(usernum);
+	        talkRoomVO.getTalkVO().setMessage(user.getMem_id() + "님이 " + abmem.getMem_id() + "님을 초대했습니다.");
+	        
+	        // 채팅방 및 멤버 추가
+	        talkService.insertTalkRoom(talkRoomVO);
 
-            // 채팅방 번호 가져오기
-            Long talkRoomNum = talkRoomVO.getTalkroom_num();
-            
-            mapAjax.put("result", "success");
-            mapAjax.put("talkRoomNum", talkRoomNum);
-        } catch (Exception e) {
-            e.printStackTrace();
-            mapAjax.put("result", "error");
-            mapAjax.put("message", "채팅방 생성에 실패했습니다.");
-        }
+	        // 채팅방 번호 가져오기
+	        Long talkRoomNum = talkRoomVO.getTalkroom_num();
+	        
+	        // 채팅 메시지 불러오기
+	        Map<String, Long> map = new HashMap<>();
+	        map.put("talkroom_num", talkRoomNum);
+	        map.put("mem_num", user.getMem_num());
+	        List<TalkVO> list = talkService.selectTalkDetail(map);
 
-        return mapAjax;
-    }
-	
+	        mapAjax.put("result", "success");
+	        mapAjax.put("talkRoomNum", talkRoomNum);
+	        mapAjax.put("messages", list);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        mapAjax.put("result", "error");
+	        mapAjax.put("message", "채팅방 생성에 실패했습니다.");
+	    }
+
+	    return mapAjax;
+	}
+
 	
 //	채팅 메세지 처리하기
 	@GetMapping("/talk/talkDetail")

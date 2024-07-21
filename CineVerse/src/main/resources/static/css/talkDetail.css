@@ -1,0 +1,220 @@
+@charset "UTF-8";
+
+#chatHeader {
+    background-color: var(--main-color-strong);
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+    }
+
+#chatroom_name {
+    font-size: 1.2em;
+}
+
+/* 버튼 스타일 */
+.btn {
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: var(--gray-4);
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: var(--red-check-btn);
+    color: #fff;
+}
+
+.btn-send {
+    font-size: 14px;
+    background-color: var(--yellow-check-btn);
+    color: #000;
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.chat-actions {
+    margin: 15px 0;
+    text-align: right;
+}
+
+#member_list {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.member-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.member-id {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#chatting_message {
+    /* border: 1px solid #ddd; */
+    width: 98%;
+    height: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    overflow-y: auto;
+    /* background-color: #f9f9f9; */
+    display: flex;
+    flex-direction: column;
+}
+
+#chatting_message::-webkit-scrollbar {
+    width: 5px;
+}
+
+#chatting_message::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.date-position {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.date-position span {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: #e9ecef;
+}
+
+.from-position {
+margin: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.to-position {
+    margin: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+
+.from-position {
+    align-items: flex-end; 
+    justify-content: flex-end;
+}
+
+.to-position {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.from-position .profile-image,
+.to-position .profile-image {
+    margin-right: 10px;
+}
+
+.from-position .item, .to-position .item {
+    padding: 10px;
+    border-radius: 20px;
+    max-width: 100%;
+    word-break: break-word;
+    font-size: 0.9em;
+}
+
+.from-position .item {
+    background-color: var(--main-color-light);
+    text-align: right;
+    }
+
+.to-position .item {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    text-align: left;
+}
+
+form#detail_form {
+    display: flex;
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    justify-content: center;
+}
+
+#message {
+    width: 80%;
+    height: 50px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    resize: none;
+    font-size: 0.9em;
+}
+
+#message_btn {
+    display: flex;
+    align-items: center;
+}
+
+#message_btn .btn-send {
+    border-radius: 25px;
+    padding: 10px 20px;
+}
+
+.space-photo {
+    margin-right: 10px;
+}
+
+.space-message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.my-photo {
+    border-radius: 50%;
+}
+
+.space-clear {
+    clear: both;
+}
+
+.read-status {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 5px;
+}
+
+#show_members:active ~ #member_list {
+    display: block;
+}
+
+.member-id {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
