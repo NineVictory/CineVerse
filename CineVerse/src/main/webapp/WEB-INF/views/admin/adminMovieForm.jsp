@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			</li> 
 			<li>
 				<form:label path="m_content">영화소개</form:label>
-				<%-- <form:input path="m_content" id="m_content" cssClass="input-check"/> --%>
-				<%-- <form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/> --%>
+				<form:input path="m_content" id="m_content" cssClass="input-check"/>
+				<form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/>
 				<form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/>
 
 <!-- 				<script>
@@ -177,4 +177,107 @@ document.addEventListener('DOMContentLoaded', function() {
 		</div>
 		</form:form>
 	</div>
+</div> --%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- include ckeditor js -->
+<script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // title로 영화 정보 불러오기
+    $("#titleButton").click(function() {
+        const title = $("#title").val();
+        if (title) {
+            $.get("${pageContext.request.contextPath}/admin/adminMovieForm", {title: title}, function(data) {
+                const movieDetail = data.movieDetail;
+                if (movieDetail) {
+                    $("#m_name").val(movieDetail.title);
+                    $("#m_opendate").val(movieDetail.repRlsDate);
+                    $("#m_companys").val(movieDetail.company);
+                    $("#runtime").val(movieDetail.runtime);
+                    $("#rating").val(movieDetail.rating);
+                    $("#m_genre").val(movieDetail.genre);
+                    $("#director").val(movieDetail.directorNm);
+                    $("#actor").val(movieDetail.actorNm);
+                    $("#plot").val(movieDetail.plot);
+                    $("#m_content").val(movieDetail.teasers);
+                    $("#m_filename").val(movieDetail.posters); 
+                }
+            });
+        }
+    });
+});
+</script>
+
+<div class="page-container">
+    <h2>영화 등록</h2>
+    <div class="insert_movie_form">
+        <form:form action="insertMovie" method="post" enctype="multipart/form-data" id="insert_form" modelAttribute="movieVO">
+            <ul>
+                <li>
+                    <label for="title">영화 제목:</label>
+                    <input type="text" id="title" name="title"/>
+                    <button type="button" id="titleButton">Load Movie Details</button>
+                </li>
+                <li>
+                    <form:label path="m_status">영화 상영여부</form:label>
+                    <input type="radio" name="m_status" value="1" id="m_status1">상영
+                    <input type="radio" name="m_status" value="2" id="m_status2">미상영
+                </li>
+                <li>
+                    <form:label path="m_name">영화명</form:label>
+                    <form:input path="m_name" id="m_name" maxlength="100" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="m_opendate">개봉일</form:label>
+                    <form:input path="m_opendate" id="m_opendate" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="m_companys">제작사</form:label>
+                    <form:input path="m_companys" id="m_companys" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="runtime">런타임</form:label>
+                    <form:input path="runtime" id="runtime" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="rating">시청연령</form:label>
+                    <form:input path="rating" id="rating" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="m_upload">포스터</form:label>
+                    <form:input path="m_upload" id="m_upload" type="file" cssClass="input-check" accept="image/gif,image/png,image/jpeg"/>
+                </li>
+                <li>
+                    <form:label path="m_genre">장르명</form:label>
+                    <form:input path="m_genre" id="m_genre" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="director">감독이름</form:label>
+                    <form:input path="director" id="director" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="actor">영화배우</form:label>
+                    <form:input path="actor" id="actor" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="plot">영화 줄거리</form:label>
+                    <form:textarea path="plot" id="plot" rows="5" cols="30" cssClass="input-check"/>
+                </li>
+                <li>
+                    <form:label path="m_content">영화소개</form:label>
+                    <form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/>
+                </li>
+            </ul>
+            <div class="btn_display_set">
+                <form:button id="submit_btn">등록하기</form:button>
+            </div>
+        </form:form>
+    </div>
 </div>

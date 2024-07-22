@@ -14,6 +14,7 @@ import kr.spring.movie.vo.MbDetailVO;
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
+import kr.spring.movie.vo.MovieDetailKFAPIVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
@@ -36,7 +37,7 @@ public interface MovieMapper {
 	public void insertMovieGenre(MovieGenreVO genre);
 	
 	public List<String> selectDistinctGenres();
-    public List<MovieVO> filterMoviesByGenres(@Param("genres") List<String> genres);
+    List<MovieVO> filterMoviesByGenres(@Param("genres") List<String> genres);
 	
 	@Select("SELECT * FROM movie JOIN movie_actor USING (m_code) JOIN movie_director USING (m_code) WHERE m_code=#{m_code}")
 	public MovieVO selectMovie(Long m_code);
@@ -47,6 +48,20 @@ public interface MovieMapper {
 	 * @Select("SELECT * FROM movie WHERE m_code LIKE '%' || #{query} || '%' OR m_name LIKE '%' || #{query} || '%'"
 	 * ) public List<MovieVO> searchMovies(String query);
 	 */
+	/*
+	 * @Select("SELECT DOCID, title, directorNm, actorNm, company, plot, runtime, rating, genre, repRlsDate, posters, teasers "
+	 * + "FROM movie_detail_kf_api " + "WHERE title IS NOT NULL " +
+	 * "AND directorNm IS NOT NULL " + "AND actorNm IS NOT NULL " +
+	 * "AND company IS NOT NULL " + "AND plot IS NOT NULL " +
+	 * "AND runtime IS NOT NULL " + "AND rating IS NOT NULL " +
+	 * "AND genre IS NOT NULL " + "AND repRlsDate IS NOT NULL " +
+	 * "AND posters IS NOT NULL " + "AND teasers IS NOT NULL")
+	 */
+    @Select("SELECT title, directorNm, actorNm, company, plot, runtime, rating, genre, repRlsDate, posters, teasers " +
+            "FROM movie_detail_kf_api " +
+            "WHERE title = #{title}")
+    MovieDetailKFAPIVO selectDetailKFAPIVOByTitle(String title);
+	   
 	//영화 북마크
 	@Select("SELECT * FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}")
 	public MovieBookMarkVO selectBookMark(MovieBookMarkVO bookMark);

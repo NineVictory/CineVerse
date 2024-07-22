@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
+import kr.spring.movie.vo.MovieDetailKFAPIVO;
 import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
@@ -26,6 +27,7 @@ public interface MovieService {
     
     public List<String> selectDistinctGenres();
     public List<MovieVO> filterMoviesByGenres(List<String> genres);
+    public MovieDetailKFAPIVO selectDetailKFAPIVOByTitle(String title);
     
     // 영화 북마크
     MovieBookMarkVO selectBookMark(MovieBookMarkVO bookMark);

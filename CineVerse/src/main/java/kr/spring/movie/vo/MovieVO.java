@@ -18,23 +18,23 @@ import lombok.ToString;
 public class MovieVO {
 	private long m_code;
 	@NotBlank
-	private String m_name;
-	private Date m_opendate;
+	private String m_name;//영화명
+	private String m_opendate;//개봉일
 	@NotBlank
-	private String m_companys;
-	private long m_status;
-	private String m_filename;
-	private String m_content;
-	private String plot;
-	private String m_genre;
-	private long runtime;
-	private String rating;
+	private String m_companys;//제작사
+	private long m_status;//상영여부
+	private String m_filename;//포스터
+	private String m_content;//티저
+	private String plot;//줄거리
+	private String m_genre;//장르
+	private long runtime;//런타임
+	private String rating;//관람등급
 	@NotNull
 	private MultipartFile m_upload;	//파일
 	
-	private String actor;
-	private String director;
-	private String genre;
+	private String actor;//배우명
+	private String director;//감독명
+	private String genre;//장르(쉼표로 구분한것)
 	
 	
 	private int bookmark_cnt;			//북마크 개수

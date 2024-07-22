@@ -16,6 +16,7 @@ import kr.spring.movie.vo.MbDetailVO;
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
+import kr.spring.movie.vo.MovieDetailKFAPIVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
 import kr.spring.movie.vo.MovieReviewVO;
@@ -261,12 +262,11 @@ public class MovieServiceImpl implements MovieService {
         return movieMapper.filterMoviesByGenres(genres);
     }
 
-
-
-
-
-
-
+	@Override
+	public MovieDetailKFAPIVO selectDetailKFAPIVOByTitle(String title) {
+		
+		return movieMapper.selectDetailKFAPIVOByTitle(title);
+	}
 
 
 
