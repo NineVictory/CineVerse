@@ -111,7 +111,7 @@ public interface AdminMapper {
 	//결제
 	public List<PointVO> selectPoint(Map<String,Object> map);
 	public Integer selectPointRowCount(Map<String,Object> map);
-	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, -#{ph_point}, SYSDATE, #{mem_num}, 0, refundMs)")
-	public void refundPoint(long mem_num);
+	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{ph_point}, SYSDATE, #{mem_num}, 0, #{ph_payment})")
+	public void refundPoint(@Param("mem_num") long mem_num, @Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment);
 	
 }

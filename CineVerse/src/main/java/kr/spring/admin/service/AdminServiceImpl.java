@@ -3,6 +3,7 @@ package kr.spring.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -163,8 +164,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	@Transactional
-	public void refundPoint(long mem_num) {
-		adminMapper.refundPoint(mem_num);
+	public void refundPoint(long mem_num, long ph_point, String ph_payment) {
+		adminMapper.refundPoint(mem_num,ph_point,ph_payment);
 		memberMapper.totalPoint(mem_num);
 	}
 	@Override
