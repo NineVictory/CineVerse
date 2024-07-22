@@ -270,10 +270,22 @@ public class MemberController {
 		return "admin";
 	}
 	
+	
 	@GetMapping("/member/membershipInfo")
-	public String membershipInfoMain() {
+	public String membershipInfo(HttpSession session, Model model) {
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		MemberVO member =  memberService.selectMember(user.getMem_num());
+		int used_point = memberService.selectPointUse(user.getMem_num());
+		member.setUsed_point(used_point);
+		
+		
+		log.debug("<< 멤버쉽 info 진입 >>");
+		
+		model.addAttribute("member", member);
+		
 		return "membershipInfo";
 	}
-	
 	
 }

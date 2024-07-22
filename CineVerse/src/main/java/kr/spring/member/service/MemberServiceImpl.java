@@ -102,6 +102,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.selectMember(mem_num);
 	}
 
+	@Override
+	public Integer selectPointUse(Long mem_num) {
+		return memberMapper.selectPointUse(mem_num);
+	}
+
 	
 
 }

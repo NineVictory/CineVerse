@@ -361,3 +361,121 @@ ul {
 	background-repeat: no-repeat;
 }
 
+.vip_top_infor .mypage_box {
+	    position: relative;
+    float: none;
+    padding: 0 162px;
+    width: auto;
+    height: auto;
+    min-height: inherit;
+    margin-bottom: 40px;
+}
+
+.my_info .name strong {
+       font-size: 1.05em;
+    margin-right: 5px;
+}
+
+.vip_top_infor .mypage_box .my_info .name [class*="txt_rank"] {
+    margin-top: 1px;
+    padding: 0 10px;
+}
+.vip_top_infor .mypage_box .my_info .name span {
+    vertical-align: middle;
+}
+.txt_rank_common {
+    background-color: #AFAFAF;
+}
+[class*="txt_rank"] {
+display: flex;
+    padding: 0 10px;
+    min-width: 48px;
+    height: 22px;
+    color: #fff;
+    line-height: 22px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 25px;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    align-items: center;
+}
+
+.my_info .name {
+    width: 830px;
+    display: flex;
+    align-items: center;
+        margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.my_info .next_rank {
+    position: relative;
+    min-height: 25px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.my_info .next_rank > p {
+    display: inline-block;
+    color: #000;
+    font-size: 18px;
+}
+
+
+.my_info .next_rank > p em {
+    margin-left: 4px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.vip_top_infor .mypage_box .my_info {
+    padding: 37px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.my_info {
+    position: relative;
+    padding: 25px 30px 0 30px;
+}
+.my-photo {
+	margin-right: 20px;
+    border-radius: 50%;
+}
+
+progress {
+width: 800px;
+    height: 5px;
+    color: var(--main-color);
+    -webkit-appearance: none;
+    appearance: none;
+}
+progress::-webkit-progress-bar {
+   background-color: var(--gray-2);
+}
+progress::-webkit-progress-value {
+   background-color: var(--main-color-strong);
+}
+
+.rank_progress {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.font_roboto {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.remain_points > p > em {
+ 	font-size: 1.05em;
+    font-weight: 600;
+}

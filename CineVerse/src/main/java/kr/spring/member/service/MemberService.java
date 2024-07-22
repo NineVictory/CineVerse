@@ -38,6 +38,6 @@ public interface MemberService {
 	public void insertKakaoMemberDetail(MemberVO member);
 	
 	public MemberVO selectMember(Long mem_num);
-	
+	public Integer selectPointUse(Long mem_num);
 	
 }

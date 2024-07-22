@@ -24,9 +24,9 @@ public class MemberVO {
 	private int mem_auth;
 	private String auto;
 	private String au_id;
-	
+	private int mem_rank;
 	private int point;
-	
+	private int used_point;
 	@NotBlank
 	private String mem_name;
 	private String mem_nickname;

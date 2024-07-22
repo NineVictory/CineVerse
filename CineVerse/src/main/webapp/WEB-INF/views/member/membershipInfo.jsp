@@ -12,22 +12,101 @@
 						<div class="vip-details">
 							<h2></h2>			
 							<div class="vip_top_infor">
-                                <div class="nomem_page_box">
-                                    <div class="user_info">
-                                        <div class="bx_con">
-                                        	<c:if test="${empty user }">
-                                        		<p class="txt"><strong>회원가입 하시고</strong><br>VIP의 풍성한 혜택을 만나보세요.</p>
-                                        		<a href="${pageContext.request.contextPath}/member/register" class="btn_col3 ty3 rnd">회원가입</a>
-                                        	</c:if>
-                                        </div>
-                                        <div class="bx_btm">
-                                        	<c:if test="${empty user }">
-                                        		<p class="txt">이미 CINEVERSE 회원이신가요?</p>
-                                        		<a href="${pageContext.request.contextPath}/member/login" class="btn_lnk2">로그인</a>
-                                       	 	</c:if>
-                                        </div>
-                                    </div>
-                                </div>
+								<c:if test="${!empty user }">
+									<div class="mypage_box">
+									<div class="my_info">
+										<p class="name">
+											<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${member.mem_num}" width="100" height="100" class="my-photo">
+											<strong>${member.mem_name }님은</strong> 
+											<span class="txt_rank_common">
+											<c:choose>
+												<c:when test="${member.mem_rank == 1 }">BASIC</c:when>
+												<c:when test="${member.mem_rank == 2 }">MEMBER</c:when>
+												<c:when test="${member.mem_rank == 3 }">REGULAR</c:when>
+												<c:when test="${member.mem_rank == 4 }">VIP</c:when>
+												<c:when test="${member.mem_rank == 5 }">VVIP</c:when>
+											</c:choose>
+											</span>
+											<span class="light">등급입니다.</span>
+										</p>
+										
+										<div class="remain_points">
+											<p>
+											<span class="font_roboto">
+											<c:choose>
+												<c:when test="${member.mem_rank + 1 == 1 }">BASIC</c:when>
+												<c:when test="${member.mem_rank + 1 == 2 }">MEMBER</c:when>
+												<c:when test="${member.mem_rank + 1 == 3 }">REGULAR</c:when>
+												<c:when test="${member.mem_rank + 1 == 4 }">VIP</c:when>
+												<c:when test="${member.mem_rank + 1 == 5 }">VVIP</c:when>
+											</c:choose>
+											</span>까지 남은 금액 
+											<em>
+											<c:choose>
+											    <c:when test="${member.mem_rank == 1}">
+											        <c:set var="remainingPoints" value="${50000 - member.used_point}" />
+											        ${remainingPoints}
+											    </c:when>
+											    <c:when test="${member.mem_rank == 2}">
+											        <c:set var="remainingPoints" value="${100000 - member.used_point}" />
+											        ${remainingPoints}
+											    </c:when>
+											    <c:when test="${member.mem_rank == 3}">
+											        <c:set var="remainingPoints" value="${200000 - member.used_point}" />
+											        ${remainingPoints}
+											    </c:when>
+											    <c:when test="${member.mem_rank == 4}">
+											        <c:set var="remainingPoints" value="${250000 - member.used_point}" />
+											        ${remainingPoints}
+											    </c:when>
+											</c:choose>
+											</em>원</p>
+										</div>
+										
+										<div class="next_rank">
+											<progress max="<c:if test="${member.mem_rank == 1 }">50000</c:if><c:if test="${member.mem_rank == 2 }">100000</c:if><c:if test="${member.mem_rank == 3 }">200000</c:if><c:if test="${member.mem_rank == 4 }">250000</c:if>" value="${member.used_point }"></progress>
+											<div class="rank_progress">
+											<span> <strong>
+											<c:choose>
+												<c:when test="${member.mem_rank == 1 }">BASIC</c:when>
+												<c:when test="${member.mem_rank == 2 }">MEMBER</c:when>
+												<c:when test="${member.mem_rank == 3 }">REGULAR</c:when>
+												<c:when test="${member.mem_rank == 4 }">VIP</c:when>
+												<c:when test="${member.mem_rank == 5 }">VVIP</c:when>
+											</c:choose>
+											</strong>
+											</span>
+											<span>	<strong>
+											<c:choose>
+												<c:when test="${member.mem_rank + 1 == 1 }">BASIC</c:when>
+												<c:when test="${member.mem_rank + 1 == 2 }">MEMBER</c:when>
+												<c:when test="${member.mem_rank + 1 == 3 }">REGULAR</c:when>
+												<c:when test="${member.mem_rank + 1 == 4 }">VIP</c:when>
+												<c:when test="${member.mem_rank + 1 == 5 }">VVIP</c:when>
+											</c:choose>
+											</strong>
+											</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								</c:if>
+								
+								<c:if test="${empty user }">
+									<div class="nomem_page_box">
+	                                    <div class="user_info">
+	                                        <div class="bx_con">
+	                                        		<p class="txt"><strong>회원가입 하시고</strong><br>VIP의 풍성한 혜택을 만나보세요.</p>
+	                                        		<a href="${pageContext.request.contextPath}/member/register" class="btn_col3 ty3 rnd">회원가입</a>
+	                                        </div>
+	                                        <div class="bx_btm">
+	                                        		<p class="txt">이미 CINEVERSE 회원이신가요?</p>
+	                                        		<a href="${pageContext.request.contextPath}/member/login" class="btn_lnk2">로그인</a>
+	                                        </div>
+	                                        
+	                                    </div>
+	                                </div>
+                                </c:if>
                             </div>
                             
                             <div class="rank_2020_wrap">
