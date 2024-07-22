@@ -39,6 +39,11 @@
 		]]>
 	</select>
 
+
+	<insert id="insertParticipation" parameterType="map">
+		INSERT INTO event_participation (ep_num, mem_num, event_num) 
+		VALUES (event_participation_seq.nextval, #{mem_num}, #{event_num})
+	</insert>
 </mapper>							
 
 

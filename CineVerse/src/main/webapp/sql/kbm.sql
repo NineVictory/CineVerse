@@ -65,3 +65,18 @@ create table assign_report{
 create sequence assign_report_seq;
 
 --댓글 신고
+
+CREATE TABLE FAQ(
+ F_NUM number not null,
+ MEM_NUM number not null,
+ F_TITLE varchar2(150) not null,
+ F_CONTENT clob not null,
+ F_REG_DATE date not null,
+ F_MODIFY_DATE date,
+ F_FILENAME varchar2(400),
+ F_HIT number(9) not null,
+ constraint faq_pk primary key (F_NUM),
+ constraint faq_fk foreign key (mem_num) references member (mem_num)
+);
+
+create sequence faq_seq;

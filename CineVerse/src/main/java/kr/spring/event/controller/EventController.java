@@ -72,7 +72,7 @@ public class EventController {
 	 =====================*/
 	@GetMapping("/event/eventDetail")
 	public ModelAndView process(long event_num) {
-		log.debug("이벤트 상세 - cb_num**************" + event_num);
+		log.debug("이벤트 상세 - event_num**************" + event_num);
 		
 		UserEventVO eventVO = eventService.selectEvent(event_num);
 		

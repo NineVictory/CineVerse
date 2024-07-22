@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.event.dao.EventMapper;
+import kr.spring.event.vo.EventPVO;
 import kr.spring.event.vo.UserEventVO;
 
 @Service
@@ -30,6 +31,16 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public UserEventVO selectEvent(long event_num) {
 		return eventMapper.selectEvent(event_num);
+	}
+
+	@Override
+	public EventPVO selectParticipation(EventPVO eventP) {
+		return eventMapper.selectParticipation(eventP);
+	}
+
+	@Override
+	public void insertParticipation(EventPVO eventP) {
+		eventMapper.insertParticipation(eventP);
 	}
 
 }

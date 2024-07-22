@@ -2,12 +2,12 @@ $(function(){
 	/*--------------------------------------
 	 *	이벤트 참여 여부
 	 *--------------------------------------*/
-	function selectParticipation(_num){
+	function selectParticipation(event_num){
 		//서버와 통신
 		$.ajax({
-			url:'getFav',
+			url:'getParticipation',
 			type:'get',
-			data:{cb_num:cb_num},
+			data:{event_num:event_num},
 			dataType:'json',
 			success:function(param){
 				displayFav(param);
@@ -19,44 +19,51 @@ $(function(){
 	}
 	
 	/*------------------
-	 *	좋아요 등록/삭제
+	 *	이벤트 등록
 	 *------------------*/
 	$('#event_participate_btn').click(function(){
-		//서버와 통신
-		$.ajax({
-			url:'writeParticipation',
-			type:'post',
-			data:{event_num:$('#event_participate_btn').attr('data-num')},
-			dataType:'json',
-			success:function(param){
-				if(param.result == 'logout'){
-					alert('로그인 후 좋아요를 눌러주세요');
-				}else if(param.result == 'success'){
-					displayFav(param);
-				}else{
-					alert('좋아요 등록/삭제 오류 발생');
+		let check = confirm('이벤트에 참여하시겠습니까? (참여 후 취소 불가능합니다.)');
+		if(check){
+			//서버와 통신
+			$.ajax({
+				url:'writeParticipation',
+				type:'post',
+				data:{event_num:$('#event_participate_btn').attr('data-num')},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'logout'){
+						alert('로그인 후 참여가능합니다.');
+					}else if(param.result == 'success'){
+						$('#event_participate_btn').addClass('participated');
+						$('#event_participate_btn').prop('disabled', true);
+						/*displayFav(param);*/
+					}else{
+						alert('이벤트 참여 오류 발생');
+					}
+				},
+				error:function(){
+					alert('네트워크 오류 발생');
 				}
-			},
-			error:function(){
-				alert('네트워크 오류 발생');
-			}
-		});
+			});
+		}
 	});
-	/*------------------
-	 *	북마크 표시 공통 함수
-	 *------------------*/
+
 	function displayFav(param){
-		let output;
-		if(param.status == 'yesFav'){
-			output = '../images/kbm/heart02.png';
-		}else if(param.status == 'noFav'){
-			output = '../images/kbm/heart01.png';
+		if(param.status == 'yesP'){
+			//버튼 비활성화
+			$('#event_participate_btn').addClass('participated');
+			$('#event_participate_btn').val('이벤트 참여완료');
+			$('#event_participate_btn').prop('disabled', true);
+		}else if(param.status == 'noP'){
+			//버튼 활성화
+			$('#event_participate_btn').removeClass('participated');
+			$('#event_participate_btn').prop('disabled', false);
 		}else{
 			alert('좋아요 표시 오류 발생');
 		}
-		//문서 객체에 추가
-		$('#output_fav').attr('src',output);
-		$('#output_fcount').text(param.count);
+
 	}
+	
+	selectParticipation($('#event_participate_btn').attr('data-num'));
 	
 });

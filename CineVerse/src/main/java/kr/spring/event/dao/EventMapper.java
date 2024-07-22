@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.event.vo.EventPVO;
 import kr.spring.event.vo.UserEventVO;
 
 
@@ -18,4 +19,9 @@ public interface EventMapper {
 	
 	@Select("SELECT * FROM event WHERE event_num=#{event_num}")
 	public UserEventVO selectEvent(long event_num);
+	
+	@Select("SELECT * FROM event_participation WHERE event_num=#{event_num} AND mem_num=#{mem_num}")
+	public EventPVO selectParticipation(EventPVO eventP);
+	
+	public void insertParticipation(EventPVO eventP);
 }
