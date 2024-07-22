@@ -21,8 +21,7 @@
 }
 /* 이미지 넓이 */
 .swiper-slide img {
-	width: 100%;
-	height: 100%;
+	width: 100%
 }
 
 /* 페이지네이션 위치 잡기 */
@@ -46,7 +45,7 @@
 	<div class="swiper-wrapper">
 		<div class="swiper-slide">
 			<img
-				src="https://cf2.lottecinema.co.kr/lotte_image/2024/HappyLittleSubmarine/HappyLittleSubmarine_1920774.png"
+				src="https://cf2.lottecinema.co.kr/lotte_image/2024/Pilot/Pilot_1920774.jpg"
 				alt="광고 이미지 1">
 		</div>
 		<div class="swiper-slide">
@@ -73,7 +72,7 @@
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<iframe width="750" height="415"
-				src="https://www.youtube.com/embed/cssu8A6VlTg?si=MBj3QCt_g18Vm_hZ"
+				src="https://www.youtube.com/embed/amI9ujTxtH4?si=BMlnca0-whqKnA1C"
 				title="YouTube video player" frameborder="0"
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 				referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
