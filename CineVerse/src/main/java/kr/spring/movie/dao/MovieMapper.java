@@ -57,10 +57,10 @@ public interface MovieMapper {
 	 * "AND genre IS NOT NULL " + "AND repRlsDate IS NOT NULL " +
 	 * "AND posters IS NOT NULL " + "AND teasers IS NOT NULL")
 	 */
-    @Select("SELECT title, directorNm, actorNm, company, plot, runtime, rating, genre, repRlsDate, posters, teasers " +
-            "FROM movie_detail_kf_api " +
-            "WHERE title = #{title}")
-    MovieDetailKFAPIVO selectDetailKFAPIVOByTitle(String title);
+	@Select("SELECT DOCID, title, directorNm, actorNm, company, plot, runtime, rating, genre, repRlsDate, posters, teasers " +
+	        "FROM movie_detail_kf_api " +
+	        "WHERE TRIM(title) = TRIM(#{title})")
+	MovieDetailKFAPIVO selectDetailKFAPIVO(String title);
 	   
 	//영화 북마크
 	@Select("SELECT * FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}")

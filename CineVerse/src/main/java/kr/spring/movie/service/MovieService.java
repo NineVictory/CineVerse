@@ -27,7 +27,7 @@ public interface MovieService {
     
     public List<String> selectDistinctGenres();
     public List<MovieVO> filterMoviesByGenres(List<String> genres);
-    public MovieDetailKFAPIVO selectDetailKFAPIVOByTitle(String title);
+    MovieDetailKFAPIVO selectDetailKFAPIVO(String title);
     
     // 영화 북마크
     MovieBookMarkVO selectBookMark(MovieBookMarkVO bookMark);

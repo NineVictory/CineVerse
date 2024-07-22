@@ -23,7 +23,7 @@
             #{m_opendate},
             #{m_companys},
             #{m_status},
-            #{m_filename},
+            #{m_filename,jdbcType=VARCHAR},
             #{plot},
             #{m_content},
             #{m_genre},

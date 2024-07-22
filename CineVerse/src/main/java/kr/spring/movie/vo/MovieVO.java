@@ -27,7 +27,7 @@ public class MovieVO {
 	private String m_content;//티저
 	private String plot;//줄거리
 	private String m_genre;//장르
-	private long runtime;//런타임
+	private String runtime;//런타임
 	private String rating;//관람등급
 	@NotNull
 	private MultipartFile m_upload;	//파일

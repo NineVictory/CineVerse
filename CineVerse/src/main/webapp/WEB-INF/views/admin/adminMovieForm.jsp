@@ -194,25 +194,11 @@ $(document).ready(function() {
     $("#titleButton").click(function() {
         const title = $("#title").val();
         if (title) {
-            $.get("${pageContext.request.contextPath}/admin/adminMovieForm", {title: title}, function(data) {
-                const movieDetail = data.movieDetail;
-                if (movieDetail) {
-                    $("#m_name").val(movieDetail.title);
-                    $("#m_opendate").val(movieDetail.repRlsDate);
-                    $("#m_companys").val(movieDetail.company);
-                    $("#runtime").val(movieDetail.runtime);
-                    $("#rating").val(movieDetail.rating);
-                    $("#m_genre").val(movieDetail.genre);
-                    $("#director").val(movieDetail.directorNm);
-                    $("#actor").val(movieDetail.actorNm);
-                    $("#plot").val(movieDetail.plot);
-                    $("#m_content").val(movieDetail.teasers);
-                    $("#m_filename").val(movieDetail.posters); 
-                }
-            });
+            window.location.href = "${pageContext.request.contextPath}/admin/adminMovieForm?title=" + title;
         }
     });
 });
+
 </script>
 
 <div class="page-container">
@@ -250,10 +236,15 @@ $(document).ready(function() {
                     <form:label path="rating">시청연령</form:label>
                     <form:input path="rating" id="rating" cssClass="input-check"/>
                 </li>
-                <li>
-                    <form:label path="m_upload">포스터</form:label>
-                    <form:input path="m_upload" id="m_upload" type="file" cssClass="input-check" accept="image/gif,image/png,image/jpeg"/>
-                </li>
+                 <li>
+            <form:label path="m_upload">포스터</form:label>
+            <!-- 기존 포스터를 보여주는 필드 -->
+            <c:if test="${not empty movieVO.m_filename}">
+                <img src="${movieVO.m_filename}" alt="Current Poster" style="max-width: 200px; max-height: 300px;">
+            </c:if>
+            <!-- 새 포스터를 업로드하는 필드 -->
+            <form:input path="m_upload" id="m_upload" type="file" cssClass="input-check" accept="image/gif,image/png,image/jpeg"/>
+        </li>
                 <li>
                     <form:label path="m_genre">장르명</form:label>
                     <form:input path="m_genre" id="m_genre" cssClass="input-check"/>

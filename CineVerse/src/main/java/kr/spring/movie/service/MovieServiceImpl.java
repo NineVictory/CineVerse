@@ -263,10 +263,11 @@ public class MovieServiceImpl implements MovieService {
     }
 
 	@Override
-	public MovieDetailKFAPIVO selectDetailKFAPIVOByTitle(String title) {
-		
-		return movieMapper.selectDetailKFAPIVOByTitle(title);
+	public MovieDetailKFAPIVO selectDetailKFAPIVO(String title) {
+		 return movieMapper.selectDetailKFAPIVO(title);
 	}
+
+
 
 
 
