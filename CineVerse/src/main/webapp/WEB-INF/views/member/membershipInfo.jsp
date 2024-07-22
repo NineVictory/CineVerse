@@ -34,27 +34,28 @@
                                 <h3 class="tit"><em>VIP</em> 선정 및 유지 기준</h3>
                                 <div class="rank_2020_list_ty2">
                                     <dl class="tit">
-                                        <dt class="ic_2020_vip"><span class="txt_2020_rank1">BASIC</span></dt>
+                                        <dt class="ic_2024_basic">
+                                        <span class="txt_2020_rank1">BASIC</span></dt>
                                         <dd>일반회원</dd>
                                         <dd> &thinsp; </dd>
                                     </dl>
                                     <dl>
-                                        <dt class="ic_2020_vvip"><span class="txt_2020_rank2">MEMBER</span></dt>
+                                        <dt class="ic_2024_member"><span class="txt_2020_rank2">MEMBER</span></dt>
                                         <dd><em>Member 6</em>개월 유지</dd>
                                         <dd><em>5 </em>만원 이상</dd>
                                     </dl>
                                     <dl>
-                                        <dt class="ic_2020_gold"><span class="txt_2020_rank3">REGULAR</span></dt>
+                                        <dt class="ic_2024_regular"><span class="txt_2020_rank3">REGULAR</span></dt>
                                         <dd><em>Regular 6</em>개월 유지</dd>
                                         <dd><em>10 </em>만원 이상</dd>
                                     </dl>
                                     <dl>
-                                        <dt class="ic_2020_platinum"><span class="txt_2020_rank4">VIP</span></dt>
+                                        <dt class="ic_2024_vip"><span class="txt_2020_rank4">VIP</span></dt>
                                         <dd><em>VIP 6</em>개월 유지</dd>
                                         <dd><em>20 </em>만원 이상</dd>
                                     </dl>
                                     <dl>
-                                        <dt class="ic_2020_platinum"><span class="txt_2020_rank4">VVIP</span></dt>
+                                        <dt class="ic_2024_vvip"><span class="txt_2020_rank4">VVIP</span></dt>
                                         <dd><em>VVIP 6</em>개월 유지</dd>
                                         <dd><em>25 </em>만원 이상</dd>
                                     </dl>
@@ -66,7 +67,7 @@
 									<em>VIP</em> 혜택
 								</h3>
 								<ul class="benefit_box_ty2 type2">
-									<li><strong class="ic_rank_vip">MEMBER</strong>
+									<li><strong class="ic_rank_member">MEMBER</strong>
 									<div class="benefit">
 											<div class="listbox">
 												<ul class="list type1">
@@ -85,7 +86,7 @@
 											</ul>
 										</div>
 										</li>
-									<li><strong class="ic_rank_vvip">REGULAR</strong>
+									<li><strong class="ic_rank_regular">REGULAR</strong>
 									<div class="benefit">
 											<div class="listbox">
 												<ul class="list type1">
@@ -104,7 +105,7 @@
 											</ul>
 										</div>
 										</li>
-									<li><strong class="ic_rank_gold">VIP</strong>
+									<li><strong class="ic_rank_vip">VIP</strong>
 									<div class="benefit">
 											<div class="listbox">
 												<ul class="list type1">
@@ -123,7 +124,7 @@
 											</ul>
 										</div>
 										</li>
-									<li><strong class="ic_rank_platinum">VVIP</strong>
+									<li><strong class="ic_rank_vvip">VVIP</strong>
 									<div class="benefit">
 											<div class="listbox">
 												<ul class="list type1">
