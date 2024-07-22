@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.spring.board.vo.BoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.ConsultVO;
+import kr.spring.support.vo.UserNoticeVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
@@ -60,11 +60,59 @@ public class SupportController {
 	
 	//공지/뉴스
 	@GetMapping("/support/notice")
-	public String noticeList() {
+	public String noticeList(@RequestParam(defaultValue="1") int pageNum,
+							 String keyfield, String keyword, Model model) {
+		log.debug("공지 목록***************");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체, 검색 레코드수
+		int count = supportService.selectNoticeRowCount(map);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,10,10,"notice");
+		List<UserNoticeVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = supportService.selectNoticeList(map);
+			
+		}
+				
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+		
 		return "supportNotice";
 	}
 	
-	//1:1문의 리스트
+	/*====================
+	 *공지 상세
+	 =====================*/
+	@GetMapping("/support/noticeDetail")
+	public ModelAndView process(long nb_num) {
+		log.debug("공지 상세************* - nb_num : " + nb_num);
+		
+		//해당 글의 조회수 증가
+		supportService.updateHit(nb_num);
+		
+		UserNoticeVO noticeVO = supportService.selectNotice(nb_num);
+		
+		//제목에 태그를 허용하지 않음
+		noticeVO.setNb_title(StringUtil.useNoHTML(noticeVO.getNb_title()));
+		
+		//내용에 태그를 허용하지 않으면서 줄바꿈 처리(CKEditor 사용시 주석 처리)
+		//board.setContent(StringUtil.useBrNoHTML(board.getContent()));
+		ModelAndView modelAndView = new ModelAndView("noticeDetail");
+		modelAndView.addObject("notice", noticeVO);
+		return modelAndView;
+	}
+	
+	
+	//
 	@GetMapping("/support/consultList")
 	public String consultMain(@RequestParam(defaultValue="1") int pageNum,
 							  @RequestParam(defaultValue="") Long mem_num,

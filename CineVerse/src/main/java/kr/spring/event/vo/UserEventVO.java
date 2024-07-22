@@ -21,4 +21,7 @@ public class UserEventVO {
 	
 	//추가
 	private String event_type;
+	
+	//
+	private long t_rest;
 }

@@ -52,6 +52,51 @@
 		SELECT c.*, o.od_number FROM consult c LEFT OUTER JOIN orders o ON c.order_num=o.order_num WHERE c.consult_num=#{consult_num}
 	</select>
 	
+	
+	
+	
+	
+	
+	<sql id="noticeSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 1">
+		 			nb_title LIKE '%' || #{keyword} || '%'
+		 		</if>
+		 		<if test="keyfield == 2">
+		 			nb_content LIKE '%' || #{keyword} || '%')
+		 		</if>
+			</if>
+		</where>
+	</sql>
+
+	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<select id="selectNoticeRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM notice_board
+		<include refid="noticeSearch"></include>
+	</select>
+
+	<!-- 게시판 전체 목록/검색 목록 -->
+	<select id="selectNoticeList" parameterType="map" resultType="userNoticeVO">
+		SELECT * FROM
+				(SELECT a.*, rownum rnum FROM			<!--좋아요가 없을 때 누락-->
+								(SELECT 
+									nb_num,
+									<![CDATA[
+									REPLACE(REPLACE(nb_title,'<','&lt;'),'>','&gt;') nb_title,
+									]]>
+									nb_hit,
+									nb_filename,
+									nb_reg_date
+									
+									FROM notice_board 
+									<include refid="noticeSearch"></include>
+									ORDER BY nb_reg_date DESC)a) 
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
 </mapper>							
 
 

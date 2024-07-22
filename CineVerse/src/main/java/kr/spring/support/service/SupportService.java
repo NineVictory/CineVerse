@@ -3,8 +3,10 @@ package kr.spring.support.service;
 import java.util.List;
 import java.util.Map;
 
+
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.vo.ConsultVO;
+import kr.spring.support.vo.UserNoticeVO;
 
 public interface SupportService {
 
@@ -19,4 +21,10 @@ public interface SupportService {
 	 * public ConsultVO selectConsult(Long consult_num); public void
 	 * deleteConsult(Long consult_num);
 	 */
+	
+	
+	public List<UserNoticeVO> selectNoticeList(Map<String,Object> map);
+	public Integer selectNoticeRowCount(Map<String,Object> map);
+	public UserNoticeVO selectNotice(Long nb_num);
+	public void updateHit(Long nb_num);
 }

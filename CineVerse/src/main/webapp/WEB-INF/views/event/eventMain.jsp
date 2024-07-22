@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/event.list.js"></script>
@@ -20,7 +21,7 @@
 			</div>
 			<div class="event-type-btn">
 				<input type="button" value="당첨자 발표" class="event_btn">
-				<input type="button" value="진행중인 이벤트" class="event_btn">
+				<input type="button" value="종료된 이벤트" class="event_btn">
 			</div>
 		</div>
 
@@ -31,9 +32,9 @@
 						<li class="<c:if test="${(status.index + 1) % 4 == 0}">no-margin</c:if>">
 							<a href="eventDetail?event_num=${event.event_num}" class="event-img">
 								<img src="${pageContext.request.contextPath}/upload/${event.event_filename}" alt="이벤트 대표 사진" >
-								<span class="event-title">
+								<span class="event-title flexbox-p">
 									<span style="font-size: 16px; font-weight: 600;">${event.event_name}</span>
-									<span style="font-size: 13px">${event.event_start}~{${event.event_end}<b class="event-dday">D-6</b></span>
+									<span style="font-size: 13px">${event.event_start}~{${event.event_end}<b class="event-dday">D-${event.t_rest}</b></span>
 								</span>
 							
 							</a>

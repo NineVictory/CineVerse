@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- 자주 묻는 질문 -->
 <div id="support_main" class="">
@@ -9,15 +11,15 @@
 	</div>
 	<div class="news-search-container">
 		<div class="search flexbox-h">
-			<form action="news" id="news_search_form" class="flexbox-h" method="get" style="margin-left: auto;">
+			<form action="notice" id="news_search_form" class="flexbox-h" method="get" style="margin-left: auto;">
 		
-				<select>
-					<option value="title">제목</option>
-	           		<option value="content">내용</option>
+				<select name="keyfield" id="keyfield">
+					<option value="1">제목</option>
+	           		<option value="2">내용</option>
 				</select>
 		
 				<input type="hidden" name="" value="">
-				<input type="search" class="search-input" name="keyword" placeholder="검색어를 입력해 주세요">
+				<input type="search" class="search-input" name="keyword" placeholder="검색어를 입력해 주세요" value="${param.keyword}">
 				<button type="submit" class="search-button" aria-label="검색하기">검색</button>
 			<%--<input type="image" src="${pageContext.request.contextPath}/images/kbm/search.png" width="20" alt="검색"> --%>
             </form>
@@ -30,65 +32,35 @@
 			<td class="news-table-rdate">등록일</td>
 			<td class="news-table-hit">조회수</td>
 		</tr>
+		<c:if test="${count == 0}">
 		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
+			<td colspan="5">
+				<div style=" height:250px; display:flex; align-items:center; justify-content: center;">공지/뉴스가 존재하지 않습니다.</div>
+			</td>
 		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
-		<tr>
-			<td class="news-table-num">999</td>
-			<td class="news-table-title">CINEVERSE 개인정보처리방침 개정 안내</td>
-			<td class="news-table-rdate">24.07.11</td>
-			<td class="news-table-hit">999</td>
-		</tr>
+		</c:if>
+		
+		<c:if test="${count > 0}">
+			<c:forEach var="notice" items="${list}">
+			<tr>
+				<td class="news-table-num">${notice.nb_num}</td>
+				<td class="news-table-title">
+				 <c:choose>
+	                    <c:when test="${fn:length(notice.nb_title) > 30}">
+	                        <a href="noticeDetail?nb_num=${notice.nb_num}">${fn:substring(notice.nb_title, 0, 30)}...</a>
+	                    </c:when>
+	                    <c:otherwise>
+	                        <a href="noticeDetail?nb_num=${notice.nb_num}">${notice.nb_title}</a>
+	                    </c:otherwise>
+	                </c:choose>
+				</td>
+				<td class="news-table-rdate">${notice.nb_reg_date}</td>
+				<td class="news-table-hit">${notice.nb_hit}</td>
+			</tr>
+			</c:forEach>
+		</c:if>	
 	</table>
+	<div class="align-center page-div">
+			${page}
+	</div>
 </div>

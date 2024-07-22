@@ -138,7 +138,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	padding-left: 7px;
-	display:inline-block;
+	/* display:inline-block; */
 }
 
 .event-dday {

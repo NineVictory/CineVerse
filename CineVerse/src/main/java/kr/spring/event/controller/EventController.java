@@ -1,5 +1,8 @@
 package kr.spring.event.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +58,26 @@ public class EventController {
 			
 			list = eventService.selectEventList(map);
 			
+			// DateTimeFormatter를 설정합니다.
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            
+            for (UserEventVO event : list) {
+                // DB에서 불러온 날짜를 가져옵니다.
+                String targetDateString = event.getEvent_end();
+                
+                // DateTimeFormatter를 사용하여 문자열을 LocalDate로 변환합니다.
+                LocalDate targetDate = LocalDate.parse(targetDateString, formatter);
+                
+                // 오늘 날짜를 가져옵니다.
+                LocalDate today = LocalDate.now();
+                
+                // 남은 일수를 계산합니다.
+                long daysUntilTarget = ChronoUnit.DAYS.between(today, targetDate);
+                
+                event.setT_rest(daysUntilTarget);
+                // 필요하다면 UserEventVO 객체에 D-Day를 저장하는 필드를 추가하고 값을 설정할 수 있습니다.
+                // event.setDaysUntilTarget(daysUntilTarget); // D-Day 저장
+            }
 		}
 		
 		

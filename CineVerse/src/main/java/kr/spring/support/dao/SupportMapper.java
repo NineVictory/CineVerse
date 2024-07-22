@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.vo.ConsultVO;
+import kr.spring.support.vo.UserNoticeVO;
 
 
 @Mapper
@@ -32,4 +33,13 @@ public interface SupportMapper {
 	
 	@Delete("DELETE FROM consult WHERE consult_num=#{consult_num}")
 	public void deleteConsult(Long consult_num);*/
+	
+	
+	
+	public List<UserNoticeVO> selectNoticeList(Map<String,Object> map);
+	public Integer selectNoticeRowCount(Map<String,Object> map);
+	@Select("SELECT * FROM notice_board WHERE nb_num=#{nb_num}")
+	public UserNoticeVO selectNotice(Long nb_num);
+	@Update("UPDATE notice_board SET nb_hit=nb_hit+1 WHERE nb_num=#{nb_num}")
+	public void updateHit(Long nb_num);
 }
