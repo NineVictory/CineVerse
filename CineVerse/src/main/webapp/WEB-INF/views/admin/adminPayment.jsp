@@ -4,11 +4,11 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
-    function refundPoint(mem_num,ph_point,ph_payment) {
+    function refundPoint(ph_num,mem_num,ph_point,ph_payment) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/refundPoint",
-            data: { mem_num: mem_num, ph_point: ph_point , ph_payment: ph_payment },
+            data: { ph_num:ph_num, mem_num: mem_num, ph_point: ph_point , ph_payment: ph_payment },
             success: function(response) {
                 if (response === "success") {
                     // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
@@ -63,7 +63,7 @@
                     <td class="mem-data">${point.ph_date}</td>
                     <td class="mem-data">${point.mem_num}</td>
                     <td class="mem-data">${point.ph_payment}</td>
-                    <td class="button2"><input type="button" value="결제취소" onclick="refundPoint(${point.mem_num}, ${point.ph_point}, '환불')"/></td>
+                    <td class="button2"><input type="button" value="결제취소" onclick="refundPoint(${point.ph_num}, ${point.mem_num}, ${point.ph_point}, '포인트 충전 환불')"/></td>
                 </tr>
             </c:forEach>
         </tbody>

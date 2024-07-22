@@ -112,6 +112,7 @@ public interface AdminMapper {
 	public List<PointVO> selectPoint(Map<String,Object> map);
 	public Integer selectPointRowCount(Map<String,Object> map);
 	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{ph_point}, SYSDATE, #{mem_num}, 0, #{ph_payment})")
-	public void refundPoint(@Param("mem_num") long mem_num, @Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment);
-	
+	public void refundPoint(@Param("ph_num") long ph_num, @Param("mem_num") long mem_num, @Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment);
+	@Update("UPDATE point_history SET ph_type = 3 WHERE ph_num = #{ph_num}")
+	public void updatePoint(long ph_num);
 }

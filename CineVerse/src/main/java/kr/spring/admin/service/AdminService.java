@@ -60,6 +60,7 @@ public interface AdminService {
 	public List<CinemaVO> selectCinema(Map<String,Object> map);
 	public Integer selectCinemaRowCount(Map<String,Object> map);
 	public void deleteCinema(long c_num);
-	public void refundPoint(long mem_num, long ph_point, String ph_payment);
+	public void refundPoint(long ph_num, long mem_num, long ph_point, String ph_payment);
 	public void refundMembership(long mem_num);
+
 }	

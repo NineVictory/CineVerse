@@ -164,8 +164,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	@Transactional
-	public void refundPoint(long mem_num, long ph_point, String ph_payment) {
-		adminMapper.refundPoint(mem_num,ph_point,ph_payment);
+	public void refundPoint(long ph_num, long mem_num, long ph_point, String ph_payment) {
+		adminMapper.refundPoint(ph_num, mem_num,ph_point,ph_payment);
+		adminMapper.updatePoint(ph_num);
 		memberMapper.totalPoint(mem_num);
 	}
 	@Override
@@ -216,4 +217,5 @@ public class AdminServiceImpl implements AdminService{
 	public void deleteCmt(long cc_num) {
 		adminMapper.deleteCmt(cc_num);
 	}
+	
 }

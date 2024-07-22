@@ -701,12 +701,12 @@ public class AdminController {
 	// 결제 환불 처리
 	@PostMapping("/refundPoint")
 	@ResponseBody
-	public String refundPoint(@RequestParam("mem_num") long mem_num,@Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment) {
-		adminService.refundPoint(mem_num, ph_point, ph_payment);
+	public String refundPoint(@RequestParam("mem_num") long mem_num,@Param("ph_num") long ph_num, @Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment) {
+		adminService.refundPoint(ph_num, mem_num, ph_point, ph_payment);
 		log.debug("<<포인트 환불완료>>");
 		return "success";
 	}
-	
+
 
 
 }

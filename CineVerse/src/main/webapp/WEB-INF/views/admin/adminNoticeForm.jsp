@@ -37,9 +37,9 @@
 				<form:errors path="nb_title" element="div" cssClass="error-message"></form:errors>
 				</li>
 				<li><label for="nb_upload">사진</label> <input type="file"
-					name="nb_upload" id="nb_upload" class="input-check"
-					accept="image/gif,image/png,image/jpeg"> <form:errors
-						path="nb_upload" element="div" cssClass="error-message"></form:errors>
+					name="nb_upload" id="nb_upload"
+					accept="image/gif,image/png,image/jpeg"> <%-- <form:errors
+						path="nb_upload" element="div" cssClass="error-message"></form:errors> --%>
 				</li>
 				<li><label for="nb_content">내용</label> <form:textarea
 						path="nb_content" rows="5" cols="30" class="input-check" /> <form:errors
