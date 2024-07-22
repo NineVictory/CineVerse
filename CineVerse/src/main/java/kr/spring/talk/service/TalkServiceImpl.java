@@ -70,7 +70,31 @@ public class TalkServiceImpl implements TalkService{
 
 	@Override
 	public void deleteTalkRead(Map<String, Long> map) {
+	}
 
+	@Override
+	public void deleteTalkRoom(Long talkroom_num) {
+		talkMapper.deleteTalk_Read(talkroom_num);
+		talkMapper.deleteTalk(talkroom_num);
+		talkMapper.deleteTalkMember(talkroom_num);
+		talkMapper.deleteTalkRoom(talkroom_num);
+	}
+
+
+	@Override
+	public List<Long> selectMembers(Long talkroom_num){
+		return talkMapper.selectMembers(talkroom_num);
+	}
+	
+	@Override
+	public boolean isMember(Long talkroom_num, Long mem_num) {
+	    List<Long> members = talkMapper.selectMembers(talkroom_num);
+	    return members != null && members.contains(mem_num);
+	}
+
+	@Override
+	public void updateTalkRoomName(TalkMemberVO talkMemberVO) {
+		talkMapper.updateTalkRoomName(talkMemberVO);
 	}
 
 }

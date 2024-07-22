@@ -30,7 +30,16 @@ public class ConsultVO {
 	private MultipartFile c_upload;
 	private String consult_file;
 	private String consult_ip;
+	private String consult_answer;
 	
 	//조인
-	private long od_number;
+	private Long order_num;//주문테이블 고유번호
+	private String mem_id;
+	private String od_number;
+	/*
+	 * public void setOrder_num(String order_num) { // 빈 문자열을 null로 처리 try {
+	 * this.order_num = (order_num == null || order_num.trim().isEmpty()) ? null :
+	 * Long.valueOf(order_num); } catch (NumberFormatException e) { // 로그 기록 또는 예외
+	 * 처리 this.order_num = null; } }
+	 */
 }

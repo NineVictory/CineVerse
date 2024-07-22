@@ -199,20 +199,21 @@
             #{c_num})
     </insert>
     
-
-<!-- 영화 시간표 등록 -->
-    <insert id="addMovieTime" parameterType="kr.spring.movie.vo.MovieTimeVO">
-        INSERT INTO movie_time (mt_num, mt_date, mt_start, mt_end, m_code, c_num)
-        VALUES (#{mt_num}, #{mt_date}, #{mt_start}, #{mt_end}, #{m_code}, #{c_num})
-    </insert>
-
-	<select id="getBookingInfo" parameterType="map" resultType="kr.spring.movie.vo.MovieBookingVO">
-        SELECT mb_num
-        FROM movie_booking
-        WHERE mem_num = #{mem_num} AND m_code = #{m_code}
+	<select id="selectDistinctGenres" resultType="String">
+    	SELECT DISTINCT genre FROM movie_genre
+	</select>
+    <select id="filterMoviesByGenres" parameterType="list" resultType="kr.spring.movie.vo.MovieVO">
+        SELECT *
+        FROM movie
+        WHERE m_code IN (
+            SELECT m_code
+            FROM movie_genre
+            WHERE genre IN
+            <foreach item="genre" index="index" collection="genres" open="(" separator="," close=")">
+                #{genre}
+            </foreach>
+        )
     </select>
-    
-
 </mapper>							
 
 

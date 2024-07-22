@@ -36,6 +36,15 @@
 			<form:input path="event_name" class="input-check"/>
 			<form:errors path="event_name" element="div" cssClass="error-message"></form:errors>
 		</li>
+		<li>	
+			<label for="event_name">분류</label>
+			<form:select path="event_type" class="input-check">
+				<form:option value="1">영화</form:option>
+				<form:option value="2">시사회/무대인사</form:option>
+				<form:option value="3">제휴할인</form:option>
+			</form:select>
+			<form:errors path="event_type" element="div" cssClass="error-message"></form:errors>
+		</li>
 		<li>
 			<label for="event_upload">사진</label>
 			<input type="file" name="event_upload" id="event_upload" class="input-check" accept="image/gif,image/png,image/jpeg">

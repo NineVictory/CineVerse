@@ -3,6 +3,7 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!-- 게시판 글상세 시작 -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -46,8 +47,14 @@
 					
 		<div class="flexbox-h side">
 			<div class="writer ml10">
-				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="22" height="22" class="my-photo">&nbsp;${board.mem_id}
-				<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">
+				<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="22" height="22" class="my-photo">
+				<c:if test="${!empty board.mem_nickname}">
+				${board.mem_nickname}
+				</c:if>
+				<c:if test="${empty board.mem_nickname}">
+				${board.mem_id}
+				</c:if>
+				<%--<input type="button" class="chatBtn" id="chatBtn" value="1:1채팅">--%>
 			</div>
 			<div>
 				<c:if test="${board.mem_num == user.mem_num}">
@@ -98,7 +105,7 @@
 				<span id="output_fcount">0</span>
 					
 				<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15">
-				<span style="margin-left:2px;" id="board-report">신고</span>
+				<span style="margin-left:2px;" id="board_report">신고</span>
 				
 			</div>
 		</div>
@@ -154,3 +161,30 @@
 		
 	</div>
 </div>
+
+
+<!-- 신고 모달 -->
+<%-- <div class="modal" id="reportModal">
+	<div class="modal-content">
+		<span class="close" id="closeModal">&times;</span>
+			<h2>신고하기</h2>
+			<form:form id="reportForm">
+				<div class="rform-group">
+				<form:label path="reportReason">신고 사유</form:label>
+				<form:radiobutton path="cr-category" value="1" checked="checked"/>스팸홍보/도배<br>
+				<form:radiobutton path="cr-category" value="2" />음란물
+				<form:radiobutton path="cr-category" value="3" />불법정보
+				<form:radiobutton path="cr-category" value="4" />청소년에게 유해한 내용
+				<form:radiobutton path="cr-category" value="5" />욕설/생명경시/혐오/차별적 표현
+				<form:radiobutton path="cr-category" value="6" />개인정보 노출
+				<form:radiobutton path="cr-category" value="7" />불쾌한 표현
+				<form:radiobutton path="cr-category" value="8" />기타
+				</div>
+	            <div class="form-group">
+	                <form:label path="cr-content">신고 내용</form:label>
+	                <form:textarea path="cr-content" rows="3" required="true"></form:textarea>
+	            </div>
+            <button type="submit" class="btn">신고하기</button>
+        </form:form>
+    </div>
+</div> --%>

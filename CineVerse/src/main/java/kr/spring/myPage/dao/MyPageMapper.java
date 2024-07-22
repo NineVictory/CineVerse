@@ -13,9 +13,11 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.vo.MyPageVO;
+import kr.spring.support.vo.ConsultVO;
 
 @Mapper
 public interface MyPageMapper {
@@ -47,36 +49,46 @@ public interface MyPageMapper {
 	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
 	public Integer cBoardBookMark(Map<String, Object> map);//일반 커뮤니티 북마크
 	public List<BoardVO> cBoardBookMarkList(Map<String, Object> map);
-	
-	
+	public Integer consultcnt(Map<String, Object> map);//문의 갯수
+	public List<ConsultVO> consultList(Map<String, Object> map);//문의 목록
+	@Select("SELECT * FROM (SELECT * FROM consult  WHERE mem_num = #{mem_num} ORDER BY consult_num DESC) WHERE ROWNUM = 1")
+	public ConsultVO lastConsert(Long mem_num);//마지막 문의글
+
 	//구독 목록 보기
 	@Select("SELECT * FROM member WHERE mem_num=#{mem_num}")
 	public MyPageVO selectMembership(Long mem_num);
 	//구독중 2로 변경
 	@Update("UPDATE member SET mem_membership=2 WHERE mem_num=#{mem_num} AND mem_membership=1")
 	public void updateMembership(Long mem_num);
-	
-	@Select("INSERT INTO membership_update(mu_num,mem_num,mu_type,mu_date) VALUES(membership_update_seq.nextval,#{mem_num},1,SYSDATE)")
+
+	@Insert("INSERT INTO membership_update(mu_num,mem_num,mu_type,mu_date) VALUES(membership_update_seq.nextval,#{mem_num},1,SYSDATE)")
 	public void insertMembership(Long mem_num);
-	
+
 	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num,ph_type,ph_payment) VALUES(point_history_seq.nextval,10000,SYSDATE,#{mem_num},1,'membership')")
 	public void usePoint(Long mem_num);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	//멤버십 구독 쿠폰 증정
+	@Insert("INSERT INTO member_coupon (mc_num, mem_num, coupon_num) VALUES (member_coupon_seq.nextval,#{mem_num}, #{coupon_num})")
+	public void insertNewMemCoupon(CouponVO coupon);
+	@Select("SELECT coupon_num FROM coupon_db WHERE coupon_num IN (21, 22)")
+	public List<Long> selectInitialCoupons();
+
+	@Select("SELECT * FROM membership_update WHERE mem_num=#{mem_num}")
+	public CouponVO selectMembershipSub(Long mem_num);
+
+
+
+
+
+
+
+
+
 	//기대하는 영화
 	@Select("SELECT COUNT(*) FROM movie_bookmark WHERE mem_num=#{mem_num}")
 	public Integer movieBookMarkcnt(Long mem_num);
 	public List<MovieBookMarkVO> movieBookMarkList(Map<String, Object> map);//xml추가
 
-	
-	
+
+
 }

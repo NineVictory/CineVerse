@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"/></title>
+<link href="${pageContext.request.contextPath}/images/cmj/logo.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <tiles:insertAttribute name="css" ignore="true"/>

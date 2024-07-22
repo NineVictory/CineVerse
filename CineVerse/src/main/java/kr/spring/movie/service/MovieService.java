@@ -24,6 +24,9 @@ public interface MovieService {
     void updateMovie(MovieVO movie);
     void deleteMovie(Long m_code);
     
+    public List<String> selectDistinctGenres();
+    public List<MovieVO> filterMoviesByGenres(List<String> genres);
+    
     // 영화 북마크
     MovieBookMarkVO selectBookMark(MovieBookMarkVO bookMark);
     Integer selectBookMarkCount(Long m_code);

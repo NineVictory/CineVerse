@@ -7,7 +7,6 @@
 <script src="${pageContext.request.contextPath}/js/movieList.js"></script>
 
 <div class="page-container">
-                            
     <div class="movie-page">
         <div class="movie-main">
             <form id="movie_search" method="get">
@@ -19,16 +18,30 @@
                         <label><input type="checkbox" name="movieorder" value="1" <c:if test="${param.movieorder == 1 || param.movieorder == null}">checked</c:if>> 최신순</label>
                         <label><input type="checkbox" name="movieorder" value="2" <c:if test="${param.movieorder == 2}">checked</c:if>> 북마크순</label>
                     </div>
+<!--                     <div id="genreWrite">
+                    <div class="select-wrapper-genre">
+                        <input type="text" id="genreSearch" placeholder="장르 검색">
+                        <ul id="genreList"></ul>
+                        <div id="selectedGenres"></div>
+                    </div>
+                    </div> -->
+						<div class="genre-checkboxes">
+						    <c:forEach var="genre" items="${genres}" varStatus="status">
+						        <label><input type="checkbox" name="genre" value="${genre}" class="genre-checkbox"> ${genre}</label>
+						        <c:if test="${status.count % 5 == 0}">
+						            <br>
+						        </c:if>
+						    </c:forEach>
+						</div>
+                     <div id="selectedGenres"></div>
                     <div class="select-wrapper">
                         <select name="keyfield" id="keyfield-select">
-                        
-                            <option value="1"<c:if test="${param.keyfield==1}">selected</c:if>>영화이름</option>
+                            <option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>영화이름</option>
                             <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>배우 이름</option>
                         </select>
                     </div>
-                    <ul>
+                    <ul class="ul-search">
                         <li>
-                        
                             <input type="hidden" name="m_status" value="${param.m_status}">
                             <input type="hidden" name="m_code" value="${param.m_code}">
                             <input type="search" name="keyword" id="keyword" placeholder="검색어를 입력하세요" value="${param.keyword}">
@@ -62,7 +75,7 @@
             </ul>      
         </div>
         <div class="paging-button">
-                <input type="button" id="loadMoreButton" value="더보기">
-            </div>
+            <input type="button" id="loadMoreButton" value="더보기">
+        </div>
     </div>
 </div>

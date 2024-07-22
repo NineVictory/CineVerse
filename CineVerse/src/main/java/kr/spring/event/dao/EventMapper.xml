@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.event.dao.EventMapper">
+
+	<sql id="eventSearch">
+		
+			<if test="event_type != null and event_type != ''">
+				AND event_type = #{event_type}
+			</if>
+		
+	</sql>
+
+	<!-- 이벤트 전체 목록/검색 목록 -->
+	<select id="selectEventList" parameterType="map" resultType="eventVO">
+		SELECT * FROM
+				(SELECT a.*, rownum rnum FROM			<!--좋아요가 없을 때 누락-->
+								(SELECT 
+									event_num,
+									<![CDATA[
+									REPLACE(REPLACE(event_name,'<','&lt;'),'>','&gt;') event_name,
+									]]>
+									event_filename,
+									event_content,
+									event_start,
+									event_end,
+									event_reg_date,
+									event_modify_date,
+									event_type
+														
+								FROM event 
+								WHERE event_end > SYSDATE
+								<include refid="eventSearch"></include>
+								
+								ORDER BY event_reg_date DESC)a) 
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+
+</mapper>							
+
+
+
+
+
+

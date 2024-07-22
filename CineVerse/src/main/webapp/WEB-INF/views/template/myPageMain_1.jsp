@@ -6,19 +6,18 @@
 		<div class="camera" id="photo_btn">
 			<img src="${pageContext.request.contextPath}/images/camera.png" width="30">
 		</div>
-		<div id="photo_choice" style="display:none;">
-			<input type="file" id="upload" accept="image/gif, image/png, image/jpeg"><br>
-			<input type="button" value="전송" id="photo_submit">
-			<input type="button" value="취소" id="photo_reset">
+		<div id="photo_choice">
+		    <label for="upload" class="custom-file-upload">파일 선택</label>
+		    <input type="file" id="upload" accept="image/gif, image/png, image/jpeg">
+		    <div class="photo-buttons">
+		        <input type="button" value="전송" id="photo_submit">
+		        <input type="button" value="취소" id="photo_reset">
+		    </div>
 		</div>
 	</div>
 	<div class="myPageMain_photo">
 		<img src="${pageContext.request.contextPath}/myPage/photoView" width="50" height="50" class="my-photo">
-		
 	</div>
-	
-	
-	
 	<div class="myPageMain_right">
 		<div class="myPageMain_information">
 			<span class="myPageMain_name">${member.mem_name } 님</span> <span class="myPageMain_id">닉네임 :${member.mem_nickName }</span> <span class="myPageMain_nickName">아이디 : ${member.mem_id }</span>
@@ -87,9 +86,69 @@
 
 <!-- CSS -->
 <style>
+/* 파일 입력 요소 숨기기 */
+#photo_choice input[type="file"] {
+    display: none;
+}
+
+/* 사용자 정의 파일 선택 버튼 스타일 */
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #3F66ED;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.custom-file-upload:hover {
+    background-color: #2C4BB8;
+}
+#photo_choice {
+position: absolute;
+    top: 45px;
+    left: 55%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 290px;
+    text-align: center;
+    z-index: 2;
+}
+
+.photo-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+#photo_choice #photo_reset {
+	background-color: var(--red-check-btn);
+}
+
+#photo_choice input[type="button"]:hover {
+    transform: scale(1.05); 
+}
+
+#photo_choice input[type="button"]:focus {
+    outline: none;
+}
+
+
+.myPageMain_photo {
+    border: 3px solid var(--main-color-strong);
+    }
 
 #photo_choice {
-	margin-top: 10px; /* 사진 선택과 버튼 사이 간격 */
+	margin-top: 10px; 
 	text-align: center;
 }
 .modify_ph{
@@ -119,9 +178,6 @@
 	flex-direction: column;
 	align-items: center;
 }
-#photo_choice input[type="file"] {
-	margin-bottom: 10px;
-}
 #photo_choice input[type="button"] {
 	width: 70px;
 	padding: 5px;
@@ -131,9 +187,5 @@
 	background-color: #3F66ED;
 	color: white;
 	cursor: pointer;
-	transition: background-color 0.3s;
-}
-#photo_choice input[type="button"]:hover {
-	background-color: #2C4BB8;
 }
 </style>

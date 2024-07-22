@@ -23,9 +23,11 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
+import kr.spring.support.vo.ConsultVO;
 import kr.spring.talk.service.TalkService;
 import kr.spring.talk.vo.TalkRoomVO;
 import kr.spring.util.CaptchaUtil;
@@ -58,6 +60,21 @@ public class MyPageController {
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		log.debug("<<마이페이지 >> : " + member);
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_num", user.getMem_num());
+		int count = mypageService.consultcnt(map);
+		
+		ConsultVO lastConsult = null;
+		
+		if(count > 0) {
+			lastConsult = mypageService.lastConsert(user.getMem_num());
+			log.debug("<<마지막 문의글 >> : " + lastConsult);
+		}
+		
+		model.addAttribute("count",count);
+		model.addAttribute("lastConsult",lastConsult);
 		model.addAttribute("member", member);
 		return "myPageMain";
 	}
@@ -213,7 +230,6 @@ public class MyPageController {
 			log.debug("<<글 목록>> : " + list);
 			
 		}
-		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("list", list);
@@ -556,18 +572,36 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		CouponVO coupon = mypageService.selectMembershipSub(user.getMem_num());
 		
-
+		model.addAttribute("coupon",coupon);
 		model.addAttribute("member", member);
 		return "memberShipSub";
 	}
 
 	// 나의 문의 내역 - 1:1문의
 	@GetMapping("/myPage/consult")
-	public String myPageConsult(HttpSession session, Model model) {
+	public String myPageConsult(@RequestParam(defaultValue = "0")int category,HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		log.debug("<<카테고리 >> : " + category);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("category", category);
+		map.put("mem_num", user.getMem_num());
+		
+		int count = mypageService.consultcnt(map);
+		List<ConsultVO> list = null;
+		
+		if(count > 0) {
+			list = mypageService.consultList(map);
+			log.debug("<<문의글>> : " + list);
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("count",count);
 		model.addAttribute("member", member);
 		return "consult";
 	}

@@ -1374,6 +1374,12 @@
 	font-weight: 600;
 	color: #3D3D3D;
 }   
+.mu_date{
+	padding: 10px 0 0 4px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #d7d7d7;
+} 
 .sub_btn{
 	margin-top:40px;
 	background-color: #000;
@@ -1405,7 +1411,11 @@
 .sub_left{
 	text-align: left;
 }  
-   
+.favCount{
+	margin-right: 4px;
+	padding-top: 3px;
+	margin-top: 3px;
+}   
 
    
    

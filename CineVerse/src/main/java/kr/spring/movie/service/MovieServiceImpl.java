@@ -252,6 +252,19 @@ public class MovieServiceImpl implements MovieService {
         }
     }
 
+	@Override
+	public List<String> selectDistinctGenres() {
+		 return movieMapper.selectDistinctGenres();
+	}
+
+    @Override
+    public List<MovieVO> filterMoviesByGenres(List<String> genres) {
+        return movieMapper.filterMoviesByGenres(genres);
+    }
+
+
+
+
 
 
 

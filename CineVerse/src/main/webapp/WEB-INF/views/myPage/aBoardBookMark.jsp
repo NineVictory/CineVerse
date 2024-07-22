@@ -33,11 +33,11 @@
 						<div class="my_boardWrite_bk" onclick="location.href='${pagecontext.request.contextPath}/assignboard/detail?ab_num=${board.ab_num}'">${board.ab_title}</div>
 					</div>
 					<div class="bk_delete_btn">
-						<input type="button" class="add_del_btn" data-num="${board.ab_num}" data-mnum="${board.mem_num }" value="삭제">
+						<input type="button" class="add_del_btn" data-num="${board.ab_num}" data-mnum="${user.mem_num }" value="삭제">
 					</div>
 				</div>
 				<div class="review_fav_date">
-				<span>이미지</span> <span>${board.fav_cnt}</span> | 
+				 <span class="favCount"><img src="${pageContext.request.contextPath}/images/like01.png"width="17"></span> <span>${board.fav_cnt}</span> | 
 					<span> 
 					<c:choose>
 							<c:when test="${!empty board.ab_modify_date}">${board.ab_modify_date}</c:when>

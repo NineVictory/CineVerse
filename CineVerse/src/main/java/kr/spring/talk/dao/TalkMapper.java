@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.talk.vo.TalkMemberVO;
 import kr.spring.talk.vo.TalkRoomVO;
@@ -49,4 +50,25 @@ public interface TalkMapper {
 	// 읽은 채팅 기록 삭제
 	@Delete("DELETE FROM talk_read WHERE talkroom_num=#{talkroom_num} AND mem_num=#{mem_num}")
 	public void deleteTalkRead(Map<String, Long> map);
+	
+	// 해당 채팅방 넘버의 mem_num인지 확인하기 위해
+	@Select("SELECT mem_num FROM talk_member WHERE talkroom_num=#{talkroom_num}")
+	public List<Long> selectMembers(Long talkroom_num);
+	
+	// Talk_read 테이블 내용 삭제
+	@Delete("DELETE FROM talk_read WHERE talkroom_num=#{talkroom_num}")
+	public void deleteTalk_Read(Long talkroom_num);
+	// Talk 테이블 내용 삭제
+	@Delete("DELETE FROM talk WHERE talkroom_num=#{talkroom_num}")
+	public void deleteTalk(Long talkroom_num);
+	// talk_member 테이블 내용 삭제
+	@Delete("DELETE FROM talk_member WHERE talkroom_num=#{talkroom_num}")
+	public void deleteTalkMember(Long talkroom_num);
+	// talkroom 테이블 내용 삭제
+	@Delete("DELETE FROM talkroom WHERE talkroom_num=#{talkroom_num}")
+	public void deleteTalkRoom(Long talkroom_num);
+	
+	// 채팅방 이름 변경하기
+	@Update("UPDATE talk_member set room_name=#{room_name} WHERE talkroom_num=#{talkroom_num}")
+	public void updateTalkRoomName(TalkMemberVO talkMemberVO);
 }

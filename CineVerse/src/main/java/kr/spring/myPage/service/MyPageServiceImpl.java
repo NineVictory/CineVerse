@@ -11,9 +11,11 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.myPage.vo.MyPageVO;
+import kr.spring.support.vo.ConsultVO;
 
 @Service
 @Transactional
@@ -21,10 +23,10 @@ public class MyPageServiceImpl implements MyPageService{
 
 	@Autowired
 	MyPageMapper myPageMapper;
+	
 	@Override
 	public MyPageVO selectMember(long mem_num) {
 		return myPageMapper.selectMember(mem_num);
-		
 	}
 
 	@Override
@@ -155,6 +157,36 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public void usePoint(Long mem_num) {
 		myPageMapper.usePoint(mem_num);
+	}
+
+	@Override
+	public void insertNewMemCoupon(CouponVO coupon) {
+		myPageMapper.insertNewMemCoupon(coupon);
+	}
+
+	@Override
+	public List<Long> selectInitialCoupons() {
+		return myPageMapper.selectInitialCoupons();
+	}
+
+	@Override
+	public CouponVO selectMembershipSub(Long mem_num) {
+		return myPageMapper.selectMembershipSub(mem_num);
+	}
+
+	@Override
+	public Integer consultcnt(Map<String, Object> map) {
+		return myPageMapper.consultcnt(map);
+	}
+
+	@Override
+	public List<ConsultVO> consultList(Map<String, Object> map) {
+		return myPageMapper.consultList(map);
+	}
+
+	@Override
+	public ConsultVO lastConsert(Long mem_num) {
+		return myPageMapper.lastConsert(mem_num);
 	}
 
 

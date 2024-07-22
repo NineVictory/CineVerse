@@ -34,24 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('insert_form');
-    form.onsubmit = function() {
-        const contentTextarea = document.getElementById('m_content');
-        let content = contentTextarea.value;
 
-        // 정규식을 이용해 URL을 <video> 태그로 변환
-        const videoUrls = content.match(/https?:\/\/\S+\.mp4/g);
-        if (videoUrls) {
-            videoUrls.forEach(url => {
-                const videoTag = `<video width="320" height="240" controls><source src="${url}" type="video/mp4">Your browser does not support the video tag.</video>`;
-                content = content.replace(url, videoTag);
-            });
-        }
-
-        contentTextarea.value = content;
-    };
-});
 </script>
 <div class="page-container">
 	<h2>영화 등록</h2>
@@ -111,10 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
 							console.error(error);
 						});
 				</script> 
-			</li>
+			</li> 
 			<li>
 				<form:label path="m_content">영화소개</form:label>
+				<%-- <form:input path="m_content" id="m_content" cssClass="input-check"/> --%>
+				<%-- <form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/> --%>
 				<form:textarea path="m_content" id="m_content" rows="5" cols="30" cssClass="input-check"/>
+
 <!-- 				<script>
 					function MyCustomUploadAdapterPlugin(editor) {
 						editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
@@ -132,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							console.error(error);
 						});
 				</script>  -->
-    <script>
+   <!--  <script>
         function MyCustomUploadAdapterPlugin(editor) {
             editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
                 return new UploadAdapter(loader);
@@ -175,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error(error);
             });
-    </script>				
+    </script>				 -->
 			</li>
 		</ul>
 		<div class="btn_display_set">

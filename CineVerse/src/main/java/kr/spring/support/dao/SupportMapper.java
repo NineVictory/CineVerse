@@ -15,16 +15,18 @@ import kr.spring.support.vo.ConsultVO;
 
 @Mapper
 public interface SupportMapper {
-	/*
-	 * public List<ConsultVO> selectConsultList(Map<String,Object> map); public
-	 * Integer selectRowCount(Map<String,Object> map);
-	 */
 	
+	public List<ConsultVO> selectConsultList(Map<String,Object> map); 
+	public Integer selectConsultRowCount(Map<String,Object> map);
 	
 	public void insertConsult(ConsultVO consult);
+	
 	@Select("SELECT * FROM orders WHERE mem_num=#{mem_num}")
 	public List<OrdersVO> selectOdNumbersByMemNum(long mem_num);
-/*	@Select("SELECT * FROM consult JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE consult_num=#{consult_num}")
+	
+	public ConsultVO selectConsult(long consult_num);
+	
+	/*	@Select("SELECT * FROM consult JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE consult_num=#{consult_num}")
 	public ConsultVO selectConsult(Long consult_num);
 	
 	

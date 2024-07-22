@@ -79,11 +79,35 @@
         <iframe width="560" height="315" src="https://www.youtube.com/embed/EiCmnIaj4u8?si=x1eQENSmEMIMFaxh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div> -->
     <div class="movie-content">
-        <iframe src="${movie.m_content}"></iframe>
-        <iframe src="https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK059016_P02.mp4" width="1000" height="800"></iframe>
+  <%--                   <c:if test="${not empty movie.m_content}">
+                    <c:forEach var="url" items="${fn:split(movie.m_content, ',')}">
+                        <iframe src="${url.trim()}" width="1000" height="800"></iframe>
+                    </c:forEach>
+                </c:if>
+     --%>
+      <%-- <c:when test="${not empty movie.m_content}">
+                <script>
+                    $(document).ready(function() {
+                        var videoUrls = JSON.parse('${movie.m_content}');
+                        videoUrls.forEach(function(url) {
+                            $('.movie-content').append('<iframe src="' + url + '" width="1000" height="800"></iframe>');
+                        });
+                    });
+                </script>
+            </c:when>
+            <c:otherwise>
+                <p>영화 소개 영상이 없습니다.</p>
+            </c:otherwise>--%>
+ <%--        <iframe src="${movie.m_content}" class="movie-tearsers" width="910" height="580" ></iframe> --%>
+    <c:if test="${not empty videoUrls}">
+        <c:forEach var="videoUrl" items="${videoUrls}">
+            <iframe src="${videoUrl}" class="movie-teasers" width="910" height="580"></iframe>
+        </c:forEach>
+    </c:if>
+   <!--      <iframe src="https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK059016_P02.mp4" width="1000" height="800"></iframe>  -->
     </div>
 
-<!-- 별점 및 후기 -->            
+<!-- 별점 및 후기 -->             
 <div class="menu-title">평점/리뷰</div>
 <div class="grade-review">
     <div class="star-rating">

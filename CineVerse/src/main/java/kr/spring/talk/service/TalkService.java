@@ -15,4 +15,8 @@ public interface TalkService {
 	public void insertTalk(TalkVO talkVO);
 	public List<TalkVO> selectTalkDetail(Map<String, Long> map);
 	public void deleteTalkRead(Map<String, Long> map);
+	public void deleteTalkRoom(Long talkroom_num);
+	public void updateTalkRoomName(TalkMemberVO talkMemberVO);
+	public List<Long> selectMembers(Long talkroom_num);
+	public boolean isMember(Long talkroom_num, Long user_num);
 }

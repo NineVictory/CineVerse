@@ -1,0 +1,237 @@
+@charset "UTF-8";
+
+.membership-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.membership-title {
+width: 1160px;
+    padding: 20px 0 10px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.vip_top_infor {
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	margin: 0 auto 50px;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
+	background-color: #FFF;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.vip_top_infor .nomem_page_box {
+	margin: 40px 38px 62px;
+}
+
+.vip_top_infor .nomem_page_box .user_info .bx_con {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.user_info {
+	display: flex;
+	width: 1160px;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+a.btn_lnk2 {
+	border-bottom: 1px solid #666;
+	font-size: 12px;
+	color: #666;
+	vertical-align: middle;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.vip_top_infor .nomem_page_box .user_info .bx_con .txt {
+	line-height: 1.4;
+	margin-bottom: 10px;
+	font-size: 18px;
+	color: #666;
+}
+
+.btn_col3 {
+	display: inline-block;
+	box-sizing: border-box;
+	border-radius: 4px;
+	border: 1px solid #000000;
+	font-size: 14px;
+	color: #000000 !important;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #ffffff;
+	height: 28px;
+	line-height: 26px;
+	padding: 0 14px;
+	border-radius: 52px;
+}
+
+.bx_btm {
+	display: flex;
+	gap: 70px;
+	align-items: center;
+	justify-content: center;
+}
+
+.membership-rows {
+	padding: 0px;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 {
+    position: relative;
+    margin-top: 20px;
+    border-top: 1px solid #bbb;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 79px;
+    width: 100%;
+    height: 1px;
+    background-color: #bbb;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl {
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl.tit {
+    width: 20%;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl dt {
+    margin-bottom: 16px;
+    padding-top: 40px;
+}
+
+.rank_2020_wrap .rank_2020_list_ty2 dl dd {
+    padding: 28px 0;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.benefit_wrap {
+    margin-top: 60px;
+}
+.benefit_wrap > .tit {
+    font-size: 18px;
+}
+.benefit_wrap .benefit_box_ty2 {
+    margin-top: 60px;
+}
+.benefit_wrap .benefit_box_ty2.type2 > li {
+    padding: 56px 18px 10px;
+}
+.benefit_wrap .benefit_box_ty2 > li {
+margin-left: 20px;
+    position: relative;
+    float: left;
+    padding: 56px 25px 30px;
+    width: 250px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+}
+.ic_rank_vip, .ic_rank_vvip, .ic_rank_gold, .ic_rank_platinum {
+    box-shadow: 0px 5px 10px 3px #e6e6e6;
+}
+[class^="ic_rank_"] {
+    position: absolute;
+    left: 50%;
+    top: -40px;
+    margin-left: -40px;
+    padding-top: 45px;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    border-radius: 80px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.benefit_wrap .benefit_box_ty2.type2 .listbox {
+    position: relative;
+    margin-top: 30px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.benefit_wrap .benefit_box_ty2.type2 .benefit .gap_or {
+    padding-top: 8px;
+    margin-bottom: -12px;
+    color: #333;
+    font-size: 11px;
+    text-align: center;
+}
+
+.benefit_wrap .benefit_box_ty2.type2 .benefit + .benefit {
+    margin-top: 24px;
+}
+
+.benefit_wrap .benefit_box_ty2 > li ~ li {
+    margin-left: 55px;
+}
+
+.benefit_wrap .benefit_box_ty2.type2 .benefit .list span em {
+    color: #FF7787;
+}
+
+.benefit_wrap .benefit_box_ty2 .benefit .list span em {
+    font-size: 18px;
+    font-family: "Roboto";
+}
+
+.benefit_wrap .benefit_box_ty2 .benefit .list span::before {
+    content: '';
+    position: absolute;
+    right: 35px;
+    top: 7px;
+    width: 11px;
+    height: 11px;
+    background: url(../images/cmj/cross.png) no-repeat;
+}
+.benefit_wrap .benefit_box_ty2 .benefit .list span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 13px;
+}
+.benefit_wrap .benefit_box_ty2 .benefit .list li {
+    position: relative;
+    line-height: 25px;
+}
+em, th {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ul{
+padding : 0;
+}
