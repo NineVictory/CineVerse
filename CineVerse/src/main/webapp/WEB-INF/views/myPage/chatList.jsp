@@ -9,19 +9,7 @@
     <div class="reservation_display">
         <span class="myPage_title_re">채팅 이력</span>
     </div>
-    <div class="talk_list_all">
-        <form action="talkList" id="search_form" method="get">
-            <ul class="search">
-                <li>
-                    <input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="검색어 입력">
-                </li>
-                <li>
-                    <input type="submit" value="찾기">
-                    <input type="button" value="목록" onclick="location.href='chatList'">
-                </li>
-            </ul>
-        </form>  
-    </div>
+    
     <c:if test="${count == 0}">
         <div class="result-display">표시할 채팅방이 없습니다.</div>
     </c:if>
