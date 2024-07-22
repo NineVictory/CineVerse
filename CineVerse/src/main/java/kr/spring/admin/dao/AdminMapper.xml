@@ -424,12 +424,6 @@
  		  WHERE c_num = #{c_num}
 	</select>
 	
-	<update id="refundPoint" parameterType="long">
-	    UPDATE point_history
-	    SET ph_type = 0
-	    WHERE ph_num = #{ph_num}
-	</update>
-
 	<!-- 자유게시판 목록 -->
 	<sql id="communitySearch">
 		<where>

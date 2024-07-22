@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -210,9 +211,15 @@ public class AdminController {
 		return "adminMembership";
 	}
 
-	@PostMapping("/admin/adminMembership")
-	public String updateMembership(){
-		return "adminMembership";
+	// 회원 정지 처리
+	@PostMapping("/refundMembership")
+	@ResponseBody
+	public String refundMembership(@RequestParam("mem_num") long mem_num) {
+		// auth 값을 1으로 업데이트하는 예시입니다.
+		adminService.refundMembership(mem_num);
+		log.debug("<<맴버쉽 업데이트 완료>>");
+		return "success";
+
 	}
 	/*==============================
 	 * 공지사항 관리

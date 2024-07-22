@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -46,6 +47,12 @@ public interface AdminMapper {
     // 구독 맴버십
 	public List<AdminVO> selectMembershipList(Map<String,Object> map);
 	public Integer selectMembershipRowCount(Map<String,Object> map);
+	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, -10000, SYSDATE, #{mem_num}, 0, #{refundMs})")
+	public void refundMembership(long mem_num);
+	@Delete("DELETE FROM membership_update WHERE mem_num = #{mem_num}")
+	public void deleteMembership(long mem_num);
+	@Update("UPDATE member SET mem_membership = 1 WHERE mem_num=#{mem_num}")
+	public void updateMembership(long mem_num);
     // 공지사항
 	public List<NoticeVO> selectNoticeList(Map<String,Object> map);
 	public Integer selectNoticeRowCount(Map<String,Object> map);
@@ -97,6 +104,7 @@ public interface AdminMapper {
 	//결제
 	public List<PointVO> selectPoint(Map<String,Object> map);
 	public Integer selectPointRowCount(Map<String,Object> map);
-	public void refundPoint(long ph_num);
+	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, -#{ph_point}, SYSDATE, #{mem_num}, 0, refundMs)")
+	public void refundPoint(long mem_num);
 	
 }

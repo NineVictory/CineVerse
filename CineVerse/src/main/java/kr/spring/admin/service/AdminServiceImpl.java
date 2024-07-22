@@ -16,6 +16,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
+import kr.spring.member.dao.MemberMapper;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminServiceImpl implements AdminService{
 	@Autowired
 	AdminMapper adminMapper;
+	@Autowired
+	MemberMapper memberMapper;
  
 	@Override
 	public void updateMemberAuth(long mem_num) {
@@ -159,8 +162,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	@Transactional
-	public void refundPoint(long ph_num) {
-		adminMapper.refundPoint(ph_num);
+	public void refundPoint(long mem_num) {
+		adminMapper.refundPoint(mem_num);
+		memberMapper.totalPoint(mem_num);
 	}
 	@Override
 	public List<BoardVO> selectCommunityList(Map<String, Object> map) {
@@ -185,5 +189,13 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Integer selectReplyRowCount(Map<String, Object> map) {
 		return adminMapper.selectReplyRowCount(map);
+	}
+	@Override
+	@Transactional
+	public void refundMembership(long mem_num) {
+		adminMapper.refundMembership(mem_num);
+		adminMapper.deleteMembership(mem_num);
+		adminMapper.updateMembership(mem_num);
+		memberMapper.totalPoint(mem_num);
 	}
 }

@@ -56,4 +56,5 @@ public interface AdminService {
 	public Integer selectCinemaRowCount(Map<String,Object> map);
 	public void deleteCinema(long c_num);
 	public void refundPoint(long ph_num);
+	public void refundMembership(long mem_num);
 }	

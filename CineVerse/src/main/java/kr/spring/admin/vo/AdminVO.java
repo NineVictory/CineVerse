@@ -25,8 +25,11 @@ public class AdminVO {
 	//맴버십관리
 	private long mem_membership;
 	private long ph_point; //포인트 돌려주기
+	private long ph_type;
 	private Date ph_date; //포인트 날짜
-	
+	private long mu_num;
+	private long mu_type;
+	private Date mu_date;
 	//결제취소
 	private long ph_num; //위에 ph_point랑 ph_date잇
 
