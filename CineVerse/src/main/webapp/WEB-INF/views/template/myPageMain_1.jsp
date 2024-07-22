@@ -131,7 +131,7 @@ position: absolute;
 }
 
 #photo_choice #photo_reset {
-	background-color: var(--red-check-btn);
+    background-color: var(--gray-3);
 }
 
 #photo_choice input[type="button"]:hover {
