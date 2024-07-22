@@ -1117,7 +1117,7 @@
 	flex-direction: column;
 	font-size: 15px;
 	font-weight: 550;
-	width: 105px;
+	width: 130px;
 	height: 32px;
 	color: #fff;
 	background-color: #3F66ED;
@@ -1125,6 +1125,30 @@
 	align-items: center;
 	justify-content: center;
 	margin: 10px 0 0 15px;
+}
+
+.consult_btn {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	font-weight: 550;
+	width: 85px;
+	border: none;
+	height: 32px;
+	color: #fff;
+	background-color: #3F66ED;
+	border-radius: 30px;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 15px;
+}
+.consult_date{
+	text-align: left;
+	font-size: 13px;
+	font-weight: 500;
+}
+.conAnswer_btn{
+	margin-bottom: 5px;
 }
 
 /* =======================

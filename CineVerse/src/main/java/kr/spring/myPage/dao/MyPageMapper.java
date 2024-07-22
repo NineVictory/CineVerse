@@ -58,21 +58,23 @@ public interface MyPageMapper {
 	@Select("SELECT * FROM member WHERE mem_num=#{mem_num}")
 	public MyPageVO selectMembership(Long mem_num);
 	//구독중 2로 변경
+	// member 테이블의 상태 변경해주는 코드
 	@Update("UPDATE member SET mem_membership=2 WHERE mem_num=#{mem_num} AND mem_membership=1")
 	public void updateMembership(Long mem_num);
-
-	@Insert("INSERT INTO membership_update(mu_num,mem_num,mu_type,mu_date) VALUES(membership_update_seq.nextval,#{mem_num},1,SYSDATE)")
+	// 멤버십업데이트 테이블에 행을 삽입하는 코드
+	@Insert("INSERT INTO membership_update(mu_num,mem_num,mu_date) VALUES(membership_update_seq.nextval,#{mem_num},SYSDATE)")
 	public void insertMembership(Long mem_num);
-
+	// 멤버십 구독 후 포인트 사용하는 history 넣어줌
 	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num,ph_type,ph_payment) VALUES(point_history_seq.nextval,10000,SYSDATE,#{mem_num},1,'membership')")
 	public void usePoint(Long mem_num);
 
 	//멤버십 구독 쿠폰 증정
 	@Insert("INSERT INTO member_coupon (mc_num, mem_num, coupon_num) VALUES (member_coupon_seq.nextval,#{mem_num}, #{coupon_num})")
 	public void insertNewMemCoupon(CouponVO coupon);
+	// 쿠폰 DB에 존재하는 쿠폰을 멤버십 구독한 멤버들에게 21번, 22번 쿠폰 찾기
 	@Select("SELECT coupon_num FROM coupon_db WHERE coupon_num IN (21, 22)")
 	public List<Long> selectInitialCoupons();
-
+	// 멤버십 구독 상태 확인
 	@Select("SELECT * FROM membership_update WHERE mem_num=#{mem_num}")
 	public CouponVO selectMembershipSub(Long mem_num);
 
