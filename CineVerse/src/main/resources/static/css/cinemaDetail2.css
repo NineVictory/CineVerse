@@ -78,6 +78,64 @@
 	color: #6a5acd;
 }
 
+.cinema-gallery {
+	width: 100%;
+	margin-left: 50px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: row; /* 가로 방향으로 나열 */
+    flex-wrap: nowrap; /* 줄 바꿈 없이 한 줄에 표시 */
+    overflow-x: auto; /* 넘치는 요소들을 가로 스크롤로 표시 */
+    webkit-overflow-scrolling: touch; /* iOS에서의 스크롤 부드러움 적용 */
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.movie-day,
+.movie-day-sat,
+.movie-day-sun {  	
+    width: 50px;
+    margin: 0 5px; /* 간격을 줌 */
+    cursor: pointer;
+    color: #080808; /* 기본 텍스트 색상 설정 */
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    white-space: normal; /* 줄 바꿈을 허용 */
+    cursor: pointer;
+    
+}
+
+
+.movie-day-sat {
+    color: #6e9adb; /* 주말 색상 설정 */
+}
+
+.movie-day-sun {
+    color: #e83431; /* 주말 색상 설정 */
+}
+
+.movie-day:hover {
+    background-color: #e0e0e0; /* hover 시 배경색 */
+    color: #333; /* hover 시 텍스트 색상 */
+}
+
+.movie-day-sat:hover {
+    background-color: #e0e0e0; /* hover 시 배경색 */
+}
+
+.movie-day-sun:hover {
+    background-color: #e0e0e0; /* hover 시 배경색 */
+}
+
+
+.movie-day-selected {
+    background-color: #333333; /* 선택된 날짜 배경색 */
+    color: white; /* 선택된 날짜 텍스트 색상 */
+}
+
 .theater-list {
     list-style-type: none;
     padding: 0;

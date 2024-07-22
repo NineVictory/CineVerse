@@ -130,7 +130,61 @@
 		<!-- 상영 시간표 -->
 		<div class="time-box">
 			<h2 class="time-table">상영시간표</h2>
-				<img class="time-image" src="${pageContext.request.contextPath}/images/hjt/timetable.png" alt="">
+        <div class="reserve-time">
+        	<hr size="1" noshade width="100%">
+            <div class="cinema-gallery"></div>
+            <script>
+                // 현재 날짜 객체 생성
+                let currentDate = new Date();
+
+                // 요일 배열 생성
+                let daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+
+                // 영화 날짜 생성 함수
+                function generateMovieDays() {
+                    let gallery = document.querySelector('.cinema-gallery');
+                    gallery.innerHTML = ''; // 기존 내용을 비웁니다.
+
+                    for (let i = 0; i < 14; i++) {
+                        let dayElement = document.createElement('div');
+                        let displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i);
+                        let day = displayDate.getDate();
+                        let dayOfWeek = daysOfWeek[displayDate.getDay()];
+                        let year = displayDate.getFullYear().toString().slice(-2); // YY 형식
+                        let month = (displayDate.getMonth() + 1).toString().padStart(2, '0'); // MM 형식
+                        let formattedDay = day.toString().padStart(2, '0'); // DD 형식
+
+                        let formattedDate = formattedDay + '<br>' + dayOfWeek;
+                        let dayClass = 'movie-day';
+
+                        // 요일에 따라 클래스 추가
+                        switch (displayDate.getDay()) {
+                            case 0:
+                                dayClass = 'movie-day-sun';
+                                break;
+                            case 6:
+                                dayClass = 'movie-day-sat';
+                                break;
+                        }
+
+                        dayElement.className = dayClass;
+                        dayElement.innerHTML = formattedDate;
+                        dayElement.dataset.date = year + '/' + month + '/' + formattedDay; // 날짜 데이터 속성 추가
+
+                        // 클릭 이벤트 추가
+                        dayElement.addEventListener('click', function() {
+                            selectedDate = this.dataset.date;
+                            loadMovieTimeTable();
+                        });
+
+                        gallery.appendChild(dayElement);
+                    }
+                }
+
+                // 영화 날짜 생성 함수 호출
+                generateMovieDays();
+            </script>
+            <hr size="1" noshade width="100%">
 					<ul class="theater-list">
 						<c:forEach var="theater" items="${theaterList}">
 							<li>${theater.th_name}</li>
