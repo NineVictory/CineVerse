@@ -13,7 +13,7 @@
             <option value="2" <c:if test="${param.category == 2}">selected</c:if>>일상톡톡</option>
         </select>
     </div>
-    <c:if test="${count == 0}">작성한 게시글이 없습니다.</c:if>
+    <c:if test="${count == 0}"><div class="empty_position">작성한 게시글이 없습니다.</div></c:if>
     <c:if test="${count > 0}">
     <!-- 반복 -->
     <c:forEach var="board" items="${list}">

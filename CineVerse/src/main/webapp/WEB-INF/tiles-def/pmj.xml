@@ -85,7 +85,7 @@
 	</definition>
 	
 	<definition name="chatList" extends="myPageMain">
-		<put-attribute name="title" value="배송지 관리"/>
+		<put-attribute name="title" value="채팅 이력"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/chatList.jsp"/>
 	</definition>
 	

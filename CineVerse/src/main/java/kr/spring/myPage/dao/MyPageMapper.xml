@@ -10,7 +10,8 @@
 		ADD_MONTHS(mc.coupon_regdate, 1) coupon_enddate
 		FROM member_coupon mc
 		JOIN coupon_db c ON mc.coupon_num = c.coupon_num
-		WHERE mc.mem_num = #{mem_num}
+		WHERE mc.mem_num =
+		#{mem_num}
 	</select>
 
 	<sql id="myPageBoardSearch">
@@ -59,14 +60,19 @@
 			AND consult_type = 'exchange'
 		</if>
 	</sql>
-	
+
 	<!-- 문의 갯수 -->
 	<select id="consultcnt" parameterType="map" resultType="integer">
-		SELECT COUNT(*) FROM consult WHERE mem_num=#{mem_num}
+		SELECT
+		COUNT(*) FROM consult WHERE mem_num=#{mem_num}
 	</select>
-	
+
+
+
+
 	<!-- 문의 목록 -->
-	<select id="consultList" parameterType="map" resultType="consultVO">
+	<select id="consultList" parameterType="map"
+		resultType="consultVO">
 		SELECT * FROM consult WHERE mem_num=#{mem_num}
 		<include refid="consultSearch"></include>
 		ORDER BY consult_num DESC
@@ -85,9 +91,19 @@
 	<!-- 커뮤 좋아요 목록 -->
 	<select id="cBoardWriteFavList" parameterType="map"
 		resultType="boardFavVO">
-		SELECT * FROM community_board cb JOIN community_fav cf USING(cb_num)
-		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM community_fav
-		GROUP BY cb_num)
+		SELECT
+		cb_num,
+			<![CDATA[
+			REPLACE(REPLACE(cb_title,'<','&lt;'),'>','&gt;') cb_title,
+			]]>
+		cb_reg_date,
+		cb_type,
+		fav_cnt
+		FROM community_board cb JOIN community_fav cf USING(cb_num)
+		LEFT OUTER
+		JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM community_fav
+		GROUP BY
+		cb_num)
 		USING(cb_num) WHERE cf.mem_num=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
@@ -105,12 +121,22 @@
 	<!-- 커뮤 북마크 목록 -->
 	<select id="cBoardBookMarkList" parameterType="map"
 		resultType="boardVO">
-		SELECT * FROM community_bookmark cb JOIN
+		SELECT
+		cb_num,
+			<![CDATA[
+			REPLACE(REPLACE(cb_title,'<','&lt;'),'>','&gt;') cb_title,
+			]]>
+		cb_reg_date,
+		cb_type,
+		fav_cnt
+		FROM community_bookmark cb JOIN
 		community_board cbb
 		USING(cb_num)
-		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM
+		LEFT
+		OUTER JOIN (SELECT COUNT(*) fav_cnt, cb_num FROM
 		community_fav GROUP
-		BY cb_num) USING(cb_num)
+		BY
+		cb_num) USING(cb_num)
 		WHERE cb.mem_num=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 	</select>
@@ -127,12 +153,21 @@
 	<!-- 게시글 목록 -->
 	<select id="selectMemcBoardWriteList" parameterType="map"
 		resultType="boardVO">
-		SELECT *
+		SELECT
+		cb_num,
+			<![CDATA[
+			REPLACE(REPLACE(cb_title,'<','&lt;'),'>','&gt;') cb_title,
+			]]>
+		cb_reg_date,
+		cb_type,
+		fav_cnt
 		FROM community_board
 		LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt,
-		cb_num FROM community_fav GROUP
+		cb_num
+		FROM community_fav GROUP
 		BY cb_num) USING(cb_num)
-		WHERE mem_num =#{mem_num}
+		WHERE mem_num
+		=#{mem_num}
 		<include refid="myPageBoardSearch"></include>
 		ORDER BY cb_num DESC
 	</select>
@@ -148,16 +183,31 @@
 		<include refid="myPageBoardSearch"></include>
 	</select>
 
+
 	<!-- 댓글 목록 -->
 	<select id="cBoardReplyList" parameterType="map"
 		resultType="boardCommentVO">
-		SELECT cc.*, fav_data.fav_cnt, cb.cb_type, cb.cb_title
+		SELECT
+		cc.cc_num,
+			<![CDATA[
+			REPLACE(REPLACE(cc.cc_content,'<','&lt;'),'>','&gt;') AS cc_content,
+			]]>
+		cc.cc_reg_date,
+		cc.cc_modify_date,
+		fav_data.fav_cnt,
+			<![CDATA[
+			REPLACE(REPLACE(cb.cb_title,'<','&lt;'),'>','&gt;') AS cb_title,
+			]]>
+		cb.cb_type,
+		cb.cb_num
 		FROM
 		community_comment cc
-		LEFT OUTER JOIN (SELECT COUNT(*) AS fav_cnt,
+		LEFT OUTER JOIN (SELECT COUNT(*) AS
+		fav_cnt,
 		cc_num FROM
 		community_comment_fav GROUP BY cc_num) fav_data
-		ON cc.cc_num
+		ON
+		cc.cc_num
 		= fav_data.cc_num
 		JOIN community_board cb ON cc.cb_num =
 		cb.cb_num
@@ -167,31 +217,47 @@
 		ORDER BY cc.cc_num DESC
 	</select>
 
+
 	<!-- 대댓글 수 -->
 	<select id="cBoardResponsecnt" parameterType="map"
 		resultType="integer">
 		SELECT COUNT(*)
 		FROM community_response cr
-		JOIN community_comment cc ON
+		JOIN
+		community_comment cc ON
 		cr.cc_num = cc.cc_num
-		WHERE cr.mem_num = #{mem_num}
+		WHERE cr.mem_num =
+		#{mem_num}
 	</select>
 	<!-- 대댓글 목록 -->
-	<select id="cBoardResponseList" parameterType="map" resultType="boardCommentVO">
-		SELECT cr.*, fav_data.fav_cnt, cb.cb_type, cb.cb_title, cb.cb_num
+	<select id="cBoardResponseList" parameterType="map"
+		resultType="boardCommentVO">
+		SELECT
+		cr.te_num,
+        <![CDATA[
+        REPLACE(REPLACE(cr.te_content,'<','&lt;'),'>','&gt;') AS te_content,
+        ]]>
+		cr.te_date,
+		cr.te_mdate,
+		fav_data.fav_cnt,
+		cb.cb_type,
+		<![CDATA[
+        REPLACE(REPLACE(cb.cb_title,'<','&lt;'),'>','&gt;') AS cb_title,
+        ]]>
+		cb.cb_num
 		FROM community_response cr
 		LEFT JOIN (
-		    SELECT te_num, COUNT(*) AS fav_cnt
-		    FROM community_response_fav
-		    GROUP BY te_num
+		SELECT te_num, COUNT(*) AS fav_cnt
+		FROM community_response_fav
+		GROUP BY te_num
 		) fav_data ON cr.te_num = fav_data.te_num
-		JOIN (
-		    SELECT cc.cc_num, cb.cb_type, cb.cb_title, cb.cb_num
-		    FROM community_comment cc
-		    JOIN community_board cb ON cc.cb_num = cb.cb_num
+		LEFT JOIN (
+		SELECT cc.cc_num, cb.cb_type, cb.cb_title, cb.cb_num
+		FROM community_comment cc
+		JOIN community_board cb ON cc.cb_num = cb.cb_num
 		) cb ON cr.cc_num = cb.cc_num
 		WHERE cr.mem_num = #{mem_num}
-		<include refid="myPageBoardSearch"></include>
+		<include refid="myPageBoardSearch" />
 		ORDER BY cr.te_num DESC
 	</select>
 
@@ -241,8 +307,8 @@
 	</select>
 
 
-	
-	
+
+
 
 
 

@@ -6,14 +6,14 @@
 <!-- 나의 게시글 시작 -->
 <div class="myPage_main">
     <div class="reservation_display">
-        <span class="myPage_title_re">나의 게시글</span>
+        <span class="myPage_title_re">내가 쓴 글</span>
         <select class="myCoupon_option" onchange="location.href='/myPage/aBoardWrite?category=' + this.value;">
             <option value="0" <c:if test="${param.category == 0}">selected</c:if>>전체</option>
             <option value="1" <c:if test="${param.category == 1}">selected</c:if>>양도</option>
             <option value="2" <c:if test="${param.category == 2}">selected</c:if>>교환</option>
         </select>
     </div>
-    <c:if test="${count == 0}">작성한 글이 없습니다.</c:if>
+    <c:if test="${count == 0}"><div class="empty_position">작성한 글이 없습니다.</div></c:if>
     <c:if test="${count > 0}">
     <!-- 반복 -->
     <c:forEach var="aboard" items="${list}">

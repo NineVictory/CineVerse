@@ -6,7 +6,7 @@
 <!-- 나의 북마크 시작 -->
 <div class="myPage_main">
 	<div class="reservation_display">
-		<span class="myPage_title_re">나의 북마크</span> <select
+		<span class="myPage_title_re">찜한 게시글</span> <select
 			class="myCoupon_option" onchange="location.href='/myPage/aBoardBookMark?category=' + this.value;">
 			<option value="0" <c:if test="${param.category == 0}">selected</c:if>>전체</option>
             <option value="1" <c:if test="${param.category == 1}">selected</c:if>>양도</option>
@@ -15,7 +15,7 @@
 	</div>
 	<!-- 반복 -->
 	<c:if test="${count == 0}">
-	북마크 X
+	<div class="empty_position">찜한 양도/교환글이 없습니다.</div>
 	</c:if>
 	<c:if test="${count > 0}">
 		<c:forEach var="board" items="${list}">

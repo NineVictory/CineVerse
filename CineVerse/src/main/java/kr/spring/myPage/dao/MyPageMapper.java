@@ -77,7 +77,9 @@ public interface MyPageMapper {
 	// 멤버십 구독 상태 확인
 	@Select("SELECT * FROM membership_update WHERE mem_num=#{mem_num}")
 	public CouponVO selectMembershipSub(Long mem_num);
-
+	@Update("UPDATE member_coupon SET coupon_use = 3 WHERE ADD_MONTHS(coupon_regdate, 1) < SYSDATE")
+	public void updateCouponstatus();
+	
 
 
 

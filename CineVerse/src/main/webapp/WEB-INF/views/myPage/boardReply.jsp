@@ -19,7 +19,7 @@
 	</div>
 
 	<c:if test="${commentCount == 0 && responseCount == 0}">
-        작성한 댓글이 없습니다.
+        <div class="empty_position">작성한 댓글이 없습니다.</div>
     </c:if>
 	<c:if test="${commentCount > 0 || responseCount > 0}">
 		<!-- 댓글 목록 -->

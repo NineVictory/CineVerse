@@ -7,6 +7,7 @@
 		<span class="myPage_title_re">나의 이벤트 참여 내역</span>
 	</div>
 	<!-- 반복 -->
+	
 	<div class="consult_box">
 		<div class="consult_content">
 			<div class="my_consult">

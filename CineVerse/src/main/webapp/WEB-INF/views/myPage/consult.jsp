@@ -17,7 +17,7 @@
         	<option value="6" <c:if test="${param.category == 6}">selected</c:if>>교환/환불</option>
         </select>
     </div>
-    <c:if test="${count == 0}">작성한 문의글이 없습니다.</c:if>
+    <c:if test="${count == 0}"><div class="empty_position">작성한 문의글이 없습니다.</div></c:if>
     <c:if test="${count > 0}">
     <!-- 반복 -->
     <c:forEach var="consult" items="${list}">
