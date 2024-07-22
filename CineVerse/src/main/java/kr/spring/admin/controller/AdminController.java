@@ -281,9 +281,9 @@ public class AdminController {
 		log.debug("<<이벤트 글 저장>> : " + noticeVO);
 
 		//업로드된 파일이 없는 경우
-		if(noticeVO.getNb_upload()==null || noticeVO.getNb_upload().isEmpty()) {
-			result.rejectValue("nb_upload","fileNotFound");
-		}
+		//if(noticeVO.getNb_upload()==null || noticeVO.getNb_upload().isEmpty()) {
+		//	result.rejectValue("nb_upload","fileNotFound");
+		//}
 
 		// 폼 데이터 유효성 검사
 		if (result.hasErrors()) {
