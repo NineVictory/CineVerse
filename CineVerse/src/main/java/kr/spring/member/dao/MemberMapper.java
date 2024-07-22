@@ -69,7 +69,7 @@ public interface MemberMapper {
 	// 포인트 충전/사용/환불 후 멤버의 point 업데이트하기
 	public void totalPoint(Long mem_num);
 	
-	@Select("SELECT COALESCE(SUM(ph_point),0) used_point FROM point_history WHERE ph_type=1 AND mem_num=62")
+	@Select("SELECT COALESCE(SUM(ph_point),0) used_point FROM point_history WHERE ph_type=1 AND mem_num=#{mem_num}")
 	public Integer selectPointUse(Long mem_num);
 }
 

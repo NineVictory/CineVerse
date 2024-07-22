@@ -273,19 +273,26 @@ public class MemberController {
 	
 	@GetMapping("/member/membershipInfo")
 	public String membershipInfo(HttpSession session, Model model) {
-		
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		
-		MemberVO member =  memberService.selectMember(user.getMem_num());
-		int used_point = memberService.selectPointUse(user.getMem_num());
-		member.setUsed_point(used_point);
-		
-		
-		log.debug("<< 멤버쉽 info 진입 >>");
-		
-		model.addAttribute("member", member);
-		
-		return "membershipInfo";
+	    
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    
+	    if (user != null) {
+	        MemberVO member = memberService.selectMember(user.getMem_num());
+	        int used_point = memberService.selectPointUse(user.getMem_num());
+	        member.setUsed_point(used_point);
+	        model.addAttribute("member", member);
+	    } else {
+	        // 로그인하지 않은 경우 기본값 설정
+	        MemberVO member = new MemberVO();
+	        member.setMem_num(0); // 기본값 예시
+	        member.setUsed_point(0); // 기본값 예시
+	        model.addAttribute("member", member);
+	    }
+	    
+	    log.debug("<< 멤버쉽 info 진입 >>");
+	    
+	    return "membershipInfo";
 	}
+
 	
 }

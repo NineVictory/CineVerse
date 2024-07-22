@@ -41,28 +41,45 @@
 												<c:when test="${member.mem_rank + 1 == 5 }">VVIP</c:when>
 											</c:choose>
 											</span>까지 남은 금액 
-											<em>
+											
 											<c:choose>
 											    <c:when test="${member.mem_rank == 1}">
 											        <c:set var="remainingPoints" value="${50000 - member.used_point}" />
-											        ${remainingPoints}
+											        <c:if test="${remainingPoints < 0 }">을 충족하였습니다.</c:if>
+											        <c:if test="${remainingPoints > 0}"><em>${remainingPoints}</em>원</c:if> 
 											    </c:when>
 											    <c:when test="${member.mem_rank == 2}">
 											        <c:set var="remainingPoints" value="${100000 - member.used_point}" />
-											        ${remainingPoints}
+											        <c:if test="${remainingPoints < 0 }">을 충족하였습니다.</c:if>
+											        <c:if test="${remainingPoints > 0}"><em>${remainingPoints}</em>원</c:if> 
 											    </c:when>
 											    <c:when test="${member.mem_rank == 3}">
 											        <c:set var="remainingPoints" value="${200000 - member.used_point}" />
-											        ${remainingPoints}
+											        <c:if test="${remainingPoints < 0 }">을 충족하였습니다.</c:if>
+											        <c:if test="${remainingPoints > 0}"><em>${remainingPoints}</em>원</c:if> 
 											    </c:when>
 											    <c:when test="${member.mem_rank == 4}">
 											        <c:set var="remainingPoints" value="${250000 - member.used_point}" />
-											        ${remainingPoints}
+											        <c:if test="${remainingPoints < 0 }">을 충족하였습니다.</c:if>
+											        <c:if test="${remainingPoints > 0}"><em>${remainingPoints}</em>원</c:if> 
 											    </c:when>
 											</c:choose>
-											</em>원</p>
+											</p>
 										</div>
 										
+										<c:if test="${remainingPoints < 0}">
+                						<div class="next_month_rank">
+                   						 	<p>6개월 뒤 예상 등급: 
+                    					<c:choose>
+						                        <c:when test="${member.mem_rank + 1 == 1 }">BASIC</c:when>
+												<c:when test="${member.mem_rank + 1 == 2 }">MEMBER</c:when>
+												<c:when test="${member.mem_rank + 1 == 3 }">REGULAR</c:when>
+												<c:when test="${member.mem_rank + 1 == 4 }">VIP</c:when>
+												<c:when test="${member.mem_rank + 1 == 5 }">VVIP</c:when>
+						                    </c:choose>
+						                    </p>
+						                </div>
+						            	</c:if>
 										<div class="next_rank">
 											<progress max="<c:if test="${member.mem_rank == 1 }">50000</c:if><c:if test="${member.mem_rank == 2 }">100000</c:if><c:if test="${member.mem_rank == 3 }">200000</c:if><c:if test="${member.mem_rank == 4 }">250000</c:if>" value="${member.used_point }"></progress>
 											<div class="rank_progress">
