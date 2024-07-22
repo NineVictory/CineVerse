@@ -14,7 +14,9 @@
             m_filename,
             plot,
             m_content,
-            m_genre
+            m_genre,
+            runtime,
+            rating
         ) VALUES (
             #{m_code},
             #{m_name},
@@ -24,7 +26,9 @@
             #{m_filename},
             #{plot},
             #{m_content},
-            #{m_genre}
+            #{m_genre},
+            #{runtime},
+            #{rating}
         )
     </insert>
 

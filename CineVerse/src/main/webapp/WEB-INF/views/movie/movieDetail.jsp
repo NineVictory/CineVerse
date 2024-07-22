@@ -53,6 +53,8 @@
                     <li><b>감독 : </b> ${movie.director}</li>
                     <li><b>영화배우/출연 : </b> ${movie.actor}</li>
                     <li><b>개봉 :</b>${movie.m_opendate}</li>
+                    <li><b>런타임 :</b>${movie.runtime}</li>
+                    <li><b>관람연령 :</b>${movie.rating}</li>
                 </ul>
             </div>
         

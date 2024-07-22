@@ -27,6 +27,8 @@ public class MovieVO {
 	private String m_content;
 	private String plot;
 	private String m_genre;
+	private long runtime;
+	private String rating;
 	@NotNull
 	private MultipartFile m_upload;	//파일
 	

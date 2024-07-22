@@ -59,6 +59,14 @@ document.addEventListener('DOMContentLoaded', function() {
 				<form:input path="m_companys" id="m_companys" cssClass="input-check"/>
 			</li>
 			<li>
+				<form:label path="runtime">런타임</form:label>
+				<form:input path="runtime" id="runtime" cssClass="input-check"/>
+			</li>
+			<li>
+				<form:label path="rating">시청연령</form:label>
+				<form:input path="rating" id="rating" cssClass="input-check"/>
+			</li>
+			<li>
 				<form:label path="m_upload">포스터</form:label>
 				<form:input path="m_upload" id="m_upload" type="file" cssClass="input-check" accept="image/gif,image/png,image/jpeg"/>
 			</li>
