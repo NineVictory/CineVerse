@@ -181,6 +181,7 @@
 
 <div class="select-container">
     <form action="moviePayment" method="post" id="seatForm">
+   
         <div class="select-wrapper">
             <div class="select-title">인원/좌석 선택</div>
             <div class="select-seat-container">
@@ -189,6 +190,7 @@
                     <div class="selected-movie"></div>
                     <div class="select-seat-information-wrapper">
                         <c:forEach var="movieInfo" items="${movieInfoList}">
+                        	 <input type="hidden" name="mt_num" id="mt_num" value="${movieInfo.mt_num}">
                             <p class="moviename">${movieInfo.m_name}<br></p>
                             <p class="movietime">${movieInfo.mt_date} | ${movieInfo.mt_start} ~ ${movieInfo.mt_end}<br></p>
                             <p class="movieplace">${movieInfo.c_branch}지점 ${movieInfo.th_name}</p>
@@ -200,7 +202,7 @@
                     </div>
                     <div class="selected-seats-wrapper">
                         <span class="selected-seats-title">좌석번호</span>
-                        <span class="selected-seats">선택한 좌석이 없습니다.</span>
+                        <span class="selectedSeats">선택한 좌석이 없습니다.</span>
                     </div>
                 </div>
 
@@ -266,16 +268,12 @@
                     <div class="ticket-price-title">총 합계</div>
                     <div class="ticket-price">0원</div>
                 </div>
-                <input type="hidden" class="title" name="title">
-                <input type="hidden" class="selectedTheater" name="selectedTheater">
-                <input type="hidden" class="reserveDate" name="movieDate">
-                <input type="hidden" class="runningTime" name="runningTime">
-                <input type="hidden" class="movieAge" name="movieAge" value="">
+                <input type="hidden" name="mt_num" id="mt_num">
                 <!-- 티켓의수(선택한 좌석) -->
-                <input type="hidden" class="ticketNumber" name="ticketNumber">
-                <input type="hidden" class="selectedSeat" name="selectedSeat">
+                <input type="hidden" id="ticket_Number" name="ticketNumber">
+                <input type="hidden" id="selected_Seats" name="selectedSeats">
                 <!-- 결제 정보 -->
-                <input type="hidden" class="payMoney" name="payMoney">
+                <input type="hidden" id="pay_Money" name="payMoney">
                 <input type="submit" class="movePaymentButton" id="link_rpay" value="결제하기">
             </div>
         </div>
@@ -297,15 +295,16 @@ document.addEventListener('DOMContentLoaded', () => {
     //총 합계 금액을 업데이트하는 함수
     function updateTotalPrice() {
         document.querySelector('.ticket-price').innerText = formatNumber(totalPrice) + '원';
-        document.querySelector('.payMoney').value = totalPrice;
+        document.getElementById('pay_Money').value = totalPrice;
     }
 
     //선택된 좌석의 수를 세고, 화면에 표시하는 함수
     function countSelectedSeats() {
         const selectedSeatLabels = selectedSeats.map(seat => seat.innerText);
-        document.querySelector('.selected-seats').innerText = selectedSeatLabels.join(', ') || '선택한 좌석이 없습니다.';
-        document.querySelector('.selectedSeat').value = selectedSeatLabels.join(', ');
-        document.querySelector('.ticketNumber').value = selectedSeats.length;
+        document.querySelector('.selectedSeats').innerText = selectedSeatLabels.join(', ') || '선택한 좌석이 없습니다.';
+        document.getElementById('selected_Seats').value = selectedSeatLabels.join(', ');
+        document.getElementById('ticket_Number').value = selectedSeats.length;
+        
     }
 
     //총 인원수를 검증하는 함수(최대 8명 제한)

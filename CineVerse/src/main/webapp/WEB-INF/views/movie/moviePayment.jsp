@@ -10,22 +10,23 @@
  	<div>
  		<div class="movie_title">
 		<strong class="tit_info"> 
-			<span class="ic_grade gr_all">전체</span>인사이드아웃 2 (2D 자막)
+			<!-- <span class="ic_grade gr_all">전체</span>인사이드아웃 2 (2D 자막) -->
 		</strong> 
 	</div>
 		<div class="reserved_info">
- 		<ul class="movie_reserve_info">
- 			<li><b>일시</b></li>
- 			<li style="margin-bottom: 4px;">2024-07-10(수) 12:00 ~ 13:56</li>
- 			<li><b>영화관</b></li>
- 			<li style="margin-bottom: 4px;">월드타워 10관 2D</li>
- 			<li><b>인원</b></li>
- 			<li>1명</li>
- 		</ul>	
+ 		<c:forEach var="movieInfo" items="${movieInfoList}">
+        <p>영화 제목: ${movieInfo.m_name}</p>
+        <p>극장: ${movieInfo.c_branch} ${movieInfo.th_name}</p>
+        <p>예약 날짜: ${movieInfo.mt_date}</p>
+        <p>상영 시간: ${movieInfo.mt_start} ~ ${movieInfo.mt_end}</p>
+    </c:forEach>
  	</div>
  	<div class="reserved_space">
- 		좌석 <br>
- 		<strong>H10</strong>
+ 		<!-- 좌석 <br>
+ 		<strong>H10</strong> -->
+ 		<p>인원: ${ticketNumber}</p>
+    	<p>선택한 좌석: ${selectedSeats}</p>
+    	<p>결제 금액: ${payMoney}원</p>
  	</div>
  	</div>
 	
@@ -66,7 +67,7 @@
  	<div class="pay_decision">
  		<div class="pay_origin">
  			<span>상품 금액</span>
- 			<span><strong style="font-size: 1.15em;">14000</strong>원</span>
+ 			<span><strong style="font-size: 1.15em;">${payMoney}</strong>원</span>
  		</div>
  		<div class="pay_discount">
  			<span>할인 금액</span>

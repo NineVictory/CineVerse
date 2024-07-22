@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -201,10 +202,20 @@ public class MovieController {
 	/*=======================
 	 * 영화 결제
 	 *=======================*/
-	@GetMapping("/movie/moviePayment")
-	public String moviePayment(){
-		return "moviePayment";
-	}
+	 	@PostMapping("/movie/moviePayment")
+	    public String moviePayment(long mt_num,  int ticketNumber, String selectedSeats, int payMoney, Model model) {
+
+	        // 영화 정보 조회
+	        List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
+
+	        // 모델에 데이터를 추가하여 결제 페이지로 넘기기
+	        model.addAttribute("movieInfoList", movieInfoList);
+	        model.addAttribute("ticketNumber", ticketNumber);
+	        model.addAttribute("selectedSeats", selectedSeats);  // 좌석 식별자 리스트를 넘김
+	        model.addAttribute("payMoney", payMoney);
+     
+	        return "moviePayment"; // 결제 페이지로 이동
+	    }
 	
 	/*=======================
 	 * 영화 상영시간표
