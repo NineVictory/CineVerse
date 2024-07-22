@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
 .membership-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .membership-title {
-width: 1160px;
-    padding: 20px 0 10px;
-    margin-bottom: 10px;
-    font-size: 24px;
-    border-bottom: 1px solid #eee;
+	width: 1160px;
+	padding: 20px 0 10px;
+	margin-bottom: 10px;
+	font-size: 24px;
+	border-bottom: 1px solid #eee;
 }
 
 .vip_top_infor {
@@ -92,146 +92,272 @@ a, a:link, a:visited, a:active, a:hover {
 }
 
 .rank_2020_wrap .rank_2020_list_ty2 {
-    position: relative;
-    margin-top: 20px;
-    border-top: 1px solid #bbb;
+	position: relative;
+	margin-top: 20px;
+	border-top: 1px solid #bbb;
 }
 
 .rank_2020_wrap .rank_2020_list_ty2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 79px;
-    width: 100%;
-    height: 1px;
-    background-color: #bbb;
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 79px;
+	width: 100%;
+	height: 1px;
+	background-color: #bbb;
 }
 
 .rank_2020_wrap .rank_2020_list_ty2::after {
-    display: block;
-    content: '';
-    clear: both;
+	display: block;
+	content: '';
+	clear: both;
 }
 
 .rank_2020_wrap .rank_2020_list_ty2 dl {
-    float: left;
-    width: 20%;
-    text-align: center;
+	float: left;
+	width: 20%;
+	text-align: center;
 }
 
 .rank_2020_wrap .rank_2020_list_ty2 dl.tit {
-    width: 20%;
+	width: 20%;
 }
 
 .rank_2020_wrap .rank_2020_list_ty2 dl dt {
-    margin-bottom: 16px;
-    padding-top: 40px;
+	margin-bottom: 16px;
+	padding-top: 40px;
 }
 
 .rank_2020_wrap .rank_2020_list_ty2 dl dd {
-    padding: 28px 0;
-    font-size: 15px;
-    border-bottom: 1px solid #eee;
+	padding: 28px 0;
+	font-size: 15px;
+	border-bottom: 1px solid #eee;
 }
 
 .benefit_wrap {
-    margin-top: 60px;
+	margin-top: 60px;
 }
-.benefit_wrap > .tit {
-    font-size: 18px;
+
+.benefit_wrap>.tit {
+	font-size: 18px;
 }
+
 .benefit_wrap .benefit_box_ty2 {
-    margin-top: 60px;
+	margin-top: 60px;
 }
-.benefit_wrap .benefit_box_ty2.type2 > li {
-    padding: 56px 18px 10px;
+
+.benefit_wrap .benefit_box_ty2.type2>li {
+	padding: 56px 18px 10px;
 }
-.benefit_wrap .benefit_box_ty2 > li {
-margin-left: 20px;
-    position: relative;
-    float: left;
-    padding: 56px 25px 30px;
-    width: 250px;
-    font-size: 12px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-    box-sizing: border-box;
+
+.benefit_wrap .benefit_box_ty2>li {
+	margin-left: 20px;
+	position: relative;
+	float: left;
+	padding: 56px 25px 30px;
+	width: 250px;
+	font-size: 12px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	background-color: #f8f8f8;
+	box-sizing: border-box;
 }
+
 .ic_rank_vip, .ic_rank_vvip, .ic_rank_gold, .ic_rank_platinum {
-    box-shadow: 0px 5px 10px 3px #e6e6e6;
+	box-shadow: 0px 5px 10px 3px #e6e6e6;
 }
+
 [class^="ic_rank_"] {
-    position: absolute;
-    left: 50%;
-    top: -40px;
-    margin-left: -40px;
-    padding-top: 45px;
-    width: 80px;
-    height: 80px;
-    text-align: center;
-    border-radius: 80px;
-    border: 1px solid #999;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+	position: absolute;
+	left: 50%;
+	top: -40px;
+	margin-left: -40px;
+	padding-top: 45px;
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	border-radius: 80px;
+	border: 1px solid #999;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
 .benefit_wrap .benefit_box_ty2.type2 .listbox {
-    position: relative;
-    margin-top: 30px;
-    border-radius: 5px;
-    box-sizing: border-box;
+	position: relative;
+	margin-top: 30px;
+	border-radius: 5px;
+	box-sizing: border-box;
 }
 
 .benefit_wrap .benefit_box_ty2.type2 .benefit .gap_or {
-    padding-top: 8px;
-    margin-bottom: -12px;
-    color: #333;
-    font-size: 11px;
-    text-align: center;
+	padding-top: 8px;
+	margin-bottom: -12px;
+	color: #333;
+	font-size: 11px;
+	text-align: center;
 }
 
-.benefit_wrap .benefit_box_ty2.type2 .benefit + .benefit {
-    margin-top: 24px;
+.benefit_wrap .benefit_box_ty2.type2 .benefit+.benefit {
+	margin-top: 24px;
 }
 
-.benefit_wrap .benefit_box_ty2 > li ~ li {
-    margin-left: 55px;
+.benefit_wrap .benefit_box_ty2>li ~ li {
+	margin-left: 55px;
 }
 
 .benefit_wrap .benefit_box_ty2.type2 .benefit .list span em {
-    color: #FF7787;
+	color: #FF7787;
 }
 
 .benefit_wrap .benefit_box_ty2 .benefit .list span em {
-    font-size: 18px;
-    font-family: "Roboto";
+	font-size: 18px;
+	font-family: "Roboto";
 }
 
 .benefit_wrap .benefit_box_ty2 .benefit .list span::before {
-    content: '';
-    position: absolute;
-    right: 35px;
-    top: 7px;
-    width: 11px;
-    height: 11px;
-    background: url(../images/cmj/cross.png) no-repeat;
-}
-.benefit_wrap .benefit_box_ty2 .benefit .list span {
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 13px;
-}
-.benefit_wrap .benefit_box_ty2 .benefit .list li {
-    position: relative;
-    line-height: 25px;
-}
-em, th {
-    font-style: normal;
-    font-weight: normal;
+	content: '';
+	position: absolute;
+	right: 35px;
+	top: 7px;
+	width: 11px;
+	height: 11px;
+	background: url(../images/cmj/cross.png) no-repeat;
 }
 
-ul{
-padding : 0;
+.benefit_wrap .benefit_box_ty2 .benefit .list span {
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 13px;
 }
+
+.benefit_wrap .benefit_box_ty2 .benefit .list li {
+	position: relative;
+	line-height: 25px;
+}
+
+em, th {
+	font-style: normal;
+	font-weight: normal;
+}
+
+ul {
+	padding: 0;
+}
+
+.ic_2024_basic {
+	background-size: 20px;
+	background-image: url(../images/cmj/basic.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+.ic_2024_member {
+	background-size: 20px;
+	background-image: url(../images/cmj/member.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+.ic_2024_regular {
+	background-size: 20px;
+	background-image: url(../images/cmj/regular.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+.ic_2024_vip {
+	background-size: 20px;
+	background-image: url(../images/cmj/vip.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+.ic_2024_vvip {
+	background-size: 20px;
+	background-image: url(../images/cmj/vvip.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+
+
+.ic_rank_member {
+	background-color: #fff;
+	position: absolute;
+	left: 50%;
+	top: -40px;
+	margin-left: -40px;
+	padding-top: 45px;
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	border-radius: 80px;
+	border: 1px solid #999;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-shadow: 0px 5px 10px 3px #e6e6e6;
+	background-size: 20px;
+	background-image: url(../images/cmj/member.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+
+.ic_rank_regular {
+	background-color: #fff;
+	position: absolute;
+	left: 50%;
+	top: -40px;
+	margin-left: -40px;
+	padding-top: 45px;
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	border-radius: 80px;
+	border: 1px solid #999;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-shadow: 0px 5px 10px 3px #e6e6e6;
+		background-size: 20px;
+	background-image: url(../images/cmj/regular.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+
+.ic_rank_vip {
+	background-color: #fff;
+	position: absolute;
+	left: 50%;
+	top: -40px;
+	margin-left: -40px;
+	padding-top: 45px;
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	border-radius: 80px;
+	border: 1px solid #999;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-shadow: 0px 5px 10px 3px #e6e6e6;	
+	background-size: 20px;
+	background-image: url(../images/cmj/vip.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+
+.ic_rank_vvip {
+	background-color: #fff;
+	position: absolute;
+	left: 50%;
+	top: -40px;
+	margin-left: -40px;
+	padding-top: 45px;
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	border-radius: 80px;
+	border: 1px solid #999;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-shadow: 0px 5px 10px 3px #e6e6e6;
+		background-size: 20px;
+	background-image: url(../images/cmj/vvip.png);
+	background-position: center 20px;
+	background-repeat: no-repeat;
+}
+

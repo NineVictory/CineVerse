@@ -1,5 +1,4 @@
 $(function() {
-    let message_socket;
 
     function connectWebSocket() {
         message_socket = new WebSocket('ws://localhost:8000/message-ws');
@@ -92,10 +91,12 @@ function openChatWindow() {
                 }
             } else {
                 alert('채팅방 생성에 실패했습니다');
+                message_socket.close();
             }
         },
         error: function() {
             alert('네트워크 오류가 발생하였습니다.');
+             message_socket.close();
         }
     });
 }
@@ -201,20 +202,22 @@ function openChatWindow() {
             success: function(param) {
                 if (param.result == 'logout') {
                     alert('로그인 후 사용 가능합니다.');
-                    if (message_socket) {
                         message_socket.close();
-                    }
                 } else if (param.result == 'success') {
-                    $('#message').val('');
-                    selectMsg();
+                    // 폼 초기화
+					$('#message').val('').focus();
+					message_socket.send('msg');
                 } else if (param.result == 'wrongAccess') {
                     alert('타인의 채팅방에 메시지를 작성할 수 없습니다.');
+                    message_socket.close();
                 } else {
                     alert('등록시 오류 발생');
+                    message_socket.close();
                 }
             },
             error: function() {
                 alert('네트워크 오류 발생');
+                message_socket.close();
             }
         });
 
