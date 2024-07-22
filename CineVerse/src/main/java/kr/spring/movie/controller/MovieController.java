@@ -66,7 +66,7 @@ public class MovieController {
 
 	    int count = movieService.selectMovieRowCount(map);
 
-	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 20, 10, "movieList", "&movieorder=" + movieorder);
+	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 30, 10, "movieList", "&movieorder=" + movieorder);
 	    List<MovieVO> movielist = null;
 	    if (count > 0) {
 	        map.put("movieorder", movieorder);

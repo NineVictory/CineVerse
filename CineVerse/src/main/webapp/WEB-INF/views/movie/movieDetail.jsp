@@ -21,10 +21,10 @@
                 <div class="movie-screening">
                     <c:choose>
                         <c:when test="${movie.m_status == 1}">
-                            현재 미상영
+                            현재 상영
                         </c:when>
                         <c:when test="${movie.m_status == 2}">
-                            현재 상영
+                            현재 미상영
                         </c:when>
                     </c:choose>
                 </div>

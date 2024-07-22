@@ -84,7 +84,16 @@
 
 	 			
 	 		</if>   
-        
+        	 <if test="genres != null and genres.size() > 0">
+                AND m_code IN (
+                    SELECT m_code
+                    FROM movie_genre
+                    WHERE genre IN
+                    <foreach item="genre" index="index" collection="genres" open="(" separator="," close=")">
+                        #{genre}
+                    </foreach>
+                )
+            </if>
     </where>
 </sql>
 	 <sql id="movieOrder"> <!-- 정렬할 때 -->

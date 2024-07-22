@@ -36,7 +36,7 @@ public interface MovieMapper {
 	public void insertMovieGenre(MovieGenreVO genre);
 	
 	public List<String> selectDistinctGenres();
-    List<MovieVO> filterMoviesByGenres(@Param("genres") List<String> genres);
+    public List<MovieVO> filterMoviesByGenres(@Param("genres") List<String> genres);
 	
 	@Select("SELECT * FROM movie JOIN movie_actor USING (m_code) JOIN movie_director USING (m_code) WHERE m_code=#{m_code}")
 	public MovieVO selectMovie(Long m_code);
