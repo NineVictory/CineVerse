@@ -96,9 +96,8 @@ public class AdminMovieController {
                
             
             //영화 시간표 등록
-            
-             //movieService.insertMovieTime(movietimeVO);
-             movieService.addMovieTime(movietimeVO);
+            movieService.insertMovieTime(movietimeVO);
+             //movieService.addMovieTime(movietimeVO);
 
    
             model.addAttribute("message","성공적으로 글이 등록되었습니다.");

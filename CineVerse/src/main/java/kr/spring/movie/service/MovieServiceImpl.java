@@ -183,8 +183,7 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public void insertMovieTime(MovieTimeVO movietime) {
-		// TODO Auto-generated method stub
-		
+		movieMapper.insertMovieTime(movietime);
 	}
 
 

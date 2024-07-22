@@ -202,14 +202,14 @@
             mt_start,
             mt_end,
             m_code,
-            c_num) 
+            th_num) 
             VALUES (
         	movie_time_seq.nextval,
             #{mt_date},
             #{mt_start},
             #{mt_end},
             #{m_code},
-            #{c_num})
+            #{th_num})
     </insert>
     
 	<select id="selectDistinctGenres" resultType="String">

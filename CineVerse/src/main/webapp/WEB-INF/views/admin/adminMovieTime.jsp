@@ -82,8 +82,8 @@ $(document).ready(function() {
                     <div id="m_code_suggestions"></div>
                 </li>
                 <li>
-                    <label for="c_num">극장번호</label>
-                    <input type="text" name="c_num" id="c_num" class="input-check">
+                    <label for="th_num">극장번호</label>
+                    <input type="text" name="th_num" id="th_num" class="input-check">
                 </li>
 				        
                 <%-- <li>
