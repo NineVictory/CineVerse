@@ -90,7 +90,7 @@
                 <c:when test="${lastConsult.consult_type == 'missing'}">[분실물]</c:when>
                 <c:when test="${lastConsult.consult_type == 'exchange'}">[교환/환불]</c:when>
             </c:choose>
-			${lastConsult.consult_content}</div>
+			${lastConsult.consult_title}</div>
 		</div>
 		</c:if>
 	</div>

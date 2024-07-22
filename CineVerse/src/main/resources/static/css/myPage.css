@@ -1060,7 +1060,7 @@
 	margin-top: 10px;
 	font-size: 16px;
 	font-weight: 550;
-	width: 100%; /* 너비를 부모 요소에 맞춤 */
+	width: 760px; /* 너비를 부모 요소에 맞춤 */
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

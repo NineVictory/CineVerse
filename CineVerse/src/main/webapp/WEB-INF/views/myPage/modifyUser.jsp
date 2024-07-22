@@ -20,9 +20,9 @@
             </div>
             <div class="login_form_all">
                 <div class="login_form_inputs_id_passwd">
-                    <form:input path="mem_nickName" placeholder="닉네임을 입력해주세요" class="input_style" autocomplete="off" value="${member.mem_nickName}"/>
+                    <form:input path="mem_nickName" placeholder="닉네임을 입력해주세요" class="input_style" autocomplete="off" maxlength="10" value="${member.mem_nickName}"/>
                 </div>
-               <%--  <form:errors element="div" path="mem_nickName" cssClass="error-color" /> --%>
+                <form:errors element="div" path="mem_nickName" cssClass="error-color" />
             </div>
             <div class="login_form_all">
                 <div class="login_form_inputs_id_passwd">
