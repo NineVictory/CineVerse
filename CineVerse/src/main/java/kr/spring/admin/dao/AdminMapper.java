@@ -15,6 +15,7 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
@@ -78,9 +79,15 @@ public interface AdminMapper {
 	public Integer selectAssignRowCount(Map<String,Object> map);
 	
 	//댓글관리
+	public List<ReplyVO> selectReCmtList(Map<String,Object> map);
 	public List<ReplyVO> selectReplyList(Map<String,Object> map);
 	public Integer selectReplyRowCount(Map<String,Object> map);
-	
+	public Integer selectReCmtRowCount(Map<String,Object> map);
+	//댓글삭제
+	@Delete("DELETE FROM community_comment WHERE cc_num = #{cc_num}")
+	public void deleteReply(long cc_num);
+	@Delete("DELETE FROM community_response WHERE te_num = #{te_num}")
+	public void deleteCmt(long cc_num);	
     // 영화
 	public List<MovieVO> selectMovie(Map<String,Object> map);
 	public Integer selectMovieRowCount(Map<String,Object> map);

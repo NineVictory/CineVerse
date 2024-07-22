@@ -17,8 +17,10 @@ public class ReplyVO {
 	private Date cc_reg_date;
 	private long cc_report;
 
-	private long th_num;
-	private String th_content;
-	private Date th_date;
-	private long th_report;
+	private String mem_name;
+	private long te_num;
+	private String te_content;
+	private Date te_date;
+	private long te_report;
+	private String data_type;
 }

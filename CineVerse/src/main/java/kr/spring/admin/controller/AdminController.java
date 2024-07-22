@@ -29,6 +29,7 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
@@ -493,17 +494,19 @@ public class AdminController {
 
 		// 전체, 검색 레코드 수
 		int count = adminService.selectReplyRowCount(map);
+		count += adminService.selectReCmtRowCount(map);
 		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 15, 10, "adminReply");
-
+		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 5, "adminReply");
+		
 		List<ReplyVO> list = null; 
 		if (count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
 
 			list = adminService.selectReplyList(map);
+			list.addAll(adminService.selectReCmtList(map));
 		}
-
+		log.debug("<<댓글 확인>>" + list);
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
@@ -511,8 +514,24 @@ public class AdminController {
 		return "adminReply";
 
 	}
-	
-	
+	// 댓글 삭제 처리
+	@PostMapping("/deleteReply")
+	@ResponseBody
+	public String deleteReply(@RequestParam("cc_num") long cc_num) {
+		adminService.deleteReply(cc_num);
+		log.debug("<<댓글 삭제 완료>>");
+		return "success";
+
+	}
+	// 대댓글 삭제 처리
+	@PostMapping("/deleteCmt")
+	@ResponseBody
+	public String deleteCmt(@RequestParam("te_num") long te_num) {
+		adminService.deleteCmt(te_num);
+		log.debug("<<댓글 삭제 완료>>");
+		return "success";
+
+	}
 	// 영화
 	@GetMapping("/admin/adminMovie")
 	public String adminMovie(

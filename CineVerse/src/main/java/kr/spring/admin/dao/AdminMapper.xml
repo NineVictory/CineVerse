@@ -405,21 +405,21 @@
 	
 	
 	<!-- 상영관 등록 -->
-	<insert id="insertTheater" parameterType="cinemaVO">
+	<insert id="inserttheater" parameterType="cinemaVO">
 		INSERT INTO theater(
-		th_num,
+		te_num,
 		c_num,
-		th_name
+		te_name
 		)
 		VALUES (
 		theater_seq.nextval,
 		#{c_num},
-		#{th_name})
+		#{te_name})
 	</insert>
 
 	
-	<select id="selectTheater" parameterType="String" resultType="TheaterVO">
-  		  SELECT th_name
+	<select id="selectTheater" parameterType="String" resultType="theaterVO">
+  		  SELECT te_name
   		  FROM theater
  		  WHERE c_num = #{c_num}
 	</select>
@@ -521,52 +521,62 @@
 	</sql>
 	
 
-	<select id="selectReplyList" parameterType="map" resultType="ReplyVO">
-	    SELECT *
-	    FROM (
-	        SELECT a.*, rownum rnum
-	        FROM (
-	            SELECT
-	                th_num as reply_num,
-	                mem_num,
-	                th_content as reply_content,
-	                th_date as reply_date,
-	                th_report as reply_report
-	            FROM community_response
-	            <include refid="replySearch"></include>
-	            
-	            UNION ALL
-	            
-	            SELECT
-	                cc_num as reply_num,
-	                mem_num,
-	                cc_content as reply_content,
-	                cc_reg_date as reply_date,
-	                cc_report as reply_report
-	            FROM community_comment
-	            <include refid="replySearch"></include>
-	        ) a
+	<!-- 댓글 리스트 조회 -->
+	<select id="selectReplyList" parameterType="map" resultType="replyVO">
+		SELECT *
+		FROM (
+		SELECT a.*, rownum rnum
+		FROM (
+	    SELECT 'reply' AS data_type,
+	    	   cc_num,
+	           mem_num,
+	           cc_content,
+	           cc_report
+	    FROM community_comment
+	    <include refid="replySearch"></include>
+        ORDER BY cc_report DESC
+	    ) a
+		)
 	    <![CDATA[
-	    WHERE rnum >= #{start} AND rnum <= #{end}
+	    WHERE rownum >= #{start} AND rownum <= #{end}
 	    ]]>
 	</select>
 
+	<!-- 대댓글 리스트 조회 -->
+	<select id="selectReCmtList" parameterType="map" resultType="replyVO">
+		SELECT *
+		FROM (
+		SELECT a.*, rownum rnum
+		FROM (
+	    SELECT 'comment' AS data_type,
+	    	   te_num,
+	           mem_num,
+	           te_content,
+	           te_report
+	    FROM community_response
+	    <include refid="replySearch"></include>
+	    ORDER BY te_report DESC
+	    ) a
+		)
+	    <![CDATA[
+	    WHERE rownum >= #{start} AND rownum <= #{end}
+	    ]]>
+	</select>
 	
 	<!-- 댓글 총레코드수/검색 레코드수 -->
 	<select id="selectReplyRowCount" parameterType="map" resultType="integer">
-	    SELECT
-	        COUNT(*)
-	    FROM community_response
-  	  <include refid="replySearch"></include>
-    
-	    UNION ALL
-	    
-	    SELECT
-	        COUNT(*)
-	    FROM community_comment
-  	  <include refid="replySearch"></include>
+		SELECT
+		COUNT(*)
+		FROM community_board
+	    <include refid="replySearch"></include>
 	</select>
-
+	
+	<!-- 대댓글 총레코드수/검색 레코드수 -->
+	<select id="selectReCmtRowCount" parameterType="map" resultType="integer">
+    SELECT COUNT(*)
+    FROM community_response
+    <include refid="replySearch"></include>
+</select>
 </mapper>							
 
 

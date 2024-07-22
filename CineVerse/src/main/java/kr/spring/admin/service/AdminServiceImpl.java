@@ -13,6 +13,7 @@ import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
+import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
@@ -182,9 +183,9 @@ public class AdminServiceImpl implements AdminService{
 	public Integer selectAssignRowCount(Map<String, Object> map) {
 		return adminMapper.selectAssignRowCount(map);
 	}
-	@Override
+	@Override 
 	public List<ReplyVO> selectReplyList(Map<String, Object> map) {
-		return adminMapper.selectReplyList(map);
+		return adminMapper.selectReplyList(map); 
 	}
 	@Override
 	public Integer selectReplyRowCount(Map<String, Object> map) {
@@ -197,5 +198,21 @@ public class AdminServiceImpl implements AdminService{
 		adminMapper.deleteMembership(mem_num);
 		adminMapper.updateMembership(mem_num);
 		memberMapper.totalPoint(mem_num);
+	}
+	@Override
+	public List<ReplyVO> selectReCmtList(Map<String, Object> map) {
+		return adminMapper.selectReCmtList(map);
+	}
+	@Override
+	public Integer selectReCmtRowCount(Map<String, Object> map) {
+		return adminMapper.selectReCmtRowCount(map);
+	}
+	@Override
+	public void deleteReply(long cc_num) {
+		adminMapper.deleteReply(cc_num);
+	}
+	@Override
+	public void deleteCmt(long cc_num) {
+		adminMapper.deleteCmt(cc_num);
 	}
 }
