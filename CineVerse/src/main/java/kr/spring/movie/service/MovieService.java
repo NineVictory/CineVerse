@@ -67,6 +67,12 @@ public interface MovieService {
     
     //영화예매
     void saveBooking(Long mb_price, Long mem_num, Long mt_num, Long m_code, String selectedSeats);
+    Long getMbNum();
     void insertBooking(MovieBookingVO movieBooking);
     void insertBookingDetail(MbDetailVO mbDetail);
+    void insertPointHistory(long ph_point, long mem_num, int ph_type, String ph_payment);
+
+	/* void updateMemberPoint(long ph_point, long mem_num); */
+	/* void usePoint(long ph_point, long mem_num); */
+    void useCoupon(long mem_coupon_use, long mc_num);
 }

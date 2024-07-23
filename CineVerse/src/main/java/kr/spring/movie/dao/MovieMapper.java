@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.board.vo.BoardReFavVO;
 import kr.spring.movie.vo.MbDetailVO;
@@ -122,11 +123,34 @@ public interface MovieMapper {
     @Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num = #{mem_num} AND m_code = #{m_code}")
     int hasBookedMovie(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
     MovieBookingVO getBookingInfo(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
-    
+	@Select("SELECT movie_booking_seq.nextval FROM dual")
+	public Long selectMb_num();
     //영화 예매
-    @Insert("INSERT INTO movie_booking (mb_num, mb_date, mb_price, mem_num, mt_num, m_code) VALUES (movie_booking_seq.nextval, SYSDATE, #{mb_price}, #{mem_num}, #{mt_num},#{m_code})")
+    @Insert("INSERT INTO movie_booking (mb_num, mb_date, mb_price, mem_num, mt_num, m_code) VALUES (#{mb_num}, SYSDATE, #{mb_price}, #{mem_num}, #{mt_num},#{m_code})")
     void insertBooking(MovieBookingVO movieBooking);
-
+    @Select("SELECT mb_detail_seq.nextval FROM dual")
+    Long selectMd_num();
     @Insert("INSERT INTO mb_detail (md_num, md_type, mb_num, seat_num) VALUES (mb_detail_seq.nextval, #{md_type}, #{mb_num}, #{seat_num})")
     void insertBookingDetail(MbDetailVO mbDetail);
+    
+    //결제시 point값 차감하기
+	/*
+	 * @Update("UPDATE member SET point = point - #{ph_point} WHERE mem_num = #{mem_num}"
+	 * ) void updateMemberPoint(@Param("ph_point") long ph_point, @Param("mem_num")
+	 * long mem_num);
+	 */
+    
+    // 결제시 포인트 차감하기
+	/*
+	 * @Insert("INSERT INTO point_history (ph_num, ph_point, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{ph_point}, #{mem_num},#{ph_type} , 'goods')"
+	 * ) public void usePoint(@Param("ph_point") long ph_point, @Param("mem_num")
+	 * long mem_num);
+	 */
+    @Insert("INSERT INTO point_history (ph_num, ph_point, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{ph_point}, #{mem_num}, #{ph_type}, #{ph_payment})")
+    void insertPointHistory(@Param("ph_point") long ph_point, @Param("mem_num") long mem_num, @Param("ph_type") int ph_type, @Param("ph_payment") String ph_payment);
+    
+    // 결제시 쿠폰 소진하기
+    @Update("UPDATE member_coupon SET coupon_use=2, mem_coupon_use=#{mem_coupon_use} WHERE mc_num=#{mc_num}")
+    public void useCoupon(@Param("mem_coupon_use") long mem_coupon_use, @Param("mc_num") long mc_num);
+
 }
