@@ -11,6 +11,7 @@
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
 <%-- <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>--%>
 <script src="${pageContext.request.contextPath}/js/assignboard.bookmark.js"></script>
+<script src="${pageContext.request.contextPath}/js/assignboard.changeStatus.js"></script>
 
 <div class="page-container page-main">
 	<div class="boardview-main">
@@ -133,7 +134,7 @@
 								<img src="${pageContext.request.contextPath}/images/kbm/hit.png" width="18px;">
 								<span>${assign.ab_hit}</span><%-- 조회수 --%>
 								&nbsp;&nbsp;
-								<span class="ab-status">
+								<span class="ab-status" data-num="${assign.ab_num}">
 									<c:if test="${assign.ab_status == 1}">
 										판매중
 									</c:if>
@@ -144,6 +145,9 @@
 										거래완료
 									</c:if>
 								</span>
+								<ul>
+									
+								</ul>
 								</div>
 							</div>
 							<div class="assign-report p-center">
