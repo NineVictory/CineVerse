@@ -211,25 +211,6 @@
 					</ul>
 					
 		</div>
-		
-
-		
-		
-		<!-- 관리자 버튼 -->
-	<div class="admin-button">
-		<input type="button" value="수정"  onclick="location.href='update?c_num=${cinema.c_num}'">
-		<input type="button" value="삭제" id="delete_btn">
-		<script>
-			const delete_btn = document.getElementById('delete_btn');
-			delete_btn.onclick=function(){
-				const choice = confirm('삭제하시겠습니까?');
-				if(choice){
-					location.replace('delete?c_num=${cinema.c_num}');
-				}
-			};
-		</script>   
-		<input type="button" value="목록"  onclick="location.href='cinemaList2'">
-	</div>
 </div>
 </div>
 <!-- 영화관 상세 정보 시작 -->
