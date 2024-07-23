@@ -71,5 +71,11 @@ public interface MemberMapper {
 	
 	@Select("SELECT COALESCE(SUM(ph_point),0) used_point FROM point_history WHERE ph_type=1 AND mem_num=#{mem_num}")
 	public Integer selectPointUse(Long mem_num);
+	
+	@Select("SELECT mem_num, mem_rank,(SELECT COALESCE(SUM(ph_point), 0) FROM point_history WHERE ph_type = 1 AND mem_num = m.mem_num) AS used_point FROM member m")
+	public List<MemberVO> findAllMembersWithPoints();
+	
+	@Update("UPDATE member set mem_rank=#{mem_rank} WHERE mem_num=#{mem_num}")
+	public void updateMemberRank(MemberVO memberVO);
 }
 

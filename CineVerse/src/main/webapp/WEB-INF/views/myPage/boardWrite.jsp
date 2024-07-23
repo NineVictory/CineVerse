@@ -27,7 +27,7 @@
                             <c:otherwise>${board.cb_type}</c:otherwise>
                         </c:choose>
                     </div>
-                    <div class="my_boardWrite_bk"  onclick="location.href='${pagecontext.request.contextPath}/board/detail?cb_num=${board.cb_num}'">${board.cb_title}</div>
+                    <div class="my_boardWrite_bk" onclick="location.href='${pagecontext.request.contextPath}/board/detail?cb_num=${board.cb_num}'">${board.cb_title}</div>
                 </div>
                 <div class="bk_delete_btn">
                    <input type="button" class="add_del_btn" data-num="${board.cb_num}" data-mnum="${user.mem_num}" value="삭제">

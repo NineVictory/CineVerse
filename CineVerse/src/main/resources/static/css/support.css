@@ -83,6 +83,9 @@ li.support_nav{
 	width:930px;
 	gap:15px;
 }
+.left-lower-menu h4, .right-lower-menu h4{
+	margin-bottom:10px;
+}
 .left-lower-menu{
 	width:290px;
 }
@@ -90,12 +93,16 @@ li.support_nav{
 	display:flex;
     align-items: center;
 }
+.main-notice-title:hover{
+	color:#707070;
+}
 .right-lower-menu{
 	width:600px;
 }
 .fast-menu{
 	align-items:center;
 	justify-content:center;
+	position:relative;
 }
 /*문의하기,문의내역 버튼*/
 .fast-menu a{
@@ -104,12 +111,45 @@ li.support_nav{
 	padding:3px 7px;
 	border-radius:5px;
 }
+.fast-menu img{
+	position:absolute;
+	top:65px;
+	margin-bottom:50px;
+}
+.fast-menu-cont{
+	align-items:center;
+	justify-content:center;
+	position:absolute;
+	top:150px;
+	width:235px;
+	gap:10px;
+}
+.fast-menu-cont strong{
+	font-size:16px;
+}
+.font14{
+	font-size:14px;
+}
 .flex-start{
 	align-items:flex-start;
 }
 
+.faq-mbutton{
+	background:#3F66ED;
+	color:#fff;
+	padding:3px 7px;
+	border-radius:3px;
+	border:none;
+	width:42px;
+}
+
 .imenu a {
-	text-align:left;
+	display:inline-block;
+	width:130px;
+	height:65px;
+	margin-right:5px;
+	margin-bottom:10px;
+/* 	text-align:left; */
 }
 .imenu > a > span{
 	display:inline-block;
@@ -117,11 +157,23 @@ li.support_nav{
 	height:65px;
 	margin:5px;
 	font-size:14px;
-	padding:3px;
+	padding: 10px 15px 15px 15px;
 	vertical-align:middle;
 	border:1px solid #BEBABA;
 	border-radius:7px;
 }
+#search_box input.faq-keyword{
+	width:150px;
+}
+
+.main-news{
+	display:flex;
+	align-items:middle;
+}
+.main-news img{
+	cursor:pointer;
+}
+
 
 /*로그인시 아이디찾기 비활성화*/
 .disabled{
@@ -148,7 +200,7 @@ li.support_nav{
 	border-top:1px solid #BEBABA;
 	padding:8px 7px;
 }
-.faq-table:last-child, .news-table:last-child, .qna-table td:last-child{
+.faq-table:last-child, .news-table tr:last-child, .qna-table tr:last-child{
 	border-bottom:1px solid #BEBABA;
 }
 
@@ -163,6 +215,7 @@ li.support_nav{
 .support-search input{
 	width:35%;
 	padding:4px;
+	height:30px;
 }
 .faq-table-num, .news-table-num{
 	padding: 7px;
@@ -412,8 +465,9 @@ form#news_search_form{
 	margin-left:0 !important;
 }
 #news_search_form > *{
-	height:28px;
+	height:30px;
 	padding:4px;
+	font-size:13px;
 }
 #news_search_form select{
 	width:80px;
@@ -430,4 +484,58 @@ form#news_search_form{
 	margin-top:50px;
 }
 
+.notice-title{
+	overflow: hidden;
+    padding: 11px;
+    border-top: solid 1px #b8b6aa;
+    background-color: #f8f8f8;
+    margin-top:15px;
+}
+.notice-detail-hr{
+	margin-top:20px;
+}
+.notice-content{
+	margin-top:10px;
+	padding: 35px 13px;
+    border-bottom: solid 1px #b8b6aa;
+    line-height: 24px;
+}
+.notice-title > * {
+	font-size:13px;
+}
+.notice-content > *{
+	font-size:14px;
+	color:#2e2e2e;
+}
+.rdate-hit{
+	display:flex;
+	gap:30px;
+}
+.rh{
+	margin-left:9px;
+}
+.notice-list-btn{
+	margin:20px 0 30px 0;
+}
+.notice-list-btn > input{
 
+	border:1px solid #3F66ED;
+	border-radius:5px;
+	width:60px;
+	height:30px;
+    background-color:#fff;
+    color:#000;
+    font-size:13px;
+    cursor:pointer;
+}
+
+
+.search-button{
+	border:0.8px solid #474747;
+	border-radius:3px;
+	width:55px;
+	height:30px;
+    background-color:#fff;
+    color:#000;
+    cursor:pointer;
+}

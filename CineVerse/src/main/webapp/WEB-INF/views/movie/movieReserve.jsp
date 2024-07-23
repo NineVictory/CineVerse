@@ -14,7 +14,15 @@ $(document).ready(function() {
     $('.theater-place > a').click(function(e) {
         e.preventDefault(); // 기본 동작 중지
         let c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
- 
+        selectedCNum = $(this).attr('data-cnum');
+        
+     	// 선택된 영화, 날짜, 시간 초기화
+        selectedMCode = null;
+        selectedDate = null;
+        selectedMtStart = null;
+        $('#mt_num').val(''); // hidden input 초기화
+        
+        
         // 영화 목록 불러오기
         $.ajax({
             type: 'GET',
@@ -33,14 +41,28 @@ $(document).ready(function() {
                 alert('영화 목록을 불러오는 데 실패했습니다.');
             }
         });
+        
+     	// 날짜 및 시간 초기화
+        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+        $('.movietime-item').removeClass('active');
+        $('.movietime-select').empty(); // 시간표 목록 초기화
+        
+        
     });
 
     // 영화 클릭 이벤트 핸들러 설정
     $(document).on('click', '.select', function(e) {
         e.preventDefault(); // 기본 동작 중지
 
-        selectedCNum = $(this).attr('data-cnum');
+       
         selectedMCode = $(this).attr('data-mcode');
+        
+     	// 선택된 날짜, 시간 초기화
+        selectedDate = null;
+        selectedMtStart = null;
+        $('#mt_num').val(''); // hidden input 초기화
+        
+        
         
         // 모든 영화 항목에서 active 클래스 제거
         $('.select').removeClass('active');
@@ -48,19 +70,36 @@ $(document).ready(function() {
         // 클릭한 영화 항목에 active 클래스 추가
         $(this).addClass('active');
         
+     	// 날짜 및 시간 초기화
+        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+        $('.movietime-item').removeClass('active');
+        $('.movietime-select').empty(); // 시간표 목록 초기화
+        
     });
 
     // 날짜 클릭 이벤트 핸들러 설정
     $(document).on('click', '.movie-day, .movie-day-sun, .movie-day-sat', function() {
-        selectedDate = $(this).data('date'); // 클릭한 날짜의 값 가져오기
-        
-     	// 모든 날짜 항목에서 active 클래스 제거
-        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
-        
-        // 클릭한 날짜 항목에 active 클래스 추가
-        $(this).addClass('active');
-        
-        loadMovieTimeTable(); // 영화 시간표 목록을 불러오는 함수 호출
+    	if (selectedMCode) { // 영화가 선택된 경우에만 날짜 선택
+            selectedDate = $(this).data('date'); // 클릭한 날짜의 값 가져오기
+            
+            // 모든 날짜 항목에서 active 클래스 제거
+            $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+            
+            // 클릭한 날짜 항목에 active 클래스 추가
+            $(this).addClass('active');
+            
+            // 선택된 시간 초기화
+            selectedMtStart = null;
+            $('#mt_num').val(''); // hidden input 초기화
+            
+            // 모든 상영시간 항목에서 active 클래스 제거
+            $('.movietime-item').removeClass('active');
+             
+            
+            loadMovieTimeTable(); // 영화 시간표 목록을 불러오는 함수 호출
+        } else {
+            alert('영화를 먼저 선택해주세요.');
+        }
     });
 
     function loadMovieTimeTable() {
@@ -101,9 +140,8 @@ $(document).ready(function() {
         $(this).addClass('active');
     });  
     
-    
     // 툴팁 생성
-    $(document).on('mouseenter', '.movietime-item', function() {
+    $(document).on('mouseenter', '.movietime-item', function(event) {
         let endTime = $(this).data('end-time');
         let tooltip = '<div class="tooltip">종료: ' + endTime + '</div>';
         $('body').append(tooltip);
@@ -126,10 +164,33 @@ $(document).ready(function() {
         $('.tooltip').remove();
     });
     
+    // 좌석 선택 버튼 클릭 이벤트 핸들러 추가
+    $('.movieSeatButton').click(function(e) {
+        if (!selectedCNum) {
+            alert('지점을 선택해주세요.');
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
 
+        if (!selectedMCode) {
+            alert('영화를 선택해주세요.');
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
+
+        if (!selectedDate) {
+            alert('날짜를 선택해주세요.');
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
+
+        if (!selectedMtStart) {
+            alert('시간을 선택해주세요.');
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
+    });
 });
-
-
 </script>
 
 <div class="reserve-container">

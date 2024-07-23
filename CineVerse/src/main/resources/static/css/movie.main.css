@@ -13,21 +13,22 @@
 }
 
 .movie-page {
-    display: flex;
-    flex-direction: column; /* 세로 정렬로 변경 */
-    width: 100%; /* 화면 크기에 맞추기 */
+       display: flex;
+    flex-direction: column;
+    width: 100%;
     max-width: 1500px;
-    overflow-x: hidden; /* 가로 스크롤 숨기기 */
-}
+    overflow-x: hidden;
+    align-items: center;
+    }
 
 .movie-main {
-    display: flex;
+    width: 1100px;
+/*     display: flex; 
     justify-content: right;
     margin-left: 100px;
     margin-top: 50px;
-    width: 80%;     
-    position: relative;
-    height: 180px;
+    width: 80%;
+    position: relative; */
 }
 
 /* .movie-main ul li{	
@@ -38,63 +39,59 @@
 
 
 .search-container {
-     display: flex;
-    align-items: center; /* 요소들을 수직 가운데 정렬 */
-    
+ display: flex;
+    /* align-items: center; */
+    flex-direction: column;
 }
 
 
 input[type="search"] {
-    width: 200px; 
+    width: 200px;
     height: 30px;
     padding: 10px;
     font-size: 14px;
     background-color: #EBE9E9;
     border: none;
-    border-radius: 10px;
-    margin-top: 50px;
+    border-radius: 10px 0px 0px 10px;
     color: #8D8D8D;
-    position: relative;
-    top: 80px;
-   	left: 50px;
 }
 
 input[type="submit"] {
+    border-radius: 0px 10px 10px 0px;
+    margin-left: -4px;
     background-color: #EBE9E9;
-    width: 20px; 
-    height: 20px; 
+    width: 30px;
+    height: 30px;
     border: none;
     cursor: pointer;
-    position: absolute;
-    top: 165px;
-    left: 750px;
-    transform: translateY(-50%); 
-    background-image: url('${pageContext.request.contextPath}/images/search_icon.png');
-    background-size: contain; 
+    background-image: url(../images/search_icon.png);
+    background-size: 15px;
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
 }
 
 input[type="search"]::placeholder {
-    color: #8D8D8D;
+	color: #8D8D8D;
     font-weight: 500;
 }
 .movie-list-title{
-	position: relative;
-    top: 100px; /* 필요에 따라 조정 */
-   	left: 230px; /* 필요에 따라 조정 */
-   	width:200px;
+	display: flex;
+    justify-content: space-between;
 }
 .select-wrapper {
-    position: relative;
-    top: 105px; /* 필요에 따라 조정 */
-   	left: 130px; /* 필요에 따라 조정 */
-}
+ display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    
+    }
 .select-list-checkbox{
-	position: relative;
-	  top: 50px; /* 필요에 따라 조정 */
-   	left: 720px;
-   	width:250px; 
+    gap: 40px;
+    /* position: relative; */
+    /* top: 50px; */
+    /* left: 720px; */
+    /* width: 250px; */
+    display: flex;
+    justify-content: flex-end;
    	
 }
 .select-wrapper select {
@@ -108,11 +105,11 @@ input[type="search"]::placeholder {
 }
 
 .movie-list-page {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    overflow-x: hidden; /* 가로 스크롤 숨기기 */
-}
+   display: flex;
+    width: 90%;
+    overflow-x: hidden;
+    
+    }
 
 .movie-list {
     padding: 0;
@@ -134,9 +131,8 @@ input[type="search"]::placeholder {
 }
 
 .movie img {
-/*     width: 70%;
-    max-width: 100%;
-    height: 50%; */
+	width: 213px;
+    height: 305px;
 }
 
 #loadMoreButton {
@@ -151,7 +147,8 @@ input[type="search"]::placeholder {
 }
 
 .bookAopen {
-font-size: 13px;
+	margin-bottom: 5px;
+    font-size: 13px;
     width: 225px;
     display: flex;
     align-items: flex-start;
@@ -170,7 +167,6 @@ font-size: 13px;
 }
 
 .movie-fav-button-detail {
-	gap: 5px;
     display: flex;
     border-radius: 5px;
     background: white;
@@ -178,7 +174,6 @@ font-size: 13px;
     font-size: 10px;
     padding: 1px 15px;
     cursor: pointer;
-    margin-right: 7px;
     border: 1px solid gray;
     justify-content: center;
     align-items: center;
@@ -198,18 +193,56 @@ font-size: 13px;
     height: 20px; /* 높이 설정 */
 }
 .genre-checkboxes{
-	width:400px;
-	margin-top:20px;
-	margin-right:-200px;
-	padding-left:10px;
-	padding-top:10px;
-	padding-bottom:10px;
-	background: #DBE3FF;
-	border-radius: 10px;
+	display: flex;
+    /* width: 400px; */
+    /* margin-top: 20px; */
+    /* margin-right: -200px; */
+    /* padding-left: 10px; */
+    /* padding-top: 10px; */
+    padding-bottom: 10px;
+    /* background: #DBE3FF; */
+    flex-direction: row;
+    justify-content: space-between;
 }
-.ul-search{
-	margin-left:50px;
+
+
+.movie {
+    position: relative;
 }
-/* li-search{
-	 overflow-x: hidden;
-} */
+
+.overlay {
+    height: 305px;
+    width: 213px;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    justify-content: center;
+    
+    }
+
+.overlay button {
+width: 95px;
+    font-weight: 600;
+    font-size: 12px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 8px;
+    margin: 6px;
+    cursor: pointer;
+}
+
+.movie:hover .overlay {
+    opacity: 1;
+}
+
+.li-search {
+	display:flex;
+}

@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,17 +30,24 @@ public class MovieAPIController {
 
     // 매일 새벽 2시마다 자동 업데이트 되도록 설정해놨는데 업데이트가 안 되었다면 링크로 들어가면 업데이트 가능함
     @GetMapping("/movie/updateMovieRank")
-    public String updateMovieRank() {
+    public String updateMovieRank(Model model, HttpServletRequest request) {
         log.debug("<< 영화 랭크 업데이트 >>");
         movieRankService.updateMovieRank();
-        return "영화 랭크가 업데이트되었습니다.";
+        
+        model.addAttribute("message", "영화 랭크가 업데이트되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/main/main");
+		return "common/resultAlert";
     }
     
+    
     @GetMapping("/movie/insertMovieDetail")
-    public String insertMovieDetail(MovieDetailKFAPIVO movieDetailKFAPIVO) {
+    public String insertMovieDetail(MovieDetailKFAPIVO movieDetailKFAPIVO,Model model, HttpServletRequest request) {
         log.debug("<< 영화 세부 정보 업데이트 >>");
         movieDetailService.insertMovieDetail(movieDetailKFAPIVO);
-        return "영화 세부 정보 업데이트되었습니다.";
+        
+        model.addAttribute("message", "영화 세부 정보 업데이트되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/main/main");
+		return "common/resultAlert";
     }
 
 }
