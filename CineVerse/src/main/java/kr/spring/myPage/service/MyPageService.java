@@ -39,7 +39,7 @@ public interface MyPageService {
 	public Integer cBoardWriteFavCnt(Map<String, Object> map);
 	public List<BoardFavVO> cBoardWriteFavList(Map<String, Object> map);
 	public Integer movieBookMarkcnt(Long mem_num);
-	public List<MovieBookMarkVO> movieBookMarkList(Map<String, Object> map);
+	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
 	public void updateMembership(Long mem_num);
 	public void insertMembership(Long mem_num);
 	public void usePoint(Long mem_num);
@@ -49,4 +49,6 @@ public interface MyPageService {
 	public Integer consultcnt(Map<String, Object> map);//문의 갯수
 	public List<ConsultVO> consultList(Map<String, Object> map);//문의 목록
 	public ConsultVO lastConsert(Long mem_num);
+	public void updateNoSub();
+	public void updateNoSubDate();
 }

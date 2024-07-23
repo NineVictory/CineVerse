@@ -140,8 +140,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public List<MovieBookMarkVO> movieBookMarkList(Map<String, Object> map) {
-		return myPageMapper.movieBookMarkList(map);
+	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num) {
+		return myPageMapper.movieBookMarkList(mem_num);
 	}
 
 	@Override
@@ -188,6 +188,20 @@ public class MyPageServiceImpl implements MyPageService{
 	public ConsultVO lastConsert(Long mem_num) {
 		return myPageMapper.lastConsert(mem_num);
 	}
+
+	@Override
+	public void updateNoSub() {
+		myPageMapper.updateNoSub();
+	}
+
+	@Override
+	public void updateNoSubDate() {
+		myPageMapper.updateNoSubDate();
+	}
+
+	
+
+	
 
 
 	

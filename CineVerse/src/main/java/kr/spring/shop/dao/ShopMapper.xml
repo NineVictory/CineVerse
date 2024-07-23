@@ -248,5 +248,69 @@
 		JOIN coupon_db c ON mc.coupon_num = c.coupon_num
 		WHERE mc.mem_num = #{mem_num} AND mc.coupon_use=1
 	</select>
+	
+	
+	<update id="updateProduct" parameterType="ProductVO">
+	    UPDATE product
+	    SET
+	        p_status = #{p_status},
+	        p_category = #{p_category},
+	        p_name = #{p_name},
+	        p_price = #{p_price},
+	        p_quantity = #{p_quantity},
+	        p_filename = #{p_filename, jdbcType=VARCHAR},
+	        p_content = #{p_content}
+	    WHERE
+	        p_num=#{p_num}
+	</update>
 
+	<!-- 구매 내역 -->
+		<!-- 관리자 상품 검색 -->
+	<sql id="adminOrderSearch">
+		<where>
+				<if test="keyfield == 2">
+					<if test="keyword != null and keyword != ''" >
+						order_num LIKE '%' || #{keyword} || '%'
+					</if>		 
+				</if>
+				<if test="keyfield == 1">
+					<if test="keyword != null and keyword != ''" >
+						mem_id LIKE '%' || #{keyword} || '%'
+					</if>		 
+				</if>
+			<!--검색어 있을 때-->
+			
+		</where>
+	</sql>
+	
+	<select id="orderList" resultType="ordersVO">
+		SELECT * FROM 
+					orders 
+						JOIN member USING(mem_num) 
+						<include refid="adminOrderSearch"></include>
+	</select>
+	
+	<sql id="adminReviewSearch">
+		<where>
+				<if test="keyfield == 1">
+					<if test="keyword != null and keyword != ''" >
+						p_name LIKE '%' || #{keyword} || '%'
+					</if>		 
+				</if>
+				<if test="keyfield == 2">
+					<if test="keyword != null and keyword != ''" >
+						mem_id LIKE '%' || #{keyword} || '%'
+					</if>		 
+				</if>
+			<!--검색어 있을 때-->
+			
+		</where>
+	</sql>
+	
+	<select id="selectReviewList">
+		SELECT * FROM product_review JOIN product USING(p_num) JOIN order_detail USING (od_num) JOIN orders USING(order_num) JOIN member USING(mem_num)
+		<include refid="adminReviewSearch"></include>
+	</select>
+	
+	
  </mapper>

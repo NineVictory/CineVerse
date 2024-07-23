@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.quartz.JobStoreType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -310,6 +311,74 @@ public class ShopServiceImpl implements ShopService {
 	public Integer productFavCnt(long mem_num) {
 		return shopMapper.productFavCnt(mem_num);
 	}
+
+	@Override
+	public void updateProduct(ProductVO productVO) {
+		shopMapper.updateProduct(productVO);
+	}
+
+	@Override
+	public void deleteFile(Long p_num) {
+		shopMapper.deleteFile(p_num);
+	}
+
+	@Override
+	public List<OrdersVO> orderList(Map<String, Object> map) {
+		return shopMapper.orderList(map);
+	}
+
+	@Override
+	public Integer orderCount(Map<String, Object> map) {
+		return shopMapper.orderCount(map);
+	}
+
+	@Override
+	public List<OrdersVO> adminOrderDetailList(Long order_num) {
+		return shopMapper.adminOrderDetailList(order_num);
+	}
+
+	@Override
+	public OrdersVO adminOrders(Long order_num) {
+		return shopMapper.adminOrders(order_num);
+	}
+
+	@Override
+	public void updateOrderStatus(int orders_status, Long order_num) {
+		shopMapper.updateOrderStatus(orders_status, order_num);
+	}
+
+	@Override
+	public OrdersVO selectOrderAddress(Long a_num) {
+		return shopMapper.selectOrderAddress(a_num);
+	}
+
+	@Override
+	public List<OrdersVO> selectMemAddress(Long mem_num) {
+		return shopMapper.selectMemAddress(mem_num);
+	}
+
+	@Override
+	public void updateOrderAddress(Long a_num, Long order_num) {
+		shopMapper.updateOrderAddress(a_num, order_num);
+	}
+
+	@Override
+	public List<ProductVO> selectReviewList(Map<String, Object> map) {
+		return shopMapper.selectReviewList(map);
+	}
+
+	@Override
+	public Integer adminReviewCount(Map<String, Object> map) {
+		return shopMapper.adminReviewCount(map);
+	}
+
+	@Override
+	public void deleteReview(Long pr_num) {
+		shopMapper.deleteReview(pr_num);
+	}
+
+	
+
 
 	
 
