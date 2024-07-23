@@ -89,6 +89,7 @@
  				<input type="hidden" name="mt_num" value="${movieInfoList[0].mt_num}">
  				<input type="hidden" name="ticketNumber" value="${ticketNumber}">
  				<input type="hidden" name="selectedSeats" value="${selectedSeats}">
+ 				<input type="hidden" name="seatNum" value="${seatNum}">
  			<input type="hidden" id="finalAmountInput" name="finalAmount" value="${payMoney}">
  			<input type="button" value="결제하기" class="pay_btn">
  			</form>

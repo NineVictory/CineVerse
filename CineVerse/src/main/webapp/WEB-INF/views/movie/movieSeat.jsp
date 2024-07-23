@@ -13,7 +13,7 @@
                     <div class="selected-movie"></div>
                     <div class="select-seat-information-wrapper">
                         <c:forEach var="movieInfo" items="${movieInfoList}">
-                        	<input type="hidden" name="mt_num" id="mt_num" value="${movieInfo.mt_num}">
+                           <input type="hidden" name="mt_num" id="mt_num" value="${movieInfo.mt_num}">
                             <p class="moviename">${movieInfo.m_name}<br></p>
                             <p class="movietime">${movieInfo.mt_date} | ${movieInfo.mt_start} ~ ${movieInfo.mt_end}<br></p>
                             <p class="movieplace">${movieInfo.c_branch}지점 ${movieInfo.th_name}</p>
@@ -39,7 +39,7 @@
                                 <input type="number" min="0" value="0" max="8" readonly class="quantity-input adult"/>
                                 <button type="button" class="quantity-up stylish-button">+</button>
                             </div>
-                        </div>
+                        </div>  
                         <div class="select-seat">
                             <div class="select-seat-age">청소년</div>
                             <div class="quantity-controls">
@@ -160,6 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalPeople = Array.from(quantityInputs).reduce((sum, input) => sum + parseInt(input.value), 0);
             const totalSelectedSeats = selectedSeats.length;
 
+            // 여기서 data-seat-num 값을 콘솔에 출력
+            console.log(selectedSeat.getAttribute('data-seat-num'));
+            
             if (totalPeople === 0) {
                 alert("인원 수를 선택해주세요.");
                 return;
@@ -220,6 +223,24 @@ document.addEventListener('DOMContentLoaded', () => {
             validateTotalPeople();
             updateSeatCountAndTotalPrice(); // 인원 수 변경 시 금액 업데이트
         });
+    });
+
+    //결제하기 버튼 클릭 시 유효성 검사 함수
+    document.querySelector('.movePaymentButton').addEventListener('click', (e) => {
+        const totalPeople = Array.from(quantityInputs).reduce((sum, input) => sum + parseInt(input.value), 0);
+        const totalSelectedSeats = selectedSeats.length;
+
+        if (totalPeople === 0) {
+            alert("인원 수를 선택해주세요.");
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
+
+        if (totalSelectedSeats !== totalPeople) {
+            alert("선택한 인원수와 좌석수가 일치하지 않습니다.");
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
     });
 
     // 초기 금액 업데이트

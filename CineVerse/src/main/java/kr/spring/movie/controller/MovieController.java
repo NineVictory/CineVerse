@@ -207,37 +207,39 @@ public class MovieController {
 	 	    return "movieSeat"; 
 	 	}
 	
-	/*=======================
-	 * 영화 결제
-	 *=======================*/
-	 	@PostMapping("/movie/moviePayment")
-	    public String moviePayment(long mt_num,  int ticketNumber, String selectedSeats, int payMoney, HttpSession session, Model model) {
-	 		log.debug("<<영화 결제 - mt_num>> ::: " + mt_num);
-	 		log.debug("<<영화 결제 - ticketNumber>> ::: " + ticketNumber);
-	 		log.debug("<<영화 결제 - selectedSeats>> ::: " + selectedSeats);
-	 		log.debug("<<영화 결제 - payMoney>> ::: " + payMoney);
-	        // 영화 정보 조회
-	        List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
-	        MemberVO user = (MemberVO)session.getAttribute("user");
-			// 보유 쿠폰 정보
-			Map<String,Object> map = new HashMap<String,Object>();
-			List<MyPageVO> couponList = null;
-			map.put("mem_num", user.getMem_num());
-			MyPageVO member = mypageService.selectMember(user.getMem_num());
-			member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
-			if(member.getCoupon_cnt() > 0) {
-				couponList = mypageService.selectMemCouponList(map);
-			}
-	        // 모델에 데이터를 추가하여 결제 페이지로 넘기기
-	        model.addAttribute("movieInfoList", movieInfoList);
-	        model.addAttribute("ticketNumber", ticketNumber);
-	        model.addAttribute("selectedSeats", selectedSeats);  // 좌석 식별자 리스트를 넘김
-	        model.addAttribute("payMoney", payMoney);
-			model.addAttribute("couponList",couponList);
-			model.addAttribute("member",member);
-			
-	        return "moviePayment"; // 결제 페이지로 이동
-	    }
+	 	  /*=======================
+	     * 영화 결제 
+	     *=======================*/
+	        @PostMapping("/movie/moviePayment")
+	        public String moviePayment(long mt_num, String seatNum, int ticketNumber, String selectedSeats, int payMoney, HttpSession session, Model model) {
+	           log.debug("<<영화 결제 - mt_num>> ::: " + mt_num);
+	           log.debug("<<영화 결제 - ticketNumber>> ::: " + ticketNumber);
+	           log.debug("<<영화 결제 - selectedSeats>> ::: " + selectedSeats);
+	           log.debug("<<영화 결제 - payMoney>> ::: " + payMoney);
+	            // 영화 정보 조회
+	            List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
+	            MemberVO user = (MemberVO)session.getAttribute("user");
+	          // 보유 쿠폰 정보
+	          Map<String,Object> map = new HashMap<String,Object>();
+	          List<MyPageVO> couponList = null;
+	          map.put("mem_num", user.getMem_num());
+	          MyPageVO member = mypageService.selectMember(user.getMem_num());
+	          member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
+	          if(member.getCoupon_cnt() > 0) {
+	             couponList = mypageService.selectMemCouponList(map);
+	          }
+	            // 모델에 데이터를 추가하여 결제 페이지로 넘기기
+	            model.addAttribute("movieInfoList", movieInfoList);
+	            model.addAttribute("seatNum", seatNum);
+	            model.addAttribute("ticketNumber", ticketNumber);
+	            model.addAttribute("selectedSeats", selectedSeats);  // 좌석 식별자 리스트를 넘김
+	            model.addAttribute("payMoney", payMoney);
+	          model.addAttribute("couponList",couponList);
+	          model.addAttribute("member",member);
+	          
+	            return "moviePayment"; // 결제 페이지로 이동
+	        }
+
 	    @PostMapping("/movie/confirmPayment")
 	    public String confirmPayment(@RequestParam("mt_num") long mt_num, 
 	                                 @RequestParam("ticketNumber") int ticketNumber, 
