@@ -67,6 +67,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
 		<div class="page-div">${page}</div>
-	</div>
+		</div>
+</div>

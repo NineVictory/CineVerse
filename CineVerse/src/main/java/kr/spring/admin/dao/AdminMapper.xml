@@ -17,7 +17,7 @@
 	</sql>
 	
 
-	<!-- 게시판 전체/검색 목록 -->
+	<!-- 회원 전체/검색 목록 -->
 	<select id="selectMemberList" parameterType="map"
 		resultType="AdminVO">
 		SELECT *
@@ -45,7 +45,7 @@
 	</select>
 
 	
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 회원 글 총레코드수/검색 레코드수 -->
 	<select id="selectMemberRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -573,10 +573,57 @@
 	
 	<!-- 대댓글 총레코드수/검색 레코드수 -->
 	<select id="selectReCmtRowCount" parameterType="map" resultType="integer">
-    SELECT COUNT(*)
-    FROM community_response
-    <include refid="replySearch"></include>
-</select>
+	    SELECT COUNT(*)
+	    FROM community_response
+	    <include refid="replySearch"></include>
+	</select>
+
+    <!-- 문의시작 -->
+	<sql id="consultSearch">
+		<where>
+			<if test="keyfield != null and keyword != null">
+				AND
+				${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield != null and keyfield != ''">
+       	        AND 
+           	   ${keyfield} LIKE '%' || #{keyword} || '%'
+        	</if>
+		</where>
+	</sql>
+	
+
+	<!-- 문의 전체/검색 목록 -->
+	<select id="selectConsultList" parameterType="map"
+		resultType="consultVO">
+		SELECT *
+		FROM (
+		SELECT a.*, rownum rnum
+		FROM (
+		SELECT
+		consult_num,
+		consult_mem_num,
+		consult_title,
+		consult_type,
+		consult_reg_date
+		FROM consult
+		<include refid="consultSearch"></include>
+		) a
+		)
+    <![CDATA[
+    WHERE rnum >= #{start} AND rnum <= #{end}
+    ]]>
+	</select>
+
+	
+	<!-- 문의 글 총레코드수/검색 레코드수 -->
+	<select id="selectConsultRowCount" parameterType="map"
+		resultType="integer">
+		SELECT
+		COUNT(*)
+		FROM consult
+		<include refid="consultSearch"></include>
+	</select>
 </mapper>							
 
 

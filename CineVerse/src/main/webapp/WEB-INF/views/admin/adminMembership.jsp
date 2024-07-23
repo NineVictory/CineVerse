@@ -4,11 +4,11 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
-    function refundMembership(mem_num) {
+    function refundMembership(mem_num,point_payment) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/refundMembership",
-            data: { mem_num: mem_num },
+            data: { mem_num: mem_num, point_payment: point_payment},
             success: function(response) {
                 if (response === "success") {
                     // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
@@ -66,7 +66,7 @@
 					<td class="mem-data">구독중</td>
 					<td class="mem-data">${member.mem_name}</td>
 					<td class="mem-data">${member.mem_reg_date}</td>
-					<td class="button2"><input type="button" value="구독취소" onclick="refundMembership(${member.mem_num})"/></td>
+					<td class="button2"><input type="button" value="구독취소" onclick="refundMembership(${member.mem_num},'구독권 환불')"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>

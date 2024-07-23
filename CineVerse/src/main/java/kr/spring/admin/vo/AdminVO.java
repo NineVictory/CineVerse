@@ -2,6 +2,7 @@ package kr.spring.admin.vo;
 
 import java.sql.Clob;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +23,7 @@ public class AdminVO {
 	private String mem_phone;
 	private String mem_email;
 	private Date mem_reg_date;
+    private LocalDate suspensionDate;
 	//맴버십관리
 	private long mem_membership;
 	private long ph_point; //포인트 돌려주기
