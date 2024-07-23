@@ -102,7 +102,8 @@ ul .pcg li {
                                 표시
                             </c:if>
                         </td>
-                        <td class="button2"><input type="button" value="수정" /></td>
+                        <td class="button2"><input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath}/admin/modifyProduct?p_num=${p.p_num}'"/></td>
+                        
                     </tr>
                 </c:forEach>
 				

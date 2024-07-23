@@ -83,12 +83,6 @@
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminReply.jsp" />
 	</definition>
 
-	<!-- 상품 관리 -->
-	<definition name="adminShop" extends="adminMain">
-		<put-attribute name="title" value="상품관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminShopCSS.jsp" />
-		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminShop.jsp" />
-	</definition>
 
 	<!-- 배송 상태 관리 -->
 	<definition name="adminDelivery" extends="adminMain">

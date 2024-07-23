@@ -112,6 +112,12 @@ public class AdminShopController {
 		return "adminProductList";
 	}
 	
+	@GetMapping("/admin/modifyProduct")
+	public String modifyProduct(@RequestParam Long p_num) {
+		return "adminModifyProduct";
+	}
+	
+	
 	// 배송 상태 관리
 	@GetMapping("/admin/adminDelivery")
 	public String adminDelivery(){

@@ -74,10 +74,23 @@
 	
 	
 	<!--관리자-->
-	<!-- 회원관리 -->
+	<!--  상품 등록 -->
+	<definition name="adminShop" extends="adminMain">
+		<put-attribute name="title" value="상품 등록" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminShopCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminShop.jsp" />
+	</definition>
+	
+	<!-- 상품 관리 -->
 	<definition name="adminProductList"  extends="adminMain">
 		<put-attribute name="title" value="상품 관리" />
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminProductCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminProductList.jsp" />
+	</definition>
+	
+	<definition name="adminModifyProduct" extends="adminMain">
+		<put-attribute name="title" value="상품 수정" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminShopCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminModifyProduct.jsp" />
 	</definition>
 </tiles-definitions>

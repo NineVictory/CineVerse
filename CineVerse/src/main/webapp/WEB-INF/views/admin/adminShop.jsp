@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			<ul>
 				<li>
 					<label for="p_status">상품 표시 여부</label>
-					<form:radiobutton path="p_status" value="1"/>미표시
+					<form:radiobutton path="p_status" value="1" checked="true"/>미표시
 					<form:radiobutton path="p_status" value="2"/>표시
 					<form:errors path="p_status" element="div" cssClass="error"/>
 				</li>
