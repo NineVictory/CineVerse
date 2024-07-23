@@ -4,7 +4,9 @@
 <div class="movie_payments">
  <div class="movies_info">
  	<div class="movies_poster">
- 		<img alt="영화1" src="${pageContext.request.contextPath}/images/hjt/포스터1.jpg" width="180">
+ 	<c:forEach var="movieInfo" items="${movieInfoList}">
+ 		<img alt="영화1" src="${pageContext.request.contextPath}/upload/${movieInfo.m_filename}" width="180">
+ 	</c:forEach>
  	</div>
  	<div>
  		<div class="movie_title">

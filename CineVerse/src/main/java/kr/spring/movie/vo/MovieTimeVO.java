@@ -20,4 +20,5 @@ public class MovieTimeVO {
 	private String th_name;
 	private String m_name;
 	private String c_branch;
+	private String m_filename; 
 }
