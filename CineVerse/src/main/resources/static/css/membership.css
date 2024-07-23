@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
 .membership-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .membership-title {

@@ -46,6 +46,7 @@ public class MemberVO {
 	private Date mem_reg_date;
 	private Date mem_modify_date;
 	private String social_kakao;
+	private Date mem_membership_date;
 	
 	private byte[] photo;
 	private String photo_name;
