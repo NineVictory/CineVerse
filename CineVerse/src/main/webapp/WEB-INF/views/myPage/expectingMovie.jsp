@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/deleteMovieBK.js"></script>
 <!--  기대되는 영화 시작 -->
 <div class="myPage_main">
 	<div class="myPage_title">
@@ -14,7 +16,7 @@
 		<c:forEach var="mov" items="${movie}">
 			<li class="liked_movie">
 				<div class="expect_movie">
-				<div class="expect_movie_poster"> <img alt="영화1" src="${fn:split(mov.m_filename, '|')[0]}"  onclick="location.href='${pagecontext.request.contextPath}/movie/movieDetail?m_code=${mov.m_code}'"></div>
+				 <img alt="영화1" src="${fn:split(mov.m_filename, '|')[0]}"  onclick="location.href='${pagecontext.request.contextPath}/movie/movieDetail?m_code=${mov.m_code}'" class="expect_movie_poster">
 				
 					
 					<div class="expect-movie-info">
@@ -23,7 +25,8 @@
 						</div>
 					
 						<div class="expect-movie-like">
-							<img src="${pageContext.request.contextPath}/images/heart02.png" width="20">
+						<img src="${pageContext.request.contextPath}/images/pmj/h1.png" width="25" data-num="${mov.m_code}" class="mov_bk">
+							<!-- <img src="${pageContext.request.contextPath}/images/heart02.png" width="20"> -->
 						</div>
 					</div>
 				</div>

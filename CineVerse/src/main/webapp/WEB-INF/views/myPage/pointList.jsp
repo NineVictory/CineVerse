@@ -40,7 +40,7 @@
 			<div class="my_point_count">
 				<div>
 				<c:choose>
-					
+					<c:when test="${point.ph_type == 0 }">+</c:when>
 					<c:when test="${point.ph_type == 1 }">-</c:when>
 					<c:when test="${point.ph_type == 2 }">+</c:when>
 				</c:choose>

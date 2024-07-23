@@ -866,6 +866,7 @@
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	margin-bottom: 30px;
+	margin-top: 20px;
 }
 
 .liked_movie {
@@ -875,7 +876,7 @@
 }
 
 .expect_movie .expect_movie_poster {
-	width: 80%;
+	width: 90%;
 	max-width: 100%;
 	height: auto;
 }
@@ -888,7 +889,7 @@
 }
 
 .expect-movie-info {
-	padding: 15px;
+	padding: 13px;
 	display: flex;
 }
 

@@ -95,9 +95,9 @@ public interface MyPageMapper {
 	@Select("SELECT m.m_name,m.m_filename,m.m_code FROM movie_bookmark mb JOIN movie m ON m.m_code=mb.m_code WHERE mb.mem_num=#{mem_num}")
 	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
 
-	/*
-	 * @Delete("DELETE FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}"
-	 * ) public void deleteBookMark(MovieBookMarkVO bookMark);
-	 */
+	@Delete("DELETE FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}")
+	public void deleteBookMark(MovieBookMarkVO bookMark);
+  
+	 
 
 }
