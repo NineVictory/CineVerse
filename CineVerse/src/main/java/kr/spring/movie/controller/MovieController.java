@@ -208,7 +208,7 @@ public class MovieController {
 	 * 영화 결제
 	 *=======================*/
 	 	@PostMapping("/movie/moviePayment")
-	    public String moviePayment(long mt_num,  int ticketNumber, String selectedSeats, int payMoney, HttpSession session, Model model) {
+	    public String moviePayment(long mt_num, String seatNum, int ticketNumber, String selectedSeats, int payMoney, HttpSession session, Model model) {
 	 		log.debug("<<영화 결제 - mt_num>> ::: " + mt_num);
 	 		log.debug("<<영화 결제 - ticketNumber>> ::: " + ticketNumber);
 	 		log.debug("<<영화 결제 - selectedSeats>> ::: " + selectedSeats);
@@ -227,6 +227,7 @@ public class MovieController {
 			}
 	        // 모델에 데이터를 추가하여 결제 페이지로 넘기기
 	        model.addAttribute("movieInfoList", movieInfoList);
+	        model.addAttribute("seatNum", seatNum);
 	        model.addAttribute("ticketNumber", ticketNumber);
 	        model.addAttribute("selectedSeats", selectedSeats);  // 좌석 식별자 리스트를 넘김
 	        model.addAttribute("payMoney", payMoney);
