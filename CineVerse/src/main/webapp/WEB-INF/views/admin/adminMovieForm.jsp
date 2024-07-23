@@ -204,7 +204,7 @@ $(document).ready(function() {
 <div class="page-container">
     <h2>영화 등록</h2>
     <div class="insert_movie_form">
-        <form:form action="insertMovie" method="post" enctype="multipart/form-data" id="insert_form" modelAttribute="movieVO">
+        <form:form action="insertMovie" method="post" id="insert_form" modelAttribute="movieVO">
             <ul>
                 <li>
                     <label for="title">영화 제목:</label>
@@ -237,14 +237,9 @@ $(document).ready(function() {
                     <form:input path="rating" id="rating" cssClass="input-check"/>
                 </li>
                  <li>
-            <form:label path="m_upload">포스터</form:label>
-            <!-- 기존 포스터를 보여주는 필드 -->
-            <c:if test="${not empty movieVO.m_filename}">
-                <img src="${movieVO.m_filename}" alt="Current Poster" style="max-width: 200px; max-height: 300px;">
-            </c:if>
-            <!-- 새 포스터를 업로드하는 필드 -->
-            <form:input path="m_upload" id="m_upload" type="file" cssClass="input-check" accept="image/gif,image/png,image/jpeg"/>
-        </li>
+           		 	<form:label path="m_filename">포스터</form:label>
+            		<form:textarea path="m_filename" cssClass="input-check"/>
+       			 </li>
                 <li>
                     <form:label path="m_genre">장르명</form:label>
                     <form:input path="m_genre" id="m_genre" cssClass="input-check"/>
