@@ -49,7 +49,7 @@
 			<div class="flexbox-h side">
 				<div class="marg440">
 				
-				<c:if test="${not empty filenames}">
+				<%--<c:if test="${not empty filenames}">
 			    <div class="slider-container">
 			        <c:forEach items="${filenames}" var="filename" varStatus="loop">
 			            <c:if test="${loop.index < 3}">
@@ -91,13 +91,12 @@
 				</script>
 				</c:if>
 				
-				<%-- <c:if test="${!empty filenames}">
+				<c:if test="${!empty filenames}">
 				<img src="${pageContext.request.contextPath}/upload/${filenames[0]}" width="420" class="item-img">
 				</c:if>--%>
 				
-				<c:if test="${empty filenames}">
-				    <img src="${pageContext.request.contextPath}/images/kbm/noimage.jpg" width="420" class="item-img">
-				</c:if> 
+				<img src="${pageContext.request.contextPath}/upload/${assign.ab_filename}" width="420" height="420" class="item-img">
+				
 				
 				</div>
 				<div class="marg440">
@@ -145,9 +144,58 @@
 										거래완료
 									</c:if>
 								</span>
-								<ul>
-									
+								
+								<ul class="status-btn">
+									<li data-num="${assign.ab_num}" data-status="1">판매중</li>
+									<li data-num="${assign.ab_num}" data-status="2">예약중</li>
+									<li data-num="${assign.ab_num}" data-status="3">거래완료</li>
 								</ul>
+									<script type="text/javascript">
+										$(document).ready(function() {
+											console.log('Document is ready');
+							        		$('.status-btn').hide();
+								        	$('.ab-status').click(function() {
+								        	    $(this).siblings('.status-btn').toggle();
+								        	});
+								            $('.status-btn li').click(function() {
+								                var status = $(this).data('status');
+								                var num = $(this).data('num');
+	
+								                $.ajax({
+								                    url:'updateStatus',
+								                    type:'post',
+								                    data:{ab_num:num,ab_status: status},
+								                    success:function(param) {
+								                        if(param.result == 'logout'){
+								                        	alert('로그인 후 상태변경 가능합니다.');
+								                        	
+								                        }else if(param.result == 'success'){
+								                        	if(num == 1){
+								                        		$('.ab-status').text('판매중');
+								                        	}else if(num == 2){
+								                        		$('.ab-status').text('예약중');
+								                        	}else{
+								                        		$('.ab-status').text('판매완료');
+								                        	}
+								                        	$('.status-btn').hide();
+								                        }else{
+								                        	alert('상태 변경 오류 발생');
+								                        }
+								                    },
+								                    error:function() {
+								                        alert('네트워크 오류 발생');
+								                    }
+								                });
+								            });
+
+								            $(document).click(function(event) {
+								                if (!$(event.target).closest('.ab-status').length) {
+								                    $('.status-btn').hide();
+								                }
+								            });
+							        });
+							   	 </script>
+								
 								</div>
 							</div>
 							<div class="assign-report p-center">

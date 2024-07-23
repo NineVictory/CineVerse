@@ -38,26 +38,44 @@
 				<div class="item-label">
 					<div>
 					상품이미지
-					<div class="img-count">(0/3)</div>
 					</div>
 				</div>
 				<div class="flexbox-p">
 					<div class="image-upload-ul">
 						<div class="image-upload">
 							이미지 등록
-							<form:input type="file" path="ab_upload" accept="image/jpg, image/jpeg, image/png" multiple="multiple"/>
+							<form:input type="file" path="ab_upload" accept="image/jpg, image/jpeg, image/png"/>
 						</div>
 					</div>
 					<div>상품 이미지는 PC에서 1:1로 보여집니다.</div>
 					<form:errors path="ab_upload" cssClass="error-color"/>
 				</div>
+				<div class="flexbox-p">
+					<div id="preview">
+						<%-- <c:if test="${!empty ab_filenames}">
+							<c:forEach var="filename" items="${ab_filenames}" >
+								<script type="text/javascript">
+								$(document).ready(function() {
+									var imageUrl = '${pageContext.request.contextPath}/upload/'+filename;
+									var container = $('<div>').addClass('preview-image-container');
+									var img = $('<img>').attr({'src':imageUrl, 'data-filename':filename}).addClass('preview-image');
+									var removeButton = $('<button>').addClass('remove-button').text('X');
+									removeButton.on('click', function() {
+					                    container.remove(); // 미리보기 삭제
+					                    updateFileInput(filename); // input 파일 목록 업데이트
+					                });
+
+					                container.append(img).append(removeButton);
+					                $('#preview').append(container);
+								});
+								</script>
+							</c:forEach>
+							
+        
+						</c:if> --%>
+					</div>
+				</div>	
 				
-				<div id="preview"></div>
-				
-				<script>
-        // JSP에서 전달받은 이미지 파일명 목록을 JavaScript 변수로 설정
-        var ab_filenames = ${ab_filenames != null ? ab_filenames : '[]'};
-    </script>
 				
 		
 			</div>
@@ -110,6 +128,24 @@
 				<div class="flexbox-p">
 					<form:textarea path="ab_content" placeholder="구매시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요.
 전화번호, SNS계정 등 개인정보 입력은 제한될 수 있어요." value="${assignVO.ab_content}"/>
+					<script>
+					 function MyCustomUploadAdapterPlugin(editor) {
+						    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+						        return new UploadAdapter(loader);
+						    }
+						}
+					 
+					 ClassicEditor
+			            .create( document.querySelector( '#ab_content' ),{
+			            	extraPlugins: [MyCustomUploadAdapterPlugin]
+			            })
+			            .then( editor => {
+							window.editor = editor;
+						} )
+			            .catch( error => {
+			                console.error( error );
+			            } );
+				    </script>
 					<form:errors path="ab_content" cssClass="error-color"/>
 				</div>
 			</div>

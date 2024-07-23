@@ -55,12 +55,16 @@ public class AssignBoardController {
 	@PostMapping("/assignboard/write")
 	public String submit(@Valid AssignVO assignVO, BindingResult result,
 	                     HttpServletRequest request, HttpSession session, Model model,
-	                     @RequestParam("ab_upload") List<MultipartFile> files) throws IOException {
+	                     @RequestParam("ab_upload") MultipartFile ab_upload) throws IOException {
 	    log.debug("<<양도글 등록>> : " + assignVO);
 
 	    // 유효성 체크 결과 오류가 있으면 폼 호출
 	    if (result.hasErrors()) {
 	        return assignform();
+	    }
+	    if (ab_upload == null || ab_upload.isEmpty()) {
+	        result.rejectValue("ab_upload", "error.ab_upload", "파일은 필수 선택입니다.");
+	        return "assignWrite";
 	    }
 
 	    // 회원번호 셋팅
@@ -71,7 +75,9 @@ public class AssignBoardController {
 	    assignVO.setAb_ip(request.getRemoteAddr());
 
 	    // 파일 업로드 처리
-	    if (files != null && !files.isEmpty()) {
+	    assignVO.setAb_filename(FileUtil.createFile(request,ab_upload));
+	    
+	    /*if (files != null && !files.isEmpty()) {
 	        List<String> filenames = new ArrayList<>();
 	        long totalSize = 0;
 
@@ -80,6 +86,7 @@ public class AssignBoardController {
 	                String filename = FileUtil2.createFile(request, file);
 	                filenames.add(filename);
 	                totalSize += file.getSize();
+	                log.debug(filename+"**********");
 	            }
 	        }
 
@@ -90,9 +97,9 @@ public class AssignBoardController {
 	        // 파일을 업로드하지 않은 경우 처리
 	        assignVO.setAb_filenames(null);
 	        log.debug("파일을 업로드하지 않았습니다.");
-	    }
+	    }*/
 
-	    // 글쓰기
+	    //글쓰기
 	    assignService.ab_insertBoard(assignVO);
 
 	    // View 메시지 처리
@@ -152,16 +159,16 @@ public class AssignBoardController {
 		
 		
 		
-		log.debug("<<assign.getAb_filenames()*****************>>: " + assign.getAb_filenames());
-		if(assign.getAb_filenames() != null) {
+		log.debug("<<assign.getAb_filename()*****************>>: " + assign.getAb_filename());
+		/*if(assign.getAb_filenames() != null) {
 			String[] filenamesArray = assign.getAb_filenames().split(",");
 			modelAndView.addObject("filenames", filenamesArray);
 			log.debug("<<filenames*****************>>" + filenamesArray[0]);
-		}
+		}*/
 		//제목에 태그를 허용하지 않음
 		assign.setAb_title(StringUtil.useNoHTML(assign.getAb_title()));
 		//내용에 태그를 허용하지 않으면서 줄바꿈 처리
-		assign.setAb_content(StringUtil.useBrNoHTML(assign.getAb_content()));
+		//assign.setAb_content(StringUtil.useBrNoHTML(assign.getAb_content()));
 		
 		modelAndView.addObject("assign", assign);
 		
@@ -179,38 +186,72 @@ public class AssignBoardController {
 		log.debug("상품상태>> " + assignVO.getAb_item_status());
 		log.debug("상품내용>> " + assignVO.getAb_content());
 		log.debug("상품가격>> " + assignVO.getAb_price());
-		if(assignVO.getAb_filenames() != null) {
+		/*if(assignVO.getAb_filenames() != null) {
 			String[] filenamesArray = assignVO.getAb_filenames().split(",");
 			model.addAttribute("ab_filenames", filenamesArray);
-		}
+			log.debug(filenamesArray[0]);
+		}*/
+		
 		return "assignModify";
 	}
 	
 	//수정 폼에서 전송된 데이터 처리
 	@PostMapping("/assignboard/update")
 	public String submitUpdate(@Valid AssignVO assignVO, BindingResult result, Model model, 
-								HttpServletRequest request, @RequestParam("ab_upload") MultipartFile[] files) throws IllegalStateException, IOException {
+								HttpServletRequest request, @RequestParam("ab_upload") List<MultipartFile> files) throws IllegalStateException, IOException {
 		log.debug("<<양도글 수정>> : " + assignVO);
 		
 		//유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
-			
+			AssignVO vo = assignService.ab_selectBoard(assignVO.getAb_num());
+			assignVO.setAb_filename(vo.getAb_filename());
 			return "assignModify";
 		}
 		//ip 셋팅
 		assignVO.setAb_ip(request.getRemoteAddr());
 		
 		// 파일 업로드 처리
-        List<String> filenames = new ArrayList<>();
-        for (MultipartFile file : files) {
-            if (!file.isEmpty()) {
-                String filename = FileUtil2.createFile(request, file);
-                filenames.add(filename);
-            }
-        }
-        String filenamesString = String.join(",", filenames);
-        assignVO.setAb_filenames(filenamesString);
-        
+	    assignVO.setAb_filename(FileUtil.createFile(request,assignVO.getAb_upload()));
+
+	    
+	    /*if (files != null && !files.isEmpty()) {
+	        List<String> filenames = new ArrayList<>();
+	        long totalSize = 0;
+
+	        for (MultipartFile file : files) {
+	            if (!file.isEmpty()) {
+	                try {
+	                    String filename = FileUtil2.createFile(request, file);
+	                    filenames.add(filename);
+	                    totalSize += file.getSize();
+	                    log.debug("*** " + filename + " **********");
+	                } catch (IOException e) {
+	                    log.error("파일 업로드 중 오류 발생: " + file.getOriginalFilename(), e);
+	                }
+	            } else {
+	                log.debug("빈 파일이 업로드 시도됨: " + file.getOriginalFilename());
+	            }
+	        }
+
+	        String filenamesString = String.join(",", filenames);
+	        assignVO.setAb_filenames(filenamesString); // 파일명을 저장할 필드에 설정
+	        log.debug("파일 전체 크기: " + totalSize + " bytes");
+	    } else {
+	        // 파일을 업로드하지 않은 경우 처리
+	        assignVO.setAb_filenames(null);
+	        log.debug("파일을 업로드하지 않았습니다.");
+	    }*/
+				
+		/*
+		 * List<String> filenames = new ArrayList<>(); for (MultipartFile file : files)
+		 * { if (!file.isEmpty()) { String filename = FileUtil2.createFile(request,
+		 * file); filenames.add(filename); } }
+		 */
+		/*
+		 * String filenamesString = String.join(",", filenames);
+		 * assignVO.setAb_filenames(filenamesString);
+		 */
+		
 		//글 수정
 		assignService.ab_updateBoard(assignVO);
 		
@@ -232,21 +273,21 @@ public class AssignBoardController {
 		//글 삭제
 		assignService.ab_deleteBoard(ab_num);
 		
-		if(db_assign.getAb_filenames() != null) {
+		if(db_assign.getAb_filename() != null) {
 			
-			String[] filenamesArray = db_assign.getAb_filenames().split(",");
+			/*String[] filenamesArray = db_assign.getAb_filenames().split(",");
 
-			/*
-			 * // 배열을 리스트로 변환 (선택사항) List<String> filenamesList =
-			 * Arrays.asList(filenamesArray);
-			 */
+			// 배열을 리스트로 변환 (선택사항) List<String> filenamesList =
+			Arrays.asList(filenamesArray);
+			
 			//파일 삭제
 			for (String filename : filenamesArray) {
 				FileUtil2.removeFile(request, filename);
 			}
-			/*
-			 * //파일 삭제 FileUtil2.removeFile(request, db_assign.getAb_filenames());
-			 */
+
+			//파일 삭제 FileUtil2.removeFile(request, db_assign.getAb_filenames());*/
+			
+			FileUtil.removeFile(request, db_assign.getAb_filename());
 		}
 		
 		return "redirect:/assignboard/list";

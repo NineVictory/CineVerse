@@ -764,8 +764,8 @@ ul.status-df li.font14 label{
 }
 .ass-detail-icon > div > img{
 	margin-right:2px;
+	position:relative;
 }
-
 
 /*assignWrite 양도/교환*/
 .item-label{
@@ -839,21 +839,25 @@ ul.status-df li.font14 label{
     cursor: pointer;
     font-size: 0px;
 }
-
+.sec{
+	height:80px;
+	margin-bottom:10px;
+}
 #preview {
     display: flex;
     flex-wrap: nowrap; /* 가로로 정렬 */
-    overflow-x: auto; /* 넘치는 부분 스크롤 */
+    /* overflow-x: hidden; */ /* 넘치는 부분 스크롤 */
     gap: 10px;
     margin-top: 1rem;
-    padding: 10px;
+    padding:5px;
     width:400px;
-    height:200px;
+    height:100px;
     align-items: flex-end;
 }
 
 .preview-image-container {
     position: relative;
+    height:100px;
 }
 
 .preview-image {
@@ -916,6 +920,46 @@ textarea#ab_content{
 	resize: none;
 	overflow: auto;
 }
+div.ck-editor__top{
+	width:750px;
+}
+div.ck-editor__main{
+	width:750px;
+	height:390px;
+
+	resize: none;
+	overflow-y: auto;
+}
+
+span.ab-status{
+	cursor:pointer;
+
+}
+.status-btn {
+    list-style: none;
+    padding: 0 3px;
+    margin:0;
+    border: 1px solid #ddd;
+    border-radius:5px;
+    background-color:#fcfcfc;
+    position:absolute;
+    top: 140px;
+    right: 298px;
+    
+}
+.status-btn li {
+    cursor: pointer;
+    padding:3px 5px;
+    margin-bottom: 3px;
+    font-size:15px;
+}
+
+.status-btn li:hover {
+    color:#d9d9d9;
+}
+
+
+
 input#ab_title, textarea#ab_content, input#ab_price{
 	padding:10px;
 }
