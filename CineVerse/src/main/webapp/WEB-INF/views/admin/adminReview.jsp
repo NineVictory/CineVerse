@@ -3,6 +3,7 @@
     
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<div class="page-container">
 <div class = "admin_member">
 	<div class = "firstTitle">
 		<p id ="title">리뷰 관리</p>
@@ -48,6 +49,7 @@
             
         </tbody>
     </table>
+</div>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
