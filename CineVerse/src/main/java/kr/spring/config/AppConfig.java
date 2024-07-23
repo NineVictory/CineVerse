@@ -92,6 +92,7 @@ public class AppConfig implements WebMvcConfigurer, WebSocketConfigurer{
 				.addPathPatterns("/shop/buyNow")
 				.addPathPatterns("/shop/shopFav")
 				.addPathPatterns("/assignboard/write")
+				.addPathPatterns("/assignboard/update")
 				.addPathPatterns("/support/consultForm");
 		
 				
