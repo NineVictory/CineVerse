@@ -235,6 +235,7 @@
 		<input type="button" value="목록"  onclick="location.href='cinemaList2'">
 	</div>
 </div>
+</div>
 <!-- 영화관 상세 정보 시작 -->
 
 

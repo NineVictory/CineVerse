@@ -3,6 +3,7 @@
 	font-weight: bold;
 	font-size: 50px;
 	margin-top: 70px;
+	margin-left: 50px;
 }
 
 .branch-info{
@@ -80,7 +81,7 @@
 
 .cinema-gallery {
 	width: 100%;
-	margin-left: 50px;
+	margin-left: 100px;
 	margin-top: 20px;
 	margin-bottom: 20px;
     margin-right: 100px;

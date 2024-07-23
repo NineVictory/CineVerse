@@ -260,8 +260,19 @@ $(document).ready(function() {
         <div class="seat-select-button">
         <form action="movieSeat" method="get">
         	<input type="hidden" name="mt_num" id="mt_num">
+        	<c:if test="${!empty user}">
             <input type="submit" class="movieSeatButton" value="좌석 선택">
+            </c:if>
+            <c:if test="${empty user}">
+            <input type="button" class="movieSeatButton" value="좌석 선택" onclick="alertAndRedirect()">
+            </c:if>
         </form>    
         </div>
+        <script>
+		    function alertAndRedirect() {
+		        alert("로그인 후 이용하실 수 있습니다.");
+		        location.href = '${pageContext.request.contextPath}/member/login';
+		    }
+		</script>
     </div>
 </div>
