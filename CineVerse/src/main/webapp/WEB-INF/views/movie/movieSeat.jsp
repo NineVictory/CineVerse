@@ -199,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (totalPeople < 8) { // 총 인원수 제한
                 input.value = currentValue + 1;
                 validateTotalPeople();
+                resetSeats(); // 좌석 초기화
                 updateSeatCountAndTotalPrice(); // 인원 수 증가 시 금액 업데이트
             } else {
                 alert("제한 인원은 8명까지입니다."); // 인원 수 초과 시 알림
@@ -212,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const input = button.nextElementSibling;
             if (input.value > 0) {
                 input.value = parseInt(input.value) - 1;
+                resetSeats(); // 좌석 초기화
                 updateSeatCountAndTotalPrice(); // 인원 수 감소 시 금액 업데이트
             }
         });
@@ -221,9 +223,18 @@ document.addEventListener('DOMContentLoaded', () => {
     quantityInputs.forEach(input => {
         input.addEventListener('input', () => {
             validateTotalPeople();
+            resetSeats(); // 좌석 초기화
             updateSeatCountAndTotalPrice(); // 인원 수 변경 시 금액 업데이트
         });
     });
+
+    // 선택된 좌석을 초기화하는 함수
+    function resetSeats() {
+        selectedSeats.forEach(seat => seat.classList.remove('selectedSeat'));
+        selectedSeats = [];
+        selectedSeatNums = [];
+        countSelectedSeats();
+    }
 
     //결제하기 버튼 클릭 시 유효성 검사 함수
     document.querySelector('.movePaymentButton').addEventListener('click', (e) => {
