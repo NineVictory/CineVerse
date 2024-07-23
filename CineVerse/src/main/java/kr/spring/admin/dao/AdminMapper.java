@@ -56,7 +56,9 @@ public interface AdminMapper {
 	public void deleteMembership(long mem_num);
 	@Update("UPDATE member SET mem_membership = 1 WHERE mem_num=#{mem_num}")
 	public void updateMembership(long mem_num);
-    // 공지사항
+	@Delete("DELETE FROM member_coupon WHERE mem_num = #{mem_num} AND (coupon_num = 21 OR coupon_num = 22)")
+    public void deleteCoupon(long mem_num);
+	// 공지사항
 	public List<NoticeVO> selectNoticeList(Map<String,Object> map);
 	public Integer selectNoticeRowCount(Map<String,Object> map);
     public void insertNotice(NoticeVO noticeVO);
