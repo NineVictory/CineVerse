@@ -39,7 +39,7 @@
                                 <input type="number" min="0" value="0" max="8" readonly class="quantity-input adult"/>
                                 <button type="button" class="quantity-up stylish-button">+</button>
                             </div>
-                        </div>
+                        </div> 
                         <div class="select-seat">
                             <div class="select-seat-age">청소년</div>
                             <div class="quantity-controls">

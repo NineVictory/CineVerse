@@ -205,7 +205,7 @@ public class MovieController {
 	 	}
 	
 	/*=======================
-	 * 영화 결제
+	 * 영화 결제 
 	 *=======================*/
 	 	@PostMapping("/movie/moviePayment")
 	    public String moviePayment(long mt_num, String seatNum, int ticketNumber, String selectedSeats, int payMoney, HttpSession session, Model model) {
