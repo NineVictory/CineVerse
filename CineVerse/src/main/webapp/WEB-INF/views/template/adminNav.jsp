@@ -74,9 +74,9 @@
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminDelivery"
 				class="menu-link">배송상태</a></li>
-			<li><a
+			<%-- <li><a
 				href="${pageContext.request.contextPath}/admin/adminAddress"
-				class="menu-link">배송지</a></li>
+				class="menu-link">배송지</a></li> --%>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminShopReview"
 				class="menu-link">후기</a></li>
