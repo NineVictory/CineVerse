@@ -152,6 +152,19 @@
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminCinemaSeatFormCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMovieTime.jsp" />
 	</definition>
+	
+	<!-- 문의 확인 -->
+	<definition name="adminConsult" extends="adminMain">
+		<put-attribute name="title" value="문의" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminConsultCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminConsult.jsp" />
+	</definition>
+	<!-- 문의 답변 -->
+	<definition name="adminAnswer" extends="adminMain">
+		<put-attribute name="title" value="문의" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminAnswerCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminAnswer.jsp" />
+	</definition>
 </tiles-definitions>
 
 

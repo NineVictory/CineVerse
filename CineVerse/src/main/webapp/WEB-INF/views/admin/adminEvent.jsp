@@ -29,7 +29,7 @@
 	<div class = "firstTitle">
 		<p id ="title">이벤트</p>
 	</div>
-		<form action="adminEvent" id="admin_search">
+		<form action="adminAnswer" id="admin_search">
 			<ul>
 				<li>
 					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'event_name'}"> <!-- 기본값 설정 -->
