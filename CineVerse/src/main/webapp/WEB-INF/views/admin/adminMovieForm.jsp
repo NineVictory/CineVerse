@@ -198,7 +198,33 @@ $(document).ready(function() {
         }
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const myForm = document.getElementById('insert_form');
+    //이벤트 연결
+    myForm.onsubmit = function() {
+        const radioGroups = [
+            document.querySelectorAll('input[name="m_status"]:checked'),
+        ];
 
+        for (let group of radioGroups) {
+            if (group.length < 1) {
+                alert('영화 상영여부는 필수 ');
+                return false;
+            }
+        }
+
+        const items = document.querySelectorAll('.input-check');
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].value.trim() == '') {
+                const label = document.querySelector('label[for="'+items[i].id+'"]');
+                alert(label.textContent + ' 항목은 필수 입력입니다!');
+                items[i].value = '';
+                items[i].focus();
+                return false;
+            }
+        }
+    };
+});
 </script>
 
 <div class="page-container">
