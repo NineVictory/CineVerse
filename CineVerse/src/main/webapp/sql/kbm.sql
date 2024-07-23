@@ -38,7 +38,7 @@ create table community_response_fav(
 
 
 --커뮤니티 신고
-create table community_report{
+create table community_report(
  cr_num number not null,
  cr_content varchar2(300)
  cr_category number(1) not null,
@@ -46,26 +46,52 @@ create table community_report{
  cb_num number not null,
  constraint creport_fk1 foreign key (cb_num) references community_board (cb_num),
  constraint creport_fk2 foreign key (mem_num) references member (mem_num)
-};
+);
 
 create sequence community_report_seq;
 
 
 --양도글 신고
-create table assign_report{
+create table assign_report(
  ar_num number not null,
  ar_content varchar2(300)
  ar_category number(1) not null,
  mem_num number not null,
  ab_num number not null,
- constraint creport_fk1 foreign key (ab_num) references assignment_board (ab_num),
- constraint creport_fk2 foreign key (mem_num) references member (mem_num)
-};
+ constraint areport_fk1 foreign key (ab_num) references assignment_board (ab_num),
+ constraint areport_fk2 foreign key (mem_num) references member (mem_num)
+);
 
 create sequence assign_report_seq;
 
---댓글 신고
+--커뮤니티 댓글 신고
+create table comment_report{(
+ cr_num number not null,
+ cr_content varchar2(300)
+ cr_category number(1) not null,
+ mem_num number not null,
+ cc_num number not null,
+ constraint ccreport_fk1 foreign key (cc_num) references community_comment (cc_num),
+ constraint ccreport_fk2 foreign key (mem_num) references member (mem_num)
+);
 
+create sequence comment_report_seq;
+
+--커뮤니티 답글 신고
+create table response_report(
+ rr_num number not null,
+ rr_content varchar2(300)
+ rr_category number(1) not null,
+ mem_num number not null,
+ te_num number not null,
+ constraint rreport_fk1 foreign key (te_num) references community_response (te_num),
+ constraint rreport_fk2 foreign key (mem_num) references member (mem_num)
+);
+
+create sequence response_report_seq;
+
+
+--자주 묻는 질문 테이블
 CREATE TABLE FAQ(
  F_NUM number not null,
  MEM_NUM number not null,
@@ -80,3 +106,4 @@ CREATE TABLE FAQ(
 );
 
 create sequence faq_seq;
+
