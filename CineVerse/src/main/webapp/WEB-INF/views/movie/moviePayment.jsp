@@ -58,8 +58,8 @@
  		<div class="point_pay">
  			<h3>포인트 결제</h3>
  				<div class="point_charging">
- 					<b><span class="point_detail">15,0000P</span></b>
- 					<input type="button" value="포인트 충전" class="point_charge">
+ 					<b><span class="point_detail">${member.point}P</span></b>
+ 					<button class="point_charge" onclick="location.href='${pageContext.request.contextPath}/member/pointCharge'">포인트 충전</button>
  			</div>
  		</div>
  	</div>

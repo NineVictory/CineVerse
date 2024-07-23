@@ -59,7 +59,7 @@
                                     <img class="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
                                     <span class="output_mfcount"></span>
                                 </div>
-                                <div class="movie-reservation-button-list">예매하기</div>
+                                <div class="movie-reservation-button-list" onclick="location.href='/movie/movieReserve'">예매하기</div>
                             </div>
                         </li>
                     </c:if>

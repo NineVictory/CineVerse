@@ -106,7 +106,7 @@ public class AdminMovieController {
                   movieVO.setM_opendate(movieDetail.getRepRlsDate());
                   movieVO.setM_companys(movieDetail.getCompany());
                   movieVO.setRuntime(movieDetail.getRuntime());
-					/* movieVO.setM_filename(movieDetail.getPosters()); */
+				  movieVO.setM_filename(movieDetail.getPosters());
                   movieVO.setRating(movieDetail.getRating());
                   movieVO.setM_genre(movieDetail.getGenre());
                   movieVO.setDirector(movieDetail.getDirectorNm());
