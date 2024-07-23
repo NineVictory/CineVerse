@@ -94,7 +94,7 @@ $(document).ready(function() {
             
             // 모든 상영시간 항목에서 active 클래스 제거
             $('.movietime-item').removeClass('active');
-            
+             
             
             loadMovieTimeTable(); // 영화 시간표 목록을 불러오는 함수 호출
         } else {
