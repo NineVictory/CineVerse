@@ -220,11 +220,15 @@ public class AdminServiceImpl implements AdminService{
 		adminMapper.deleteCmt(cc_num);
 	}
 	@Override
-	public List<ConsultVO> selectCunsult(Map<String, Object> map) {
-		return adminMapper.selectCunsult(map);
+	public List<ConsultVO> selectConsultList(Map<String, Object> map) {
+		return adminMapper.selectConsultList(map);
 	}
 	@Override
 	public Integer selectConsultRowCount(Map<String, Object> map) {
 		return adminMapper.selectConsultRowCount(map);
+	}
+	@Override
+	public void updateAnswer(long consult_num) {
+		adminMapper.updateAnswer(consult_num);
 	}
 }

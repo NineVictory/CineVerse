@@ -20,6 +20,7 @@
         <p>극장: ${movieInfo.c_branch} ${movieInfo.th_name}</p>
         <p>예약 날짜: ${movieInfo.mt_date}</p>
         <p>상영 시간: ${movieInfo.mt_start} ~ ${movieInfo.mt_end}</p>
+        <%-- ${movieInfo.m_code} --%>
     </c:forEach>
  	</div>
  	<div class="reserved_space">
@@ -27,6 +28,8 @@
     	<p>선택한 좌석: ${selectedSeats}</p>
     	<p>티켓 금액: <span class="payMoney">${payMoney}</span>원</p>
     	<p>회원 이름: ${member.mem_name}</p>
+    	<%-- 좌석식별자 번호:${seatNum} --%>
+    	
  	</div>
  	</div>
  </div>
@@ -85,11 +88,14 @@
  			<span>총 <strong class="final-amount" style="font-size: 1.15em;">${payMoney}</strong>원</span>
  		</div>
  		<div class="pay_button">
- 		<form action="${pageContext.request.contextPath}/movie/confirmPayment" method="post">
+ 		<form action="${pageContext.request.contextPath}/movie/confirmPayment" method="post" id="paymentForm">
  				<input type="hidden" name="mt_num" value="${movieInfoList[0].mt_num}">
  				<input type="hidden" name="ticketNumber" value="${ticketNumber}">
  				<input type="hidden" name="selectedSeats" value="${selectedSeats}">
- 				<input type="hidden" name="seatNum" value="${seatNum}">
+ 				<input type="hidden" id="seatNum" name="seatNum" value="${seatNum}">
+ 				<input type="hidden" id="m_code" name="m_code" value="${movieInfoList[0].m_code}">
+ 				<input type="hidden" id="mc_num" name="mc_num" value="">
+				<input type="hidden" id="userPoints" name="userPoints" value="${member.point}">
  			<input type="hidden" id="finalAmountInput" name="finalAmount" value="${payMoney}">
  			<input type="button" value="결제하기" class="pay_btn">
  			</form>
@@ -101,43 +107,40 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // 페이지가 로드된 후 DOMContentLoaded 이벤트가 발생하면 실행되는 함수
-    // 쿠폰 선택 시 할인 금액 반영
     document.querySelectorAll('.coupon-select').forEach(function(coupon) {
-        // 모든 쿠폰 선택 체크박스에 대해 이벤트 리스너를 추가
         coupon.addEventListener('change', function() {
-            // 체크박스의 상태가 변경될 때마다 updateDiscount 함수 호출
             updateDiscount();
+            document.getElementById('mc_num').value = coupon.value; // 쿠폰 번호 설정
         });
     });
 
     function updateDiscount() {
-        let totalDiscount = 0; // 총 할인 금액을 저장할 변수 초기화
-
-        // 선택된 (체크된) 모든 쿠폰 선택 체크박스를 순회
+        let totalDiscount = 0;
         document.querySelectorAll('.coupon-select:checked').forEach(function(coupon) {
-            // 각 쿠폰의 할인 금액을 가져와서 정수로 변환 후 총 할인 금액에 더함
             totalDiscount += parseInt(coupon.getAttribute('data-coupon'));
         });
 
-        // 결제 금액을 가져옴 (원 단위를 제외하고 숫자만 추출하여 정수로 변환)
         let payMoney = parseInt(document.querySelector('.payMoney').textContent.replace(/[^0-9]/g, ''));
-        // 최종 결제 금액 계산 (결제 금액에서 총 할인 금액을 뺌)
         let finalAmount = payMoney - totalDiscount;
 
-        // 총 할인 금액을 표시하는 요소의 텍스트 내용을 업데이트
         document.querySelector('.discount-amount').textContent = totalDiscount.toLocaleString();
-        // 최종 결제 금액을 표시하는 요소의 텍스트 내용을 업데이트
         document.querySelector('.final-amount').textContent = finalAmount.toLocaleString();
-        // 최종 결제 금액을 숨겨진 입력 필드에 저장 (서버로 전송될 수 있도록)
         document.getElementById('finalAmountInput').value = finalAmount;
     }
-    // 결제 버튼 클릭 시 결제가 완료되었음을 알리는 알림창 표시
+
     document.querySelector('.pay_btn').addEventListener('click', function(event) {
-        event.preventDefault(); // 기본 동작 중단
-        alert('결제가 완료되었습니다.');
-        document.getElementById('paymentForm').submit(); // 폼 제출
+        event.preventDefault();
+        let finalAmount = parseInt(document.getElementById('finalAmountInput').value);
+        let userPoints = parseInt(document.querySelector('.point_detail').textContent.replace(/[^0-9]/g, ''));
+
+        if (userPoints < finalAmount) {
+            alert('포인트가 부족합니다.');
+        } else {
+            alert('결제가 완료되었습니다.');
+            document.getElementById('paymentForm').submit();
+        }
     });
 });
+
 </script>
 

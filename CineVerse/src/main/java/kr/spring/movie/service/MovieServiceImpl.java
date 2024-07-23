@@ -266,18 +266,46 @@ public class MovieServiceImpl implements MovieService {
 	public MovieDetailKFAPIVO selectDetailKFAPIVO(String title) {
 		 return movieMapper.selectDetailKFAPIVO(title);
 	}
-
+    @Override
+    public Long getMbNum() {
+        return movieMapper.selectMb_num();
+    }
 	@Override
 	public void insertBooking(MovieBookingVO movieBooking) {
 		movieMapper.insertBooking(movieBooking);
 		
 	}
-
+	
 	@Override
 	public void insertBookingDetail(MbDetailVO mbDetail) {
+		mbDetail.setMd_num(movieMapper.selectMd_num());
 		movieMapper.insertBookingDetail(mbDetail);
 		
 	}
+
+	/*
+	 * @Override public void usePoint(long ph_point, long mem_num) {
+	 * movieMapper.usePoint(ph_point, mem_num); }
+	 */
+	
+	@Override
+	public void useCoupon(long mem_coupon_use, long mc_num) {
+		movieMapper.useCoupon(mem_coupon_use, mc_num);
+		
+	}
+
+	@Override
+	public void insertPointHistory(long ph_point, long mem_num, int ph_type, String ph_payment) {
+		movieMapper.insertPointHistory(ph_point, mem_num, ph_type, ph_payment);
+		
+	}
+
+	/*
+	 * @Override public void updateMemberPoint(long ph_point, long mem_num) {
+	 * movieMapper.updateMemberPoint(ph_point, mem_num);
+	 * 
+	 * }
+	 */
 
 
 

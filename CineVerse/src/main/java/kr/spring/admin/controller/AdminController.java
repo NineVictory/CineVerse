@@ -38,6 +38,7 @@ import kr.spring.member.vo.MemberVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.seat.vo.SeatVO;
+import kr.spring.support.vo.ConsultVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -76,8 +77,12 @@ public class AdminController {
 		return new SeatVO();
 	}
 	@ModelAttribute
-	public ReplyVO initCommand56() {
+	public ReplyVO initCommand6() {
 		return new ReplyVO();
+	}
+	@ModelAttribute
+	public ConsultVO initCommand7() {
+		return new ConsultVO();
 	}
 	/*==============================
 	 * 관리자메인
@@ -708,8 +713,8 @@ public class AdminController {
 	}
 
 	//문의
-	@GetMapping("/admin/adminQna")
-	public String adminConsultList(
+	@GetMapping("/admin/adminConsult")
+	public String adminConsult(
 			@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value = "keyfield", required = false) String keyfield,
@@ -722,27 +727,41 @@ public class AdminController {
 		// 파라미터를 맵에 추가
 		Map<String, Object> map = new HashMap<>();
 		map.put("keyword", keyword);
+		
 		map.put("keyfield", keyfield);
 		
 		// 전체, 검색 레코드 수
-		int count = adminService.selectPointRowCount(map);
+		int count = adminService.selectConsultRowCount(map);
 
 		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminQna");
-		List<PointVO> list = null; 
+		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminConsult");
+		List<ConsultVO> list = null; 
 		if (count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
 
-			list = adminService.selectPoint(map); 
+			list = adminService.selectConsultList(map);
 		}
 
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
+ 
+		return "adminConsult";
 
-		return "adminPayment";
-
+	}
+	// 문의 답변 폼 호출
+	@GetMapping("/admin/adminAnswer")
+	public String updateAnswerForm(ConsultVO consultVO){
+		return "adminAnswer";
+	}
+	// 문의 답변 처리
+	@PostMapping("/adminAnswer")
+	@ResponseBody
+	public String updateAnswer(@Param("consult_num") long conslut_num) {
+		adminService.updateAnswer(conslut_num);
+		log.debug("<<답변 완료>>");
+		return "success";
 	}
 	
 }

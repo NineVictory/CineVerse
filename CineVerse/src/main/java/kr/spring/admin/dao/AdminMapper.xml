@@ -294,9 +294,6 @@
 				AND ph_type = 2
          	    AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
-			<if test="keyfield != null and keyword == null">
-           		AND ph_type = 2
-        </if>
 		</where>
 	</sql>
 
@@ -360,14 +357,9 @@
 	<!-- 영화관 목록 -->
 		<sql id="cinemaSearch">
 		<where>
-			<if test="keyfield != null and keyword != null">
-				AND ${keyfield} LIKE '%' || #{keyword} || '%'
-				AND c_status=1
-			</if>
-			<if test="keyfield != null and keyfield != ''">
-				AND ${keyfield} LIKE '%' || #{keyword} || '%'
-				AND c_status=1
-        	</if>
+			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
+	        </if>
 		</where>
 	</sql>
 	
@@ -581,14 +573,9 @@
     <!-- 문의시작 -->
 	<sql id="consultSearch">
 		<where>
-			<if test="keyfield != null and keyword != null">
-				AND
-				${keyfield} LIKE '%' || #{keyword} || '%'
-			</if>
-			<if test="keyfield != null and keyfield != ''">
-       	        AND 
-           	   ${keyfield} LIKE '%' || #{keyword} || '%'
-        	</if>
+			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
+	        </if>
 		</where>
 	</sql>
 	
@@ -602,7 +589,7 @@
 		FROM (
 		SELECT
 		consult_num,
-		consult_mem_num,
+		mem_num,
 		consult_title,
 		consult_type,
 		consult_reg_date
