@@ -2,6 +2,9 @@ package kr.spring.shop.vo;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -76,5 +79,22 @@ public class OrdersVO {
 	private int total_price;
 	
 	private int review_count;
+	
+	private String mem_id;
+	
+	
+	private int a_status;
+	@NotBlank
+	private String a_name;
+	@NotBlank
+	private String a_zipcode;
+	@NotBlank
+	private String a_address1;
+	@NotBlank
+	private String a_address2;
+	private int a_default;
+	@NotBlank
+	@Pattern(regexp = "^010\\d{8}$")
+	private String a_phone;
 	
 }

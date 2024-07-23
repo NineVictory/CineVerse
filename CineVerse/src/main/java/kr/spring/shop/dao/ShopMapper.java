@@ -6,11 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.member.vo.CouponVO;
 import kr.spring.myPage.vo.MyPageVO;
@@ -223,5 +221,46 @@ public interface ShopMapper {
 	public ProductVO selectMostCategory(long mem_num);
 	
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
+
+	// 상품 정보 수정
+	/*
+	 * @Update("UPDATE product SET p_status=#{p_status}, p_category=#{p_category}, p_name=${p_name}, p_price=#{p_price}, p_quantity=#{p_quantity}, p_filename=#{p_filename}, p_content=#{p_content}"
+	 * )
+	 */
+	public void updateProduct(ProductVO productVO);
 	
+	@Update("UPDATE product SET p_filename='' WHERE p_num=#{p_num}")
+	public void deleteFile(Long p_num);
+	
+	// order 내역 (관리자)
+	public List<OrdersVO> orderList(Map<String, Object> map);
+	
+	@Select("SELECT COUNT(*) FROM orders")
+	public Integer orderCount(Map<String, Object> map);
+	
+	@Select("SELECT * FROM orders JOIN order_detail USING (order_num) JOIN product USING(p_num) WHERE order_num=#{order_num}")
+	public List<OrdersVO> adminOrderDetailList(Long order_num);
+	
+	@Select("SELECT * FROM orders WHERE order_num=#{order_num}")
+	public OrdersVO adminOrders(Long order_num);
+	
+	@Update("UPDATE orders SET order_status=#{order_status} WHERE order_num=#{order_num}")
+	public void updateOrderStatus(@Param(value="order_status") int orders_status, @Param(value="order_num") Long order_num);
+	
+	@Select("SELECT * FROM address WHERE a_num=#{a_num}")
+	public OrdersVO selectOrderAddress(Long a_num);
+	
+	@Select("SELECT * FROM address WHERE mem_num=#{mem_num}")
+	public List<OrdersVO> selectMemAddress(Long mem_num);
+	
+	@Update("UPDATE orders SET a_num=#{a_num} WHERE order_num=#{order_num}")
+	public void updateOrderAddress(@Param(value="a_num") Long a_num, @Param(value="order_num") Long order_num);
+	
+	
+	@Select("SELECT COUNT(*) FROM product_review")
+	public Integer adminReviewCount(Map<String, Object> map);
+	public List<ProductVO> selectReviewList(Map<String, Object> map);
+	
+	@Delete("DELETE product_review WHERE pr_num=#{pr_num}")
+	public void deleteReview(Long pr_num);
 }

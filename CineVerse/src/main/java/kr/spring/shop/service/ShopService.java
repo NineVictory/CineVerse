@@ -3,10 +3,7 @@ package kr.spring.shop.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import kr.spring.member.vo.CouponVO;
 import kr.spring.myPage.vo.MyPageVO;
@@ -87,4 +84,19 @@ public interface ShopService {
 	public Integer productFavCnt(long mem_num);
 	public ProductVO selectMostCategory(long mem_num);
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
+	
+	
+	public void updateProduct(ProductVO productVO);
+	public void deleteFile(Long p_num);
+	public List<OrdersVO> orderList(Map<String, Object> map);
+	public Integer orderCount(Map<String, Object> map);
+	public List<OrdersVO> adminOrderDetailList(Long order_num);
+	public OrdersVO adminOrders(Long order_num);
+	public void updateOrderStatus(@Param(value="order_status") int orders_status, @Param(value="order_num") Long order_num);
+	public OrdersVO selectOrderAddress(Long a_num);
+	public List<OrdersVO> selectMemAddress(Long mem_num);
+	public void updateOrderAddress(@Param(value="a_num") Long a_num, @Param(value="order_num") Long order_num);
+	public List<ProductVO> selectReviewList(Map<String, Object> map);
+	public Integer adminReviewCount(Map<String, Object> map);
+	public void deleteReview(Long pr_num);
 }

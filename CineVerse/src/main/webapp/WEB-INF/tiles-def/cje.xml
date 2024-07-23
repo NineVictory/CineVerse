@@ -93,4 +93,23 @@
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminShopCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminModifyProduct.jsp" />
 	</definition>
+	
+	<definition name="adminOrderDetail" extends="adminMain">
+		<put-attribute name="title" value="주문 내역 관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminDeliverCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminDeliveryDetail.jsp" />
+	</definition>
+	
+	
+	<definition name="adminOrderAddress" extends="adminMain">
+		<put-attribute name="title" value="주문 배송지 관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminDeliverCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminOrderAddress.jsp" />
+	</definition>
+	
+	<definition name="adminReview" extends="adminMain">
+		<put-attribute name="title" value="상품후기관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminShopReviewCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminReview.jsp" />
+	</definition>
 </tiles-definitions>
