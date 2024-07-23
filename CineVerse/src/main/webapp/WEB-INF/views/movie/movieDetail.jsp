@@ -31,7 +31,6 @@
                 </div>
             </div>
             
-            
              <!-- 영화정보 -->
             <div class="movie-info">
             	<div class="movie_opendate"><span>${movie.m_opendate}</span> 개봉 </div>
@@ -59,83 +58,43 @@
              	</ul>
             </div>
             
-            
             <div class="movie-infolist">
                 <!-- 좋아요 -->
                 <div class="movie-fav-button-detail">
                     <img class="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
                     <span class="output_mfcount"></span>
                 </div>
-                
                 <div class="movie-reservation" onclick="location.href='/movie/movieReserve'">
                	 	예매하기
             	</div>
-                
             </div>
-            
-           
-        
-            
         </div>
     </div>
 
     <!-- 상세정보와 별점 및 후기 -->
-    <div class="detail-menu">
-        <span class="detail-infomation">주요정보</span>
-        <span class="detail-grade">트레일러</span>
-        <span class="detail-review">평점/리뷰</span>
-        <hr class="menu-hr" size="1" width="100%" noshade="noshade">
-    </div>
-	<div class="menu-title">주요정보</div>
+<!-- 상세정보와 별점 및 후기 -->
+<div class="detail-menu">
+    <a href="#movie-plot-section" class="detail-infomation" id="info-link">주요정보</a>
+    <a href="#movie-teasers-section" class="detail-grade" id="teasers-link">트레일러</a>
+    <a href="#movie-review-section" class="detail-review" id="review-link">평점/리뷰</a>
+</div>
+
+	<div id="movie-plot-section" class="menu-title">주요정보</div>
 	<div class="movie-plot">
 	${movie.plot}
 	</div>
     <!-- 영화 예고편 -->
     <div class="menu-title">트레일러</div>
- <!--    <div class="movie-teaser">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/EiCmnIaj4u8?si=x1eQENSmEMIMFaxh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div> -->
-    <div class="movie-content">
-  <%--                   <c:if test="${not empty movie.m_content}">
-                    <c:forEach var="url" items="${fn:split(movie.m_content, ',')}">
-                        <iframe src="${url.trim()}" width="1000" height="800"></iframe>
-                    </c:forEach>
-                </c:if>
-     --%>
-      <%-- <c:when test="${not empty movie.m_content}">
-                <script>
-                    $(document).ready(function() {
-                        var videoUrls = JSON.parse('${movie.m_content}');
-                        videoUrls.forEach(function(url) {
-                            $('.movie-content').append('<iframe src="' + url + '" width="1000" height="800"></iframe>');
-                        });
-                    });
-                </script>
-            </c:when>
-            <c:otherwise>
-                <p>영화 소개 영상이 없습니다.</p>
-            </c:otherwise>--%>
- <%--        <iframe src="${movie.m_content}" class="movie-tearsers" width="910" height="580" ></iframe> --%>
- 
+    <div id="movie-teasers-section" class="movie-content">
  	<c:set var="teasers" value="${fn:split(movie.m_content, ',')}" />
-
 	<c:forEach var="teaser" items="${teasers}">
-    	<iframe src="${teaser}" class="movie-teasers" width="910" height="580" frameborder="0" sandbox="allow-scripts"></iframe>
+    	<iframe src="${teaser}" class="movie-teasers" width="910" height="580" frameborder="0"></iframe>
 	</c:forEach>
- 
-<%--  
- 
-    <c:if test="${not empty teasers}">
-        <c:forEach var="teaser" items="${teasers}">
-            <iframe src="${teasers}" class="movie-teasers" width="910" height="580"></iframe>
-        </c:forEach>
-    </c:if> --%>
-   <!--      <iframe src="https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK059016_P02.mp4" width="1000" height="800"></iframe>  -->
-    </div>
+   </div>
 
 <!-- 별점 및 후기 -->             
 <div class="menu-title">평점/리뷰</div>
-<div class="grade-review">
+<div id="movie-review-section" class="grade-review">
     <div class="star-rating">
     <span class="star" data-value="1"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
     <span class="star" data-value="2"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
@@ -196,16 +155,74 @@
 <div class="paging-button" style="display:none;">
     <input type="button" value="더보기">
 </div>
-<!-- <button id="loadComments">리뷰보기</button>
-<div id="output"></div>
--->
 </div> 
-
 </div>
 
+<!-- 상단 이동 버튼 -->
+<div id="scroll-to-top" style="display: none;">
+    <img src="${pageContext.request.contextPath}/images/up-arrow.png" alt="Scroll to Top">
+</div>
 
 <style>
-.movie-info-list{
-	padding:0;
+/* 상단 이동 버튼 스타일 */
+#scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: opacity 0.3s;
 }
+
+#scroll-to-top img {
+    width: 30px;
+    height: 30px;
+}
+
 </style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 스크롤 위치에 따라 버튼 표시/숨김
+    $(window).on('scroll', function() {
+        var scrollPosition = $(document).scrollTop();
+        if (scrollPosition > 200) { // 페이지가 200px 이상 스크롤되면 버튼을 표시
+            $('#scroll-to-top').fadeIn();
+        } else { // 페이지가 200px 이하로 스크롤되면 버튼을 숨김
+            $('#scroll-to-top').fadeOut();
+        }
+
+        // 메뉴 항목 활성화
+        $('.detail-menu a').removeClass('active');
+        $('.movie-plot, .movie-content, .grade-review').each(function() {
+            var sectionOffset = $(this).offset().top;
+            var sectionHeight = $(this).outerHeight();
+            var sectionId = $(this).attr('id');
+
+            if (scrollPosition >= sectionOffset && scrollPosition < sectionOffset + sectionHeight) {
+                $('.detail-menu a[href="#' + sectionId + '"]').addClass('active');
+            }
+        });
+    });
+
+    // 메뉴 클릭 시 부드럽게 이동
+    $('.detail-menu a').on('click', function(e) {
+        e.preventDefault();
+        var target = $(this).attr('href');
+        $('html, body').animate({
+            scrollTop: $(target).offset().top
+        }, 200);
+    });
+
+    // 상단 이동 버튼 클릭 시 상단으로 부드럽게 이동
+    $('#scroll-to-top').on('click', function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+    });
+});
+
+
+</script>

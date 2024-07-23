@@ -168,13 +168,13 @@
 	text-align: center;
 }
 
-.menu-title {
+/* .menu-title {
 	width: 100%;
 	background-color: #e6e6e6;
 	padding: 10px;
 	margin-bottom: 30px;
 	margin-top: 40px;
-}
+} */
 
 .movie-teaser {
 	width: 100%;
@@ -462,4 +462,32 @@ font-size: 20px;
 	font-size: 12px;
 	color: #fff;
 	margin-right: 10px;
+}
+
+.movie-info-list{
+	padding:0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.detail-menu {
+	display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: var(--gray-1);
+    border-bottom: 1px solid var(--gray-2);
+}
+
+.detail-menu a {
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.menu-title {
+    font-size: 1.2em;
+    margin: 20px 0;
+    font-weight: bold;
 }
