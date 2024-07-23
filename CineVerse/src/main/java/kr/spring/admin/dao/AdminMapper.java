@@ -21,6 +21,7 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.support.vo.ConsultVO;
 
 @Mapper
 public interface AdminMapper {
@@ -37,19 +38,20 @@ public interface AdminMapper {
 	public Integer totalMovie();
 	@Select("SELECT COUNT(*) FROM cinema")
 	public Integer totalCinema();
+	
 	// 회원 관리
-		   
 	public List<AdminVO> selectMemberList(Map<String,Object> map);
 	public Integer selectMemberRowCount(Map<String,Object> map);
 	@Update("UPDATE member SET mem_auth = 1 WHERE mem_num=#{mem_num}")
     public void updateMemberAuth(long mem_num);
     @Update("UPDATE member SET mem_auth = 2 WHERE mem_num=#{mem_num}")
     public void deleteMemberAuth(long mem_num);
+    
     // 구독 맴버십
 	public List<AdminVO> selectMembershipList(Map<String,Object> map);
 	public Integer selectMembershipRowCount(Map<String,Object> map);
-	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, -10000, SYSDATE, #{mem_num}, 0, #{refundMs})")
-	public void refundMembership(long mem_num);
+	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, 10000, SYSDATE, #{mem_num}, 0, #{point_payment})")
+	public void refundMembership(long mem_num, @Param("point_payment") String point_payment);
 	@Delete("DELETE FROM membership_update WHERE mem_num = #{mem_num}")
 	public void deleteMembership(long mem_num);
 	@Update("UPDATE member SET mem_membership = 1 WHERE mem_num=#{mem_num}")
@@ -115,4 +117,10 @@ public interface AdminMapper {
 	public void refundPoint(@Param("ph_num") long ph_num, @Param("mem_num") long mem_num, @Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment);
 	@Update("UPDATE point_history SET ph_type = 3 WHERE ph_num = #{ph_num}")
 	public void updatePoint(long ph_num);
+	
+	//문의
+	public List<ConsultVO> selectCunsult(Map<String,Object>map);
+	public Integer selectConsultRowCount(Map<String,Object> map);
+	public void responseCunsult();
+	
 }

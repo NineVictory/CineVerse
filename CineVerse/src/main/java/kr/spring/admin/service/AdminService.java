@@ -18,6 +18,7 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.support.vo.ConsultVO;
 
 public interface AdminService {
 	public List<AdminVO> selectMemberList(Map<String,Object> map);
@@ -61,6 +62,7 @@ public interface AdminService {
 	public Integer selectCinemaRowCount(Map<String,Object> map);
 	public void deleteCinema(long c_num);
 	public void refundPoint(long ph_num, long mem_num, long ph_point, String ph_payment);
-	public void refundMembership(long mem_num);
-
+	public void refundMembership(long mem_num, String point_payment);
+	public List<ConsultVO> selectCunsult(Map<String,Object>map);
+	public Integer selectConsultRowCount(Map<String,Object> map);
 }	

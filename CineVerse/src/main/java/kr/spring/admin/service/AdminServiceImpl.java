@@ -21,6 +21,7 @@ import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.dao.MemberMapper;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.support.vo.ConsultVO;
 import lombok.extern.slf4j.Slf4j;
 @Service
 @Transactional
@@ -195,8 +196,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	@Transactional
-	public void refundMembership(long mem_num) {
-		adminMapper.refundMembership(mem_num);
+	public void refundMembership(long mem_num, String point_payment) {
+		adminMapper.refundMembership(mem_num, point_payment);
 		adminMapper.deleteMembership(mem_num);
 		adminMapper.updateMembership(mem_num);
 		memberMapper.totalPoint(mem_num);
@@ -216,6 +217,14 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteCmt(long cc_num) {
 		adminMapper.deleteCmt(cc_num);
+	}
+	@Override
+	public List<ConsultVO> selectCunsult(Map<String, Object> map) {
+		return adminMapper.selectCunsult(map);
+	}
+	@Override
+	public Integer selectConsultRowCount(Map<String, Object> map) {
+		return adminMapper.selectConsultRowCount(map);
 	}
 	
 }

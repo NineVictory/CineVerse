@@ -215,9 +215,9 @@ public class AdminController {
 	// 회원 정지 처리
 	@PostMapping("/refundMembership")
 	@ResponseBody
-	public String refundMembership(@RequestParam("mem_num") long mem_num) {
+	public String refundMembership(@RequestParam("mem_num") long mem_num, @Param("point_payment") String point_payment) {
 		// auth 값을 1으로 업데이트하는 예시입니다.
-		adminService.refundMembership(mem_num);
+		adminService.refundMembership(mem_num, point_payment);
 		log.debug("<<맴버쉽 업데이트 완료>>");
 		return "success";
 
@@ -707,8 +707,44 @@ public class AdminController {
 		return "success";
 	}
 
+	//문의
+	@GetMapping("/admin/adminQna")
+	public String adminConsultList(
+			@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "keyfield", required = false) String keyfield,
+			Model model) {
+		// keyfield가 없으면 기본값을 설정
+		if (keyfield == null || keyfield.isEmpty()) {
+			keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+		}
+		
+		// 파라미터를 맵에 추가
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("keyfield", keyfield);
+		
+		// 전체, 검색 레코드 수
+		int count = adminService.selectPointRowCount(map);
 
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminQna");
+		List<PointVO> list = null; 
+		if (count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
 
+			list = adminService.selectPoint(map); 
+		}
+
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+
+		return "adminPayment";
+
+	}
+	
 }
 
 
