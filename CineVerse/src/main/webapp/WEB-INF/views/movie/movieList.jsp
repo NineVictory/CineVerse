@@ -24,7 +24,6 @@
                     <div class="genre-checkboxes">
                         <c:forEach var="genre" items="${genres}" varStatus="status">
                             <label><input type="checkbox" name="genre" value="${genre}" class="genre-checkbox"> ${genre}</label>
-                            
                         </c:forEach>
                     </div>
                     <div class="select-wrapper">
@@ -41,7 +40,6 @@
                         </li>
                     </ul>
                     </div>
-                   
                 </div>
             </form>
         </div>
@@ -57,45 +55,18 @@
                     			<button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieReserve'">예매하기</button>
                     			<button class="btn-details" onclick="location.href='movieDetail?m_code=${movie.m_code}'">상세보기</button>
                 			</div>
-                            
-                            <p style="margin-top: 15px;"><a href="movieDetail?m_code=${movie.m_code}"><b>${movie.m_name}</b></a></p>
+                            <div class="movie_name_list">
+                            	<p class="movie_name" style="margin-top: 15px;">
+                            		<a href="movieDetail?m_code=${movie.m_code}"><b>${movie.m_name}</b></a>
+                            	</p>
+                            </div>
                             <div class="bookAopen">
                             	<div>개봉일 ${movie.m_opendate}</div>
                                 <div>예매율 0% </div>
                             </div>
-<%--                             <div class="movie-button">
-                                <div class="movie-fav-button-detail">
-                                    <img class="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png" width="13" height="13">
-                                    <span class="output_mfcount"></span>
-                                </div>
-                                <div class="movie-reservation-button-list" onclick="location.href='/movie/movieReserve'">예매하기</div>
-                            </div> --%>
                         </li>
                     </c:if>
                 </c:forEach>
             </ul>      
         </div>
     </div>
-
-    
-    <script type="text/javascript">
-/* 
-document.addEventListener('DOMContentLoaded', () => {
-    const bookButtons = document.querySelectorAll('.btn-book');
-    const detailsButtons = document.querySelectorAll('.btn-details');
-
-    bookButtons.forEach(button => {
-    	 button.addEventListener('click', (event) => {
-             event.preventDefault();
-         });
-    });
-
-    detailsButtons.forEach(button => {
-    	 button.addEventListener('click', (event) => {
-             event.preventDefault();
-         });
-    });
-});
- */
-</script>
-    

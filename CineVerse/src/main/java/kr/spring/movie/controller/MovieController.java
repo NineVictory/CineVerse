@@ -6,29 +6,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
-import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.MemberVO;
-import kr.spring.movie.dao.MovieMapper;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MbDetailVO;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -38,7 +33,6 @@ import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.seat.vo.SeatVO;
 import kr.spring.util.PagingUtil;
-import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -83,6 +77,9 @@ public class MovieController {
            map.put("end", page.getEndRow());
 
            movielist = movieService.selectMovieList(map);
+           for (MovieVO movie : movielist) {
+               movie.setM_opendate(formatDate(movie.getM_opendate()));
+           }
        }
        model.addAttribute("count", count);
        model.addAttribute("movielist", movielist);
@@ -94,6 +91,7 @@ public class MovieController {
        
        return "movieList";
    }
+   
     @GetMapping("/movie/filterMoviesByGenres")
     @ResponseBody
     public List<MovieVO> filterMoviesByGenres(@RequestParam("genres") String[] genres) {
@@ -104,21 +102,23 @@ public class MovieController {
     * 영화 상세
     *=======================*/
    @GetMapping("/movie/movieDetail")
-    public String movieDetail(@RequestParam int m_code, HttpSession session, Model model) {
+    public String movieDetail(@RequestParam Long m_code, HttpSession session, Model model) {
         MemberVO user = (MemberVO) session.getAttribute("user");
         long userMemNum = user != null ? user.getMem_num() : -1L; // long 타입으로 변경
         
-        MovieVO movie = movieService.selectMovie(m_code);
+        MovieVO movie = movieService.selectMovieDetail(m_code);
+        movie.setM_opendate(formatDate(movie.getM_opendate()));
         boolean canWriteReview = movieService.canWriteReview(userMemNum, m_code); 
         
-        List<String> videoUrls = new ArrayList<>();
-        if (movie.getM_content() != null && !movie.getM_content().trim().isEmpty()) {
-            videoUrls = Arrays.asList(movie.getM_content().split("\\s*,\\s*"));
-        }
+		/*
+		 * List<String> teasers = new ArrayList<>(); if (movie.getM_content() != null &&
+		 * !movie.getM_content().trim().isEmpty()) { teasers =
+		 * Arrays.asList(movie.getM_content().split("\\s*,\\s*")); }
+		 */
         
         model.addAttribute("movie", movie);
         model.addAttribute("canWriteReview", canWriteReview);
-        model.addAttribute("videoUrls", videoUrls);
+		/* model.addAttribute("teasers", teasers); */
         return "movieDetail";
     }
    
@@ -181,7 +181,7 @@ public class MovieController {
 
             // 날짜 포맷 설정
             SimpleDateFormat inputFormat = new SimpleDateFormat("yy/MM/dd");
-            java.util.Date date = (java.util.Date) inputFormat.parse(decodedDate);
+            Date date = (Date) inputFormat.parse(decodedDate);
 
             // 포맷을 적용하여 문자열로 변환
             SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd");
@@ -322,6 +322,18 @@ public class MovieController {
    public String otherMovieInfo(){
       return "otherMovieInfo";
    }
+   
+   private String formatDate(String date) {
+	    try {
+	        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyyMMdd");
+	        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        Date parsedDate = inputFormat.parse(date);
+	        return outputFormat.format(parsedDate);
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	        return date; // 변환 실패 시 원본 반환
+	    }
+	}
    
 }
 

@@ -1,48 +1,81 @@
- @charset "UTF-8";
+@charset "UTF-8";
+
+#main_body {
+	display: flex;
+	justify-content: center;
+}
+
+.movie_details_all {
+	display: flex;
+	width: 1100px;
+	justify-content: center;
+	align-items: center;
+}
+
+.detail_main {
+	display: flex;
+	flex-direction: column;
+}
 
 .movie-container {
-	margin-top:50px;
-	 display: flex;
-    align-items: flex-start;
+	margin-top: 50px;
+	display: flex;
+	/* align-items: flex-start;*/
 }
 .movie-photo {
-    flex: 0 0 calc(30% - 20px); /* 사진 너비를 계산하고 오른쪽 여백 고려 */
+	
+/*     flex: 0 0 calc(30% - 20px); 사진 너비를 계산하고 오른쪽 여백 고려
     margin-right: 20px;
+ */
 }
+
 .movie-photo img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-}       
+    width: 300px;
+    /* height: 468px;*/
+}
+
 .movie-details {
-    max-width: calc(70% - 20px); /* 내용 너비를 계산하고 왼쪽 여백 고려 */
+    gap: 13px;
+    display: flex;
+    padding-top: 85px;
+    padding-left: 115px;
+    flex-direction: column;
 }
 
 .movie-title-screening {
     display: flex;
-    align-items: center; /* 요소들을 수직 가운데 정렬 */
+    align-items: center;
+    gap: 35px;
 }
 
 .movie-title {
-    margin-right: 10px; /* 요소 사이에 간격 추가 */
-    font-size: 24px; /* 필요에 따라 크기를 조정 */
-    font-weight: bold;
+	/* margin-right: 10px; */
+	font-size: 26px;
+	font-weight: 700;
 }
 
 .movie-screening {
-    font-size: 12px; /* 필요에 따라 크기를 조정 */
-    color: #ff5151; /* 텍스트 색상을 붉은색으로 설정 */
-    border: 1px solid #ff5151; /* 테두리를 붉은색으로 설정하고 두께를 2px로 설정 */
-    padding: 5px 10px; /* 내부 여백을 추가하여 요소에 공간을 줍니다 */
-    border-radius: 10px; /* 모서리를 둥글게 만듭니다 */
+	font-weight: 800;
+	height: 30px;
+	display: flex;
+	font-size: 12px;
+	color: #ff5151;
+	border: 1px solid #ff5151;
+	padding: 4px 10px;
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
 }
+
 .movie-infolist {
+    gap: 30px;
     font-size: 15px;
     display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
+    align-items: center;
 }
+
 .movie-content {
-/*     margin: 0; 여백 제거
+	/*     margin: 0; 여백 제거
     padding: 0; 패딩 제거
     display: flex; 컨텐츠를 중앙에 배치
     justify-content: center; 가로 중앙 정렬
@@ -51,37 +84,46 @@
     position: relative; 상대 위치 설정
     padding-top: 56.25%; 16:9 비율을 유지하기 위해 패딩 설정
     overflow: hidden; 넘치는 부분 숨기기 */
+	
 }
+
 .movie-reservation {
+    font-weight: 600;
+    display: flex;
     border-radius: 20px;
     background: #FF5151;
     color: white;
-    width: 90px; /* 너비를 더 크게 설정 */
-    height: 30px; /* 높이를 더 크게 설정 */
-    font-size: 12px; /* 폰트 사이즈를 크게 설정 */
-    padding: 7px 15px; /* 내부 여백을 조정하여 버튼 내용이 좀 더 넓게 보이도록 설정 */
-    text-align: center;
+    width: 110px;
+    height: 33px;
+    font-size: 14px;
+    padding: 10px 20px;
+    /* text-align: center; */
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
+
 .detail-menu {
-            margin-top: 30px;
-            text-align: center;
-            
-} 
+	margin-top: 30px;
+	text-align: center;
+}
+
 .detail-menu span {
-            margin: 0 70px;
-            cursor: pointer;
+	margin: 0 70px;
+	cursor: pointer;
 }
-.menu-hr{
-	 margin: 20px auto;
+
+.menu-hr {
+	margin: 20px auto;
 }
+
 .star img {
-   width: 30px; /* 이미지의 너비를 작게 설정 */
-   height: 30px; /* 이미지의 높이를 작게 설정 */
+	width: 30px; /* 이미지의 너비를 작게 설정 */
+	height: 30px; /* 이미지의 높이를 작게 설정 */
 }
+
 .grade-review {
 	margin-top: 30px;
-	
 }
 
 /* .review-choice{
@@ -102,50 +144,51 @@
 	outline: none;
 	border-color: #FF5151;
 } */
-
 .review-sort {
-    margin-top: 10px;
-    text-align: left;
+	margin-top: 10px;
+	text-align: left;
 }
 
 .sort-option {
-    cursor: pointer;
-    color: gray;
-    text-decoration: none;
+	cursor: pointer;
+	color: gray;
+	text-decoration: none;
 }
 
 .sort-option.active {
-    font-weight: bold;
-    color: black;
+	font-weight: bold;
+	color: black;
 }
 
-.movie-teaser{
+.movie-teaser {
 	text-align: center;
 }
-.grade-review{
+
+.grade-review {
 	text-align: center;
 }
-.menu-title{
-	width:100%;
-	background-color:#e6e6e6;
+
+.menu-title {
+	width: 100%;
+	background-color: #e6e6e6;
 	padding: 10px;
 	margin-bottom: 30px;
 	margin-top: 40px;
 }
 
 .movie-teaser {
-    width: 100%;
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 비율을 유지하기 위한 패딩 */
-    height: 0;
+	width: 100%;
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 비율을 유지하기 위한 패딩 */
+	height: 0;
 }
 
 .movie-teaser iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 /* .review-content {
         height: auto; 높이 자동으로 설정
@@ -155,171 +198,268 @@
         font-size: 14px; 폰트 사이즈 설정
         line-height: 1.5; 줄 간격 설정
     } */
-
 #review_div {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .review-content {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color:#e7e7e7;
-    resize: none; /* 사용자가 크기 조절을 못하게 함 */
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #e7e7e7;
+	resize: none; /* 사용자가 크기 조절을 못하게 함 */
 }
 
 #review_first {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #888;
-    text-align: right;
+	margin-top: 10px;
+	font-size: 12px;
+	color: #888;
+	text-align: right;
 }
 
 .letter-count {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 #review_second {
-    margin-top: 10px;
-    text-align: right;
+	margin-top: 10px;
+	text-align: right;
 }
 
 .btn-submit {
-    background-color: #f0ad4e;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+	background-color: #f0ad4e;
+	color: #fff;
+	padding: 8px 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .btn-submit:hover {
-    background-color: #ec971f;
+	background-color: #ec971f;
 }
+
 #review_second {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .review-button {
-    border-radius: 10px;
-    background: black;
-    color: white;
-    width: 83px;
-    height: 30px;
-    font-size: 10px;
-    padding: 5px 30px;
-    cursor: pointer;
-    margin-left: auto; /* 버튼을 오른쪽으로 밀어냄 */
-}
- .review-menu {
-    text-align: left;
-    margin-top: 20px;
-}
-.output_reiv{
-	width: 20px; /* 원하는 너비로 설정 */
-    height: 20px; /* 원하는 높이로 설정 */
-}
-.spoiler {
-    position: relative;
+	border-radius: 10px;
+	background: black;
+	color: white;
+	width: 83px;
+	height: 30px;
+	font-size: 10px;
+	padding: 5px 30px;
+	cursor: pointer;
+	margin-left: auto; /* 버튼을 오른쪽으로 밀어냄 */
 }
 
-.spoiler-content {
-    filter: blur(5px);
-}
-
-.show-spoiler {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    line-height: 1.5;
-}
-
-.show-spoiler::after {
-    content: "스포일러 보기";
-    display: block;
-    color: red;
-    font-weight: bold;
-    /* padding-top: 50px; Adjust based on the height of your content */
-}
-.my-photo{
-	border-radius: 15px;
-}
-.detail-info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.user_profile_image {
-    margin-right: 10px;
-}
-
-.user_idOrname {
-    flex-grow: 1;
-}
-
-.user_re_day {
-    text-align: right;
-    white-space: nowrap;
-}
-
-.mr-modify-date {
-    color: #888;
-    font-size: 0.9em;
-}
-.sub-item {
-    position: relative;
-}
-
-.output_reiv, .output_rvcount {
-    display: inline-flex;
-    align-items: center;
-}
-
-.output_rvcount {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.review-menu {
+	text-align: left;
+	margin-top: 20px;
 }
 
 .output_reiv {
-    position: absolute;
-    bottom: 0;
-    right: 40px; /* output_rvcount의 위치에 따라 조정 */
+	width: 20px; /* 원하는 너비로 설정 */
+	height: 20px; /* 원하는 높이로 설정 */
 }
-.mr-review-content{
-	margin:20px;
+
+.spoiler {
+	position: relative;
 }
-.spoiler-content{
+
+.spoiler-content {
+	filter: blur(5px);
+}
+
+.show-spoiler {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.8);
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	line-height: 1.5;
+}
+
+.show-spoiler::after {
+	content: "스포일러 보기";
+	display: block;
+	color: red;
+	font-weight: bold;
+	/* padding-top: 50px; Adjust based on the height of your content */
+}
+
+.my-photo {
+	border-radius: 15px;
+}
+
+.detail-info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.user_profile_image {
+	margin-right: 10px;
+}
+
+.user_idOrname {
+	flex-grow: 1;
+}
+
+.user_re_day {
+	text-align: right;
+	white-space: nowrap;
+}
+
+.mr-modify-date {
+	color: #888;
+	font-size: 0.9em;
+}
+
+.sub-item {
+	position: relative;
+}
+
+.output_reiv, .output_rvcount {
+	display: inline-flex;
+	align-items: center;
+}
+
+.output_rvcount {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.output_reiv {
+	position: absolute;
+	bottom: 0;
+	right: 40px; /* output_rvcount의 위치에 따라 조정 */
+}
+
+.mr-review-content {
 	margin: 20px;
 }
-#output_mrcount{
-	margin:5px;
-}
-#output_fav{
 
-	width: 16px; /* 원하는 너비로 설정 */
-    height: 16px; /* 원하는 높이로 설정 */
+.spoiler-content {
+	margin: 20px;
 }
+
+#output_mrcount {
+	margin: 5px;
+}
+
+#output_fav {
+	width: 16px; /* 원하는 너비로 설정 */
+	height: 16px; /* 원하는 높이로 설정 */
+}
+
 .movie-fav-button-detail {
-    display: flex; /* 아이콘과 텍스트를 가로로 배치 */
-    align-items: center; /* 가운데 정렬 */
-    border-radius: 5px;
-    background: white;
-    color: gray;
-    font-size: 10px; /* 폰트 크기 */
-    padding: 2px 5px; /* 패딩 조정 */
+    width: 85px;
+    gap: 5px;
+    display: flex;
+    border-radius: 20px;
+    /* background: white; */
+    color: var(--gray-6);
+    font-size: 14px;
+    padding: 10px 20px;
     cursor: pointer;
-    margin-left: 5px; /* 좋아요 수와의 간격 */
-    border: 1px solid gray; /* 테두리 설정 */
-    height: 20px; /* 높이 조정 */
+    margin-left: 5px;
+    border: 1px solid var(--gray-6);
+    height: 33px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.movie_rating{
+font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.movie_runtime {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie_opendate span , .movie_runtime span {
+	font-weight: 700;
+}
+
+.movie-info {
+font-size: 20px;
+    display: flex;
+    /* width: 400px; */
+    gap: 40px;
+}
+
+.icon_clock_black {
+        display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(https://www.lottecinema.co.kr/NLCHS/Content/images/icon/icon_clock_black.svg) 0 0 no-repeat;
+    margin-right: 3px;
+    transform: translateY(1px);
+}
+
+.movie-info-list li {
+	padding-bottom : 3px;
+}
+
+
+.ic_grade {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	border-radius: 50%;
+	font-size: 0;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+.ic_grade:before {
+	content: "";
+	display: block;
+	width: 22px;
+	height: 22px;
+	border-radius: 3px;
+	background-size: 100%;
+}
+
+.ic_grade.gr_all:before {
+	background: #229c56 url(../images/cmj/grade_all.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_12:before {
+	background: #e9b630 url(../images/cmj/grade_12.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_15:before {
+	background: #dd7430 url(../images/cmj/grade_15.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_19:before {
+	background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
+}
+
+.rate_info {
+	font-size: 12px;
+	color: #fff;
+	margin-right: 10px;
 }

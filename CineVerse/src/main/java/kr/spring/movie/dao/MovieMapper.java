@@ -40,6 +40,9 @@ public interface MovieMapper {
 	public List<String> selectDistinctGenres();
     List<MovieVO> filterMoviesByGenres(@Param("genres") List<String> genres);
 	
+    @Select("SELECT * FROM movie WHERE m_code = #{m_code}")
+    public MovieVO selectMovieDetail(Long m_code);
+    
 	@Select("SELECT * FROM movie JOIN movie_actor USING (m_code) JOIN movie_director USING (m_code) WHERE m_code=#{m_code}")
 	public MovieVO selectMovie(Long m_code);
 	public void updateMovie(MovieVO movie);

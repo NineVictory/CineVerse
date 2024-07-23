@@ -1,29 +1,30 @@
 #main_body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; /* 화면 크기에 맞추기 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%; /* 화면 크기에 맞추기 */
 }
 
 #main_content {
-    display: flex;
-    flex-direction: row;
-    width: 100%; /* 화면 크기에 맞추기 */
-    max-width: 1500px;
+	display: flex;
+	flex-direction: row;
+	width: 100%; /* 화면 크기에 맞추기 */
+	max-width: 1500px;
 }
 
 .movie-page {
-       display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1500px;
-    overflow-x: hidden;
-    align-items: center;
-    }
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 1500px;
+	overflow-x: hidden;
+	align-items: center;
+}
 
 .movie-main {
-    width: 1100px;
-/*     display: flex; 
+	width: 1100px;
+	/*     display: flex; 
     justify-content: right;
     margin-left: 100px;
     margin-top: 50px;
@@ -36,65 +37,75 @@
 	align-items: center;
 	position: relative;
 } */
-
-
 .search-container {
- display: flex;
-    /* align-items: center; */
-    flex-direction: column;
+	display: flex;
+	/* align-items: center; */
+	flex-direction: column;
 }
 
-
 input[type="search"] {
-    width: 200px;
-    height: 30px;
-    padding: 10px;
-    font-size: 14px;
-    background-color: #EBE9E9;
-    border: none;
-    border-radius: 10px 0px 0px 10px;
-    color: #8D8D8D;
+	width: 200px;
+	height: 30px;
+	padding: 10px;
+	font-size: 14px;
+	background-color: #EBE9E9;
+	border: none;
+	border-radius: 10px 0px 0px 10px;
+	color: #8D8D8D;
+	outline: none;
+}
+
+input[type="search"]:focus {
+	outline: none;
 }
 
 input[type="submit"] {
-    border-radius: 0px 10px 10px 0px;
-    margin-left: -4px;
-    background-color: #EBE9E9;
-    width: 30px;
-    height: 30px;
-    border: none;
-    cursor: pointer;
-    background-image: url(../images/search_icon.png);
-    background-size: 15px;
-    background-repeat: no-repeat;
-    background-position: center;
+	border-radius: 0px 10px 10px 0px;
+	margin-left: -4px;
+	background-color: #EBE9E9;
+	width: 30px;
+	height: 30px;
+	border: none;
+	cursor: pointer;
+	background-image: url(../images/search_icon.png);
+	background-size: 15px;
+	background-repeat: no-repeat;
+	background-position: center;
+	outline: none;
+}
+
+input[type="submit"]:focus {
+	outline: none;
 }
 
 input[type="search"]::placeholder {
 	color: #8D8D8D;
-    font-weight: 500;
+	font-weight: 500;
 }
-.movie-list-title{
+
+.movie-list-title {
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 }
+
 .select-wrapper {
- display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    
-    }
-.select-list-checkbox{
-    gap: 40px;
-    /* position: relative; */
-    /* top: 50px; */
-    /* left: 720px; */
-    /* width: 250px; */
-    display: flex;
-    justify-content: flex-end;
-   	
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
 }
+
+.select-list-checkbox {
+	gap: 40px;
+	/* position: relative; */
+	/* top: 50px; */
+	/* left: 720px; */
+	/* width: 250px; */
+	display: flex;
+	justify-content: flex-end;
+}
+
 .select-wrapper select {
+    margin-right: 10px;
     padding: 5px;
     font-size: 12px;
     border: 1px solid #3D3D3D;
@@ -105,24 +116,24 @@ input[type="search"]::placeholder {
 }
 
 .movie-list-page {
-   display: flex;
-    width: 90%;
-    overflow-x: hidden;
-    
-    }
+	display: flex;
+	width: 90%;
+	overflow-x: hidden;
+}
 
 .movie-list {
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    width: 100%;
-    /* overflow-x: hidden; */
-    /* overflow-y: hidden; */
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	width: 100%;
+	/* overflow-x: hidden; */
+	/* overflow-y: hidden; */
 }
 
 .movie {
-	display: flex;
+text-align: center;
+    display: flex;
     width: calc(25% - 10px);
     margin: 20px 5px 30px 5px;
     flex-direction: column;
@@ -132,117 +143,130 @@ input[type="search"]::placeholder {
 
 .movie img {
 	width: 213px;
-    height: 305px;
+	height: 305px;
 }
 
 #loadMoreButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-    margin-bottom: 30px;
-    background-color: white;
-    cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 40px;
+	margin-bottom: 30px;
+	background-color: white;
+	cursor: pointer;
 }
 
 .bookAopen {
 	margin-bottom: 5px;
-    font-size: 13px;
-    width: 225px;
-    display: flex;
-    align-items: flex-start;
-    /* margin-left: 17px; */
-    flex-direction: row;
-    justify-content: space-evenly;
+	font-size: 12px;
+	width: 225px;
+	display: flex;
+	align-items: flex-start;
+	/* margin-left: 17px; */
+	flex-direction: row;
+	justify-content: space-evenly;
 }
 
 .movie-button {
 	width: 170px;
-    display: flex;
-    /* margin-left: 22px; */
-    /* margin-top: 5px; */
-    align-items: center;
-    justify-content: space-evenly;
+	display: flex;
+	/* margin-left: 22px; */
+	/* margin-top: 5px; */
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 .movie-fav-button-detail {
-    display: flex;
-    border-radius: 5px;
-    background: white;
-    /* color: gray; */
-    font-size: 10px;
-    padding: 1px 15px;
-    cursor: pointer;
-    border: 1px solid gray;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	border-radius: 5px;
+	background: white;
+	/* color: gray; */
+	font-size: 10px;
+	padding: 1px 15px;
+	cursor: pointer;
+	border: 1px solid gray;
+	justify-content: center;
+	align-items: center;
 }
 
 .movie-fav-button i {
-    margin-right: 5px; /* 아이콘 오른쪽 여백 */
+	margin-right: 5px; /* 아이콘 오른쪽 여백 */
 }
 
 .movie-reservation-button-list {
-    border-radius: 5px;
-    background: #3F66ED;
-    color: white;
-    font-size: 10px;
-    padding: 2px 15px;
-    cursor: pointer;
-    height: 20px; /* 높이 설정 */
-}
-.genre-checkboxes{
-	display: flex;
-    /* width: 400px; */
-    /* margin-top: 20px; */
-    /* margin-right: -200px; */
-    /* padding-left: 10px; */
-    /* padding-top: 10px; */
-    padding-bottom: 10px;
-    /* background: #DBE3FF; */
-    flex-direction: row;
-    justify-content: space-between;
+	border-radius: 5px;
+	background: #3F66ED;
+	color: white;
+	font-size: 10px;
+	padding: 2px 15px;
+	cursor: pointer;
+	height: 20px; /* 높이 설정 */
 }
 
+.genre-checkboxes {
+	display: flex;
+	/* width: 400px; */
+	/* margin-top: 20px; */
+	/* margin-right: -200px; */
+	/* padding-left: 10px; */
+	/* padding-top: 10px; */
+	padding-bottom: 10px;
+	/* background: #DBE3FF; */
+	flex-direction: row;
+	justify-content: space-between;
+}
 
 .movie {
-    position: relative;
+	position: relative;
 }
 
 .overlay {
-    height: 305px;
-    width: 213px;
-    background-color: rgba(0, 0, 0, 0.6);
-    position: absolute;
-    top: 41%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    justify-content: center;
-    
-    }
+	height: 305px;
+	width: 213px;
+	background-color: rgba(0, 0, 0, 0.6);
+	position: absolute;
+	top: 42%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	justify-content: center;
+}
 
 .overlay button {
-width: 95px;
-    font-weight: 600;
-    font-size: 12px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding: 8px;
-    margin: 6px;
-    cursor: pointer;
+	width: 95px;
+	font-weight: 600;
+	font-size: 12px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 8px;
+	margin: 6px;
+	cursor: pointer;
 }
 
 .movie:hover .overlay {
-    opacity: 1;
+	opacity: 1;
 }
 
 .li-search {
-	display:flex;
+	display: flex;
+}
+
+.movie_name{
+	font-size: 14px;
+    overflow: hidden;
+    display: block;
+    margin-top: 15px;
+    width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ul-search {
+	padding:0;
 }

@@ -1,6 +1,5 @@
 package kr.spring.movie.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.spring.board.dao.BoardMapper;
-import kr.spring.board.vo.BoardFavVO;
-import kr.spring.movie.controller.MovieAjaxController;
 import kr.spring.movie.dao.MovieMapper;
 import kr.spring.movie.vo.MbDetailVO;
 import kr.spring.movie.vo.MovieActorVO;
@@ -298,6 +294,11 @@ public class MovieServiceImpl implements MovieService {
 	public void insertPointHistory(long ph_point, long mem_num, int ph_type, String ph_payment) {
 		movieMapper.insertPointHistory(ph_point, mem_num, ph_type, ph_payment);
 		
+	}
+
+	@Override
+	public MovieVO selectMovieDetail(Long m_code) {
+		return movieMapper.selectMovieDetail(m_code);
 	}
 
 	/*

@@ -26,6 +26,8 @@ public interface MovieService {
     void updateMovie(MovieVO movie);
     void deleteMovie(Long m_code);
     
+    public MovieVO selectMovieDetail(Long m_code);
+    
     public List<String> selectDistinctGenres();
     public List<MovieVO> filterMoviesByGenres(List<String> genres);
     MovieDetailKFAPIVO selectDetailKFAPIVO(String title);

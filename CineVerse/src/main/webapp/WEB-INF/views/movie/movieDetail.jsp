@@ -10,10 +10,11 @@
 <script src="${pageContext.request.contextPath}/js/movie.review.js"></script>
 <script src="${pageContext.request.contextPath}/js/movie.bookmark.js"></script>
 
+<div class="movie_details_all">
 <div class="detail-main">
     <div class="movie-container">
         <div class="movie-photo">
-            <img src="<c:url value='/upload/${movie.m_filename}' />" alt="Movie Photo">
+            <img src="${fn:split(movie.m_filename, '|')[0]}" alt="Movie Photo">
         </div>
         <div class="movie-details">
             <div class="movie-title-screening">
@@ -29,38 +30,52 @@
                     </c:choose>
                 </div>
             </div>
-            <div class="movie-infolist">
-                <span>예매율</span>
-                <span>23.3%</span>
-                <span>좋아요 수 </span>
-                <!-- 좋아요 -->
-                <div class="movie-fav-button-detail">
-                    <img class="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
-                    <span class="output_mfcount"></span>
-                </div>
-            </div>
-            <hr class="menu-hr" size="1" width="100%" noshade="noshade">
             
-            <!-- 영화정보 -->
+            
+             <!-- 영화정보 -->
             <div class="movie-info">
-                <ul>
+            	<div class="movie_opendate"><span>${movie.m_opendate}</span> 개봉 </div>
+            	<div class="movie_runtime"><span class="icon_clock_black"></span><span>${movie.runtime}</span> 분 </div>
+            	<div class="movie_rating">
+            	<span class="ic_grade <c:choose><c:when test="${movie.rating eq '12세관람가' }">gr_12</c:when>
+                    <c:when test="${movie.rating eq '12세이상관람가' }">gr_12</c:when>
+                    <c:when test="${movie.rating eq '전체관람가' }">gr_all</c:when>
+                    <c:when test="${movie.rating eq '15세관람가' }">gr_15</c:when>
+                    <c:when test="${movie.rating eq '15세이상관람가' }">gr_15</c:when>
+                    <c:when test="${movie.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
+                    <c:when test="${movie.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
+                </span>${movie.rating}</div>
+            </div>
+            <div>
+            	<ul class="movie-info-list">
                 	<c:if test="${empty movie.m_genre}">
                 	<li><b>장르 : </b> 없음</li>
                 	</c:if>
                 	<c:if test="${!empty movie.m_genre}">
                 	<li><b>장르 : </b> ${movie.m_genre}</li>
                 	</c:if>
-                    <li><b>감독 : </b> ${movie.director}</li>
-                    <li><b>영화배우/출연 : </b> ${movie.actor}</li>
-                    <li><b>개봉 :</b>${movie.m_opendate}</li>
-                    <li><b>런타임 :</b>${movie.runtime}</li>
-                    <li><b>관람연령 :</b>${movie.rating}</li>
-                </ul>
+                    <li><b>감독 : </b> ${movie.m_director}</li>
+                    <li><b>배우 : </b> ${movie.m_actor}</li>
+             	</ul>
             </div>
+            
+            
+            <div class="movie-infolist">
+                <!-- 좋아요 -->
+                <div class="movie-fav-button-detail">
+                    <img class="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
+                    <span class="output_mfcount"></span>
+                </div>
+                
+                <div class="movie-reservation" onclick="location.href='/movie/movieReserve'">
+               	 	예매하기
+            	</div>
+                
+            </div>
+            
+           
         
-            <div class="movie-reservation" onclick="location.href='/movie/movieReserve'">
-                <div class="movie-reservation-button">예매하기</div>
-            </div>
+            
         </div>
     </div>
 
@@ -101,11 +116,20 @@
                 <p>영화 소개 영상이 없습니다.</p>
             </c:otherwise>--%>
  <%--        <iframe src="${movie.m_content}" class="movie-tearsers" width="910" height="580" ></iframe> --%>
-    <c:if test="${not empty videoUrls}">
-        <c:forEach var="videoUrl" items="${videoUrls}">
-            <iframe src="${videoUrl}" class="movie-teasers" width="910" height="580"></iframe>
+ 
+ 	<c:set var="teasers" value="${fn:split(movie.m_content, ',')}" />
+
+	<c:forEach var="teaser" items="${teasers}">
+    	<iframe src="${teaser}" class="movie-teasers" width="910" height="580" frameborder="0" sandbox="allow-scripts"></iframe>
+	</c:forEach>
+ 
+<%--  
+ 
+    <c:if test="${not empty teasers}">
+        <c:forEach var="teaser" items="${teasers}">
+            <iframe src="${teasers}" class="movie-teasers" width="910" height="580"></iframe>
         </c:forEach>
-    </c:if>
+    </c:if> --%>
    <!--      <iframe src="https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK059016_P02.mp4" width="1000" height="800"></iframe>  -->
     </div>
 
@@ -176,3 +200,12 @@
 <div id="output"></div>
 -->
 </div> 
+
+</div>
+
+
+<style>
+.movie-info-list{
+	padding:0;
+}
+</style>
