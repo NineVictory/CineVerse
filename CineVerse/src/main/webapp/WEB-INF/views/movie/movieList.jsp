@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/movie.bookmark.js"></script>
 <script src="${pageContext.request.contextPath}/js/movieList.js"></script>
 
-<div class="page-container">
     <div class="movie-page">
         <div class="movie-main">
             <form id="movie_search" method="get">
@@ -49,10 +48,11 @@
                 <c:forEach var="movie" items="${movielist}" varStatus="status">
                     <c:if test="${param.status == 1 && movie.m_status == 1 || param.status != 1}">
                         <li class="movie">
-                            <img alt="영화1" src="${pageContext.request.contextPath}/upload/${movie.m_filename}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
+                            <img alt="영화1" src="${fn:split(movie.m_filename, '|')[0]}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
                             <p><a href="movieDetail?m_code=${movie.m_code}"><b>${movie.m_name}</b></a></p>
                             <div class="bookAopen">
-                                <div>예매율 34.1% | 개봉일 ${movie.m_opendate}</div>
+                            	<div>개봉일 ${movie.m_opendate}</div>
+                                <div>예매율 0% </div>
                             </div>
                             <div class="movie-button">
                                 <div class="movie-fav-button-detail">
@@ -67,4 +67,3 @@
             </ul>      
         </div>
     </div>
-</div>

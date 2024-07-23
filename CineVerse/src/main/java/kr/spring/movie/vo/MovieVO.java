@@ -19,7 +19,7 @@ public class MovieVO {
 	private long m_code;
 	@NotBlank
 	private String m_name;//영화명
-	private String m_opendate;//개봉일
+	private Date m_opendate;//개봉일
 	@NotBlank
 	private String m_companys;//제작사
 	private long m_status;//상영여부
