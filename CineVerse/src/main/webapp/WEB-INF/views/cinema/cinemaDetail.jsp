@@ -12,55 +12,55 @@
     <div class="movie-content-place">
         
         <div class="location-button"> 
-        		 	<div id="branch-list">
+                <div id="branch-list">
                 <!-- 지점명 목록이 동적으로 여기에 추가됩니다 -->
-           			 </div>
+                 </div>
               <div class="location-button-list" id="modal_open_btn">위치/지도보기</div>
              </div>
              <div id="modal">
-    			<div class="modal_content">
-    			<button type="button" class="close_btn" id="modal_close_btn">×</button>
-        			<div class="modal_title">지도</div>
-        			
-        			<hr class="custom-hr">
-       					 <!-- 지도 -->        		
-       					<!-- 지도를 표시할 div 입니다 -->
-						<div id="modal_map" style="width: 100%; height: 700px;"></div>
-						<div class="map_wrap">
-						     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
+                <div class="modal_content">
+                <button type="button" class="close_btn" id="modal_close_btn">×</button>
+                    <div class="modal_title">지도</div>
+                    
+                    <hr class="custom-hr">
+                         <!-- 지도 -->                
+                        <!-- 지도를 표시할 div 입니다 -->
+                        <div id="modal_map" style="width: 100%; height: 700px;"></div>
+                        <div class="map_wrap">
+                             <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
 
-				    <div id="map" class="bg_white">
-				        <div class="option">
-				            <div>
-				                <form onsubmit="searchPlaces(); return false;">
-				                    키워드 : <input type="text" value="영화관" id="keyword" size="15"> 
-				                    <button type="submit">검색하기</button> 
-				                </form>
-				            </div>
-				        </div>
-				        <hr>
-				        <ul id="placesList"></ul>
-				        <div id="pagination"></div>
-				    </div>
+                    <div id="map" class="bg_white">
+                        <div class="option">
+                            <div>
+                                <form onsubmit="searchPlaces(); return false;">
+                                    키워드 : <input type="text" value="영화관" id="keyword" size="15"> 
+                                    <button type="submit">검색하기</button> 
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <ul id="placesList"></ul>
+                        <div id="pagination"></div>
+                    </div>
 </div>
 <!-- 지도 스크립트 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23eb84e1f8e8eadb7771addf44c8a193"></script>
 <!-- <script type="text/javascript">
-	document.getElementById("modal_open_btn").onclick = function() {
-		document.getElementById("modal").style.display="block";
+    document.getElementById("modal_open_btn").onclick = function() {
+        document.getElementById("modal").style.display="block";
 
-		var container = document.getElementById('modal_map'); //지도를 담을 영역의 DOM 레퍼런스
-		var options = { //지도를 생성할 때 필요한 기본 옵션
-			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-			level: 3 //지도의 레벨(확대, 축소 정도)
-		};
+        var container = document.getElementById('modal_map'); //지도를 담을 영역의 DOM 레퍼런스
+        var options = { //지도를 생성할 때 필요한 기본 옵션
+            center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+            level: 3 //지도의 레벨(확대, 축소 정도)
+        };
 
-		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	}
+        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+    }
    
-	document.getElementById("modal_close_btn").onclick = function() {
-		document.getElementById("modal").style.display="none";
-	}
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("modal").style.display="none";
+    }
 </script> -->
 <script type="text/javascript">
     // 모달 열기 버튼 클릭 시
@@ -74,7 +74,7 @@
         };
 
         var map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-		
+        
         // 주소-좌표 변환 객체를 생성합니다
         var geocoder = new kakao.maps.services.Geocoder();
 
@@ -109,11 +109,11 @@
     }
 </script>
 <!-- 지도 끝 -->
-    			</div>
+                </div>
    
-    			<div class="modal_layer"></div>
-			</div>
-			<div class="content-place-location">주소 : <b></b></div>
+                <div class="modal_layer"></div>
+            </div>
+            <div class="content-place-location">주소 : <b></b></div>
             <div class="content-place-tell">문의전화 : <b></b></div>
             <div class="content-place-cinema">상영관수 : <b></b></div>
             <div class="content-place-parking">주차정보 : <b></b></div>
@@ -138,9 +138,11 @@
 
             for (var i = 0; i < 12; i++) {
                 var dayElement = document.createElement('div');
-                var displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i); //현재날짜에 i일을 더함
-                var day = displayDate.getDate(); //displayDate 에 '일' 부분을 저장 
-                var dayOfWeek = daysOfWeek[displayDate.getDay()]; // getDay() 는 요일을 가져오는 Date 객체의 함수 : 숫자 0~6사이를 반환
+                var displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i); // 현재 날짜에 i일을 더함
+                var year = displayDate.getFullYear().toString().slice(2); // 연도를 YY 형식으로 저장
+                var month = ('0' + (displayDate.getMonth() + 1)).slice(-2); // 월을 2자리 형식으로 저장
+                var day = ('0' + displayDate.getDate()).slice(-2); // 일을 2자리 형식으로 저장
+                var dayOfWeek = daysOfWeek[displayDate.getDay()]; // 요일을 가져옴
 
                 var formattedDate = day + '<br>' + dayOfWeek; // 날짜와 요일 포맷
                 var dayClass = 'movie-day';
@@ -157,20 +159,22 @@
 
                 dayElement.className = dayClass;
                 dayElement.innerHTML = formattedDate;
+                dayElement.setAttribute('data-date', year + '/' + month + '/' + day); // data-date 속성에 YY/MM/DD 형식의 날짜 추가
 
                 // 클릭 이벤트 추가
                 dayElement.addEventListener('click', function() {
-                    alert('Clicked date: ' + this.innerHTML);
-                    
-                    // 여기에 원하는 동작을 추가하세요
+                    var dateValue = this.getAttribute('data-date');
+                    alert('Clicked date: ' + dateValue);
                 });
-				//gallery 요소에 dayElement를 자식 요소로 추가
+                
+                // gallery 요소에 dayElement를 자식 요소로 추가
                 gallery.appendChild(dayElement);
             }
         }
 
-        // 영화 날짜 생성 함수 호출
-        generateMovieDays();
+        // 페이지 로드 시 영화 날짜 생성 함수 호출
+        window.onload = generateMovieDays;
+
     </script>
     <!-- 날짜 끝 -->
     <!-- 연령고지 시작 -->
@@ -195,80 +199,80 @@
     <!-- 연령고지 끝 -->
     <!-- 영화관 별 영화 목록 시작-->
     <div class="cinema-movie">
-	    <div class="cinema-movie-title">
-		    <img class="watch-all-2" src="${pageContext.request.contextPath}/images/ksh/watch-all.png">
-		    <div>인사이드 아웃</div>
-	    </div>
-	    <div class="screening-room">
-	    	<div class="cinema-hall">
-	    		1관 <br> 총 120석
-	    	</div>
-	    	<div class="timeorseat">
-	    			18:00<br>155/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			21:00<br>180/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			00:00<br>211/232
-	    	</div>
-	    
-	    </div>
-	    <hr class="custom-hr">
-	    <div class="screening-room">
-	    	<div class="cinema-hall">
-	    		2관 <br> 총 102석
-	    	</div>
-	    	<div class="timeorseat">
-	    			17:00<br>155/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			20:00<br>180/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			23:00<br>211/232
-	    	</div>
-	    	
-	    </div>
+        <div class="cinema-movie-title">
+            <img class="watch-all-2" src="${pageContext.request.contextPath}/images/ksh/watch-all.png">
+            <div>인사이드 아웃</div>
+        </div>
+        <div class="screening-room">
+            <div class="cinema-hall">
+                1관 <br> 총 120석
+            </div>
+            <div class="timeorseat">
+                    18:00<br>155/232
+            </div>
+            <div class="timeorseat">
+                    21:00<br>180/232
+            </div>
+            <div class="timeorseat">
+                    00:00<br>211/232
+            </div>
+        
+        </div>
+        <hr class="custom-hr">
+        <div class="screening-room">
+            <div class="cinema-hall">
+                2관 <br> 총 102석
+            </div>
+            <div class="timeorseat">
+                    17:00<br>155/232
+            </div>
+            <div class="timeorseat">
+                    20:00<br>180/232
+            </div>
+            <div class="timeorseat">
+                    23:00<br>211/232
+            </div>
+            
+        </div>
     </div>
     <hr class="custom-hr">
     <!--  -->
     <div class="cinema-movie">
-	    <div class="cinema-movie-title">
-		    <img class="watch-12-2" src="${pageContext.request.contextPath}/images/ksh/watch-12.png">
-		    <div>탈주</div>
-	    </div>
-	    <div class="screening-room">
-	    	<div class="cinema-hall">
-	    		1관 <br> 총 120석
-	    	</div>
-	    	<div class="timeorseat">
-	    			18:00<br>155/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			21:00<br>180/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			00:00<br>211/232
-	    	</div>
-	    
-	    </div>
-	    <hr class="custom-hr">
-	    <div class="screening-room">
-	    	<div class="cinema-hall">
-	    		2관 <br> 총 102석
-	    	</div>
-	    	<div class="timeorseat">
-	    			17:00<br>155/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			20:00<br>180/232
-	    	</div>
-	    	<div class="timeorseat">
-	    			23:00<br>211/232
-	    	</div>
-	    	
-	    </div>
+        <div class="cinema-movie-title">
+            <img class="watch-12-2" src="${pageContext.request.contextPath}/images/ksh/watch-12.png">
+            <div>탈주</div>
+        </div>
+        <div class="screening-room">
+            <div class="cinema-hall">
+                1관 <br> 총 120석
+            </div>
+            <div class="timeorseat">
+                    18:00<br>155/232
+            </div>
+            <div class="timeorseat">
+                    21:00<br>180/232
+            </div>
+            <div class="timeorseat">
+                    00:00<br>211/232
+            </div>
+        
+        </div>
+        <hr class="custom-hr">
+        <div class="screening-room">
+            <div class="cinema-hall">
+                2관 <br> 총 102석
+            </div>
+            <div class="timeorseat">
+                    17:00<br>155/232
+            </div>
+            <div class="timeorseat">
+                    20:00<br>180/232
+            </div>
+            <div class="timeorseat">
+                    23:00<br>211/232
+            </div>
+            
+        </div>
     </div>
     <hr class="custom-hr">
     

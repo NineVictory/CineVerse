@@ -133,87 +133,83 @@
         <div class="reserve-time">
         	<hr size="1" noshade width="100%">
             <div class="cinema-gallery"></div>
-            <script>
-                // 현재 날짜 객체 생성
-                let currentDate = new Date();
+			<script>
+			    // 현재 날짜 객체 생성
+			    var currentDate = new Date();
 
-                // 요일 배열 생성
-                let daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+			    // 요일 배열 생성
+			    var daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 
-                // 영화 날짜 생성 함수
-                function generateMovieDays() {
-                    let gallery = document.querySelector('.cinema-gallery');
-                    gallery.innerHTML = ''; // 기존 내용을 비웁니다.
+			    // JSP에서 전달된 c_num 값을 JavaScript 변수로 할당
+			    var cNum = ${cinema.c_num};
 
-                    for (let i = 0; i < 14; i++) {
-                        let dayElement = document.createElement('div');
-                        let displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i);
-                        let day = displayDate.getDate();
-                        let dayOfWeek = daysOfWeek[displayDate.getDay()];
-                        let year = displayDate.getFullYear().toString().slice(-2); // YY 형식
-                        let month = (displayDate.getMonth() + 1).toString().padStart(2, '0'); // MM 형식
-                        let formattedDay = day.toString().padStart(2, '0'); // DD 형식
+			    // 영화 날짜 생성 함수
+			    function generateMovieDays() {
+			        var gallery = document.querySelector('.cinema-gallery'); 
+			        gallery.innerHTML = ''; // 기존 내용을 비웁니다.
 
-                        let formattedDate = formattedDay + '<br>' + dayOfWeek;
-                        let dayClass = 'movie-day';
+			        for (var i = 0; i < 12; i++) {
+			            var dayElement = document.createElement('div');
+			            var displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i); // 현재 날짜에 i일을 더함
+			            var year = displayDate.getFullYear().toString().slice(2); // 연도를 YY 형식으로 저장
+			            var month = ('0' + (displayDate.getMonth() + 1)).slice(-2); // 월을 2자리 형식으로 저장
+			            var day = ('0' + displayDate.getDate()).slice(-2); // 일을 2자리 형식으로 저장
+			            var dayOfWeek = daysOfWeek[displayDate.getDay()]; // 요일을 가져옴
 
-                        // 요일에 따라 클래스 추가
-                        switch (displayDate.getDay()) {
-                            case 0:
-                                dayClass = 'movie-day-sun';
-                                break;
-                            case 6:
-                                dayClass = 'movie-day-sat';
-                                break;
-                        }
+			            var formattedDate = day + '<br>' + dayOfWeek; // 날짜와 요일 포맷
+			            var dayClass = 'movie-day';
 
-                        dayElement.className = dayClass;
-                        dayElement.innerHTML = formattedDate;
-                        dayElement.dataset.date = year + '/' + month + '/' + formattedDay; // 날짜 데이터 속성 추가
+			            // 요일에 따라 클래스 추가
+			            switch (displayDate.getDay()) {
+			                case 0:
+			                    dayClass = 'movie-day-sun';
+			                    break;
+			                case 6:
+			                    dayClass = 'movie-day-sat';
+			                    break;
+			            }
 
-                        // 클릭 이벤트 추가
-                        dayElement.addEventListener('click', function() {
-                            selectedDate = this.dataset.date;
-                            loadMovieTimeTable();
-                        });
+			            dayElement.className = dayClass;
+			            dayElement.innerHTML = formattedDate;
+			            dayElement.setAttribute('data-date', year + '/' + month + '/' + day); // data-date 속성에 YY/MM/DD 형식의 날짜 추가
+			            dayElement.setAttribute('data-cNum', cNum); // data-cNum 속성에 c_num 값 추가
 
-                        gallery.appendChild(dayElement);
-                    }
-                }
+			            // 클릭 이벤트 추가
+			            dayElement.addEventListener('click', function() {
+			                var mt_date = this.getAttribute('data-date');
+			                var c_num = this.getAttribute('data-cNum');
+			                $.ajax({
+			                    url: '/cinema/getMovieList',
+			                    method: 'get',
+			                    data: { mt_date: mt_date, c_num: c_num },
+			                    success: function(response) {
+			                        var theater_list = document.querySelector('.theater-list');
+			                        theater_list.innerHTML = ''; // 기존 목록 비우기
+			                        response.moviewTimeList.forEach(function(movie) {
+			                            var listItem = document.createElement('li');
+										listItem.innerHTML = movie.m_name + '<br>' + movie.th_name + '  ' + movie.mt_start + '~' + movie.mt_end;
+										theater_list.appendChild(listItem); // 목록에 항목 추가
+			                        });
+			                    },
+			                    error: function() {
+			                        alert('네트워크 오류');
+			                    }
+			                });
+			            });
 
-                // 영화 날짜 생성 함수 호출
-                generateMovieDays();
-            </script>
+			            // gallery 요소에 dayElement를 자식 요소로 추가
+			            gallery.appendChild(dayElement);
+			        }
+			    }
+
+			    // 페이지 로드 시 영화 날짜 생성 함수 호출
+			    window.onload = generateMovieDays;
+			</script>
             <hr size="1" noshade width="100%">
 					<ul class="theater-list">
-						<c:forEach var="theater" items="${theaterList}">
-							<li>${theater.th_name}</li>
-						</c:forEach>
+						
 					</ul>
-					<div class="movie-time-list">
-            <table>
-                <thead>
-                    <tr>
-                        <th>상영관</th>
-                        <th>상영일자</th>
-                        <th>시작 시간</th>
-                        <th>종료 시간</th>
-                        <th>영화 코드</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="time" items="${movieTimeList}">
-                        <tr>
-                            <td>${time.c_num}</td>
-                            <td>${time.mt_date}</td>
-                            <td>${time.mt_start}</td>
-                            <td>${time.mt_end}</td>
-                            <td>${time.m_code}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
+					
 		</div>
 		
 
