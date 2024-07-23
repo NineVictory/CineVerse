@@ -200,6 +200,7 @@ public class AdminServiceImpl implements AdminService{
 		adminMapper.refundMembership(mem_num, point_payment);
 		adminMapper.deleteMembership(mem_num);
 		adminMapper.updateMembership(mem_num);
+		adminMapper.deleteCoupon(mem_num);
 		memberMapper.totalPoint(mem_num);
 	}
 	@Override
@@ -226,5 +227,4 @@ public class AdminServiceImpl implements AdminService{
 	public Integer selectConsultRowCount(Map<String, Object> map) {
 		return adminMapper.selectConsultRowCount(map);
 	}
-	
 }
