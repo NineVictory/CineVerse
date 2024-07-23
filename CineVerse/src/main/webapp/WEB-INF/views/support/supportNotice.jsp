@@ -18,7 +18,6 @@
 	           		<option value="2">내용</option>
 				</select>
 		
-				<input type="hidden" name="" value="">
 				<input type="search" class="search-input" name="keyword" placeholder="검색어를 입력해 주세요" value="${param.keyword}">
 				<button type="submit" class="search-button" aria-label="검색하기">검색</button>
 			<%--<input type="image" src="${pageContext.request.contextPath}/images/kbm/search.png" width="20" alt="검색"> --%>
@@ -46,13 +45,13 @@
 				<td class="news-table-num">${notice.nb_num}</td>
 				<td class="news-table-title">
 				 <c:choose>
-	                    <c:when test="${fn:length(notice.nb_title) > 30}">
-	                        <a href="noticeDetail?nb_num=${notice.nb_num}">${fn:substring(notice.nb_title, 0, 30)}...</a>
-	                    </c:when>
-	                    <c:otherwise>
-	                        <a href="noticeDetail?nb_num=${notice.nb_num}">${notice.nb_title}</a>
-	                    </c:otherwise>
-	                </c:choose>
+                    <c:when test="${fn:length(notice.nb_title) > 40}">
+                        <a href="noticeDetail?nb_num=${notice.nb_num}">${fn:substring(notice.nb_title, 0, 40)}...</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="noticeDetail?nb_num=${notice.nb_num}">${notice.nb_title}</a>
+                    </c:otherwise>
+                </c:choose>
 				</td>
 				<td class="news-table-rdate">${notice.nb_reg_date}</td>
 				<td class="news-table-hit">${notice.nb_hit}</td>

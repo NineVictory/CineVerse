@@ -48,7 +48,29 @@ public class SupportController {
 	
 	//고객센터 메인
 	@GetMapping("/support/main")
-	public String main() {
+	public String main(@RequestParam(defaultValue="1") int pageNum,
+			 String keyfield, String keyword, Model model) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체, 검색 레코드수
+		int count = supportService.selectNoticeRowCount(map);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,10,10,"notice");
+		List<UserNoticeVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = supportService.selectNoticeList(map);
+			
+		}
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		
 		return "supportMain";
 	}
 	
@@ -97,10 +119,10 @@ public class SupportController {
 		log.debug("공지 상세************* - nb_num : " + nb_num);
 		
 		//해당 글의 조회수 증가
-		supportService.updateHit(nb_num);
 		
 		UserNoticeVO noticeVO = supportService.selectNotice(nb_num);
-		
+		supportService.updateHit(nb_num);
+		log.debug("**************nb_hit : " + noticeVO.getNb_hit());
 		//제목에 태그를 허용하지 않음
 		noticeVO.setNb_title(StringUtil.useNoHTML(noticeVO.getNb_title()));
 		
@@ -112,10 +134,10 @@ public class SupportController {
 	}
 	
 	
-	//
+	//1:1 목록
 	@GetMapping("/support/consultList")
 	public String consultMain(@RequestParam(defaultValue="1") int pageNum,
-							  @RequestParam(defaultValue="") Long mem_num,
+							  @RequestParam(required=false) Long mem_num,
 							  Model model, HttpSession session) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user != null) {
@@ -129,7 +151,8 @@ public class SupportController {
 		int count = supportService.selectConsultRowCount(map);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(null,null,pageNum,count,15,10,"consultList","&mem_num="+mem_num);
+		String memNumParam = (mem_num != null) ? "&mem_num=" + mem_num : "";
+	    PagingUtil page = new PagingUtil(null, null, pageNum, count, 15, 10, "consultList", memNumParam.isEmpty() ? "" : memNumParam);
 		List<ConsultVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
@@ -145,7 +168,7 @@ public class SupportController {
 		return "supportConsultList";
 	}
 	
-	//문의 글상세
+	//1:1문의 글상세
 	@GetMapping("/support/consultDetail")
 	public String process(@RequestParam("consult_num") long consult_num, Model model, HttpServletRequest request, HttpSession session) {
 		log.debug("<<consult_num>>*************" + consult_num);
