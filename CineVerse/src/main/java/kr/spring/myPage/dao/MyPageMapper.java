@@ -92,7 +92,7 @@ public interface MyPageMapper {
 	//기대하는 영화
 	@Select("SELECT COUNT(*) FROM movie_bookmark WHERE mem_num=#{mem_num}")
 	public Integer movieBookMarkcnt(Long mem_num);
-	@Select("SELECT m.m_name,m.m_filename FROM movie_bookmark mb JOIN movie m USING(m_code)WHERE mb.mem_num=#{mem_num}")
+	@Select("SELECT m.m_name,m.m_filename,m.m_code FROM movie_bookmark mb JOIN movie m ON m.m_code=mb.m_code WHERE mb.mem_num=#{mem_num}")
 	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
 
 	/*
