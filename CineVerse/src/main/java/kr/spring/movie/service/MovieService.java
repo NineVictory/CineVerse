@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.board.vo.BoardFavVO;
+import kr.spring.movie.vo.MbDetailVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieDetailKFAPIVO;
@@ -66,6 +67,6 @@ public interface MovieService {
     
     //영화예매
     void saveBooking(Long mb_price, Long mem_num, Long mt_num, Long m_code, String selectedSeats);
-
-
+    void insertBooking(MovieBookingVO movieBooking);
+    void insertBookingDetail(MbDetailVO mbDetail);
 }

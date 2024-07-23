@@ -28,7 +28,10 @@ import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.movie.dao.MovieMapper;
 import kr.spring.movie.service.MovieService;
+import kr.spring.movie.vo.MbDetailVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.myPage.service.MyPageService;
@@ -72,7 +75,7 @@ public class MovieController {
 
 	    int count = movieService.selectMovieRowCount(map);
 
-	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 30, 10, "movieList", "&movieorder=" + movieorder);
+	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 1000, 10, "movieList", "&movieorder=" + movieorder);
 	    List<MovieVO> movielist = null;
 	    if (count > 0) {
 	        map.put("movieorder", movieorder);
@@ -235,6 +238,37 @@ public class MovieController {
 			
 	        return "moviePayment"; // 결제 페이지로 이동
 	    }
+	    @PostMapping("/movie/confirmPayment")
+	    public String confirmPayment(@RequestParam("mt_num") long mt_num, 
+	                                 @RequestParam("ticketNumber") int ticketNumber, 
+	                                 @RequestParam("selectedSeats") String selectedSeats, 
+	                                 @RequestParam("payMoney") long payMoney, 
+	                                 HttpSession session, 
+	                                 Model model) {
+	        MemberVO user = (MemberVO) session.getAttribute("user");
+
+	        // 예매 정보 생성
+	        MovieBookingVO movieBooking = new MovieBookingVO();
+	        movieBooking.setMb_price(payMoney);
+	        movieBooking.setMem_num(user.getMem_num());
+	        movieBooking.setMt_num(mt_num);
+	        // 필요 시 영화 코드를 설정	
+	        movieBooking.setM_code(mt_num);
+
+	        // 서비스 호출하여 예매 처리
+	        movieService.insertBooking(movieBooking);
+	        String[] seats = selectedSeats.split(",");
+	        for (String seat : seats) {
+	            MbDetailVO mbDetail = new MbDetailVO();
+	            mbDetail.setMd_type(1); // 예시로 사용, 실제로는 필요한 값 설정
+	            mbDetail.setMb_num(movieBooking.getMb_num());
+	            mbDetail.setSeat_num(Long.valueOf(seat.trim()));
+	            movieService.insertBookingDetail(mbDetail);
+	        }
+	        // 결제 완료 후 완료 페이지로 이동
+	        return "watchedMovie";
+	    }
+
 	
 	/*=======================
 	 * 영화 상영시간표

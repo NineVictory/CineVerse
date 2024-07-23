@@ -267,6 +267,18 @@ public class MovieServiceImpl implements MovieService {
 		 return movieMapper.selectDetailKFAPIVO(title);
 	}
 
+	@Override
+	public void insertBooking(MovieBookingVO movieBooking) {
+		movieMapper.insertBooking(movieBooking);
+		
+	}
+
+	@Override
+	public void insertBookingDetail(MbDetailVO mbDetail) {
+		movieMapper.insertBookingDetail(mbDetail);
+		
+	}
+
 
 
 
