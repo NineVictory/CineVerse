@@ -26,7 +26,7 @@
 					<c:if test="${point.ph_payment == 'tosspay' }">토스페이</c:if>
 					<c:if test="${point.ph_payment == 'goods' }">굿즈 구매</c:if>
 					<c:if test="${point.ph_payment == 'membership' }">멤버십 구독</c:if>
-					<c:if test="${point.ph_payment == '환불' }">멤버십 구독취소</c:if>
+					<c:if test="${point.ph_payment == '구독권 환불' }">멤버십 구독취소</c:if>
 					<c:if test="${point.ph_payment == '' }">영화 예매</c:if>
 				</div>
 				<div class="my_point_now">
@@ -40,7 +40,8 @@
 			<div class="my_point_count">
 				<div>
 				<c:choose>
-					<c:when test="${point.ph_type == 0 || point.ph_type == 1}">-</c:when>
+					
+					<c:when test="${point.ph_type == 1 }">-</c:when>
 					<c:when test="${point.ph_type == 2 }">+</c:when>
 				</c:choose>
 				${point.ph_point}P</div>

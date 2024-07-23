@@ -6,19 +6,19 @@
 	<div class="myPage_active">
 		<div class="m_except" onclick="location.href='/myPage/expectingMovie'">
 			<!-- 아이콘 이미지 -->
-			<div class="test_icon">아이콘</div>
+			<div><img src="${pageContext.request.contextPath}/images/pmj/expect.png"class="test_icon"></div>
 			<div class="myPageMain_font_b">기대되는 영화</div>
 			<div class="myPageMain_font_s">보고싶은 영화들을 미리 담아놓고 싶다면?</div>
 		</div>
 		<div class="m_watching" onclick="location.href='/myPage/watchedMovie'">
 			<!-- 아이콘 이미지 -->
-			<div class="test_icon">아이콘</div>
+			<div><img src="${pageContext.request.contextPath}/images/pmj/movie.png"class="test_icon"></div>
 			<div class="myPageMain_font_b">내가 본 영화</div>
 			<div class="myPageMain_font_s">관람한 영화들을 한번에 모아 보고 싶다면?</div>
 		</div>
-		<div class="m_review" onclick="location.href='/myPage/#'"><!-- 내가 쓴 평점 링크 추가 -->
+		<div class="m_review" onclick="location.href='/myPage/review'">
 			<!-- 아이콘 이미지 -->
-			<div class="test_icon">아이콘</div>
+			<div><img src="${pageContext.request.contextPath}/images/pmj/review.png"class="test_icon"></div>
 			<div class="myPageMain_font_b">내가 쓴 평점</div>
 			<div class="myPageMain_font_s">관람 후 내 감상평을 적어 추억하고 싶다면?</div>
 		</div>

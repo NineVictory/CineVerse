@@ -25,6 +25,7 @@ import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
@@ -79,6 +80,27 @@ public class MyPageController {
 		return "myPageMain";
 	}
 
+	// 나의 활동 - 기대되는 영화
+	@GetMapping("/myPage/expectingMovie")
+	public String expectingMovie(HttpSession session, Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		int count = mypageService.movieBookMarkcnt(user.getMem_num());
+		
+		List<MovieBookMarkVO> movie = null;
+		if(count > 0) {
+			movie = mypageService.movieBookMarkList(user.getMem_num());
+			log.debug("<<찜한 영화 목록>> : " + movie);
+		}
+		
+		model.addAttribute("count",count);
+		model.addAttribute("movie",movie);
+		model.addAttribute("member", member);
+		return "expectingMovie";
+		}
+	
+	
 	// 나의 예매내역
 	@GetMapping("/myPage/reservation")
 	public String myPageReservation(HttpSession session, Model model) {
@@ -115,17 +137,11 @@ public class MyPageController {
 		return "coupon";
 	}
 
-	// 나의 활동 - 기대되는 영화
-	@GetMapping("/myPage/expectingMovie")
-	public String expectingMovie(HttpSession session, Model model) {
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		
-		
-		model.addAttribute("member", member);
-		return "expectingMovie";
-	}
+	
+	
+	//기대하는 영화
+	
+	
 
 	// 나의 활동 - 내가 본 영화
 	@GetMapping("/myPage/watchedMovie")
@@ -409,6 +425,18 @@ public class MyPageController {
 			
 			return "chatList";
 		}
+		
+	//멤버십 구독
+	@GetMapping("/myPage/membershipUpdate")
+	public String membershipUpdate(Model model,HttpServletRequest request) {
+		mypageService.updateNoSub();
+		mypageService.updateNoSubDate();
+		
+		model.addAttribute("message","구독 서비스 해지 완료");
+		model.addAttribute("url",request.getContextPath()+"/main/main");
+		return "common/resultAlert";
+	}
+		
 		
 		
 	// 회원 정보 - 비밀번호 변경 폼

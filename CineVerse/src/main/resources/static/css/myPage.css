@@ -312,10 +312,8 @@
 /* 아이콘 위치 삭제---------------------- */
 .test_icon {
 	margin: 0 auto;
-	background-color: #fff;
-	width: 40px;
-	height: 40px;
-	margin-bottom: 8px;
+	width: 45px;
+	padding-top: 3px;
 }
 /* 아이콘 위치 삭제---------------------- */
 .myPageMain_font_b {
@@ -474,6 +472,10 @@
 	margin-right: auto;
 	margin-left: 30px;
 	font-weight: 500;
+	width: 800px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* =======================
