@@ -35,7 +35,7 @@
 <div class="myPageNav">
     <ul>
         <li class="mp_nav_myPage" id="mp_nav_myPage"><a href="/myPage/myPageMain">MY 페이지</a></li>
-        <li class="mp_nav" id="mp_nav_reservation"><a href="/myPage/reservation">나의 예매내역</a></li>
+        <li class="mp_nav" id="mp_nav_reservation"><a href="/myPage/reservationList">나의 예매내역</a></li>
         <li class="mp_nav" id="mp_nav_coupon"><a href="/myPage/coupon">나의 쿠폰</a></li>
         <li class="mp_nav" id="mp_nav_expectingMovie">나의 활동</li>
         <li class="mp_li" id="mp_li_expectingMovie"><a href="/myPage/expectingMovie">기대되는 영화</a></li>
