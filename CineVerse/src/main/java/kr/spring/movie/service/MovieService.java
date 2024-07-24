@@ -73,8 +73,9 @@ public interface MovieService {
     void insertBooking(MovieBookingVO movieBooking);
     void insertBookingDetail(MbDetailVO mbDetail);
     void insertPointHistory(long ph_point, long mem_num, int ph_type, String ph_payment);
-
+    
 	/* void updateMemberPoint(long ph_point, long mem_num); */
 	/* void usePoint(long ph_point, long mem_num); */
+    void updateMemberPoint(long newPoint, long mem_num);
     void useCoupon(long mem_coupon_use, long mc_num);
 }

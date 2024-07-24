@@ -301,6 +301,12 @@ public class MovieServiceImpl implements MovieService {
 		return movieMapper.selectMovieDetail(m_code);
 	}
 
+	@Override
+	public void updateMemberPoint(long newPoint, long mem_num) {
+		 movieMapper.updateMemberPoint(newPoint, mem_num);
+		
+	}
+
 	/*
 	 * @Override public void updateMemberPoint(long ph_point, long mem_num) {
 	 * movieMapper.updateMemberPoint(ph_point, mem_num);

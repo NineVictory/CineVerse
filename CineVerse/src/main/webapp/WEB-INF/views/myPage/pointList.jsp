@@ -27,7 +27,7 @@
 					<c:if test="${point.ph_payment == 'goods' }">굿즈 구매</c:if>
 					<c:if test="${point.ph_payment == 'membership' }">멤버십 구독</c:if>
 					<c:if test="${point.ph_payment == '구독권 환불' }">멤버십 구독취소</c:if>
-					<c:if test="${point.ph_payment == '' }">영화 예매</c:if>
+					<c:if test="${point.ph_payment == '영화 예약' }">영화 예매</c:if>
 				</div>
 				<div class="my_point_now">
 				<c:choose>

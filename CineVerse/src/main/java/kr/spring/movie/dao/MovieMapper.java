@@ -152,6 +152,9 @@ public interface MovieMapper {
     @Insert("INSERT INTO point_history (ph_num, ph_point, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{ph_point}, #{mem_num}, #{ph_type}, #{ph_payment})")
     void insertPointHistory(@Param("ph_point") long ph_point, @Param("mem_num") long mem_num, @Param("ph_type") int ph_type, @Param("ph_payment") String ph_payment);
     
+    @Update("UPDATE member_detail SET point = #{newPoint} WHERE mem_num = #{mem_num}")
+    void updateMemberPoint(@Param("newPoint") long newPoint, @Param("mem_num") long mem_num);
+
     // 결제시 쿠폰 소진하기
     @Update("UPDATE member_coupon SET coupon_use=2, mem_coupon_use=#{mem_coupon_use} WHERE mc_num=#{mc_num}")
     public void useCoupon(@Param("mem_coupon_use") long mem_coupon_use, @Param("mc_num") long mc_num);

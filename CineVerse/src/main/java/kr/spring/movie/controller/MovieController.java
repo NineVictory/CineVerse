@@ -248,7 +248,7 @@ public class MovieController {
                                         @RequestParam("seatNum") String seatNum, 
                                         @RequestParam("m_code") long m_code,
                                         @RequestParam(value = "mc_num", required = false) Long mc_num, // 쿠폰 번호 (옵션)
-                                        @RequestParam(value = "userPoints", required = false) Long userPoints, // 사용자 포인트 (옵션)
+                                        @RequestParam("remainingPoints") long remainingPoints, // 남은 포인트 값
                                         HttpSession session, 
                                         Model model) {
                MemberVO user = (MemberVO) session.getAttribute("user");
@@ -290,7 +290,8 @@ public class MovieController {
 				 */
             // 포인트 차감 및 기록
 			/* movieService.updateMemberPoint(finalAmount, user.getMem_num()); */
-               movieService.insertPointHistory(finalAmount, user.getMem_num(), 2, "영화 예약");
+               movieService.updateMemberPoint(remainingPoints, user.getMem_num());
+               movieService.insertPointHistory(finalAmount, user.getMem_num(), 1, "영화 예약");
 
                // 쿠폰 사용 상태 업데이트
                if (mc_num != null) {
