@@ -57,6 +57,10 @@ public interface CinemaService {
 	//선택한 지점명에 대한 상영관 보여주기
 	public List<TheaterVO> insertTimeTheaterList(long c_num);
 	
+	//상영시간표 등록 시 시간 중복 체크(동일 시간대 상영 유무 확인)
+	public boolean checkOverlap(MovieTimeVO movieTimeVO);
+	
+	
 	
 		//영화관(잠시 보류)
 		//public List<CinemaVO> selectCinemaList(Integer c_location);

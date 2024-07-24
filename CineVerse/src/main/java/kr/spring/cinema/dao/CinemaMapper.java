@@ -49,7 +49,7 @@ public interface CinemaMapper {
 	
 	
 	
-	 /*=======================
+	/*=======================
      * 영화 시간표 등록 페이지
     *=======================*/
 	//상영중인 영화만 목록으로 보여주기
@@ -61,7 +61,8 @@ public interface CinemaMapper {
 	//선택한 지점명에 대한 상영관 보여주기
 	public List<TheaterVO> insertTimeTheaterList(long c_num);
 	
-	
+	//상영시간표 등록 시 시간 중복 체크(동일 시간대 상영 유무 확인)
+	public int checkOverlap(MovieTimeVO movieTimeVO);
 	
 	
 	

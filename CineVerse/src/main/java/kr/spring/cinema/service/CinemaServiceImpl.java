@@ -102,6 +102,12 @@ public class CinemaServiceImpl implements CinemaService{
 		return cinemaMapper.insertTimeTheaterList(c_num);
 	}
 
+	@Override
+	public boolean checkOverlap(MovieTimeVO movieTimeVO) {
+		int count = cinemaMapper.checkOverlap(movieTimeVO);
+	    return count > 0;  // 겹치는 시간이 있으면 true 반환
+	}
+
 	
 	
 	/*

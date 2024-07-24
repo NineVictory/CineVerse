@@ -170,12 +170,19 @@ public class AdminMovieController {
             log.debug("<<영화 시간표 저장>> : "+movietimeVO);
                
             
+            // 시간대 중복 체크
+            if (cinemaService.checkOverlap(movietimeVO)) {
+                model.addAttribute("message", "선택한 시간대가 이미 등록된 상영 시간과 겹칩니다.");
+                model.addAttribute("url", request.getContextPath() + "/admin/adminMovieTime");
+                return "common/resultAlert";
+            }
+            
             try {
                 // 영화 시간표 등록
                 movieService.insertMovieTime(movietimeVO);
                 log.debug("<<영화 시간표 저장>> : " + movietimeVO);
                 
-                model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+                model.addAttribute("message", "성공적으로 시간이 등록되었습니다.");
                 model.addAttribute("url", request.getContextPath() + "/admin/adminMovieTime");
                 
                 return "common/resultAlert"; // 성공 시 결과 알림 페이지로 이동
