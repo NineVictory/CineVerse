@@ -164,7 +164,7 @@
 
 
 <!-- 신고 모달 -->
-<div class="modal" id="reportModal">
+<%-- <div class="modal" id="reportModal">
 	<div class="modal-content">
 		<span class="close" id="closeModal">&times;</span>
 			<h2>신고하기</h2>
@@ -188,3 +188,4 @@
         </form:form>
     </div>
 </div>
+ --%>
