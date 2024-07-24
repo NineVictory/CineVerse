@@ -75,7 +75,7 @@ $(document).ready(function() {
                     <label for="mt_end">종료 시간</label>
                     <input type="text" name="mt_end" id="mt_end" class="input-check" placeholder="HH:MM" required>
                 </li>
-        
+          
         		<li>
                     <label for="m_code">영화코드</label>
                     <input type="text" name="m_code" id="m_code" class="input-check" placeholder="영화 코드를 입력하세요" required>
