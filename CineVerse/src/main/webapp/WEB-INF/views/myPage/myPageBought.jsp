@@ -32,7 +32,7 @@
 						<div class="mpMovie_info">
 							<div class="bought_info"><!-- 20,47,48,49에 사용한 변수는 myPage.css(1086)에 새로 추가했어요 쩝 -->
 								<span class="mp_movie_number_1">결제번호</span>
-								<span class="mp_movie_number_3">${o.od_number}</span>
+								<span class="mp_movie_number_3">${o.od_number} </span>
 								<span class="my_delivery_process">상품 준비 중</span>
 							</div>
 							<div class="mp_movie_title">${o.p_name} 외 ${o.total_quantity}건</div>
