@@ -190,7 +190,7 @@ public class MovieController {
             // 포맷을 적용하여 문자열로 변환
             SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd");
             String mt_date = outputFormat.format(date);
-
+            
            return cinemaService.selectMovieTimeList(c_num, m_code, mt_date);
        }
    
@@ -202,11 +202,12 @@ public class MovieController {
            // 선택한 영화 및 지점명 정보 목록 조회
            List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
            List<SeatVO> seatList = cinemaService.selectSeatList(mt_num);
+           List<SeatVO> bookedSeats = movieService.seatBooking(mt_num);
            
            // Model 객체에 데이터 추가
            model.addAttribute("movieInfoList", movieInfoList);
            model.addAttribute("seatList", seatList);
-           
+           model.addAttribute("bookedSeats", bookedSeats);
            // 뷰 이름 반환
            return "movieSeat"; 
        }

@@ -19,6 +19,7 @@ import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.seat.vo.SeatVO;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
@@ -306,6 +307,14 @@ public class MovieServiceImpl implements MovieService {
 		 movieMapper.updateMemberPoint(newPoint, mem_num);
 		
 	}
+
+	@Override
+	public List<SeatVO> seatBooking(long mt_num) {
+		
+		return movieMapper.seatBooking(mt_num);
+	}
+
+
 
 	/*
 	 * @Override public void updateMemberPoint(long ph_point, long mem_num) {

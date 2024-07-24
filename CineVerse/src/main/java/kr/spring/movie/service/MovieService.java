@@ -16,6 +16,7 @@ import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.seat.vo.SeatVO;
 
 public interface MovieService {
     // 영화 목록 리스트
@@ -78,4 +79,6 @@ public interface MovieService {
 	/* void usePoint(long ph_point, long mem_num); */
     void updateMemberPoint(long newPoint, long mem_num);
     void useCoupon(long mem_coupon_use, long mc_num);
+    
+    public List<SeatVO> seatBooking(long mt_num);
 }

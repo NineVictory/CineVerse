@@ -123,11 +123,6 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		<!-- 라이브러리 추가 끝 -->
-		<dependency>
-			<groupId>kr.spring</groupId>
-			<artifactId>mvc</artifactId>
-			<version>1.0.0-BUILD-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>

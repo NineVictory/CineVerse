@@ -341,3 +341,7 @@
 .row{
     display: flex;
 }
+.seat.booked {
+    pointer-events: none;
+    opacity: 0.5; /* 예약된 좌석을 시각적으로 구분하기 위해 투명도 조정 */
+}

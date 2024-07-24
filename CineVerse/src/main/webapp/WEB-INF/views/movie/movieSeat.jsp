@@ -68,7 +68,7 @@
                             <div class="seatContainer" id="seatContainer">
                                 <div class="screen"></div>
                                 <!-- JavaScript로 생성된 좌석이 여기에 추가됩니다 -->
-                                <c:forEach var="i" begin="0" end="${fn:length(seatList) / 12}">
+                               <%--  <c:forEach var="i" begin="0" end="${fn:length(seatList) / 12}">
                                     <div class="row">
                                         <c:forEach var="j" begin="0" end="11">
                                             <c:if test="${i * 12 + j < fn:length(seatList)}">
@@ -78,8 +78,30 @@
                                             </c:if>
                                         </c:forEach>
                                     </div>
-                                </c:forEach>
-                            </div>
+                                </c:forEach> --%>
+								<c:forEach var="i" begin="0" end="${fn:length(seatList) / 12}">
+									<div class="row">
+										<c:forEach var="j" begin="0" end="11">
+											<c:if test="${i * 12 + j < fn:length(seatList)}">
+												<c:set var="isBooked" value="false" />
+												<c:forEach var="bookedSeat" items="${bookedSeats}">
+													<c:if
+														test="${bookedSeat.seat_num == seatList[i * 12 + j].seat_num}">
+														<c:set var="isBooked" value="true" />
+													</c:if>
+												</c:forEach>
+
+												<span class="seat ${isBooked ? 'booked' : ''}"
+													data-seat-num="${seatList[i * 12 + j].seat_num}"
+													${isBooked ? 'data-booked="true"' : ''}>
+													${seatList[i * 12 + j].seat_row}${seatList[i * 12 + j].seat_column}
+												</span>
+											</c:if>
+										</c:forEach>
+									</div>
+								</c:forEach>
+
+							</div>
                         </div>
                     </div>
                 </div>
@@ -156,6 +178,13 @@ document.addEventListener('DOMContentLoaded', () => {
     //좌석을 클릭했을 때 실행되는 함수
     seatContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('seat')) {
+        	
+            // 예약된 좌석인지 확인
+            if (e.target.classList.contains('booked')) {
+                alert("이 좌석은 이미 예약되었습니다.");
+                return;
+            }
+        	
             const selectedSeat = e.target;
             const totalPeople = Array.from(quantityInputs).reduce((sum, input) => sum + parseInt(input.value), 0);
             const totalSelectedSeats = selectedSeats.length;
