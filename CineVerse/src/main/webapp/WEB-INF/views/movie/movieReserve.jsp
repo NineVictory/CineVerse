@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -16,17 +16,16 @@ $(document).ready(function() {
         let c_num = $(this).data('cnum'); // 클릭한 지점의 c_num 값 가져오기
         selectedCNum = $(this).attr('data-cnum');
         
-     	// 선택된 영화, 날짜, 시간 초기화
+        // 선택된 영화, 날짜, 시간 초기화
         selectedMCode = null;
         selectedDate = null;
         selectedMtStart = null;
         $('#mt_num').val(''); // hidden input 초기화
         
-        
         // 영화 목록 불러오기
         $.ajax({
             type: 'GET',
-            url: '${pageContext.request.contextPath}/getMoviesByCinema',
+            url: '${pageContext.request.contextPath}/movieReserveList',
             data: { c_num: c_num },
             dataType: 'json',
             success: function(data) {
@@ -42,27 +41,22 @@ $(document).ready(function() {
             }
         });
         
-     	// 날짜 및 시간 초기화
+        // 날짜 및 시간 초기화
         $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
         $('.movietime-item').removeClass('active');
         $('.movietime-select').empty(); // 시간표 목록 초기화
-        
-        
     });
 
     // 영화 클릭 이벤트 핸들러 설정
     $(document).on('click', '.select', function(e) {
         e.preventDefault(); // 기본 동작 중지
 
-       
         selectedMCode = $(this).attr('data-mcode');
         
-     	// 선택된 날짜, 시간 초기화
+        // 선택된 날짜, 시간 초기화
         selectedDate = null;
         selectedMtStart = null;
         $('#mt_num').val(''); // hidden input 초기화
-        
-        
         
         // 모든 영화 항목에서 active 클래스 제거
         $('.select').removeClass('active');
@@ -70,16 +64,15 @@ $(document).ready(function() {
         // 클릭한 영화 항목에 active 클래스 추가
         $(this).addClass('active');
         
-     	// 날짜 및 시간 초기화
+        // 날짜 및 시간 초기화
         $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
         $('.movietime-item').removeClass('active');
         $('.movietime-select').empty(); // 시간표 목록 초기화
-        
     });
 
     // 날짜 클릭 이벤트 핸들러 설정
     $(document).on('click', '.movie-day, .movie-day-sun, .movie-day-sat', function() {
-    	if (selectedMCode) { // 영화가 선택된 경우에만 날짜 선택
+        if (selectedMCode) { // 영화가 선택된 경우에만 날짜 선택
             selectedDate = $(this).data('date'); // 클릭한 날짜의 값 가져오기
             
             // 모든 날짜 항목에서 active 클래스 제거
@@ -95,12 +88,16 @@ $(document).ready(function() {
             // 모든 상영시간 항목에서 active 클래스 제거
             $('.movietime-item').removeClass('active');
              
-            
             loadMovieTimeTable(); // 영화 시간표 목록을 불러오는 함수 호출
         } else {
             alert('영화를 먼저 선택해주세요.');
         }
     });
+
+    function formatTime(time) {
+        let str = time.toString().padStart(4, '0'); // Ensure the time is at least 4 digits
+        return str.slice(0, 2) + ':' + str.slice(2);
+    }
 
     function loadMovieTimeTable() {
         if (selectedCNum && selectedMCode && selectedDate) {
@@ -114,8 +111,8 @@ $(document).ready(function() {
                     // 성공적으로 데이터를 받았을 때 처리
                     let selectMovieTimeListHtml = '';
                     $.each(data, function(index, movietime) {
-                        selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + movietime.mt_end + '" data-mtnum="' + movietime.mt_num + '">';
-                        selectMovieTimeListHtml += '<div class="mt-start">' + movietime.mt_start + '</div>';
+                        selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + formatTime(movietime.mt_end) + '" data-mtnum="' + movietime.mt_num + '">';
+                        selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(movietime.mt_start) + '</div>';
                         selectMovieTimeListHtml += '<div class="mt-date">' + movietime.mt_date + '</div>';
                         selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name + '</div>';
                         selectMovieTimeListHtml += '</li>';
@@ -132,7 +129,7 @@ $(document).ready(function() {
     // 영화 시간 데이터 담기 클릭 이벤트 핸들러 추가
     $(document).on('click', '.movietime-item', function() {
         selectedMtStart = $(this).data('mtnum'); 
-		$('#mt_num').val(selectedMtStart);
+        $('#mt_num').val(selectedMtStart);
         // 모든 상영시간 항목에서 active 클래스 제거
         $('.movietime-item').removeClass('active');
         
@@ -319,21 +316,21 @@ $(document).ready(function() {
         </div>
 
         <div class="seat-select-button">
-        <form action="movieSeat" method="get">
-        	<input type="hidden" name="mt_num" id="mt_num">
-        	<c:if test="${!empty user}">
-            <input type="submit" class="movieSeatButton" value="좌석 선택">
-            </c:if>
-            <c:if test="${empty user}">
-            <input type="button" class="movieSeatButton" value="좌석 선택" onclick="alertAndRedirect()">
-            </c:if>
-        </form>    
+            <form action="movieSeat" method="get">
+                <input type="hidden" name="mt_num" id="mt_num">
+                <c:if test="${!empty user}">
+                    <input type="submit" class="movieSeatButton" value="좌석 선택">
+                </c:if>
+                <c:if test="${empty user}">
+                    <input type="button" class="movieSeatButton" value="좌석 선택" onclick="alertAndRedirect()">
+                </c:if>
+            </form>    
         </div>
         <script>
-		    function alertAndRedirect() {
-		        alert("로그인 후 이용하실 수 있습니다.");
-		        location.href = '${pageContext.request.contextPath}/member/login';
-		    }
-		</script>
+            function alertAndRedirect() {
+                alert("로그인 후 이용하실 수 있습니다.");
+                location.href = '${pageContext.request.contextPath}/member/login';
+            }
+        </script>
     </div>
 </div>
