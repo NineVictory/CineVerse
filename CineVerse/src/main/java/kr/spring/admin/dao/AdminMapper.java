@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
@@ -64,7 +65,14 @@ public interface AdminMapper {
     public void insertNotice(NoticeVO noticeVO);
     @Delete("DELETE FROM notice_board WHERE nb_num = #{nb_num}")
     public void deleteNotice(long nb_num);
-    		
+    
+    // FAQ
+ 	public List<FaqVO> selectFaqList(Map<String,Object> map);
+ 	public Integer selectFaqRowCount(Map<String,Object> map);
+    public void insertFaq(FaqVO FaqVO);
+    @Delete("DELETE FROM faq WHERE f_num = #{f_num}")
+    public void deleteFaq(long f_num);
+     
     // 이벤트
 	public List<EventVO> selectEventList(Map<String,Object> map);
 	public Integer selectEventRowCount(Map<String,Object> map);

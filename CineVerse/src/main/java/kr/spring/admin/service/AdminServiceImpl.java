@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.spring.admin.dao.AdminMapper;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
@@ -231,4 +232,22 @@ public class AdminServiceImpl implements AdminService{
 	public void updateAnswer(long consult_num) {
 		adminMapper.updateAnswer(consult_num);
 	}
+
+	@Override
+	public void insertFaq(FaqVO FaqVO) {
+		adminMapper.insertFaq(FaqVO);
+	}
+	@Override
+	public List<FaqVO> selectFaqList(Map<String, Object> map) {
+		return adminMapper.selectFaqList(map);
+	}
+	@Override
+	public Integer selectFaqRowCount(Map<String, Object> map) {
+		return adminMapper.selectFaqRowCount(map);
+	}
+	@Override
+	public void deleteFaq(long f_num) {
+		adminMapper.deleteFaq(f_num);
+	}
+
 }

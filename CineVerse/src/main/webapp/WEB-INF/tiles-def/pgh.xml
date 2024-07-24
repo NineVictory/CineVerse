@@ -41,6 +41,20 @@
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminNoticeFormCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminNoticeForm.jsp" />
 	</definition>
+	
+	<!-- FAQ -->
+	<definition name="adminFaq" extends="adminMain">
+		<put-attribute name="title" value="Faq" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminFaqCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminFaq.jsp" />
+	</definition>
+
+	<!-- FAQ 등록폼 -->
+	<definition name="adminFaqForm" extends="adminMain">
+		<put-attribute name="title" value="Faq 등록폼" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminFaqFormCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminFaqForm.jsp" />
+	</definition>
 
 	<!-- 이벤트 -->
 	<definition name="adminEvent" extends="adminMain">

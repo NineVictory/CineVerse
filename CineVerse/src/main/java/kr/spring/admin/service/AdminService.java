@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
@@ -36,6 +37,10 @@ public interface AdminService {
 	public Integer selectNoticeRowCount(Map<String,Object> map);
 	public void insertNotice(NoticeVO noticeVO);
 	public void deleteNotice(long nb_num);
+ 	public List<FaqVO> selectFaqList(Map<String,Object> map);
+ 	public Integer selectFaqRowCount(Map<String,Object> map);
+    public void insertFaq(FaqVO FaqVO);
+    public void deleteFaq(long f_num);
 	public List<BoardVO> selectCommunityList(Map<String,Object> map);
 	public Integer selectCommunityRowCount(Map<String,Object> map);
 	public List<AssignVO> selectAssginList(Map<String,Object> map);
