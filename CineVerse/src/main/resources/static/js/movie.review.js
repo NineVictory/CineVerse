@@ -157,7 +157,7 @@ $(document).ready(function() {
 
                 // 리뷰 목록 작업
                 $(param.list).each(function(index, item) {
-                    if (index > 0) $('#output').append('<hr size="1" width="100%">');
+                    if (index > 0) $('#output').append('');
 
                     let output = '<div class="item">';
                     output += '     <ul class="detail-info">';
@@ -186,9 +186,9 @@ $(document).ready(function() {
                     output += '<div class="rating">';
                     for (let i = 1; i <= 5; i++) {
                         if (i <= item.mr_grade) {
-                            output += '<img src="../images/cje/star_yes.png" width="20" height="20">';
+                            output += '<img src="../images/cje/star_yes.png" width="16" height="16">';
                         } else {
-                            output += '<img src="../images/cje/star_no.png" width="20" height="20">';
+                            output += '<img src="../images/cje/star_no.png" width="16" height="16">';
                         }
                     }
                     output += '</div>';

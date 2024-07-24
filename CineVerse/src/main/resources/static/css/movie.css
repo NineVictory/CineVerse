@@ -362,12 +362,9 @@ width: 1100px;
 	right: 40px; /* output_rvcount의 위치에 따라 조정 */
 }
 
-.mr-review-content {
-	margin: 20px;
-}
 
-.spoiler-content {
-	margin: 20px;
+.spoiler-content ,.mr-review-content {
+	padding: 7px 0px 5px 5px;
 }
 
 #output_mrcount {
@@ -534,4 +531,28 @@ gap: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+
+.item {
+	    padding: 15px;
+    font-size: 12px;
+    border: none;
+    background: var(--gray-1);
+    border-radius: 20px;
+}
+
+.rating {
+	height: 15px;
+    padding: 0px 0px 0px 35px;
+}
+
+.detail-info {
+	padding :0;
+}
+
+#output {
+	    gap: 20px;
+    display: flex;
+    flex-direction: column;
 }
