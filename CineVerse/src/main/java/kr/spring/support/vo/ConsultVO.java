@@ -1,6 +1,5 @@
 package kr.spring.support.vo;
 
-import java.sql.Clob;
 import java.sql.Date;
 
 import javax.validation.constraints.NotBlank;

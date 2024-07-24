@@ -851,37 +851,31 @@ public class AdminController {
 			return "adminConsult";
 
 		}
-		//수정 폼 호출
+		//답변 폼 호출
 		@GetMapping("/admin/adminAnswer")
-		public String UpdateAnswer(long consult_num,Model model) {
+		public String AnswerUpdate(long consult_num,Model model) {
 			ConsultVO consultVO = 
 					adminService.selectConsult(consult_num);
-			model.addAttribute("ConsultVO", consultVO);
+			model.addAttribute("consultVO", consultVO);
 			
 			return "adminAnswer";
 		}
+		
 		//수정 폼에서 전송된 데이터 처리
-		@PostMapping("/updateAnswer")
-		public String adminAnswer(@ModelAttribute("consultVO")ConsultVO consultVO){
-			
+		@PostMapping("/admin/adminAnswer")
+		public String submitUpdate(@Valid ConsultVO consultVO,
+				                   BindingResult result,
+				                   Model model,
+				                   HttpServletRequest request) throws IllegalStateException, IOException {
 			log.debug("<<게시판 글 수정>> : " + consultVO);
-			//유효성 체크 결과 오류가 있으면 폼 호출
-			/*
-			 * if(result.hasErrors()) { ConsultVO vo = adminService.selectConsult(
-			 * consultVO.getConsult_num()); return "adminConsult"; }
-			 */
-			//DB에 저장된 파일 정보 구하기
-			/*
-			 * ConsultVO db_consult = adminService.selectConsult(
-			 * consultVO.getConsult_num());
-			 */
+			
 			//글 수정
 			adminService.updateAnswer(consultVO);
+			return "redirect:/admin/adminConsult";
 			
 			
-			return "andinConsult";
-		}
 
 	}
 
 
+}
