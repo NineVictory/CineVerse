@@ -27,5 +27,5 @@ public interface AssignService {
 	public void ab_insertFav(AssignFavVO fav);
 	public void ab_deleteFav(AssignFavVO fav);
 	
-	
+	public void ab_updateStatus(AssignVO assignVO);
 }

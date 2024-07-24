@@ -46,4 +46,8 @@ public interface AssignBoardMapper {
 	public void ab_deleteFav(AssignFavVO fav);
 	@Delete("DELETE FROM ab_bookmark WHERE ab_num = #{ab_num}")
 	public void ab_deleteFavByBoardNum(Long ab_num);
+	
+	//양도글 상태 변경
+	@Update("UPDATE assignment_board SET ab_status = #{ab_status} WHERE ab_num=#{ab_num}")
+	public void ab_updateStatus(AssignVO assignVO);
 }

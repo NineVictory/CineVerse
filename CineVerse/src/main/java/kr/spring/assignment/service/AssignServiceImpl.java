@@ -79,4 +79,9 @@ public class AssignServiceImpl implements AssignService{
 		assignBoardMapper.ab_deleteFav(fav);
 	}
 
+	@Override
+	public void ab_updateStatus(AssignVO assignVO) {
+		assignBoardMapper.ab_updateStatus(assignVO);
+	}
+
 }

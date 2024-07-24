@@ -374,17 +374,32 @@ span.board-cbtn{
 
 div.assboard-btn{
 	display: flex;
-	flex-direction:column;
-	align-items:flex-end;	
+	/* flex-direction:column; */
+	/* align-items:flex-end; */	
 	position: relative;
 	/* display:inline-block;*/
-	cursor:pointer;
 }
 span.assboard-cbtn{
 	z-index:999;
 	right:0;
 	/* top:-5px; */
+	cursor:pointer;
 }
+
+.list-btn{
+	border:none;
+	background:none;
+	font-size:16px;
+	padding:0 3px;
+}
+.list-btn-container{
+	display:flex;
+	align-items:center;
+}
+.list-btn-container > *{
+	cursor:pointer;
+}
+
 ul.btn-hide {
     position: absolute;
     top: 25px;
@@ -714,6 +729,13 @@ span.ab-status{
 	color:#000;
 	font-weight:bold;
 }
+
+select#ab_status{
+	padding:3px;
+	border-radius:3px;
+}
+
+
 ul.status-df{
 	padding-left:2px;
 }
@@ -931,10 +953,7 @@ div.ck-editor__main{
 	overflow-y: auto;
 }
 
-span.ab-status{
-	cursor:pointer;
 
-}
 .status-btn {
     list-style: none;
     padding: 0 3px;

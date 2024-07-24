@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.assignment.service.AssignService;
 import kr.spring.assignment.vo.AssignFavVO;
+import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.controller.BoardAjaxController;
 
 import kr.spring.member.vo.MemberVO;
@@ -83,6 +84,30 @@ public class AssignAjaxController {
 			mapJson.put("result", "success");
 			mapJson.put("count", assignService.ab_selectFavCount(fav.getAb_num()));
 		}
+		return mapJson;
+	}
+	
+	@PostMapping("/assignboard/updateStatus")
+	@ResponseBody
+	public Map<String,Object> updateStatus(AssignVO assign, HttpSession session){
+		log.debug("*****양도 상태 변경 시작*****");
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else {
+			assign.setMem_num(user.getMem_num());
+			AssignVO db_assign = assignService.ab_selectBoard(assign.getAb_num());
+			if(db_assign.getMem_num() != assign.getMem_num()) {
+				mapJson.put("result", "wrongAccess");
+			}else {			
+				assignService.ab_updateStatus(assign);
+				mapJson.put("result", "success");
+			}
+		}
+		
 		return mapJson;
 	}
 }

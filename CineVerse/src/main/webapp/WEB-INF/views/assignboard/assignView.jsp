@@ -16,7 +16,11 @@
 <div class="page-container page-main">
 	<div class="boardview-main">
 		<c:if test="${assign.mem_num == user.mem_num}">
-		<div class="assboard-btn">
+		<div class="assboard-btn flexbox-h side">
+				<span class="list-btn-container" onclick="location.href='list'" >
+					<img src="${pageContext.request.contextPath}/images/kbm/arrow_back.png" width="25px;" height="22px;">
+					<input type="button" value="목록" class="list-btn">
+				</span>
 				<span class="assboard-cbtn"><a href="" onclick="return false;"><img src="${pageContext.request.contextPath}/images/kbm/menu.png" height="23"></a></span>
 	
 				<ul class="btn-hide">
@@ -37,6 +41,11 @@
 		    		//기본 이벤트 제거
 		    		event.preventDefault();
 	        	});
+	        	$(document).click(function(event) {
+	                if (!$(event.target).closest('.assboard-cbtn').length) {
+	                    $('.btn-hide').hide();
+	                }
+	            });
 	        	</script>
 		</div>
 		</c:if>
@@ -133,6 +142,17 @@
 								<img src="${pageContext.request.contextPath}/images/kbm/hit.png" width="18px;">
 								<span>${assign.ab_hit}</span><%-- 조회수 --%>
 								&nbsp;&nbsp;
+								
+								<c:if test="${assign.mem_num == user.mem_num}">
+								<select id="ab_status" data-num="${assign.ab_num}">
+									<option value="1" <c:if test="${assign.ab_status == 1}">selected</c:if>>판매중</option>
+									<option value="2" <c:if test="${assign.ab_status == 2}">selected</c:if>>예약중</option>
+									<option value="3" <c:if test="${assign.ab_status == 3}">selected</c:if>>거래완료</option>
+								</select>
+																
+								</c:if>
+								
+								<c:if test="${assign.mem_num != user.mem_num}">
 								<span class="ab-status" data-num="${assign.ab_num}">
 									<c:if test="${assign.ab_status == 1}">
 										판매중
@@ -144,57 +164,7 @@
 										거래완료
 									</c:if>
 								</span>
-								
-								<ul class="status-btn">
-									<li data-num="${assign.ab_num}" data-status="1">판매중</li>
-									<li data-num="${assign.ab_num}" data-status="2">예약중</li>
-									<li data-num="${assign.ab_num}" data-status="3">거래완료</li>
-								</ul>
-									<script type="text/javascript">
-										$(document).ready(function() {
-											console.log('Document is ready');
-							        		$('.status-btn').hide();
-								        	$('.ab-status').click(function() {
-								        	    $(this).siblings('.status-btn').toggle();
-								        	});
-								            $('.status-btn li').click(function() {
-								                var status = $(this).data('status');
-								                var num = $(this).data('num');
-	
-								                $.ajax({
-								                    url:'updateStatus',
-								                    type:'post',
-								                    data:{ab_num:num,ab_status: status},
-								                    success:function(param) {
-								                        if(param.result == 'logout'){
-								                        	alert('로그인 후 상태변경 가능합니다.');
-								                        	
-								                        }else if(param.result == 'success'){
-								                        	if(num == 1){
-								                        		$('.ab-status').text('판매중');
-								                        	}else if(num == 2){
-								                        		$('.ab-status').text('예약중');
-								                        	}else{
-								                        		$('.ab-status').text('판매완료');
-								                        	}
-								                        	$('.status-btn').hide();
-								                        }else{
-								                        	alert('상태 변경 오류 발생');
-								                        }
-								                    },
-								                    error:function() {
-								                        alert('네트워크 오류 발생');
-								                    }
-								                });
-								            });
-
-								            $(document).click(function(event) {
-								                if (!$(event.target).closest('.ab-status').length) {
-								                    $('.status-btn').hide();
-								                }
-								            });
-							        });
-							   	 </script>
+								</c:if>	
 								
 								</div>
 							</div>
@@ -307,7 +277,7 @@
 		 --%>
 
 		<div class="align-center">
-			<input type="button" class="default-btn2 mt70" value="목록" onclick="location.href='list'">
+			<input type="button" class="default-btn4 mt70" value="목록" onclick="location.href='list'">
 		</div>
 		
 	</div>
