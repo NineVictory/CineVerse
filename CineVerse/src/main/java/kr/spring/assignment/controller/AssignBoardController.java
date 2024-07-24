@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.assignment.service.AssignService;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.FileUtil2;
@@ -37,6 +38,9 @@ public class AssignBoardController {
 
 	@Autowired
 	private AssignService assignService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	//자바빈(VO) 초기화
 	@ModelAttribute
@@ -147,7 +151,7 @@ public class AssignBoardController {
 	 *양도게시판 글상세
 	 =====================*/
 	@GetMapping("/assignboard/detail")
-	public ModelAndView process(long ab_num) {
+	public ModelAndView process(long ab_num, HttpSession session) {
 		log.debug("<<양도게시판 글 상세 - ab_num>> : " + ab_num);
 		
 		//해당 글의 조회수 증가
@@ -157,6 +161,9 @@ public class AssignBoardController {
 		
 		ModelAndView modelAndView = new ModelAndView("assignView");
 		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+
+		modelAndView.addObject("user", user);
 		
 		
 		log.debug("<<assign.getAb_filename()*****************>>: " + assign.getAb_filename());
