@@ -183,7 +183,7 @@
 	      AND mt_date = #{mt_date}            
 	      AND #{mt_start} BETWEEN mt_start AND mt_end
 	      OR #{mt_end} BETWEEN mt_start AND mt_end
-      </select>
+      </select> 
 	
 	
 	

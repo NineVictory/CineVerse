@@ -19,7 +19,7 @@ public interface CinemaService {
 	public void updateCinema(CinemaVO cinema);
 	public void deleteCinema(Long c_num);
 
-
+ 
 	//상영관
 	public List<TheaterVO> selectTheaterListByCinemaNum(long c_num);
 	public Integer selectTheaterCountByCinema(long c_num);

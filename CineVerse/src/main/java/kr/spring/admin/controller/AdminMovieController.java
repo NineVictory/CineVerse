@@ -40,7 +40,7 @@ public class AdminMovieController {
    
    @Autowired
    private CinemaService cinemaService;
-   
+     
    /*
     * @Autowired private CinemaService cinemaService;
     */
