@@ -51,9 +51,6 @@
         <li class="mp_li" id="mp_li_bookMark"><a href="/myPage/aBoardBookMark">찜한 게시글</a></li>
         <li class="mp_li" id="mp_li_boardWrite"><a href="/myPage/aBoardWrite">내가 쓴 글</a></li>
         
-        
-        <li class="mp_nav" id="mp_nav_calendar"><a href="#">내 캘린더</a></li><!-- controller부터 추가 -->
-        
         <li class="mp_nav" id="mp_nav_eventHistory"><a href="/myPage/myEvent">이벤트 참여 내역</a></li>
         <li class="mp_nav" id="mp_nav_purchase">구매</li>
         <li class="mp_li" id="mp_li_pointCharge"><a href="/myPage/pointList">포인트 내역</a></li>
