@@ -49,7 +49,7 @@ public interface CinemaMapper {
 	
 	
 	//영화시간표 등록 페이지 (상영중인 영화만 목록으로 보여주기)
-	public List<MovieVO> insertTimeMovieList();
+	public List<MovieVO> insertTimeMovieList(Map<String,Object> map);
 	
 	
 	

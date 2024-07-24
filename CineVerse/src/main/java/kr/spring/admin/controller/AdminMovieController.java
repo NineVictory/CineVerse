@@ -3,6 +3,7 @@ package kr.spring.admin.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -140,10 +141,11 @@ public class AdminMovieController {
       *=======================*/
       //등록 폼
       @GetMapping("/admin/insertMovieTime")
-      public String showInsertMovieTimeForm(Model model) {
-          List<MovieVO> movieList = cinemaService.insertTimeMovieList();
+      public String showInsertMovieTimeForm(long m_status, Model model) {
+    	  Map<String,Object> map = new HashMap<String,Object>();
+          List<MovieVO> movieList = cinemaService.insertTimeMovieList(map);
           model.addAttribute("movieList", movieList);
-          return "admin/insertMovieTime";
+          return "insertMovieTime";
       }
       
       //등록 폼에서 전송된 데이터 처리

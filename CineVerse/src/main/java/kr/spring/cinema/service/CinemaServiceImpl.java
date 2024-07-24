@@ -88,8 +88,8 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
-	public List<MovieVO> insertTimeMovieList() {
-		return cinemaMapper.insertTimeMovieList();
+	public List<MovieVO> insertTimeMovieList(Map<String,Object> map) {
+		return cinemaMapper.insertTimeMovieList(map);
 	}
 
 

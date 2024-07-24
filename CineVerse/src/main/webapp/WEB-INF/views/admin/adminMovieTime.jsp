@@ -7,18 +7,7 @@
 <script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
-    const items = document.querySelectorAll('.input-check');
-    for (let i = 0; i < items.length; i++) {
-        if (items[i].value.trim() == '') {
-            const label = document.querySelector('label[for="'+items[i].id+'"]');
-            alert(label.textContent + ' 항목은 필수 입력입니다!');
-            items[i].value = '';
-            items[i].focus();
-            return false;
-        }
-    }
-});
+
 
 $(document).ready(function() {
     $('#m_code').on('input', function() {
@@ -61,7 +50,7 @@ $(document).ready(function() {
 <div class="page-container">
     <h2>상영 시간 등록</h2>
     <div class="insert_movie_time">
-        <form action="${pageContext.request.contextPath}/admin/insertMovieTime" method="post" enctype="multipart/form-data" id="insert_form">
+        <form:form action="insertMovieTime" enctype="multipart/form-data" id="insert_form" modelAttribute="movieVO">
             <ul>
                 <li>
                     <label for="mt_date">날짜</label>
@@ -69,17 +58,20 @@ $(document).ready(function() {
                 </li>
                 <li>
                     <label for="mt_start">시작 시간</label>
-                    <input type="text" name="mt_start" id="mt_start" class="input-check" placeholder="HH:MM" required>
+                    <input type="text" name="mt_start" id="mt_start" class="input-check" placeholder="숫자만 입력(ex.1600: 오후4시)" required>
                 </li>
                 <li>
                     <label for="mt_end">종료 시간</label>
-                    <input type="text" name="mt_end" id="mt_end" class="input-check" placeholder="HH:MM" required>
+                    <input type="text" name="mt_end" id="mt_end" class="input-check" placeholder="숫자만 입력(ex.1600: 오후4시)" required>
                 </li>
           
         		<li>
-                    <label for="m_code">영화코드</label>
-                    <input type="text" name="m_code" id="m_code" class="input-check" placeholder="영화 코드를 입력하세요" required>
-                    <div id="m_code_suggestions"></div>
+                    <label for="m_code">영화</label>
+                    <select name="m_code" id="m_code" class="input-check" required>
+                        <c:forEach items="${movieList}" var="movie">
+                            <option>${movie.m_name}</option>
+                        </c:forEach>
+                    </select>
                 </li>
                 <li>
                     <label for="th_num">극장번호</label>
@@ -115,6 +107,6 @@ $(document).ready(function() {
             <div class="btn_display_set">
                 <input type="submit" value="등록" id="submit_btn">
             </div>
-        </form>
+        </form:form>
     </div>
 </div>
