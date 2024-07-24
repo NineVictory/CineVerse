@@ -35,34 +35,33 @@
  </div>
  <div class="payments_all">
  	<h2>할인 적용</h2>
-        <div class="pay_coupon">
-            <h3>쿠폰</h3>
-            <div class="coupon_list">
-                <c:if test="${member.coupon_cnt == 0 }">
-                    보유한 쿠폰이 없습니다.
+<div class="pay_coupon">
+    <h3>쿠폰</h3>
+    <div class="coupon_list">
+        <c:if test="${member.coupon_cnt == 0 }">
+            보유한 쿠폰이 없습니다.
+        </c:if>
+        <c:if test="${member.coupon_cnt > 0 }">
+            <c:forEach var="couponList" items="${couponList}">
+                <c:if test="${couponList.coupon_where==1 && couponList.coupon_use==1}">
+                    <input type="radio" class="coupon-select" name="pay-coupon" data-mcNum="${couponList.mc_num}" data-coupon="${couponList.coupon_sale}">
+                    <div class="coupon_detail">
+                        <span class="coupon_name">${couponList.coupon_name}</span>
+                        <span class="coupon_detail_all">${couponList.coupon_content}</span>
+                        <span class="coupon_detail_all">${couponList.coupon_regdate} ~ ${couponList.coupon_enddate}<span class="coupon_time"></span></span>
+                    </div>
                 </c:if>
-                <c:if test="${member.coupon_cnt > 0 }">
-                    <c:forEach var="coupon" items="${couponList}">
-                        <c:if test="${coupon.coupon_where == 1 && coupon.coupon_use == 1}">
-                            <input type="checkbox" class="coupon-select" name="pay-coupon" value="${coupon.mc_num}" data-coupon="${coupon.coupon_sale}" onchange="handleCouponSelection(this)">
-                            <div class="coupon_detail">
-                            	<span>${coupon.mc_num}</span>
-                                <span class="coupon_name">${coupon.coupon_name}</span>
-                                <span class="coupon_detail_all">${coupon.coupon_content}</span>
-                                <span class="coupon_detail_all">${coupon.coupon_regdate} ~ ${coupon.coupon_enddate}</span>
-                            </div>
-                        </c:if>
-                        <c:if test="${coupon.coupon_where == 2 && coupon.coupon_use == 1}">
-                            <div class="coupon_detail" style="background-color:#BDBDBD">
-                                <span class="coupon_name">(벌스샵 전용 - 사용 불가) ${coupon.coupon_name}</span>
-                                <span class="coupon_detail_all">${coupon.coupon_content}</span>
-                                <span class="coupon_detail_all">${coupon.coupon_regdate} ~ ${coupon.coupon_enddate}</span>
-                            </div>
-                        </c:if>
-                    </c:forEach>
+                <c:if test="${couponList.coupon_where==2 && couponList.coupon_use==1}">
+                    <div class="coupon_detail" style="background-color:#BDBDBD">
+                        <span class="coupon_name">(벌스샵 전용 - 사용 불가) ${couponList.coupon_name}</span>
+                        <span class="coupon_detail_all">${couponList.coupon_content}</span>
+                        <span class="coupon_detail_all">${couponList.coupon_regdate} ~ ${couponList.coupon_enddate}</span>
+                    </div>
                 </c:if>
-            </div>
-        </div>
+            </c:forEach>
+        </c:if>
+    </div>
+</div>
 
  	
  	<div class="pay_select">
@@ -96,9 +95,8 @@
  				<input type="hidden" name="selectedSeats" value="${selectedSeats}">
  				<input type="hidden" id="seatNum" name="seatNum" value="${seatNum}">
  				<input type="hidden" id="m_code" name="m_code" value="${movieInfoList[0].m_code}">
- 				<input type="hidden" id="mc_num" name="mc_num" value="${coupon.mc_num}">
+ 				<input type="hidden" id="mc_num" name="mc_num" value=""> 
 				<%-- <input type="hidden" id="userPoints" name="userPoints" value="${member.point}"> --%>
-				<input type="hidden" id="remainingPointsInput" name="remainingPoints" value="">
  			<input type="hidden" id="finalAmountInput" name="finalAmount" value="${payMoney}">
  			<input type="button" value="결제하기" class="pay_btn">
  			</form>
@@ -109,34 +107,29 @@
 </div>
 
 <script>
+
 document.addEventListener("DOMContentLoaded", function() {
     let lastSelectedCoupon = null; // 마지막으로 선택된 쿠폰을 저장할 변수
 
-    // 쿠폰 선택 시 할인 금액 반영
+    // 쿠폰 선택 시 할인 금액 반영 및 hidden input 업데이트
     document.querySelectorAll('.coupon-select').forEach(function(coupon) {
-        // 모든 쿠폰 선택 체크박스에 대해 이벤트 리스너를 추가
-        coupon.addEventListener('change', function() {
-        	document.getElementById('mc_num').value = this.value;
-            // 체크박스의 상태가 변경될 때마다 updateDiscount 함수 호출
+        coupon.addEventListener('click', function() {
+            // 라디오 버튼의 상태가 변경될 때마다 updateDiscount 함수 호출
             if (lastSelectedCoupon === coupon) {
-                coupon.checked = false; // 같은 체크박스를 클릭하면 체크 해제
+                coupon.checked = false; // 같은 라디오 버튼을 클릭하면 체크 해제
                 lastSelectedCoupon = null; // 마지막으로 선택된 쿠폰 초기화
-                document.getElementById('mc_num').value = ""; // 쿠폰 번호 비우기
             } else {
-                if (lastSelectedCoupon !== null) {
-                    lastSelectedCoupon.checked = false; // 이전 선택 체크박스 해제
-                }
-                lastSelectedCoupon = coupon; // 다른 체크박스를 클릭하면 선택된 체크박스를 업데이트
-                document.getElementById('mc_num').value = coupon.value;
+                lastSelectedCoupon = coupon; // 다른 라디오 버튼을 클릭하면 선택된 라디오 버튼을 업데이트
             }
-            updateDiscount();    
+            updateDiscount();
+            updateHiddenInput(); // hidden input 업데이트 호출
         });
     });
 
     function updateDiscount() {
         let totalDiscount = 0; // 총 할인 금액을 저장할 변수 초기화
 
-        // 선택된 (체크된) 쿠폰 선택 체크박스를 가져옴
+        // 선택된 (체크된) 쿠폰 선택 라디오 버튼을 가져옴
         const selectedCoupon = document.querySelector('.coupon-select:checked');
         if (selectedCoupon) {
             // 선택된 쿠폰의 할인 금액을 가져와서 정수로 변환 후 총 할인 금액에 더함
@@ -156,6 +149,18 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('finalAmountInput').value = finalAmount;
     }
 
+    function updateHiddenInput() {
+        const selectedCoupon = document.querySelector('.coupon-select:checked');
+        if (selectedCoupon) {
+            // 선택된 쿠폰의 data-mcNum 값을 가져와서 hidden input의 value를 업데이트
+            const mcNum = selectedCoupon.getAttribute('data-mcNum');
+            document.getElementById('mc_num').value = mcNum;
+        } else {
+            // 선택된 쿠폰이 없는 경우, hidden input을 비워둠
+            document.getElementById('mc_num').value = '';
+        }
+    }
+
     // 결제 버튼 클릭 시 결제가 완료되었음을 알리는 알림창 표시
     document.querySelector('.pay_btn').addEventListener('click', function(event) {
         event.preventDefault(); // 기본 동작 중단
@@ -164,17 +169,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let finalAmount = parseInt(document.getElementById('finalAmountInput').value);
         // 사용자의 포인트를 가져옴
         let userPoints = parseInt(document.querySelector('.point_detail').textContent.replace(/[^0-9]/g, ''));
-		
-        // 포인트 사용 여부에 따라 remainingPoints 계산
-        let remainingPoints = userPoints - finalAmount;
-        if (remainingPoints < 0) {
-            remainingPoints = 0; // 포인트가 결제 금액보다 적으면 0으로 설정
-        }
-        
-        // remainingPointsInput의 값을 설정
-        document.getElementById('remainingPointsInput').value = remainingPoints;
 
-        
         // 결제 금액이 0 이하인 경우 알림창을 표시하고 결제를 중단
         if (finalAmount < 0) {
             alert('결제 금액이 0원 미만입니다. 다시 확인해주세요.');
@@ -188,8 +183,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         alert('결제가 완료되었습니다.');
-        
         document.getElementById('paymentForm').submit(); // 폼 제출
     });
 });
+
 </script>
+
