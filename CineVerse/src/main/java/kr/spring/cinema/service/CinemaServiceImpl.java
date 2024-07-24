@@ -88,11 +88,16 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
-	public List<MovieVO> insertTimeMovieList(Map<String,Object> map) {
-		return cinemaMapper.insertTimeMovieList(map);
+	public List<MovieVO> insertTimeMovieList() {
+		return cinemaMapper.insertTimeMovieList();
 	}
 
+	@Override
+	public List<CinemaVO> insertTimeCinemaList() {
+		return cinemaMapper.insertTimeCinemaList();
+	}
 
+	
 	
 	/*
 	 * @Override public List<SeatVO> selectSeatList(long c_num, long m_code, String

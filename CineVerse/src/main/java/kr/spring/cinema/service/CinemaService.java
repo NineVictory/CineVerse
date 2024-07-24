@@ -44,9 +44,10 @@ public interface CinemaService {
 	
 	
 	//영화시간표 등록 페이지 (상영중인 영화만 목록으로 보여주기)
-	public List<MovieVO> insertTimeMovieList(Map<String,Object> map);
+	public List<MovieVO> insertTimeMovieList();
 	
-	
+	//영화시간표 등록 페이지 (상영중인 지점명만 목록으로 보여주기)
+	public List<CinemaVO> insertTimeCinemaList();
 	
 	
 		//영화관(잠시 보류)

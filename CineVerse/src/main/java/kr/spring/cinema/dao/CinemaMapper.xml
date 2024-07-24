@@ -145,7 +145,7 @@
 	
 	<!-- 새로 만든 예매 페이지 영화목록 조회 -->
 	<select id="movieReserveList" parameterType="long" resultType="movieTimeVO">
-		SELECT DISTINCT m.m_code, m.m_name
+		SELECT DISTINCT m.m_code, m.m_name, m.rating
 		FROM movie_time mt
 		JOIN movie m ON m.m_code = mt.m_code
 		JOIN theater t ON mt.th_num = t.th_num
@@ -155,14 +155,18 @@
 	
 	
 	<!-- 영화시간표 등록 페이지 (상영중인 영화만 목록으로 보여주기) -->
-	<select id="insertTimeMovieList" parameterType="map" resultType="movieVO">
+	<select id="insertTimeMovieList"  resultType="movieVO">
 		SELECT m_code, m_name
 		FROM movie
 		WHERE m_status = 1
 	</select>
 	
 	
-	
+	<!-- 영화시간표 등록 페이지 (상영중인 지점명만 목록으로 보여주기) -->
+	<select id="insertTimeCinemaList"  resultType="cinemaVO">
+		SELECT c_num, c_branch
+		FROM cinema
+	</select>
 	
 	
 	

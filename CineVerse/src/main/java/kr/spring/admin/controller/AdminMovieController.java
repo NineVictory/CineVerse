@@ -140,16 +140,20 @@ public class AdminMovieController {
        * 영화 시간표
       *=======================*/
       //등록 폼
-      @GetMapping("/admin/insertMovieTime")
-      public String showInsertMovieTimeForm(long m_status, Model model) {
-    	  Map<String,Object> map = new HashMap<String,Object>();
-          List<MovieVO> movieList = cinemaService.insertTimeMovieList(map);
+      @GetMapping("/admin/adminMovieTime")
+      public String showInsertMovieTimeForm(Model model) {
+
+          List<MovieVO> movieList = cinemaService.insertTimeMovieList();
+          List<CinemaVO> cinemaList = cinemaService.insertTimeCinemaList();
+          
+          
           model.addAttribute("movieList", movieList);
-          return "insertMovieTime";
+          model.addAttribute("cinemaList", cinemaList);
+          return "adminMovieTime";
       }
       
       //등록 폼에서 전송된 데이터 처리
-         @PostMapping("/admin/insertMovieTime")
+         @PostMapping("/admin/adminMovieTime")
          public String insertMovieTime(@Valid MovieTimeVO movietimeVO, 
                                        BindingResult result, 
                                        HttpSession session,
