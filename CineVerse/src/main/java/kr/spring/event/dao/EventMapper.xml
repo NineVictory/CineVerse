@@ -5,12 +5,22 @@
 <mapper namespace="kr.spring.event.dao.EventMapper">
 
 	<sql id="eventSearch">
-		
 			<if test="event_type != null and event_type != ''">
 				AND event_type = #{event_type}
 			</if>
-		
 	</sql>
+	<sql id="eventRowSearch">
+		<where>
+			<if test="event_type != null and event_type != ''">
+				event_type = #{event_type}
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectEventRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM event
+		<include refid="eventRowSearch"></include>
+	</select>
 
 	<!-- 이벤트 전체 목록/검색 목록 -->
 	<select id="selectEventList" parameterType="map" resultType="userEventVO">

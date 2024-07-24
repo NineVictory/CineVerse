@@ -73,24 +73,7 @@ public class EventAjaxController {
 			eventService.insertParticipation(eventP);
 			mapJson.put("status", "yesP");
 			
-			/*if(db_eventP == null) {
-				//이벤트 참여
-				eventService.insertParticipation(eventP);
-				mapJson.put("status", "yesP");
-			}else {
-				//애초에 클릭 불가한디
-				/*boardService.insertFav(fav);
-				mapJson.put("status", "yesFav");
-			}
-			if(db_eventP != null) {
-				//등록 -> 삭제
-				boardService.deleteFav(fav);
-				mapJson.put("status", "noFav");
-			}else {
-				//이벤트 참여
-				boardService.insertFav(fav);
-				mapJson.put("status", "yesFav");
-			}*/
+			
 			mapJson.put("result", "success");
 		}
 		log.debug("<<이벤트 참여 EventPVO**********" + eventP);

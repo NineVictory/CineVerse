@@ -81,7 +81,7 @@ public class EventController {
 		}
 		
 		
-		model.addAttribute("count", count);
+		model.addAttribute("count", count); log.debug("count**********" + count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
 		

@@ -34,6 +34,7 @@ $(function(){
 					if(param.result == 'logout'){
 						alert('로그인 후 참여가능합니다.');
 					}else if(param.result == 'success'){
+						alert('이벤트 응모 완료');
 						$('#event_participate_btn').addClass('participated');
 						$('#event_participate_btn').prop('disabled', true);
 						/*displayFav(param);*/

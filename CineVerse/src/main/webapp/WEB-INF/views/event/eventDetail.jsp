@@ -27,7 +27,7 @@
 			${event.event_content}
 		</div>
 		<div class="align-right list-btn-container" style="width:100%" onclick="location.href='event'" >
-			<img src="${pageContext.request.contextPath}/images/kbm/arrow_left.png" width="24px;" height="22px;">
+			<img src="${pageContext.request.contextPath}/images/kbm/arrow_left.png" width="23px;" height="21px;">
 			<input type="button" value="목록" class="list-btn">
 		</div>
 		<hr size="1" width="100%">

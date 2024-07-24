@@ -12,7 +12,7 @@ import kr.spring.event.vo.UserEventVO;
 
 @Mapper
 public interface EventMapper {
-	@Select("SELECT COUNT(*) FROM event")
+	
 	public Integer selectEventRowCount(Map<String,Object> map);
 	
 	public List<UserEventVO> selectEventList(Map<String,Object> map);

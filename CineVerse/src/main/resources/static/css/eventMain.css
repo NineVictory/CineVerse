@@ -41,6 +41,7 @@
 	margin-top: 10px;
 	width: 1160px;
 	margin: 0 auto;
+	margin-top:50px;
 }
 
 .page-main {
@@ -115,7 +116,7 @@
 	justify-content: flex-start;
 }
 .event-list li {
-    width: calc(25% - 20px); /* 4개씩 나열되도록 설정, margin 포함 */
+   /*  width: calc(25% - 20px); */ /* 4개씩 나열되도록 설정, margin 포함 */
     margin-right: 20px; /* 기본 margin-right 설정 */
     margin-bottom: 15px !important; /* 아래쪽 여백 설정 */
 	background: #fff;
@@ -161,6 +162,16 @@
 
 .event-list li.no-margin {
     margin-right: 0; /* 4번째마다 margin-right 없앰 */
+}
+
+.noEvent{
+	/* text-align:center; */
+	margin:40px auto;
+	min-height:200px;
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+	
 }
 
 button#load-more{
