@@ -97,6 +97,11 @@ public class CinemaServiceImpl implements CinemaService{
 		return cinemaMapper.insertTimeCinemaList();
 	}
 
+	@Override
+	public List<TheaterVO> insertTimeTheaterList(long c_num) {
+		return cinemaMapper.insertTimeTheaterList(c_num);
+	}
+
 	
 	
 	/*

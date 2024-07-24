@@ -48,13 +48,18 @@ public interface CinemaMapper {
 	public List<MovieTimeVO> movieReserveList(long c_num);
 	
 	
-	//영화시간표 등록 페이지 (상영중인 영화만 목록으로 보여주기)
+	
+	 /*=======================
+     * 영화 시간표 등록 페이지
+    *=======================*/
+	//상영중인 영화만 목록으로 보여주기
 	public List<MovieVO> insertTimeMovieList();
 	
-	//영화시간표 등록 페이지 (상영중인 지점명만 목록으로 보여주기)
+	//지점명만 목록으로 보여주기
 	public List<CinemaVO> insertTimeCinemaList();
 	
-	
+	//선택한 지점명에 대한 상영관 보여주기
+	public List<TheaterVO> insertTimeTheaterList(long c_num);
 	
 	
 	

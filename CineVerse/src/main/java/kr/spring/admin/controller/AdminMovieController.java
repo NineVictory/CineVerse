@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieActorVO;
 import kr.spring.movie.vo.MovieDetailKFAPIVO;
@@ -146,11 +147,18 @@ public class AdminMovieController {
           List<MovieVO> movieList = cinemaService.insertTimeMovieList();
           List<CinemaVO> cinemaList = cinemaService.insertTimeCinemaList();
           
-          
           model.addAttribute("movieList", movieList);
           model.addAttribute("cinemaList", cinemaList);
           return "adminMovieTime";
       }
+      
+      	//상영관 정보를 반환하는 Ajax 메서드
+	      @GetMapping("/getTheaters")
+	      @ResponseBody
+	      public List<TheaterVO> getTheaters(long c_num) {
+	          return cinemaService.insertTimeTheaterList(c_num);
+	      }
+      
       
       //등록 폼에서 전송된 데이터 처리
          @PostMapping("/admin/adminMovieTime")
@@ -162,17 +170,21 @@ public class AdminMovieController {
             log.debug("<<영화 시간표 저장>> : "+movietimeVO);
                
             
-            //영화 시간표 등록
-            movieService.insertMovieTime(movietimeVO);
-             //movieService.addMovieTime(movietimeVO);
-
-   
-            model.addAttribute("message","성공적으로 글이 등록되었습니다.");
-            model.addAttribute("url",request.getContextPath()+"/admin/adminMovieTime");
-            
-
-            
-            return "common/resultAlert";
+            try {
+                // 영화 시간표 등록
+                movieService.insertMovieTime(movietimeVO);
+                log.debug("<<영화 시간표 저장>> : " + movietimeVO);
+                
+                model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+                model.addAttribute("url", request.getContextPath() + "/admin/adminMovieTime");
+                
+                return "common/resultAlert"; // 성공 시 결과 알림 페이지로 이동
+            } catch (Exception e) {
+                log.error("영화 시간표 저장 중 오류 발생", e);
+                model.addAttribute("message", "데이터 저장 중 오류가 발생했습니다.");
+                model.addAttribute("url", request.getContextPath() + "/admin/adminMovieTime");
+                return "common/resultAlert"; // 오류 발생 시 결과 알림 페이지로 이동
+            }
          }
       
       

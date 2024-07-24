@@ -154,7 +154,11 @@
 	</select>
 	
 	
-	<!-- 영화시간표 등록 페이지 (상영중인 영화만 목록으로 보여주기) -->
+	
+	
+	
+	<!-- 영화시간 등록 페이지 -->
+	<!-- 상영중인 영화만 목록으로 보여주기 -->
 	<select id="insertTimeMovieList"  resultType="movieVO">
 		SELECT m_code, m_name
 		FROM movie
@@ -162,14 +166,19 @@
 	</select>
 	
 	
-	<!-- 영화시간표 등록 페이지 (상영중인 지점명만 목록으로 보여주기) -->
+	<!-- 지점명만 목록으로 보여주기 -->
 	<select id="insertTimeCinemaList"  resultType="cinemaVO">
 		SELECT c_num, c_branch
 		FROM cinema
 	</select>
 	
 	
-	
+	<!-- 선택한 지점명에 대한 상영관 보여주기 -->
+	<select id="insertTimeTheaterList" parameterType="long" resultType="theaterVO">
+		SELECT th_num, th_name
+		FROM theater
+		WHERE c_num = #{c_num}
+	</select>
 	
 	
 	
