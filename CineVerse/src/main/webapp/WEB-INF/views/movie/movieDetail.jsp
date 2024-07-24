@@ -104,63 +104,90 @@
 
 <!-- 별점 및 후기 -->             
 <div class="menu-title">평점/리뷰</div>
-<div id="movie-review-section" class="grade-review">
-    <div class="star-rating">
-    <span class="star" data-value="1"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-    <span class="star" data-value="2"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-    <span class="star" data-value="3"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-    <span class="star" data-value="4"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-    <span class="star" data-value="5"><img src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
-</div>									
-    <div class="review-choice">별점을 선택해주세요</div>
-    <div id="review_div">
-        <!-- 댓글 작성 폼 -->
-        <form id="mr_form">
-            <input type="hidden" name="m_code" value="${movie.m_code}" id="m_code">
-            <input type="hidden" name="mb_num" value="${booking != null ? booking.mb_num : 0}" id="mb_num">
-            <input type="hidden" name="mr_grade" id="mr_grade"> <!-- 별점 값 저장 -->
-            <c:if test="${!empty booking}">
-                <p>예매 번호: ${booking.mb_num}</p>
-            </c:if>
-            <c:choose>
-                <c:when test="${empty user}">
-                    <textarea rows="3" cols="50" name="mr_content" class="review-content" disabled>로그인해야 작성할 수 있습니다.</textarea>
-                </c:when>
-                <c:when test="${!empty user}">
-                    <c:choose>
-                        <c:when test="${!canWriteReview}">
-                            <textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content" disabled>영화를 예매한 경우에만 댓글을 작성할 수 있습니다.</textarea>
-                        </c:when>
-                        <c:otherwise>
-                        	<div>
-                        	<label for="mr_spoiler">스포일러 포함</label>
-                        	<input type="checkbox" name="mr_spoiler" value="1" id="mr_spoiler">
-                        	</div>
-                        	<textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content"></textarea>
-                        	<div id="review_first">
-                                <span class="letter-count">300/300</span>
+		<div id="movie-review-section" class="grade-review">
+			<div class="star-rating">
+				<span class="star" data-value="1"><img
+					src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+				<span class="star" data-value="2"><img
+					src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+				<span class="star" data-value="3"><img
+					src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+				<span class="star" data-value="4"><img
+					src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+				<span class="star" data-value="5"><img
+					src="${pageContext.request.contextPath}/images/ksh/star.png"></span>
+			</div>
+			<div class="review-choice">별점을 선택해주세요</div>
+			<div id="review_div">
+				<!-- 댓글 작성 폼 -->
+				<form id="mr_form">
+					<input type="hidden" name="m_code" value="${movie.m_code}"
+						id="m_code"> <input type="hidden" name="mb_num"
+						value="${booking != null ? booking.mb_num : 0}" id="mb_num">
+					<input type="hidden" name="mr_grade" id="mr_grade">
+					<!-- 별점 값 저장 -->
+					<c:if test="${!empty booking}">
+						<p>예매 번호: ${booking.mb_num}</p>
+					</c:if>
+					<c:choose>
+						<c:when test="${empty user}">
+							<textarea rows="3" cols="50" name="mr_content"
+								class="review-content" disabled>로그인해야 작성할 수 있습니다.</textarea>
+						</c:when>
+						<c:when test="${!empty user}">
+							<c:choose>
+								<c:when test="${!canWriteReview}">
+									<textarea rows="3" cols="50" name="mr_content" id="mr_content"
+										class="review-content" disabled>영화를 예매한 경우에만 댓글을 작성할 수 있습니다.</textarea>
+								</c:when>
+								<c:otherwise>
+									<div>
+										<label for="mr_spoiler">스포일러 포함</label> <input type="checkbox"
+											name="mr_spoiler" value="1" id="mr_spoiler">
+									</div>
+									<textarea rows="3" cols="50" name="mr_content" id="mr_content"
+										class="review-content"></textarea>
+									<div id="review_first">
+										<span class="letter-count">300/300</span>
 
-                                <div id="review_second">
-                                <div class="review-button"><input type="submit" value="등록" class="review_submit"></div>
-                            </div>
-                             </div>
-                        </c:otherwise>
-                    </c:choose>
-                </c:when>
-            </c:choose>
-        </form>
-    </div>
-    <!-- 최신순, 추천순 선택 텍스트 -->
-    <div class="review-sort">
-        <span id="latest" class="sort-option active">최신순</span> | 
-        <span id="recommendation" class="sort-option">추천순</span>
-    </div>
-</div>
+										<div id="review_second">
+											<div class="review-button">
+												<input type="submit" value="등록" class="review_submit">
+											</div>
+										</div>
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+					</c:choose>
+				</form>
+			</div>
+
+			<!-- 댓글수 -->
+			<div class="review_all_contents">
+				<p>
+					<span id="output_mrcount"></span> 명의 실관람객이 평가해주셨습니다.
+				</p>
+				
+				<div class="my_review">
+					<button class="my_review_all" onclick="location.href='${pageContext.request.contextPath}/myPage/review'">내 평점</button>
+				</div>
+			</div>
+
+			<!-- 최신순, 추천순 선택 텍스트 -->
+			<div class="review-sort">
+				<span id="latest" class="sort-option active">최신순</span> | <span
+					id="recommendation" class="sort-option">추천순</span>
+			</div>
+		</div>
 
 
-<!-- 댓글수 -->
-		<span id="output_mrcount"></span>
-<!-- 댓글 목록 출력 -->
+
+
+
+
+
+		<!-- 댓글 목록 출력 -->
 <div id="output"></div>
 <div id="loading" style="display:none;">
     <img src="<c:url value='/images/loading.gif' />" width="30" height="30">

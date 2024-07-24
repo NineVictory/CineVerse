@@ -105,7 +105,7 @@ $(document).ready(function() {
 
     // 리뷰 수 표시 함수
     function displayReviewCount(count) {
-        $('#output_mrcount').text('리뷰수: ' + count);
+        $('#output_mrcount').text(count);
     }
 
     // 추천순, 최신순 클릭 이벤트
@@ -160,26 +160,24 @@ $(document).ready(function() {
                     if (index > 0) $('#output').append('');
 
                     let output = '<div class="item">';
-                    output += '     <ul class="detail-info">';
-                    output += '        <li class="user_profile_image">';
+                    output += '     <div class="detail-info">';
+                    output += '        <div class="user_profile_image">';
                     output += '			<img src="../myPage/viewProfile?mem_num=' + item.mem_num + '" width="30" height="30" class="my-photo">';
-                    output += '        </li>';
-                    output += '        <li class="user_idOrname">';
+                    output += '        </div>';
+                    output += '        <div class="user_idOrname">';
 
                     if (item.mem_nickname) {
-                        output += item.mem_nickname + '<br>';
+                        output += item.mem_nickname ;
                     } else {
-                        output += item.mem_id + '<br>';
+                        output += item.mem_id ;
                     }
-                    output += '        </li>';
-                    output += '        <li class="user_re_day">';
-                    if (item.re_mdate) {
-                        output += '<span class="mr-modify-date">최근 수정일 : ' + item.mr_regdate + '</span>';
-                    } else {
-                        output += '<span class="mr-modify-date">등록일 : ' + item.mr_regdate + '</span>';
-                    }
-                    output += '        </li>';
-                    output += '     </ul>';
+                    output += '        </div>';
+                    output += '     <div class="delete-review">';
+                    if(param.user_num===item.mem_num){
+						output += '  <input type="button" data-num="'+item.mr_num+'" value="X" class="delete-btn">';
+					}
+                    output += '     </div>';
+                    output += '     </div>';
                     output += '     <div class="sub-item">';
                     
                     // 별점 표시
@@ -199,24 +197,33 @@ $(document).ready(function() {
                         output += '    <button class="show-spoiler"></button>';
                         output += '</div>';
                     } else {
-                        output += '    <p class="mr-review-content">' + item.mr_content.replace(/\r\n/g, '<br>') + '</p>';
+                        output += '    <p class="mr-review-content">' + item.mr_content.replace(/\r\n/g, '<br>') + '</p></div>';
                     }
 
                     // 좋아요 시작
                     if (item.mr_click_num == 0 || param.user_num !== item.mr_click_num) {
-                        output += ' <img class="output_reiv" src="../images/like01.png" data-num="'+item.mr_num+'"> <span class="output_rvcount">'+item.review_cnt+'</span>';
+						output += '<div class="review_last">';
+                        output += '<div class="review_fav">';
+                        output += '<img class="output_reiv" src="../images/like01.png" data-num="'+item.mr_num+'">';
+                        output += '<span class="output_rvcount">'+item.review_cnt+'</span>';
+                        output += '</div>';
+                        output += '<div class="user_re_day">';
+                    	output +=  item.mr_regdate;
+                    	output += '</div>';
+                    	output += '</div>';
                     } else {
-                        output += ' <img class="output_reiv" src="../images/like02.png" data-num="'+item.mr_num+'"> <span class="output_rvcount">'+item.review_cnt+'</span>';
+						output += '<div class="review_last">';
+						output += '<div class="review_fav">';
+                        output += '<img class="output_reiv" src="../images/like02.png" data-num="'+item.mr_num+'">';
+                        output += '<span class="output_rvcount">'+item.review_cnt+'</span>';
+                        output += '</div>';
+                        output += '<div class="user_re_day">';
+                    	output +=   item.mr_regdate;
+                    	output += '</div>';
+                    	output += '</div>';
                     }
                     // 좋아요 끝
-                    if(param.user_num===item.mem_num){
-						//로그인 한 회원번호와 리뷰 작성자 회원번호가 같으면
-						
-						//======별점 사용시만 명시 data-star="'+item.re_star+'" ==========// 일단 안써서 주석처리함
-						/*output += '  <input type="button" data-num="'+item.re_num+'" data-star="'+item.re_star+'" value="수정" class="modify-btn">';*/
-						/*output += '  <input type="button" data-num="'+item.re_num+'" value="수정" class="modify-btn">';*/
-						output += '  <input type="button" data-num="'+item.mr_num+'" value="삭제" class="delete-btn">';
-					}
+                    
 
                     $('#output').append(output);
                 });
@@ -249,9 +256,9 @@ $(document).ready(function() {
     function displayReviewCount(count){
         let output;
         if(count > 0){
-            output = '리뷰수('+count+')';
+            output = count;
         } else {
-            output = '리뷰수(0)';
+            output = '0';
         }           
         // 문서 객체에 추가
         $('#output_mrcount').text(output);

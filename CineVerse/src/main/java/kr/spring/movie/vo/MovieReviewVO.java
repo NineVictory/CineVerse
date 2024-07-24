@@ -14,7 +14,7 @@ import lombok.ToString;
 public class MovieReviewVO {
 	private long mr_num;
 	private String mr_content;
-	private String mr_regdate;
+	private Date mr_regdate;
 	private long mr_spoiler;
 	private long mr_grade;
 	private long mb_num;
@@ -28,8 +28,10 @@ public class MovieReviewVO {
 	private int mr_click_num;
 	private int review_cnt;		//댓글 좋아요 갯수
 	//댓글 날짜를 하루전 한달전 등으로 바꿔주는 코드를 연결하는법
-		public void setMr_regdate(String mr_regdate) {
-			this.mr_regdate = DurationFromNow.getTimeDiffLabel(mr_regdate);
-			
-		}
+	/*
+	 * public void setMr_regdate(String mr_regdate) { this.mr_regdate =
+	 * DurationFromNow.getTimeDiffLabel(mr_regdate);
+	 * 
+	 * }
+	 */
 }
