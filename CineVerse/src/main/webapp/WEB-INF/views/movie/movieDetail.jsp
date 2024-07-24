@@ -76,6 +76,7 @@
 <div class="detail-menu">
     <a href="#movie-plot-section" class="detail-infomation" id="info-link">주요정보</a>
     <a href="#movie-teasers-section" class="detail-grade" id="teasers-link">트레일러</a>
+    <a href="#movie-still-section" class="detail-still" id="still-link">스틸컷</a>
     <a href="#movie-review-section" class="detail-review" id="review-link">평점/리뷰</a>
 </div>
 
@@ -91,6 +92,15 @@
     	<iframe src="${teaser}" class="movie-teasers" width="910" height="580" frameborder="0"></iframe>
 	</c:forEach>
    </div>
+   
+    <!-- 영화 스틸컷 -->
+    <div id="movie-still-section" class="menu-title">스틸컷</div>
+    	<div class="movie-still">
+ 			<c:set var="stills" value="${fn:split(movie.still, '|')}" />
+				<c:forEach var="still" items="${stills}">
+					<img src="${still}" alt="Movie Photo">
+			</c:forEach>
+   		</div>
 
 <!-- 별점 및 후기 -->             
 <div class="menu-title">평점/리뷰</div>
@@ -163,29 +173,8 @@
     <img src="${pageContext.request.contextPath}/images/up-arrow.png" alt="Scroll to Top">
 </div>
 
-<style>
-/* 상단 이동 버튼 스타일 */
-#scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    transition: opacity 0.3s;
-}
-
-#scroll-to-top img {
-    width: 30px;
-    height: 30px;
-}
-
-</style>
-
 <script type="text/javascript">
 $(document).ready(function() {
-    // 스크롤 위치에 따라 버튼 표시/숨김
     $(window).on('scroll', function() {
         var scrollPosition = $(document).scrollTop();
         if (scrollPosition > 200) { // 페이지가 200px 이상 스크롤되면 버튼을 표시
@@ -194,9 +183,8 @@ $(document).ready(function() {
             $('#scroll-to-top').fadeOut();
         }
 
-        // 메뉴 항목 활성화
         $('.detail-menu a').removeClass('active');
-        $('.movie-plot, .movie-content, .grade-review').each(function() {
+        $('.movie-plot, .movie-content, .grade-review, .movie-still').each(function() {
             var sectionOffset = $(this).offset().top;
             var sectionHeight = $(this).outerHeight();
             var sectionId = $(this).attr('id');
@@ -207,7 +195,6 @@ $(document).ready(function() {
         });
     });
 
-    // 메뉴 클릭 시 부드럽게 이동
     $('.detail-menu a').on('click', function(e) {
         e.preventDefault();
         var target = $(this).attr('href');
@@ -216,7 +203,6 @@ $(document).ready(function() {
         }, 200);
     });
 
-    // 상단 이동 버튼 클릭 시 상단으로 부드럽게 이동
     $('#scroll-to-top').on('click', function() {
         $('html, body').animate({
             scrollTop: 0

@@ -491,3 +491,24 @@ html {
     margin: 20px 0;
     font-weight: bold;
 }
+
+.movie-content img {
+    height: auto;
+    width: 217px;
+}
+
+#scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+#scroll-to-top img {
+    width: 30px;
+    height: 30px;
+}
