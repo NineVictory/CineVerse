@@ -134,11 +134,6 @@
 	<select id="selectSeatList" parameterType="long" resultType="seatVO">
 		SELECT * 
 		FROM seat
-        JOIN theater USING(th_num) 
-        JOIN movie_time USING(th_num)
-		JOIN movie USING(m_code) 	
-		JOIN cinema USING(c_num)
-		WHERE mt_num = #{mt_num}
 	</select>
 	
 	
