@@ -250,13 +250,12 @@
 .cinema-gallery {
 	width: 100%;
 	margin-left: 2px;
-	margin-top: 20px;
+	margin-top: 5px;
 	margin-right: 100px;
 	display: flex;
 	flex-direction: row; /* 가로 방향으로 나열 */
 	flex-wrap: nowrap; /* 줄 바꿈 없이 한 줄에 표시 */
 	overflow-x: auto; /* 넘치는 요소들을 가로 스크롤로 표시 */
-	webkit-overflow-scrolling: touch; /* iOS에서의 스크롤 부드러움 적용 */
 	border-bottom: 1px solid #dddddd;
 }
 
@@ -524,8 +523,10 @@
 }
 
 .movie-item {
-	display: flex;
+    height: 34px;
+    display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 /* 보류 

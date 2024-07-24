@@ -358,7 +358,7 @@ $(document).ready(function() {
 
                 let selectedMovieHtml = '<div class="movie-item selected">';
                 selectedMovieHtml += '<span class="ic_grade ' + gradeClass + '"></span>';
-                selectedMovieHtml += movieName;
+                selectedMovieHtml += '<span>' +movieName+'</span>';
                 selectedMovieHtml += '</div>';
 
                 $('.selected-movie-info').html(selectedMovieHtml);
