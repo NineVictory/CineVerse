@@ -22,12 +22,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.ReplyVO;
+import kr.spring.admin.vo.FaqVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
@@ -41,6 +43,7 @@ import kr.spring.seat.vo.SeatVO;
 import kr.spring.support.vo.ConsultVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -83,6 +86,10 @@ public class AdminController {
 	@ModelAttribute
 	public ConsultVO initCommand7() {
 		return new ConsultVO();
+	}
+	@ModelAttribute
+	public FaqVO initCommand8() {
+		return new FaqVO();
 	}
 	/*==============================
 	 * 관리자메인
@@ -316,11 +323,11 @@ public class AdminController {
 		return "common/resultAlert";
 	}
 	/*==============================
-	 * 이벤트 관리
+	 * Faq
 	 *==============================*/	
-	//이벤트 조회
-	@GetMapping("/admin/adminEvent")
-	public String getEventList(
+	//fqa 목록 호출
+	@GetMapping("/admin/adminFaq")
+	public String getFaqList(
 			@RequestParam(defaultValue="1") int pageNum,
 			String keyfield,String keyword,Model model) {
 
@@ -330,440 +337,525 @@ public class AdminController {
 		map.put("keyword", keyword);
 
 		//전체,검색 레코드수
-		int count = adminService.selectEventRowCount(map);
-
+		int count = adminService.selectFaqRowCount(map);
+		
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						count,20,10,"adminEvent");
-		List<EventVO> list = null;
+						count,20,10,"adminFaq");
+		List<FaqVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
 
-			list = adminService.selectEventList(map);
+			list = adminService.selectFaqList(map);
 		}
 
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
 
-		return "adminEvent";
+		return "adminFaq";
 	}
-	// 이벤트 삭제 처리
-	@PostMapping("/deleteEvent")
+	// faq 삭제 처리
+	@PostMapping("/deleteFaq")
 	@ResponseBody
-	public String deleteEvent(@RequestParam("event_num") int event_num) {
-		adminService.deleteEvent(event_num);
-		log.debug("<<이벤트 삭제 완료>>");
+	public String deleteFaq(@RequestParam("f_num") int f_num) {
+		adminService.deleteFaq(f_num); 
+		log.debug("<<faq 삭제 완료>>");
 		return "success";
 
 	}
-	//이벤트 등록 폼 호출
-	@GetMapping("/admin/adminEventForm")
-	public String AdminEventForm(){
-		return "adminEventForm";
+	//faq 등록 폼 호출
+	@GetMapping("/admin/adminFaqForm")
+	public String AdminFaqForm(){
+		return "adminFaqForm";
 	}
-	//이벤트 등록
-	@PostMapping("admin/adminEventForm")
-	public String insertEvent(@Valid EventVO eventVO,
+	//faq 등록
+	@PostMapping("admin/adminFaqForm")
+	public String insertFaq(@Valid FaqVO faqVO,
 			BindingResult result,
 			HttpServletRequest request,
 			HttpSession session,
 			Model model) throws IllegalStateException,IOException{
-		log.debug("<<이벤트 글 저장>> : " + eventVO);
-
-		//업로드된 파일이 없는 경우
-		if(eventVO.getEvent_upload()==null || eventVO.getEvent_upload().isEmpty()) {
-			result.rejectValue("event_upload","fileNotFound");
+		log.debug("<<faq 글 저장>> : " + faqVO);
+		
+		MemberVO vo = (MemberVO)session.getAttribute("user");
+		//비로그인 상태 유효성 체크
+		if(vo == null) {
+			log.debug("<<비로그인 상태>> :" + vo);
+			return "adminFaq"; // 다시 폼을 보여줌
 		}
+		faqVO.setMem_num(vo.getMem_num());
+		
 
 		// 폼 데이터 유효성 검사
 		if (result.hasErrors()) {
-			log.debug("<<유효성검사이상있음>> : " + eventVO);
-			return "adminEventForm"; // 다시 폼을 보여줌
+			log.debug("<<유효성검사이상있음>> : " + faqVO);
+			return "adminFaqForm"; // 다시 폼을 보여줌
 		}
 
-		eventVO.setEvent_filename(FileUtil.createFile(request, 
-				eventVO.getEvent_upload()));
+		faqVO.setF_filename(FileUtil.createFile(request, 
+				faqVO.getF_upload()));
 
-		log.debug("파일명: " + eventVO.getEvent_filename());
-		adminService.insertEvent(eventVO);
+		log.debug("파일명: " + faqVO.getF_filename());
+		adminService.insertFaq(faqVO);
 		//View 메시지 처리
 		model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
 		model.addAttribute("url", 
-				request.getContextPath()+"/admin/adminEvent");
+				request.getContextPath()+"/admin/adminFaq");
 
 		return "common/resultAlert";
 	}
-	/*==============================
-	 * 게시판관리
-	 *==============================*/	
-	// 게시판 통합 관리
-	@GetMapping("/admin/adminCommunity")
-	public String adminCommunity(
-			@RequestParam(defaultValue = "1") int pageNum,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "keyfield", required = false) String keyfield,
-			Model model) {
-		// keyfield가 없으면 기본값을 설정
-		if (keyfield == null || keyfield.isEmpty()) {
-			keyfield = "cb_title"; // 기본 검색 필드를 설정합니다.
+		/*==============================
+		 * 이벤트 관리
+		 *==============================*/	
+		//이벤트 조회
+		@GetMapping("/admin/adminEvent")
+		public String getEventList(
+				@RequestParam(defaultValue="1") int pageNum,
+				String keyfield,String keyword,Model model) {
+
+			Map<String,Object> map = 
+					new HashMap<String,Object>();
+			map.put("keyfield", keyfield);
+			map.put("keyword", keyword);
+
+			//전체,검색 레코드수
+			int count = adminService.selectEventRowCount(map);
+
+			//페이지 처리
+			PagingUtil page = 
+					new PagingUtil(keyfield,keyword,pageNum,
+							count,20,10,"adminEvent");
+			List<EventVO> list = null;
+			if(count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = adminService.selectEventList(map);
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminEvent";
+		}
+		// 이벤트 삭제 처리
+		@PostMapping("/deleteEvent")
+		@ResponseBody
+		public String deleteEvent(@RequestParam("event_num") int event_num) {
+			adminService.deleteEvent(event_num);
+			log.debug("<<이벤트 삭제 완료>>");
+			return "success";
+
+		}
+		//이벤트 등록 폼 호출
+		@GetMapping("/admin/adminEventForm")
+		public String AdminEventForm(){
+			return "adminEventForm";
+		}
+		//이벤트 등록
+		@PostMapping("admin/adminEventForm")
+		public String insertEvent(@Valid EventVO eventVO,
+				BindingResult result,
+				HttpServletRequest request,
+				HttpSession session,
+				Model model) throws IllegalStateException,IOException{
+			log.debug("<<이벤트 글 저장>> : " + eventVO);
+
+			//업로드된 파일이 없는 경우
+			if(eventVO.getEvent_upload()==null || eventVO.getEvent_upload().isEmpty()) {
+				result.rejectValue("event_upload","fileNotFound");
+			}
+
+			// 폼 데이터 유효성 검사
+			if (result.hasErrors()) {
+				log.debug("<<유효성검사이상있음>> : " + eventVO);
+				return "adminEventForm"; // 다시 폼을 보여줌
+			}
+
+			eventVO.setEvent_filename(FileUtil.createFile(request, 
+					eventVO.getEvent_upload()));
+
+			log.debug("파일명: " + eventVO.getEvent_filename());
+			adminService.insertEvent(eventVO);
+			//View 메시지 처리
+			model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+			model.addAttribute("url", 
+					request.getContextPath()+"/admin/adminEvent");
+
+			return "common/resultAlert";
+		}
+		/*==============================
+		 * 게시판관리
+		 *==============================*/	
+		// 게시판 통합 관리
+		@GetMapping("/admin/adminCommunity")
+		public String adminCommunity(
+				@RequestParam(defaultValue = "1") int pageNum,
+				@RequestParam(value = "keyword", required = false) String keyword,
+				@RequestParam(value = "keyfield", required = false) String keyfield,
+				Model model) {
+			// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "cb_title"; // 기본 검색 필드를 설정합니다.
+			}
+
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+			map.put("keyfield", keyfield);
+
+			// 전체, 검색 레코드 수
+			int count = adminService.selectCommunityRowCount(map);
+
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 15, 10, "adminCommunity");
+
+			List<BoardVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = adminService.selectCommunityList(map);
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminCommunity";
+
 		}
 
-		// 파라미터를 맵에 추가
-		Map<String, Object> map = new HashMap<>();
-		map.put("keyword", keyword);
-		map.put("keyfield", keyfield);
 
-		// 전체, 검색 레코드 수
-		int count = adminService.selectCommunityRowCount(map);
 
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 15, 10, "adminCommunity");
+		// 양도게시판 관리
+		@GetMapping("/admin/adminAssign")
+		public String adminAssign(
+				@RequestParam(defaultValue = "1") int pageNum,
+				@RequestParam(value = "keyword", required = false) String keyword,
+				@RequestParam(value = "keyfield", required = false) String keyfield,
+				Model model) {
+			// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "ab_title"; // 기본 검색 필드를 설정합니다.
+			}
 
-		List<BoardVO> list = null; 
-		if (count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+			map.put("keyfield", keyfield);
 
-			list = adminService.selectCommunityList(map);
+			// 전체, 검색 레코드 수
+			int count = adminService.selectAssignRowCount(map);
+
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 15, 10, "adminAssign");
+
+			List<AssignVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = adminService.selectAssginList(map);
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminAssign";
+
 		}
 
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("page", page.getPage());
 
-		return "adminCommunity";
+		// 게시판 댓글 관리
+		@GetMapping("/admin/adminReply")
+		public String adminReply(
+				@RequestParam(defaultValue = "1") int pageNum,
+				@RequestParam(value = "keyword", required = false) String keyword,
+				@RequestParam(value = "keyfield", required = false) String keyfield,
+				Model model) {
+			// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+			}
 
-	}
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+			map.put("keyfield", keyfield);
 
+			// 전체, 검색 레코드 수
+			int count = adminService.selectReplyRowCount(map);
+			count += adminService.selectReCmtRowCount(map);
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 5, "adminReply");
 
+			List<ReplyVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
 
-	// 양도게시판 관리
-	@GetMapping("/admin/adminAssign")
-	public String adminAssign(
-			@RequestParam(defaultValue = "1") int pageNum,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "keyfield", required = false) String keyfield,
-			Model model) {
-		// keyfield가 없으면 기본값을 설정
-		if (keyfield == null || keyfield.isEmpty()) {
-			keyfield = "ab_title"; // 기본 검색 필드를 설정합니다.
+				list = adminService.selectReplyList(map);
+				list.addAll(adminService.selectReCmtList(map));
+			}
+			log.debug("<<댓글 확인>>" + list);
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminReply";
+
+		}
+		// 댓글 삭제 처리
+		@PostMapping("/deleteReply")
+		@ResponseBody
+		public String deleteReply(@RequestParam("cc_num") long cc_num) {
+			adminService.deleteReply(cc_num);
+			log.debug("<<댓글 삭제 완료>>");
+			return "success";
+
+		}
+		// 대댓글 삭제 처리
+		@PostMapping("/deleteCmt")
+		@ResponseBody
+		public String deleteCmt(@RequestParam("te_num") long te_num) {
+			adminService.deleteCmt(te_num);
+			log.debug("<<댓글 삭제 완료>>");
+			return "success";
+
+		}
+		// 영화
+		@GetMapping("/admin/adminMovie")
+		public String adminMovie(
+				@RequestParam(defaultValue = "1") int pageNum,
+				@RequestParam(value = "keyword", required = false) String keyword,
+				@RequestParam(value = "keyfield", required = false) String keyfield,
+				Model model) {
+			// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "m_name"; // 기본 검색 필드를 설정합니다.
+			}
+
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+			map.put("keyfield", keyfield);
+
+			// 전체, 검색 레코드 수
+			int count = adminService.selectMovieRowCount(map);
+
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminMovie");
+
+			List<MovieVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = adminService.selectMovie(map); 
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminMovie";
+
+		}
+		// 영화 삭제 처리
+		@PostMapping("/deleteMovie")
+		@ResponseBody
+		public String deleteMovie(@RequestParam("m_code") long m_code) {
+			adminService.deleteMovie(m_code);
+			log.debug("<<영화 삭제 완료>>");
+			return "success";
+
+		}
+		// 영화
+		@GetMapping("/admin/adminMovieTime")
+		public String adminMovieTime(){
+			return "adminMovieTime";
+		}
+		// 영화관등록 폼 호출
+		@GetMapping("/admin/adminCinemaForm")
+		public String showCinemaForm(Model model) {
+			model.addAttribute("cinemaVO", new CinemaVO());
+			model.addAttribute("theaterList", new ArrayList<>());
+
+			return "adminCinemaForm";
+		}
+		@ModelAttribute("theaterVOList")
+		public List<TheaterVO> initializeTheaterList() {
+			return new ArrayList<>();
+		}
+		//영화관 등록
+		@PostMapping("/admin/adminCinemaForm")
+		@Transactional
+		public String insertCinema(@ModelAttribute("cinemaVO") @Valid CinemaVO cinemaVO,@Valid TheaterVO theaterVO,
+				BindingResult result,
+				Model model) {
+			log.debug("<<영화관 등록>> : " + cinemaVO);
+			if (result.hasErrors()) {
+				return "adminCinemaForm"; // 유효성 검사 오류 시 폼을 다시 보여줌
+			}		
+			// 영화관 정보 저장 
+
+			adminService.insertCinema(cinemaVO);
+
+			// View 메시지 처리
+			model.addAttribute("message", "영화관 및 상영관이 성공적으로 등록되었습니다.");
+			model.addAttribute("url", "/admin/adminCinemaForm");
+			return "common/resultAlert";
 		}
 
-		// 파라미터를 맵에 추가
-		Map<String, Object> map = new HashMap<>();
-		map.put("keyword", keyword);
-		map.put("keyfield", keyfield);
+		//영화관 목록
+		@GetMapping("/admin/adminCinema")
+		public String getCinemaList(
+				@RequestParam(defaultValue="1") int pageNum,
+				String keyfield,String keyword,Model model) {
 
-		// 전체, 검색 레코드 수
-		int count = adminService.selectAssignRowCount(map);
+			Map<String,Object> map = 
+					new HashMap<String,Object>();
+			map.put("keyfield", keyfield);
+			map.put("keyword", keyword);
 
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 15, 10, "adminAssign");
+			//전체,검색 레코드수
+			int count = adminService.selectCinemaRowCount(map);
 
-		List<AssignVO> list = null; 
-		if (count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
+			//페이지 처리
+			PagingUtil page = 
+					new PagingUtil(keyfield,keyword,pageNum,
+							count,20,10,"adminCinema");
+			List<CinemaVO> list = null;
+			if(count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
 
-			list = adminService.selectAssginList(map);
+				list = adminService.selectCinema(map);
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminCinema";
+		}
+		// 영화관 삭제 처리
+		@PostMapping("/deleteCinema")
+		@ResponseBody
+		public String deleteCinema(@RequestParam("c_num") long c_num) {
+			adminService.deleteCinema(c_num);
+			log.debug("<<영화관 삭제완료>>");
+			return "success";
+
 		}
 
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("page", page.getPage());
+		// 포인트조회
+		@GetMapping("/admin/adminPayment")
+		public String adminPayment(
+				@RequestParam(defaultValue = "1") int pageNum,
+				@RequestParam(value = "keyword", required = false) String keyword,
+				@RequestParam(value = "keyfield", required = false) String keyfield,
+				Model model) {
+			// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+			}
 
-		return "adminAssign";
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+			map.put("keyfield", keyfield);
 
-	}
-	
-	
-	// 게시판 댓글 관리
-	@GetMapping("/admin/adminReply")
-	public String adminReply(
-			@RequestParam(defaultValue = "1") int pageNum,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "keyfield", required = false) String keyfield,
-			Model model) {
-		// keyfield가 없으면 기본값을 설정
-		if (keyfield == null || keyfield.isEmpty()) {
-			keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+			// 전체, 검색 레코드 수
+			int count = adminService.selectPointRowCount(map);
+
+
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminPayment");
+
+			List<PointVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = adminService.selectPoint(map); 
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminPayment";
+
 		}
 
-		// 파라미터를 맵에 추가
-		Map<String, Object> map = new HashMap<>();
-		map.put("keyword", keyword);
-		map.put("keyfield", keyfield);
-
-		// 전체, 검색 레코드 수
-		int count = adminService.selectReplyRowCount(map);
-		count += adminService.selectReCmtRowCount(map);
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 5, "adminReply");
-		
-		List<ReplyVO> list = null; 
-		if (count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
-
-			list = adminService.selectReplyList(map);
-			list.addAll(adminService.selectReCmtList(map));
-		}
-		log.debug("<<댓글 확인>>" + list);
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("page", page.getPage());
-
-		return "adminReply";
-
-	}
-	// 댓글 삭제 처리
-	@PostMapping("/deleteReply")
-	@ResponseBody
-	public String deleteReply(@RequestParam("cc_num") long cc_num) {
-		adminService.deleteReply(cc_num);
-		log.debug("<<댓글 삭제 완료>>");
-		return "success";
-
-	}
-	// 대댓글 삭제 처리
-	@PostMapping("/deleteCmt")
-	@ResponseBody
-	public String deleteCmt(@RequestParam("te_num") long te_num) {
-		adminService.deleteCmt(te_num);
-		log.debug("<<댓글 삭제 완료>>");
-		return "success";
-
-	}
-	// 영화
-	@GetMapping("/admin/adminMovie")
-	public String adminMovie(
-			@RequestParam(defaultValue = "1") int pageNum,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "keyfield", required = false) String keyfield,
-			Model model) {
-		// keyfield가 없으면 기본값을 설정
-		if (keyfield == null || keyfield.isEmpty()) {
-			keyfield = "m_name"; // 기본 검색 필드를 설정합니다.
+		// 결제 환불 처리
+		@PostMapping("/refundPoint")
+		@ResponseBody
+		public String refundPoint(@RequestParam("mem_num") long mem_num,@Param("ph_num") long ph_num, @Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment) {
+			adminService.refundPoint(ph_num, mem_num, ph_point, ph_payment);
+			log.debug("<<포인트 환불완료>>");
+			return "success";
 		}
 
-		// 파라미터를 맵에 추가
-		Map<String, Object> map = new HashMap<>();
-		map.put("keyword", keyword);
-		map.put("keyfield", keyfield);
+		//문의
+		@GetMapping("/admin/adminConsult")
+		public String adminConsult(
+				@RequestParam(defaultValue = "1") int pageNum,
+				@RequestParam(value = "keyword", required = false) String keyword,
+				@RequestParam(value = "keyfield", required = false) String keyfield,
+				Model model) {
+			// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+			}
 
-		// 전체, 검색 레코드 수
-		int count = adminService.selectMovieRowCount(map);
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
 
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminMovie");
+			map.put("keyfield", keyfield);
 
-		List<MovieVO> list = null; 
-		if (count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
+			// 전체, 검색 레코드 수
+			int count = adminService.selectConsultRowCount(map);
 
-			list = adminService.selectMovie(map); 
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminConsult");
+			List<ConsultVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = adminService.selectConsultList(map);
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminConsult";
+
+		}
+		// 문의 답변 폼 호출
+		@GetMapping("/admin/adminAnswer")
+		public String updateAnswerForm(ConsultVO consultVO){
+			return "adminAnswer";
+		}
+		// 문의 답변 처리
+		@PostMapping("/adminAnswer")
+		@ResponseBody
+		public String updateAnswer(@Param("consult_num") long conslut_num) {
+			adminService.updateAnswer(conslut_num);
+			log.debug("<<답변 완료>>");
+			return "success";
 		}
 
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("page", page.getPage());
-
-		return "adminMovie";
-
 	}
-	// 영화 삭제 처리
-	@PostMapping("/deleteMovie")
-	@ResponseBody
-	public String deleteMovie(@RequestParam("m_code") long m_code) {
-		adminService.deleteMovie(m_code);
-		log.debug("<<영화 삭제 완료>>");
-		return "success";
-
-	}
-	// 영화
-	@GetMapping("/admin/adminMovieTime")
-	public String adminMovieTime(){
-		return "adminMovieTime";
-	}
-	// 영화관등록 폼 호출
-	@GetMapping("/admin/adminCinemaForm")
-	public String showCinemaForm(Model model) {
-		model.addAttribute("cinemaVO", new CinemaVO());
-		model.addAttribute("theaterList", new ArrayList<>());
-
-		return "adminCinemaForm";
-	}
-    @ModelAttribute("theaterVOList")
-    public List<TheaterVO> initializeTheaterList() {
-        return new ArrayList<>();
-    }
-	//영화관 등록
-    @PostMapping("/admin/adminCinemaForm")
-    @Transactional
-    public String insertCinema(@ModelAttribute("cinemaVO") @Valid CinemaVO cinemaVO,@Valid TheaterVO theaterVO,
-                               BindingResult result,
-                               Model model) {
-    	log.debug("<<영화관 등록>> : " + cinemaVO);
-    	if (result.hasErrors()) {
-            return "adminCinemaForm"; // 유효성 검사 오류 시 폼을 다시 보여줌
-        }		
-		  // 영화관 정보 저장 
-			
-			 adminService.insertCinema(cinemaVO);
-			 
-        // View 메시지 처리
-        model.addAttribute("message", "영화관 및 상영관이 성공적으로 등록되었습니다.");
-        model.addAttribute("url", "/admin/adminCinemaForm");
-        return "common/resultAlert";
-    }
-
-	//영화관 목록
-	@GetMapping("/admin/adminCinema")
-	public String getCinemaList(
-			@RequestParam(defaultValue="1") int pageNum,
-			String keyfield,String keyword,Model model) {
-
-		Map<String,Object> map = 
-				new HashMap<String,Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-
-		//전체,검색 레코드수
-		int count = adminService.selectCinemaRowCount(map);
-
-		//페이지 처리
-		PagingUtil page = 
-				new PagingUtil(keyfield,keyword,pageNum,
-						count,20,10,"adminCinema");
-		List<CinemaVO> list = null;
-		if(count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
-
-			list = adminService.selectCinema(map);
-		}
-
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("page", page.getPage());
-
-		return "adminCinema";
-	}
-	// 영화관 삭제 처리
-	@PostMapping("/deleteCinema")
-	@ResponseBody
-	public String deleteCinema(@RequestParam("c_num") long c_num) {
-		adminService.deleteCinema(c_num);
-		log.debug("<<영화관 삭제완료>>");
-		return "success";
-
-	}
-	
-	// 포인트조회
-	@GetMapping("/admin/adminPayment")
-	public String adminPayment(
-			@RequestParam(defaultValue = "1") int pageNum,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "keyfield", required = false) String keyfield,
-			Model model) {
-		// keyfield가 없으면 기본값을 설정
-		if (keyfield == null || keyfield.isEmpty()) {
-			keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
-		}
-
-		// 파라미터를 맵에 추가
-		Map<String, Object> map = new HashMap<>();
-		map.put("keyword", keyword);
-		map.put("keyfield", keyfield);
-
-		// 전체, 검색 레코드 수
-		int count = adminService.selectPointRowCount(map);
-		
-
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminPayment");
-
-		List<PointVO> list = null; 
-		if (count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
-
-			list = adminService.selectPoint(map); 
-		}
-
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("page", page.getPage());
-
-		return "adminPayment";
-
-	}
-	
-	// 결제 환불 처리
-	@PostMapping("/refundPoint")
-	@ResponseBody
-	public String refundPoint(@RequestParam("mem_num") long mem_num,@Param("ph_num") long ph_num, @Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment) {
-		adminService.refundPoint(ph_num, mem_num, ph_point, ph_payment);
-		log.debug("<<포인트 환불완료>>");
-		return "success";
-	}
-
-	//문의
-	@GetMapping("/admin/adminConsult")
-	public String adminConsult(
-			@RequestParam(defaultValue = "1") int pageNum,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "keyfield", required = false) String keyfield,
-			Model model) {
-		// keyfield가 없으면 기본값을 설정
-		if (keyfield == null || keyfield.isEmpty()) {
-			keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
-		}
-		
-		// 파라미터를 맵에 추가
-		Map<String, Object> map = new HashMap<>();
-		map.put("keyword", keyword);
-		
-		map.put("keyfield", keyfield);
-		
-		// 전체, 검색 레코드 수
-		int count = adminService.selectConsultRowCount(map);
-
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminConsult");
-		List<ConsultVO> list = null; 
-		if (count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
-
-			list = adminService.selectConsultList(map);
-		}
-
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("page", page.getPage());
- 
-		return "adminConsult";
-
-	}
-	// 문의 답변 폼 호출
-	@GetMapping("/admin/adminAnswer")
-	public String updateAnswerForm(ConsultVO consultVO){
-		return "adminAnswer";
-	}
-	// 문의 답변 처리
-	@PostMapping("/adminAnswer")
-	@ResponseBody
-	public String updateAnswer(@Param("consult_num") long conslut_num) {
-		adminService.updateAnswer(conslut_num);
-		log.debug("<<답변 완료>>");
-		return "success";
-	}
-	
-}
 
 

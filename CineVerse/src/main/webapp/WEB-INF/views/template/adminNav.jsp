@@ -47,7 +47,9 @@
 				class="menu-link">영화관등록</a></li>
 		</ul>
 		<a href="${pageContext.request.contextPath}/admin/adminNotice"
-			class="menu-item">공지사항</a> <a
+			class="menu-item">공지사항</a>
+			<a href="${pageContext.request.contextPath}/admin/adminFaq"
+			class="menu-item">FAQ</a> <a
 			href="${pageContext.request.contextPath}/admin/adminEvent"
 			class="menu-item">이벤트</a> <a
 			href="${pageContext.request.contextPath}/admin/adminPayment"
@@ -74,9 +76,7 @@
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminDelivery"
 				class="menu-link">배송상태</a></li>
-			<%-- <li><a
-				href="${pageContext.request.contextPath}/admin/adminAddress"
-				class="menu-link">배송지</a></li> --%>
+			<li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminShopReview"
 				class="menu-link">후기</a></li>
