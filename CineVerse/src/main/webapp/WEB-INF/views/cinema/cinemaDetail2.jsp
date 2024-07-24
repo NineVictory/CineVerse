@@ -183,13 +183,23 @@
 			                    method: 'get',
 			                    data: { mt_date: mt_date, c_num: c_num },
 			                    success: function(response) {
-			                        var theater_list = document.querySelector('.theater-list');
-			                        theater_list.innerHTML = ''; // 기존 목록 비우기
-			                        response.moviewTimeList.forEach(function(movie) {
-			                            var listItem = document.createElement('li');
-										listItem.innerHTML = movie.m_name + '<br>' + movie.th_name + '  ' + movie.mt_start + '~' + movie.mt_end;
-										theater_list.appendChild(listItem); // 목록에 항목 추가
-			                        });
+			                    	var theater_list = document.querySelector('.theater-list');
+			                    	theater_list.innerHTML = ''; // 기존 목록 비우기
+			                    	response.moviewTimeList.forEach(function(movie) {
+			                    	    var listItem = document.createElement('li');
+			                    	    listItem.innerHTML = movie.m_name + '<br>' + movie.th_name + '  ' + movie.mt_start + '~' + movie.mt_end;
+			                    	    listItem.setAttribute('data-mtNum', movie.mt_num); // data-mtNum 속성에 movie.mt_num 값 추가
+			                    	    theater_list.appendChild(listItem); // 목록에 항목 추가
+
+			                    	    // 클릭 이벤트 리스너 추가
+			                    	    listItem.addEventListener('click', function() {
+			                    	        let check = confirm('영화: ' + movie.m_name + '\n상영관: ' + movie.th_name + '\n시작 시간: ' + movie.mt_start + '\n종료 시간: ' + movie.mt_end + '\n\n예매하시겠습니까?');
+			                    	        var mt_num = this.getAttribute('data-mtNum');
+			                    	        if (check) {
+			                    	            window.location.href = '../movie/movieSeat?mt_num=' + mt_num;
+			                    	        }
+			                    	    });
+			                    	});
 			                    },
 			                    error: function() {
 			                        alert('네트워크 오류');
