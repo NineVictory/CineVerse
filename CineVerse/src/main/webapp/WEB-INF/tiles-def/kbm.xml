@@ -60,8 +60,13 @@
 	</definition>
 	
 	<definition name="supportFaq" extends="supportMain">
-		<put-attribute name="title" value="자주 묻는 질문"/>
+		<put-attribute name="title" value="자주 찾는 질문"/>
 		<put-attribute name="body" value="/WEB-INF/views/support/supportFaq.jsp"/>
+	</definition>
+	
+	<definition name="faqDetail" extends="supportMain">
+		<put-attribute name="title" value="자주 찾는 질문"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/faqDetail.jsp"/>
 	</definition>
 	
 	<definition name="supportNotice" extends="supportMain">

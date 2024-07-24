@@ -289,14 +289,15 @@ public class MovieController {
 
                // 포인트 차감 및 기록
 				/* movieService.updateMemberPoint(remainingPoints, user.getMem_num()); */
-               memberService.totalPoint(user.getMem_num());
+              
                movieService.insertPointHistory(finalAmount, user.getMem_num(), 1, "영화 예약");
 
                // 쿠폰 사용 상태 업데이트
                if (mc_num != null) {
-                   movieService.useCoupon(user.getMem_num(), mc_num);
+                   movieService.useCoupon(movieBooking.getMb_num(), mc_num);
                }
 
+               memberService.totalPoint(user.getMem_num());
                // 결제 완료 후 완료 페이지로 이동
                return "watchedMovie";
            }

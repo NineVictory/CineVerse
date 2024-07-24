@@ -227,6 +227,11 @@ public class SupportController {
 		ConsultVO consult = supportService.selectConsult(consult_num);
 		log.debug("<<consult>>*************" + consult);
 		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			model.addAttribute("message", "타인의 문의글은 볼 수 없습니다.");
+			model.addAttribute("url", request.getContextPath() + "/support/consultList");
+			return "common/resultAlert";
+		}
 		MemberVO member = memberService.selectCheckMember(user.getMem_id());
 		if(consult.getMem_num() != member.getMem_num()) {
 			model.addAttribute("message", "타인의 문의글은 볼 수 없습니다.");

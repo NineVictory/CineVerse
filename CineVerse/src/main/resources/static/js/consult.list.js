@@ -15,8 +15,8 @@ $(document).ready(function() {
 				event.preventDefault();
                 this.checked = false;
 			}else{
-			location.href='consultList?mem_num=' +memNum;
-			this.checked;
+				location.href='consultList?mem_num=' +memNum;
+				this.checked;
 			}
 		}else{
 			location.href='consultList';
