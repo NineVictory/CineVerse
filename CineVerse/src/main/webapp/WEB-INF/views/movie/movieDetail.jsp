@@ -100,7 +100,7 @@
 				<c:forEach var="still" items="${stills}">
 					<img src="${still}" alt="Movie Photo">
 			</c:forEach>
-   		</div>
+   	</div>
 
 <!-- 별점 및 후기 -->             
 <div class="menu-title">평점/리뷰</div>

@@ -137,13 +137,15 @@ a {
 }
 
 .tit_info {
-	padding: 10px;
-	border-radius: 0 0 10px 10px;
-	color: #fff;
-	display: flex;
-	align-items: center;
-	font-size: 12px;
-	font-weight: bold;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .ic_grade {
@@ -502,7 +504,6 @@ ul, ol {
 	display: block;
 	position: relative;
 	height: 25px;
-	/*line-height: 40px;*/
 	padding: 0 24px;
 	font-size: 14px;
 	letter-spacing: 0.1em;
@@ -521,7 +522,6 @@ ul, ol {
 	z-index: 2;
 	left: 0;
 	right: 0;
-	/* top: 140px; */
 	text-align: center;
 	background-color: rgba(0, 0, 0, .7);
 }
@@ -546,7 +546,6 @@ ul, ol {
 	font-size: 12px;
 }
 
-/* 모달 스타일 */
 .modal, .modal2, .modal3 {
 	display: none;
 	position: fixed;
@@ -615,10 +614,10 @@ display: block;
 }
 
 .em_title {
+display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 150px;
 }
 
 .swiper-slide {
@@ -657,3 +656,20 @@ width: 95px;
     opacity: 1;
 }
 
+.movie_infos_gt{
+	align-self: center;
+    align-items: center;
+    text-align: center;
+    width: 185px;
+    display: flex;
+    justify-content: center;
+}
+
+.movie_info_center {
+	width: 185px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+    

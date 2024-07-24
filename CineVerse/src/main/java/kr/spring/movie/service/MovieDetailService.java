@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import kr.spring.movie.vo.EMovieVO;
 import kr.spring.movie.vo.MovieDetailKFAPIVO;
+import kr.spring.movie.vo.MovieVO;
 
 public interface MovieDetailService {
 	public void insertMovieDetail(MovieDetailKFAPIVO movieDetail);
-	public List<EMovieVO> selectRankMovie(@Param("showrange") String showrange);
+	public List<MovieVO> selectRankMovie(@Param("showrange") String showrange);
 }

@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import kr.spring.movie.service.MovieDetailService;
 import kr.spring.movie.service.MovieRankService;
-import kr.spring.movie.vo.EMovieVO;
 import kr.spring.movie.vo.MovieRankAPIVO;
-import lombok.extern.slf4j.Slf4j;
+import kr.spring.movie.vo.MovieVO;
 
-@Slf4j
 @Controller
 public class MainController {
 	
@@ -49,7 +47,7 @@ public class MainController {
 		Integer count = movieRankService.getMovieRankCnt(showrange);
 		List<MovieRankAPIVO> movieRankList = movieRankService.getMovieRank(showrange);
 		
-		List<EMovieVO> movieRankDetail = movieDetailService.selectRankMovie(showrange);
+		List<MovieVO> movieRankDetail = movieDetailService.selectRankMovie(showrange);
 		
 		model.addAttribute("count", count);
 		model.addAttribute("movieRankList", movieRankList);

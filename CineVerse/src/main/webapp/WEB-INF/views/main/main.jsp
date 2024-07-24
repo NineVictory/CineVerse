@@ -123,26 +123,31 @@
     <div class="item">
         <div class="top_info">
             <span class="poster_info">
-                <img class="poster_info_image" src="${fn:split(detail.em_posters, '|')[0]}" alt="${detail.em_title}">
+                <img class="poster_info_image" src="${fn:split(detail.m_filename, '|')[0]}" alt="${detail.m_name}">
                 <em class="num_info">${detail.rank}</em>
                 <div class="overlay">
-                    <button class="btn-book">예매하기</button>
-                    <button class="btn-details">상세보기</button>
+                    <button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieReserve'">예매하기</button>
+                    <button class="btn-details" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail?m_code=${detail.m_code}'">상세보기</button>
                 </div>
             </span>
         </div>
         <div class="btm_info">
-            <strong class="tit_info">
-                <span class="ic_grade <c:choose><c:when test="${detail.em_rating eq '12세관람가' }">gr_12</c:when>
-                    <c:when test="${detail.em_rating eq '12세이상관람가' }">gr_12</c:when>
-                    <c:when test="${detail.em_rating eq '전체관람가' }">gr_all</c:when>
-                    <c:when test="${detail.em_rating eq '15세관람가' }">gr_15</c:when>
-                    <c:when test="${detail.em_rating eq '15세이상관람가' }">gr_15</c:when>
-                    <c:when test="${detail.em_rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
-                    <c:when test="${detail.em_rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
+        	<div class="movie_infos_gt">
+        		<div class="movie_info_center">
+        		<strong class="tit_info">
+                <span class="ic_grade <c:choose><c:when test="${detail.rating eq '12세관람가' }">gr_12</c:when>
+                    <c:when test="${detail.rating eq '12세이상관람가' }">gr_12</c:when>
+                    <c:when test="${detail.rating eq '전체관람가' }">gr_all</c:when>
+                    <c:when test="${detail.rating eq '15세관람가' }">gr_15</c:when>
+                    <c:when test="${detail.rating eq '15세이상관람가' }">gr_15</c:when>
+                    <c:when test="${detail.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
+                    <c:when test="${detail.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
                 </span>
-                <span class="em_title">${detail.em_title}</span>
+                <span class="em_title">${detail.m_name}</span>
             </strong>
+            </div>
+        	</div>
+            
             <span class="sub_info1">
                 <span class="rate_info">예매율&nbsp;<em>0%</em></span>
                 <span class="star_info" style="cursor: pointer;">0</span>
@@ -263,28 +268,5 @@
 
 	</div>
 </div>
-
-<script type="text/javascript">
-
-document.addEventListener('DOMContentLoaded', () => {
-    const bookButtons = document.querySelectorAll('.btn-book');
-    const detailsButtons = document.querySelectorAll('.btn-details');
-
-    bookButtons.forEach(button => {
-    	 button.addEventListener('click', (event) => {
-             event.preventDefault();
-             window.location.href = button.href;	// 영화 예매 사이트로 이동
-         });
-    });
-
-    detailsButtons.forEach(button => {
-    	 button.addEventListener('click', (event) => {
-             event.preventDefault();
-             window.location.href = button.href;	// 영화 세부 정보 사이트로 이동
-         });
-    });
-});
-
-</script>
 
 <!-- 메인 끝 -->

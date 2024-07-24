@@ -37,4 +37,6 @@ public class MovieVO {
 	private String still; // 스틸컷
 
 	private int bookmark_cnt; // 북마크 개수
+	
+	private String rank; // 영화 랭킹
 }

@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.movie.dao.MovieDetailMapper;
-import kr.spring.movie.vo.EMovieVO;
 import kr.spring.movie.vo.MovieDetailKFAPIVO;
+import kr.spring.movie.vo.MovieVO;
 
 @Service
 @Transactional
@@ -168,7 +168,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
     }
 
 	@Override
-	public List<EMovieVO> selectRankMovie(String showrange) {
+	public List<MovieVO> selectRankMovie(String showrange) {
 		return movieDetailMapper.selectRankMovie(showrange);
 	}
 }
