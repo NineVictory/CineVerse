@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.admin.vo.EventVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
@@ -16,6 +17,7 @@ import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
 
@@ -53,7 +55,16 @@ public interface MyPageMapper {
 	public List<ConsultVO> consultList(Map<String, Object> map);//문의 목록
 	@Select("SELECT * FROM (SELECT * FROM consult  WHERE mem_num = #{mem_num} ORDER BY consult_num DESC) WHERE ROWNUM = 1")
 	public ConsultVO lastConsert(Long mem_num);//마지막 문의글
-
+	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
+	public List<EventVO> eventList(Map<String, Object> map);
+	@Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num=#{mem_num}")//예매
+	public Integer reservationCnt(Long mem_num);
+	@Select("SELECT * FROM movie_booking JOIN movie USING(m_code) JOIN mb_detail USING(mb_num) JOIN movie_time USING(mt_num) JOIN theater USING(th_num) JOIN cinema USING(c_num) JOIN seat USING(seat_num) WHERE mem_num=#{mem_num}")
+	public List<MovieBookingVO> reservationList(Long mem_num);
+	
+	
+	
+	
 	//구독 목록 보기
 	@Select("SELECT * FROM member WHERE mem_num=#{mem_num}")
 	public MyPageVO selectMembership(Long mem_num);
@@ -95,8 +106,10 @@ public interface MyPageMapper {
 	@Select("SELECT m.m_name,m.m_filename,m.m_code FROM movie_bookmark mb JOIN movie m ON m.m_code=mb.m_code WHERE mb.mem_num=#{mem_num}")
 	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
 
-	@Delete("DELETE FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}")
-	public void deleteBookMark(MovieBookMarkVO bookMark);
+	/*	영화삭제
+	 * @Delete("DELETE FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}"
+	 * ) public void deleteBookMark(MovieBookMarkVO bookMark);
+	 */
   
 	 
 

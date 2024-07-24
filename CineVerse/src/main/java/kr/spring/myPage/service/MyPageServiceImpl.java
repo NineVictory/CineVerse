@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.admin.vo.EventVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
@@ -197,6 +199,26 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public void updateNoSubDate() {
 		myPageMapper.updateNoSubDate();
+	}
+
+	@Override
+	public Integer eventcnt(Map<String, Object> map) {
+		return myPageMapper.eventcnt(map);
+	}
+
+	@Override
+	public List<EventVO> eventList(Map<String, Object> map) {
+		return myPageMapper.eventList(map);
+	}
+
+	@Override
+	public Integer reservationCnt(Long mem_num) {
+		return myPageMapper.reservationCnt(mem_num);
+	}
+
+	@Override
+	public List<MovieBookingVO> reservationList(Long mem_num) {
+		return myPageMapper.reservationList(mem_num);
 	}
 
 	

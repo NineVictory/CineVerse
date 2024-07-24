@@ -15,4 +15,7 @@ public class MovieBookingVO {
 	private Long mem_num;
 	private Long mt_num;
 	private Long m_code;
+	private String m_name;
+	private String th_name;
+	private String c_branch;
 }

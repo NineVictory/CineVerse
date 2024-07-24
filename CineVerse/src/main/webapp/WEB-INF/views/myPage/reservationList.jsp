@@ -8,11 +8,11 @@
 		<span class="myPage_title_re">나의 예매 내역</span>
 	</div>
 	<!-- 반복 -->
-
+	<c:if test="${count == 0}">예매한 영화가 존재하지 않습니다</c:if>
+	<c:if test="${count > 0}">
+	<c:forEach var="res" items="${list}">
 	<div class="main_body_reservation">
-
 		<div class="myPageReservation_list" onclick="location.href='/myPage/reservation'">
-			<!--  css 수정 예매추가로 하면 박스 늘어나게 -->
 			<div class="mp_reserv">
 				<div class="m_movie_photo">
 					<img src="${pageContext.request.contextPath}/images/pmj/dune.jpg"
@@ -20,11 +20,11 @@
 				</div>
 				<div class="mpMovie_info">
 					<div>
-						<span class="mp_movie_number_1">예매번호</span> <span
-							class="mp_movie_number_2">0023-</span> <span
-							class="mp_movie_number_3">0619-3123-229</span>
+						<span class="mp_movie_number_1">예매번호</span> 
+						<!-- <span class="mp_movie_number_2">0023-</span>  -->
+						<span class="mp_movie_number_3">${res.mb_num}</span>
 					</div>
-					<div class="mp_movie_title">듄</div>
+					<div class="mp_movie_title">${res.m_name}</div>
 
 					<div class="reservation_list">
 						<div class="reserv_info">
@@ -34,9 +34,9 @@
 						</div>
 
 						<div class="my_reserv_info">
-							<div>CGV 용산아이파크몰</div>
-							<div>2024.07.06(토) 26:00</div>
-							<div>L 22,L 23</div>
+							<div>CINEVERSE${res.c_branch}</div><!-- 용산아이파크몰 -->
+							<div>${res.mb_date}</div><!-- 2024.07.06(토) 26:00 -->
+							<div></div><!-- L 22,L 23 -->
 						</div>
 					</div>
 					<hr size="1" width="100%" class="reserv_line">
@@ -50,6 +50,8 @@
 			</div>
 		</div>
 	</div>
+	</c:forEach>
+	</c:if>
 	<!-- 반복 -->
 </div>
 <!-- 나의 예매목록 끝 -->

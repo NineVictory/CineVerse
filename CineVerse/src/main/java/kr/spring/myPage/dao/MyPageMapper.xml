@@ -60,15 +60,13 @@
 			AND consult_type = 'exchange'
 		</if>
 	</sql>
-
+	
+	
 	<!-- 문의 갯수 -->
 	<select id="consultcnt" parameterType="map" resultType="integer">
 		SELECT
 		COUNT(*) FROM consult WHERE mem_num=#{mem_num}
 	</select>
-
-
-
 
 	<!-- 문의 목록 -->
 	<select id="consultList" parameterType="map"
@@ -306,12 +304,15 @@
 		ORDER BY ab_num DESC
 	</select>
 
-
-
-
-
-
-
+	<!-- 이벤트 갯수 -->
+	<select id="eventcnt" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM event_participation WHERE mem_num=#{mem_num}
+	</select>
+	
+	<!-- 이벤트 목록 -->
+	<select id="eventList" parameterType="map" resultType="EventVO">
+		SELECT * FROM event_participation ep JOIN event e ON ep.event_num=e.event_num WHERE mem_num=#{mem_num}
+	</select>
 
 	<update id="updateMember_detail" parameterType="myPageVO">
 		UPDATE

@@ -6,12 +6,14 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.admin.vo.EventVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
 
@@ -51,4 +53,9 @@ public interface MyPageService {
 	public ConsultVO lastConsert(Long mem_num);
 	public void updateNoSub();
 	public void updateNoSubDate();
+	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
+	public List<EventVO> eventList(Map<String, Object> map);
+	public Integer reservationCnt(Long mem_num);
+	public List<MovieBookingVO> reservationList(Long mem_num);
+	
 }

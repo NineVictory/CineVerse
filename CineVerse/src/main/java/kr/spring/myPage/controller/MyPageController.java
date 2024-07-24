@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import kr.spring.admin.vo.EventVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
@@ -26,6 +27,7 @@ import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
@@ -88,9 +90,14 @@ public class MyPageController {
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		
+		int count = mypageService.reservationCnt(user.getMem_num());
+		List<MovieBookingVO> list = null;
+		if(count > 0) {
+			list = mypageService.reservationList(user.getMem_num());
+		}
 		
-		
-		
+		model.addAttribute("count",count);
+		model.addAttribute("list",list);
 		model.addAttribute("member",member);
 		return "reservationList";
 	}
@@ -371,14 +378,26 @@ public class MyPageController {
 		return "aBoardWrite";
 	}
 
-	// 내 캘린더
 
 	// 이벤트 참여 내역
 	@GetMapping("/myPage/myEvent")
-	public String myPageEvent(HttpSession session, Model model) {
+	public String myPageEvent(@RequestParam(defaultValue="0")int category, HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_num", user.getMem_num());
+		map.put("category", category);
+		
+		List<EventVO> list = null;
+		int count = mypageService.eventcnt(map);
+		if(count > 0) {
+			list = mypageService.eventList(map);
+		}
+		
+		model.addAttribute("list",list);
+		model.addAttribute("count",count);
 		model.addAttribute("member", member);
 		return "myEvent";
 	}
