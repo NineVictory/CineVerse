@@ -77,13 +77,9 @@ $(document).ready(function() {
                 </li>
         
         		<li>
-                    <label for="m_code">영화</label>
-                    <select name="m_code" id="m_code" class="input-check" required>
-                        <c:forEach items="${movieList}" var="movie">
-                            <option value="${movie.m_code}">${movie.m_name}</option>
-                            <div>${movie.m_name}</div>
-                        </c:forEach>
-                    </select>
+                    <label for="m_code">영화코드</label>
+                    <input type="text" name="m_code" id="m_code" class="input-check" placeholder="영화 코드를 입력하세요" required>
+                    <div id="m_code_suggestions"></div>
                 </li>
                 <li>
                     <label for="th_num">극장번호</label>
