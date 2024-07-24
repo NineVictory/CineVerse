@@ -16,6 +16,7 @@ public class MovieTimeVO {
 	private int mt_end;				//타입 String → int 로 변경 (sql 쪽도 number로 수정해야 함 아직 수정 못함)
 	private Long m_code;
 	private Long th_num;
+	private String rating;
 	
 	private String th_name;
 	private String m_name;

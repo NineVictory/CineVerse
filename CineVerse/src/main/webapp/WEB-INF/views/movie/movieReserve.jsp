@@ -32,7 +32,32 @@ $(document).ready(function() {
                 // 성공적으로 데이터를 받았을 때 처리
                 let movieListHtml = '';
                 $.each(data, function(index, movie) {
-                    movieListHtml += '<li class="select" data-cnum="' + c_num + '" data-mcode="' + movie.m_code + '"><a href="#" class="movie-item" >' + movie.m_name + '</a></li>';
+                	let gradeClass = '';
+                    
+                    switch (movie.rating) {
+                        case '12세관람가':
+                        case '12세이상관람가':
+                            gradeClass = 'gr_12';
+                            break;
+                        case '전체관람가':
+                            gradeClass = 'gr_all';
+                            break;
+                        case '15세관람가':
+                        case '15세이상관람가':
+                            gradeClass = 'gr_15';
+                            break;
+                        case '18세관람가(청소년관람불가)':
+                        case '청소년관람불가':
+                            gradeClass = 'gr_19';
+                            break;
+                        default:
+                            gradeClass = 'gr_unknown';
+                    }
+                	
+                    movieListHtml += '<li class="select" data-cnum="' + c_num + '" data-mcode="' + movie.m_code + '">';
+                    movieListHtml += '<a href="#" class="movie-item" ><span class="ic_grade ' + gradeClass + '"></span></a>';
+                    movieListHtml += '<a href="#" class="movie-item" >'+ movie.m_name + '</a>';
+                    movieListHtml += '</li>';
                 });
                 $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
             },
@@ -113,7 +138,6 @@ $(document).ready(function() {
                     $.each(data, function(index, movietime) {
                         selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + formatTime(movietime.mt_end) + '" data-mtnum="' + movietime.mt_num + '">';
                         selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(movietime.mt_start) + '</div>';
-                        selectMovieTimeListHtml += '<div class="mt-date">' + movietime.mt_date + '</div>';
                         selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name + '</div>';
                         selectMovieTimeListHtml += '</li>';
                     });
@@ -306,8 +330,56 @@ $(document).ready(function() {
                 generateMovieDays();
             </script>
             <!-- 날짜 끝 -->
+            <script type="text/javascript">
+            $(document).on('click', '.select', function(e) {
+                e.preventDefault();
+
+                selectedMCode = $(this).attr('data-mcode');
+                let movieName = $(this).find('.movie-item').eq(1).text();
+                let gradeClass = $(this).find('.ic_grade').attr('class').split(' ')[1];
+
+                let movieGrade;
+                switch (gradeClass) {
+                    case 'gr_12':
+                        movieGrade = '12세관람가';
+                        break;
+                    case 'gr_all':
+                        movieGrade = '전체관람가';
+                        break;
+                    case 'gr_15':
+                        movieGrade = '15세관람가';
+                        break;
+                    case 'gr_19':
+                        movieGrade = '청소년관람불가';
+                        break;
+                    default:
+                        movieGrade = '등급 정보 없음';
+                }
+
+                let selectedMovieHtml = '<div class="movie-item selected">';
+                selectedMovieHtml += '<span class="ic_grade ' + gradeClass + '"></span>';
+                selectedMovieHtml += movieName;
+                selectedMovieHtml += '</div>';
+
+                $('.selected-movie-info').html(selectedMovieHtml);
+
+                selectedDate = null;
+                selectedMtStart = null;
+                $('#mt_num').val(''); 
+                
+                $('.select').removeClass('active');
+                
+                $(this).addClass('active');
+                
+                $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+                $('.movietime-item').removeClass('active');
+                $('.movietime-select').empty(); // 시간표 목록 초기화
+            });
+            </script>
+            
             <div class="reserve-time-wrapper">
                 <div class="movitime-list">
+                <div class="selected-movie-info"></div>
                     <ul class="movietime-select">
                         <!-- Ajax로 받아온 영화 시간표 목록이 여기에 추가됩니다. -->
                     </ul>
