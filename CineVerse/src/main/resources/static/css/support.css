@@ -221,7 +221,7 @@ li.support_nav{
 .faq-table-num, .news-table-num{
 	padding: 7px;
 }
-.faq-table-num, .faq-table-hit, .news-table-num, .news-table-hit, .news-table-rdate{
+.faq-table-num, .faq-table-rdate, .faq-table-hit, .news-table-num, .news-table-hit, .news-table-rdate{
 	text-align:center;
 }
 .faq-table-title, .news-table-title{
