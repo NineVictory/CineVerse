@@ -9,12 +9,14 @@
 <script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 <div class="page-container">
 <div class="Answer_insert_form">
-    <h2>글 수정</h2>
+    <h2>${consultVO.consult_title}</h2>
     <form:form action="adminAnswer" id="regisiteAnswer_form" enctype="multipart/form-data" modelAttribute="consultVO">
         <form:hidden path="consult_num"/>
+        <form:hidden path="consult_title"/>
+        <form:hidden path="consult_content"/>
         <ul>
             <li>
-                <label for="consult_answer">내용</label>
+                <label>내용 : ${consultVO.consult_content}</label>
                 <form:textarea id="consult_answer" path="consult_answer" class="input-check"/>
                 <form:errors path="consult_answer" element="div" cssClass="error-message"/>
                 <script>

@@ -46,7 +46,6 @@
                 <th>개봉일</th>
                 <th>제작사</th>
                 <th>상태</th>
-                <th>포스터</th>
                 <th></th>
             </tr>
         </thead>
@@ -64,7 +63,6 @@
                     <td class="mem-data">${movie.m_companys}</td>
                     <c:if test = "${movie.m_status == 2}"><td class="mem-data">미상영</td></c:if>
                     <c:if test = "${movie.m_status == 1}"><td class="mem-data">상영중</td></c:if>
-                    <td class="mem-data"><img src="${pageContext.request.contextPath}/upload/${movie.m_filename}" width="50px" height="50px"></td> <!-- 상품 이미지가 있는 속성으로 수정 필요 -->
                     <td class="button2"><input type="button" value="삭제" onclick="deleteMovie(${movie.m_code})"/></td>
                 </tr>
             </c:forEach>
