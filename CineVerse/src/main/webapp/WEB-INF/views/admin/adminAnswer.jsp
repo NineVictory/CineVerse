@@ -9,68 +9,64 @@
 <script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        const myForm = document.getElementById('RegisterEvent_form');
-        myForm.onsubmit = function() {
-            const items = document.querySelectorAll('.input-check');
-            for (let i = 0; i < items.length; i++) {
-                if (items[i].value.trim() === '') {
-                    const label = document.querySelector('label[for="' + items[i].id + '"]');
-                    alert(label.textContent + ' 항목은 필수 입력입니다!');
-                    items[i].value = '';
-                    items[i].focus();
-                    return false; // 폼 제출 방지
+<script>
+    function adminAnswer(consult_content, consult_num) {
+        var content = document.getElementById("consult_answer").value;
+        $.ajax({
+            type: "POST", 
+            url: "${pageContext.request.contextPath}/updateAnswer",
+            data: { consult_content: consult_content, consult_num: consult_num },
+            success: function(response) {
+                if (response === "success") {
+                    // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
+                    alert("답변 완료");
+                    location.reload(); // 예시로 페이지를 새로고침
+                } else {
+                    alert("답변 실패");
                 }
+            },
+            error: function() {
+                alert("서버 오류가 발생했습니다.");
             }
-        };
-    });
+        });
+    }
 </script>
 
 <div class="page-container">
-	<%-- <h2>${consult.consult_title}</h2>
-	<ul class="detail-info">
-		<li>회원번호 : ${consult.mem_num} 
-		분류 : <c:if test="${consult.consult_type == 'dissatisfaction'}"> 불만사항</c:if> 
-		<c:if test="${consult.consult_type == 'exchange'}">교환/환불</c:if>
-		<c:if test="${consult.consult_type == 'proposal'}">제안</c:if> 
-		<c:if test="${consult.consult_type == 'compliment'}">칭찬</c:if> 
-		<c:if test="${consult.consult_type == 'inquiry'}">문의</c:if> 
-		<c:if test="${consult.consult_type == 'missing'}">분실</c:if>  
-			 내용 : ${consult.consult_content} 작성일 : ${consult.consult_reg_date}
-	</ul> --%>
-	<div class="event_insert_form">
+	<div class="answer_insert_form">
 		<h2>문의답변</h2>
 		<form:form action="adminAnswer" enctype="multipart/form-data"
 			id="answer_form" modelAttribute="consultVO">
 			<ul>
-				<li><label for="consult_answer">내용</label> <form:textarea
-						rows="5" cols="30" path="consult_answer" class="input-check" /> <form:errors
-						path="consult_answer" element="div" cssClass="error-message"></form:errors>
+				<li>
+					<label for="consult_answer">내용</label>
+					<form:textarea rows="5" cols="30" path="consult_answer"
+						class="input-check" id="consult_answer" />
+					<form:errors path="consult_answer" element="div"
+						cssClass="error-message"></form:errors>
 					<script>
-				 function MyCustomUploadAdapterPlugin(editor) {
-					    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-					        return new UploadAdapter(loader);
-					    }
-					}
-				 ClassicEditor
-		            .create( document.querySelector( '#answer_content' ),{
-		            	extraPlugins: [MyCustomUploadAdapterPlugin]
-		            })
-		            .then( editor => {
-						window.editor = editor;
-					} )
-		            .catch( error => {
-		                console.error( error );
-		            } );
-			    </script></li>
-
+				        function MyCustomUploadAdapterPlugin(editor) {
+				            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+				                return new UploadAdapter(loader);
+				            }
+				        }
+				        ClassicEditor
+				            .create(document.querySelector('#consult_answer'), {
+				                extraPlugins: [MyCustomUploadAdapterPlugin]
+				            })
+				            .then(editor => {
+				                window.editor = editor;
+				            })
+				            .catch(error => {
+				                console.error(error);
+				            });
+				    </script>
+				</li>
 			</ul>
 			<div class="btn_display_set">
-				<form:button id="submit_btn">등록하기</form:button>
+				<button type="button" id="submit_btn"
+					onclick="adminAnswer('${consult_content}', ${consult_num})">등록하기</button>
 			</div>
 		</form:form>
-
 	</div>
 </div>
-

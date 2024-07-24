@@ -690,11 +690,6 @@ public class AdminController {
 			return "success";
 
 		}
-		// 영화
-		@GetMapping("/admin/adminMovieTime")
-		public String adminMovieTime(){
-			return "adminMovieTime";
-		}
 		// 영화관등록 폼 호출
 		@GetMapping("/admin/adminCinemaForm")
 		public String showCinemaForm(Model model) {
@@ -856,18 +851,35 @@ public class AdminController {
 			return "adminConsult";
 
 		}
-		// 문의 답변 폼 호출
+		//수정 폼 호출
 		@GetMapping("/admin/adminAnswer")
-		public String updateAnswerForm(ConsultVO consultVO){
+		public String UpdateAnswer(long consult_num,Model model) {
+			ConsultVO consultVO = 
+					adminService.selectConsult(consult_num);
+			model.addAttribute("ConsultVO", consultVO);
+			
 			return "adminAnswer";
 		}
-		// 문의 답변 처리
-		@PostMapping("/adminAnswer")
-		@ResponseBody
-		public String updateAnswer(@Param("consult_num") long conslut_num) {
-			adminService.updateAnswer(conslut_num);
-			log.debug("<<답변 완료>>");
-			return "success";
+		//수정 폼에서 전송된 데이터 처리
+		@PostMapping("/updateAnswer")
+		public String adminAnswer(@ModelAttribute("consultVO")ConsultVO consultVO){
+			
+			log.debug("<<게시판 글 수정>> : " + consultVO);
+			//유효성 체크 결과 오류가 있으면 폼 호출
+			/*
+			 * if(result.hasErrors()) { ConsultVO vo = adminService.selectConsult(
+			 * consultVO.getConsult_num()); return "adminConsult"; }
+			 */
+			//DB에 저장된 파일 정보 구하기
+			/*
+			 * ConsultVO db_consult = adminService.selectConsult(
+			 * consultVO.getConsult_num());
+			 */
+			//글 수정
+			adminService.updateAnswer(consultVO);
+			
+			
+			return "andinConsult";
 		}
 
 	}

@@ -131,7 +131,9 @@ public interface AdminMapper {
 	//문의
 	public List<ConsultVO> selectConsultList(Map<String,Object>map);
 	public Integer selectConsultRowCount(Map<String,Object> map);
-	@Update("UPDATE consult SET consult_status = 1,consult_modify_date = SYSDATE ,consult_answer = #{consult_answer} WHERE consult_num = #{consult_num}")
-	public void updateAnswer(long consult_num);
+	@Select("SELECT * FROM consult JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE consult_num=#{consult_num}")
+	public ConsultVO selectConsult(long consult_num);
+	@Update("UPDATE consult SET consult_modify_date = SYSDATE, consult_status = 2, consult_answer = #{consult_answer, jdbcType=VARCHAR} WHERE consult_num = #{consult_num}")
+	public void updateAnswer(ConsultVO consultVO);
 	
 }

@@ -229,8 +229,8 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.selectConsultRowCount(map);
 	}
 	@Override
-	public void updateAnswer(long consult_num) {
-		adminMapper.updateAnswer(consult_num);
+	public void updateAnswer(ConsultVO consultVO) {
+		adminMapper.updateAnswer(consultVO);
 	}
 
 	@Override
@@ -248,6 +248,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteFaq(long f_num) {
 		adminMapper.deleteFaq(f_num);
+	}
+	@Override
+	public ConsultVO selectConsult(long consult_num) {
+		return adminMapper.selectConsult(consult_num);
 	}
 
 }

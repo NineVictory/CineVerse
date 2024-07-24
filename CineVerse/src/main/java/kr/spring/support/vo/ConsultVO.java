@@ -1,5 +1,6 @@
 package kr.spring.support.vo;
 
+import java.sql.Clob;
 import java.sql.Date;
 
 import javax.validation.constraints.NotBlank;
@@ -30,6 +31,7 @@ public class ConsultVO {
 	private MultipartFile c_upload;
 	private String consult_file;
 	private String consult_ip;
+	@NotBlank
 	private String consult_answer;
 	
 	//조인

@@ -363,6 +363,7 @@
 			<if test="keyfield != null and keyword != null">
          	    AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
+			AND ph_type = 2
 		</where>
 	</sql>
 
@@ -373,7 +374,7 @@
 		COUNT(*)
 		FROM point_history
 		<include refid="pointSearch"></include>
-		AND ph_type = 2
+		
 	</select>
 
 	<!-- 포인트충전 전체/검색 목록 -->
@@ -396,7 +397,6 @@
 		ph_payment
 		FROM point_history
 		<include refid="pointSearch"></include>
-		AND ph_type = 2
 		) a
 		)
     <![CDATA[

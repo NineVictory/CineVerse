@@ -70,5 +70,6 @@ public interface AdminService {
 	public void refundMembership(long mem_num, String point_payment);
 	public List<ConsultVO> selectConsultList(Map<String,Object>map);
 	public Integer selectConsultRowCount(Map<String,Object> map);
-	public void updateAnswer(long consult_num);
+	public ConsultVO selectConsult(long consult_num);
+	public void updateAnswer(ConsultVO consultVO);
 }	
