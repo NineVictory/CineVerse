@@ -220,13 +220,20 @@ li.support_nav{
 }
 .faq-table-num, .news-table-num{
 	padding: 7px;
+	width:80px;
 }
+
 .faq-table-num, .faq-table-rdate, .faq-table-hit, .news-table-num, .news-table-hit, .news-table-rdate{
 	text-align:center;
 }
 .faq-table-title, .news-table-title{
 	text-align:left;
 }
+.news-table-title, .faq-table-title{
+	width:640px;
+}
+
+
 
 /*consult 일대일문의*/
 .qna-member-info{
@@ -485,7 +492,7 @@ form#news_search_form{
 	margin-top:50px;
 }
 
-.notice-title{
+.notice-title, .faq-title{
 	overflow: hidden;
     padding: 11px;
     border-top: solid 1px #b8b6aa;
@@ -501,10 +508,17 @@ form#news_search_form{
     border-bottom: solid 1px #b8b6aa;
     line-height: 24px;
 }
-.notice-title > * {
+
+ .faq-content{
+	margin:10px 0;
+	padding: 35px 13px 45px 13px;
+    border-bottom: solid 1px #b8b6aa;
+    line-height: 24px;
+}
+.notice-title > * , .faq-title > *{
 	font-size:13px;
 }
-.notice-content > *{
+.notice-content > *, .faq-content > *{
 	font-size:14px;
 	color:#2e2e2e;
 }

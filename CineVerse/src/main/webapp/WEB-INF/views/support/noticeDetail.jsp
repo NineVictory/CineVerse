@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- 자주 묻는 질문 -->
+<!-- 공지/뉴스 -->
 <div id="support_main" class="">
 	<h3>공지/뉴스</h3>
 	<div class="news-sub-info">
