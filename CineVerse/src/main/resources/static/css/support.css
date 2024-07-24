@@ -172,6 +172,7 @@ li.support_nav{
 }
 .main-news img{
 	cursor:pointer;
+	margin-bottom:10px;
 }
 
 
@@ -200,7 +201,7 @@ li.support_nav{
 	border-top:1px solid #BEBABA;
 	padding:8px 7px;
 }
-.faq-table:last-child, .news-table tr:last-child, .qna-table tr:last-child{
+.faq-table tr:last-child, .news-table tr:last-child, .qna-table tr:last-child{
 	border-bottom:1px solid #BEBABA;
 }
 

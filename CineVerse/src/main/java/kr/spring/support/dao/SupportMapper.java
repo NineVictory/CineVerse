@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.vo.ConsultVO;
+import kr.spring.support.vo.UserFaqVO;
 import kr.spring.support.vo.UserNoticeVO;
 
 
@@ -42,4 +43,11 @@ public interface SupportMapper {
 	public UserNoticeVO selectNotice(Long nb_num);
 	@Update("UPDATE notice_board SET nb_hit=nb_hit+1 WHERE nb_num=#{nb_num}")
 	public void updateHit(Long nb_num);
+	
+	public List<UserFaqVO> selectFaqList(Map<String,Object> map);
+	public Integer selectFaqRowCount(Map<String,Object> map);
+	@Select("SELECT * FROM faq WHERE f_num=#{f_num}")
+	public UserFaqVO selectFaq(Long f_num);
+	@Update("UPDATE faq SET f_hit=f_hit+1 WHERE f_num=#{f_num}")
+	public void updateFaqHit(Long nb_num); 
 }

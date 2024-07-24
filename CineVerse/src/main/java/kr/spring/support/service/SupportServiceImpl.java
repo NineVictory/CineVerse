@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.dao.SupportMapper;
 import kr.spring.support.vo.ConsultVO;
+import kr.spring.support.vo.UserFaqVO;
 import kr.spring.support.vo.UserNoticeVO;
 
 @Service
@@ -62,6 +63,26 @@ public class SupportServiceImpl implements SupportService{
 	@Override
 	public void updateHit(Long nb_num) {
 		supportMapper.updateHit(nb_num);
+	}
+
+	@Override
+	public List<UserFaqVO> selectFaqList(Map<String, Object> map) {
+		return supportMapper.selectFaqList(map);
+	}
+
+	@Override
+	public Integer selectFaqRowCount(Map<String, Object> map) {
+		return supportMapper.selectFaqRowCount(map);
+	}
+
+	@Override
+	public UserFaqVO selectFaq(Long f_num) {
+		return supportMapper.selectFaq(f_num);
+	}
+
+	@Override
+	public void updateFaqHit(Long nb_num) {
+		supportMapper.updateFaqHit(nb_num);		
 	}
 
 	

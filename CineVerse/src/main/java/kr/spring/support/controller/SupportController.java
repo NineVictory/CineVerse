@@ -25,6 +25,7 @@ import kr.spring.member.vo.MemberVO;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.ConsultVO;
+import kr.spring.support.vo.UserFaqVO;
 import kr.spring.support.vo.UserNoticeVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
@@ -46,7 +47,9 @@ public class SupportController {
 		return new ConsultVO();
 	}
 	
-	//고객센터 메인
+	/*====================
+	 *고객 센터 메인
+	 =====================*/
 	@GetMapping("/support/main")
 	public String main(@RequestParam(defaultValue="1") int pageNum,
 			 String keyfield, String keyword, Model model) {
@@ -74,13 +77,62 @@ public class SupportController {
 		return "supportMain";
 	}
 	
-	//자주묻는질문
+	/*====================
+	 *자주 묻는 질문
+	 =====================*/
 	@GetMapping("/support/faq")
-	public String faqList() {
+	public String faqList(@RequestParam(defaultValue="1") int pageNum,
+			 				String keyfield, String keyword, Model model) {
+		log.debug("faq 목록***************");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체, 검색 레코드수
+		int count = supportService.selectFaqRowCount(map);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,10,10,"faq");
+		List<UserFaqVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = supportService.selectFaqList(map);
+			
+		}
+				
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+		
 		return "supportFaq";
 	}
 	
-	//공지/뉴스
+	//자주묻는질문 상세
+	@GetMapping("/support/faqDetail")
+	public ModelAndView faqDetail(long f_num) {
+		log.debug("자주묻는질문 상세************* - f_num : " + f_num);
+		
+		//해당 글의 조회수 증가
+		UserFaqVO faqVO = supportService.selectFaq(f_num);
+		supportService.updateFaqHit(f_num);
+		log.debug("**************f_hit : " + faqVO.getF_hit());
+		//제목에 태그를 허용하지 않음
+		faqVO.setF_title(StringUtil.useNoHTML(faqVO.getF_title()));
+		
+		//내용에 태그를 허용하지 않으면서 줄바꿈 처리(CKEditor 사용시 주석 처리)
+		//board.setContent(StringUtil.useBrNoHTML(board.getContent()));
+		ModelAndView modelAndView = new ModelAndView("faqDetail");
+		modelAndView.addObject("faq", faqVO);
+		return modelAndView;
+	}
+	
+	
+	/*====================
+	 *공지/뉴스
+	 =====================*/
 	@GetMapping("/support/notice")
 	public String noticeList(@RequestParam(defaultValue="1") int pageNum,
 							 String keyfield, String keyword, Model model) {
@@ -111,11 +163,9 @@ public class SupportController {
 		return "supportNotice";
 	}
 	
-	/*====================
-	 *공지 상세
-	 =====================*/
+	//공지 상세
 	@GetMapping("/support/noticeDetail")
-	public ModelAndView process(long nb_num) {
+	public ModelAndView noticeDetail(long nb_num) {
 		log.debug("공지 상세************* - nb_num : " + nb_num);
 		
 		//해당 글의 조회수 증가
@@ -133,8 +183,9 @@ public class SupportController {
 		return modelAndView;
 	}
 	
-	
-	//1:1 목록
+	/*====================
+	 *1:1 문의
+	 =====================*/
 	@GetMapping("/support/consultList")
 	public String consultMain(@RequestParam(defaultValue="1") int pageNum,
 							  @RequestParam(required=false) Long mem_num,
