@@ -164,11 +164,11 @@ $(document).ready(function() {
     // 툴팁 생성
     $(document).on('mouseenter', '.movietime-item', function(event) {
         let endTime = $(this).data('end-time');
-        let tooltip = '<div class="tooltip">종료: ' + endTime + '</div>';
+        let tooltip = '<div class="tooltip">종료 | ' + endTime + '</div>';
         $('body').append(tooltip);
         let tooltipElement = $('.tooltip');
         tooltipElement.css({
-            top: event.pageY + 10,
+            top: event.pageY + 8,
             left: event.pageX + 10
         });
     });
@@ -176,7 +176,7 @@ $(document).ready(function() {
     $(document).on('mousemove', '.movietime-item', function(event) {
         let tooltipElement = $('.tooltip');
         tooltipElement.css({
-            top: event.pageY + 10,
+            top: event.pageY + 8,
             left: event.pageX + 10
         });
     });
@@ -391,11 +391,17 @@ $(document).ready(function() {
             <form action="movieSeat" method="get">
                 <input type="hidden" name="mt_num" id="mt_num">
                 <c:if test="${!empty user}">
-                    <input type="submit" class="movieSeatButton" value="좌석 선택">
+                	<div class="moveSeatButton">
+                	<img src="${pageContext.request.contextPath}/images/wright-arrow.png" width="30">
+                    <input type="submit" class="button_styles" value="좌석 선택">
+                    </div>
                 </c:if>
                 <c:if test="${empty user}">
-                    <input type="button" class="moveSeatButton" value="좌석 선택" onclick="alertAndRedirect()">
-                </c:if>
+                <div class="moveSeatButton">
+                <img src="${pageContext.request.contextPath}/images/wright-arrow.png" width="30">
+                <input type="button" class="button_styles" value="좌석 선택" onclick="alertAndRedirect()">
+                </div>
+		</c:if>
             </form>    
         </div>
         <script>
