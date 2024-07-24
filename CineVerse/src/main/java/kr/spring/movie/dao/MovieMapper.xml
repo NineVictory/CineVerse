@@ -215,7 +215,18 @@
     </insert>
     
 	<select id="selectDistinctGenres" resultType="String">
-    	SELECT DISTINCT genre FROM movie_genre
+    <![CDATA[
+        SELECT genre 
+        FROM (
+            SELECT genre, COUNT(*) AS genre_count
+            FROM movie_genre
+            GROUP BY genre
+            ORDER BY genre_count DESC
+        )
+        WHERE ROWNUM <= 15
+    ]]>
+
+
 	</select>
     <select id="filterMoviesByGenres" parameterType="list" resultType="kr.spring.movie.vo.MovieVO">
         SELECT *
