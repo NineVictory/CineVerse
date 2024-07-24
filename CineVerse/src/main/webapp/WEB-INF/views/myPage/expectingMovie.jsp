@@ -21,7 +21,7 @@
 					
 					<div class="expect-movie-info">
 						<div class="expect-movie-title">
-							<p>${mov.m_name}</p>
+							<p class="movie_name">${mov.m_name}</p>
 						</div>
 					
 						<div class="expect-movie-like">

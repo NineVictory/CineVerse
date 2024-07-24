@@ -855,13 +855,13 @@
    ======================= */
 .movie_list_all {
 	display: flex;
-	justify-content: center;
+	/* justify-content: center; */
 	width: 100%;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 #expecting_movielist {
-	margin-left: -70px;
+	margin-left: -52px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
@@ -870,7 +870,7 @@
 }
 
 .liked_movie {
-	width: calc(25% - 10px);
+	/* width: calc(25% - 10px); */
 	margin: 0 5px 30px 5px;
 	text-align: center;
 }
@@ -889,22 +889,30 @@
 }
 
 .expect-movie-info {
-	padding: 13px;
+	padding: 13px 3px 13px 3px;
 	display: flex;
+	justify-content: space-between;
+	width:190px;
 }
 
 .expect-movie-title {
 	display: flex;
 	align-items: center;
-	width: 110px;
+	width: 150px;
 	justify-content: center;
 }
 
 .expect-movie-like {
 	display: flex;
-	width: 40px;
+	/* width: 40px; */
 	align-items: center;
 	justify-content: flex-end;
+}
+.movie_name{
+	width:160px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 /* =======================
      	myPageCoupon.jsp
