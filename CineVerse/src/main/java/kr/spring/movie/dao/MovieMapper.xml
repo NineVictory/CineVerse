@@ -229,16 +229,15 @@
 
 	</select>
     <select id="filterMoviesByGenres" parameterType="list" resultType="kr.spring.movie.vo.MovieVO">
-        SELECT *
-        FROM movie
-        WHERE m_code IN (
-            SELECT m_code
-            FROM movie_genre
-            WHERE genre IN
-            <foreach item="genre" index="index" collection="genres" open="(" separator="," close=")">
-                #{genre}
-            </foreach>
-        )
+         SELECT *
+		    FROM movie
+		    WHERE m_code IN (
+		        <foreach item="genre" index="index" collection="genres" open="" separator="INTERSECT" close="">
+		            SELECT m_code
+		            FROM movie_genre
+		            WHERE genre = #{genre}
+		        </foreach>
+		    )
     </select>
 </mapper>							
 
