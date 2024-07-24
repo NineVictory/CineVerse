@@ -132,15 +132,18 @@
                             <textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content" disabled>영화를 예매한 경우에만 댓글을 작성할 수 있습니다.</textarea>
                         </c:when>
                         <c:otherwise>
-                            <textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content"></textarea>
-                            <label for="mr_spoiler">스포일러 포함</label>
-                            <input type="checkbox" name="mr_spoiler" value="1" id="mr_spoiler">
-                            <div id="review_first">
+                        	<div>
+                        	<label for="mr_spoiler">스포일러 포함</label>
+                        	<input type="checkbox" name="mr_spoiler" value="1" id="mr_spoiler">
+                        	</div>
+                        	<textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content"></textarea>
+                        	<div id="review_first">
                                 <span class="letter-count">300/300</span>
+
+                                <div id="review_second">
+                                <div class="review-button"><input type="submit" value="등록" class="review_submit"></div>
                             </div>
-                            <div id="review_second" style="text-align: right;">
-                                <div class="review-button"><input type="submit" value="등록"></div>
-                            </div>
+                             </div>
                         </c:otherwise>
                     </c:choose>
                 </c:when>
