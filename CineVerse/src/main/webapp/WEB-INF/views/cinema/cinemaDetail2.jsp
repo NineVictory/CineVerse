@@ -142,7 +142,12 @@
 
 			    // JSP에서 전달된 c_num 값을 JavaScript 변수로 할당
 			    var cNum = ${cinema.c_num};
-
+			    
+			    function formatTime(time) {
+			        let str = time.toString().padStart(4, '0');
+			        return str.slice(0, 2) + ':' + str.slice(2);
+			    }
+			    
 			    // 영화 날짜 생성 함수
 			    function generateMovieDays() {
 			        var gallery = document.querySelector('.cinema-gallery'); 
@@ -187,13 +192,13 @@
 			                    	theater_list.innerHTML = ''; // 기존 목록 비우기
 			                    	response.moviewTimeList.forEach(function(movie) {
 			                    	    var listItem = document.createElement('li');
-			                    	    listItem.innerHTML = movie.m_name + '<br>' + movie.th_name + '  ' + movie.mt_start + '~' + movie.mt_end;
+			                    	    listItem.innerHTML = movie.m_name + '<br>' + movie.th_name + '  ' + formatTime(movie.mt_start) + '~' + formatTime(movie.mt_end);
 			                    	    listItem.setAttribute('data-mtNum', movie.mt_num); // data-mtNum 속성에 movie.mt_num 값 추가
 			                    	    theater_list.appendChild(listItem); // 목록에 항목 추가
 
 			                    	    // 클릭 이벤트 리스너 추가
 			                    	    listItem.addEventListener('click', function() {
-			                    	        let check = confirm('영화: ' + movie.m_name + '\n상영관: ' + movie.th_name + '\n시작 시간: ' + movie.mt_start + '\n종료 시간: ' + movie.mt_end + '\n\n예매하시겠습니까?');
+			                    	        let check = confirm('영화: ' + movie.m_name + '\n상영관: ' + movie.th_name + '\n시작 시간: ' + formatTime(movie.mt_start) + '\n종료 시간: ' + formatTime(movie.mt_end) + '\n\n예매하시겠습니까?');
 			                    	        var mt_num = this.getAttribute('data-mtNum');
 			                    	        if (check) {
 			                    	            window.location.href = '../movie/movieSeat?mt_num=' + mt_num;
