@@ -361,7 +361,6 @@
 	<sql id="pointSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
-				AND ph_type = 2
          	    AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
 		</where>
@@ -374,9 +373,10 @@
 		COUNT(*)
 		FROM point_history
 		<include refid="pointSearch"></include>
+		AND ph_type = 2
 	</select>
 
-	<!-- 게시판 전체/검색 목록 -->
+	<!-- 포인트충전 전체/검색 목록 -->
 	<select id="selectPoint" parameterType="map"
 		resultType="PointVO">
 		SELECT
@@ -396,6 +396,7 @@
 		ph_payment
 		FROM point_history
 		<include refid="pointSearch"></include>
+		AND ph_type = 2
 		) a
 		)
     <![CDATA[

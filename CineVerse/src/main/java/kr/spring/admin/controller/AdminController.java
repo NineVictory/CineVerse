@@ -513,13 +513,17 @@ public class AdminController {
 
 			// 페이지 처리
 			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 15, 10, "adminCommunity");
-
+			
 			List<BoardVO> list = null; 
 			if (count > 0) {
 				map.put("start", page.getStartRow());
 				map.put("end", page.getEndRow());
 
 				list = adminService.selectCommunityList(map);
+				for (BoardVO board : list) {
+					String titleWithoutHtml = StringUtil.useNoHTML(board.getCb_title());
+					board.setCb_title(titleWithoutHtml);
+				}
 			}
 
 			model.addAttribute("count", count);
@@ -561,6 +565,11 @@ public class AdminController {
 				map.put("end", page.getEndRow());
 
 				list = adminService.selectAssginList(map);
+				
+				for (AssignVO assign : list) {
+					String titleWithoutHtml = StringUtil.useNoHTML(assign.getAb_title());
+					assign.setAb_title(titleWithoutHtml);
+				}
 			}
 
 			model.addAttribute("count", count);
@@ -602,6 +611,11 @@ public class AdminController {
 
 				list = adminService.selectReplyList(map);
 				list.addAll(adminService.selectReCmtList(map));
+				
+				for (ReplyVO reply : list) {
+					String titleWithoutHtml = StringUtil.useNoHTML(reply.getCc_content());
+					reply.setCc_content(titleWithoutHtml);
+				}
 			}
 			log.debug("<<댓글 확인>>" + list);
 			model.addAttribute("count", count);

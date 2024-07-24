@@ -11,29 +11,29 @@
     border-radius: 10px;
 }
 
-.event_insert_form h2 {
+.faq_insert_form h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-.event_insert_form ul {
+.faq_insert_form ul {
     list-style: none;
     padding: 0;
 }
 
-.event_insert_form ul li {
+.faq_insert_form ul li {
     margin-bottom: 15px;
 }
 
-.event_insert_form ul li label {
+.faq_insert_form ul li label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.event_insert_form ul li input, 
-.event_insert_form ul li textarea {
+.faq_insert_form ul li input, 
+.faq_insert_form ul li textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -41,12 +41,12 @@
     box-sizing: border-box;
 }
 
-.event_insert_form ul li input[type="file"] {
+.faq_insert_form ul li input[type="file"] {
     padding: 10px;
 }
 
-.event_insert_form ul li input[type="submit"], 
-.event_insert_form ul li form\:button {
+.faq_insert_form ul li input[type="submit"], 
+.faq_insert_form ul li form\:button {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -56,8 +56,8 @@
     transition: background-color 0.3s;
 }
 
-.event_insert_form ul li input[type="submit"]:hover, 
-.event_insert_form ul li form\:button:hover {
+.faq_insert_form ul li input[type="submit"]:hover, 
+.faq_insert_form ul li form\:button:hover {
     background-color: #45a049;
 }
 
