@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/event.participation.js"></script>
@@ -31,10 +32,51 @@
 			<input type="button" value="목록" class="list-btn">
 		</div>
 		<hr size="1" width="100%">
+		<c:if test="${event.ep_type == 1}">
 		<div class="align-center participate-btn-container" style="width:100%">
 			<input id="event_participate_btn" type="button" value="이벤트 참여하기" data-num="${event.event_num}">
 		</div>
+		</c:if>
 		
+		<c:if test="${event.ep_type == 2}">
+		<div class="align-center participate-btn-container" style="width:100%">
+			<input id="event_participate_btn2" type="button" value="투표하기" data-num="${event.event_num}">
+		</div>
+		
+		
+		<div id="eventModal" class="event-modal">
+	        <div class="event-modal-content">
+	            <div class="modal-close-con"><span class="modal-close">&times;</span></div>
+	            
+	            <%-- <form:form action="" id="event_vote" method="post" modelAttribute="">
+	            	<form:radiobutton path="" value="1"/>스파이더맨
+	            	<form:radiobutton path="" value="2"/>토르
+	            	<form:radiobutton path="" value="3"/>아이언맨
+	            	<form:radiobutton path="" value="4"/>캡아
+	            	<form:errors path="" cssClass="error-color"/>
+	            	
+	            	<div class="flexbox-h side btn-container">
+						<form:button class="">투표하기</form:button>
+						<input type="button" id="modal_cancel" value="취소" class="default-btn4">
+					</div>
+	            </form:form> --%>
+	            
+	            <form action="" id="event_vote" method="post">
+	            	<div class="radio-container">
+		            	<input type="radio" name="movie" value="1">스파이더맨<br>
+		            	<input type="radio" name="movie" value="2">토르<br>
+		            	<input type="radio" name="movie" value="3">아이언맨<br>
+		            	<input type="radio" name="movie" value="4">캡아
+	            	</div>
+	            	<div class="modal-btn-con">
+						<input type="submit" class="movie" value="투표하기">
+						<input type="button" id="modal_cancel" value="취소" class="default-btn4">
+					</div>
+	            </form>
+	        </div>
+    	</div>
+		
+		</c:if>
 		
 	</div>
 </div>

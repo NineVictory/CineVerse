@@ -16,7 +16,7 @@ $(function(){
                 	
                 }else if(param.result == 'success'){
                 	alert('상태변경 완료');
-                	
+                	location.reload();
                 }else if(param.result == 'wrongAccess'){
 					alert('타인의 글은 수정할 수 없습니다.');
                 }else{

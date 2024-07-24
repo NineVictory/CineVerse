@@ -64,7 +64,47 @@ $(function(){
 		}
 
 	}
-	
+	//상세 진입시 버튼 상태
 	selectParticipation($('#event_participate_btn').attr('data-num'));
 	
+	
+	
+	
+	
+	
+	
+	/*--------------------------------------
+	 * 크라우드 펀딩이이이익
+	 *--------------------------------------*/
+	var modal = $('#eventModal');
+    var btn = $('#event_participate_btn2');
+    var span = $('.modal-close');
+
+    // 버튼을 클릭했을 때 모달을 열기
+    btn.click(function() {
+        modal.show();
+    });
+
+    // 닫기 버튼을 클릭했을 때 모달을 닫기
+    span.click(function() {
+        modal.hide();
+    });
+    $('#modal_cancel').click(function(){
+		modal.hide();
+	});
+
+    // 모달 외부를 클릭했을 때 모달을 닫기
+    $(window).click(function(event) {
+        if ($(event.target).is(modal)) {
+            modal.hide();
+        }
+    });
+    
+    $('#event_vote').submit(function(event) {
+	    if (!$('input[name="movie"]:checked').val()) {
+	        alert('영화를 선택하세요');
+	        event.preventDefault();
+	        return false;
+	    }
+	});
 });

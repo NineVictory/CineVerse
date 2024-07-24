@@ -21,7 +21,7 @@ public class UserEventVO {
 	
 	//추가
 	private String event_type;
-	
+	private int ep_type;
 	//
-	private long t_rest;
+	private long t_rest;	//dday
 }

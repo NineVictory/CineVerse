@@ -56,7 +56,7 @@
 		<div class="assign-info-container 상품정보">
 		
 			<div class="flexbox-h side">
-				<div class="marg440">
+				<div class="marg440 image-container">
 				
 				<%--<c:if test="${not empty filenames}">
 			    <div class="slider-container">
@@ -105,7 +105,9 @@
 				</c:if>--%>
 				
 				<img src="${pageContext.request.contextPath}/upload/${assign.ab_filename}" width="420" height="420" class="item-img">
-				
+				<c:if test="${assign.ab_status == 3}">
+					<div class="overlay-text">판매완료</div>
+				</c:if>
 				
 				</div>
 				<div class="marg440">
@@ -169,7 +171,10 @@
 								</div>
 							</div>
 							<div class="assign-report p-center">
-								<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15"><span style="margin-left:2px;" id="board-report"><a href="#">신고하기</a></span>
+								<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15">
+								<span style="margin-left:2px;" id="board_report">
+									<a data-num="${assign.ab_num}" data-memnum="${user.mem_num}">신고하기</a>
+								</span>
 							</div>
 						</div>
 						<div>
@@ -229,56 +234,108 @@
 			</div>
 		</div>
 		
-	<%-- 	<div>
-			<div class="flexbox-h side">
-			<span class="ml10">댓글(0)</span>
-			
-			</div>
-			
-		</div>	 --%>
 		<hr size="1" width="100%">
-			<%-- 
-			<!-- 댓글 목록 출력 -->
-			 
-			<div id="output"></div>
-			<div id="loading" style="display:none;">
-				<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="30" height="30">
-			</div>
-			<div class="paging-button" style="display:none;">
-				<input type="button" value="더보기">
-			</div>
-			<!-- 댓글 출력 끝 -->
-		
-		
-			<!-- 댓글 작성 UI 시작 -->
-			<div id="comment_div">
-				<div class="flexbox-h">
-					<c:if test="${!empty user}"><img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${user.mem_num}" width="40" height="40" class="my-photo"></c:if>
-					<c:if test="${empty user}"><img src="${pageContext.request.contextPath}/images/profile_none.png" width="40" height="40" class="my-photo"></c:if>
-
-					<div id="reply_div">
-			            <form id="ass-comment_form">
-			               <input type="hidden" name="ab_num" id="ab_num" value="${assign.ab_num}">
-			               <div class="flexbox-h">
-			               <textarea rows="4" cols="115" name="ac_content" id="ac_content" class="rep-content"
-			                  <c:if test="${empty user}">disabled="disabled"</c:if>><c:if
-			                     test="${empty user}">로그인 후 작성 가능합니다.</c:if></textarea>
-			               <c:if test="${!empty user}">
-			                  <div id="re_second">
-			                     <input type="submit" class="default-btn ml10" value="등록">
-			                  </div>
-			               </c:if>
-			               </div>
-			            </form>
-	
-	        		 </div>
-				</div>
-			</div>
-		 --%>
-
+			
 		<div class="align-center">
 			<input type="button" class="default-btn4 mt70" value="목록" onclick="location.href='list'">
 		</div>
 		
 	</div>
 </div>
+
+
+<%-- 신고 --%>
+<%-- <div class="report-modal" id="reportModal">
+	<div class="report-modal-content">
+		<span class="modal-close" id="modalClose">&times;</span>
+			<h2>신고하기</h2>
+			<form:form id="reportForm">
+				<div class="rform-group">
+				<form:label path="reportReason">신고 사유</form:label>
+				<form:radiobutton path="ar-category" value="1" checked="checked"/>스팸홍보/도배<br>
+				<form:radiobutton path="ar-category" value="2" />음란물
+				<form:radiobutton path="ar-category" value="3" />불법정보
+				<form:radiobutton path="ar-category" value="4" />청소년에게 유해한 내용
+				<form:radiobutton path="ar-category" value="5" />욕설/생명경시/혐오/차별적 표현
+				<form:radiobutton path="ar-category" value="6" />개인정보 노출
+				<form:radiobutton path="ar-category" value="7" />불쾌한 표현
+				<form:radiobutton path="ar-category" value="8" />기타
+				</div>
+	            <div class="form-group">
+	                <form:label path="ar-content">신고 내용</form:label>
+	                <form:textarea path="ar-content" rows="3" required="true"></form:textarea>
+	            </div>
+            <button type="submit" class="btn">신고하기</button>
+        </form:form>
+    </div>
+</div>
+ --%>
+  
+ <script>
+        $(document).ready(function() {
+        	var user_num = $(this).data('memnum');
+        	
+            $('#board_report').click(function() {
+            	if(user_num == null){
+            		alert('로그인 후 신고할 수 있습니다.');
+            	}else{
+	                var newWindow = window.open(`report-form.html?data-num=${dataNum}`, '_blank', 'width=500,height=600');
+	
+	                var content = `
+	                    <html>
+	                    <head>
+	                        <title>Report Form</title>
+	                        <style>
+	                            .report-form {
+	                                width: 350px;
+	                                padding: 20px;
+	                                background-color: #fefefe;
+	                            }
+	                            
+	                            .close {
+	                               
+	                            }
+	                            .flexbox-p{
+	                            	display:flex;
+	                        		flex-direction:column;
+	                            }
+	                            textarea#cr-content{
+	                            	resize:none;
+	                            	overflow:auto;
+	                            }
+	                        </style>
+	                    </head>
+	                    <body>
+	                        <div class="report-form">
+	
+	                            <h2>신고하기</h2>
+	                            <form action="/submit-report" method="post">
+	                            	<label for="cr-category">신고사유</label>
+									<div class="flexbox-p">
+		                                <span><input type="radio" name="ar-category" value="1">스팸홍보/도배</span>
+		                                <span><input type="radio" name="ar-category" value="2">음란물</span>
+		                                <span><input type="radio" name="ar-category" value="3">불법정보</span>
+		                                <span><input type="radio" name="ar-category" value="4">청소년에게 유해한 내용</span>
+		                                <span><input type="radio" name="ar-category" value="5">욕설/생명경시/혐오/차별적 표현</span>
+		                                <span><input type="radio" name="ar-category" value="6">개인정보 노출</span>
+		                                <span><input type="radio" name="ar-category" value="7">불쾌한 표현</span>
+		                                <span><input type="radio" name="ar-category" value="8">기타</span>
+	                                </div>
+	                                <label for="cr-content">신고내용(선택)</label>
+	                                <textarea id="cr-content" name="description" rows="5" cols="50" required></textarea><br><br>
+	
+	                                <input type="submit" value="제출">
+	                                <input type="button" class="close" value="취소">
+	                            </form>
+	                        </div>
+	                    </body>
+	                    </html>
+	                `;
+	
+	                newWindow.document.open();
+	                newWindow.document.write(content);
+	                newWindow.document.close();
+            	}
+            });
+        });
+    </script>

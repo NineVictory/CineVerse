@@ -629,7 +629,7 @@ textarea.mcc-content {
 
 /*assign 글상세 */
 /*상품 이미지 슬라이더*/
-.slider-container {
+/* .slider-container {
     width: 100%;
     position: relative;
 }
@@ -658,8 +658,8 @@ textarea.mcc-content {
 }
 .next {
     right: 10px;
-}
-/*상품 이미지 슬라이더*/
+} */
+
 .marg440{
 	width:440px;
 	max-height:425px;
@@ -667,6 +667,22 @@ textarea.mcc-content {
 img.item-img{
 	max-height:425px;
 }
+.image-container{
+	position:relative;
+}
+/*판매완료이미지*/
+.overlay-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: rgba(255,255,255,0.6);
+/* 	background-color: rgba(0, 0, 0, 0.5); */
+	padding: 10px;
+	font-size:22pt;
+	
+}
+
 .assign-info-container{
 	margin:30px 30px 40px 30px;
 	min-height:250px;
@@ -1007,4 +1023,18 @@ input[type="number"]::-webkit-inner-spin-button {
 .img-count{
 	font-size:15px;
 	display:inline-block;
+}
+
+
+
+
+/*신고*/
+div.report-form {
+    width: 350px;
+    padding: 20px;
+    background-color: #fefefe;
+}
+
+.close {
+
 }
