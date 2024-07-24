@@ -95,7 +95,7 @@
  				<input type="hidden" name="selectedSeats" value="${selectedSeats}">
  				<input type="hidden" id="seatNum" name="seatNum" value="${seatNum}">
  				<input type="hidden" id="m_code" name="m_code" value="${movieInfoList[0].m_code}">
- 				<input type="hidden" id="mc_num" name="mc_num" value="">
+ 				<!-- <input type="hidden" id="mc_num" name="mc_num" value=""> -->
 				<%-- <input type="hidden" id="userPoints" name="userPoints" value="${member.point}"> --%>
 				<input type="hidden" id="remainingPointsInput" name="remainingPoints" value="">
  			<input type="hidden" id="finalAmountInput" name="finalAmount" value="${payMoney}">
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 lastSelectedCoupon = coupon; // 다른 라디오 버튼을 클릭하면 선택된 라디오 버튼을 업데이트
             }
-            updateDiscount();
+            updateDiscount();	
         });
     });
 
