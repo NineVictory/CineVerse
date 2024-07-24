@@ -51,10 +51,10 @@
                 	<li><b>장르 : </b> 없음</li>
                 	</c:if>
                 	<c:if test="${!empty movie.m_genre}">
-                	<li><b>장르 : </b> ${movie.m_genre}</li>
+                	<li><b>장르 | </b> ${movie.m_genre}</li>
                 	</c:if>
-                    <li><b>감독 : </b> ${movie.m_director}</li>
-                    <li><b>배우 : </b> ${movie.m_actor}</li>
+                    <li><b>감독 | </b> ${movie.m_director}</li>
+                    <li><b>배우 | </b> ${movie.m_actor}</li>
              	</ul>
             </div>
             
@@ -132,15 +132,20 @@
                             <textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content" disabled>영화를 예매한 경우에만 댓글을 작성할 수 있습니다.</textarea>
                         </c:when>
                         <c:otherwise>
-                            <textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content"></textarea>
-                            <label for="mr_spoiler">스포일러 포함</label>
-                            <input type="checkbox" name="mr_spoiler" value="1" id="mr_spoiler">
+                        	<div>
+                        	<label for="mr_spoiler">스포일러 포함</label>
+                        	<input type="checkbox" name="mr_spoiler" value="1" id="mr_spoiler">
+                        	</div>
+                        	<textarea rows="3" cols="50" name="mr_content" id="mr_content" class="review-content"></textarea>
                             <div id="review_first">
                                 <span class="letter-count">300/300</span>
+                                
+                                <div id="review_second">
+                                <div class="review-button"><input type="submit" value="등록" class="review_submit"></div>
                             </div>
-                            <div id="review_second" style="text-align: right;">
-                                <div class="review-button"><input type="submit" value="등록"></div>
+                                
                             </div>
+                            
                         </c:otherwise>
                     </c:choose>
                 </c:when>

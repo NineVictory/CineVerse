@@ -165,7 +165,10 @@
 }
 
 .grade-review {
-	text-align: center;
+	    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* .menu-title {
@@ -213,21 +216,23 @@
 }
 
 #review_first {
-	margin-top: 10px;
-	font-size: 12px;
-	color: #888;
-	text-align: right;
+width: 1100px;
+    /* gap: 100px; */
+    display: flex;
+    font-size: 12px;
+    color: #888;
+    justify-content: space-between;
 }
 
 .letter-count {
 	font-weight: bold;
 }
 
-#review_second {
+/* #review_second {
 	margin-top: 10px;
 	text-align: right;
 }
-
+ */
 .btn-submit {
 	background-color: #f0ad4e;
 	color: #fff;
@@ -241,25 +246,36 @@
 	background-color: #ec971f;
 }
 
-#review_second {
+/* #review_second {
 	margin-top: 10px;
-}
+} */
 
 .review-button {
-	border-radius: 10px;
-	background: black;
-	color: white;
-	width: 83px;
-	height: 30px;
-	font-size: 10px;
-	padding: 5px 30px;
-	cursor: pointer;
-	margin-left: auto; /* 버튼을 오른쪽으로 밀어냄 */
-}
+	display: flex;
+    border-radius: 10px;
+    background: black;
+    /* color: white; */
+    width: 75px;
+    /* height: 30px; */
+    /* font-size: 9px; */
+    /* padding: 5px 30px; */
+    cursor: pointer;
+    /* margin-left: auto; */
+    align-items: center;
+    justify-content: center;
+    }
 
 .review-menu {
 	text-align: left;
 	margin-top: 20px;
+}
+
+.review_submit {
+	    padding: 7px 7px;
+    border: none;
+    background: transparent;
+    color: #fff;
+	
 }
 
 .output_reiv {
@@ -511,4 +527,11 @@ html {
 #scroll-to-top img {
     width: 30px;
     height: 30px;
+}
+
+#mr_form {
+gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
