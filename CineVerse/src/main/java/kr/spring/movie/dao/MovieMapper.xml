@@ -133,7 +133,8 @@
                           m_opendate,
                           m_companys,
                           m_status,  
-                          m_content
+                          m_content,
+                          rating
                         FROM movie 
                         LEFT OUTER JOIN (SELECT COUNT (*) bookmark_cnt, m_code FROM movie_bookmark GROUP BY m_code) USING(m_code) <!-- bookmark_cnt는 알리아스 명칭임 이 괄호는 인라인 뷰 -->
                         <!-- JOIN member USING(mem_num) -->

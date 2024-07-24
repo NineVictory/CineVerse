@@ -56,9 +56,21 @@
                     			<button class="btn-details" onclick="location.href='movieDetail?m_code=${movie.m_code}'">상세보기</button>
                 			</div>
                             <div class="movie_name_list">
-                            	<p class="movie_name" style="margin-top: 15px;">
-                            		<a href="movieDetail?m_code=${movie.m_code}"><b>${movie.m_name}</b></a>
-                            	</p>
+                            	<div class="movie_list_grade">
+                            		<div class="movie_list_gn">
+                            			<span class="ic_grade <c:choose><c:when test="${movie.rating eq '12세관람가' }">gr_12</c:when>
+						                    <c:when test="${movie.rating eq '12세이상관람가' }">gr_12</c:when>
+						                    <c:when test="${movie.rating eq '전체관람가' }">gr_all</c:when>
+						                    <c:when test="${movie.rating eq '15세관람가' }">gr_15</c:when>
+						                    <c:when test="${movie.rating eq '15세이상관람가' }">gr_15</c:when>
+						                    <c:when test="${movie.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
+						                    <c:when test="${movie.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
+					                	</span>
+                            			<span class="movie_name">
+                            				<b>${movie.m_name}</b>
+                            			</span>
+                            		</div>
+                            	</div>
                             </div>
                             <div class="bookAopen">
                             	<div>개봉일 ${movie.m_opendate}</div>

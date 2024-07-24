@@ -24,22 +24,11 @@
 
 .movie-main {
 	width: 1100px;
-	/*     display: flex; 
-    justify-content: right;
-    margin-left: 100px;
-    margin-top: 50px;
-    width: 80%;
-    position: relative; */
 }
 
-/* .movie-main ul li{	
-    display: flex;
-	align-items: center;
-	position: relative;
-} */
+
 .search-container {
 	display: flex;
-	/* align-items: center; */
 	flex-direction: column;
 }
 
@@ -96,10 +85,6 @@ input[type="search"]::placeholder {
 
 .select-list-checkbox {
 	gap: 40px;
-	/* position: relative; */
-	/* top: 50px; */
-	/* left: 720px; */
-	/* width: 250px; */
 	display: flex;
 	justify-content: flex-end;
 }
@@ -127,8 +112,6 @@ input[type="search"]::placeholder {
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	width: 100%;
-	/* overflow-x: hidden; */
-	/* overflow-y: hidden; */
 }
 
 .movie {
@@ -163,7 +146,6 @@ text-align: center;
 	width: 225px;
 	display: flex;
 	align-items: flex-start;
-	/* margin-left: 17px; */
 	flex-direction: row;
 	justify-content: space-evenly;
 }
@@ -171,8 +153,6 @@ text-align: center;
 .movie-button {
 	width: 170px;
 	display: flex;
-	/* margin-left: 22px; */
-	/* margin-top: 5px; */
 	align-items: center;
 	justify-content: space-evenly;
 }
@@ -181,7 +161,6 @@ text-align: center;
 	display: flex;
 	border-radius: 5px;
 	background: white;
-	/* color: gray; */
 	font-size: 10px;
 	padding: 1px 15px;
 	cursor: pointer;
@@ -206,13 +185,7 @@ text-align: center;
 
 .genre-checkboxes {
 	display: flex;
-	/* width: 400px; */
-	/* margin-top: 20px; */
-	/* margin-right: -200px; */
-	/* padding-left: 10px; */
-	/* padding-top: 10px; */
 	padding-bottom: 10px;
-	/* background: #DBE3FF; */
 	flex-direction: row;
 	justify-content: space-between;
 }
@@ -258,15 +231,77 @@ text-align: center;
 }
 
 .movie_name{
-	font-size: 14px;
-    overflow: hidden;
     display: block;
-    margin-top: 15px;
-    width: 200px;
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
+.movie_name_list{
+    margin-top: 10px;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    width: 185px;
+    display: flex;
+    justify-content: center;
+}
+
+.movie_list_grade{
+    width: 180px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie_list_gn{
+    padding: 5px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    flex-direction: row;
+    justify-content: center;
+}
 .ul-search {
 	padding:0;
+}
+
+.ic_grade {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	border-radius: 50%;
+	font-size: 0;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+.ic_grade:before {
+	content: "";
+	display: block;
+	width: 22px;
+	height: 22px;
+	border-radius: 3px;
+	background-size: 100%;
+}
+
+.ic_grade.gr_all:before {
+	background: #229c56 url(../images/cmj/grade_all.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_12:before {
+	background: #e9b630 url(../images/cmj/grade_12.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_15:before {
+	background: #dd7430 url(../images/cmj/grade_15.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_19:before {
+	background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
 }
