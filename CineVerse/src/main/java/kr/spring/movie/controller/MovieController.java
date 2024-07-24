@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
+import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MbDetailVO;
@@ -47,6 +48,9 @@ public class MovieController {
    
    @Autowired
    private MyPageService mypageService;
+   
+   @Autowired
+   private MemberService memberService;
       
    /*=======================
     * 영화 목록
@@ -247,7 +251,7 @@ public class MovieController {
                                         @RequestParam("finalAmount") long finalAmount,
                                         @RequestParam("seatNum") String seatNum, 
                                         @RequestParam("m_code") long m_code,
-                                        @RequestParam(value = "mc_num", required = false) Long mc_num, // 쿠폰 번호 (옵션)
+                                        @RequestParam("mc_num") long mc_num, // 쿠폰 번호 (옵션)
                                         @RequestParam("remainingPoints") long remainingPoints, // 남은 포인트 값
                                         HttpSession session, 
                                         Model model) {
@@ -259,7 +263,7 @@ public class MovieController {
                log.debug("<<confirmPayment - finalAmount>> ::: " + finalAmount);
                log.debug("<<confirmPayment - m_code>> ::: " + m_code);
                log.debug("<<confirmPayment - seatNum>> ::: " + seatNum);
-
+               log.debug("<<confirmPayment - mc_num>> ::: " + mc_num);
                // 예매 정보 생성
                Long mbNum = movieService.getMbNum(); // mb_num을 미리 가져옴
                MovieBookingVO movieBooking = new MovieBookingVO();
@@ -268,7 +272,7 @@ public class MovieController {
                movieBooking.setMem_num(user.getMem_num());
                movieBooking.setMt_num(mt_num);
                movieBooking.setM_code(m_code);
-
+               
                // 서비스 호출하여 예매 처리
                movieService.insertBooking(movieBooking);
                
@@ -283,19 +287,16 @@ public class MovieController {
                    movieService.insertBookingDetail(mbDetail);
                }
 
-               // 포인트 차감
-				/*
-				 * if (userPoints != null && userPoints >= finalAmount) {
-				 * movieService.usePoint(finalAmount, user.getMem_num()); }
-				 */
-            // 포인트 차감 및 기록
-			/* movieService.updateMemberPoint(finalAmount, user.getMem_num()); */
-               movieService.updateMemberPoint(remainingPoints, user.getMem_num());
+               // 포인트 차감 및 기록
+				/* movieService.updateMemberPoint(remainingPoints, user.getMem_num()); */
+               memberService.totalPoint(user.getMem_num());
                movieService.insertPointHistory(finalAmount, user.getMem_num(), 1, "영화 예약");
 
-               // 쿠폰 사용 상태 업데이트
-               if (mc_num != null) {
+               // mc_num이 0인 경우를 처리
+               if (mc_num != 0) {
                    movieService.useCoupon(user.getMem_num(), mc_num);
+               } else {
+                   log.debug("No coupon applied.");
                }
 
                // 결제 완료 후 완료 페이지로 이동
