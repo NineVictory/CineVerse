@@ -26,7 +26,7 @@ $(document).ready(function() {
         // 영화 목록 불러오기
         $.ajax({
             type: 'GET',
-            url: '${pageContext.request.contextPath}/getMoviesByCinema',
+            url: '${pageContext.request.contextPath}/movieReserveList',
             data: { c_num: c_num },
             dataType: 'json',
             success: function(data) {

@@ -36,6 +36,9 @@ public class AdminMovieController {
    @Autowired
    private MovieService movieService;
    
+   @Autowired
+   private CinemaService cinemaService;
+   
    /*
     * @Autowired private CinemaService cinemaService;
     */
@@ -135,6 +138,14 @@ public class AdminMovieController {
       /*=======================
        * 영화 시간표
       *=======================*/
+      //등록 폼
+      @GetMapping("/admin/insertMovieTime")
+      public String showInsertMovieTimeForm(Model model) {
+          List<MovieVO> movieList = cinemaService.insertTimeMovieList();
+          model.addAttribute("movieList", movieList);
+          return "admin/insertMovieTime";
+      }
+      
       //등록 폼에서 전송된 데이터 처리
          @PostMapping("/admin/insertMovieTime")
          public String insertMovieTime(@Valid MovieTimeVO movietimeVO, 

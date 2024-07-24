@@ -39,6 +39,13 @@ public interface CinemaService {
 	public List<SeatVO> selectSeatList(long mt_num);
 	
 	
+	//새로 만든 예매 페이지 영화목록 조회
+	public List<MovieTimeVO> movieReserveList(long c_num);
+	
+	
+	//영화시간표 등록 페이지 (상영중인 영화만 목록으로 보여주기)
+	public List<MovieVO> insertTimeMovieList();
+	
 	
 	
 	

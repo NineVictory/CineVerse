@@ -82,7 +82,18 @@ public class CinemaServiceImpl implements CinemaService{
 		return cinemaMapper.selectSeatList(mt_num);
 	}
 
+	@Override
+	public List<MovieTimeVO> movieReserveList(long c_num) {
+		return cinemaMapper.movieReserveList(c_num);
+	}
 
+	@Override
+	public List<MovieVO> insertTimeMovieList() {
+		return cinemaMapper.insertTimeMovieList();
+	}
+
+
+	
 	/*
 	 * @Override public List<SeatVO> selectSeatList(long c_num, long m_code, String
 	 * mt_date, String mt_start) { return cinemaMapper.selectSeatList(c_num, m_code,

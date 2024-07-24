@@ -44,6 +44,22 @@ public interface CinemaMapper {
 	public List<SeatVO> selectSeatList(long mt_num);
 	
 	
+	//새로 만든 예매 페이지 영화목록 조회
+	public List<MovieTimeVO> movieReserveList(long c_num);
+	
+	
+	//영화시간표 등록 페이지 (상영중인 영화만 목록으로 보여주기)
+	public List<MovieVO> insertTimeMovieList();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//선택한 영화에 대한 좌석 목록 조회
 	//public List<SeatVO> selectSeatList(long c_num, long m_code, String mt_date, String mt_start);
 	

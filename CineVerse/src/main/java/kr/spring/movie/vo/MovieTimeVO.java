@@ -12,8 +12,8 @@ import lombok.ToString;
 public class MovieTimeVO {
 	private Long mt_num;
 	private Date mt_date;
-	private String mt_start;
-	private String mt_end;
+	private int mt_start;           //타입 String → int 로 변경 (sql 쪽도 number로 수정해야 함 아직 수정 못함)
+	private int mt_end;				//타입 String → int 로 변경 (sql 쪽도 number로 수정해야 함 아직 수정 못함)
 	private Long m_code;
 	private Long th_num;
 	

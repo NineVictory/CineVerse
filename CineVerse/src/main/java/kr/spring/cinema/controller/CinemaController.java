@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
+import kr.spring.movie.vo.MovieVO;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -197,6 +199,23 @@ public class CinemaController {
 		
 		return "common/resultAlert";
 	}
+	
+	
+	
+	/*========================
+	 * 예매 페이지 영화 목록 불러오기 
+	 *========================*/
+	 //지점명 선택했을 때 영화목록 불러오기
+	
+    @GetMapping("/movieReserveList")
+    @ResponseBody
+    public List<MovieTimeVO> movieReserveList(long c_num) {
+        return cinemaService.movieReserveList(c_num);
+    }
+	
+	
+	
+	
 	
 	
 	
