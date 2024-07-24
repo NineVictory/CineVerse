@@ -322,7 +322,7 @@ $(document).ready(function() {
                     <input type="submit" class="movieSeatButton" value="좌석 선택">
                 </c:if>
                 <c:if test="${empty user}">
-                    <input type="button" class="movieSeatButton" value="좌석 선택" onclick="alertAndRedirect()">
+                    <input type="button" class="moveSeatButton" value="좌석 선택" onclick="alertAndRedirect()">
                 </c:if>
             </form>    
         </div>

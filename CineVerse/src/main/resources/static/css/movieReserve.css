@@ -405,6 +405,26 @@
 	color: white;
 }
 
+.moveSeatButton {
+	width: 150px;
+	height: 80px;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 5px;
+	margin-top: 150px;
+	margin-left: 200px;
+	border: 1px solid #333333;
+	border-radius: 15px;
+	background: #3F66ED;
+	color: #FFFFFF;
+}
+
+.moveSeatButton:hover {
+	background-color: #333333;
+	color: white;
+}
+
+
 .fifteen {
 	color: white;
 	background-color: #AF2D2D;
