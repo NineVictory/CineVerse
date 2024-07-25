@@ -59,10 +59,10 @@ public interface MyPageMapper {
 	public List<EventVO> eventList(Map<String, Object> map);
 	@Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num=#{mem_num}")//예매
 	public Integer reservationCnt(Long mem_num);
-	@Select("SELECT * FROM movie_booking JOIN movie USING(m_code) JOIN mb_detail USING(mb_num) JOIN movie_time USING(mt_num) JOIN theater USING(th_num) JOIN cinema USING(c_num) JOIN seat USING(seat_num) WHERE mem_num=#{mem_num}")
 	public List<MovieBookingVO> reservationList(Long mem_num);
-	
-	
+	/*
+	 * //예매내역 2 public MovieBookingVO lastRes(Long mem_num);
+	 */
 	
 	
 	//구독 목록 보기
@@ -106,10 +106,7 @@ public interface MyPageMapper {
 	@Select("SELECT m.m_name,m.m_filename,m.m_code FROM movie_bookmark mb JOIN movie m ON m.m_code=mb.m_code WHERE mb.mem_num=#{mem_num}")
 	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
 
-	/*	영화삭제
-	 * @Delete("DELETE FROM movie_bookmark WHERE m_code=#{m_code} AND mem_num=#{mem_num}"
-	 * ) public void deleteBookMark(MovieBookMarkVO bookMark);
-	 */
+	 
   
 	 
 

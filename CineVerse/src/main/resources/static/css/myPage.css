@@ -335,7 +335,6 @@
 	margin-bottom: 10px;
 } */
 .main_body_reservation {
-	margin-top: 40px;
 	margin-bottom: 30px;
 }
 
@@ -407,8 +406,8 @@
 .reservation_list {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	cursor: pointer;
+	/* justify-content: space-between; */
 }
 
 .reserv_info {
@@ -416,11 +415,14 @@
 	font-weight: 500;
 	font-size: 15px;
 }
-
+.main_resrv{
+	margin-top: 40px;
+}
 .my_reserv_info {
 	font-size: 15px;
 	font-weight: 600;
 	margin-right: 470px;
+	margin-left: 20px;
 }
 
 .reserv_pay_cancle {
@@ -1455,7 +1457,11 @@
 	margin-top:200px;
 	text-align: center;
 }
-
+.empty_position_m{
+	margin-top:200px;
+	margin-left:400px;
+	text-align: center;
+}
 
 
 

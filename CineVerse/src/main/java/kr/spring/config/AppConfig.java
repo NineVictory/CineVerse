@@ -81,6 +81,7 @@ public class AppConfig implements WebMvcConfigurer, WebSocketConfigurer{
 				.addPathPatterns("/myPage/chatList")
 				.addPathPatterns("/myPage/passwdChange")
 				.addPathPatterns("/myPage/modifyUser")
+				.addPathPatterns("/myPage/reservationList")
 				.addPathPatterns("/myPage/deleteMember")
 				.addPathPatterns("/myPage/memberShipSub")
 				.addPathPatterns("/myPage/consult")

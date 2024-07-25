@@ -76,33 +76,47 @@ public class MyPageController {
 			log.debug("<<마지막 문의글 >> : " + lastConsult);
 		}
 
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		List<MovieBookingVO> lastRes = null;
+		//MovieBookingVO lastRes = null;
+		
+		if(resCnt > 0) { 			//lastRes
+			lastRes = mypageService.reservationList(user.getMem_num());
+			log.debug("<<예매목록>> : " + lastRes);
+		}
+
+
+		model.addAttribute("member", member);
 		model.addAttribute("count",count);
 		model.addAttribute("lastConsult",lastConsult);
-		model.addAttribute("member", member);
+		model.addAttribute("resCnt",resCnt);
+		model.addAttribute("lastRes",lastRes);
+
 		return "myPageMain";
 	}
 
-	
+
 	//나의 예매내역
 	@GetMapping("/myPage/reservationList")
 	public String reservationList(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		
+
 		int count = mypageService.reservationCnt(user.getMem_num());
 		List<MovieBookingVO> list = null;
 		if(count > 0) {
 			list = mypageService.reservationList(user.getMem_num());
 		}
-		
+
 		model.addAttribute("count",count);
 		model.addAttribute("list",list);
 		model.addAttribute("member",member);
 		return "reservationList";
 	}
-	
-	
+
+
 	// 나의 예매내역-디테일
 	@GetMapping("/myPage/reservation")
 	public String myPageReservation(HttpSession session, Model model) {
@@ -162,7 +176,7 @@ public class MyPageController {
 	}
 
 
-	
+
 	// 나의 활동 - 내가 본 영화
 	@GetMapping("/myPage/watchedMovie")
 	public String watchedMovie(HttpSession session, Model model) {
@@ -385,17 +399,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
 		map.put("category", category);
-		
+
 		List<EventVO> list = null;
 		int count = mypageService.eventcnt(map);
 		if(count > 0) {
 			list = mypageService.eventList(map);
 		}
-		
+
 		model.addAttribute("list",list);
 		model.addAttribute("count",count);
 		model.addAttribute("member", member);
