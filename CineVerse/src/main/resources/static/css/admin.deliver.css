@@ -160,33 +160,3 @@ transform: scale(1.05);
         .error {
             color: red;
         }
-
-        .button1 {
-        	width: 100px;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 92%;
-        }
-
-        .button1:hover {
-            background-color: #0056b3;
-        }
-        
-        .button2 {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color:  var(--yellow-check-btn);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .button2:hover {
-            background-color: #0056b3;
-        }
