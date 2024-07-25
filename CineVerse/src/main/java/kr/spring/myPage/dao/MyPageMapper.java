@@ -57,11 +57,25 @@ public interface MyPageMapper {
 	public ConsultVO lastConsert(Long mem_num);//마지막 문의글
 	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
 	public List<EventVO> eventList(Map<String, Object> map);
+	//기대하는 영화
+	@Select("SELECT COUNT(*) FROM movie_bookmark WHERE mem_num=#{mem_num}")
+	public Integer movieBookMarkcnt(Long mem_num);
+	@Select("SELECT m.m_name,m.m_filename,m.m_code FROM movie_bookmark mb JOIN movie m ON m.m_code=mb.m_code WHERE mb.mem_num=#{mem_num}")
+	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
 	@Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num=#{mem_num}")//예매
 	public Integer reservationCnt(Long mem_num);
 	public List<MovieBookingVO> reservationList(Long mem_num);
-	
 	public List<MovieBookingVO> lastRes(Long mem_num);
+	
+	
+	
+	//쿠폰사용 1로 변경
+	@Update("UPDATE member_coupon SET coupon_use=2 WHERE mem_num=#{mem_num}")
+	public void updateCoupon(Long mem_num);
+	//포인트 환불
+	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num,ph_type,ph_payment) VALUES(point_history_seq.nextval,#{ph_point},SYSDATE,#{mem_num},0,'환불'")
+	public void updatePoint(Long mem_num);
+	
 	
 	
 	//구독 목록 보기
@@ -71,15 +85,12 @@ public interface MyPageMapper {
 	// member 테이블의 상태 변경해주는 코드
 	@Update("UPDATE member SET mem_membership=2 WHERE mem_num=#{mem_num} AND mem_membership=1")
 	public void updateMembership(Long mem_num);
-	
-	
 	// 멤버십업데이트 테이블에 행을 삽입하는 코드
 	@Update("UPDATE member_detail SET mem_membership_date = SYSDATE WHERE mem_num=#{mem_num}")
 	public void insertMembership(Long mem_num);
 	// 멤버십 구독 후 포인트 사용하는 history 넣어줌
 	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num,ph_type,ph_payment) VALUES(point_history_seq.nextval,10000,SYSDATE,#{mem_num},1,'membership')")
 	public void usePoint(Long mem_num);
-
 	//멤버십 구독 쿠폰 증정
 	@Insert("INSERT INTO member_coupon (mc_num, mem_num, coupon_num) VALUES (member_coupon_seq.nextval,#{mem_num}, #{coupon_num})")
 	public void insertNewMemCoupon(CouponVO coupon);
@@ -91,7 +102,7 @@ public interface MyPageMapper {
 	public CouponVO selectMembershipSub(Long mem_num);
 	@Update("UPDATE member_coupon SET coupon_use = 3 WHERE ADD_MONTHS(coupon_regdate, 1) < SYSDATE")
 	public void updateCouponstatus();
-	
+
 	@Update("UPDATE member SET mem_membership = 1 WHERE mem_num=(SELECT mem_num FROM member_detail WHERE ADD_MONTHS(mem_membership_date,1)<SYSDATE)")
 	public void updateNoSub();
 	@Update("UPDATE member_detail SET mem_membership_date = NULL WHERE mem_num=(SELECT mem_num FROM member_detail WHERE ADD_MONTHS(mem_membership_date,1)<SYSDATE)")
@@ -99,14 +110,9 @@ public interface MyPageMapper {
 
 
 
-	//기대하는 영화
-	@Select("SELECT COUNT(*) FROM movie_bookmark WHERE mem_num=#{mem_num}")
-	public Integer movieBookMarkcnt(Long mem_num);
-	@Select("SELECT m.m_name,m.m_filename,m.m_code FROM movie_bookmark mb JOIN movie m ON m.m_code=mb.m_code WHERE mb.mem_num=#{mem_num}")
-	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
 
-	 
-  
-	 
+
+
+
 
 }

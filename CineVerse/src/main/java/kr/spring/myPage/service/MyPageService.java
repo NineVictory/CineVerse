@@ -58,5 +58,7 @@ public interface MyPageService {
 	public Integer reservationCnt(Long mem_num);
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);
+	public void updateCoupon(Long mem_num);
+	public void updatePoint(Long mem_num);
 	
 }

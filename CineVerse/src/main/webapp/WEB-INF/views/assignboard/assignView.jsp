@@ -13,6 +13,8 @@
 <script src="${pageContext.request.contextPath}/js/assignboard.bookmark.js"></script>
 <script src="${pageContext.request.contextPath}/js/assignboard.changeStatus.js"></script>
 
+<script src="${pageContext.request.contextPath}/js/assignboard.report.js"></script>
+
 <div class="page-container page-main">
 	<div class="boardview-main">
 		<c:if test="${assign.mem_num == user.mem_num}">
@@ -131,7 +133,7 @@
 								</c:if>
 							</div>
 						</div>	
-						<h2>${assign.ab_title}</h2><%--ab_title--%>
+						<h2>${assign.ab_title}</h2>
 						<span class="assign-price"><b><fmt:formatNumber value="${assign.ab_price}" type="number"/></b>원</span>
 						<hr size="1" width="100%" class="middle-hr">
 						<div class="flexbox-h side assign-likes">
@@ -172,8 +174,23 @@
 							</div>
 							<div class="assign-report p-center">
 								<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15">
-								<span style="margin-left:2px;" id="board_report">
-									<a data-num="${assign.ab_num}" data-memnum="${user.mem_num}">신고하기</a>
+								<span style="margin-left:2px;" id="board_report_con">
+									<a id="board_report" data-num="${assign.ab_num}" data-memnum="${user.mem_num}" 
+											<c:choose>
+							                    <c:when test="${fn:length(assign.ab_title) > 20}">
+							                        data-title="${fn:substring(assign.ab_title, 0, 20)}..."
+							                    </c:when>
+							                    <c:otherwise>
+							                        data-title="${assign.ab_title}"
+							                    </c:otherwise>
+							                </c:choose>
+												data-title="${assign.ab_title}"
+												<c:if test="${!empty assign.mem_nickname}">
+													data-writer="${assign.mem_nickname}"
+												</c:if>
+												<c:if test="${empty assign.mem_nickname}">
+													data-writer="${assign.mem_id}"
+												</c:if>>신고하기</a>
 								</span>
 							</div>
 						</div>
@@ -271,71 +288,3 @@
 </div>
  --%>
   
- <script>
-        $(document).ready(function() {
-        	$('#board_report').click(function() {
-        		var user_num = $(this).data('memnum');
-        		alert(user_num);
-            	if(user_num == null || user_num == undefined || user_num.toString().trim() == ''){
-            		alert('로그인 후 신고할 수 있습니다.');
-            	}else{
-	                var newWindow = window.open(`report-form.html?data-num=${dataNum}`, '_blank', 'width=500,height=600');
-	
-	                var content = `
-	                    <html>
-	                    <head>
-	                        <title>Report Form</title>
-	                        <style>
-	                            .report-form {
-	                                width: 350px;
-	                                padding: 20px;
-	                                background-color: #fefefe;
-	                            }
-	                            
-	                            .close {
-	                               
-	                            }
-	                            .flexbox-p{
-	                            	display:flex;
-	                        		flex-direction:column;
-	                            }
-	                            textarea#cr-content{
-	                            	resize:none;
-	                            	overflow:auto;
-	                            }
-	                        </style>
-	                    </head>
-	                    <body>
-	                        <div class="report-form">
-	
-	                            <h2>신고하기</h2>
-	                            <form action="/submit-report" method="post">
-	                            	<label for="cr-category">신고사유</label>
-									<div class="flexbox-p">
-		                                <span><input type="radio" name="ar-category" value="1">스팸홍보/도배</span>
-		                                <span><input type="radio" name="ar-category" value="2">음란물</span>
-		                                <span><input type="radio" name="ar-category" value="3">불법정보</span>
-		                                <span><input type="radio" name="ar-category" value="4">청소년에게 유해한 내용</span>
-		                                <span><input type="radio" name="ar-category" value="5">욕설/생명경시/혐오/차별적 표현</span>
-		                                <span><input type="radio" name="ar-category" value="6">개인정보 노출</span>
-		                                <span><input type="radio" name="ar-category" value="7">불쾌한 표현</span>
-		                                <span><input type="radio" name="ar-category" value="8">기타</span>
-	                                </div>
-	                                <label for="cr-content">신고내용(선택)</label>
-	                                <textarea id="cr-content" name="description" rows="5" cols="50" required></textarea><br><br>
-	
-	                                <input type="submit" value="제출">
-	                                <input type="button" class="close" value="취소">
-	                            </form>
-	                        </div>
-	                    </body>
-	                    </html>
-	                `;
-	
-	                newWindow.document.open();
-	                newWindow.document.write(content);
-	                newWindow.document.close();
-            	}
-            });
-        });
-    </script>

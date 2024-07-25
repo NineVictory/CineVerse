@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.assignment.dao.AssignBoardMapper;
 import kr.spring.assignment.vo.AssignFavVO;
+import kr.spring.assignment.vo.AssignReportVO;
 import kr.spring.assignment.vo.AssignVO;
 
 @Service
@@ -82,6 +83,11 @@ public class AssignServiceImpl implements AssignService{
 	@Override
 	public void ab_updateStatus(AssignVO assignVO) {
 		assignBoardMapper.ab_updateStatus(assignVO);
+	}
+
+	@Override
+	public void processReport(AssignReportVO assignReportVO) {
+		assignBoardMapper.processReport(assignReportVO);
 	}
 
 }
