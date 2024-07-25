@@ -152,9 +152,10 @@
 }
 
 .sort-wrapper {
-	padding: 10px 6px 6px 10px;
-	display: flex;
-	border-bottom: 2px solid var(--gray-5);
+gap: 15px;
+    padding: 10px 6px 6px 10px;
+    display: flex;
+    border-bottom: 2px solid var(--gray-5);
 }
 
 .sort-wrapper>div {
