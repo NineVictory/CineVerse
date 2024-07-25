@@ -13,65 +13,83 @@
 
 .select-title {
     background-color: #444444;
-    color: #dddddd;
-    font-size: 16px;
+    color: #fff;
+    font-size: 17px;
     text-align: center;
     padding: 10px;
 }
  
 .select-seat-container {
-    display: flex;
-    /* align-items: center; */
+display: flex;
     border-bottom: 2px solid #dddddd;
     height: 150px;
+    justify-content: center;
+    align-items: center;
 }
 
 .select-seat-number-container {
-    flex-grow: 1;
-    border-right: 1px solid #dddddd;
-    align-items: flex-end;
-    gap: 10px;
+    display: flex;
+    /* flex-grow: 1; */
+    /* border-right: 1px solid #dddddd; */
+    align-items: center;
+    /* gap: 10px; */
 }
 
 .select-seat-number-wrapper {
-    padding: 15px 0 20px 20px; 
+width: 650px;
+    /* padding: 15px 0 20px 20px; */
     display: flex;
-    flex-direction: row; 
-    align-items: center; 
-    margin-top: 35px;
+    /* margin-top: 35px; */
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 
 .select-seat-information {
     flex-grow: 1;
-    padding: 15px 0 20px 20px;
-    margin-left: 10px;
+    margin-left : 20px;
 }
 
 .quantity-input{
-	width: 40px;
-	height: 40px;
-	text-align: end;
+border: none;
+    width: 35px;
+    height: 20px;
+    text-align: end;
 }
 
 .select-seat {
-    display: flex;
+display: flex;
     font-size: 20px;
-    margin-left: 50px;
+    align-items: center;
 }
 
 .stylish-button{
-	height: 40px;
-	width: 30px;
+	cursor : pointer;
+    text-align: center;
+    display: flex;
+    border: none;
+    height: 34px;
+    width: 23px;
+    background: none;
+    font-size: 15px;
+    font-weight: 900;
+    align-items: center;
+    justify-content: center;
 }
 
 .quantity-controls{
-	margin-left: 20px;
+width: 100px;
+    border-radius: 5px;
+    border: 1px solid var(--gray-4);
+    display: flex;
+    margin-left: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 .select-seat-age {
-	font-weight: bold;
-	font-size: 20px;
+font-weight: bold;
+    font-size: 15px;
 }
 
 .select-seat-number {
@@ -98,14 +116,14 @@
 }
 
 .select-seat-information-wrapper {
-    display: flex;
-    flex-direction: column;
+display: flex;
+    flex-direction: row;
     font-size: 15px;
 }
 
 .moviename{
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .select-theater-place {
@@ -127,17 +145,20 @@
 }
 
 .select-theater-date {
-    /*  font-size: 18px;
-    margin-top: 8px;
-    font-weight: bold; */
+    width: 195px;
     display: flex;
+    flex-direction: column;
 }
 
-.select-theater-date>div {
+.selectedSeats{
+	font-size :13px;
+}
+
+/* .select-theater-date>div {
     font-size: 18px;
     margin-top: 8px;
     font-weight: bold;
-}
+} */
 
 .theater-time {
     margin-left: 5px;
@@ -344,4 +365,71 @@
 .seat.booked {
     pointer-events: none;
     opacity: 0.5; /* 예약된 좌석을 시각적으로 구분하기 위해 투명도 조정 */
+}
+
+.movie_info_seat{
+    gap: 2px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.movietime{
+width: 155px;
+    font-size: 12px;
+}
+
+.movieplace{
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.movierating{
+	display: flex;
+    align-items: center;
+}
+input[type="number" i] {
+    padding-block: initial;
+    padding-inline: initial;
+}
+
+input {
+    font-style: initial;
+    font-variant-ligatures: initial;
+    font-variant-caps: initial;
+    font-variant-numeric: initial;
+    font-variant-east-asian: initial;
+    font-variant-alternates: initial;
+    font-variant-position: initial;
+    font-weight: initial;
+    font-stretch: initial;
+    font-size: initial;
+    font-family: initial;
+    font-optical-sizing: initial;
+    font-kerning: initial;
+    font-feature-settings: initial;
+    font-variation-settings: initial;
+    text-rendering: initial;
+    color: initial;
+    letter-spacing: initial;
+    word-spacing: initial;
+    line-height: initial;
+    text-transform: initial;
+    text-indent: initial;
+    text-shadow: initial;
+    display: initial;
+    text-align: initial;
+    appearance: initial;
+    -webkit-rtl-ordering: initial;
+    cursor: initial;
+    background-color: initial;
+    margin: initial;
+    padding: initial;
+    border-width: initial;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    padding-block: initial;
+    padding-inline: initial;
 }

@@ -7,25 +7,37 @@
     <form action="moviePayment" method="post" id="seatForm">
         <div class="select-wrapper">
             <div class="select-title">인원/좌석 선택</div>
+            
             <div class="select-seat-container">
                 <!-- 영화 상영 정보 -->
                 <div class="select-seat-information">
-                    <div class="selected-movie"></div>
+                    <!-- <div class="selected-movie"></div> -->
                     <div class="select-seat-information-wrapper">
                         <c:forEach var="movieInfo" items="${movieInfoList}">
                            <input type="hidden" name="mt_num" id="mt_num" value="${movieInfo.mt_num}">
-                            <p class="moviename">${movieInfo.m_name}<br></p>
-                            <p class="movietime">${movieInfo.mt_date} | ${movieInfo.mt_start} ~ ${movieInfo.mt_end}<br></p>
-                            <p class="movieplace">${movieInfo.c_branch}지점 ${movieInfo.th_name}</p>
+                           	<img alt="영화1" src="${fn:split(movieInfo.m_filename, '|')[0]}" width="80">
+                           	<div class="movie_info_seat">
+                           		<div class="movierating">
+                           		<span class="ic_grade <c:choose><c:when test="${movieInfo.rating eq '12세관람가' }">gr_12</c:when>
+						                    <c:when test="${movieInfo.rating eq '12세이상관람가' }">gr_12</c:when>
+						                    <c:when test="${movieInfo.rating eq '전체관람가' }">gr_all</c:when>
+						                    <c:when test="${movieInfo.rating eq '15세관람가' }">gr_15</c:when>
+						                    <c:when test="${movieInfo.rating eq '15세이상관람가' }">gr_15</c:when>
+						                    <c:when test="${movieInfo.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
+						                    <c:when test="${movieInfo.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
+					            </span>
+                           		<p class="moviename">${movieInfo.m_name}</p>
+                           		</div>
+                            	<p class="movietime">${movieInfo.mt_date} | ${movieInfo.mt_start} ~ ${movieInfo.mt_end}</p>
+                            	<p class="movieplace">${movieInfo.c_branch}지점 ${movieInfo.th_name}</p>
                         </c:forEach>
-                    </div>
-                    <div class="select-theater-date">
-                        <div class="theater-date"></div>
-                        <div class="theater-time"></div>
-                    </div>
-                    <div class="selected-seats-wrapper">
-                        <span class="selected-seats-title">좌석번호</span>
-                        <span class="selectedSeats">선택한 좌석이 없습니다.</span>
+                        <div class="select-theater-date">
+                       	 	<div class="selected-seats-wrapper">
+                        		<span class="selected-seats-title">좌석번호</span>
+                        		<span class="selectedSeats">선택한 좌석이 없습니다.</span>
+                    		</div>
+                        </div>
+                        </div>
                     </div>
                 </div>
 
@@ -35,25 +47,25 @@
                         <div class="select-seat">
                             <div class="select-seat-age">성인</div>
                             <div class="quantity-controls">
-                                <button type="button" class="quantity-down stylish-button">-</button>
+                                <button type="button" class="quantity-down stylish-button"><span>-</span></button>
                                 <input type="number" min="0" value="0" max="8" readonly class="quantity-input adult"/>
-                                <button type="button" class="quantity-up stylish-button">+</button>
+                                <button type="button" class="quantity-up stylish-button"><span>+</span></button>
                             </div>
                         </div>  
                         <div class="select-seat">
                             <div class="select-seat-age">청소년</div>
                             <div class="quantity-controls">
-                                <button type="button" class="quantity-down stylish-button">-</button>
+                                <button type="button" class="quantity-down stylish-button"><span>-</span></button>
                                 <input type="number" min="0" value="0" max="8" readonly class="quantity-input youth"/>
-                                <button type="button" class="quantity-up stylish-button">+</button>
+                                <button type="button" class="quantity-up stylish-button"><span>+</span></button>
                             </div>
                         </div>
                         <div class="select-seat">
                             <div class="select-seat-age">경로</div>
                             <div class="quantity-controls">
-                                <button type="button" class="quantity-down stylish-button">-</button>
+                            <button type="button" class="quantity-down stylish-button"><span>-</span></button>
                                 <input type="number" min="0" value="0" max="8" readonly class="quantity-input senior"/>
-                                <button type="button" class="quantity-up stylish-button">+</button>
+                                <button type="button" class="quantity-up stylish-button"><span>+</span></button>
                             </div>
                         </div>
                     </div>
