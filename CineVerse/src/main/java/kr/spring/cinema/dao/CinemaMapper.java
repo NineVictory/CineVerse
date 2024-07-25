@@ -67,6 +67,20 @@ public interface CinemaMapper {
 	
 	
 	
+	
+	
+	/*=======================
+     * 영화 상영 시간표 조회 페이지
+    *=======================*/
+	//상영중인 영화목록만 조회
+	public List<MovieVO> showMovieList();
+	
+	//상영중인 영화시간표 조회
+	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date);
+	
+	
+	
+	
 	//선택한 영화에 대한 좌석 목록 조회
 	//public List<SeatVO> selectSeatList(long c_num, long m_code, String mt_date, String mt_start);
 	

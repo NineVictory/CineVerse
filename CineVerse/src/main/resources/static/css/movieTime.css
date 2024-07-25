@@ -34,7 +34,7 @@
 
 /* 영화 */
 .movie-part {
-	width: 300px;
+	width: 400px;
 }
 
 .sort-wrapper {
@@ -70,6 +70,14 @@
     /* margin-top: 5px;*/
 }
 
+.movie-list-wrapper{
+	 max-height: 615px; /* 원하는 최대 높이 값으로 설정하세요 */
+    overflow-y: auto;  /* 세로 방향으로 스크롤바가 필요할 경우 표시 */
+    border: 1px solid #ddd; /* 선택적: 경계선 추가 */
+    padding: 10px; /* 선택적: 내부 여백 추가 */
+}
+
+
 .movie-select {
 	width: 100%;
 	padding: 0;
@@ -88,6 +96,45 @@
     font-weight: 600;
 }
 
+.ic_grade {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	border-radius: 50%;
+	font-size: 0;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+.ic_grade:before {
+	content: "";
+	display: block;
+	width: 22px;
+	height: 22px;
+	border-radius: 3px;
+	background-size: 100%;
+}
+
+.ic_grade.gr_all:before {
+	background: #229c56 url(../images/cmj/grade_all.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_12:before {
+	background: #e9b630 url(../images/cmj/grade_12.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_15:before {
+	background: #dd7430 url(../images/cmj/grade_15.png) 0 0 no-repeat;
+}
+
+.ic_grade.gr_19:before {
+	background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
+}
+
+
 
 /* 날짜 및 시간 */
 .time-part {
@@ -99,12 +146,65 @@
 	margin: 0 auto;
 }
 
-.reserve-month {
-	margin-top: 20px;
-	margin-left: 8px;
-	font-weight: bold;
-	border-bottom: 1px solid var(--gray-3);
-	margin-bottom: 70px;
+.cinema-gallery {
+	width: 100%;
+	margin-left: 2px;
+	margin-top: 5px;
+	margin-right: 100px;
+	display: flex;
+	flex-direction: row; /* 가로 방향으로 나열 */
+	flex-wrap: nowrap; /* 줄 바꿈 없이 한 줄에 표시 */
+	overflow-x: auto; /* 넘치는 요소들을 가로 스크롤로 표시 */
+	border-bottom: 1px solid #dddddd;
+}
+
+.movie-day, .movie-day-sat, .movie-day-sun {
+	font-size: 13px;
+	width: 50px;
+	margin: 0 5px; /* 간격을 줌 */
+	cursor: pointer;
+	color: #080808; /* 기본 텍스트 색상 설정 */
+	box-sizing: border-box;
+	text-align: center;
+	padding: 10px;
+	white-space: normal; /* 줄 바꿈을 허용 */
+	cursor: pointer;
+}
+
+.movie-day-sat {
+	color: #6e9adb; /* 주말 색상 설정 */
+}
+
+.movie-day-sun {
+	color: #e83431; /* 주말 색상 설정 */
+}
+
+.movie-day:hover {    
+	height: 60px;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.movie-day-sat:hover {
+    height: 60px;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.movie-day-sun:hover {
+    height: 60px;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.movie-day-selected {
+	    height: 60px;
+    border-radius: 20px;
+	background-color: #333333; /* 선택된 날짜 배경색 */
+	color: white; /* 선택된 날짜 텍스트 색상 */
 }
 
 .reserve-date {

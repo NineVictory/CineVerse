@@ -62,6 +62,15 @@ public interface CinemaService {
 	
 	
 	
+	/*=======================
+     * 영화 상영 시간표 조회 페이지
+    *=======================*/
+	//상영중인 영화목록만 조회
+	public List<MovieVO> showMovieList();
+	
+	//상영중인 영화시간표 조회
+	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date);
+	
 		//영화관(잠시 보류)
 		//public List<CinemaVO> selectCinemaList(Integer c_location);
 		//public Integer selectCinemaRowCount(Map<String,Object> map);

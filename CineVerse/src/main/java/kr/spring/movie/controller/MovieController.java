@@ -346,13 +346,36 @@ public class MovieController {
 
 
    
-   /*=======================
-    * 영화 상영시간표
-    *=======================*/
-   @GetMapping("/movie/movieTime")
-   public String movieTime(){
-      return "movieTime";
-   }
+           /*=======================
+            * 영화 상영시간표
+            *=======================*/
+           @GetMapping("/movie/movieTime")
+           public String movieTime(Model model){
+        	   
+        	  List<MovieVO> movieList = cinemaService.showMovieList();
+        	  model.addAttribute("movieList", movieList);
+              return "movieTime";
+           }
+               
+           //영화에 맞는 시간표 불러오기
+           @GetMapping("/showMovieTimeList")
+           @ResponseBody
+
+           public List<MovieTimeVO>showMovieTimeList(long m_code, String mt_date2) throws UnsupportedEncodingException, ParseException {
+
+              // URL 디코딩
+                String decodedDate = URLDecoder.decode(mt_date2, "UTF-8");
+
+                // 날짜 포맷 설정
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yy/MM/dd");
+                Date date = (Date) inputFormat.parse(decodedDate);
+
+                // 포맷을 적용하여 문자열로 변환
+                SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd");
+                String mt_date = outputFormat.format(date);
+                
+               return cinemaService.showMovieTimeList(m_code, mt_date);
+           }
        
    
    /*=======================

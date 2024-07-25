@@ -152,7 +152,8 @@
 	
 	
 	
-	<!-- 영화시간 등록 페이지 -->
+	
+	<!-- 영화시간 등록 페이지 [관리자 전용] -->
 	<!-- 상영중인 영화만 목록으로 보여주기 -->
 	<select id="insertTimeMovieList"  resultType="movieVO">
 		SELECT m_code, m_name
@@ -175,7 +176,7 @@
 		WHERE c_num = #{c_num}
 	</select>
 	
-	
+	<!-- 상영시간표 등록 시 시간 중복 체크(동일 시간대 상영 유무 확인) -->
 	  <select id="checkOverlap" parameterType="MovieTimeVO" resultType="Integer">
 	   	  SELECT COUNT(*)
 	      FROM movie_time
@@ -186,72 +187,23 @@
       </select> 
 	
 	
-	
-	<!-- 선택한 영화에 대한 좌석 목록 조회 -->
-	<!-- <select id="selectSeatList" parameterType="object" resultType="seatVO">
-		SELECT s.seat_num,s.seat_rank,s.seat_row,s.seat_column
-		FROM seat s
-		JOIN theater t ON s.th_num = t.th_num
-		JOIN movie_time mt ON t.th_num = mt.th_num
-		JOIN cinema c ON t.c_num = c.c_num
-		JOIN movie m ON mt.m_code = m.m_code
-		WHERE t.c_num = #{c_num} AND m.m_code = #{m_code} AND m.mt_date = #{mt_date} AND mt.mt_start = #{mt_start};
-	</select> -->
-	
-	
-	
-	
-	
-	 <!-- 상영시간표 목록 -->
-    <!-- <select id="selectMovieTimeListByCinemaNum" parameterType="long" resultType="movietimeVO">
-        SELECT
-           mt.mt_num,
-           mt.mt_date,
-           mt.mt_start,
-           mt.mt_end,
-           mt.m_code,
-           mt.th_num,
-           m.m_name,
-           t.th_name
-        FROM movie_time mt
-        JOIN movie m ON mt.m_code = m.m_code
-        JOIN theater t ON mt.th_num = t.th_num
-        WHERE t.c_num = #{c_num}
-    </select> -->
-	
-	<!-- 상영시간표 총레코드수/검색 레코드수 -->
-	<!--  <select id="selectMovieTimeCount" parameterType="map"  resultType="integer">
-	 	SELECT
-			COUNT(*)
-		FROM movie_time
-	 </select> -->
-	
-	
-	
-	
-	
-	<!-- 영화관 목록(잠시 보류)
-	<select id="selectCinemaList" parameterType="integer" resultType="cinemaVO">
-		SELECT
-			*
-		FROM cinema WHERE c_location=#{c_location} 
+	<!-- 영화 상영시간표 조회 [사용자 전용] -->
+	<!-- 상영중인 영화목록만 조회 -->
+	<select id="showMovieList"  resultType="movieVO">
+		SELECT m_code, m_name, rating
+		FROM movie
+		WHERE m_status = 1
 	</select>
-	-->
 	
+	<!-- 상영중인 영화목록만 조회 -->
+	<select id="showMovieTimeList" parameterType="object" resultType="movieTimeVO">
+		SELECT c_branch, mt_date, mt_start, mt_end, th_name
+		FROM movie_time 
+		JOIN theater USING(th_num)
+		JOIN cinema USING(c_num)
+		WHERE m_code = #{m_code} AND mt_date = #{mt_date}
+	</select>
 	
-	<!-- 	 상영관 등록 
-	<insert id="insertTheater" parameterType="theaterVO">
-		INSERT INTO theater(
-			th_num,
-			th_name,
-			th_position,
-			c_num)
-		VALUES (
-			theater_seq.nextval,
-			#{th_name},
-			#{th_position},
-			 (SELECT c_num FROM cinema WHERE c_branch = #{c_branch}))
-	</insert> -->
 </mapper>							
 
 

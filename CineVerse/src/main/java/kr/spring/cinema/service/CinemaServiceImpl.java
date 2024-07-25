@@ -108,13 +108,18 @@ public class CinemaServiceImpl implements CinemaService{
 	    return count > 0;  // 겹치는 시간이 있으면 true 반환
 	}
 
+	@Override
+	public List<MovieVO> showMovieList() {
+		return cinemaMapper.showMovieList();
+	}
+
+	@Override
+	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date) {
+		return cinemaMapper.showMovieTimeList(m_code, mt_date);
+	}
+
 	
-	
-	/*
-	 * @Override public List<SeatVO> selectSeatList(long c_num, long m_code, String
-	 * mt_date, String mt_start) { return cinemaMapper.selectSeatList(c_num, m_code,
-	 * mt_date, mt_start); }
-	 */
+
 
 	
 	
