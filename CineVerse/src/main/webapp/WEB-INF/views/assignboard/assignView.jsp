@@ -276,7 +276,7 @@
         	$('#board_report').click(function() {
         		var user_num = $(this).data('memnum');
         		alert(user_num);
-            	if(user_num === null || user_num === undefined || user_num.toString().trim() === ''){
+            	if(user_num == null || user_num == undefined || user_num.toString().trim() == ''){
             		alert('로그인 후 신고할 수 있습니다.');
             	}else{
 	                var newWindow = window.open(`report-form.html?data-num=${dataNum}`, '_blank', 'width=500,height=600');

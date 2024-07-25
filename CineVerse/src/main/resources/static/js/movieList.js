@@ -116,7 +116,28 @@ $(document).ready(function() {
         }
         filterMoviesByGenres();
     });
+	
+	$("#movieListContainer ul.movie-list").append(html);
 
+	// 등급에 따라 클래스명을 반환하는 함수
+	function getGradeClass(rating) {
+	    switch(rating) {
+	        case '12세관람가':
+	        case '12세이상관람가':
+	            return 'gr_12';
+	        case '전체관람가':
+	            return 'gr_all';
+	        case '15세관람가':
+	        case '15세이상관람가':
+	            return 'gr_15';
+	        case '18세관람가(청소년관람불가)':
+	        case '청소년관람불가':
+	            return 'gr_19';
+	        default:
+	            return '';
+	    }
+	}
+	
     // 장르로 영화 필터링
     function filterMoviesByGenres() {
         $.ajax({
@@ -128,21 +149,29 @@ $(document).ready(function() {
             success: function(response) {
                 $("#movieListContainer ul.movie-list").empty();
                 response.forEach(function(movie) {
+					let filenames = movie.m_filename.split('|');
+					let mainImage = filenames[0]; // 첫 번째 이미지 파일명 선택
                     let html = `
-                        <li class='movie'>
-                            <img alt='영화1' src='/upload/${movie.m_filename}' onclick="location.href='movieDetail?m_code=${movie.m_code}'">
-                            <p><a href='movieDetail?m_code=${movie.m_code}'><b>${movie.m_name}</b></a></p>
-                            <div class='bookAopen'>
-                                <div>예매율 34.1% | 개봉일 ${movie.m_opendate}</div>
-                            </div>
-                            <div class='movie-button'>
-                                <div class='movie-fav-button-detail'>
-                                    <img class='output_bookMark' data-num='${movie.m_code}' src='/images/heart01.png'>
-                                    <span class='output_mfcount'></span>
-                                </div>
-                                <div class='movie-reservation-button-list'>예매하기</div>
-                            </div>
-                        </li>`;
+							    <li class="movie">
+							        <img alt="영화1" src="${mainImage}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
+							        <div class="overlay">
+							            <button class="btn-book" onclick="location.href='/movie/movieReserve'">예매하기</button>
+							            <button class="btn-details" onclick="location.href='movieDetail?m_code=${movie.m_code}'">상세보기</button>
+							        </div>
+							        <div class="movie_name_list">
+							            <div class="movie_list_grade">
+							                <div class="movie_list_gn">
+							                    <span class="ic_grade ${getGradeClass(movie.rating)}"></span>
+							                    <span class="movie_name"><b>${movie.m_name}</b></span>
+							                </div>
+							            </div>
+							        </div>
+							        <div class="bookAopen">
+							            <div>개봉일 ${movie.m_opendate}</div>
+							            <div>예매율 0%</div>
+							        </div>
+							    </li>
+							`;
                     $("#movieListContainer ul.movie-list").append(html);
                 });
             },
