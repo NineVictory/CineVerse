@@ -24,6 +24,7 @@ import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieBookMarkVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.service.MyPageService2;
 import kr.spring.myPage.vo.AddressVO;
@@ -226,6 +227,32 @@ public class MyPageAjaxController {
 		}
 		return mapJson;
 	}
+	
+	//예매취소
+	@PostMapping("/myPage/deleteRes")
+	@ResponseBody
+	public Map<String, Object> deleteRes(MovieBookingVO booking,HttpSession session){
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else if(user.getMem_num()!=booking.getMem_num()) {
+			mapJson.put("result", "wrongAccess");
+		}else {
+			//쿠폰 use 변경2->1(미사용)
+			mypageService.updateCoupon(user.getMem_num());
+			//포인트 환불(포인트 히스토리)
+			mypageService.updatePoint(user.getMem_num());
+			//포인트 갱신
+			memberService.totalPoint(user.getMem_num());
+			
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
+	
+	
+	
 	
 	//게시글 삭제
 	@PostMapping("/myPage/deleteCBoard")
