@@ -352,7 +352,7 @@ $(document).ready(function() {
                     $.each(data, function(index, movietime) {
                         selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + formatTime(movietime.mt_end) + '" data-mtnum="' + movietime.mt_num + '">';
                         selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(movietime.mt_start) + '</div>';
-                        selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name + '</div>';
+                        selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name +'관'+ '</div>';
                         selectMovieTimeListHtml += '</li>';
                     });
                     $('.movietime-select').html(selectMovieTimeListHtml); // 영화 시간표 목록 업데이트
