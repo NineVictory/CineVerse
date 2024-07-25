@@ -207,6 +207,38 @@
 	color: white; /* 선택된 날짜 텍스트 색상 */
 }
 
+.location-part{
+	width: 100%;
+	height: 50px;
+	margin-left: 2px;
+	margin-top: 5px;
+	margin-right: 100px;
+	display: flex;
+	flex-direction: row; /* 가로 방향으로 나열 */
+	flex-wrap: nowrap; /* 줄 바꿈 없이 한 줄에 표시 */
+	border-bottom: 1px solid #dddddd;
+}
+.theater-location{
+	margin-top: 8px;
+	margin-left: 7px;
+}
+
+.button{
+	font-size: 15px;
+	width: 50px;
+	margin: 0 10px; /* 간격을 줌 */
+	text-align: center;
+	color: #080808;
+	padding: 10px;
+}
+
+.button:hover {    
+	height: 60px;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    color: #333;
+}
+
 .reserve-date {
     display: flex; 
     justify-content: space-between; 
@@ -362,7 +394,9 @@
 	align-items: center;
 }
 
-
+ .selected {
+        background-color: #d3d3d3; /* 선택된 항목의 배경색을 변경 */
+    }
 
 
 

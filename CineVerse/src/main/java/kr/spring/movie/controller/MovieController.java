@@ -361,11 +361,12 @@ public class MovieController {
            @GetMapping("/showMovieTimeList")
            @ResponseBody
 
-           public List<MovieTimeVO>showMovieTimeList(long m_code, String mt_date2) throws UnsupportedEncodingException, ParseException {
+           public List<MovieTimeVO>showMovieTimeList(long m_code, String mt_date2, String c_location) throws UnsupportedEncodingException, ParseException {
 
               // URL 디코딩
                 String decodedDate = URLDecoder.decode(mt_date2, "UTF-8");
-
+                String decodedDate2 = URLDecoder.decode(c_location, "UTF-8");
+                
                 // 날짜 포맷 설정
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yy/MM/dd");
                 Date date = (Date) inputFormat.parse(decodedDate);
@@ -374,7 +375,7 @@ public class MovieController {
                 SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd");
                 String mt_date = outputFormat.format(date);
                 
-               return cinemaService.showMovieTimeList(m_code, mt_date);
+               return cinemaService.showMovieTimeList(m_code, mt_date, decodedDate2);
            }
        
    

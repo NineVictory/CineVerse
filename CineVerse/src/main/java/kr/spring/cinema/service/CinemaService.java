@@ -71,7 +71,7 @@ public interface CinemaService {
 	public List<MovieVO> showMovieList();
 	
 	//상영중인 영화시간표 조회
-	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date);
+	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date, String c_location);
 	
 		//영화관(잠시 보류)
 		//public List<CinemaVO> selectCinemaList(Integer c_location);

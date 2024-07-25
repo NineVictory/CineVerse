@@ -243,7 +243,7 @@
 		FROM movie_time 
 		JOIN theater USING(th_num)
 		JOIN cinema USING(c_num)
-		WHERE m_code = #{m_code} AND mt_date = #{mt_date}
+		WHERE m_code = #{m_code} AND mt_date = #{mt_date} AND c_location = #{c_location}
 	</select>
 	
 </mapper>							
