@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.board.vo.BoardReportVO;
 import kr.spring.board.vo.BoardResponseFavVO;
 import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardBookmarkVO;
@@ -142,4 +143,8 @@ public interface BoardMapper {
 	@Delete("DELETE FROM community_response_fav WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")
 	public void deleteRespFavByBoardNum(Long cb_num);
 	
+	
+	
+	//커뮤니티 부모글 신고
+	public void boardReport(BoardReportVO boardReportVO);
 }

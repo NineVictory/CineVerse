@@ -10,6 +10,7 @@
 <script src="${pageContext.request.contextPath}/js/videoAdapter.js"></script>
 <script src="${pageContext.request.contextPath}/js/board.fav.js"></script>
 <script src="${pageContext.request.contextPath}/js/board.reply.js"></script>
+<script src="${pageContext.request.contextPath}/js/community.report.js"></script>
 
 <div class="page-container page-main">
 	<div class="boardview-main">
@@ -104,8 +105,24 @@
 				<img id="output_fav" data-num="${board.cb_num}" src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="15">
 				<span id="output_fcount">0</span>
 					
-				<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15">
-				<span style="margin-left:2px;" id="board_report">신고</span>
+				<img src="${pageContext.request.contextPath}/images/kbm/report.png" width="15" height="15" class="board-report">
+				<a style="margin-left:2px;" id="board_report" class="board-report" 
+							data-num="${board.cb_num}" data-memnum="${user.mem_num}" 
+							<c:choose>
+			                    <c:when test="${fn:length(board.cb_title) > 20}">
+			                        data-title="${fn:substring(board.cb_title, 0, 20)}..."
+			                    </c:when>
+			                    <c:otherwise>
+			                        data-title="${board.cb_title}"
+			                    </c:otherwise>
+			                </c:choose>
+								data-title="${board.cb_title}"
+								<c:if test="${!empty board.mem_nickname}">
+									data-writer="${board.mem_nickname}"
+								</c:if>
+								<c:if test="${empty board.mem_nickname}">
+									data-writer="${board.mem_id}"
+								</c:if>>신고</a>
 				
 			</div>
 		</div>

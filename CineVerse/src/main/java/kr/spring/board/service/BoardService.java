@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.board.vo.BoardReportVO;
 import kr.spring.board.vo.BoardResponseFavVO;
 import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardBookmarkVO;
@@ -68,4 +69,7 @@ public interface BoardService {
 	//게시글의 답글 총 개수
 	public Integer selectResponseCountByCbNum(Long cb_num);
 
+	
+	//부모글 신고
+	public void boardReport(BoardReportVO boardReportVO);
 }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.board.service.BoardService;
+import kr.spring.board.vo.BoardReportVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.main.controller.CommonController;
 import kr.spring.member.vo.MemberVO;
@@ -39,6 +40,11 @@ public class BoardController {
 	@ModelAttribute
 	public BoardVO initCommand() {
 		return new BoardVO();
+	}
+	//자바빈(VO) 초기화
+	@ModelAttribute
+	public BoardReportVO initCommand2() {
+		return new BoardReportVO();
 	}
 		
 	/*====================
@@ -148,6 +154,32 @@ public class BoardController {
 		modelAndView.addObject("comment_cnt", all_comments);
 		return modelAndView;
 	}
+	
+	
+	/*====================
+	 *커뮤니티 신고
+	 =====================*/
+	
+	//커뮤니티 신고폼
+	@GetMapping("/board/boardReportForm")
+	public String reportForm() {
+		
+		return "boardReportForm";
+	}
+	
+	//신고폼 데이터 처리
+	@PostMapping("/board/submitBoardReport")
+	public String submitReport(BoardReportVO boardReport, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "boardReportForm";
+		}
+		
+		boardService.boardReport(boardReport);
+		model.addAttribute("message","신고가 접수되었습니다.");
+		return "/common/resultAlert2";
+	}
+	
+	
 	
 	/*====================
 	 *게시판 글수정

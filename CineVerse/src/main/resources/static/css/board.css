@@ -205,6 +205,10 @@ div.cell-content > div.likes, div.cell-content > div.writer{
 	font-size:16px;
 }
 
+.board-report{
+	cursor:pointer;
+}
+
 .writer {
     align-self: flex-start;
     display:flex;

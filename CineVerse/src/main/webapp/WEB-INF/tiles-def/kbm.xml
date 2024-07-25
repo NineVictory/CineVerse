@@ -28,6 +28,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/board/boardModify.jsp"/>
 	</definition>
 	
+	<definition name="boardReportForm" template="/WEB-INF/views/template/layout_report.jsp">
+		<put-attribute name="title" value="신고하기"/>
+
+		<put-attribute name="body" value="/WEB-INF/views/board/boardReportForm.jsp"/>
+	</definition>
+	
 	
 	<definition name="assignList" extends="boardList">
 		<put-attribute name="title" value="양도/교환"/>

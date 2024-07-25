@@ -1,4 +1,4 @@
-package kr.spring.assignment.vo;
+package kr.spring.board.vo;
 
 import java.sql.Date;
 
@@ -12,12 +12,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AssignReportVO {
-	private long ar_num;
-	private String ar_content;
+public class BoardReportVO {
+	private long br_num;
+	private String br_content;
 	@NotNull
-	private Integer ar_category;
+	private Integer br_category;
 	private long mem_num;
-	private long ab_num;
-	private Date ar_rdate;
+	private long cb_num;
+	private Date br_rdate;
 }

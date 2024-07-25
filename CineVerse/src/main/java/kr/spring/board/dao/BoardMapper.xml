@@ -209,6 +209,13 @@
 	CONNECT BY PRIOR r.te_num = r.te_parent_num
 	ORDER SIBLINGS BY r.te_num ASC
  	</select>
+ 	
+ 	
+ 	<!-- 부모글 신고 -->
+	<insert id="boardReport" parameterType="boardReportVO">
+		INSERT INTO community_report (br_num, br_content, br_category, mem_num, cb_num) 
+				VALUES (community_report_seq.nextval, #{br_content}, #{br_category, jdbcType=INTEGER}, #{mem_num}, #{cb_num})
+	</insert>
 </mapper>							
 
 

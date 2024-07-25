@@ -49,6 +49,12 @@ public class AssignBoardController {
 		return new AssignVO();
 	}
 	
+	//자바빈(VO) 초기화
+	@ModelAttribute
+	public AssignReportVO initCommand2() {
+		return new AssignReportVO();
+	}
+	
 	/*====================
 	 *양도게시판 글작성
 	 =====================*/
@@ -183,31 +189,32 @@ public class AssignBoardController {
 		return modelAndView;
 	}
 	
+	
+	/*====================
+	 *양도글 신고
+	 =====================*/
+	
+	//양도글 신고폼
 	@GetMapping("/assignboard/reportForm")
 	public String reportForm() {
 		
 		return "assignReportForm";
 	}
+	
+	//신고폼 데이터 처리
 	@PostMapping("/assignboard/submitAssignReport")
-	public String submitReport(AssignReportVO assignReport, Model model) {
+	public String submitReport(AssignReportVO assignReport, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "assignReportForm";
+		}
+		
 		assignService.processReport(assignReport);
 		model.addAttribute("message","신고가 접수되었습니다.");
 		return "/common/resultAlert2";
 	}
 	
-	/*====================
-	 *양도글 신고
-	 =====================*/
-	@PostMapping("/assignment/submitAssignReport")
-	public String submitAssignReport(@ModelAttribute("assignReport") AssignReportVO assignReportVO) {
-	// 여기서 assignReport 객체에 폼 데이터가 바인딩됩니다.
-		
-	// 신고 처리 로직
-	assignService.processReport(assignReportVO);
-
-	// 처리 후 리다이렉트 또는 뷰 페이지 반환
-	return "redirect:/assignboard/detail?ab_num=" + assignReportVO.getAb_num();
-	} 
+	
+	
 	
 	/*====================
 	 *양도글 수정

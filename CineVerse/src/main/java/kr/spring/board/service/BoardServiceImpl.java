@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.spring.board.dao.BoardMapper;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardReFavVO;
+import kr.spring.board.vo.BoardReportVO;
 import kr.spring.board.vo.BoardResponseFavVO;
 import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardBookmarkVO;
@@ -207,6 +208,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public Integer selectResponseCountByCbNum(Long cb_num) {
 		return boardMapper.selectResponseCountByCbNum(cb_num);
+	}
+
+	@Override
+	public void boardReport(BoardReportVO boardReportVO) {
+		boardMapper.boardReport(boardReportVO);
 	}
 
 }
