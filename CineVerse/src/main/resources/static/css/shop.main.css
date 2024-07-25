@@ -20,12 +20,13 @@
 }
 
 .shopNav{
+	display:flex;
 	width: 20%;
 	margin-top:100px;
 }
 .shopNav ul {
-	margin-top: 120px;
-	margin-left: 40px;
+    padding: 0;
+    margin-top: 120px;
 }
 .shopNav ul li {
 	margin: 10px;
@@ -51,9 +52,6 @@
 	position: relative;
 	height: 180px;
 }
-
-
-
 
 input[type="search"] {
     width: 500px; 
@@ -160,32 +158,32 @@ input[type="search"]::placeholder {
 }
 
 .product-item img {
-    width: 100%;
     border-radius: 10px;
-    box-shadow: 12px 0px 10px rgba(0, 0, 0, 0.1);
-}
+    box-shadow: 6px -2px 6px rgba(0, 0, 0, 0.1);
+	}
 
 .product-item:last-child {
     margin-right: 0;
 }
 
 .product-item img {
-    width: 230px;
-    height: 230px;
-    object-fit: cover;
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
 }
 
 .product-item h3, .product-item p {
+    font-size: 13.5px;
     text-align: left;
     margin: 5px 0;
-	white-space:nowrap;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    white-space: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-item h3 {
-    font-size: 15pt;
+    font-size: 15px;
 }
 
 .product-price {
@@ -222,4 +220,16 @@ input[type="search"]::placeholder {
 
 input[type="checkbox"]{
 	margin-right: 10px;
+}
+
+.sold-out-badge{
+	font-weight: 500;
+    position: absolute;
+    top: 30px;
+    right: 170px;
+    background-color: var(--red-check-btn);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
 }

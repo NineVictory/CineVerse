@@ -65,22 +65,24 @@
 						</div>
 					</c:if>
 					<c:if test="${product.p_quantity==0}">
-						<div class="product-item" onclick="window.location.href='shopDetail?p_num=${product.p_num}'">
-							<img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
-							<h3>	
-								<c:if test="${product.p_category == 1}"> MARVEL </c:if>
-								<c:if test="${product.p_category == 2}"> DISNEY </c:if>
-								<c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>
-								<c:if test="${product.p_category == 4}"> PIXAR </c:if>
-								<c:if test="${product.p_category == 5}"> Studio GHIBLI </c:if>
-								<c:if test="${product.p_category == 6}"> Warner Bros. </c:if>
-								<c:if test="${product.p_category == 7}"> Universal Studio </c:if>
-							</h3>
-							<p><span style="color:#FF5151;">(품절)</span> ${product.p_name}</p>
-							<p><span class="product-price">${product.p_price}</span>원</p>
-						</div>
+					    <div class="product-item" style="position: relative;" onclick="window.location.href='shopDetail?p_num=${product.p_num}'">
+					        <img src="${pageContext.request.contextPath}/upload/${product.p_filename}">
+					        <div class="sold-out-badge">
+					            품절
+					        </div>
+					        <h3>	
+					            <c:if test="${product.p_category == 1}"> MARVEL </c:if>
+					            <c:if test="${product.p_category == 2}"> DISNEY </c:if>
+					            <c:if test="${product.p_category == 3}"> DISNEY PRINCESS </c:if>
+					            <c:if test="${product.p_category == 4}"> PIXAR </c:if>
+					            <c:if test="${product.p_category == 5}"> Studio GHIBLI </c:if>
+					            <c:if test="${product.p_category == 6}"> Warner Bros. </c:if>
+					            <c:if test="${product.p_category == 7}"> Universal Studio </c:if>
+					        </h3>
+					        <p>${product.p_name}</p>
+					        <p><span class="product-price">${product.p_price}</span>원</p>
+					    </div>
 					</c:if>
-					
 				</c:forEach>
 				<div class="page-div">${page}</div>
 			</c:if>
