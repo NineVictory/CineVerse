@@ -733,7 +733,7 @@
 	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
 	        </if>
 	</sql>
-	
+	 
 
 	<!-- 예매 전체/검색 목록 -->
 	<select id="selectOrder" parameterType="map"
