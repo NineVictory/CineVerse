@@ -3,10 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.main.js"></script>
 <!-- 벌스샵 시작 -->
 <div class="shop-page">
 	<div class="shop-main">
 		<form action="shopMain" id="shop_search" method="get">
+		<c:if test="${p_quantity == '1'}">
+			<input type="hidden" value="1" name="p_quantity">
+		</c:if> 
 			<ul>
 				<li>
 					<input type="hidden" name="p_category" value="${param.p_category}">
@@ -17,14 +21,14 @@
 			</ul>
 		</form>
 			<div class="select-wrapper">
-			<select name="shopOrder" id="shopOrder">
-				<option value="1" <c:if test="${param.shopOrder == 1 }">selected</c:if>>최신순</option>
-				<option value="2" <c:if test="${param.shopOrder == 2 }">selected</c:if>>구매순</option>
-				<option value="3" <c:if test="${param.shopOrder == 3 }">selected</c:if>>평점순</option>
-				<option value="4" <c:if test="${param.shopOrder == 4 }">selected</c:if>>관심상품순</option>
-				<option value="5" <c:if test="${param.shopOrder == 5 }">selected</c:if>>가격낮은순</option>
-				<option value="6" <c:if test="${param.shopOrder == 6 }">selected</c:if>>가격높은순</option>
-			</select>	
+				<select name="shopOrder" id="shopOrder">
+					<option value="1" <c:if test="${param.shopOrder == 1 }">selected</c:if>>최신순</option>
+					<option value="2" <c:if test="${param.shopOrder == 2 }">selected</c:if>>구매순</option>
+					<option value="3" <c:if test="${param.shopOrder == 3 }">selected</c:if>>평점순</option>
+					<option value="4" <c:if test="${param.shopOrder == 4 }">selected</c:if>>관심상품순</option>
+					<option value="5" <c:if test="${param.shopOrder == 5 }">selected</c:if>>가격낮은순</option>
+					<option value="6" <c:if test="${param.shopOrder == 6 }">selected</c:if>>가격높은순</option>
+				</select>
 			</div>
 			<script type="text/javascript">
 			 	$('#shopOrder').change(function(){
@@ -32,6 +36,11 @@
 			 	});
 			</script>
 	</div>
+	<div class="left">
+				<input type="checkbox" class="checkQuantity" 
+       <c:if test="${p_quantity == '1'}">checked</c:if> 
+       />품절제외
+			</div>
 	<div class="shop-product-page">
 		<div class="shop-product">
 			<c:if test="${count==0}">

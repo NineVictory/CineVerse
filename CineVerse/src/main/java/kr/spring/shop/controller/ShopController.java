@@ -52,50 +52,55 @@ public class ShopController {
 	@Autowired
 	private MyPageService mypageService;
 
-	// 벌스샵 메인 (목록)
 	@GetMapping("/shop/shopMain")
 	public String shopMain(@RequestParam(defaultValue="1") int pageNum,
-			@RequestParam(defaultValue="1") int shopOrder,
-			String keyfield, String keyword, Model model, HttpServletRequest request) {
-		String pCategoryParam = request.getParameter("p_category");
-		Integer p_category = null;
+	                       @RequestParam(defaultValue="1") int shopOrder,
+	                       @RequestParam(required = false) String keyfield,
+	                       @RequestParam(required = false) String keyword,
+	                       @RequestParam(required = false) String p_category,
+	                       @RequestParam(required = false) String p_quantity,
+	                       Model model) {
 
-		if (pCategoryParam != null && !pCategoryParam.equals("all") && !pCategoryParam.isEmpty()) {
-			try {
-				p_category = Integer.parseInt(pCategoryParam);
-			} catch (NumberFormatException e) {
-				System.out.println("Invalid p_category value: " + pCategoryParam);
-			}
-		}
+	    Integer p_categoryInt = null;
+	    if (p_category != null && !p_category.equals("null")) {
+	        try {
+	            p_categoryInt = Integer.parseInt(p_category);
+	        } catch (NumberFormatException e) {
+	            p_categoryInt = null; // 또는 기본값 설정
+	        }
+	    }
 
-		log.debug("<<벌스샵 메인>> - p_category: " + p_category);
-		log.debug("<<벌스샵 메인>> - shopOrder: " + shopOrder);
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("p_category", p_categoryInt);
+	    map.put("keyfield", keyfield);
+	    map.put("keyword", keyword);
+	    if ("1".equals(p_quantity)) {
+	        map.put("p_quantity", 1);
+	    }
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("p_category", p_category);
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
+	    int count = shopService.productCount(map);
 
-		int count = shopService.productCount(map);
+	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 16, 10, "shopMain", 
+	                                      "&p_category=" + p_categoryInt + "&shopOrder=" + shopOrder + "&p_quantity=" + p_quantity);
 
-		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 16, 10, "shopMain", "&p_category=" + p_category + "&shopOrder=" + shopOrder);
+	    List<ProductVO> productList = null;
+	    if (count > 0) {
+	        map.put("shopOrder", shopOrder);
+	        map.put("start", page.getStartRow());
+	        map.put("end", page.getEndRow());
 
-		List<ProductVO> productList = null;
-		if (count > 0) {
-			map.put("shopOrder", shopOrder);
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
+	        productList = shopService.productList(map);
+	    }
 
-			productList = shopService.productList(map);
-		}
+	    model.addAttribute("count", count);
+	    model.addAttribute("productList", productList);
+	    model.addAttribute("page", page.getPage());
+	    model.addAttribute("p_quantity", p_quantity); 
 
-		model.addAttribute("count", count);
-		model.addAttribute("productList", productList);
-		model.addAttribute("page", page.getPage());
-
-		return "shopMain";
+	    return "shopMain";
 	}
 
+	
 	// 벌스샵 상세 (상품 상세)
 	@GetMapping("/shop/shopDetail")
 	public String shopDetail(long p_num, Model model) {

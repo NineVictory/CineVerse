@@ -14,23 +14,28 @@
 	
 	<!-- 상품 검색 -->
 	<sql id="productSearch">
-		<where>
-			p_status=2 
-			<!--카테고리가 있다면 카테고리 조건 포함-->
-			<if test="p_category != null and p_category !=''">
-				AND p_category=#{p_category}
-			</if>
-			
-			<!--검색어 있을 때-->
-			<if test="keyword != null and keyword != ''" >
-				<!-- AND로 연결-->
-					AND	
-				<!-- keyfield 1 : 상품 제목 -->
-				<if test="keyfield == 1">
-					p_name LIKE '%' || #{keyword} || '%'
-				</if>	
-			</if>
-		</where>
+	    <where>
+	        p_status=2 
+	        <!--카테고리가 있다면 카테고리 조건 포함-->
+	        <if test="p_category != null and p_category !=''">
+	            AND p_category=#{p_category}
+	        </if>
+	        
+	        <!--검색어 있을 때-->
+	        <if test="keyword != null and keyword != ''">
+	            <!-- AND로 연결-->
+	            AND
+	            <!-- keyfield 1 : 상품 제목 -->
+	            <if test="keyfield == 1">
+	                p_name LIKE '%' || #{keyword} || '%'
+	            </if>    
+	        </if>
+	
+	        <!-- 수량 조건 -->
+	        <if test="p_quantity == 1">
+	            AND p_quantity > 0
+	        </if>
+	    </where>
 	</sql>
 	
 	<!-- 상품 목록 정렬 -->

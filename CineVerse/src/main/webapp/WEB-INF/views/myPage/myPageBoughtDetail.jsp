@@ -8,7 +8,7 @@
 
 	<div class="reservation_display">
 		<span class="myPage_title_re">결제 내역</span>
-		<span class="watched_movie">내가 산 굿즈</span>
+		<span class="watched_movie"><a href="/myPage/bought">내가 산 굿즈</a></span>
 	</div>
 	<hr size="1" width="100%" class="wa_line">
 	<c:if test="${!empty orderDetail}">

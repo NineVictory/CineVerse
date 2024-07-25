@@ -211,3 +211,15 @@ input[type="search"]::placeholder {
     text-align: center; 
     padding-right: 80px;
 }
+
+.left{
+	width: 100px;
+    margin-right: 0; 
+    display: flex;
+    margin-left: 100px; 
+    color:#3D3D3D;
+}
+
+input[type="checkbox"]{
+	margin-right: 10px;
+}
