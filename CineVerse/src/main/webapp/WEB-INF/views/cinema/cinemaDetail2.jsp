@@ -6,33 +6,37 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <div class="page-main">
-	<div class="branch-title">${cinema.c_branch}</div>
+	<div class="branch-title">CINEVERSE ${cinema.c_branch}점</div>
 		<!-- 극장 정보 -->
-		<h2 class="branch-info">극장 정보</h2>
-		<div class="info-box">	
-		<div class="info-content">
-		<div class="branch-address">위치 : <b>${cinema.c_address}</b></div>					
-           <div class="branch-phone">문의전화 : <b>${cinema.c_phone}</b></div>
-           <div class="branch-theater">상영관수 :  <b>${theaterCount}관</b></div>
-           <c:if test="${cinema.c_parkable == 0}">
-           <div class="branch-parkable">주차정보 : <b>불가능</b></div>
-		</c:if>
-		<c:if test="${cinema.c_parkable == 1}">
-           <div class="branch-parkable">주차정보 : <b>가능</b></div>
-		</c:if>
-		</div>
-			<div class="cinema-icon">
-				<c:if test="${cinema.c_parkable == 0}">
-					<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon1.png" style="width: 80px; height: 80px;">
-					<b>주차 불가능</b>
-				</c:if>
-				
-				<c:if test="${cinema.c_parkable == 1}">
-					<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon2.png" style="width: 80px; height: 80px;">
-					<b>주차 가능</b>
-				</c:if>
+		<div class="cinema-infos">
+			<h2 class="branch-info">극장 정보</h2>
+				<div class="info-box">	
+			<div class="info-content">
+			<div class="branch-address">${cinema.c_address}</div>					
+	           <div class="branch-phone">${cinema.c_phone}</div>
+	           <div class="branch-theater">${theaterCount}관</div>
+<%-- 	           <c:if test="${cinema.c_parkable == 0}">
+	           <div class="branch-parkable">주차정보 : <b>불가능</b></div>
+			</c:if>
+			<c:if test="${cinema.c_parkable == 1}">
+	           <div class="branch-parkable">주차정보 : <b>가능</b></div>
+			</c:if> --%>
+			</div>
+				<div class="cinema-icon">
+					<c:if test="${cinema.c_parkable == 0}">
+						<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon1.png" style="width: 80px; height: 80px;">
+						<b>주차 불가능</b>
+					</c:if>
+					
+					<c:if test="${cinema.c_parkable == 1}">
+						<img alt="" src="${pageContext.request.contextPath}/images/hjt/icon2.png" style="width: 80px; height: 80px;">
+						<b>주차 가능</b>
+					</c:if>
+				</div>
 			</div>
 		</div>
+		
+		
 		
 		<!-- 위치 상세 보기 -->
 		<h2 class="branch-position">극장 위치 상세 보기</h2>
@@ -54,10 +58,6 @@
             <div id="map" class="bg_white">
                 <div class="option">
                     <div>
-                        <form onsubmit="searchPlaces(); return false;">
-                            키워드 : <input type="text" value="영화관" id="keyword" size="15"> 
-                            <button type="submit">검색하기</button> 
-                        </form>
                     </div>
                 </div>
                 <hr>
@@ -131,7 +131,6 @@
 		<div class="time-box">
 			<h2 class="time-table">상영시간표</h2>
         <div class="reserve-time">
-        	<hr size="1" noshade width="100%">
             <div class="cinema-gallery"></div>
 			<script>
 			    // 현재 날짜 객체 생성
@@ -191,8 +190,35 @@
 			                    	var theater_list = document.querySelector('.theater-list');
 			                    	theater_list.innerHTML = ''; // 기존 목록 비우기
 			                    	response.moviewTimeList.forEach(function(movie) {
-			                    	    var listItem = document.createElement('li');
-			                    	    listItem.innerHTML = movie.m_name + '<br>' + movie.th_name + '  ' + formatTime(movie.mt_start) + '~' + formatTime(movie.mt_end);
+			                    		let gradeClass = '';
+			                            
+			                            switch (movie.rating) {
+			                                case '12세관람가':
+			                                case '12세이상관람가':
+			                                    gradeClass = 'gr_12';
+			                                    break;
+			                                case '전체관람가':
+			                                    gradeClass = 'gr_all';
+			                                    break;
+			                                case '15세관람가':
+			                                case '15세이상관람가':
+			                                    gradeClass = 'gr_15';
+			                                    break;
+			                                case '18세관람가(청소년관람불가)':
+			                                case '청소년관람불가':
+			                                    gradeClass = 'gr_19';
+			                                    break;
+			                                default:
+			                                    gradeClass = 'gr_unknown';
+			                            }
+			                    		
+			                    	    var listItem = document.createElement('div');
+			                    	    listItem.className = 'movie-time-list-all';
+			                    	    listItem.innerHTML = '<div class="list_movie_name"><span class="ic_grade ' + gradeClass + '"></span>'+
+			                    	    						movie.m_name + '</div>' + 
+			                    	    						'<div class="movie_th_time_all">'
+			                    	    						+ '<div class="list_movie_time">'+ formatTime(movie.mt_start) + '~' + formatTime(movie.mt_end) + '</div>' +
+			                    	    						'<div class="list_movie_th">'+ movie.th_name + '관 </div>'+'</div>';
 			                    	    listItem.setAttribute('data-mtNum', movie.mt_num); // data-mtNum 속성에 movie.mt_num 값 추가
 			                    	    theater_list.appendChild(listItem); // 목록에 항목 추가
 
@@ -220,11 +246,8 @@
 			    // 페이지 로드 시 영화 날짜 생성 함수 호출
 			    window.onload = generateMovieDays;
 			</script>
-            <hr size="1" noshade width="100%">
-					<ul class="theater-list">
-						
-					</ul>
-					
+			<div class="theater-list">
+			</div>
 		</div>
 </div>
 </div>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.cinema.dao.CinemaMapper2"><!--인터페이스명-자동매핑-->
+	<select id="movieTimeForCinema" resultType="movieTimeVO">
+	SELECT mt.mt_num, mt.mt_date, mt.mt_start, mt.mt_end, m.m_code, m.rating, m.m_name, t.th_num, t.c_num, t.th_name FROM movie_time mt
+    JOIN theater t on mt.th_num = t.th_num
+    JOIN movie m on mt.m_code = m.m_code
+        WHERE t.c_num = #{c_num} AND mt.mt_date = #{mt_date}
+            ORDER BY m_name ASC, mt_start ASC
+	</select>
+	
+</mapper>							
+
+
+
+
+
+
