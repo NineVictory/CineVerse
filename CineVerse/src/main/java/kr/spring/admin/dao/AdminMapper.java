@@ -23,6 +23,7 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.vo.ConsultVO;
 
 @Mapper
@@ -204,4 +205,19 @@ public interface AdminMapper {
 	@Update("UPDATE mb_detail md SET md.md_type = 2 WHERE md.mb_num IN (SELECT m.mb_num FROM movie_booking m WHERE md.mb_num = #{mb_num})")
 	public void updateMb(long mb_num);
 
+	//주문취소
+	// 주문목록
+	public List<OrdersVO> selectOrder(Map<String, Object> map);
+	public Integer selectOrderRowCount(Map<String, Object> map);
+	
+	// 환불처리
+	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{mb_price}, SYSDATE, #{mem_num}, 4, #{ph_payment})")
+	public void refundShop(@Param("mem_num") long mem_num, @Param("total_price") long total_price, @Param("ph_payment") String ph_payment);
+
+	/*
+	 * // 예매취소설정
+	 * 
+	 * @Update("UPDATE mb_detail md SET md.md_type = 2 WHERE md.mb_num IN (SELECT m.mb_num FROM movie_booking m WHERE md.mb_num = #{mb_num})"
+	 * ) public void updateShop(long oc_num);
+	 */
 }

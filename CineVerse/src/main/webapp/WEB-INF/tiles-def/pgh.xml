@@ -113,6 +113,13 @@
 	</definition>
 
 	<!-- 상품문의 -->
+	<definition name="adminRefundShop" extends="adminMain">
+		<put-attribute name="title" value="주문 관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminRefundShopCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminRefundShop.jsp" />
+	</definition>
+	
+	<!-- 상품문의 -->
 	<definition name="adminShopQna" extends="adminMain">
 		<put-attribute name="title" value="상품문의 관리" />
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminPQnaCSS.jsp" />

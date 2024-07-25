@@ -77,5 +77,7 @@ public interface MemberMapper {
 	
 	@Update("UPDATE member set mem_rank=#{mem_rank} WHERE mem_num=#{mem_num}")
 	public void updateMemberRank(MemberVO memberVO);
+	
+	
 }
 
