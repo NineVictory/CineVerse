@@ -25,9 +25,7 @@
                 <form:radiobutton path="order_status" value="6"/> 주문확정
                 <form:errors path="order_status" element="div" cssClass="error"/>
             </li>
-            <li>
-            <form:button id="submit_btn">변경하기</form:button>
-            </li>
+            <form:button id="submit_btn" class="button2">변경하기</form:button>
             </ul>
 		</form:form>
     <table class="adminMember-table">
