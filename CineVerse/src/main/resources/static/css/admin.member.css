@@ -123,3 +123,40 @@ form#admin_search input[type="submit"] {
 	display: flex;
     justify-content: center;
 }
+
+
+
+  select[name="keyfield"] {
+      width: 100px; 
+      padding: 9px; 
+      border: 1px solid #D1D1D1;; 
+      border-radius: 4px; 
+      background-color: white; 
+      font-size: 14px; 
+      color: #333; 
+  }
+
+  select[name="keyfield"] option {
+      padding: 10px; 
+      background-color: #fff; 
+      color: #333; 
+  }
+
+  select[name="keyfield"] option:hover {
+      background-color: #f1f1f1;
+  }
+  
+  
+.radio-group label {
+      display: block;
+      margin-bottom: 5px;
+  }
+
+  .radio-group input[type="radio"] {
+      display: block;
+      margin-top: 5px;
+  }
+
+  .error {
+      color: red;
+  }

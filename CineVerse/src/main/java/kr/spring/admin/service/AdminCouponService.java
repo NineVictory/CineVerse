@@ -19,10 +19,18 @@ import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
+import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.support.vo.ConsultVO;
 
 public interface AdminCouponService {
+	public void registerCoupon(CouponVO couponVO);
+	public Integer memberCouponCount(Map<String, Object> map);
+	public List<CouponVO> memberCouponList(Map<String, Object> map);
 
+	public Integer CouponCount(Map<String, Object> map);
+	public List<CouponVO> CouponList(Map<String, Object> map);
+	public CouponVO couponDetail(Long coupon_num);
+	public void modifyCoupon(CouponVO couponVO);
 }	

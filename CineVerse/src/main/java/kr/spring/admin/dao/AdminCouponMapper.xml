@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.admin.dao.AdminCouponMapper"><!--인터페이스명-자동매핑 -->
+   <insert id="registerCoupon" parameterType="couponVO">
+        INSERT INTO coupon_db (
+            coupon_num, 
+            coupon_name, 
+            <if test="coupon_content != null">
+                coupon_content,
+            </if>
+            coupon_sale, 
+            coupon_where
+            <if test="coupon_min_amount != null">
+                , coupon_min_amount
+            </if>
+        ) VALUES (
+            coupon_db_seq.nextval, 
+            #{coupon_name}, 
+            <if test="coupon_content != null">
+                #{coupon_content},
+            </if>
+            #{coupon_sale}, 
+            #{coupon_where}
+            <if test="coupon_min_amount != null">
+                , #{coupon_min_amount}
+            </if>
+        )
+    </insert>
+
+	<sql id="adminMemberCouponSearch">
+		<where>
+				<if test="keyfield == 1">
+					<if test="keyword != null and keyword != ''" >
+						coupon_name LIKE '%' || #{keyword} || '%'
+					</if>		 
+				</if>
+				<if test="keyfield == 2">
+					<if test="keyword != null and keyword != ''" >
+						mem_id LIKE '%' || #{keyword} || '%'
+					</if>		 
+				</if>
+			<!--검색어 있을 때-->
+			
+		</where>
+	</sql>
+	
+	<select id="memberCouponCount">
+		SELECT COUNT(*) FROM member_coupon JOIN coupon_db USING(coupon_num) JOIN member USING(mem_num) JOIN member_detail USING(mem_num)
+		<include refid="adminMemberCouponSearch"></include>
+	</select>
+	
+	<select id="memberCouponList">
+		SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) JOIN member USING(mem_num) JOIN member_detail USING(mem_num)
+		<include refid="adminMemberCouponSearch"></include>
+	</select>
+	
+	
+	<sql id="adminCouponSearch">
+		<where>
+					<if test="keyword != null and keyword != ''" >
+						coupon_name LIKE '%' || #{keyword} || '%'
+					</if>
+			<!--검색어 있을 때-->
+			
+		</where>
+	</sql>
+	
+	<select id="CouponCount">
+		SELECT COUNT(*) FROM coupon_db 
+		<include refid="adminMemberCouponSearch"></include>
+	</select>
+	
+	<select id="CouponList">
+		SELECT * FROM coupon_db
+		<include refid="adminMemberCouponSearch"></include>
+	</select>
+	
+	 <update id="modifyCoupon" parameterType="couponVO">
+    UPDATE coupon_db SET
+        coupon_name = #{coupon_name}, 
+        <if test="coupon_content != null">
+            coupon_content = #{coupon_content},
+        </if>
+        coupon_sale = #{coupon_sale}, 
+        coupon_where = #{coupon_where}
+        <if test="coupon_min_amount != null">
+            , coupon_min_amount = #{coupon_min_amount}
+        </if>
+    WHERE coupon_num = #{coupon_num}
+</update>
+
+
+</mapper>							
+
+
+
+
+
+

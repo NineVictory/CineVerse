@@ -21,9 +21,12 @@ public class CouponVO {
 	private int coupon_type;		// 1:금액 할인 , 2:퍼센트 할
 	private int coupon_sale;		// 할인 금액
 	private int coupon_where;		// 어디서 사용 가능한지 1:영화 2:벌스샵
-	private long coupon_min_amount;
+	private Long coupon_min_amount;
 	
 	//멤버십 쿠폰
 	private int mu_type;
 	private Date mu_date;
+	
+	private String mem_id;
+	private String mem_name;
 }

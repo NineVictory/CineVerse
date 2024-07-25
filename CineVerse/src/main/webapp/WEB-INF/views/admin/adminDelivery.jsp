@@ -15,7 +15,7 @@
 						<option value="1">아이디</option>
 						<option value="2">주문번호</option>
 					</select>
-					<input type="search" name="keyword" placeholder="회원 아이디를 입력하세요">
+					<input type="search" name="keyword">
 					<input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
 			</ul>

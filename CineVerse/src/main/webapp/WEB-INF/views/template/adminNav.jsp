@@ -84,7 +84,17 @@
 				href="${pageContext.request.contextPath}/admin/adminShopReview"
 				class="menu-link">후기</a></li>
 		</ul>
-		<a class="menu-item" href="${pageContext.request.contextPath}/admin/adminCoupon">쿠폰</a> 
+		<a class="menu-item">쿠폰</a> 
+		<ul class="sub_menus">
+					<li><a href="${pageContext.request.contextPath}/admin/adminCoupon"
+						class="menu-link">쿠폰등록</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/admin/adminCouponList"
+						class="menu-link">쿠폰목록</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/admin/adminMemberCoupon"
+						class="menu-link">회원쿠폰관리</a></li>
+		</ul>
 		<a href="${pageContext.request.contextPath}/admin/adminConsult" class="menu-item">1:1문의</a>
 	</div>
 </div>

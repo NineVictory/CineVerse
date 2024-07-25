@@ -114,8 +114,26 @@
 	</definition>
 	
 	<definition name="adminCoupon" extends="adminMain">
-		<put-attribute name="title" value="영화쿠폰등록" />
+		<put-attribute name="title" value="쿠폰등록" />
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminMovieTimeCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCoupon.jsp" />
+	</definition>
+	
+	<definition name="adminMemberCoupon" extends="adminMain">
+		<put-attribute name="title" value="회원쿠폰관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMemberCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMemberCoupon.jsp" />
+	</definition>
+	
+	<definition name="adminCouponList" extends="adminMain">
+		<put-attribute name="title" value="쿠폰관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMemberCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCouponList.jsp" />
+	</definition>
+	
+	<definition name="modifyCoupon" extends="adminMain">
+		<put-attribute name="title" value="쿠폰 수정" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMovieTimeCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCouponModify.jsp" />
 	</definition>
 </tiles-definitions>
