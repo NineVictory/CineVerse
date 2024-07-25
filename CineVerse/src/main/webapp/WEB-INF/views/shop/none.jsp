@@ -17,7 +17,7 @@
 					${rc.p_name}
 				</div>
 			</c:forEach>
-		</div>
+		</div>  
 	</div>
 </div>
 </c:if>
