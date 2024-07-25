@@ -80,11 +80,12 @@
 	 			m_name LIKE '%' || #{keyword} || '%'
 	 		</if>
         	<if test="keyfield ==2">
-	 			m_code IN (
+	 			<!-- m_code IN (
                         SELECT m_code
                         FROM movie_actor
                         WHERE actor LIKE '%' || #{keyword} || '%'
-                    )
+                    ) -->
+                    m_actor LIKE '%' || #{keyword} || '%'
 
 	 			
 	 		</if>   

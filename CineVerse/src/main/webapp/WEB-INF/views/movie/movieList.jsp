@@ -29,7 +29,7 @@
                     <div class="select-wrapper">
                         <select name="keyfield" id="keyfield-select">
                             <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>영화이름</option>
-                            <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>배우 이름</option>
+                            <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>배우이름</option>
                         </select>
                          <ul class="ul-search">
                         <li class="li-search">
