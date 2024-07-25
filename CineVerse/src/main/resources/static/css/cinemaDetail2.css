@@ -209,3 +209,28 @@ gap: 30px;
 	gap: 10px;
 	display: flex;
 }
+
+.movie-day.active {
+	height: 60px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.movie-day-sun.active {
+	height: 60px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.movie-day-sat.active {
+	height: 60px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.movietime-item.active {
+    background-color: #f0f0f0;
+}

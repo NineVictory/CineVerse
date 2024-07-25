@@ -148,100 +148,107 @@
 			    }
 			    
 			    // 영화 날짜 생성 함수
-			    function generateMovieDays() {
-			        var gallery = document.querySelector('.cinema-gallery'); 
-			        gallery.innerHTML = ''; // 기존 내용을 비웁니다.
-
-			        for (var i = 0; i < 12; i++) {
-			            var dayElement = document.createElement('div');
-			            var displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i); // 현재 날짜에 i일을 더함
-			            var year = displayDate.getFullYear().toString().slice(2); // 연도를 YY 형식으로 저장
-			            var month = ('0' + (displayDate.getMonth() + 1)).slice(-2); // 월을 2자리 형식으로 저장
-			            var day = ('0' + displayDate.getDate()).slice(-2); // 일을 2자리 형식으로 저장
-			            var dayOfWeek = daysOfWeek[displayDate.getDay()]; // 요일을 가져옴
-
-			            var formattedDate = day + '<br>' + dayOfWeek; // 날짜와 요일 포맷
-			            var dayClass = 'movie-day';
-
-			            // 요일에 따라 클래스 추가
-			            switch (displayDate.getDay()) {
-			                case 0:
-			                    dayClass = 'movie-day-sun';
-			                    break;
-			                case 6:
-			                    dayClass = 'movie-day-sat';
-			                    break;
-			            }
-
-			            dayElement.className = dayClass;
-			            dayElement.innerHTML = formattedDate;
-			            dayElement.setAttribute('data-date', year + '/' + month + '/' + day); // data-date 속성에 YY/MM/DD 형식의 날짜 추가
-			            dayElement.setAttribute('data-cNum', cNum); // data-cNum 속성에 c_num 값 추가
-
-			            // 클릭 이벤트 추가
-			            dayElement.addEventListener('click', function() {
-			                var mt_date = this.getAttribute('data-date');
-			                var c_num = this.getAttribute('data-cNum');
-			                $.ajax({
-			                    url: '/cinema/getMovieList',
-			                    method: 'get',
-			                    data: { mt_date: mt_date, c_num: c_num },
-			                    success: function(response) {
-			                    	var theater_list = document.querySelector('.theater-list');
-			                    	theater_list.innerHTML = ''; // 기존 목록 비우기
-			                    	response.moviewTimeList.forEach(function(movie) {
-			                    		let gradeClass = '';
-			                            
-			                            switch (movie.rating) {
-			                                case '12세관람가':
-			                                case '12세이상관람가':
-			                                    gradeClass = 'gr_12';
-			                                    break;
-			                                case '전체관람가':
-			                                    gradeClass = 'gr_all';
-			                                    break;
-			                                case '15세관람가':
-			                                case '15세이상관람가':
-			                                    gradeClass = 'gr_15';
-			                                    break;
-			                                case '18세관람가(청소년관람불가)':
-			                                case '청소년관람불가':
-			                                    gradeClass = 'gr_19';
-			                                    break;
-			                                default:
-			                                    gradeClass = 'gr_unknown';
-			                            }
-			                    		
-			                    	    var listItem = document.createElement('div');
-			                    	    listItem.className = 'movie-time-list-all';
-			                    	    listItem.innerHTML = '<div class="list_movie_name"><span class="ic_grade ' + gradeClass + '"></span>'+
-			                    	    						movie.m_name + '</div>' + 
-			                    	    						'<div class="movie_th_time_all">'
-			                    	    						+ '<div class="list_movie_time">'+ formatTime(movie.mt_start) + '~' + formatTime(movie.mt_end) + '</div>' +
-			                    	    						'<div class="list_movie_th">'+ movie.th_name + '관 </div>'+'</div>';
-			                    	    listItem.setAttribute('data-mtNum', movie.mt_num); // data-mtNum 속성에 movie.mt_num 값 추가
-			                    	    theater_list.appendChild(listItem); // 목록에 항목 추가
-
-			                    	    // 클릭 이벤트 리스너 추가
-			                    	    listItem.addEventListener('click', function() {
-			                    	        let check = confirm('영화: ' + movie.m_name + '\n상영관: ' + movie.th_name + '\n시작 시간: ' + formatTime(movie.mt_start) + '\n종료 시간: ' + formatTime(movie.mt_end) + '\n\n예매하시겠습니까?');
-			                    	        var mt_num = this.getAttribute('data-mtNum');
-			                    	        if (check) {
-			                    	            window.location.href = '../movie/movieSeat?mt_num=' + mt_num;
-			                    	        }
-			                    	    });
-			                    	});
-			                    },
-			                    error: function() {
-			                        alert('네트워크 오류');
-			                    }
-			                });
-			            });
-
-			            // gallery 요소에 dayElement를 자식 요소로 추가
-			            gallery.appendChild(dayElement);
-			        }
-			    }
+			   function generateMovieDays() {
+				    var gallery = document.querySelector('.cinema-gallery'); 
+				    gallery.innerHTML = ''; // 기존 내용을 비웁니다.
+				
+				    for (var i = 0; i < 12; i++) {
+				        var dayElement = document.createElement('div');
+				        var displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i); // 현재 날짜에 i일을 더함
+				        var year = displayDate.getFullYear().toString().slice(2); // 연도를 YY 형식으로 저장
+				        var month = ('0' + (displayDate.getMonth() + 1)).slice(-2); // 월을 2자리 형식으로 저장
+				        var day = ('0' + displayDate.getDate()).slice(-2); // 일을 2자리 형식으로 저장
+				        var dayOfWeek = daysOfWeek[displayDate.getDay()]; // 요일을 가져옴
+				
+				        var formattedDate = day + '<br>' + dayOfWeek; // 날짜와 요일 포맷
+				        var dayClass = 'movie-day';
+				
+				        // 요일에 따라 클래스 추가
+				        switch (displayDate.getDay()) {
+				            case 0:
+				                dayClass = 'movie-day-sun';
+				                break;
+				            case 6:
+				                dayClass = 'movie-day-sat';
+				                break;
+				        }
+				
+				        dayElement.className = dayClass;
+				        dayElement.innerHTML = formattedDate;
+				        dayElement.setAttribute('data-date', year + '/' + month + '/' + day); // data-date 속성에 YY/MM/DD 형식의 날짜 추가
+				        dayElement.setAttribute('data-cNum', cNum); // data-cNum 속성에 c_num 값 추가
+				
+				        dayElement.addEventListener('click', function() {
+				            var mt_date = this.getAttribute('data-date');
+				            var c_num = this.getAttribute('data-cNum');
+				            
+				            var selectedDays = document.querySelectorAll('.movie-day.active');
+				            selectedDays.forEach(function(el) {
+				                el.classList.remove('active');
+				            });
+				
+				            this.classList.add('active');
+				
+				            $.ajax({
+				                url: '/cinema/getMovieList',
+				                method: 'get',
+				                data: { mt_date: mt_date, c_num: c_num },
+				                success: function(response) {
+				                    var theater_list = document.querySelector('.theater-list');
+				                    theater_list.innerHTML = ''; // 기존 목록 비우기
+				                    response.moviewTimeList.forEach(function(movie) {
+				                        let gradeClass = '';
+				
+				                        switch (movie.rating) {
+				                            case '12세관람가':
+				                            case '12세이상관람가':
+				                                gradeClass = 'gr_12';
+				                                break;
+				                            case '전체관람가':
+				                                gradeClass = 'gr_all';
+				                                break;
+				                            case '15세관람가':
+				                            case '15세이상관람가':
+				                                gradeClass = 'gr_15';
+				                                break;
+				                            case '18세관람가(청소년관람불가)':
+				                            case '청소년관람불가':
+				                                gradeClass = 'gr_19';
+				                                break;
+				                            default:
+				                                gradeClass = 'gr_unknown';
+				                        }
+				
+				                        var listItem = document.createElement('div');
+				                        listItem.className = 'movie-time-list-all';
+				                        listItem.innerHTML = '<div class="list_movie_name"><span class="ic_grade ' + gradeClass + '"></span>'+
+				                             movie.m_name + '</div>' + 
+				                             '<div class="movie_th_time_all">'
+				                             + '<div class="list_movie_time">'+ formatTime(movie.mt_start) + '~' + formatTime(movie.mt_end) + '</div>' +
+				                             '<div class="list_movie_th">'+ movie.th_name + '관 </div>'+'</div>';
+				                        listItem.setAttribute('data-mtNum', movie.mt_num); // data-mtNum 속성에 movie.mt_num 값 추가
+				                        theater_list.appendChild(listItem); // 목록에 항목 추가
+				
+				                        // 클릭 이벤트 리스너 추가
+				                        listItem.addEventListener('click', function() {
+				                            let check = confirm('영화: ' + movie.m_name + '\n상영관: ' + movie.th_name + '\n시작 시간: ' + formatTime(movie.mt_start) + '\n종료 시간: ' + formatTime(movie.mt_end) + '\n\n예매하시겠습니까?');
+				                            var mt_num = this.getAttribute('data-mtNum');
+				                            if (check) {
+				                                window.location.href = '../movie/movieSeat?mt_num=' + mt_num;
+				                            }
+				                        });
+				                    });
+				                },
+				                error: function() {
+				                    alert('네트워크 오류');
+				                }
+				            });
+				        });
+				
+				        // gallery 요소에 dayElement를 자식 요소로 추가
+				        gallery.appendChild(dayElement);
+				    }
+				}
 
 			    // 페이지 로드 시 영화 날짜 생성 함수 호출
 			    window.onload = generateMovieDays;
