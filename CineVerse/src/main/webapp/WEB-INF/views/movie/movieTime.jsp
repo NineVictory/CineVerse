@@ -117,6 +117,12 @@
                         loadMovieTimeTable(); // 지역이 선택되었으므로 시간표를 로드합니다.
                     });
 
+                    function formatTime(time) {
+                        let str = time.toString().padStart(4, '0'); // Ensure the time is at least 4 digits
+                        return str.slice(0, 2) + ':' + str.slice(2);
+                    }
+                    
+                    
                     // 시간표를 로드하는 함수
                     function loadMovieTimeTable() {
                         console.log('Loading Time Table with:', {
@@ -135,18 +141,15 @@
                                 },
                                 success: function(response) {
                                     // 성공 시 시간표 데이터를 처리하는 코드
-                                    let tableHtml = '<table><thead><tr><th>지점명</th><th>상영일자</th><th>시작시간</th><th>종료시간</th><th>상영관 이름</th></tr></thead><tbody>';
+                                   let selectMovieTimeListHtml = '';
                                     response.forEach(function(item) {
-                                        tableHtml += '<tr>';
-                                        tableHtml += '<td>' + item.c_branch + '</td>';
-                                        tableHtml += '<td>' + item.mt_date + '</td>';
-                                        tableHtml += '<td>' + item.mt_start + '</td>';
-                                        tableHtml += '<td>' + item.mt_end + '</td>';
-                                        tableHtml += '<td>' + item.th_name + '</td>';
-                                        tableHtml += '</tr>';
+                                    	selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
+                                    	selectMovieTimeListHtml += '<div class="c-location">' + item.c_branch + '</div>';
+                                    	selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
+                                        selectMovieTimeListHtml += '<div class="th-name">' + item.th_name +'관'+ '</div>';
+                                        selectMovieTimeListHtml += '</li>';
                                     });
-                                    tableHtml += '</tbody></table>';
-                                    $('.reserve-time-wrapper').html(tableHtml);
+                                    $('.reserve-time-wrapper').html(selectMovieTimeListHtml);
                                 },
                                 error: function() {
                                     alert('시간표 조회 오류 발생');
@@ -159,6 +162,32 @@
 
                     // 영화 날짜 생성 함수 호출
                     generateMovieDays();
+                    
+                    // 툴팁 생성
+                    $(document).on('mouseenter', '.movietime-item', function(event) {
+                        let endTime = $(this).data('end-time');
+                        let tooltip = '<div class="tooltip">종료 | ' + endTime + '</div>';
+                        $('body').append(tooltip);
+                        let tooltipElement = $('.tooltip');
+                        tooltipElement.css({
+                            top: event.pageY + 8,
+                            left: event.pageX + 10
+                        });
+                    });
+
+                    $(document).on('mousemove', '.movietime-item', function(event) {
+                        let tooltipElement = $('.tooltip');
+                        tooltipElement.css({
+                            top: event.pageY + 8,
+                            left: event.pageX + 10
+                        });
+                    });
+
+                    $(document).on('mouseleave', '.movietime-item', function() {
+                        $('.tooltip').remove();
+                    });
+                    
+                    
                 });
             </script>
             <!-- 날짜 끝 -->

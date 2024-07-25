@@ -398,7 +398,58 @@
         background-color: #d3d3d3; /* 선택된 항목의 배경색을 변경 */
     }
 
+.tooltip {
+	position: absolute;
+	background-color: #333;
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 5px;
+	z-index: 1000;
+	pointer-events: none;
+	white-space: nowrap;
+	opacity: 0.9;
+}
 
+.movietime-item {
+    display: flex;
+    width: 110px;
+    height: 55px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 3px 0px 3px 0px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor : pointer;
+}
+
+.movietime-item:hover {
+	background-color: #f0f0f0; /* 마우스 오버 시 배경 색상 변경 */
+}
+
+.movietime-item .mt-start {
+	cursor:pointer;
+	font-weight: 600;
+	font-size: 15px;
+	/* margin-bottom: 5px;*/
+}
+
+.movietime-item .mt-date {
+	/* position: absolute;
+	bottom: 5px;
+	left: 5px;
+	font-size: 13px; */
+	
+}
+
+.movietime-item .th-name {
+	/* 	position: absolute;
+	bottom: 5px;
+	right: 5px;*/
+	font-size: 13px;
+    font-weight: 400;
+	
+}
 
 /* 보류 
 
