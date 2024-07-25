@@ -122,3 +122,26 @@ font-size: 14px;
 .insert_button:hover {
 transform: scale(1.05);
 }
+
+
+
+
+        select[name="keyfield"] {
+            width: 100px; 
+            padding: 9px; 
+            border: 1px solid #D1D1D1;; 
+            border-radius: 4px; 
+            background-color: white; 
+            font-size: 14px; 
+            color: #333; 
+        }
+
+        select[name="keyfield"] option {
+            padding: 10px; 
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        select[name="keyfield"] option:hover {
+            background-color: #f1f1f1;
+        }
