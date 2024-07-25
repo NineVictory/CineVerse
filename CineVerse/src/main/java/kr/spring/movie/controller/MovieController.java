@@ -4,12 +4,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -280,9 +282,38 @@ public class MovieController {
                movieBooking.setMem_num(user.getMem_num());
                movieBooking.setMt_num(mt_num);
                movieBooking.setM_code(m_code);
+               
+           
+               
+               
 
                // 서비스 호출하여 예매 처리
                movieService.insertBooking(movieBooking);
+               
+               // 주문번호(사용자에게 보여줄 용도. PK 아님) 생성
+	            LocalDate today = LocalDate.now();
+	            int year = today.getYear();
+	            int month = today.getMonthValue();
+	            int day = today.getDayOfMonth();
+	            String od_number;
+	            if (month < 10) {
+	                od_number = year + ("-0" + month) + day;
+	            } else {
+	                od_number = year + ("-" + month) + day;
+	            }
+
+	            Random random = new Random();
+	            String ran_num_result = "-";
+	            for (int i = 0; i < 4; i++) {
+	                int ran_num = random.nextInt(10);
+	                ran_num_result += ran_num;
+	            }
+
+	            
+	            // 주문 번호 (간지용) 설정
+	            od_number = od_number + ran_num_result + "-" + movieBooking.getMb_num();
+
+	            movieService.updateUserMbNum(movieBooking.getMb_num(), od_number);
                
                log.debug("<<movieBooking - movieBooking>> ::: " + movieBooking);
 

@@ -163,4 +163,9 @@ public interface MovieMapper {
 
     @Select("select * from seat JOIN mb_detail USING(seat_num) JOIN movie_booking USING(mb_num) JOIN movie_time USING(mt_num) where mt_num=#{mt_num}")
     public List<SeatVO> seatBooking(long mt_num);
+    
+    
+    @Update("UPDATE movie_booking SET user_mb_num=#{user_mb_num} WHERE mb_num=#{mb_num}")
+    public void updateUserMbNum(@Param("mb_num") long mb_num, @Param("user_mb_num") String user_mb_num);
+    
 }

@@ -314,6 +314,12 @@ public class MovieServiceImpl implements MovieService {
 		return movieMapper.seatBooking(mt_num);
 	}
 
+	@Override
+	public void updateUserMbNum(long mb_num, String user_mb_num) {
+		movieMapper.updateUserMbNum(mb_num, user_mb_num);
+	}
+
+
 
 
 	/*

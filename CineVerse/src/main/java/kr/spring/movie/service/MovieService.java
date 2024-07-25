@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.board.vo.BoardFavVO;
@@ -81,4 +82,5 @@ public interface MovieService {
     void useCoupon(long mem_coupon_use, long mc_num);
     
     public List<SeatVO> seatBooking(long mt_num);
+    public void updateUserMbNum(@Param("mb_num") long mb_num, @Param("user_mb_num") String user_mb_num);
 }
