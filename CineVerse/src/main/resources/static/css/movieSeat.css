@@ -9,11 +9,15 @@
 }
 
 .select-title {
-	background-color: #444444;
-	color: #fff;
-	font-size: 17px;
-	text-align: center;
-	padding: 10px;
+	font-weight: 600;
+    font-size: 14px;
+	background-color: var(--gray-6);
+    height: 35px;
+    color: #fff;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .select-seat-container {

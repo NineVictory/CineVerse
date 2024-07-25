@@ -199,3 +199,88 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
+
+<div id="banner_reserve_section" class="banner_reserve_wrap">
+    <div class="bx_lft"><a
+            href="https://nvapi.feeldmc.com:443/ad/p/in/v1_0/clk?slotid=stw_lottelotte_37&amp;adgroupid=adg_lottecinema_20240530_55&amp;adid=adi_lottecinema_20240530_65"
+            target="_blank" title="새창열기"><img
+                src="https://cf2.lottecinema.co.kr/lotte_image/2024/LotteCard/LotteCard_160300.png"></a></div>
+    <div class="bx_rgt"><a
+            href="https://nvapi.feeldmc.com:443/ad/p/in/v1_0/clk?slotid=stw_lottelotte_37&amp;adgroupid=adg_lottecinema_20230706_10&amp;adid=adi_lottecinema_20230706_10"
+            target="_blank" title="새창열기"><img
+                src="https://cf2.lottecinema.co.kr/lotte_image/2024/Hyundai_Insurance/Hyundai_Insurance_1603002.jpg"></a></div>
+</div>
+
+<div id="banner_section" class="banner_wrap">
+    <div class="banner_01"><a
+            href="${pageContext.request.contextPath}/movie/movieDetail?m_code=37"
+            target="" title="화면이동"><img src="https://cf2.lottecinema.co.kr/lotte_image/2024/Pilot/Pilot_9801807.jpg"
+                alt="올 여름 코미디의 정석이 이륙합니다 입소문 폭발 더위 탈출 코미디 파일럿 7월 31일 극장 대개봉"></a></div>
+</div>
+
+<style>
+.banner_side_wrap {
+        position: absolute;
+        top: 220px;
+        left: 50%;
+        margin-left: -660px;
+        z-index: 10;
+    }
+
+    .banner_wrap .banner_01 {
+        margin-bottom: 50px;
+    }
+
+    .banner_wrap {
+        padding-top: 70px;
+        text-align: center;
+    }
+
+    .banner_wrap a {
+        display: block;
+        width: 980px;
+        margin: 0 auto;
+    }
+
+    a,
+    a:link,
+    a:visited,
+    a:active,
+    a:hover {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .banner_reserve_wrap .bx_lft {
+        left: 50%;
+        margin-left: -820px;
+    }
+
+    .banner_reserve_wrap .bx_lft,
+    .banner_reserve_wrap .bx_rgt {
+        position: absolute;
+        z-index: 10;
+        top: 220px;
+        width: 160px;
+        height: 300px;
+    }
+
+    .banner_reserve_wrap .bx_rgt {
+        right: 50%;
+        margin-right: -820px;
+    }
+
+    .quick-reserve-ad-area {
+        overflow: hidden;
+        width: 1100px;
+        height: 80px;
+        margin-top: 10px;
+    }
+
+    iframe {
+        display: inline-block;
+        border: 0;
+    }
+</style>
+

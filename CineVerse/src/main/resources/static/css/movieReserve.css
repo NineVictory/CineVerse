@@ -10,13 +10,16 @@
 }
 
 .reserve-title {
+	font-weight: 600;
+    font-size: 14px;
 	border-bottom: 1px solid #dddddd;
-	background-color: #444444;
-	text-align: center;
-	color: #fff;
-	padding: 5px;
-	font-size: 15px;
-	font-weight: bold;
+	background-color: var(--gray-6);
+    height: 35px;
+    color: #fff;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 지점명 */
