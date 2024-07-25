@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.assignment.service.AssignService;
+import kr.spring.assignment.vo.AssignReportVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.service.MemberService;
@@ -182,6 +183,32 @@ public class AssignBoardController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/assignboard/reportForm")
+	public String reportForm() {
+		
+		return "assignReportForm";
+	}
+	@PostMapping("/assignboard/submitAssignReport")
+	public String submitReport(AssignReportVO assignReport, Model model) {
+		assignService.processReport(assignReport);
+		model.addAttribute("message","신고가 접수되었습니다.");
+		return "/common/resultAlert2";
+	}
+	
+	/*====================
+	 *양도글 신고
+	 =====================*/
+	@PostMapping("/assignment/submitAssignReport")
+	public String submitAssignReport(@ModelAttribute("assignReport") AssignReportVO assignReportVO) {
+	// 여기서 assignReport 객체에 폼 데이터가 바인딩됩니다.
+		
+	// 신고 처리 로직
+	assignService.processReport(assignReportVO);
+
+	// 처리 후 리다이렉트 또는 뷰 페이지 반환
+	return "redirect:/assignboard/detail?ab_num=" + assignReportVO.getAb_num();
+	} 
+	
 	/*====================
 	 *양도글 수정
 	 =====================*/
@@ -299,5 +326,6 @@ public class AssignBoardController {
 		
 		return "redirect:/assignboard/list";
 	}
+	
 	
 }

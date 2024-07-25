@@ -140,15 +140,25 @@
                                     c_location: selectedLocation
                                 },
                                 success: function(response) {
-                                    // 성공 시 시간표 데이터를 처리하는 코드
-                                   let selectMovieTimeListHtml = '';
+                                    // 중복된 c_branch를 추적하기 위한 객체 생성
+                                    let branches = {};
+                                    let selectMovieTimeListHtml = '';
+
                                     response.forEach(function(item) {
-                                    	selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
-                                    	selectMovieTimeListHtml += '<div class="c-location">' + item.c_branch + '</div>';
-                                    	selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
-                                        selectMovieTimeListHtml += '<div class="th-name">' + item.th_name +'관'+ '</div>';
-                                        selectMovieTimeListHtml += '</li>';
+                                        // c_branch가 객체에 없으면 추가하고 HTML에 추가
+                                        if (!branches[item.c_branch]) {
+                                            branches[item.c_branch] = true;
+                                            selectMovieTimeListHtml += '<div class="branch-section"><h3 class="c-location">' + item.c_branch + '</h3><div class="branch-time-list">';
+                                        }
+
+                                        selectMovieTimeListHtml += '<div class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
+                                        selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
+                                        selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
+                                        selectMovieTimeListHtml += '</div>';
+
+                                        
                                     });
+
                                     $('.reserve-time-wrapper').html(selectMovieTimeListHtml);
                                 },
                                 error: function() {

@@ -43,6 +43,7 @@
 					<c:when test="${point.ph_type == 0 }">+</c:when>
 					<c:when test="${point.ph_type == 1 }">-</c:when>
 					<c:when test="${point.ph_type == 2 }">+</c:when>
+					<c:when test="${point.ph_type == 4 }">+</c:when>
 				</c:choose>
 				${point.ph_point}P</div>
 			</div>

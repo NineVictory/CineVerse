@@ -71,6 +71,12 @@
 	</update>
 	
 	
+	
+	<!-- 양도글 신고 -->
+	<insert id="processReport" parameterType="assignReportVO">
+		INSERT INTO assign_report (ar_num, ar_content, ar_category, mem_num, ab_num) 
+				VALUES (assign_report_seq.nextval, #{ar_content}, #{ar_category}, #{mem_num}, #{ab_num})
+	</insert>
 </mapper>							
 
 

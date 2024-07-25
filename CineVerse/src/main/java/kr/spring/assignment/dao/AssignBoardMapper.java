@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.spring.assignment.vo.AssignFavVO;
+import kr.spring.assignment.vo.AssignReportVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardFavVO;
 
@@ -50,4 +51,8 @@ public interface AssignBoardMapper {
 	//양도글 상태 변경
 	@Update("UPDATE assignment_board SET ab_status = #{ab_status} WHERE ab_num=#{ab_num}")
 	public void ab_updateStatus(AssignVO assignVO);
+	
+	
+	//양도글 신고
+	public void processReport(AssignReportVO assignReportVO);
 }

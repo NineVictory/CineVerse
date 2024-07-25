@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.report-form {
+    width: 400px;
+    height: 550px;
+    padding: 20px;
+    background-color: #fefefe;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.flexbox-p {
+    display: flex;
+    flex-direction: column;
+}
+
+textarea#ar_content {
+    resize: none;
+    overflow: auto;
+    width: 100%;
+    height: 70px;
+}
+
+.report-info label {
+    display: inline-block;
+    width: 60px;
+}
+
+.report-submit {
+    width: 100%;
+    height: 52px;
+    background: #3F66ED;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}

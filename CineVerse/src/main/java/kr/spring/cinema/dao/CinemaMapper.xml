@@ -227,7 +227,7 @@
 	      AND (#{mt_start} BETWEEN mt_start AND mt_end
 	      OR #{mt_end} BETWEEN mt_start AND mt_end)
       </select> 
-	
+	 
 	
 	<!-- 영화 상영시간표 조회 [사용자 전용] -->
 	<!-- 상영중인 영화목록만 조회 -->
@@ -244,6 +244,7 @@
 		JOIN theater USING(th_num)
 		JOIN cinema USING(c_num)
 		WHERE m_code = #{m_code} AND mt_date = #{mt_date} AND c_location = #{c_location}
+		ORDER BY mt_start ASC
 	</select>
 	
 </mapper>							

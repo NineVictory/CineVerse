@@ -78,7 +78,7 @@
 							</div>
 							
 							<div><!-- class="add_del_btn" -->
-								<input type="button" class="m_cancle" data-num="${res.mb_num}" data-mnum="${user.mem_num}" value="삭제">
+								<input type="button" class="m_cancle" data-num="${res.mb_num}" data-mnum="${user.mem_num}" value="예매취소">
 							</div>
 						</div>
 					</div>

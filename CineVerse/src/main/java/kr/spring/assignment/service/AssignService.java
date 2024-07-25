@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.assignment.vo.AssignFavVO;
+import kr.spring.assignment.vo.AssignReportVO;
 import kr.spring.assignment.vo.AssignVO;
 
 public interface AssignService {
@@ -28,4 +29,6 @@ public interface AssignService {
 	public void ab_deleteFav(AssignFavVO fav);
 	
 	public void ab_updateStatus(AssignVO assignVO);
+	
+	public void processReport(AssignReportVO assignReportVO);
 }
