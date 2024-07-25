@@ -77,6 +77,6 @@ public interface AdminService {
 	public void updateAnswer(ConsultVO consultVO);
 	public List<RefundMbVO> selectReservation(Map<String,Object> map);
 	public Integer selectReservationRowCount(Map<String,Object> map);
-	public void refundMovie(@Param("ph_num") long ph_num, @Param("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment);
-	public void updateMb(long mb_num);
+	public Integer totalMb(@Param("mb_num") long mb_num);
+	public void refundMovie(@Param("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment,@Param("mb_num") long mb_num);
 }	

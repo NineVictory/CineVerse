@@ -685,12 +685,9 @@
 	
 	<!-- 예매 환불 시작 -->
 	<sql id="reservationSearch">
-		<where>
 			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
 	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	            AND md_type = 2
 	        </if>
-		</where>
 	</sql>
 	
 
@@ -710,6 +707,7 @@
 		md.md_type
 		FROM movie_booking m
 		JOIN mb_detail md ON m.mb_num = md.mb_num
+		WHERE md.md_type = 1
 		<include refid="reservationSearch"></include>
 		) a
 		)
@@ -725,6 +723,7 @@
 		SELECT
 		COUNT(*)
 		FROM mb_detail
+		WHERE md_type = 1
 		<include refid="reservationSearch"></include>
 	</select>
 </mapper>							

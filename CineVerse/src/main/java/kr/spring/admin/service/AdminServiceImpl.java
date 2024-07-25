@@ -170,7 +170,7 @@ public class AdminServiceImpl implements AdminService{
 	public void refundPoint(long ph_num, long mem_num, long ph_point, String ph_payment) {
 		adminMapper.refundPoint(ph_num, mem_num,ph_point,ph_payment);
 		adminMapper.updatePoint(ph_num);
-		memberMapper.totalPoint(mem_num);
+		memberMapper.totalPoint(mem_num); 
 	}
 	@Override
 	public List<BoardVO> selectCommunityList(Map<String, Object> map) {
@@ -259,12 +259,11 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.totalConsult();
 	}
 	@Override
-	public void refundMovie(long ph_num, long mem_num, long mb_price, String ph_payment) {
-		adminMapper.refundMovie(ph_num, mem_num, mb_price, ph_payment);
-	}
-	@Override
-	public void updateMb(long mb_num) {
+	@Transactional
+	public void refundMovie(@Param("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment,@Param("mb_num") long mb_num) {
+		adminMapper.refundMovie(mem_num, mb_price, ph_payment, mb_num);
 		adminMapper.updateMb(mb_num);
+		memberMapper.totalPoint(mem_num);
 	}
 	@Override
 	public List<RefundMbVO> selectReservation(Map<String,Object> map) {
@@ -273,6 +272,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Integer selectReservationRowCount(Map<String, Object> map) {
 		return adminMapper.selectReservationRowCount(map);
+	}
+	@Override
+	public Integer totalMb(long mb_num) {
+		return adminMapper.totalMb(mb_num);
 	}
 
 }

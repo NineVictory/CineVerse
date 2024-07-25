@@ -4,11 +4,11 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
-    function refundMovie(mem_num,ph_point,ph_payment) {
+    function refundMovie(mem_num,mb_price,ph_payment,mb_num) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/refundMovie",
-            data: { mem_num: mem_num, ph_point: ph_point , ph_payment: ph_payment },
+            data: { mem_num: mem_num, mb_price: mb_price , ph_payment: ph_payment , mb_num: mb_num},
             success: function(response) {
                 if (response === "success") {
                     // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
@@ -62,7 +62,7 @@
                     <td class="mem-data">${mr.mem_num}</td>
                     <td class="mem-data">${mr.mb_date}</td>
                     <td class="mem-data">${mr.mb_price}</td>
-					<td class="button2"><input type="button" value="삭제" onclick="refundMovie(${mr.mem_num}, ${mr.mb_price}, '예매환불')"/></td>
+					<td class="button2"><input type="button" value="삭제" onclick="refundMovie(${mr.mem_num}, ${mr.mb_price}, '예매환불' ,${mr.mb_num})"/></td>
                 </tr>
             </c:forEach>
         </tbody>

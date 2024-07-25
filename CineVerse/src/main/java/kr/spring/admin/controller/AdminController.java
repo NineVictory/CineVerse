@@ -711,7 +711,6 @@ public class AdminController {
 		}
 		//영화관 등록
 		@PostMapping("/admin/adminCinemaForm")
-		@Transactional
 		public String insertCinema(@ModelAttribute("cinemaVO") @Valid CinemaVO cinemaVO,@Valid TheaterVO theaterVO,
 				BindingResult result,
 				Model model) {
@@ -883,8 +882,6 @@ public class AdminController {
 			
 
 	}
-	
-	
 		//예매내역
 		@GetMapping("/admin/adminReservation")
 		public String adminReservation(
@@ -894,9 +891,8 @@ public class AdminController {
 				Model model) {
 			// keyfield가 없으면 기본값을 설정
 			if (keyfield == null || keyfield.isEmpty()) {
-				keyfield = "md_num"; // 기본 검색 필드를 설정합니다.
+				keyfield = "mb_num"; // 기본 검색 필드를 설정합니다.
 			}
-
 			// 파라미터를 맵에 추가
 			Map<String, Object> map = new HashMap<>();
 			map.put("keyword", keyword);
@@ -905,14 +901,14 @@ public class AdminController {
 
 			// 전체, 검색 레코드 수
 			int count = adminService.selectReservationRowCount(map);
-
+			
+			
 			// 페이지 처리
 			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminReservation");
 			List<RefundMbVO> list = null; 
 			if (count > 0) {
 				map.put("start", page.getStartRow());
 				map.put("end", page.getEndRow());
-
 				list = adminService.selectReservation(map);
 			}
 
@@ -927,17 +923,19 @@ public class AdminController {
 		// 결제 환불 처리
 		@PostMapping("/refundMovie")
 		@ResponseBody
-		public String refundMovie(@RequestParam("mem_num") long mem_num,@Param("ph_num") long ph_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment) {
-			adminService.refundMovie(ph_num, mem_num, mb_price, ph_payment);
+		public String refundMovie(@RequestParam("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment, @Param("mb_num") long mb_num) {
+			long totalMb = adminService.totalMb(mb_num);
+			/*
+			 * log.debug("애매인원수" + totalMb);
+			 * 
+			 * mb_price = mb_price/totalMb;
+			 */
+			
+			adminService.refundMovie(mem_num, mb_price, ph_payment, mb_num);
 			log.debug("<<포인트 환불완료>>");
-			return "adminReservation";
+			return "success";
 		}
-		// 결제 환불 처리
-		@PostMapping("/updateMb")
-		public String updateMb(long mb_num) {
-			adminService.updateMb(mb_num);
-			return "adminReservation";
-		}
+
 		
 
 }
