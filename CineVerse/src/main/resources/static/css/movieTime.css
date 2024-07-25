@@ -286,7 +286,7 @@
 	display: flex;
 }
 
-
+ 
 .reserve-time-button {
 	margin-top: 10px;
 	flex: 1; /* 버튼들이 동일한 너비를 가짐 */

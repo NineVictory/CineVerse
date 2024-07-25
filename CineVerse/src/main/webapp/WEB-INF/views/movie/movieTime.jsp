@@ -156,7 +156,7 @@
                                         selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
                                         selectMovieTimeListHtml += '</div>';
 
-                                       
+                                        
                                     });
 
                                     $('.reserve-time-wrapper').html(selectMovieTimeListHtml);

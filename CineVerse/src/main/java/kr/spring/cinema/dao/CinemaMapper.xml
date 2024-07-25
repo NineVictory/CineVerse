@@ -227,7 +227,7 @@
 	      AND (#{mt_start} BETWEEN mt_start AND mt_end
 	      OR #{mt_end} BETWEEN mt_start AND mt_end)
       </select> 
-	
+	 
 	
 	<!-- 영화 상영시간표 조회 [사용자 전용] -->
 	<!-- 상영중인 영화목록만 조회 -->
