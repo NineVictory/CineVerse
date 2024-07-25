@@ -116,6 +116,7 @@
 		JOIN theater t
 		ON m.th_num = t.th_num
 		WHERE t.c_num = #{c_num} AND m.m_code = #{m_code} AND m.mt_date = #{mt_date}
+		ORDER BY mt_start ASC
 	</select>
 	
 	

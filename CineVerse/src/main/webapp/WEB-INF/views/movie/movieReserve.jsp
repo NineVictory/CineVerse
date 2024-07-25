@@ -224,6 +224,14 @@ $(document).ready(function() {
     $('.theater-place > a').click(function(e) {
         e.preventDefault(); // 기본 동작 중지
         selectedCNum = $(this).attr('data-cnum');
+        
+        // 모든 영화 항목에서 active 클래스 제거
+        $('.theater-place > a').removeClass('active');
+
+        // 클릭한 영화 항목에 active 클래스 추가
+        $(this).addClass('active');
+        
+        
         loadMovieList('default'); // 기본 정렬
     });
 
