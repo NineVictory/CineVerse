@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,74 +55,82 @@ public class ShopController {
 
 	@GetMapping("/shop/shopMain")
 	public String shopMain(@RequestParam(defaultValue="1") int pageNum,
-	                       @RequestParam(defaultValue="1") int shopOrder,
-	                       @RequestParam(required = false) String keyfield,
-	                       @RequestParam(required = false) String keyword,
-	                       @RequestParam(required = false) String p_category,
-	                       @RequestParam(required = false) String p_quantity,
-	                       Model model) {
+			@RequestParam(defaultValue="1") int shopOrder,
+			@RequestParam(required = false) String keyfield,
+			@RequestParam(required = false) String keyword,
+			@RequestParam(required = false) String p_category,
+			@RequestParam(required = false) String p_quantity,
+			Model model) {
 
-	    Integer p_categoryInt = null;
-	    if (p_category != null && !p_category.equals("null")) {
-	        try {
-	            p_categoryInt = Integer.parseInt(p_category);
-	        } catch (NumberFormatException e) {
-	            p_categoryInt = null; // 또는 기본값 설정
-	        }
-	    }
+		Integer p_categoryInt = null;
+		if (p_category != null && !p_category.equals("null")) {
+			try {
+				p_categoryInt = Integer.parseInt(p_category);
+			} catch (NumberFormatException e) {
+				p_categoryInt = null; // 또는 기본값 설정
+			}
+		}
 
-	    Map<String, Object> map = new HashMap<>();
-	    map.put("p_category", p_categoryInt);
-	    map.put("keyfield", keyfield);
-	    map.put("keyword", keyword);
-	    if ("1".equals(p_quantity)) {
-	        map.put("p_quantity", 1);
-	    }
+		Map<String, Object> map = new HashMap<>();
+		map.put("p_category", p_categoryInt);
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		if ("1".equals(p_quantity)) {
+			map.put("p_quantity", 1);
+		}
 
-	    int count = shopService.productCount(map);
+		int count = shopService.productCount(map);
 
-	    PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 16, 10, "shopMain", 
-	                                      "&p_category=" + p_categoryInt + "&shopOrder=" + shopOrder + "&p_quantity=" + p_quantity);
+		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 16, 10, "shopMain", 
+				"&p_category=" + p_categoryInt + "&shopOrder=" + shopOrder + "&p_quantity=" + p_quantity);
 
-	    List<ProductVO> productList = null;
-	    if (count > 0) {
-	        map.put("shopOrder", shopOrder);
-	        map.put("start", page.getStartRow());
-	        map.put("end", page.getEndRow());
+		List<ProductVO> productList = null;
+		if (count > 0) {
+			map.put("shopOrder", shopOrder);
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
 
-	        productList = shopService.productList(map);
-	    }
+			productList = shopService.productList(map);
+		}
 
-	    model.addAttribute("count", count);
-	    model.addAttribute("productList", productList);
-	    model.addAttribute("page", page.getPage());
-	    model.addAttribute("p_quantity", p_quantity); 
+		model.addAttribute("count", count);
+		model.addAttribute("productList", productList);
+		model.addAttribute("page", page.getPage());
+		model.addAttribute("p_quantity", p_quantity); 
 
-	    return "shopMain";
+		return "shopMain";
 	}
 
-	
+
 	// 벌스샵 상세 (상품 상세)
 	@GetMapping("/shop/shopDetail")
 	public String shopDetail(long p_num, Model model) {
 		log.debug("<<벌스샵 상세 - p_num>> ::: " + p_num);
 
 		ProductVO product = shopService.productDetail(p_num);
-		product.setP_name(StringUtil.useNoHTML(product.getP_name()));
 
-		int count = shopService.reviewCount(p_num);
-		
-		if (count!=0) {
-			float review_grade = Math.round(shopService.reviewGrade(p_num) * 10.0) / 10.0f;
-			List<ProductVO> reviewList = shopService.reviewList(p_num);
 
-			model.addAttribute("reviewList", reviewList);
-			model.addAttribute("review_grade", review_grade);
-		}
-		
-		model.addAttribute("count", count);
-		model.addAttribute("product", product);
-		return "shopDetail";
+		if (product.getP_status() == 1) {
+			model.addAttribute("message", "삭제되어 접근할 수 없는 페이지입니다.");
+			model.addAttribute("url", "javascript:history.back()");
+			return "common/resultAlert";
+		} else {
+			product.setP_name(StringUtil.useNoHTML(product.getP_name()));
+
+			int count = shopService.reviewCount(p_num);
+
+			if (count!=0) {
+				float review_grade = Math.round(shopService.reviewGrade(p_num) * 10.0) / 10.0f;
+				List<ProductVO> reviewList = shopService.reviewList(p_num);
+
+				model.addAttribute("reviewList", reviewList);
+				model.addAttribute("review_grade", review_grade);
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("product", product);
+			return "shopDetail";
+		}		
 	}
 
 	// 벌스샵 결제 (상품 결제) - 바로 가기
@@ -269,10 +278,10 @@ public class ShopController {
 		List<ProductVO> list = null;
 		MemberVO user = (MemberVO)session.getAttribute("user");
 
-		
+
 		int count = shopService.productFavCnt(user.getMem_num());
 		Map<String, Object> map = new HashMap<>();
-		
+
 		if(count>0) {
 			list = shopService.productFavList(user.getMem_num());
 
@@ -281,7 +290,7 @@ public class ShopController {
 			map.put("recommand", recommand);
 			map.put("list", list);
 		}
-		
+
 		map.put("count", count);
 
 		return new ModelAndView("shopFav", map);
@@ -292,10 +301,10 @@ public class ShopController {
 		log.debug("<<장바구니에서 결제하기>> ::: " + formData);
 
 		String countStr = formData.get("count");
-		
+
 		int count;
 		count = Integer.parseInt(countStr.replace(",", ""));
-		
+
 
 		List<Integer> pb_num = new ArrayList<>();
 
@@ -331,7 +340,7 @@ public class ShopController {
 			couponList = shopService.selectMemCouponList(map);
 		}
 
-		
+
 		map.put("couponList",couponList);
 		map.put("total_count", total_count);
 		map.put("count", count);
@@ -341,7 +350,7 @@ public class ShopController {
 		return new ModelAndView("shopBuyWithBasket", map);
 	}
 
-	
-	
+
+
 }
 
