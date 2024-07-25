@@ -2,8 +2,35 @@ $(document).ready(function() {
 /*    let currentPage = 1;
     const rowCount = 20;*/
 /*    const displayedMovies = new Set();*/
+/*	const itemsPerPage = 20; // 한 번에 표시할 영화 개수
+    let currentPage = 1;*/
 	const selectedGenres = new Set();
 /*	 let status = $("#statusCheckbox").is(':checked') ? 1 : '';*/
+
+/*	// 초기 영화 목록 설정
+    function showInitialMovies() {
+        $('.movie').hide(); // 모든 항목 숨기기
+        $('.movie').slice(0, itemsPerPage).show(); // 처음 20개 항목 표시
+        console.log("Initial movies shown");
+    }
+
+    // 더보기 버튼 클릭 시 더 많은 영화 표시
+    $("#loadMoreButton").click(function() {
+		console.log("Load more clicked");
+        const totalItems = $('.movie').length;
+        const itemsToShow = currentPage * itemsPerPage;
+
+        // 다음 페이지 항목들만 표시
+        $('.movie').slice(itemsToShow, itemsToShow + itemsPerPage).show();
+
+        currentPage++;
+
+        // 모든 항목이 표시된 경우 버튼 숨기기
+        if (itemsToShow + itemsPerPage >= totalItems) {
+            $("#loadMoreButton").hide();
+        }
+    });*/
+    
     // 상영 중인 영화 필터링
     $("#statusCheckbox").change(function() {
        var status = $(this).is(':checked') ? 1 : '';
@@ -152,11 +179,12 @@ function filterMoviesByGenres() {
             data: { genres: Array.from(selectedGenres) },
             dataType: 'json',
             success: function(response) {
+				 let html = '';
                 $("#movieListContainer ul.movie-list").empty();
                 response.forEach(function(movie) {
                     let filenames = movie.m_filename.split('|');
                     let mainImage = filenames[0]; // 첫 번째 이미지 파일명 선택
-                    let html = `
+                    html = `
                         <li class="movie">
                             <img alt="영화1" src="${mainImage}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
                             <div class="overlay">
@@ -189,4 +217,6 @@ function filterMoviesByGenres() {
 
 /*      // 초기 로드
     loadMovies();*/
+        // 초기 실행
+    /*showInitialMovies();*/
 });
