@@ -82,7 +82,7 @@ public class MyPageController {
 		//MovieBookingVO lastRes = null;
 		
 		if(resCnt > 0) { 			//lastRes
-			lastRes = mypageService.reservationList(user.getMem_num());
+			lastRes = mypageService.lastRes(user.getMem_num());
 			log.debug("<<예매목록>> : " + lastRes);
 		}
 

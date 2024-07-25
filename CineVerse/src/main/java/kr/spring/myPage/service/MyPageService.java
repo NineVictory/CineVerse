@@ -57,6 +57,6 @@ public interface MyPageService {
 	public List<EventVO> eventList(Map<String, Object> map);
 	public Integer reservationCnt(Long mem_num);
 	public List<MovieBookingVO> reservationList(Long mem_num);
-	/* public MovieBookingVO lastRes(Long mem_num); */
+	public List<MovieBookingVO> lastRes(Long mem_num);
 	
 }

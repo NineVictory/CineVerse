@@ -221,10 +221,10 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.reservationList(mem_num);
 	}
 
-	/*
-	 * @Override public MovieBookingVO lastRes(Long mem_num) { return
-	 * myPageMapper.lastRes(mem_num); }
-	 */
+	
+	  @Override public List<MovieBookingVO> lastRes(Long mem_num) { return
+	  myPageMapper.lastRes(mem_num); }
+	 
 
 	
 
