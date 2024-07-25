@@ -274,11 +274,18 @@
 }
 
 .reserve-time-wrapper {
-	margin-top: 10px;
+	margin-top: 30px;
 	display: flex; 
+	flex-direction: column;
     flex-wrap: wrap; /* 버튼들이 줄바꿈될 수 있도록 설정 */
     gap: 20px; /* 버튼들 사이의 간격 설정 */
+    margin-left: 70PX;
 }
+
+.branch-section{
+	display: flex;
+}
+
 
 .reserve-time-button {
 	margin-top: 10px;
@@ -450,6 +457,8 @@
     font-weight: 400;
 	
 }
+
+
 
 /* 보류 
 

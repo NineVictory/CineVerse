@@ -244,6 +244,7 @@
 		JOIN theater USING(th_num)
 		JOIN cinema USING(c_num)
 		WHERE m_code = #{m_code} AND mt_date = #{mt_date} AND c_location = #{c_location}
+		ORDER BY mt_start ASC
 	</select>
 	
 </mapper>							
