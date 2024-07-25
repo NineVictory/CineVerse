@@ -10,7 +10,7 @@
 <div class="report-form">
 	<h3>신고하기</h3>
 	<hr size="1" width="100%;">
-	<div class="flexbox-p">
+	<div class="flexbox-p info-con">
 		<div class="report-info"><label>작성자</label><span>${param.writer}</span></div>
 		<div class="report-info"><label>내용</label><span>${param.ab_title}</span></div>
 	</div>
@@ -18,8 +18,9 @@
 	<form:form action="submitAssignReport" method="post" id="reportForm" modelAttribute="assignReportVO">
 		<form:input path="mem_num" type="hidden" name="mem_num" value="${param.user_num}"/>
 		<form:input path="ab_num" type="hidden" name="ab_num" value="${param.ab_num}"/>
-		<form:label path="ar_category">신고사유</form:label>
-		<div class="flexbox-p">
+		<div class="category-con">
+		<form:label path="ar_category" class="category-label">신고사유</form:label>
+		<div class="flexbox-p radio-con">
 			<form:errors path="ar_category" cssClass="error-color"/>
 	        <span><form:radiobutton path="ar_category" value="1"/>스팸홍보/도배</span>
 	        <span><form:radiobutton path="ar_category" value="2"/>음란물</span>
@@ -30,9 +31,9 @@
 	        <span><form:radiobutton path="ar_category" value="7"/>불쾌한 표현</span>
 	        <span><form:radiobutton path="ar_category" value="8"/>기타</span>
         </div>
-        <form:label path="ar_content">신고내용(선택)</form:label>
+        <form:label path="ar_content" class="ar-content">신고내용(선택)</form:label>
         <form:textarea path="ar_content" name="ar_content"></form:textarea><br><br>
-
+		</div>
         <form:button class="report-submit">신고하기</form:button>
     </form:form>
     <script type="text/javascript">

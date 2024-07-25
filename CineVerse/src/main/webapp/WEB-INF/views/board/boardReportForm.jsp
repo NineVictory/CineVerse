@@ -10,7 +10,7 @@
 <div class="board-report-form">
 	<h3>신고하기</h3>
 	<hr size="1" width="100%;">
-	<div class="flexbox-p">
+	<div class="flexbox-p info-con">
 		<div class="report-info"><label>작성자</label><span>${param.writer}</span></div>
 		<div class="report-info"><label>내용</label><span>${param.cb_title}</span></div>
 	</div>
@@ -18,8 +18,9 @@
 	<form:form action="submitBoardReport" method="post" id="reportForm" modelAttribute="boardReportVO">
 		<form:input path="mem_num" type="hidden" name="mem_num" value="${param.user_num}"/>
 		<form:input path="cb_num" type="hidden" name="cb_num" value="${param.cb_num}"/>
-		<form:label path="br_category">신고사유</form:label>
-		<div class="flexbox-p">
+		<div class="category-con">
+		<form:label path="br_category" class="category-label">신고사유</form:label>
+		<div class="flexbox-p radio-con">
 			<form:errors path="br_category" cssClass="error-color"/>
 	        <span><form:radiobutton path="br_category" value="1"/>스팸홍보/도배</span>
 	        <span><form:radiobutton path="br_category" value="2"/>음란물</span>
@@ -30,10 +31,12 @@
 	        <span><form:radiobutton path="br_category" value="7"/>불쾌한 표현</span>
 	        <span><form:radiobutton path="br_category" value="8"/>기타</span>
         </div>
-        <form:label path="br_content">신고내용(선택)</form:label>
-        <form:textarea path="br_content" name="br_content"></form:textarea><br><br>
-
+        
+        <form:label path="br_content" class="br-content">신고내용(선택)</form:label>
+        <form:textarea path="br_content" name="br_content"></form:textarea><br>
+		</div>
         <form:button class="report-submit">신고하기</form:button>
+    
     </form:form>
     <script type="text/javascript">
     $(document).ready(function(){

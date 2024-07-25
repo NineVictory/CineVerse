@@ -215,7 +215,6 @@ public class AssignBoardController {
 	
 	
 	
-	
 	/*====================
 	 *양도글 수정
 	 =====================*/

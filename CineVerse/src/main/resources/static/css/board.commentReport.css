@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.board-report-form {
+.comment-report-form {
     width: 400px;
     height: 630px;
     padding: 20px;
@@ -9,7 +9,7 @@
     overflow: hidden;
 
 }
-.board-report-form h3{
+.comment-report-form h3{
 	text-align:center;
 }
 
@@ -34,11 +34,11 @@
 .radio-con > *{
 	font-size:16px;
 }
-.br-content{
+.cr-content, .rr-content{
 	display:inline-block;
 	margin:20px 0 5px 0;
 }
-textarea#br_content {
+textarea#cr_content, textarea#rr_content {
     resize: none;
     overflow: auto;
     width: 375px;
@@ -48,7 +48,7 @@ textarea#br_content {
 
 .report-info label {
     display: inline-block;
-    width: 60px;
+    width: 50px;
     color:#4d4d4d;
 }
 

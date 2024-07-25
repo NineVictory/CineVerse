@@ -30,9 +30,22 @@
 	
 	<definition name="boardReportForm" template="/WEB-INF/views/template/layout_report.jsp">
 		<put-attribute name="title" value="신고하기"/>
-
 		<put-attribute name="body" value="/WEB-INF/views/board/boardReportForm.jsp"/>
 	</definition>
+	
+	<definition name="commentReportForm" template="/WEB-INF/views/template/layout_report.jsp">
+		<put-attribute name="title" value="신고하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/commentReportForm.jsp"/>
+	</definition>
+	
+	<definition name="responseReportForm" template="/WEB-INF/views/template/layout_report.jsp">
+		<put-attribute name="title" value="신고하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/responseReportForm.jsp"/>
+	</definition>
+	
+	
+	
+	
 	
 	
 	<definition name="assignList" extends="boardList">
@@ -57,9 +70,9 @@
 	
 	<definition name="assignReportForm" template="/WEB-INF/views/template/layout_report.jsp">
 		<put-attribute name="title" value="신고하기"/>
-
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/reportForm.jsp"/>
 	</definition>
+	
 	
 	
 	
@@ -107,6 +120,10 @@
 		<put-attribute name="title" value="1:1문의"/>
 		<put-attribute name="body" value="/WEB-INF/views/support/consultDetail.jsp"/>
 	</definition>
+	
+	
+	
+	
 	
 	<definition name="eventMain" template="/WEB-INF/views/template/layout_event.jsp">
 		<put-attribute name="title" value="이벤트 화면"/>

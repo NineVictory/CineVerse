@@ -16,6 +16,8 @@ import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardBookmarkVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.board.vo.CommentReportVO;
+import kr.spring.board.vo.ResponseReportVO;
 
 @Service
 @Transactional
@@ -213,6 +215,16 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void boardReport(BoardReportVO boardReportVO) {
 		boardMapper.boardReport(boardReportVO);
+	}
+
+	@Override
+	public void commentReport(CommentReportVO commentReportVO) {
+		boardMapper.commentReport(commentReportVO);
+	}
+
+	@Override
+	public void responseReport(ResponseReportVO responseReportVO) {
+		boardMapper.responseReport(responseReportVO);		
 	}
 
 }

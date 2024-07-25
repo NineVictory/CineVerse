@@ -216,6 +216,18 @@
 		INSERT INTO community_report (br_num, br_content, br_category, mem_num, cb_num) 
 				VALUES (community_report_seq.nextval, #{br_content}, #{br_category, jdbcType=INTEGER}, #{mem_num}, #{cb_num})
 	</insert>
+	
+	<!-- 댓글 신고 -->
+	<insert id="commentReport" parameterType="commentReportVO">
+		INSERT INTO comment_report (cr_num, cr_content, cr_category, mem_num, cc_num) 
+				VALUES (comment_report_seq.nextval, #{cr_content}, #{cr_category, jdbcType=INTEGER}, #{mem_num}, #{cc_num})
+	</insert>
+	
+	<!-- 답글 신고 -->
+	<insert id="responseReport" parameterType="responseReportVO">
+		INSERT INTO response_report (rr_num, rr_content, rr_category, mem_num, te_num) 
+				VALUES (response_report_seq.nextval, #{rr_content}, #{rr_category, jdbcType=INTEGER}, #{mem_num}, #{te_num})
+	</insert>
 </mapper>							
 
 

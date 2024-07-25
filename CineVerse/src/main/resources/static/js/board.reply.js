@@ -65,6 +65,8 @@ $(function() {
 						output += '<li><a href="" class="cc-delete-btn" data-num="' + item.cc_num + '">삭제</a></li>';
 						output += '</ul>';
 						output += '</div>';
+					}else{//댓글신고버튼
+						output += '<span class="comment-report" data-num="' +item.cc_num+ '" data-memnum="' +param.user_num+ '" data-content="' +item.cc_content.replace(/\r\n/g, '<br>')+ '">신고</span>'
 					}
 					output += '</div>';
 
@@ -86,11 +88,14 @@ $(function() {
 					output += '<div><input type="button" data-num="' + item.cc_num + '" data-parent="0" data-depth="0"  value="답글" class="response-btn"></div>';
 
 					// 좋아요 버튼
+					
 					if (item.click_num == 0 || param.user_num !== item.click_num) {
 						output += '<div class="cc-like-btn" data-num="' + item.cc_num + '"><img class="cc-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-rfcount">' + item.refav_cnt + '</span></div>';
 					} else {
 						output += '<div class="cc-like-btn" data-num="' + item.cc_num + '"><img class="cc-like" src="../images/kbm/heart02.png" height="11">&nbsp;<span class="output-rfcount">' + item.refav_cnt + '</span></div>';
 					}
+					
+					
 					output += '</div>';
 
 					// 답글 목록 컨테이너
@@ -628,7 +633,9 @@ $(function() {
 					output += '<div class="resp-container-all">';
 					output += '<div class="resp-container">';
 					output += '<div class="respitem">';
-					output += '<div class="resp-detail-info">';
+					output += '<div class="resp-detail-info side">';
+					
+					output += '<div class="작성자">';
 					output += '<img src="../myPage/viewProfile?mem_num=' + item.mem_num + '" width="30" height="30" class="my-photo">';
 					let name = '';
 					if (item.mem_nickname) {
@@ -649,9 +656,12 @@ $(function() {
 						output += '<li><a href="" class="resp-delete-btn" data-num="' + item.te_num + '" data-rnum="'+item.cc_num+'" data-mem="'+item.mem_num+'" >삭제</a></li>'; // 삭제 버튼 데이터 수정
 						output += '</ul>';
 						output += '</div>';
-					}
+					}else{//답글신고버튼
+						output += '<span class="response-report" data-num="' +item.te_num+ '" data-memnum="' +param.user_num+ '" data-content="' +item.te_content.replace(/</g, '&lt;').replace(/>/g, '&gt;')+ '">신고</span>'
 
+					}
 					output += '</div>'; // resp-detail-info 닫기
+					output += '</div>'; 
 
 					// 답글 내용과 작성일 출력
 					output += '<div class="resp-sub-item">';
@@ -664,7 +674,7 @@ $(function() {
                      		output += '<b>@' +item.parent_id + ' &nbsp;</b>';
                   		}
                		}	
-					output += '<span class="te-content mhide">'+item.te_content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+					output += '<span class="te-content mhide">'+item.te_content.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace() + '</span>';
 					output += '</div>';
 					output += '<div>';
 					if (item.te_mdate) {
@@ -680,12 +690,13 @@ $(function() {
 					/*if (param.user_num) {*/
 						output += '<div><input type="button" data-num="' + item.cc_num + '" data-parent="' + item.te_num + '" data-depth="' + (item.te_depth + 1) + '" value="답글" class="response2-btn"></div>'; // 답글 작성 버튼 데이터 수정
 					
-
+					output += '<div class="flexbox-h">';
 					if (item.click_num == 0 || param.user_num !== item.click_num) {
 						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-rfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
 					} else {
 						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart02.png" height="11">&nbsp;<span class="output-rfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
 					}
+					output += '</div>';
 					output += '</div>'; // side 닫기
 
 					output += '</div>'; // respitem 닫기
@@ -866,4 +877,41 @@ $(function() {
 	 * 초기 데이터(목록) 호출
 	 * ======================================================================== */
 	selectList(1);
+	
+	
+	
+	
+	
+	/*댓글 신고*/
+	$(document).on('click', '.comment-report', function() {
+		var user_num = $(this).data('memnum');
+		var cc_num = $(this).data('num');
+		var cc_content = $(this).data('content');
+		if (cc_content.length > 20) {
+			cc_content = cc_content.substring(0, 20) + '...';
+		}
+		if (user_num == null || user_num == undefined || user_num.toString().trim() == '') {
+	        alert('로그인 후 신고할 수 있습니다.');
+	    }else {
+			window.open('/board/commentReportForm?cc_num='+cc_num+'&cc_content='+cc_content+'&user_num='+user_num, '_blank', 'width=500,height=650');
+				
+	    }
+	});
+	
+	
+	/*답글 신고*/
+	$(document).on('click', '.response-report', function() {
+		var user_num = $(this).data('memnum');
+		var te_num = $(this).data('num');
+		var te_content = $(this).data('content');
+		if (te_content.length > 20) {
+			te_content = te_content.substring(0, 20) + '...';
+		}
+		if (user_num == null || user_num == undefined || user_num.toString().trim() == '') {
+	        alert('로그인 후 신고할 수 있습니다.');
+	    }else {
+			window.open('/board/responseReportForm?te_num='+te_num+'&te_content='+te_content+'&user_num='+user_num, '_blank', 'width=500,height=650');
+				
+	    }
+	});
 });

@@ -17,7 +17,7 @@
 				<span><a href="event">ALL</a></span>
 				<span><a href="event?event_type=1">영화</a></span>
 				<span><a href="event?event_type=2">시사회/무대인사</a></span>
-				<%-- <span><a href="event?event_type=3">제휴 할인</a></span> --%>
+				<span><a href="event?event_type=3">영화관</a></span>
 			</div>
 			<div class="event-type-btn">
 				<input type="button" value="당첨자 발표" class="event_btn">

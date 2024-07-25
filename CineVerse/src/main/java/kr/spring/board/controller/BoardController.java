@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.assignment.vo.AssignReportVO;
 import kr.spring.board.service.BoardService;
 import kr.spring.board.vo.BoardReportVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.board.vo.CommentReportVO;
+import kr.spring.board.vo.ResponseReportVO;
 import kr.spring.main.controller.CommonController;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
@@ -45,6 +48,16 @@ public class BoardController {
 	@ModelAttribute
 	public BoardReportVO initCommand2() {
 		return new BoardReportVO();
+	}
+	//자바빈(VO) 초기화
+	@ModelAttribute
+	public CommentReportVO initCommand3() {
+		return new CommentReportVO();
+	}
+	//자바빈(VO) 초기화
+	@ModelAttribute
+	public ResponseReportVO initCommand4() {
+		return new ResponseReportVO();
 	}
 		
 	/*====================
@@ -224,5 +237,51 @@ public class BoardController {
 		boardService.deleteBoard(cb_num);
 		
 		return "redirect:/board/list";
+	}
+	
+	
+	
+	/*====================
+	 *댓글 신고
+	 =====================*/
+	//댓글 신고폼
+	@GetMapping("/board/commentReportForm")
+	public String commentReportForm() {
+		
+		return "commentReportForm";
+	}
+	
+	//신고폼 데이터 처리
+	@PostMapping("/board/submitCommentReport")
+	public String submitCommentReport(CommentReportVO commentReport, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "commentReportForm";
+		}
+		
+		boardService.commentReport(commentReport);
+		model.addAttribute("message","신고가 접수되었습니다.");
+		return "/common/resultAlert2";
+	}
+	
+	/*====================
+	 *답글 신고
+	 =====================*/
+	//답글 신고폼
+	@GetMapping("/board/responseReportForm")
+	public String responseReportForm() {
+		
+		return "responseReportForm";
+	}
+	
+	//신고폼 데이터 처리
+	@PostMapping("/board/submitResponseReport")
+	public String submitResponseReport(ResponseReportVO responseReport, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "responseReportForm";
+		}
+		
+		boardService.responseReport(responseReport);
+		model.addAttribute("message","신고가 접수되었습니다.");
+		return "/common/resultAlert2";
 	}
 }

@@ -4,12 +4,11 @@ $(function(){
 		var ab_num = $(this).data('num');
 		var ab_title = $(this).data('title');
 		var writer = $(this).data('writer');
-		alert(user_num + ',' + ab_num + ',' + ab_title + ',' + writer);
 
     if (user_num == null || user_num == undefined || user_num.toString().trim() == '') {
         alert('로그인 후 신고할 수 있습니다.');
     }else {
-		window.open('/assignboard/reportForm?ab_num='+ab_num+'&writer='+writer+'&ab_title='+ab_title+'&user_num='+user_num, '_blank', 'width=550,height=650');
+		window.open('/assignboard/reportForm?ab_num='+ab_num+'&writer='+writer+'&ab_title='+ab_title+'&user_num='+user_num, '_blank', 'width=500,height=650');
 		
 		/*$.ajax({
 			url:'assign/reportform',

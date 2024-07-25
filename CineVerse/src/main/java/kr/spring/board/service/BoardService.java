@@ -16,6 +16,8 @@ import kr.spring.board.vo.BoardResponseVO;
 import kr.spring.board.vo.BoardBookmarkVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.board.vo.CommentReportVO;
+import kr.spring.board.vo.ResponseReportVO;
 
 public interface BoardService {
 	//부모글
@@ -72,4 +74,10 @@ public interface BoardService {
 	
 	//부모글 신고
 	public void boardReport(BoardReportVO boardReportVO);
+	
+	//댓글 신고
+	public void commentReport(CommentReportVO commentReportVO);
+		
+	//답글 신고
+	public void responseReport(ResponseReportVO responseReportVO);
 }

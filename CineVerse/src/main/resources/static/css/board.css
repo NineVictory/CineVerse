@@ -519,12 +519,12 @@ div#comment_div>div{
 .writer-btns > div{
 	align-items:center;
 }
-.cc-cbtn{
+/* .cc-cbtn{
 	position:absolute;
 	z-index:999;
 	right:0;
 	top:-10px;
-}
+} */
 .cc-btn-hide.show {
     display: block;
 }
@@ -1032,13 +1032,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 
-/*신고*/
-div.report-form {
-    width: 350px;
-    padding: 20px;
-    background-color: #fefefe;
-}
-
-.close {
-
+/*댓글 답글 신고*/
+.comment-report, .response-report{
+	color:#828282;
+	font-size:14px;
+	cursor:pointer;
 }
