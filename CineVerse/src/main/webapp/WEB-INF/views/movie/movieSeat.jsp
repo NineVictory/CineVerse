@@ -132,7 +132,9 @@
                 <input type="hidden" id="seat_Num" name="seatNum">
                 <!-- 결제 정보 -->
                 <input type="hidden" id="pay_Money" name="payMoney">
-                <input type="submit" class="movePaymentButton" id="link_rpay" value="결제하기">
+                <div class="movie_reserve_btn">
+                	<input type="submit" class="movePaymentButton" id="link_rpay" value="결제하기">
+                </div>
             </div>
         </div>
     </form>

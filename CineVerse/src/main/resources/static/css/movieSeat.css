@@ -1,157 +1,153 @@
 /* content */
-
 .select-container {
-    margin-top: 140px;
+	margin-top: 140px;
 }
 
 .select-wrapper {
-    width: 1050px;
-    margin: 0 auto;
-    border-left: 1px solid #dddddd;
-    border-right: 1px solid #dddddd;
+	width: 1050px;
+	margin: 0 auto;
 }
 
 .select-title {
-    background-color: #444444;
-    color: #fff;
-    font-size: 17px;
-    text-align: center;
-    padding: 10px;
+	background-color: #444444;
+	color: #fff;
+	font-size: 17px;
+	text-align: center;
+	padding: 10px;
 }
- 
+
 .select-seat-container {
-display: flex;
-    border-bottom: 2px solid #dddddd;
-    height: 150px;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	border-bottom: 2px solid #dddddd;
+	height: 150px;
+	justify-content: center;
+	align-items: center;
 }
 
 .select-seat-number-container {
-    display: flex;
-    /* flex-grow: 1; */
-    /* border-right: 1px solid #dddddd; */
-    align-items: center;
-    /* gap: 10px; */
+	display: flex;
+	/* flex-grow: 1; */
+	/* border-right: 1px solid #dddddd; */
+	align-items: center;
+	/* gap: 10px; */
 }
 
 .select-seat-number-wrapper {
-width: 650px;
-    /* padding: 15px 0 20px 20px; */
-    display: flex;
-    /* margin-top: 35px; */
-    flex-direction: row;
-    justify-content: space-evenly;
+	width: 650px;
+	/* padding: 15px 0 20px 20px; */
+	display: flex;
+	/* margin-top: 35px; */
+	flex-direction: row;
+	justify-content: space-evenly;
 }
-
 
 .select-seat-information {
-    flex-grow: 1;
-    margin-left : 20px;
+	flex-grow: 1;
+	margin-left: 20px;
 }
 
-.quantity-input{
-border: none;
-    width: 35px;
-    height: 20px;
-    text-align: end;
+.quantity-input {
+	border: none;
+	width: 35px;
+	height: 20px;
+	text-align: end;
 }
 
 .select-seat {
-display: flex;
-    font-size: 20px;
-    align-items: center;
+	display: flex;
+	font-size: 20px;
+	align-items: center;
 }
 
-.stylish-button{
-	cursor : pointer;
-    text-align: center;
-    display: flex;
-    border: none;
-    height: 34px;
-    width: 23px;
-    background: none;
-    font-size: 15px;
-    font-weight: 900;
-    align-items: center;
-    justify-content: center;
+.stylish-button {
+	cursor: pointer;
+	text-align: center;
+	display: flex;
+	border: none;
+	height: 34px;
+	width: 23px;
+	background: none;
+	font-size: 15px;
+	font-weight: 900;
+	align-items: center;
+	justify-content: center;
 }
 
-.quantity-controls{
-width: 100px;
-    border-radius: 5px;
-    border: 1px solid var(--gray-4);
-    display: flex;
-    margin-left: 20px;
-    align-items: center;
-    justify-content: center;
+.quantity-controls {
+	width: 100px;
+	border-radius: 5px;
+	border: 1px solid var(--gray-4);
+	display: flex;
+	margin-left: 20px;
+	align-items: center;
+	justify-content: center;
 }
 
 .select-seat-age {
-font-weight: bold;
-    font-size: 15px;
+	font-weight: bold;
+	font-size: 15px;
 }
 
 .select-seat-number {
-    margin-left: 15px;
+	margin-left: 15px;
 }
 
 .reserve-number-wrapper {
-    flex-grow: 1;
-    padding-top: 15px;
-    border-left: 1px solid #DDDDDD;
-    text-align: center;
+	flex-grow: 1;
+	padding-top: 15px;
+	border-left: 1px solid #DDDDDD;
+	text-align: center;
 }
 
 .reserve-number {
-    margin-top: 20px;
-    font-size: 34px;
-    font-weight: bold;
+	margin-top: 20px;
+	font-size: 34px;
+	font-weight: bold;
 }
 
 .selected-movie {
 	font-size: 20px;
-    margin-bottom: 5px;
-    font-weight: bold;
+	margin-bottom: 5px;
+	font-weight: bold;
 }
 
 .select-seat-information-wrapper {
-display: flex;
-    flex-direction: row;
-    font-size: 15px;
+	display: flex;
+	flex-direction: row;
+	font-size: 15px;
 }
 
-.moviename{
+.moviename {
 	font-weight: bold;
 	font-size: 18px;
 }
 
 .select-theater-place {
-    font-size: 12px;
+	font-size: 12px;
 }
 
 .select-theater-place:not(:last-child) {
-    width: 55px;
-    border-right: 1px solid #dddddd;
+	width: 55px;
+	border-right: 1px solid #dddddd;
 }
 
 .select-theater-place:last-child {
-    width: 150px;
-    /* border-right: 1px solid #dddddd; */
+	width: 150px;
+	/* border-right: 1px solid #dddddd; */
 }
 
 .select-theater-place:not(:first-child) {
-    margin-left: 12px;
+	margin-left: 12px;
 }
 
 .select-theater-date {
-    width: 195px;
-    display: flex;
-    flex-direction: column;
+	width: 195px;
+	display: flex;
+	flex-direction: column;
 }
 
-.selectedSeats{
-	font-size :13px;
+.selectedSeats {
+	font-size: 13px;
 }
 
 /* .select-theater-date>div {
@@ -159,277 +155,228 @@ display: flex;
     margin-top: 8px;
     font-weight: bold;
 } */
-
 .theater-time {
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 .remain-seats {
-    margin-left: 3px;
-    color: rgba(255, 0, 0, 0.6);
-    font-weight: bold;
+	margin-left: 3px;
+	color: rgba(255, 0, 0, 0.6);
+	font-weight: bold;
 }
 
-
 .selected-seats {
-    font-size: 13px;
-    word-spacing: 2px;
-    margin-left: 20px;
+	font-size: 13px;
+	word-spacing: 2px;
+	margin-left: 20px;
 }
 
 .selected-seats-title {
-    color: black;
-    font-size: 13px;
-    font-weight: bold;
+	color: black;
+	font-size: 13px;
+	font-weight: bold;
 }
 
-.ticket-price-wrapper{
+.ticket-price-wrapper {
 	width: 100%;
 	display: flex;
 	align-items: center;
 	background-color: #444444;
-    color: #dddddd;
-    height: 80px;
+	color: #dddddd;
+	height: 80px;
 }
-.ticket-price-wrapper>div{	
-	font-weight: bold;
-}
-.ticket-price-title{
-	font-size: 20px;
+
+.ticket-price-title {
+	width: 90px;
+	font-weight: 700;
+	font-size: 18px;
 	margin-left: 20px;
 }
 
 .ticket-price {
-	margin-left: 47px;
-	font-size:20px;
+	font-weight: 800;
+	font-size: 18px;
 }
 
 .reserve-button {
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 13px;
-    padding: 0;
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 0;
 }
 
 .reserve-button img {
-    margin-left: 20px;
-    width: 60px;
+	margin-left: 20px;
+	width: 60px;
 }
 
 .seat-container {
-    /*margin-top: 50px;  영화관 검은색 위 공백 조절*/
-    display: flex;
-    justify-content: center;
-    border-bottom: 2px solid #dddddd;
+	/*margin-top: 50px;  영화관 검은색 위 공백 조절*/
+	display: flex;
+	justify-content: center;
+	border-bottom: 2px solid #dddddd;
 }
 
 .title_screen1 {
-    display: block;
-    padding: 5px 0 5px;
-    color: #fff;
-    font-size: 16px;
-    font-family: 'Roboto', "Noto Sans KR";
-    text-align: center;
-    letter-spacing: 15px;
-    margin: 0 0 30px;
-    background: #6E6E6E
+	display: block;
+	padding: 5px 0 5px;
+	color: #fff;
+	font-size: 16px;
+	font-family: 'Roboto', "Noto Sans KR";
+	text-align: center;
+	letter-spacing: 15px;
+	margin: 0 0 30px;
+	background: #6E6E6E
 }
 
-
 .seat-wrapper {
-    background-color: #000;
-    width: 1050px;  /*영화관 검은 색 가로 조절*/
-    height: 600px;
-    /*margin-bottom: 50px; 영화관 검은 색 아래 공백 조절  */
+	background-color: #000;
+	width: 1050px; /*영화관 검은 색 가로 조절*/
+	height: 600px;
+	/*margin-bottom: 50px; 영화관 검은 색 아래 공백 조절  */
 }
 
 .seat {
-    width: 30px;
-    height: 30px;
-    text-align: center;
+	width: 30px;
+	height: 30px;
+	text-align: center;
 }
 
-
 .seatButtonWrapper {
-    text-align: center;
+	text-align: center;
 }
 
 .seatButtonWrapper>input {
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 }
 
 .left-margin {
-    margin-left: 30px;
+	margin-left: 30px;
 }
 
 .right-margin {
-    margin-right: 30px;
+	margin-right: 30px;
 }
 
 .top-margin {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 .ticket-container {
-	 border-bottom: 2px solid #dddddd;
-	 display: flex; 
-     flex-direction: row; 
-     align-items: center; 
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .movePaymentButton {
+	letter-spacing: 1.3px;
+	text-align: center;
 	background: #3F66ED;
 	color: #FFFFFF;
 	width: 150px;
 	height: 80px;
 	border: none;
-	font-size: 18px;
-	font-weight: bold;
+	font-size: 17px;
+	font-weight: 600;
+	cursor: pointer;
 }
 
-
-
-
-.screen{
-   background-color: #fff;
-   margin-top: 50px;
-   margin-bottom: 50px;
-   padding: 5px;
-   width: 140px;
-   height: 80px;
-   transform: rotateX(-45deg);
-   box-shadow: 0 3px 10px rgb(255 255 255 / 70%);
+.screen {
+	background-color: #fff;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding: 5px;
+	width: 140px;
+	height: 80px;
+	transform: rotateX(-45deg);
+	box-shadow: 0 3px 10px rgb(255 255 255/ 70%);
 }
 
-.seat{
-    background-color: #444451;
-    margin: 3px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    background-color: #444451;
+.seat {
+	background-color: #444451;
+	margin: 3px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	background-color: #444451;
 }
 
-
-.selectedSeatIcon{
-    background-color: #6feaf6;
-    width: 30px;
-    height: 30px;
-    margin: 3px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    cursor: default;
+.selectedSeatIcon {
+	background-color: #6feaf6;
+	width: 30px;
+	height: 30px;
+	margin: 3px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	cursor: default;
 }
 
-.seat:hover{
-    scale: 1.2;
+.seat:hover {
+	scale: 1.2;
 }
 
-.selectedSeat:hover{
-    scale: 1.2;
+.selectedSeat:hover {
+	scale: 1.2;
 }
 
-.seat:nth-of-type(4){
-    margin-right: 18px;
+.seat:nth-of-type(4) {
+	margin-right: 18px;
 }
 
-.seat:nth-of-type(9){
-    margin-left: 18px;
+.seat:nth-of-type(9) {
+	margin-left: 18px;
 }
 
-.selectedSeat{
-    background-color: #6feaf6;
-    width: 30px;
-    height: 30px;
-    margin: 3px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    cursor: pointer;
+.selectedSeat {
+	background-color: #6feaf6;
+	width: 30px;
+	height: 30px;
+	margin: 3px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	cursor: pointer;
 }
 
 .seatContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-}
-
-.row{
-    display: flex;
-}
-.seat.booked {
-    pointer-events: none;
-    opacity: 0.5; /* 예약된 좌석을 시각적으로 구분하기 위해 투명도 조정 */
-}
-
-.movie_info_seat{
-    gap: 2px;
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.movietime{
-width: 155px;
-    font-size: 12px;
-}
-
-.movieplace{
-    font-weight: 600;
-    font-size: 12px;
-}
-
-.movierating{
 	display: flex;
-    align-items: center;
-}
-input[type="number" i] {
-    padding-block: initial;
-    padding-inline: initial;
+	flex-direction: column;
+	align-items: center;
+	color: white;
 }
 
-input {
-    font-style: initial;
-    font-variant-ligatures: initial;
-    font-variant-caps: initial;
-    font-variant-numeric: initial;
-    font-variant-east-asian: initial;
-    font-variant-alternates: initial;
-    font-variant-position: initial;
-    font-weight: initial;
-    font-stretch: initial;
-    font-size: initial;
-    font-family: initial;
-    font-optical-sizing: initial;
-    font-kerning: initial;
-    font-feature-settings: initial;
-    font-variation-settings: initial;
-    text-rendering: initial;
-    color: initial;
-    letter-spacing: initial;
-    word-spacing: initial;
-    line-height: initial;
-    text-transform: initial;
-    text-indent: initial;
-    text-shadow: initial;
-    display: initial;
-    text-align: initial;
-    appearance: initial;
-    -webkit-rtl-ordering: initial;
-    cursor: initial;
-    background-color: initial;
-    margin: initial;
-    padding: initial;
-    border-width: initial;
-    border-style: initial;
-    border-color: initial;
-    border-image: initial;
-    padding-block: initial;
-    padding-inline: initial;
+.row {
+	display: flex;
+}
+
+.seat.booked {
+	pointer-events: none;
+	opacity: 0.5; /* 예약된 좌석을 시각적으로 구분하기 위해 투명도 조정 */
+}
+
+.movie_info_seat {
+	gap: 2px;
+	margin-left: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.movietime {
+	width: 155px;
+	font-size: 12px;
+}
+
+.movieplace {
+	font-weight: 600;
+	font-size: 12px;
+}
+
+.movierating {
+	display: flex;
+	align-items: center;
 }
