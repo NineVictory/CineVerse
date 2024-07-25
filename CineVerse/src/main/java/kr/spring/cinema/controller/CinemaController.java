@@ -207,11 +207,24 @@ public class CinemaController {
 	 *========================*/
 	 //지점명 선택했을 때 영화목록 불러오기
 	
-    @GetMapping("/movieReserveList")
-    @ResponseBody
-    public List<MovieTimeVO> movieReserveList(long c_num) {
-        return cinemaService.movieReserveList(c_num);
-    }
+		/*
+		 * @GetMapping("/movieReserveList")
+		 * 
+		 * @ResponseBody public List<MovieTimeVO> movieReserveList(long c_num) { return
+		 * cinemaService.movieReserveList(c_num); }
+		 */
+	
+	 @GetMapping("/movieReserveList")
+	    @ResponseBody
+	    public List<MovieTimeVO> movieReserveList(@RequestParam long c_num, @RequestParam(defaultValue = "default") String sort) {
+	        if ("reservation".equals(sort)) {
+	            return cinemaService.getMoviesSortedByReservationRate(c_num);
+	        } else if ("korean".equals(sort)) {
+	            return cinemaService.getMoviesSortedByName(c_num);
+	        } else {
+	            return cinemaService.getDefaultMovieList(c_num); // 최신순 정렬
+	        }
+	    }
 	
 	
 	

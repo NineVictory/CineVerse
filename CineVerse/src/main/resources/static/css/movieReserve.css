@@ -160,19 +160,16 @@
 	font-size: 14px;
 }
 
-.sort-wrapper>div:hover {
-	/* border-bottom: 1px solid #111111; */
+/* .sort-wrapper>div:hover {
+	border-bottom: 1px solid #111111;
 	
+} */
+
+.selected {
+    color: black;
+    font-weight: bold;
 }
 
-.sort-selected {
-	font-weight: bold;
-	/* border-bottom: 1px solid #111111; */
-}
-
-.sort-korean {
-	margin-left: 6px;
-}
 
 .movie-list {
 	display: flex;

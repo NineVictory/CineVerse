@@ -88,6 +88,21 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
+    public List<MovieTimeVO> getMoviesSortedByReservationRate(long c_num) {
+        return cinemaMapper.getMoviesSortedByReservationRate(c_num);
+    }
+
+    @Override
+    public List<MovieTimeVO> getMoviesSortedByName(long c_num) {
+        return cinemaMapper.getMoviesSortedByName(c_num);
+    }
+
+    @Override
+    public List<MovieTimeVO> getDefaultMovieList(long c_num) {
+        return cinemaMapper.getDefaultMovieList(c_num); // 최신순 정렬
+    }
+	
+	@Override
 	public List<MovieVO> insertTimeMovieList() {
 		return cinemaMapper.insertTimeMovieList();
 	}
@@ -117,6 +132,8 @@ public class CinemaServiceImpl implements CinemaService{
 	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date) {
 		return cinemaMapper.showMovieTimeList(m_code, mt_date);
 	}
+
+
 
 	
 

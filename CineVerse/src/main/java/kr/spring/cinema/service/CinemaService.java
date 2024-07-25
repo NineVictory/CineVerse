@@ -42,7 +42,9 @@ public interface CinemaService {
 	//새로 만든 예매 페이지 영화목록 조회
 	public List<MovieTimeVO> movieReserveList(long c_num);
 	
-	
+	List<MovieTimeVO> getMoviesSortedByReservationRate(long c_num);
+    List<MovieTimeVO> getMoviesSortedByName(long c_num);
+    List<MovieTimeVO> getDefaultMovieList(long c_num); // 최신순 정렬
 	
 	
 	 /*=======================

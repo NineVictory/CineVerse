@@ -148,6 +148,48 @@
 		WHERE c.c_num = #{c_num}
 	</select>
 	
+	<!-- 예매 페이지 영화목록 정렬순서 -->
+	<!-- 예매순 -->
+	<select id="getMoviesSortedByReservationRate" parameterType="long" resultType="movieTimeVO">
+    SELECT DISTINCT
+        m.m_code,
+        m.m_name,
+        m.rating,
+        (SELECT COUNT(*) FROM movie_booking WHERE m_code = m.m_code) * 100.0 / (SELECT COUNT(*) FROM movie_booking) AS reservation_rate
+    FROM 
+        movie m
+    JOIN 
+        movie_time mt ON m.m_code = mt.m_code
+    JOIN 
+        theater t ON mt.th_num = t.th_num
+    JOIN 
+        cinema c ON t.c_num = c.c_num
+    WHERE 
+        c.c_num = #{c_num}
+    ORDER BY 
+        reservation_rate DESC
+	</select>
+	<!-- 가나다순 -->
+	<select id="getMoviesSortedByName" parameterType="long" resultType="movieTimeVO">
+	    SELECT DISTINCT m.m_code, m.m_name, m.rating
+	    FROM movie_time mt
+	    JOIN movie m ON m.m_code = mt.m_code
+	    JOIN theater t ON mt.th_num = t.th_num
+	    JOIN cinema c ON t.c_num = c.c_num
+	    WHERE c.c_num = #{c_num}
+	    ORDER BY m.m_name ASC
+	</select>
+	<!-- 개봉 최신순 -->
+	<select id="getDefaultMovieList" parameterType="long" resultType="movieTimeVO">
+	    SELECT DISTINCT m.m_code, m.m_name, m.rating, m.m_opendate
+	    FROM movie_time mt
+	    JOIN movie m ON m.m_code = mt.m_code
+	    JOIN theater t ON mt.th_num = t.th_num
+	    JOIN cinema c ON t.c_num = c.c_num
+	    WHERE c.c_num = #{c_num}
+	    ORDER BY m.m_opendate DESC
+	</select>
+	
 	
 	
 	

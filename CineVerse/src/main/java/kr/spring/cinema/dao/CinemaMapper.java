@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.cinema.vo.CinemaVO;
@@ -47,7 +48,9 @@ public interface CinemaMapper {
 	//새로 만든 예매 페이지 영화목록 조회
 	public List<MovieTimeVO> movieReserveList(long c_num);
 	
-	
+    List<MovieTimeVO> getMoviesSortedByReservationRate(@Param("c_num") long c_num);
+    List<MovieTimeVO> getMoviesSortedByName(@Param("c_num") long c_num);
+    List<MovieTimeVO> getDefaultMovieList(@Param("c_num") long c_num); // 최신순 정렬
 	
 	/*=======================
      * 영화 시간표 등록 페이지
