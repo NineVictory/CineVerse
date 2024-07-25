@@ -321,4 +321,27 @@ public class MyPageAjaxController {
 		return mapJson;
 	}
 	
+	//리뷰 삭제
+	@PostMapping("/myPage/deleteReview")
+	@ResponseBody
+	public Map<String, Object> deleteReview(Long mr_num,Long mem_num,HttpSession session){
+		log.debug("<<리뷰 삭제>> : " + mr_num);
+		
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user==null) {
+			mapJson.put("result", "logout");
+		}else if(user.getMem_num()!= mem_num) {
+			mapJson.put("result", "wrongAccess");
+		}else {
+			movieService.deleteReview(mr_num);
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
+		
+	
+	
+	
 }

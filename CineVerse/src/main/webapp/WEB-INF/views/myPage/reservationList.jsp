@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- 나의 예매목록 시작 -->
@@ -14,8 +13,7 @@
 	<c:if test="${count > 0}">
 		<c:forEach var="res" items="${list}">
 			<div class="main_body_reservation">
-				<div class="myPageReservation_list"
-					onclick="location.href='/myPage/reservation'">
+				<div class="myPageReservation_list">
 					<div class="mp_reserv">
 						<div class="m_movie_photo">
 							<img alt="영화1" src="${fn:split(res.m_filename, '|')[0]}"
@@ -28,7 +26,7 @@
 								<!-- <span class="mp_movie_number_2">0023-</span>  -->
 								<span class="mp_movie_number_3">${res.user_mb_num}</span>
 							</div>
-							<div class="mp_movie_title">${res.m_name}</div>
+							<div class="mp_movie_title" onclick="location.href='/myPage/reservation?mb_num=${res.mb_num}'">${res.m_name}</div>
 
 							<div class="reservation_list">
 								<div class="reserv_info">
@@ -40,7 +38,7 @@
 								<div class="my_reserv_info">
 									<div>CINEVERSE${res.c_branch}</div>
 									<div>${res.mt_date}</div>
-									<div>${res.mt_start}~${res.mt_end}</div>
+									<div id="time-${res.user_mb_num}">${res.mt_start}~${res.mt_end}</div>
 								</div>
 							</div>
 							<hr size="1" width="100%" class="reserv_line">
@@ -62,3 +60,23 @@
 	<!-- 반복 -->
 </div>
 <!-- 나의 예매목록 끝 -->
+
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        var times = document.querySelectorAll("[id^='time-']");
+        times.forEach(function(timeDiv) {
+            var timesText = timeDiv.textContent.split("~");
+            
+            var formattedTimes = timesText.map(function(time) {
+                if (time === "0" || time === "0000") {
+                    return "00:00";
+                } else {
+                    return time.slice(0, 2) + ":" + time.slice(2);
+                }
+            });
+            
+            timeDiv.textContent = formattedTimes.join("~");
+        });
+    });
+</script>
