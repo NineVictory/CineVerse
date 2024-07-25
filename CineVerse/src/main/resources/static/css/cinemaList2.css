@@ -1,189 +1,134 @@
-
-
-.all-theater{
-	color: #6a5acd;
-	margin-top: 70px;
-	margin-left: 200px;
+#main_body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
 }
 
-.cinema-write{
-	text-align: right;
-	margin-bottom: 5px;
+.all-theater {
+    margin-bottom: 20px;
+    font-weight: 800;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+.cinema-write {
+    text-align: right;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #666;
 }
 
 .theater-box {
-    display: block;
-    width: 1100px;
-    height: 250px;
-    border: 4px solid #686571;
+    padding: 30px;
     border-radius: 10px;
-    padding: 20px;
-    margin-left: 160px;  
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
 
-.theater-location{
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.theater-location ul {
-    list-style: none; /* 리스트 스타일을 제거 */
-    padding: 0; /* 패딩을 제거 */
-}
-
-.theater-location li {
-   /*  gap: 20px; 아이템 사이의 간격 설정 */
-    margin-bottom: 10px;
+.theater-location {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: 600;
+    align-items: center;
 }
 
 .theater-location a.button {
-    text-decoration: none; /* 링크의 밑줄 제거 */
-    padding: 15px 40px 15px 40px; /* 내부 패딩을 설정하여 클릭 영역 확대 */
-    border-radius: 5px; /* 테두리 반경 설정 */
-    color: #333; /* 글자 색상 설정 */
-    width: 100px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .theater-location a.button:hover {
-    background-color: #696969; /* 호버 시 배경색 변경 */
+    background-color: #696969;
     color: #ffffff;
 }
 
-.theater-place{
-	margin-top: 20px;
-	font-size: 20px;
-	display: flex;
-	flex-wrap: wrap;
+.theater-place {
+    gap: 20px;
+    padding: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.result-display{
-	margin-top: 50px;
-	margin-left: 350px;
+.result-display {
+    margin-top: 50px;
+    color: #999;
+    font-size: 18px;
+    text-align: center;
 }
 
-.place-list{
-	flex-direction: row; /* 가로 정렬 설정 */
+.place-list {
+    display: flex;
+    margin-bottom: 15px;
+    justify-content: center;
 }
 
-.branch-list{
-	padding: 10px 20px 10px 20px;
-}
-
-.branch-list a.button:hover{
-	background-color: #696969; /* 호버 시 배경색 변경 */
-	padding: 5px 5px 5px 5px;
-    color: #ffffff;
+.branch-list {
+    padding: 10px 20px;
     border-radius: 5px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
 
-.cinema-write{
-	margin-left: 1200px;
+.branch-list a.button {
+    text-decoration: none;
+    color: #333;
 }
 
+.branch-list:hover {
+    transform: scale(1.05);
+}
+
+.cinema-write {
+    margin-left: 1200px;
+}
 
 /* 이벤트 배너 */
+
+.event_menu_all{
+	margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .event_list {
-    width: 1022px;
     padding: 5px;
 }
 
-.theater-event{
-	color: #6a5acd;
-	margin-top: 40px;
-	margin-left: 200px;
-}
-
-.event_wrap {
-    display: flex;
-    flex-wrap: nowrap;
+.theater-event {
+font-weight: 800;
+    font-size: 24px;
+    color: #333;
 }
 
 .img_lst_wrap {
-	margin-left: 160px;
-	display: flex; /* Flexbox를 사용하여 가로 정렬 */
-    flex-direction: row; /* 가로 정렬 설정 */
-    gap: 30px; /* 항목 사이의 간격 설정 */
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .btn_more {
-	margin-left: 1200px;
     border: none;
     cursor: pointer;
     background-color: transparent;
 }
 
-
-
-/* 관람료 안내 */
-.theater-pay{
-	color: #6a5acd;
-	margin-top: 40px;
-	margin-left: 200px;
+.page-main {
+    margin-top: 20px;
+    width: 1160px;
+    padding: 15px;
 }
 
-.pay-box{
-	margin-left: 150px;
-	display: flex;
-}
-
-.pay-container{
-	flex-direction: row;
-	flex-wrap: nowrap;
-}
-
-.twod{
-	margin-top: 15px;
-	font-size: 20px;
-}
-
-.pay-table{
-	width: 100%;
-    margin: 0;
-    border: 0;
-    border-top:  2px solid #000000;
-    border-bottom:  2px solid #000000;
-    table-layout: fixed;   
-    text-align: center;
-}
-
-.pay-thead{
-	border-right:  1px solid #dcdcdc;
-	background-color: #d3d3d3;
-	font-weight: bold;
-}
-
-.pay-tbody{
-	border:  1px solid #dcdcdc;
-}
-
-.pay-image{
-	width: 100%;
-	height: 400px;
-	margin-left: 100px;
-}
-
-.payment-image{
-	width: 100%;
-	height: 700px;
-	margin-left: 100px;
-}
-
-
-
-/* 요금제 및 우대적용 */
-.explain{
-	margin-top: 40px;
-	margin-left: 200px;
-	color: #6a5acd;
-}
-
-.explain-box{
-	margin-top: 10px;
-	margin-left: 200px;
-}
-
-.bold-font{
-	color: #008080;
-}
