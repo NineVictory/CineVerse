@@ -139,39 +139,44 @@ $(document).ready(function() {
 	}
 	
     // 장르로 영화 필터링
-    function filterMoviesByGenres() {
+// 장르로 영화 필터링
+function filterMoviesByGenres() {
+    if (selectedGenres.size === 0) {
+       window.location.href = '/movie/movieList';
+    } else {
+        // 선택된 장르가 있을 때, 해당 장르의 영화만 필터링
         $.ajax({
             url: '/movie/filterMoviesByGenres',
             type: 'GET',
-            traditional: true,  // 이 옵션을 사용하여 배열 형태의 데이터를 전송
+            traditional: true,
             data: { genres: Array.from(selectedGenres) },
             dataType: 'json',
             success: function(response) {
                 $("#movieListContainer ul.movie-list").empty();
                 response.forEach(function(movie) {
-					let filenames = movie.m_filename.split('|');
-					let mainImage = filenames[0]; // 첫 번째 이미지 파일명 선택
+                    let filenames = movie.m_filename.split('|');
+                    let mainImage = filenames[0]; // 첫 번째 이미지 파일명 선택
                     let html = `
-							    <li class="movie">
-							        <img alt="영화1" src="${mainImage}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
-							        <div class="overlay">
-							            <button class="btn-book" onclick="location.href='/movie/movieReserve'">예매하기</button>
-							            <button class="btn-details" onclick="location.href='movieDetail?m_code=${movie.m_code}'">상세보기</button>
-							        </div>
-							        <div class="movie_name_list">
-							            <div class="movie_list_grade">
-							                <div class="movie_list_gn">
-							                    <span class="ic_grade ${getGradeClass(movie.rating)}"></span>
-							                    <span class="movie_name"><b>${movie.m_name}</b></span>
-							                </div>
-							            </div>
-							        </div>
-							        <div class="bookAopen">
-							            <div>개봉일 ${movie.m_opendate}</div>
-							            <div>예매율 0%</div>
-							        </div>
-							    </li>
-							`;
+                        <li class="movie">
+                            <img alt="영화1" src="${mainImage}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
+                            <div class="overlay">
+                                <button class="btn-book" onclick="location.href='/movie/movieReserve'">예매하기</button>
+                                <button class="btn-details" onclick="location.href='movieDetail?m_code=${movie.m_code}'">상세보기</button>
+                            </div>
+                            <div class="movie_name_list">
+                                <div class="movie_list_grade">
+                                    <div class="movie_list_gn">
+                                        <span class="ic_grade ${getGradeClass(movie.rating)}"></span>
+                                        <span class="movie_name"><b>${movie.m_name}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bookAopen">
+                                <div>개봉일 ${movie.m_opendate}</div>
+                                <div>예매율 0%</div>
+                            </div>
+                        </li>
+                    `;
                     $("#movieListContainer ul.movie-list").append(html);
                 });
             },
@@ -180,6 +185,8 @@ $(document).ready(function() {
             }
         });
     }
+}
+
 /*      // 초기 로드
     loadMovies();*/
 });

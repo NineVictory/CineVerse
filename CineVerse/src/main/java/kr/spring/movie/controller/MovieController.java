@@ -101,6 +101,14 @@ public class MovieController {
     public List<MovieVO> filterMoviesByGenres(@RequestParam("genres") String[] genres) {
         return movieService.filterMoviesByGenres(Arrays.asList(genres));
     }
+    
+    @GetMapping("/movie/allMovies")
+    @ResponseBody
+    public List<MovieVO> allMovies() {
+        Map<String, Object> map = new HashMap<>();
+        // 모든 영화를 가져오기 위해 별도의 조건 없이 호출
+        return movieService.selectMovieList(map);
+    }
    
    /*=======================
     * 영화 상세
