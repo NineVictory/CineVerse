@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -21,6 +22,7 @@ import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.vo.ConsultVO;
 
 public interface AdminService {
@@ -79,4 +81,10 @@ public interface AdminService {
 	public Integer selectReservationRowCount(Map<String,Object> map);
 	public Integer totalMb(@Param("mb_num") long mb_num);
 	public void refundMovie(@Param("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment,@Param("mb_num") long mb_num);
+	public List<OrdersVO> selectOrder(Map<String, Object> map);
+	public Integer selectOrderRowCount(Map<String, Object> map);	
+	public void refundShop(@Param("mem_num") long mem_num, @Param("total_price") long total_price, @Param("ph_payment") String ph_payment);
+	public void updateOdQuantity(@Param("order_num") long order_num, @Param("order_quantity") int order_quantity);	
+	public void updateOdStauts(long order_num);
+
 }	
