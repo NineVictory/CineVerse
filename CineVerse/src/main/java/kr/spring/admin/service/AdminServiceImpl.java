@@ -23,6 +23,7 @@ import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.member.dao.MemberMapper;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.vo.ConsultVO;
 import lombok.extern.slf4j.Slf4j;
 @Service
@@ -276,6 +277,31 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Integer totalMb(long mb_num) {
 		return adminMapper.totalMb(mb_num);
+	}
+	@Override
+	public List<OrdersVO> selectOrder(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Integer selectOrderRowCount(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void refundShop(long mem_num, long total_price, String ph_payment) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateOdQuantity(long order_num, int order_quantity) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateOdStauts(long order_num) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
