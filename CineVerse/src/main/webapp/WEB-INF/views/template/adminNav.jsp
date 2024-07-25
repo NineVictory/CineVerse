@@ -84,7 +84,7 @@
 				href="${pageContext.request.contextPath}/admin/adminShopReview"
 				class="menu-link">후기</a></li>
 		</ul>
-		<a href="#" class="menu-item">쿠폰</a> 
+		<a class="menu-item" href="${pageContext.request.contextPath}/admin/adminCoupon">쿠폰</a> 
 		<a href="${pageContext.request.contextPath}/admin/adminConsult" class="menu-item">1:1문의</a>
 	</div>
 </div>
