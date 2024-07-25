@@ -17,7 +17,16 @@
             <div class="movie-list">
                 <ul class="movie-select">
                     <c:forEach items="${movieList}" var="movie">
-                        <li class="select" data-mcode="${movie.m_code}"><a href="#none">${movie.m_name}</a></li>
+                        <li class="select" data-mcode="${movie.m_code}">
+                        	<span class="ic_grade <c:choose><c:when test="${movie.rating eq '12세관람가' }">gr_12</c:when>
+						                    <c:when test="${movie.rating eq '12세이상관람가' }">gr_12</c:when>
+						                    <c:when test="${movie.rating eq '전체관람가' }">gr_all</c:when>
+						                    <c:when test="${movie.rating eq '15세관람가' }">gr_15</c:when>
+						                    <c:when test="${movie.rating eq '15세이상관람가' }">gr_15</c:when>
+						                    <c:when test="${movie.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
+						                    <c:when test="${movie.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
+					                	</span>
+                        <a href="#none">${movie.m_name}</a></li>
                     </c:forEach>
                 </ul>
             </div>
