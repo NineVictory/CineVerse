@@ -28,6 +28,7 @@ import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.assignment.vo.AssignVO;
@@ -91,6 +92,10 @@ public class AdminController {
 	public FaqVO initCommand8() {
 		return new FaqVO();
 	}
+	@ModelAttribute
+	public RefundMbVO initCommand9() {
+		return new RefundMbVO();
+	}
 	/*==============================
 	 * 관리자메인
 	 *==============================*/	
@@ -113,13 +118,15 @@ public class AdminController {
 
 			// 모든 자체영화관 수
 			int cinemaTotal = adminService.totalCinema();
-
+			
+			int consultTotal = adminService.totalConsult();
 			// 조회된 회원 정보를 모델에 추가하여 View로 전달
 			model.addAttribute("memTotal", memTotal);
 			model.addAttribute("boardTotal", boardTotal);
 			model.addAttribute("productTotal", productTotal);
 			model.addAttribute("movieTotal", movieTotal);
 			model.addAttribute("cinemaTotal", cinemaTotal);
+			model.addAttribute("consultTotal", consultTotal);
 
 			return "adminMain"; // 회원 정보를 보여줄 View 이름
 		} catch (Exception e) {
@@ -876,6 +883,61 @@ public class AdminController {
 			
 
 	}
+	
+	
+		//예매내역
+		@GetMapping("/admin/adminReservation")
+		public String adminReservation(
+				@RequestParam(defaultValue = "1") int pageNum,
+				@RequestParam(value = "keyword", required = false) String keyword,
+				@RequestParam(value = "keyfield", required = false) String keyfield,
+				Model model) {
+			// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "md_num"; // 기본 검색 필드를 설정합니다.
+			}
 
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+
+			map.put("keyfield", keyfield);
+
+			// 전체, 검색 레코드 수
+			int count = adminService.selectReservationRowCount(map);
+
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminReservation");
+			List<RefundMbVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = adminService.selectReservation(map);
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminReservation";
+
+		}	
+		
+		// 결제 환불 처리
+		@PostMapping("/refundMovie")
+		@ResponseBody
+		public String refundMovie(@RequestParam("mem_num") long mem_num,@Param("ph_num") long ph_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment) {
+			adminService.refundMovie(ph_num, mem_num, mb_price, ph_payment);
+			log.debug("<<포인트 환불완료>>");
+			return "adminReservation";
+		}
+		// 결제 환불 처리
+		@PostMapping("/updateMb")
+		public String updateMb(long mb_num) {
+			adminService.updateMb(mb_num);
+			return "adminReservation";
+		}
+		
 
 }

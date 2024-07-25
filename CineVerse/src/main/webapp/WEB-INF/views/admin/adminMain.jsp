@@ -34,7 +34,7 @@
 				<div class="section" class="col">
 					<img src="${pageContext.request.contextPath}/images/cmj/qa_setting.png" width="70" height="70">
 					<span class="setting_name">문의</span>
-					<div class="result_data">50</div>
+					<div class="result_data">${consultTotal}</div>
 				</div>
 				<div class="section" class="col">
 					<img src="${pageContext.request.contextPath}/images/cmj/movie_setting.png" width="70" height="70">

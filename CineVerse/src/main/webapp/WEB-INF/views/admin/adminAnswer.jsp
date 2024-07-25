@@ -40,6 +40,7 @@
             </li>
         </ul>
 		<div class="btn_display_set">
+			<form:button id="redirect_btn"><a href = "adminConsult">목록</a></form:button>
 			<form:button id="submit_btn">등록하기</form:button>
 		</div>
     </form:form>

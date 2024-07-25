@@ -13,6 +13,7 @@ import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
@@ -252,6 +253,26 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public ConsultVO selectConsult(long consult_num) {
 		return adminMapper.selectConsult(consult_num);
+	}
+	@Override
+	public Integer totalConsult() {
+		return adminMapper.totalConsult();
+	}
+	@Override
+	public void refundMovie(long ph_num, long mem_num, long mb_price, String ph_payment) {
+		adminMapper.refundMovie(ph_num, mem_num, mb_price, ph_payment);
+	}
+	@Override
+	public void updateMb(long mb_num) {
+		adminMapper.updateMb(mb_num);
+	}
+	@Override
+	public List<RefundMbVO> selectReservation(Map<String,Object> map) {
+		return adminMapper.selectReservation(map);
+	}
+	@Override
+	public Integer selectReservationRowCount(Map<String, Object> map) {
+		return adminMapper.selectReservationRowCount(map);
 	}
 
 }

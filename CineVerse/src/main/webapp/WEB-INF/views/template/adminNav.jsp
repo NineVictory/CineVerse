@@ -29,10 +29,10 @@
 				class="menu-link">영화시간표등록</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminMovie"
-				class="menu-link">영화</a></li>
+				class="menu-link">영화관리</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminReservation"
-				class="menu-link">예매</a></li>
+				class="menu-link">예매관리</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin/adminReview"
 				class="menu-link">리뷰관리</a></li>

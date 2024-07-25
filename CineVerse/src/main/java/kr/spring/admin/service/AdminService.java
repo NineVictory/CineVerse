@@ -6,11 +6,13 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
@@ -61,6 +63,7 @@ public interface AdminService {
 	public Integer totalProduct();
 	public Integer totalMovie();
 	public Integer totalCinema();
+	public Integer totalConsult();
 	public void insertCinema(CinemaVO cinemaVO);
 	public List<TheaterVO> selectTheater(int c_num);
 	public List<CinemaVO> selectCinema(Map<String,Object> map);
@@ -72,4 +75,8 @@ public interface AdminService {
 	public Integer selectConsultRowCount(Map<String,Object> map);
 	public ConsultVO selectConsult(long consult_num);
 	public void updateAnswer(ConsultVO consultVO);
+	public List<RefundMbVO> selectReservation(Map<String,Object> map);
+	public Integer selectReservationRowCount(Map<String,Object> map);
+	public void refundMovie(@Param("ph_num") long ph_num, @Param("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment);
+	public void updateMb(long mb_num);
 }	

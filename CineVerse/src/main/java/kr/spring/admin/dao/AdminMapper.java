@@ -14,6 +14,7 @@ import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
@@ -39,6 +40,8 @@ public interface AdminMapper {
 	public Integer totalMovie();
 	@Select("SELECT COUNT(*) FROM cinema")
 	public Integer totalCinema();
+	@Select("SELECT COUNT(*) FROM consult WHERE consult_status = 1")
+	public Integer totalConsult();
 	
 	// 회원 관리
 	public List<AdminVO> selectMemberList(Map<String,Object> map);
@@ -123,8 +126,10 @@ public interface AdminMapper {
 	//결제
 	public List<PointVO> selectPoint(Map<String,Object> map);
 	public Integer selectPointRowCount(Map<String,Object> map);
+	
 	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{ph_point}, SYSDATE, #{mem_num}, 0, #{ph_payment})")
 	public void refundPoint(@Param("ph_num") long ph_num, @Param("mem_num") long mem_num, @Param("ph_point") long ph_point, @Param("ph_payment") String ph_payment);
+	
 	@Update("UPDATE point_history SET ph_type = 3 WHERE ph_num = #{ph_num}")
 	public void updatePoint(long ph_num);
 	
@@ -136,4 +141,19 @@ public interface AdminMapper {
 	@Update("UPDATE consult SET consult_modify_date = SYSDATE, consult_status = 2, consult_answer = #{consult_answer, jdbcType=VARCHAR} WHERE consult_num = #{consult_num}")
 	public void updateAnswer(ConsultVO consultVO);
 	
+	//예매 취소
+	
+    // 예약
+	public List<RefundMbVO> selectReservation(Map<String,Object> map);
+	public Integer selectReservationRowCount(Map<String,Object> map);
+	//환불처리
+	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{mb_price}, SYSDATE, #{mem_num}, 0, #{ph_payment})")
+	public void refundMovie(@Param("ph_num") long ph_num, @Param("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment);
+	//예매취소설정
+	@Update("UPDATE mb_detail SET md_type = 2 WHERE mb_num = #{mb_num}")
+	public void updateMb(long mb_num);
+	/*
+	 * @Delete("DELETE FROW movie_booking WHERE mb_num = #{mb_num}") public void
+	 * deleteMb(long mb_num);
+	 */
 }

@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+    function redirectToAdminAnswer(consult_num) {
+        // consultNum을 이용하여 원하는 동작을 수행하는 예시
+        window.location.href = 'adminAnswer?consult_num=' + consult_num;
+    }
+</script>
+
 <div class="page-container">	
 <div class = "admin_member">
 	<div class = "firstTitle">
@@ -33,8 +40,8 @@
         </c:if>
         <tbody>
             <c:forEach var="consult" items="${list}">
-                <tr>
-					<td class="mem-data"><a href="adminAnswer?consult_num=${consult.consult_num}">${consult.consult_num}</a></td>
+                <tr onclick="redirectToAdminAnswer(${consult.consult_num})" id = "intoAnswer">
+					<td class="mem-data">${consult.consult_num}</td>
                     <td class="mem-data">${consult.mem_num}</td>
                     <td class="mem-data">${consult.consult_title}</td>    
                     <c:if test = "${consult.consult_type == 'dissatisfaction'}">              

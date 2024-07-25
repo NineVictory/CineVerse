@@ -468,7 +468,7 @@
 	
 	
 	<!-- 상영관 등록 -->
-	<insert id="inserttheater" parameterType="cinemaVO">
+	<insert id="insertTheater" parameterType="cinemaVO">
 		INSERT INTO theater(
 		te_num,
 		c_num,
@@ -681,6 +681,51 @@
 		COUNT(*)
 		FROM consult
 		<include refid="consultSearch"></include>
+	</select>
+	
+	<!-- 예매 환불 시작 -->
+	<sql id="reservationSearch">
+		<where>
+			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
+	            AND md_type = 2
+	        </if>
+		</where>
+	</sql>
+	
+
+	<!-- 예매 전체/검색 목록 -->
+	<select id="selectReservation" parameterType="map"
+		resultType="refundMbVO">
+		SELECT *
+		FROM (
+		SELECT a.*, rownum rnum
+		FROM (
+		SELECT
+		md.md_num,
+		m.mb_num,
+		m.mem_num,
+		m.mb_date,
+		m.mb_price,
+		md.md_type
+		FROM movie_booking m
+		JOIN mb_detail md ON m.mb_num = md.mb_num
+		<include refid="reservationSearch"></include>
+		) a
+		)
+    <![CDATA[
+    WHERE rnum >= #{start} AND rnum <= #{end}
+    ]]>
+	</select>
+
+	
+	<!-- 문의 글 총레코드수/검색 레코드수 -->
+	<select id="selectReservationRowCount" parameterType="map"
+		resultType="integer">
+		SELECT
+		COUNT(*)
+		FROM mb_detail
+		<include refid="reservationSearch"></include>
 	</select>
 </mapper>							
 
