@@ -28,7 +28,7 @@
 <div class="page-container">
 <div class = "admin_member">
 	<div class = "firstTitle">
-		<p id ="title">예약관리</p>
+		<p id ="title">예매관리</p>
 	</div>
 		<form action="adminReservation" id="admin_search">
 			<ul>
@@ -62,7 +62,7 @@
                     <td class="mem-data">${mr.mem_num}</td>
                     <td class="mem-data">${mr.mb_date}</td>
                     <td class="mem-data">${mr.mb_price}</td>
-					<td class="button2"><input type="button" value="삭제" onclick="refundMovie(${mr.mem_num}, ${mr.mb_price}, '예매환불' ,${mr.mb_num})"/></td>
+					<td class="button2"><input type="button" value="예매취소" onclick="refundMovie(${mr.mem_num}, ${mr.mb_price}, '예매환불' ,${mr.mb_num})"/></td>
                 </tr>
             </c:forEach>
         </tbody>

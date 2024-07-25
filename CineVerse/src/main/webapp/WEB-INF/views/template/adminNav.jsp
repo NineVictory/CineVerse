@@ -74,6 +74,9 @@
 				href="${pageContext.request.contextPath}/admin/adminProductList"
 				class="menu-link">상품목록</a></li>
 			<li><a
+				href="${pageContext.request.contextPath}/admin/adminRefundShop"
+				class="menu-link">주문취소</a></li>
+			<li><a
 				href="${pageContext.request.contextPath}/admin/adminDelivery"
 				class="menu-link">배송상태</a></li>
 			<li>
