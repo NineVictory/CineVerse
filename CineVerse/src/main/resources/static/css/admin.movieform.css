@@ -39,6 +39,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
+    resize: none;
 }
 
 .insert_movie_form ul li input[type="file"] {
@@ -76,3 +77,4 @@ display: flex;
     display: flex;
     justify-content: flex-start;
 }
+
