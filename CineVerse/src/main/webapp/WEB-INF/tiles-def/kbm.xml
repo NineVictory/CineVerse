@@ -49,6 +49,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignModify.jsp"/>
 	</definition>
 	
+	<definition name="assignReportForm" template="/WEB-INF/views/template/layout_report.jsp">
+		<put-attribute name="title" value="신고하기"/>
+
+		<put-attribute name="body" value="/WEB-INF/views/assignboard/reportForm.jsp"/>
+	</definition>
+	
+	
+	
 	
 	<definition name="supportMain" template="/WEB-INF/views/template/layout_support.jsp">
 		<put-attribute name="title" value="고객센터"/>
@@ -94,17 +102,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/support/consultDetail.jsp"/>
 	</definition>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<definition name="eventMain" template="/WEB-INF/views/template/layout_event.jsp">
 		<put-attribute name="title" value="이벤트 화면"/>
 		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp" />
@@ -117,6 +114,7 @@
 		<put-attribute name="title" value="이벤트 상세"/>
 		<put-attribute name="body" value="/WEB-INF/views/event/eventDetail.jsp"/>
 	</definition>
+	
 </tiles-definitions>
 
 
