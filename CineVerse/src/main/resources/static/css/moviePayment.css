@@ -1,100 +1,113 @@
 @charset "UTF-8";
 
 .movie_payments {
-    font-size: 14px;
+font-size: 14px;
     margin-top: 50px;
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
+    justify-content: center;
 }
 
 .movies_info {
-padding-right: 70px;
+	border-left: 1px solid var(--gray-4);
     border-right: 1px solid var(--gray-4);
+    border-bottom: 1px solid var(--gray-4);
+    height: 640px;
+    width: 340px;
     gap: 20px;
     font-size: 14px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
 .movies_poster {
-	font-size: 14px;
+	display: flex;
+	width: 330px;
+	justify-content: center;
 }
 
 .movie_reserve_info {
 	font-weight: 500;
 	font-size: 14px;
-	margin-left : -40px;
-}
-
-.reserved_space {
-	    padding-top: 10px;
-    border-top: 1px solid var(--gray-2);
+	margin-left: -40px;
 }
 
 
 .ic_grade {
-    display: inline-block;
-    width: 22px;
-    height: 22px;
-    line-height: 22px;
-    border-radius: 50%;
-    font-size: 0;
-    text-align: center;
-    vertical-align: middle;
-    margin-right: 5px;
-    font-weight: bold;
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	border-radius: 50%;
+	font-size: 0;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 5px;
+	font-weight: bold;
 }
 
 .ic_grade:before {
-    content: "";
-    display: block;
-    width: 22px;
-    height: 22px;
-    border-radius: 3px;
-    background-size: 100%;
+	content: "";
+	display: block;
+	width: 22px;
+	height: 22px;
+	border-radius: 3px;
+	background-size: 100%;
 }
 
 .ic_grade.gr_all:before {
-    background: #229c56 url(../images/cmj/grade_all.png) 0 0 no-repeat;
+	background: #229c56 url(../images/cmj/grade_all.png) 0 0 no-repeat;
 }
 
 .ic_grade.gr_12:before {
-    background: #e9b630 url(../images/cmj/grade_12.png) 0 0 no-repeat;
+	background: #e9b630 url(../images/cmj/grade_12.png) 0 0 no-repeat;
 }
 
 .ic_grade.gr_15:before {
-    background: #dd7430 url(../images/cmj/grade_15.png) 0 0 no-repeat;
+	background: #dd7430 url(../images/cmj/grade_15.png) 0 0 no-repeat;
 }
 
 .ic_grade.gr_19:before {
-    background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
+	background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
 }
 
 .movie_title {
 	font-size: 1.2em;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
-.reserved_info {
-	    margin-bottom: 10px;
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
 }
 
-.pay_coupon{
-	padding: 10px;
+.pay_coupon {
+	gap: 20px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    height: 640px;
+    width: 420px;
+    border-right: 1px solid var(--gray-4);
+    border-bottom: 1px solid var(--gray-4);
+    align-items: center;
+}
+
+.pay_select{
+	width: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid var(--gray-4);
+    border-bottom: 1px solid var(--gray-4);
 }
 
 .coupon_detail {
 	border: 1px solid var(--gray-4);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    width: 350px;
-    margin: 10px;
-    padding: 15px;
-    
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	margin: 10px;
+	padding: 15px;
 }
 
 .coupon_name {
@@ -103,27 +116,28 @@ padding-right: 70px;
 }
 
 .coupon_time {
-	color : red;
+	color: red;
 	font-weight: bold;
-	font-size:11px;
+	font-size: 11px;
 }
+
 .coupon_detail_all {
-	font-size:12px;
+	font-size: 12px;
 }
 
 .point_pay {
-	padding : 10px;
+	padding: 25px;
 }
 
-.point_charging{
+.point_charging {
 	display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid var(--gray-4);
-    border-radius: 10px;
-    width: 350px;
-    margin: 10px;
-    padding: 15px;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid var(--gray-4);
+	border-radius: 10px;
+	width: 350px;
+	margin: 10px;
+	padding: 15px;
 }
 
 .point_detail {
@@ -132,51 +146,96 @@ padding-right: 70px;
 
 .pay_decision {
 	width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .pay_origin {
-	    height: 40px;
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	height: 40px;
+	font-weight: 700;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .pay_discount {
-	    height: 40px;
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	height: 40px;
+	font-weight: 700;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
+
 .pay_total {
-	    height: 40px;
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	height: 40px;
+	font-weight: 700;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .pay_btn {
 	border-radius: 10px;
-    color: #fff;
-    width: 350px;
-    height: 40px;
-    background-color: var(--main-color-strong);
-    cursor: pointer;
-    border: none;
+	color: #fff;
+	width: 350px;
+	height: 40px;
+	background-color: var(--main-color-strong);
+	cursor: pointer;
+	border: none;
 }
 
-
 .point_charge {
-	cursor : pointer;
-	border-radius : 8px;
-	font-weight : 600;
-	font-size : 12px;
-	padding : 8px 8px;
+	cursor: pointer;
+	border-radius: 8px;
+	font-weight: 600;
+	font-size: 12px;
+	padding: 8px 8px;
 	border: none;
 	background-color: var(--yellow-check-btn);
+}
+
+.tit_info {
+	display: flex;
+	align-items: center;
+}
+
+.movie_info_dates, .movie_info_cinema ,.reserved_number, .reserved_space{
+margin-bottom: 5px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+}
+
+.info_title {
+    font-size: 12px;
+    width: 40px;
+    font-weight: 800;
+}
+
+.infos_all {
+	    font-weight: 500;
+    font-size: 12px;
+}
+
+.all_titles{
+    font-weight: 600;
+    font-size: 14px;
+    height: 35px;
+    color: #fff;
+    background: var(--gray-6);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.moviename {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    width: 200px;
+    font-weight: bold;
+    font-size: 18px;
 }

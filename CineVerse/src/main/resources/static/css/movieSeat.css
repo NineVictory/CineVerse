@@ -118,8 +118,13 @@
 }
 
 .moviename {
-	font-weight: bold;
-	font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    width: 250px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .select-theater-place {
