@@ -234,6 +234,11 @@ public class MovieController {
                // 영화 정보 조회
                List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
                MemberVO user = (MemberVO)session.getAttribute("user");
+               if (user == null) {
+                   // 로그인이 되어 있지 않으면 로그인 페이지로 리디렉션
+                   return "redirect:/member/login";
+               }
+
              // 보유 쿠폰 정보
              Map<String,Object> map = new HashMap<String,Object>();
              List<MyPageVO> couponList = null;
@@ -266,6 +271,10 @@ public class MovieController {
                                         HttpSession session, 
                                         Model model) {
                MemberVO user = (MemberVO) session.getAttribute("user");
+               if (user == null) {
+                   // 로그인이 되어 있지 않으면 로그인 페이지로 리디렉션
+                   return "redirect:/member/login";
+               }
 
                log.debug("<<confirmPayment - mt_num>> ::: " + mt_num);
                log.debug("<<confirmPayment - ticketNumber>> ::: " + ticketNumber);

@@ -400,7 +400,7 @@ $(document).ready(function() {
     });
 
     // 좌석 선택 버튼 클릭 이벤트 핸들러 추가
-    $('.movieSeatButton').click(function(e) {
+    $('.moveSeatButton').click(function(e) {
         if (!selectedCNum) {
             alert('지점을 선택해주세요.');
             e.preventDefault(); // 폼 제출 방지
