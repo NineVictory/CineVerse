@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MovieBookingVO {
+	private String user_mb_num;
 	private Long mb_num;
 	private Date mb_date;
 	private Long mb_price;
@@ -18,4 +19,10 @@ public class MovieBookingVO {
 	private String m_name;
 	private String th_name;
 	private String c_branch;
+	private String seat_row;
+	private int seat_column;
+	private int mt_start;
+	private int mt_end;
+	private Date mt_date;
+	private String m_filename;
 }
