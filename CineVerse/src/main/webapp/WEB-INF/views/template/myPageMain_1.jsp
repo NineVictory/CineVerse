@@ -36,11 +36,15 @@
 </div>
 
 <div class="myPageMain_2">
-	<div class="myPage_ticket" onclick="location.href='/myPage/'">
+	<div class="myPage_ticket">
+	
+		
 		<!-- 나의 예매 내역 링크 -->
 		<div class="mp_ticket">모바일 티켓</div>
 		<div class="ticket_content">
-			<div class="mypage_movie_name">듄(재개봉,IMAX LASER 2D)</div>
+			<div class="mypage_movie_name" onclick="location.href='/myPage/reservationList'">듄(재개봉,IMAX LASER 2D)</div>
+			
+			
 			<div class="main_display">
 				<div class="main_movie_info1">
 					<div>관람극장</div>
@@ -49,12 +53,14 @@
 				</div>
 				<div class="main_movie_info2">
 					<div class="myPage_bold">
-						<a href="#">CGV용산아이파크몰</a>
+						CGV용산아이파크몰
 					</div>
 					<div class="myPage_bold">2024.07.06(토) 26:00</div>
 					<div class="myPage_bold">IMAX관</div>
 				</div>
 			</div>
+			
+			
 		</div>
 	</div>
 

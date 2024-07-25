@@ -28,6 +28,7 @@ import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
+import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
@@ -62,6 +63,10 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		
+		
+		
 		log.debug("<<마이페이지 >> : " + member);
 
 
@@ -79,9 +84,8 @@ public class MyPageController {
 
 		int resCnt = mypageService.reservationCnt(user.getMem_num());
 		List<MovieBookingVO> lastRes = null;
-		//MovieBookingVO lastRes = null;
 		
-		if(resCnt > 0) { 			//lastRes
+		if(resCnt > 0) { 			
 			lastRes = mypageService.lastRes(user.getMem_num());
 			log.debug("<<예매목록>> : " + lastRes);
 		}
@@ -193,6 +197,15 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		
+		int count = mypageService.movieReviewCnt(user.getMem_num());
+		List<MovieReviewVO> list = null;
+		if(count > 0) {
+			list = mypageService.movieReviewList(user.getMem_num());
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
 		model.addAttribute("member", member);
 		return "review";
 	}
