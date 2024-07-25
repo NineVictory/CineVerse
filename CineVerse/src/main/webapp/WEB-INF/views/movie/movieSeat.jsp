@@ -300,6 +300,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // 초기 금액 업데이트
     updateSeatCountAndTotalPrice();
 });
+
+
+let timeoutDuration = 5 * 60 * 1000;
+let warningDuration = 4 * 60 * 1000; 
+let timeout, warningTimeout;
+
+function startTimer() {
+    clearTimeout(timeout);
+    clearTimeout(warningTimeout); 
+
+    timeout = setTimeout(function() {
+        alert("시간이 초과되어 영화 선택 화면으로 돌아갑니다.");
+        window.history.go(-1);
+    }, timeoutDuration);
+    
+    warningTimeout = setTimeout(function() {
+        let extend = confirm("남은 시간이 1분 남았습니다. 시간을 연장하시겠습니까?");
+        if (!extend) {
+        	alert("이전 페이지로 이동합니다.")
+        	window.history.go(-1);
+        } else {
+            resetTimer(); 
+        }
+    }, warningDuration);
+}
+
+function resetTimer() {
+    clearTimeout(timeout);
+    clearTimeout(warningTimeout);
+    startTimer();
+}
+
+document.onload = startTimer;
+document.onmousemove = resetTimer;
+document.onkeypress = resetTimer;
+
+
 </script>
 
 
