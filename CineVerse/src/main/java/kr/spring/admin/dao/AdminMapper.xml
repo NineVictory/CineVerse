@@ -470,19 +470,19 @@
 	<!-- 상영관 등록 -->
 	<insert id="insertTheater" parameterType="cinemaVO">
 		INSERT INTO theater(
-		te_num,
+		th_num,
 		c_num,
-		te_name
+		th_name
 		)
 		VALUES (
 		theater_seq.nextval,
 		#{c_num},
-		#{te_name})
+		#{th_name})
 	</insert>
 
 	
 	<select id="selectTheater" parameterType="String" resultType="theaterVO">
-  		  SELECT te_name
+  		  SELECT th_name
   		  FROM theater
  		  WHERE c_num = #{c_num}
 	</select>
