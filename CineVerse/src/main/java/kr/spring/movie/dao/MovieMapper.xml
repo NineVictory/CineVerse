@@ -302,10 +302,8 @@
 				)
 		VALUES(
 			reviewreport_seq.nextval,
-			#{rr_num},
 			#{rr_type},
 			#{rr_count},
-			#{mb_num},
 			#{mr_num},
 			SYSDATE)
 	</insert>

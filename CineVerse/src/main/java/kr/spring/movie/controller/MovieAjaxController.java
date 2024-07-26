@@ -21,6 +21,8 @@ import kr.spring.movie.vo.MovieVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieBookingVO;
+import kr.spring.movie.vo.MovieReviewReportReporterVO;
+import kr.spring.movie.vo.MovieReviewReportVO;
 import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -285,5 +287,42 @@ public class MovieAjaxController {
         result.put("count", count);
 
         return result;
+    }
+    
+    /*=======================
+	 * 리뷰 신고 처리
+	 *=======================*/
+    
+    
+    
+    @PostMapping("/movie/reportReview")
+    @ResponseBody
+    public Map<String, String> reportReview(MovieReviewReportVO report, @RequestParam long mr_num,@RequestParam String rr_type,HttpSession session) {
+        Map<String, String> mapJson = new HashMap<>();
+        
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        if (user == null) {
+            mapJson.put("result", "logout");
+            return mapJson;
+        }
+        long mem_num = user.getMem_num();
+       
+            // 현재 로그인한 사용자의 회원 번호 설정
+			/* report.setMem_num(user.getMem_num()); */
+            // 리뷰 신고 등록
+            report.setMr_num(mr_num);
+            report.setRr_type(rr_type);
+            report.setRr_count(1); // 초기값으로 0을 설정하거나 필요에 따라 설정
+            movieService.insertReviewReport(report);
+            // 신고자 정보 등록
+            MovieReviewReportReporterVO reporter = new MovieReviewReportReporterVO();
+            reporter.setRr_num(report.getRr_num());
+            reporter.setMem_num(mem_num);
+            movieService.insertReviewReporter(reporter);
+
+            mapJson.put("result", "success");
+
+        return mapJson;
     }
 }

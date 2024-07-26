@@ -249,14 +249,37 @@ $(document).ready(function() {
 			}
 		});
 	}
-
+    // 리뷰 신고 접수
+    function reportReview(mr_num, rr_type) {
+        $.ajax({
+            type: "POST",
+            url: "reportReview",
+            data: {
+                mr_num: mr_num,
+                rr_type: rr_type
+            },
+            dataType: 'json',
+            success: function(param) {
+                if (param.result === 'logout') {
+                    alert('로그인 후 이용해주세요.');
+                } else if (param.result === 'success') {
+                    alert(rr_type + ' 신고가 접수되었습니다.');
+                } else {
+                    alert('신고 처리 중 오류가 발생했습니다.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error occurred: ", status, error);
+                alert('네트워크 오류로 신고를 처리할 수 없습니다.');
+            }
+        });
+    }
 	// 스포일러 신고 접수 버튼(예시로 버튼 작동하는지 넣어둠})
 	$(document).on('click', '.report-spoiler', function(e) {
 		e.preventDefault();
 		var mr_num = $(this).data('num');
-		 var mem_num = $('#mem_num').val(); // 현재 사용자 ID (hidden으로 가져옴)
 		if (confirm('정말로 스포일러 신고를 하시겠습니까?')) {
-			alert('스포일러 신고가 접수되었습니다. 리뷰 번호: ' + mr_num+'신고자번호'+mem_num);
+			reportReview(mr_num, '스포일러');
 		}
 	});
 	// 욕설 비방 신고 접수 버튼 (예시로 버튼 작동하는지 넣어둠)
@@ -264,7 +287,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var mr_num = $(this).data('num');
 		if (confirm('정말로 욕설/비방 신고를 하시겠습니까?')) {
-			alert('욕설/비방 신고가 접수되었습니다. 리뷰 번호: ' + mr_num);
+			reportReview(mr_num, '욕설/비방');
 		}
 	});
 	// 드롭다운 메뉴

@@ -15,6 +15,8 @@ import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieDetailKFAPIVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
+import kr.spring.movie.vo.MovieReviewReportReporterVO;
+import kr.spring.movie.vo.MovieReviewReportVO;
 import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
@@ -340,6 +342,25 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void updateUserMbNum(long mb_num, String user_mb_num) {
 		movieMapper.updateUserMbNum(mb_num, user_mb_num);
+	}
+
+	@Override
+	public MovieReviewReportVO selectMovieReport(MovieReviewReportVO MovieReviewReport) {
+		
+		return movieMapper.selectMovieReport(MovieReviewReport);
+	}
+
+	@Override
+	public void insertReviewReport(MovieReviewReportVO MovieReviewReport) {
+		movieMapper.insertReviewReport(MovieReviewReport);
+		
+	}
+
+	@Override
+	public void insertReviewReporter(MovieReviewReportReporterVO MovieReviewReportReporter) {
+		
+		movieMapper.insertReviewReporter(MovieReviewReportReporter);
+		
 	}
 
 

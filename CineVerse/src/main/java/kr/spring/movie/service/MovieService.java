@@ -13,6 +13,8 @@ import kr.spring.movie.vo.MbDetailVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieDetailKFAPIVO;
+import kr.spring.movie.vo.MovieReviewReportReporterVO;
+import kr.spring.movie.vo.MovieReviewReportVO;
 import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
@@ -65,7 +67,9 @@ public interface MovieService {
 	public void insertReFav(MovieReviewfavVO fav);
 	public void deleteReFav(MovieReviewfavVO fav);
     
-    
+	public MovieReviewReportVO selectMovieReport(MovieReviewReportVO MovieReviewReport);
+	public void insertReviewReport(MovieReviewReportVO MovieReviewReport);
+	public void insertReviewReporter(MovieReviewReportReporterVO MovieReviewReportReporter);   
     // 영화 시간표
     void addMovieTime(MovieTimeVO movieTimeVO);
     
