@@ -489,6 +489,7 @@ margin-bottom: 10px;
 	gap: 20px;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .selected-movie-info{

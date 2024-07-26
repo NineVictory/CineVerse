@@ -53,6 +53,16 @@
     </definition>
 	 
 	 
+	 
+	 <!-- 등록된 상영시간표 관리 [관리자용] -->
+	<definition name="adminTimeControll" extends="adminMain">
+		<put-attribute name="title" value="영화 상영 시간 관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminTimeControllCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminTimeControll.jsp" />
+	</definition>
+	 
+	 
+	 
 	<!-- 좌석 등록
 	 <definition name="seatWrite" extends="cinemaList2">
         <put-attribute name="title" value="좌석 등록"/>

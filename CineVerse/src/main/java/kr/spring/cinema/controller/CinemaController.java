@@ -230,7 +230,13 @@ public class CinemaController {
 	
 	
 	
-	
+	 	/*========================
+	  	* 등록된 상영시간표 관리 [관리자용]
+	  	*========================*/
+	 @GetMapping("/admin/adminTimeControll")
+	   public String otherMovieInfo(){
+	      return "adminTimeControll";
+	   }
 	
 	
 	
