@@ -44,7 +44,14 @@ document.addEventListener('DOMContentLoaded', function() {
     </c:forEach>
     <div class="reserved_number">
     	<p class="info_title">인원</p> 
-    	<p class="infos_all">${ticketNumber}명</p>
+    	<p class="infos_all"><c:if test="${adultCount >0 }">
+    			<span>성인 ${adultCount }</span>
+    		</c:if><c:if test="${youthCount >0 }">
+    			<span>청소년 ${youthCount }</span>
+    		</c:if><c:if test="${seniorCount >0 }">
+    			<span>경로 ${seniorCount }</span>
+    		</c:if>
+     	</p>
     </div>
  	</div>
  	<div class="reserved_space">
