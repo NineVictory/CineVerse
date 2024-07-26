@@ -142,6 +142,8 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+	alert('5분동안 미선택시 이전 화면으로 이동됩니다.\n이용에 참고부탁드립니다.')
+	
     const seatContainer = document.getElementById('seatContainer');
     const quantityInputs = document.querySelectorAll('.quantity-input');
     let totalPrice = 0;
@@ -301,29 +303,34 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSeatCountAndTotalPrice();
 });
 
-
-let timeoutDuration = 5 * 60 * 1000;
-let warningDuration = 4 * 60 * 1000; 
+let timeoutDuration = 2 * 60 * 1000; // 2분
+let warningDuration = 1 * 60 * 1000; // 1분
 let timeout, warningTimeout;
+let hasExtended = false; // 연장을 했는지 여부를 확인
 
 function startTimer() {
     clearTimeout(timeout);
-    clearTimeout(warningTimeout); 
+    clearTimeout(warningTimeout);
 
-    timeout = setTimeout(function() {
-        alert("시간이 초과되어 영화 선택 화면으로 돌아갑니다.");
-        window.history.go(-1);
-    }, timeoutDuration);
-    
     warningTimeout = setTimeout(function() {
-        let extend = confirm("남은 시간이 1분 남았습니다. 시간을 연장하시겠습니까?");
-        if (!extend) {
-        	alert("이전 페이지로 이동합니다.")
-        	window.history.go(-1);
-        } else {
-            resetTimer(); 
+        if (!hasExtended) {
+            let extend = confirm("남은 시간이 1분 남았습니다. 시간을 연장하시겠습니까?\n연장은 한 번만 가능합니다.");
+            if (!extend) {
+                alert("시간이 초과되어 영화 선택 화면으로 돌아갑니다.");
+                window.history.go(-1);
+            } else {
+                hasExtended = true;
+                resetTimer();
+            }
         }
     }, warningDuration);
+
+    timeout = setTimeout(function() {
+        if (!hasExtended) { // 연장을 하지 않은 경우에만 이동
+            alert("시간이 초과되어 영화 선택 화면으로 돌아갑니다.");
+            window.history.go(-1);
+        }
+    }, timeoutDuration);
 }
 
 function resetTimer() {
@@ -332,10 +339,8 @@ function resetTimer() {
     startTimer();
 }
 
-document.onload = startTimer;
-document.onmousemove = resetTimer;
-document.onkeypress = resetTimer;
-
+document.addEventListener('click', resetTimer);
+document.addEventListener('DOMContentLoaded', startTimer);
 
 </script>
 
