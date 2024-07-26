@@ -23,7 +23,8 @@
 						<input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 					</li>
 				</ul>
-			</form>    <table class="adminMember-table">
+			</form>    
+		<table class="adminMember-table">
         <thead>
             <tr>
                 <th>회원번호</th>
@@ -59,10 +60,20 @@
 						</c:if>
 					</td>
 						<c:if test="${c.coupon_use==1}">
-							<td class="button1"><input type="button" value="삭제 가능" onclick="stopMember(${member.mem_num})" /></td>
+							<td class="button1">
+							    <input type="button" value="삭제 가능" onclick="confirmDelete(${c.mc_num})" />
+							</td>
+							
+							<script>
+							function confirmDelete(mc_num) {
+							    if (confirm('정말로 삭제하시겠습니까?')) {
+							        location.href = 'deleteMemberCoupon?mc_num=' + mc_num;
+							    }
+							}
+							</script>
 						</c:if>
 						<c:if test="${c.coupon_use==2 || c.coupon_use==3}">
-							<td class="button2"><input type="button" value="삭제 불가" onclick="stopMember(${member.mem_num})" /></td>
+							<td class="button2"><input type="button" value="삭제 불가" /></td>
 						</c:if>
                 </tr>
             </c:forEach>

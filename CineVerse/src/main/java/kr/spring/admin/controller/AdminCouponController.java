@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import kr.spring.admin.service.AdminCouponService;
+import kr.spring.admin.service.AdminService;
+import kr.spring.admin.vo.AdminVO;
 import kr.spring.board.service.BoardService;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
@@ -34,6 +36,11 @@ public class AdminCouponController {
 	@Autowired
 	private AdminCouponService couponService;
 
+	
+	@Autowired
+	private AdminService adminService;
+	
+	
 	@GetMapping("/admin/adminCoupon")
 	public String adminCoupon(){
 		return "adminCoupon";
@@ -51,7 +58,7 @@ public class AdminCouponController {
 		couponService.registerCoupon(coupon);
 
 		model.addAttribute("message", "성공적으로 쿠폰이 등록되었습니다.");
-		model.addAttribute("url", request.getContextPath() + "/admin/adminCoupon");
+		model.addAttribute("url", request.getContextPath() + "/admin/adminCouponList");
 		return "common/resultAlert"; 
 	}
 
@@ -127,6 +134,63 @@ public class AdminCouponController {
 		couponService.modifyCoupon(coupon);
 		
 		model.addAttribute("message", "성공적으로 쿠폰이 수정되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/admin/adminCouponList");
+		return "common/resultAlert"; 
+	}
+	
+	@GetMapping("admin/deleteMemberCoupon")
+	public String deleteMemberCoupon(@RequestParam long mc_num, Model model, HttpServletRequest request) {
+		log.debug("<<<회원 쿠폰 삭제>>> ::: " + mc_num);
+
+		couponService.deleteMemberCoupon(mc_num);
+		
+		model.addAttribute("message", "성공적으로 쿠폰이 삭제되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/admin/adminMemberCoupon");
+		return "common/resultAlert"; 
+	}
+	
+	@GetMapping("admin/couponSend")
+	public String couponSend(@RequestParam long coupon_num, @RequestParam(defaultValue="1") int pageNum,
+			String keyfield,String keyword, Model model, HttpServletRequest request) {
+		log.debug("<<<회원 쿠폰 지급>>> ::: " + coupon_num);
+
+		Map<String,Object> map = 
+				new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+
+		//전체,검색 레코드수
+		int count = adminService.selectMemberRowCount(map);
+
+		//페이지 처리
+		PagingUtil page = 
+				new PagingUtil(keyfield,keyword,pageNum,
+						count,10,10,"admin/adminCouponSend?coupon_num=" + coupon_num);
+		
+		List<AdminVO> list = null;
+		
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+
+			list = adminService.selectMemberList(map);
+		}
+		
+		model.addAttribute("coupon_num", coupon_num);
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+
+
+		return "adminCouponSend"; 
+	}
+	
+	@GetMapping("admin/couponSendMember")
+	public String couponSendMember(@RequestParam long coupon_num, @RequestParam long mem_num ,Model model, HttpServletRequest request) {
+		
+		couponService.couponSendMember(coupon_num, mem_num);
+		
+		model.addAttribute("message", "성공적으로 쿠폰이 지급되었습니다.");
 		model.addAttribute("url", request.getContextPath() + "/admin/adminCouponList");
 		return "common/resultAlert"; 
 	}

@@ -136,4 +136,10 @@
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminMovieTimeCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCouponModify.jsp" />
 	</definition>
+	
+	<definition name="adminCouponSend" extends="adminMain">
+		<put-attribute name="title" value="쿠폰지급" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMemberCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCouponSend.jsp" />
+	</definition>
 </tiles-definitions>

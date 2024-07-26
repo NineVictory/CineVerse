@@ -33,4 +33,6 @@ public interface AdminCouponService {
 	public List<CouponVO> CouponList(Map<String, Object> map);
 	public CouponVO couponDetail(Long coupon_num);
 	public void modifyCoupon(CouponVO couponVO);
+	public void deleteMemberCoupon(long mc_num);
+	public void couponSendMember(@Param(value="coupon_num") long coupon_num, @Param(value="mem_num") long mem_num);
 }	

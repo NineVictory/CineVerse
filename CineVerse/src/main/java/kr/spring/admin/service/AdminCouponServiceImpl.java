@@ -70,4 +70,14 @@ public class AdminCouponServiceImpl implements AdminCouponService{
 		couponMapper.modifyCoupon(couponVO);
 	}
 
+	@Override
+	public void deleteMemberCoupon(long mc_num) {
+		couponMapper.deleteMemberCoupon(mc_num);
+	}
+
+	@Override
+	public void couponSendMember(long coupon_num, long mem_num) {
+		couponMapper.couponSendMember(coupon_num, mem_num);
+	}
+
 }

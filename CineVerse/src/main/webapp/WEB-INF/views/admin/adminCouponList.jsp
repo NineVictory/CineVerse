@@ -61,7 +61,7 @@
 					</td>
 
 						
-					<td class="button2"><input type="button" value="지급" onclick="stopMember(${member.mem_num})" /></td>
+					<td class="button2"><input type="button" value="지급" onclick="location.href='${pageContext.request.contextPath}/admin/couponSend?coupon_num=${c.coupon_num}'" /></td>
                 </tr>
             </c:forEach>
         </tbody>

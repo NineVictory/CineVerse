@@ -3,9 +3,12 @@ package kr.spring.admin.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.member.vo.CouponVO;
 import kr.spring.util.PagingUtil;
@@ -25,4 +28,10 @@ public interface AdminCouponMapper {
 	public CouponVO couponDetail(Long coupon_num);
 	
 	public void modifyCoupon(CouponVO couponVO);
+	
+	@Delete("DELETE FROM member_coupon WHERE mc_num=#{mc_num}")
+	public void deleteMemberCoupon(long mc_num);
+	
+	@Insert("INSERT INTO member_coupon (mc_num, coupon_num, mem_num) VALUES(member_coupon_seq.nextval, #{coupon_num}, #{mem_num})")
+	public void couponSendMember(@Param(value="coupon_num") long coupon_num, @Param(value="mem_num") long mem_num);
 }
