@@ -19,7 +19,7 @@
 		<div class="consult_content">
 			<div class="my_consult">
 				<div class="my_board_type">${event.event_start} ~ ${event.event_end} </div>
-				<div class="my_consult_title">${event.event_name}</div>
+				<div class="my_consult_title" onclick="location.href='/event/eventDetail?event_num=${event.event_num}'">${event.event_name}</div>
 			</div>
 			<div class="my_consult_check">
 				<div>당첨 확인</div>

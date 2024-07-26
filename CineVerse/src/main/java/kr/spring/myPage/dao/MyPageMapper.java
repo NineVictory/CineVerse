@@ -18,6 +18,7 @@ import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
+import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
 
@@ -66,6 +67,13 @@ public interface MyPageMapper {
 	public Integer reservationCnt(Long mem_num);
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);
+	public List<MovieBookingVO> mainRes(Long mem_num);//메인나브
+	
+	//영화 리뷰
+	@Select("SELECT COUNT(*) FROM movie_review WHERE mem_num=#{mem_num}")
+	public Integer movieReviewCnt(Long mem_num);
+	@Select("SELECT * FROM movie_review LEFT OUTER JOIN(SELECT COUNT(*) fav_cnt,mr_num FROM movie_review GROUP BY mr_num) USING(mr_num) WHERE mem_num=#{mem_num}")
+	public List<MovieReviewVO> movieReviewList(Long mem_num);
 	
 	
 	
@@ -108,7 +116,7 @@ public interface MyPageMapper {
 	@Update("UPDATE member_detail SET mem_membership_date = NULL WHERE mem_num=(SELECT mem_num FROM member_detail WHERE ADD_MONTHS(mem_membership_date,1)<SYSDATE)")
 	public void updateNoSubDate();
 
-
+	
 
 
 

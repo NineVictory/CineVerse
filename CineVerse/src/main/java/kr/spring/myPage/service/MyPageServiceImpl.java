@@ -15,6 +15,7 @@ import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
+import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.myPage.dao.MyPageMapper;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
@@ -25,7 +26,7 @@ public class MyPageServiceImpl implements MyPageService{
 
 	@Autowired
 	MyPageMapper myPageMapper;
-	
+
 	@Override
 	public MyPageVO selectMember(long mem_num) {
 		return myPageMapper.selectMember(mem_num);
@@ -36,6 +37,7 @@ public class MyPageServiceImpl implements MyPageService{
 		Integer coupon = myPageMapper.selectMemberCoupon(mem_num);
 		return coupon != null ? coupon : 0;
 	}
+	
 	@Override
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map) {
 		return myPageMapper.selectMemCouponList(map);
@@ -221,9 +223,11 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.reservationList(mem_num);
 	}
 
-	
-	  @Override public List<MovieBookingVO> lastRes(Long mem_num) { return
-	  myPageMapper.lastRes(mem_num); }
+
+	@Override 
+	public List<MovieBookingVO> lastRes(Long mem_num) { 
+		return  myPageMapper.lastRes(mem_num); 
+	}
 
 	@Override
 	public void updateCoupon(Long mem_num) {
@@ -234,12 +238,27 @@ public class MyPageServiceImpl implements MyPageService{
 	public void updatePoint(Long mem_num) {
 		myPageMapper.updatePoint(mem_num);
 	}
-	 
 
-	
+	@Override
+	public List<MovieBookingVO> mainRes(Long mem_num) {
+		return myPageMapper.mainRes(mem_num);
+	}
 
-	
+	@Override
+	public Integer movieReviewCnt(Long mem_num) {
+		return myPageMapper.movieReviewCnt(mem_num);
+	}
+
+	@Override
+	public List<MovieReviewVO> movieReviewList(Long mem_num) {
+		return myPageMapper.movieReviewList(mem_num);
+	}
 
 
-	
+
+
+
+
+
+
 }

@@ -14,6 +14,7 @@ import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
+import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
 
@@ -58,7 +59,10 @@ public interface MyPageService {
 	public Integer reservationCnt(Long mem_num);
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);
+	public List<MovieBookingVO> mainRes(Long mem_num);//메인나브
 	public void updateCoupon(Long mem_num);
 	public void updatePoint(Long mem_num);
+	public Integer movieReviewCnt(Long mem_num);
+	public List<MovieReviewVO> movieReviewList(Long mem_num);
 	
 }
