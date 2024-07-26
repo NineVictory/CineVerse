@@ -18,6 +18,8 @@ import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieDetailKFAPIVO;
 import kr.spring.movie.vo.MovieDirectorVO;
 import kr.spring.movie.vo.MovieGenreVO;
+import kr.spring.movie.vo.MovieReviewReportReporterVO;
+import kr.spring.movie.vo.MovieReviewReportVO;
 import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.movie.vo.MovieReviewfavVO;
 import kr.spring.movie.vo.MovieTimeVO;
@@ -119,7 +121,14 @@ public interface MovieMapper {
 	public void deleteReFavByMrnum(Long mr_num);
 	@Delete("DELETE FROM mr_fav WHERE mr_num IN (SELECT mr_num FROM spboard_reply WHERE m_code=#{m_code})")
 	public void deleteReFavByM_code(Long m_code); 		
-		
+	
+	//리뷰신고
+	@Select("SELECT * FROM rr_reporter WHERE rr_num=#{rr_num} AND mem_num=#{mem_num}")
+	public MovieReviewReportVO selectMovieReport(MovieReviewReportVO MovieReviewReport);
+	public void insertReviewReport(MovieReviewReportVO MovieReviewReport);
+	@Insert("INSERT INTO rr_reporter (rr_num,mem_num) VALUES (#{rr_num},#{mem_num})")
+	public void insertReviewReporter(MovieReviewReportReporterVO MovieReviewReportReporter);
+	
 		
 		
 		

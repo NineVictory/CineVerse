@@ -291,7 +291,24 @@
 			WHERE rnum >=#{start} AND rnum <=#{end}
 			]]>
 	</select>
-	
+		<!-- 영화 리뷰 신고 등록 -->
+	<insert id="insertReviewReport" parameterType="MovieReviewReportVO">
+		INSERT INTO reviewreport(
+			rr_num,
+			rr_type,
+			rr_count,
+			mr_num,
+			rr_reportdate
+				)
+		VALUES(
+			reviewreport_seq.nextval,
+			#{rr_num},
+			#{rr_type},
+			#{rr_count},
+			#{mb_num},
+			#{mr_num},
+			SYSDATE)
+	</insert>
 	<!-- 영화 시간표 등록 -->
 	 <insert id="insertMovieTime" parameterType="MovieTimeVO">
 	 	  INSERT INTO movie_time (

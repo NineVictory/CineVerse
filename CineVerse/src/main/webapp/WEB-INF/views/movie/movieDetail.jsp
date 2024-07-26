@@ -122,6 +122,7 @@
 			<div id="review_div">
 				<!-- 댓글 작성 폼 -->
 				<form id="mr_form">
+					<input type="hidden" name="mem_num" value="${user.mem_num}" id="mem_num">
 					<input type="hidden" name="m_code" value="${movie.m_code}"
 						id="m_code"> <input type="hidden" name="mb_num"
 						value="${booking != null ? booking.mb_num : 0}" id="mb_num">

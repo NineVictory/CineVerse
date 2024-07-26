@@ -254,8 +254,9 @@ $(document).ready(function() {
 	$(document).on('click', '.report-spoiler', function(e) {
 		e.preventDefault();
 		var mr_num = $(this).data('num');
+		 var mem_num = $('#mem_num').val(); // 현재 사용자 ID (hidden으로 가져옴)
 		if (confirm('정말로 스포일러 신고를 하시겠습니까?')) {
-			alert('스포일러 신고가 접수되었습니다. 리뷰 번호: ' + mr_num);
+			alert('스포일러 신고가 접수되었습니다. 리뷰 번호: ' + mr_num+'신고자번호'+mem_num);
 		}
 	});
 	// 욕설 비방 신고 접수 버튼 (예시로 버튼 작동하는지 넣어둠)
