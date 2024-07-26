@@ -52,7 +52,7 @@
                             <img alt="영화1" src="${fn:split(movie.m_filename, '|')[0]}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
                             
                             <div class="overlay">
-                    			<button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieReserve'">예매하기</button>
+                    			<button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieTimeBYmovie?m_code=${movie.m_code}'">예매하기</button>
                     			<button class="btn-details" onclick="location.href='movieDetail?m_code=${movie.m_code}'">상세보기</button>
                 			</div>
                             <div class="movie_name_list">

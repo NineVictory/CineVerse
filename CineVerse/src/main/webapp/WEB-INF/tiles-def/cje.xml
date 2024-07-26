@@ -148,4 +148,11 @@
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventFormCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCrowdForm.jsp" />
 	</definition>
+	
+	<!-- 영화 상영시간표 -->
+    <definition name="movieTime2" extends="movieList">
+        <put-attribute name="title" value="영화시간표"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movieTime2.jsp"/>
+        <put-attribute name="css" value="/WEB-INF/views/movie/movieTimeCSS.jsp"/>
+    </definition>
 </tiles-definitions>
