@@ -2,6 +2,10 @@ package kr.spring.event.vo;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,4 +28,11 @@ public class UserEventVO {
 	private int ep_type;
 	//
 	private long t_rest;	//dday
+	
+	
+	private MultipartFile event_upload;	//파일
+	private String crowd_movie1;
+	private String crowd_movie2;
+	private String crowd_movie3;
+	private String crowd_movie4;
 }

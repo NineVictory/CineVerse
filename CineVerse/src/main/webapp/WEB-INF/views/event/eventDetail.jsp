@@ -63,10 +63,10 @@
 	            
 	            <form action="" id="event_vote" method="post">
 	            	<div class="radio-container">
-		            	<input type="radio" name="movie" value="1">스파이더맨<br>
-		            	<input type="radio" name="movie" value="2">토르<br>
-		            	<input type="radio" name="movie" value="3">아이언맨<br>
-		            	<input type="radio" name="movie" value="4">캡아
+		            	<input type="radio" name="crowd_movie1" value="crowd_movie1"> ${event.crowd_movie1}<br>
+		            	<input type="radio" name="crowd_movie2" value="crowd_movie2"> ${event.crowd_movie2 }<br>
+		            	<input type="radio" name="crowd_movie3" value="crowd_movie3"> ${event.crowd_movie3 }<br>
+		            	<input type="radio" name="crowd_movie4" value="crowd_movie4"> ${event.crowd_movie4 }
 	            	</div>
 	            	<div class="modal-btn-con">
 						<input type="submit" class="movie" value="투표하기">
