@@ -34,6 +34,18 @@ public class MovieServiceImpl implements MovieService {
 
 		return movieMapper.selectMovieList(map);
 	}
+	
+	@Override
+	public List<MovieVO> selectMovieListCurrent(Map<String, Object> map) {
+		
+		return movieMapper.selectMovieListCurrent(map);
+	}
+
+	@Override
+	public List<MovieVO> selectMovieListSchedule(Map<String, Object> map) {
+		
+		return movieMapper.selectMovieListSchedule(map);
+	}
 
 	@Override
 	public Integer selectMovieRowCount(Map<String, Object> map) {
@@ -318,6 +330,8 @@ public class MovieServiceImpl implements MovieService {
 	public void updateUserMbNum(long mb_num, String user_mb_num) {
 		movieMapper.updateUserMbNum(mb_num, user_mb_num);
 	}
+
+
 
 
 

@@ -48,8 +48,8 @@
                     <div>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/movie/movieList" title="홈">홈</a></li>
-                            <li><a href="#" title="현재상영작">현재상영작</a></li>
-                            <li><a href="#" title="상영예정작">상영예정작</a></li>
+                            <li><a href="${pageContext.request.contextPath}/movie/movieListCurrent" title="현재상영작">현재상영작</a></li>
+                            <li><a href="${pageContext.request.contextPath}/movie/movieListSchedule" title="상영예정작">상영예정작</a></li>
                         </ul>
                     </div>
                 </li>

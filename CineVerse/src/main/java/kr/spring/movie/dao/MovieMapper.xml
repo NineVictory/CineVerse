@@ -146,6 +146,102 @@
         WHERE rnum >= #{start} AND rnum <= #{end}
         ]]>
     </select>
+    
+
+        <!-- 게시판 전체 목록/검색 목록 -->
+    <select id="selectMovieListCurrent" parameterType="map" resultType="MovieVO">
+        SELECT
+            *
+        FROM (SELECT
+                    a.*,
+                    rownum rnum
+                  FROM (SELECT
+                          m_code,
+                          <![CDATA[
+                          REPLACE(REPLACE(m_name,'<','&lt;'),'>','&gt;') m_name,
+                          ]]>  
+                          m_filename,
+                          m_opendate,
+                          m_companys,
+                          m_status,  
+                          m_content,
+                          rating
+                        FROM movie 
+                        LEFT OUTER JOIN (SELECT COUNT (*) bookmark_cnt, m_code FROM movie_bookmark GROUP BY m_code) USING(m_code) <!-- bookmark_cnt는 알리아스 명칭임 이 괄호는 인라인 뷰 -->
+                        WHERE m_status = 1
+                    <if test="keyword != null and keyword != ''">
+                        AND (m_name LIKE '%' || #{keyword} || '%' OR m_actor LIKE '%' || #{keyword} || '%')
+                    </if>
+                    <if test="genres != null and genres.size() > 0">
+                        AND m_code IN (
+                            SELECT m_code
+                            FROM movie_genre
+                            WHERE genre IN
+                            <foreach item="genre" index="index" collection="genres" open="(" separator="," close=")">
+                                #{genre}
+                            </foreach>
+                        )
+                    </if>
+                    ORDER BY 
+                    <if test="movieorder == 1">
+                        m_code DESC
+                    </if>
+                    <if test="movieorder == 2">
+                        bookmark_cnt DESC NULLS LAST
+                    </if>
+                        )a) 
+        <![CDATA[
+        WHERE rnum >= #{start} AND rnum <= #{end}
+        ]]>
+    </select>
+        <!-- 게시판 전체 목록/검색 목록 -->
+    <select id="selectMovieListSchedule" parameterType="map" resultType="MovieVO">
+        SELECT
+            *
+        FROM (SELECT
+                    a.*,
+                    rownum rnum
+                  FROM (SELECT
+                          m.m_code,
+                          <![CDATA[
+                          REPLACE(REPLACE(m.m_name,'<','&lt;'),'>','&gt;') m_name,
+                          ]]>  
+                          m.m_filename,
+                          m.m_opendate,
+                          m.m_companys,
+                          m.m_status,  
+                          m.m_content,
+                          m.rating
+                        FROM movie m
+ 						LEFT OUTER JOIN (SELECT COUNT (*) bookmark_cnt, m_code FROM movie_bookmark GROUP BY m_code) b ON m.m_code = b.m_code <!-- bookmark_cnt는 알리아스 명칭임 이 괄호는 인라인 뷰 -->
+                        <!-- JOIN member USING(mem_num) -->
+                        <![CDATA[ WHERE m.m_opendate > sysdate ]]>
+                    <if test="keyword != null and keyword != ''">
+                        AND (m.m_name LIKE '%' || #{keyword} || '%' OR m.m_actor LIKE '%' || #{keyword} || '%')
+                    </if>
+                    <if test="genres != null and genres.size() > 0">
+                        AND m.m_code IN (
+                            SELECT mg.m_code
+                            FROM movie_genre mg
+                            WHERE mg.genre IN
+                            <foreach item="genre" index="index" collection="genres" open="(" separator="," close=")">
+                                #{genre}
+                            </foreach>
+
+                        )
+                    </if>
+                    ORDER BY 
+                    <if test="movieorder == 1">
+                        m.m_code DESC
+                    </if>
+                    <if test="movieorder == 2">
+                        b.bookmark_cnt DESC NULLS LAST
+                    </if>
+                        )a) 
+        <![CDATA[
+        WHERE rnum >= #{start} AND rnum <= #{end}
+        ]]>
+    </select>
 
 	<!-- 영화 리뷰 등록 -->
 	<insert id="insertReview" parameterType="MovieReviewVO">

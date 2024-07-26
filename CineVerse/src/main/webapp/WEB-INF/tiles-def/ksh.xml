@@ -21,6 +21,22 @@
         <put-attribute name="body" value="/WEB-INF/views/movie/movieList.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
     </definition>
+    <!-- 현재 상영작 -->
+    <definition name="movieListCurrent" template="/WEB-INF/views/template/layout_movie.jsp">
+        <put-attribute name="title" value="영화목록"/>
+        <put-attribute name="css" value="/WEB-INF/views/movie/movieMainCSS.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movieListCurrent.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>    
+    <!-- 상영 예정작 -->
+    <definition name="movieListSchedule" template="/WEB-INF/views/template/layout_movie.jsp">
+        <put-attribute name="title" value="영화목록"/>
+        <put-attribute name="css" value="/WEB-INF/views/movie/movieMainCSS.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movieListSchedule.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+    </definition>    
     <!-- 영화상세 -->
     <definition name="movieDetail" extends="movieList">
         <put-attribute name="title" value="영화상세"/>

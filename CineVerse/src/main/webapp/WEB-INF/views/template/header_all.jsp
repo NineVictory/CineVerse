@@ -36,8 +36,8 @@
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
                             <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/movieList" class="hide-menu-a" title="홈">홈</a></li>
-                            <li class="hide_menu_li"><a href="#" title="현재상영작" class="hide-menu-a">현재상영작</a></li>
-                            <li class="hide_menu_li"><a href="#" title="상영예정작" class="hide-menu-a">상영예정작</a></li>
+                            <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/movieListCurrent" title="현재상영작" class="hide-menu-a">현재상영작</a></li>
+                            <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/movieListSchedule" title="상영예정작" class="hide-menu-a">상영예정작</a></li>
                         </ul>
                     </div>	
                 </li>

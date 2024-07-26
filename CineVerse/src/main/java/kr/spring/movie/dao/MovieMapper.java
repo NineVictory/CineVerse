@@ -30,6 +30,8 @@ public interface MovieMapper {
 	//영화목록리스트
 	
 	public List<MovieVO> selectMovieList(Map<String,Object>map);
+	public List<MovieVO> selectMovieListCurrent(Map<String,Object>map);
+	public List<MovieVO> selectMovieListSchedule(Map<String,Object>map);
 	public Integer selectMovieRowCount(Map<String,Object> map);
 	@Select("SELECT movie_seq.nextval FROM dual")
 	public Long selectM_code();

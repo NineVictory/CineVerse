@@ -98,6 +98,94 @@ public class MovieController {
        return "movieList";
    }
    
+   /*=======================
+    * 현재 상영중인 영화 목록
+    *=======================*/
+   @GetMapping("/movie/movieListCurrent")
+   public String movieListCurrent(@RequestParam(defaultValue = "1") int pageNum,
+                           @RequestParam(defaultValue = "1") int movieorder,
+                           @RequestParam(defaultValue = "") String status,
+                           @RequestParam(defaultValue = "") String keyfield,
+                           @RequestParam(defaultValue = "") String keyword,
+                           Model model) {
+
+       Map<String, Object> map = new HashMap<>();
+       map.put("keyfield", keyfield);
+       map.put("keyword", keyword);
+       map.put("status", status);
+
+       // 디버그 로그 추가
+       log.debug("movieListCurrent - movieorder: " + movieorder);
+
+       int count = movieService.selectMovieRowCount(map);
+
+       PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 1000, 10, "movieListCurrent", "&movieorder=" + movieorder);
+       List<MovieVO> movieListCurrent = null;
+       if (count > 0) {
+           map.put("movieorder", movieorder);
+           map.put("start", page.getStartRow());
+           map.put("end", page.getEndRow());
+
+           movieListCurrent = movieService.selectMovieListCurrent(map);
+           for (MovieVO movie : movieListCurrent) {
+               movie.setM_opendate(formatDate(movie.getM_opendate()));
+           }
+       }
+       model.addAttribute("count", count);
+       model.addAttribute("movieListCurrent", movieListCurrent);
+       model.addAttribute("page", page.getPage());
+       
+       // 장르 목록 추가
+       List<String> genres = movieService.selectDistinctGenres();
+       model.addAttribute("genres", genres);
+       
+       return "movieListCurrent";
+   }
+   
+   /*=======================
+    * 상영 예정 영화 목록
+    *=======================*/
+   @GetMapping("/movie/movieListSchedule")
+   public String movieListSchedule(@RequestParam(defaultValue = "1") int pageNum,
+                           @RequestParam(defaultValue = "1") int movieorder,
+                           @RequestParam(defaultValue = "") String status,
+                           @RequestParam(defaultValue = "") String keyfield,
+                           @RequestParam(defaultValue = "") String keyword,
+                           Model model) {
+
+       Map<String, Object> map = new HashMap<>();
+       map.put("keyfield", keyfield);
+       map.put("keyword", keyword);
+       map.put("status", status);
+
+       // 디버그 로그 추가
+       log.debug("movieListSchedule - movieorder: " + movieorder);
+
+       int count = movieService.selectMovieRowCount(map);
+
+       PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 1000, 10, "movieListSchedule", "&movieorder=" + movieorder);
+       List<MovieVO> movieListSchedule = null;
+       if (count > 0) {
+           map.put("movieorder", movieorder);
+           map.put("start", page.getStartRow());
+           map.put("end", page.getEndRow());
+
+           movieListSchedule = movieService.selectMovieListSchedule(map);
+           for (MovieVO movie : movieListSchedule) {
+               movie.setM_opendate(formatDate(movie.getM_opendate()));
+           }
+       }
+       model.addAttribute("count", count);
+       model.addAttribute("movieListSchedule", movieListSchedule);
+       model.addAttribute("page", page.getPage());
+       
+       // 장르 목록 추가
+       List<String> genres = movieService.selectDistinctGenres();
+       model.addAttribute("genres", genres);
+       
+       return "movieListSchedule";
+   }
+   
     @GetMapping("/movie/filterMoviesByGenres")
     @ResponseBody
     public List<MovieVO> filterMoviesByGenres(@RequestParam("genres") String[] genres) {

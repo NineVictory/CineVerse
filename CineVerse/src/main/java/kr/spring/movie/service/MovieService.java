@@ -22,6 +22,8 @@ import kr.spring.seat.vo.SeatVO;
 public interface MovieService {
     // 영화 목록 리스트
     List<MovieVO> selectMovieList(Map<String, Object> map);
+	public List<MovieVO> selectMovieListCurrent(Map<String,Object>map);
+	public List<MovieVO> selectMovieListSchedule(Map<String,Object>map);
     Integer selectMovieRowCount(Map<String, Object> map);
     void insertMovie(MovieVO movie);
     MovieVO selectMovie(long m_code);
