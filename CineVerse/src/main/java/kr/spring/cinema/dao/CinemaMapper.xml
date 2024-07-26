@@ -265,7 +265,7 @@
 	
 	<!-- 영화에 해당하는  지점명별 영화시간표 조회 -->
 	<select id="showMovieTimeList" parameterType="object" resultType="movieTimeVO">
-		SELECT c_branch, mt_date, mt_start, mt_end, th_name
+		SELECT c_branch, mt_date, mt_start, mt_end, th_name, mt_num
 		FROM movie_time 
 		JOIN theater USING(th_num)
 		JOIN cinema USING(c_num)

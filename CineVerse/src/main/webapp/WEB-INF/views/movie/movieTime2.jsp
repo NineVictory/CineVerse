@@ -14,15 +14,15 @@
                 <ul class="movie-select">
                     <c:forEach items="${movieList}" var="movie">
                         <li class="select" data-mcode="${movie.m_code}">
-                        	<span class="ic_grade <c:choose><c:when test="${movie.rating eq '12세관람가' }">gr_12</c:when>
-						                    <c:when test="${movie.rating eq '12세이상관람가' }">gr_12</c:when>
-						                    <c:when test="${movie.rating eq '전체관람가' }">gr_all</c:when>
-						                    <c:when test="${movie.rating eq '15세관람가' }">gr_15</c:when>
-						                    <c:when test="${movie.rating eq '15세이상관람가' }">gr_15</c:when>
-						                    <c:when test="${movie.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
-						                    <c:when test="${movie.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
-					                	</span>
-                        <a href="#none">${movie.m_name}</a></li>
+                            <span class="ic_grade <c:choose><c:when test="${movie.rating eq '12세관람가' }">gr_12</c:when>
+                            <c:when test="${movie.rating eq '12세이상관람가' }">gr_12</c:when>
+                            <c:when test="${movie.rating eq '전체관람가' }">gr_all</c:when>
+                            <c:when test="${movie.rating eq '15세관람가' }">gr_15</c:when>
+                            <c:when test="${movie.rating eq '15세이상관람가' }">gr_15</c:when>
+                            <c:when test="${movie.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
+                            <c:when test="${movie.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
+                            </span>
+                            <a href="#none">${movie.m_name}</a></li>
                     </c:forEach>
                 </ul>
             </div>
@@ -171,8 +171,8 @@
                                         selectMovieTimeListHtml += '<div class="branch-section"><h3 class="c-location">' + branch + '</h3>';
 
                                         // 시간표 항목들을 가로로 정렬할 수 있도록 HTML 생성
-                                        selectMovieTimeListHtml += '<div class="movietime-container">';
                                         branches[branch].forEach(function(item) {
+                                            selectMovieTimeListHtml += '<div class="movietime-container" data-mtNum="' + item.mt_num + '">';
                                             selectMovieTimeListHtml += '<div class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
                                             selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
                                             selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
@@ -231,7 +231,13 @@
                     $(document).on('mouseleave', '.movietime-item', function() {
                         $('.tooltip').remove();
                     });
-                    
+
+                    // movietime-container 클릭 이벤트 처리
+                    $(document).on('click', '.movietime-container', function() {
+                        let mtNum = $(this).data('mtnum'); // data-mtNum 속성 값 가져오기
+                        alert('선택된 시간표 번호: ' + mtNum);
+                    });
+
                 });
             </script>
             <!-- 날짜 끝 -->
