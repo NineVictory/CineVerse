@@ -67,7 +67,7 @@ public interface MyPageMapper {
 	public Integer reservationCnt(Long mem_num);
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);
-	public List<MovieBookingVO> mainRes(Long mem_num);//메인나브
+	public MovieBookingVO mainRes(Long mem_num);//메인나브
 	
 	//영화 리뷰
 	@Select("SELECT COUNT(*) FROM movie_review WHERE mem_num=#{mem_num}")
