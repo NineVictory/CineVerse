@@ -26,6 +26,7 @@ import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.movie.service.MovieService;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieReviewVO;
@@ -49,6 +50,9 @@ public class MyPageController {
 
 	@Autowired
 	private TalkService talkService;
+	
+	@Autowired
+	private MovieService movieService;
 
 
 	// 자바빈(VO) 초기화
@@ -60,44 +64,47 @@ public class MyPageController {
 	// 메인 페이지
 	@GetMapping("/myPage/myPageMain")
 	public String myPageMain(HttpSession session, Model model) {
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		
-		
-		
-		
-		log.debug("<<마이페이지 >> : " + member);
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+	    
+	    MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+	    if (booking != null) {
+	    	member.setC_branch(booking.getC_branch());
+	        member.setM_name(booking.getM_name());
+	        member.setMt_start(booking.getMt_start());
+	        member.setMt_date(booking.getMt_date());
+	        member.setTh_name(booking.getTh_name());
+	    }
+	    
+	    log.debug("<<마이페이지 >> : " + member);
 
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("mem_num", user.getMem_num());
+	    int count = mypageService.consultcnt(map);
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mem_num", user.getMem_num());
-		int count = mypageService.consultcnt(map);
+	    ConsultVO lastConsult = null;
 
-		ConsultVO lastConsult = null;
+	    if (count > 0) {
+	        lastConsult = mypageService.lastConsert(user.getMem_num());
+	        log.debug("<<마지막 문의글 >> : " + lastConsult);
+	    }
 
-		if(count > 0) {
-			lastConsult = mypageService.lastConsert(user.getMem_num());
-			log.debug("<<마지막 문의글 >> : " + lastConsult);
-		}
+	    int resCnt = mypageService.reservationCnt(user.getMem_num());
+	    List<MovieBookingVO> lastRes = null;
 
+	    if (resCnt > 0) {
+	        lastRes = mypageService.lastRes(user.getMem_num());
+	        log.debug("<<예매목록>> : " + lastRes);
+	    }
 
-		int resCnt = mypageService.reservationCnt(user.getMem_num());
-		List<MovieBookingVO> lastRes = null;
-		
-		if(resCnt > 0) { 			
-			lastRes = mypageService.lastRes(user.getMem_num());
-			log.debug("<<예매목록>> : " + lastRes);
-		}
+	    model.addAttribute("member", member);
+	    model.addAttribute("count", count);
+	    model.addAttribute("lastConsult", lastConsult);
+	    model.addAttribute("resCnt", resCnt);
+	    model.addAttribute("lastRes", lastRes);
 
-
-		model.addAttribute("member", member);
-		model.addAttribute("count",count);
-		model.addAttribute("lastConsult",lastConsult);
-		model.addAttribute("resCnt",resCnt);
-		model.addAttribute("lastRes",lastRes);
-
-		return "myPageMain";
+	    return "myPageMain";
 	}
 
 

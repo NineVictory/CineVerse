@@ -42,21 +42,19 @@
 		<!-- 나의 예매 내역 링크 -->
 		<div class="mp_ticket">모바일 티켓</div>
 		<div class="ticket_content">
-			<div class="mypage_movie_name" onclick="location.href='/myPage/reservationList'">듄(재개봉,IMAX LASER 2D)</div>
+			<div class="mypage_movie_name" onclick="location.href='/myPage/reservationList'">${member.m_name}</div>
 			
 			
 			<div class="main_display">
 				<div class="main_movie_info1">
 					<div>관람극장</div>
 					<div>관람일시</div>
-					<div>상영</div>
+					<div>상영관</div>
 				</div>
 				<div class="main_movie_info2">
-					<div class="myPage_bold">
-						CGV용산아이파크몰
-					</div>
-					<div class="myPage_bold">2024.07.06(토) 26:00</div>
-					<div class="myPage_bold">IMAX관</div>
+					<div class="myPage_bold">CINEVERSE&nbsp;${member.c_branch}</div>
+					<div class="myPage_bold">${member.mt_date}&nbsp;<span id="day-of-week"></span>&nbsp;<span id="time-start">${member.mt_start}</span></div>
+					<div class="myPage_bold">${member.th_name}관</div>
 				</div>
 			</div>
 			
@@ -89,6 +87,36 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/myPage.profile.js"></script>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        var timeDiv = document.getElementById("time-start");
+        if (timeDiv) {
+            var timesText = timeDiv.textContent.split("~");
+            
+            var formattedTimes = timesText.map(function(time) {
+                if (time === "0" || time === "0000") {
+                    return "00:00";
+                } else {
+                    return time.slice(0, 2) + ":" + time.slice(2);
+                }
+            });
+            
+            timeDiv.textContent = formattedTimes.join("~");
+        }
+
+        // 요일 계산 추가
+        var dateText = "${member.mt_date}";
+        var dateParts = dateText.split("-");
+        var date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+        var days = ["(일)", "(월)", "(화)", "(수)", "(목)", "(금)", "(토)"];
+        var dayOfWeek = days[date.getDay()];
+        
+        var dayOfWeekSpan = document.getElementById("day-of-week");
+        if (dayOfWeekSpan) {
+            dayOfWeekSpan.textContent = dayOfWeek;
+        }
+    });
+</script>
 
 <!-- CSS -->
 <style>

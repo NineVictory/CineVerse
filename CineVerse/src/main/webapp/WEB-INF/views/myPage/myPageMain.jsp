@@ -35,7 +35,7 @@
 	</div>
 
 	<div class="main_body_reservation">
-			<div class="main_resrv"><span class="reserv_font">MY 예매내역</span><span class="main_count">0건</span></div>
+			<div class="main_resrv"><span class="reserv_font">MY 예매내역</span><span class="main_count">${resCnt}건</span></div>
 		
 
 
@@ -87,14 +87,6 @@
 		</div>
 		</c:forEach>
 	</c:if>
-
-
-
-
-
-
-
-
 
 
 	</div>

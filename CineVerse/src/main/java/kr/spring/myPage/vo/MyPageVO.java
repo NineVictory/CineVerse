@@ -2,12 +2,14 @@ package kr.spring.myPage.vo;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.spring.movie.vo.MovieBookingVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -79,7 +81,21 @@ public class MyPageVO {
 	private String ph_payment;
 	private int ph_type;
 	private int point;
-
+	
+	private String user_mb_num;
+	private Long mb_num;
+	private Date mb_date;
+	private Long mb_price;
+	private Long mt_num;
+	private Long m_code;
+	private String m_name;
+	private String th_name;
+	private String c_branch;
+	private String seat_row;
+	private int seat_column;
+	private int mt_start;
+	private int mt_end;
+	private Date mt_date;
 
 	// 비밀번호 변경시 현재 비밀번호를 저장하는 용도로 사용
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")

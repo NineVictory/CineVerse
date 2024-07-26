@@ -240,7 +240,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public List<MovieBookingVO> mainRes(Long mem_num) {
+	public MovieBookingVO mainRes(Long mem_num) {
 		return myPageMapper.mainRes(mem_num);
 	}
 
