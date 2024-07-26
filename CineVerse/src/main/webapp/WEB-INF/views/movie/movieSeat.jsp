@@ -2,7 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    
+});
+</script>
 <div class="select-container">
     <form action="moviePayment" method="post" id="seatForm">
         <div class="select-wrapper">
@@ -129,6 +133,9 @@
                 <!-- 티켓의수(선택한 좌석) -->
                 <input type="hidden" id="ticket_Number" name="ticketNumber">
                 <input type="hidden" id="selected_Seats" name="selectedSeats">
+                <input type="hidden" id="hidden_adult" name="adultCount" />
+				<input type="hidden" id="hidden_youth" name="youthCount" />
+				<input type="hidden" id="hidden_senior" name="seniorCount" />
                 <input type="hidden" id="seat_Num" name="seatNum">
                 <!-- 결제 정보 -->
                 <input type="hidden" id="pay_Money" name="payMoney">
@@ -142,7 +149,37 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-	alert('5분동안 미선택시 이전 화면으로 이동됩니다.\n이용에 참고부탁드립니다.')
+	alert('5분동안 미선택시 이전 화면으로 이동됩니다.\n이용에 참고부탁드립니다.');
+	
+    var movieTimeElement = document.querySelector('.movietime');
+    if (movieTimeElement) {
+        var textContent = movieTimeElement.textContent;
+
+        var parts = textContent.split('|');
+        if (parts.length === 2) {
+            var datePart = parts[0].trim();
+            var timePart = parts[1].trim();
+
+           	var dateText = datePart.split(' ')[0];
+            var dateParts = dateText.split("-");
+            var date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+            var days = ["(일)", "(월)", "(화)", "(수)", "(목)", "(금)", "(토)"];
+            var dayOfWeek = days[date.getDay()];
+
+            var timeParts = timePart.split('~');
+            var formattedTimes = timeParts.map(function(time) {
+                if (time.trim() === "0" || time.trim() === "0000") {
+                    return "00:00";
+                } else {
+                    return time.trim().slice(0, 2) + ":" + time.trim().slice(2);
+                }
+            });
+
+            var formattedText = dateText + ' ' + dayOfWeek + ' | ' + formattedTimes.join(' ~ ');
+
+            movieTimeElement.textContent = formattedText;
+        }
+    }
 	
     const seatContainer = document.getElementById('seatContainer');
     const quantityInputs = document.querySelectorAll('.quantity-input');
@@ -186,6 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const adults = parseInt(document.querySelector('.quantity-input.adult').value) || 0;
         const youth = parseInt(document.querySelector('.quantity-input.youth').value) || 0;
         const senior = parseInt(document.querySelector('.quantity-input.senior').value) || 0;
+        
+        document.getElementById('hidden_adult').value = adults;
+        document.getElementById('hidden_youth').value = youth;
+        document.getElementById('hidden_senior').value = senior;
         
         totalPrice = (adults * 14000) + (youth * 12000) + (senior * 10000);
         updateTotalPrice();

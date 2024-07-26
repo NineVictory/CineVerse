@@ -186,9 +186,9 @@ div.cell-content {
     padding:5px 0;
 }
 div.cell-content > div.likes, div.cell-content > div.writer{
-	font-size:14px;
+	    gap: 5px;
+    font-size: 14px;
 }
-
 
 .title {
     align-self: flex-start;

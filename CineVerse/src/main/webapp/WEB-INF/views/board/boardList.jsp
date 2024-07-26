@@ -89,10 +89,12 @@
 							<div class="writer">
 								<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">
 								<c:if test="${empty board.mem_nickname}">
-									${board.mem_id}&nbsp;&nbsp; ${board.cb_reg_date}
+									<div class="member_id_board">${board.mem_id}</div>
+									<div class="regdate_board">${board.cb_reg_date}</div>
 								</c:if>
 								<c:if test="${!empty board.mem_nickname}">
-									${board.mem_nickname}&nbsp;&nbsp; ${board.cb_reg_date}
+									<div class="member_id_board">${board.mem_nickname}</div>
+									<div class="regdate_board">${board.cb_reg_date}</div>
 								</c:if>
 							</div>
 						</div>

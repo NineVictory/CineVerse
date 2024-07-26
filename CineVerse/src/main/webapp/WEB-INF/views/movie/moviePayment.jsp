@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    // 날짜와 시간 정보가 포함된 요소를 선택
+   
+});
+</script>
+
 <div class="movie_payments">
  <div class="movies_info">
  	<div class="all_titles"><p>예매 정보</p></div>
@@ -119,6 +126,33 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", function() {
+	
+	 var dateElements = document.querySelectorAll('.movie_info_dates .infos_all');
+	    
+	    if (dateElements.length >= 2) {
+	        var dateText = dateElements[0].textContent.trim();
+	        var timeText = dateElements[1].textContent.trim();
+
+	        var dateParts = dateText.split("-");
+	        var date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+	        var days = ["(일)", "(월)", "(화)", "(수)", "(목)", "(금)", "(토)"];
+	        var dayOfWeek = days[date.getDay()];
+	        var formattedDate = dateParts.join('-') + ' ' + dayOfWeek;
+
+	        var timeParts = timeText.split('~');
+	        var formattedTimes = timeParts.map(function(time) {
+	            var trimmedTime = time.trim();
+	            if (trimmedTime === "0" || trimmedTime === "0000") {
+	                return "00:00";
+	            } else {
+	                return trimmedTime.slice(0, 2) + ":" + trimmedTime.slice(2);
+	            }
+	        }).join(' ~ ');
+
+	        dateElements[0].textContent = formattedDate;
+	        dateElements[1].textContent = formattedTimes;
+	    }
+	
     let lastSelectedCoupon = null; // 마지막으로 선택된 쿠폰을 저장할 변수
 
     // 쿠폰 선택 시 할인 금액 반영 및 hidden input 업데이트
