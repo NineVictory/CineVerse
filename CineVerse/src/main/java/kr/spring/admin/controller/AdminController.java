@@ -298,7 +298,7 @@ public class AdminController {
 			HttpServletRequest request,
 			HttpSession session,
 			Model model) throws IllegalStateException,IOException{
-		log.debug("<<이벤트 글 저장>> : " + noticeVO);
+		log.debug("<<공지사항 글 저장>> : " + noticeVO);
 
 		//업로드된 파일이 없는 경우
 		//if(noticeVO.getNb_upload()==null || noticeVO.getNb_upload().isEmpty()) {
@@ -496,6 +496,43 @@ public class AdminController {
 
 			return "common/resultAlert";
 		}
+		//이벤트 수정 폼 호출
+				@GetMapping("/admin/adminEventModify")
+				public String adminEventModify(){
+					return "adminEventModify";
+				}
+				//이벤트 등록
+				@PostMapping("admin/adminEventModify")
+				public String modifyEvent(@Valid EventVO eventVO,
+						BindingResult result,
+						HttpServletRequest request,
+						HttpSession session,
+						Model model) throws IllegalStateException,IOException{
+					log.debug("<<이벤트 글 저장>> : " + eventVO);
+
+					//업로드된 파일이 없는 경우
+					if(eventVO.getEvent_upload()==null || eventVO.getEvent_upload().isEmpty()) {
+						result.rejectValue("event_upload","fileNotFound");
+					}
+
+					// 폼 데이터 유효성 검사
+					if (result.hasErrors()) {
+						log.debug("<<유효성검사이상있음>> : " + eventVO);
+						return "adminEventModify"; // 다시 폼을 보여줌
+					}
+
+					eventVO.setEvent_filename(FileUtil.createFile(request, 
+							eventVO.getEvent_upload()));
+
+					log.debug("파일명: " + eventVO.getEvent_filename());
+					adminService.insertEvent(eventVO);
+					//View 메시지 처리
+					model.addAttribute("message", "성공적으로 글이 등록되었습니다.");
+					model.addAttribute("url", 
+							request.getContextPath()+"/admin/adminEvent");
+
+					return "common/resultAlert";
+				}
 		/*==============================
 		 * 게시판관리
 		 *==============================*/	

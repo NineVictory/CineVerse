@@ -34,12 +34,17 @@
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminNoticeCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminNotice.jsp" />
 	</definition>
-
 	<!-- 공지사항 등록폼 -->
 	<definition name="adminNoticeForm" extends="adminMain">
 		<put-attribute name="title" value="공지사항 등록폼" />
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminNoticeFormCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminNoticeForm.jsp" />
+	</definition>
+	<!-- 공지사항 수정 -->
+	<definition name="adminNoticeModify" extends="adminMain">
+		<put-attribute name="title" value="공지사항 수정" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminNoticeCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminNoticeModify.jsp" />
 	</definition>
 	
 	<!-- FAQ -->
@@ -68,6 +73,12 @@
 		<put-attribute name="title" value="이벤트 등록" />
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventFormCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEventForm.jsp" />
+	</definition>
+	<!-- 이벤트 수정폼 -->
+	<definition name="adminEventModify" extends="adminMain">
+		<put-attribute name="title" value="이벤트 등록" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventFormCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEventModify.jsp" />
 	</definition>
 	<!-- 포인트 -->
 	<definition name="adminPayment" extends="adminMain">
