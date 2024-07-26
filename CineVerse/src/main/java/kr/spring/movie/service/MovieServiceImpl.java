@@ -351,9 +351,9 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public void insertReviewReport(MovieReviewReportVO MovieReviewReport) {
-		movieMapper.insertReviewReport(MovieReviewReport);
-		
+	public void insertReviewReport(MovieReviewReportVO report) {
+		movieMapper.insertReviewReport(report);
+		 report.setRr_num(report.getRr_num());
 	}
 
 	@Override

@@ -293,6 +293,9 @@
 	</select>
 		<!-- 영화 리뷰 신고 등록 -->
 	<insert id="insertReviewReport" parameterType="MovieReviewReportVO">
+	<selectKey keyProperty="rr_num" resultType="long" order="BEFORE">
+        SELECT reviewreport_seq.nextval FROM dual
+    </selectKey>
 		INSERT INTO reviewreport(
 			rr_num,
 			rr_type,
@@ -301,7 +304,7 @@
 			rr_reportdate
 				)
 		VALUES(
-			reviewreport_seq.nextval,
+			#{rr_num},
 			#{rr_type},
 			#{rr_count},
 			#{mr_num},
