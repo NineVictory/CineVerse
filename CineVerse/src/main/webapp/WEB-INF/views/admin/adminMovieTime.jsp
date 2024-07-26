@@ -29,6 +29,16 @@
             });
         });
 
+        function isValidTime(time) {
+            if (/^\d{4}$/.test(time)) {
+                let hours = parseInt(time.substring(0, 2), 10);
+                let minutes = parseInt(time.substring(2, 4), 10);
+
+                return hours >= 6 && hours <= 26 && minutes >= 0 && minutes <= 59;
+            }
+            return false;
+        }
+
         $('#insert_form').submit(function(event) {
             var isValid = true;
             var errorMessage = "";
@@ -38,13 +48,16 @@
                 isValid = false;
             }
 
-            if ($('#mt_start').val() === "") {
-                errorMessage += "시작 시간을 입력해주세요\n";
+            let mtStart = $('#mt_start').val();
+            let mtEnd = $('#mt_end').val();
+
+            if (!isValidTime(mtStart)) {
+                errorMessage += "등록할 수 없는 시작시간입니다 (0600 ~ 2600)\n";
                 isValid = false;
             }
 
-            if ($('#mt_end').val() === "") {
-                errorMessage += "종료 시간을 입력해주세요\n";
+            if (!isValidTime(mtEnd)) {
+                errorMessage += "등록할 수 없는 종료시간입니다 (0600 ~ 2600)\n";
                 isValid = false;
             }
 
@@ -74,6 +87,7 @@
         });
     });
 </script>
+
 <div class="page-container">
     <h2>상영 시간 등록</h2>
     <div class="insert_movie_time">
