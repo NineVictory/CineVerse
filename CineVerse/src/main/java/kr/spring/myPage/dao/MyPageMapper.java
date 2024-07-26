@@ -72,7 +72,8 @@ public interface MyPageMapper {
 	//영화 리뷰
 	@Select("SELECT COUNT(*) FROM movie_review WHERE mem_num=#{mem_num}")
 	public Integer movieReviewCnt(Long mem_num);
-	@Select("SELECT * FROM movie_review LEFT OUTER JOIN(SELECT COUNT(*) fav_cnt,mr_num FROM movie_review GROUP BY mr_num) USING(mr_num) WHERE mem_num=#{mem_num}")
+	@Select("SELECT * FROM movie_review LEFT OUTER JOIN(SELECT mr_num, COUNT(*) AS fav_cnt FROM mr_fav GROUP BY mr_num) USING(mr_num) JOIN member_detail USING(mem_num) WHERE mem_num=#{mem_num}")
+	
 	public List<MovieReviewVO> movieReviewList(Long mem_num);
 	
 	

@@ -42,9 +42,11 @@
 		<!-- 나의 예매 내역 링크 -->
 		<div class="mp_ticket">모바일 티켓</div>
 		<div class="ticket_content">
+			
+			
+			<c:if test="${resCnt == 0}">최근 예매내역이 존재하지 않습니다.</c:if>
+			<c:if test="${resCnt > 0}">
 			<div class="mypage_movie_name" onclick="location.href='/myPage/reservationList'">${member.m_name}</div>
-			
-			
 			<div class="main_display">
 				<div class="main_movie_info1">
 					<div>관람극장</div>
@@ -57,7 +59,7 @@
 					<div class="myPage_bold">${member.th_name}관</div>
 				</div>
 			</div>
-			
+			</c:if>
 			
 		</div>
 	</div>

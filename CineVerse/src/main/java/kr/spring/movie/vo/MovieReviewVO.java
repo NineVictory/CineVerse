@@ -20,6 +20,8 @@ public class MovieReviewVO {
 	private long mb_num;
 	private long m_code;
 	private long mem_num;
+	private String m_name;
+	private int fav_cnt;
 	
 	private String mem_id;			//아이디(조인의 의해서 만들어질것)
 	private String mem_nickname;	//별명(조인의 의해서 만들어질것)

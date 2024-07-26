@@ -80,7 +80,9 @@
 					</div>
 				</div>
 				<div class="review_fav_date">
-					<span>이미지</span> <span>${response.fav_cnt}</span> | <span>${response.te_date}
+					<span class="favCount"><img
+						src="${pageContext.request.contextPath}/images/like01.png"
+						width="17"></span> <span>${response.fav_cnt}</span> | <span>${response.te_date}
 					</span>
 				</div>
 			</div>

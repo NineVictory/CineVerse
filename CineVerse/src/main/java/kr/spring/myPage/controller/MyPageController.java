@@ -50,7 +50,7 @@ public class MyPageController {
 
 	@Autowired
 	private TalkService talkService;
-	
+
 	@Autowired
 	private MovieService movieService;
 
@@ -64,47 +64,47 @@ public class MyPageController {
 	// 메인 페이지
 	@GetMapping("/myPage/myPageMain")
 	public String myPageMain(HttpSession session, Model model) {
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    MyPageVO member = mypageService.selectMember(user.getMem_num());
-	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-	    
-	    MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
-	    if (booking != null) {
-	    	member.setC_branch(booking.getC_branch());
-	        member.setM_name(booking.getM_name());
-	        member.setMt_start(booking.getMt_start());
-	        member.setMt_date(booking.getMt_date());
-	        member.setTh_name(booking.getTh_name());
-	    }
-	    
-	    log.debug("<<마이페이지 >> : " + member);
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
-	    Map<String, Object> map = new HashMap<String, Object>();
-	    map.put("mem_num", user.getMem_num());
-	    int count = mypageService.consultcnt(map);
+		log.debug("<<마이페이지 >> : " + member);
 
-	    ConsultVO lastConsult = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_num", user.getMem_num());
+		int count = mypageService.consultcnt(map);
 
-	    if (count > 0) {
-	        lastConsult = mypageService.lastConsert(user.getMem_num());
-	        log.debug("<<마지막 문의글 >> : " + lastConsult);
-	    }
+		ConsultVO lastConsult = null;
 
-	    int resCnt = mypageService.reservationCnt(user.getMem_num());
-	    List<MovieBookingVO> lastRes = null;
+		if (count > 0) {
+			lastConsult = mypageService.lastConsert(user.getMem_num());
+			log.debug("<<마지막 문의글 >> : " + lastConsult);
+		}
 
-	    if (resCnt > 0) {
-	        lastRes = mypageService.lastRes(user.getMem_num());
-	        log.debug("<<예매목록>> : " + lastRes);
-	    }
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		List<MovieBookingVO> lastRes = null;
 
-	    model.addAttribute("member", member);
-	    model.addAttribute("count", count);
-	    model.addAttribute("lastConsult", lastConsult);
-	    model.addAttribute("resCnt", resCnt);
-	    model.addAttribute("lastRes", lastRes);
+		if (resCnt > 0) {
+			lastRes = mypageService.lastRes(user.getMem_num());
+			log.debug("<<예매목록>> : " + lastRes);
+		}
 
-	    return "myPageMain";
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+
+		model.addAttribute("member", member);
+		model.addAttribute("count", count);
+		model.addAttribute("lastConsult", lastConsult);
+		model.addAttribute("resCnt", resCnt);
+		model.addAttribute("lastRes", lastRes);
+
+		return "myPageMain";
 	}
 
 
@@ -114,6 +114,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 
 		int count = mypageService.reservationCnt(user.getMem_num());
 		List<MovieBookingVO> list = null;
@@ -134,6 +146,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 		model.addAttribute("member", member);
 		return "myPageReservation";
 	}
@@ -144,6 +167,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 
 		// 쿠폰 리스트 불러오기 시작
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -172,6 +206,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		int count = mypageService.movieBookMarkcnt(user.getMem_num());
 
 		List<MovieBookMarkVO> movie = null;
@@ -194,6 +240,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 		model.addAttribute("member", member);
 		return "watchedMovie";
 	}
@@ -204,13 +261,23 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 		int count = mypageService.movieReviewCnt(user.getMem_num());
 		List<MovieReviewVO> list = null;
 		if(count > 0) {
 			list = mypageService.movieReviewList(user.getMem_num());
 		}
-		
+
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
 		model.addAttribute("member", member);
@@ -225,6 +292,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("category", category);
@@ -255,6 +333,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("category", category);
@@ -287,6 +376,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("category", category);
 		map.put("mem_num", user.getMem_num());
@@ -320,6 +421,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("category", category);
@@ -363,6 +475,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		model.addAttribute("member", member);
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -393,6 +517,17 @@ public class MyPageController {
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("categoty", category);
 		map.put("mem_num", user.getMem_num());
@@ -420,6 +555,20 @@ public class MyPageController {
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+		
+		
+
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
 		map.put("category", category);
@@ -442,6 +591,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
 
@@ -467,6 +628,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
@@ -494,7 +666,10 @@ public class MyPageController {
 
 	//멤버십 구독
 	@GetMapping("/myPage/membershipUpdate")
-	public String membershipUpdate(Model model,HttpServletRequest request) {
+	public String membershipUpdate(Model model,HttpServletRequest request,HttpSession session) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		mypageService.updateNoSub();
 		mypageService.updateNoSubDate();
 
@@ -511,6 +686,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		model.addAttribute("member", member);
 
 		return "passwdChange";
@@ -519,6 +706,8 @@ public class MyPageController {
 	//비밀번호 변경 폼
 	@PostMapping("/myPage/passwdChange")
 	public String submitpasswdChange(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
+
+
 		log.debug("<<비밀번호 변경 처리>> : " + myPageVO);
 		//유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasFieldErrors("now_passwd") || result.hasFieldErrors("mem_passwd") || result.hasFieldErrors("captcha_chars")) {
@@ -617,6 +806,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		model.addAttribute("member", member);
 		return "modifyUser";
 	}
@@ -656,6 +857,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		model.addAttribute("member", member);
 		return "deleteMember";
 	}
@@ -666,6 +879,18 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+
 		CouponVO coupon = mypageService.selectMembershipSub(user.getMem_num());
 
 		model.addAttribute("coupon",coupon);
@@ -679,6 +904,17 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+		int resCnt = mypageService.reservationCnt(user.getMem_num());
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
 
 		log.debug("<<카테고리 >> : " + category);
 

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.myPage.service.MyPageService;
 import kr.spring.myPage.service.MyPageService2;
 import kr.spring.myPage.vo.AddressVO;
@@ -52,6 +53,15 @@ public class MyPageController2 {
 	    log.debug("<<배송지 관리>> ::: 진입 성공");
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+	    MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+	    if (booking != null) {
+	    	member.setC_branch(booking.getC_branch());
+	        member.setM_name(booking.getM_name());
+	        member.setMt_start(booking.getMt_start());
+	        member.setMt_date(booking.getMt_date());
+	        member.setTh_name(booking.getTh_name());
+	    }
 	    model.addAttribute("member", member);
 	    
 	    Integer count = mypageService2.countAddress(user.getMem_num());
@@ -69,7 +79,7 @@ public class MyPageController2 {
 	    log.debug("<<배송지 추가>> ::: " + addressVO);
 
 	    MemberVO user = (MemberVO) session.getAttribute("user");
-
+	    
 	    // 유효성 체크 결과 오류가 있으면 폼 호출
 	    if (result.hasErrors()) {
 	    	log.debug("<<유효성 체크 시작>>");

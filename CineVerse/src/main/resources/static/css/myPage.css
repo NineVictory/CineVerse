@@ -365,6 +365,7 @@
 	align-items: center;
 	justify-content: center;
 	margin-right: auto;
+	margin-bottom: 10px;
 }
 
 .m_movie_photo {
@@ -375,6 +376,7 @@
 
 .mpMovie_info {
 	width: 680px;
+	margin-top:6px;
 }
 
 .mp_movie_number_1 {
@@ -1016,8 +1018,12 @@
 }
 
 .review_fav_date {
-	text-align: right;
-	font-size: 13px;
+gap: 7px;
+    display: flex;
+    text-align: right;
+    font-size: 13px;
+    justify-content: flex-end;
+    align-items: center;
 }
 /* =======================
      		myPageBookMark.jsp/boardWrite/boardReply
@@ -1448,7 +1454,6 @@
 	text-align: left;
 }  
 .favCount{
-	margin-right: 4px;
 	padding-top: 3px;
 	margin-top: 3px;
 }   

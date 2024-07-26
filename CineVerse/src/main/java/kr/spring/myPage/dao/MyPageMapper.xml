@@ -422,7 +422,7 @@
         INNER JOIN theater t ON mt.th_num = t.th_num
         INNER JOIN cinema c ON t.c_num = c.c_num
         INNER JOIN seat s ON mbd.seat_num = s.seat_num
-        WHERE mb.mem_num = #{mem_num}
+        WHERE mb.mem_num = #{mem_num} AND mbd.md_type=1
     ),
     DistinctBookings AS (
         SELECT
@@ -494,7 +494,7 @@
         INNER JOIN theater t ON mt.th_num = t.th_num
         INNER JOIN cinema c ON t.c_num = c.c_num
         INNER JOIN seat s ON mbd.seat_num = s.seat_num
-        WHERE mb.mem_num = #{mem_num}
+        WHERE mb.mem_num = #{mem_num} AND mbd.md_type=1
     ),
     DistinctBookings AS (
         SELECT

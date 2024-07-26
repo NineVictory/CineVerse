@@ -7,66 +7,66 @@
 		<span class="myPage_title_re">내가 쓴 평점</span>
 	</div>
 	<!-- 반복 -->
-	<c:if test="${count == 0}"><div>작성한 리뷰가 없습니다</div></c:if>
+	<c:if test="${count == 0}"><div class="empty_position">작성한 리뷰가 없습니다</div></c:if>
 	<c:if test="${count > 0}">
 	<c:forEach var="rev" items="${list}">
 	<div class="review_box">
 		<div class="review_content">
 			<div class="review_content_info">
 				<div class="review_id">${rev.mem_id}</div>
-				<div>${rev.mr_grade }</div>
-				<div class="my_review">${rev.mr.content}</div>
+				<div class="review_img">
+				<c:choose>
+				<c:when test="${rev.mr_grade == 1}">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+				</c:when>
+				<c:when test="${rev.mr_grade == 2}">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+				</c:when>
+				<c:when test="${rev.mr_grade == 3}">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+				</c:when>
+				<c:when test="${rev.mr_grade == 4}">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+				</c:when>
+				<c:when test="${rev.mr_grade == 5}">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+					<img src="${pageContext.request.contextPath}/images/cje/star_yes.png">
+				</c:when>
+				</c:choose>
+				</div>
+				
+				
+				<div class="my_review">${rev.mr_content}</div>
 			</div>
 			<div class="review_delete_btn">
-				<div>삭제</div>
+				<input type="button" class="add_del_btn"  value="삭제">
 			</div>
 		</div>
 		<div class="review_fav_date">
-			<span>이미지</span> <span>3</span> | <span>2024.07.31</span>
+			<span class="favCount"><img src="${pageContext.request.contextPath}/images/like01.png"width="17"></span> <span>${rev.fav_cnt }</span> | <span>${rev.mr_regdate}</span>
 		</div>
 	</div>
 	</c:forEach>
 	</c:if>
 	<!-- 반복 -->
 	
-	
-	
-	<div class="review_box">
-		<div class="review_content">
-			<div class="review_content_info">
-				<div class="review_id">분모재</div>
-				<div>별점 카운트</div>
-				<div class="my_review">재밌었다</div>
-			</div>
-			<div class="review_delete_btn">
-				<div>삭제</div>
-			</div>
-		</div>
-		<div class="review_fav_date">
-			<span>이미지</span> <span>3</span> | <span>2024.07.31</span>
-		</div>
-	</div>
-	
-	
-	
-	<div class="review_box">
-		<div class="review_content">
-			<div class="review_content_info">
-				<div class="review_id">아이디</div>
-				<div>별점 카운트</div>
-				<div class="my_review">리뷰양에 따라서 박스 사이즈 늘어나나?리뷰양에 따라서 박스 사이즈 늘어나나?리뷰양에 따라서 박스 사이즈 늘어나나?리뷰양에 따라서 박스 사이즈 늘어나나?리뷰양에 따라서 박스 사이즈 늘어나나?리뷰양에 따라서 박스 사이즈 늘어나나?리뷰양에 따라서 박스 사이즈</div>
-			</div>
-			<div class="review_delete_btn">
-				<div>삭제</div>
-			</div>
-		</div>
-		<div class="review_fav_date">
-			<span>이미지</span> <span>3</span> | <span>2024.07.31</span>
-		</div>
-	</div>
-	
-	
-	
+
 	
 </div>
 <!-- 나의 별점 끝 -->
+
+<style>
+.review_img img{
+width:15px;
+height:15px;
+}
+</style>
