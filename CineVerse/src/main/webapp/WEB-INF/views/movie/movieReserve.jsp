@@ -219,11 +219,22 @@ $(document).ready(function() {
     let selectedMCode = null;
     let selectedDate = null;
     let selectedMtStart = null;
+    let selectedMovieHtml = null;
 
     // 지점 클릭 이벤트 핸들러
     $('.theater-place > a').click(function(e) {
         e.preventDefault(); // 기본 동작 중지
         selectedCNum = $(this).attr('data-cnum');
+        
+        //다른 지점 클릭 시 초기화
+        selectedDate = null;
+        let selectedMtStart = null;
+        let selectedMovieHtml = null;
+        $('#mt_num').val('');
+        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+        $('.movietime-item').removeClass('active');
+        $('.movietime-select').empty(); // 시간표 목록 초기화
+        $('.selected-movie-info').empty();
         
         // 모든 영화 항목에서 active 클래스 제거
         $('.theater-place > a').removeClass('active');
@@ -593,7 +604,7 @@ $(document).ready(function() {
                         movieGrade = '등급 정보 없음';
                 }
 
-                let selectedMovieHtml = '<div class="movie-item selected">';
+                selectedMovieHtml = '<div class="movie-item selected">';
                 selectedMovieHtml += '<span class="ic_grade ' + gradeClass + '"></span>';
                 selectedMovieHtml += '<span>' +movieName+'</span>';
                 selectedMovieHtml += '</div>';
