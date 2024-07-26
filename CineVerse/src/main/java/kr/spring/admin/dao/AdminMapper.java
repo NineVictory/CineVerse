@@ -220,11 +220,11 @@ public interface AdminMapper {
 	
 	// 환불처리
 	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{mb_price}, SYSDATE, #{mem_num}, 4, #{ph_payment})")
-	public void refundShop(@Param("mem_num") long mem_num, @Param("total_price") long total_price, @Param("ph_payment") String ph_payment);
+	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity);
 
 	// 상품 수량 업데이트
 	@Update("UPDATE order_detail SET order_quantity = order_quantity + #{order_quantity} WHERE order_num = #{order_num}")
-	public void updateOdQuantity(@Param("order_num") long order_num, @Param("order_quantity") int order_quantity);
+	public void updateOdQuantity(@Param("order_num") long order_num, @Param("order_quantity") long order_quantity);
 	
 	// 예매취소설정
 	@Update("UPDATE orders SET order_status = 5 WHERE order_num = #{order_num}") 

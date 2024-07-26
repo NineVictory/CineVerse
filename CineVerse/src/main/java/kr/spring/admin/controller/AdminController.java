@@ -41,6 +41,7 @@ import kr.spring.member.vo.MemberVO;
 import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.seat.vo.SeatVO;
+import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.vo.ConsultVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
@@ -95,6 +96,10 @@ public class AdminController {
 	@ModelAttribute
 	public RefundMbVO initCommand9() {
 		return new RefundMbVO();
+	}
+	@ModelAttribute
+	public OrdersVO initCommand10() {
+		return new OrdersVO();
 	}
 	/*==============================
 	 * 관리자메인
@@ -1024,17 +1029,55 @@ public class AdminController {
 	@ResponseBody
 	public String refundMovie(@RequestParam("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment, @Param("mb_num") long mb_num) {
 		long totalMb = adminService.totalMb(mb_num);
-		/*
-		 * log.debug("애매인원수" + totalMb);
-		 * 
-		 * mb_price = mb_price/totalMb;
-		 */
-
 		adminService.refundMovie(mem_num, mb_price, ph_payment, mb_num);
 		log.debug("<<포인트 환불완료>>");
 		return "success";
 	}
 
+	//예매내역
+	@GetMapping("/admin/adminRefundShop")
+	public String adminRefundShop(
+			@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "keyfield", required = false) String keyfield,
+			Model model) {
+		// keyfield가 없으면 기본값을 설정
+		if (keyfield == null || keyfield.isEmpty()) {
+			keyfield = "order_num"; // 기본 검색 필드를 설정합니다.
+		}
+		// 파라미터를 맵에 추가
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
 
+		map.put("keyfield", keyfield);
+
+		// 전체, 검색 레코드 수
+		int count = adminService.selectOrderRowCount(map);
+
+
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminRefundShop");
+		List<OrdersVO> list = null; 
+		if (count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			list = adminService.selectOrder(map);
+		}
+
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+
+		return "adminRefundShop";
+
+	}	
+
+	// 결제 환불 처리
+	@PostMapping("/refundOrder")
+	@ResponseBody
+	public String refundOrder(@RequestParam("mem_num") long mem_num, @Param("ph_payment") String ph_payment, @Param("order_num") long order_num,@Param("order_quantity") long order_quantity) {
+		adminService.refundShop(mem_num, ph_payment, order_num, order_quantity);
+		return "success";
+	}
 
 }

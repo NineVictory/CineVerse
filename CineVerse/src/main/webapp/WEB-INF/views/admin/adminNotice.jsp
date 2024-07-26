@@ -7,6 +7,9 @@
 	function redirectToNoticeDetail(nb_num) {
 	    window.location.href = '/support/noticeDetail?nb_num=' + nb_num;
 	}
+	function redirectToNoticeModify(nb_num) {
+	    window.location.href = '/admin/adminNoticeModify?nb_num=' + nb_num;
+	}
     function deleteNotice(nb_num) {
         $.ajax({
             type: "POST",
@@ -67,14 +70,14 @@
 			</c:if>
 			<tbody>
 				<c:forEach var="notice" items="${list}">
-					<tr onclick="redirectToNoticeDetail(${notice.nb_num})"
-						id="intoNoticeDetail">
+					<tr>
 						<td class="mem-data">${notice.nb_num}</td>
-						<td class="mem-data">${notice.nb_title}</td>
+						<td class="mem-data" onclick="redirectToNoticeDetail(${notice.nb_num})"
+						id="intoNoticeDetail">${notice.nb_title}</td>
 						<td class="mem-data">${notice.nb_hit}</td>
 						<td class="mem-data">${notice.nb_reg_date}</td>
 						<td class="button1"><input type="button" value="수정"
-							onclick="location.href='${pageContext.request.contextPath}/admin/adminNoticeModify?nb_num=${notice.nb_num}'" />
+							onclick="redirectToNoticeModify(${notice.nb_num})"/>
 						</td>
 						<td class="button2"><input type="button" value="삭제"
 							onclick="deleteNotice(${notice.nb_num})" /></td>

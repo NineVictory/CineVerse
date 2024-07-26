@@ -280,29 +280,19 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	public List<OrdersVO> selectOrder(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminMapper.selectOrder(map);
 	}
 	@Override
 	public Integer selectOrderRowCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminMapper.selectOrderRowCount(map);
 	}
 	@Override
-	public void refundShop(long mem_num, long total_price, String ph_payment) {
-		// TODO Auto-generated method stub
-		
+	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity) {
+		adminMapper.refundShop(mem_num, ph_payment, order_num, order_quantity);
+		adminMapper.updateOdQuantity(order_num, order_quantity);
+		adminMapper.updateOdStauts(order_num);
 	}
-	@Override
-	public void updateOdQuantity(long order_num, int order_quantity) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void updateOdStauts(long order_num) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public void modifyEvent(EventVO eventVO) {
 		adminMapper.modifyEvent(eventVO);

@@ -4,18 +4,18 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
-    function refundMovie(mem_num,mb_price,ph_payment,mb_num) {
+    function refundMovie(mem_num,ph_payment,order_num,order_quantity) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/refundMovie",
-            data: { mem_num: mem_num, mb_price: mb_price , ph_payment: ph_payment , mb_num: mb_num},
+            data: { mem_num: mem_num, ph_payment: ph_payment , order_num: order_num , order_quantity: order_quantity},
             success: function(response) {
                 if (response === "success") {
                     // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
-                    alert("예매 환불");
+                    alert("상품 환불");
                     location.reload(); // 예시로 페이지를 새로고침
                 } else {
-                    alert("예매 환불실패");
+                    alert("상품 환불실패");
                 }
             },
             error: function() {
@@ -28,13 +28,13 @@
 <div class="page-container">
 <div class = "admin_member">
 	<div class = "firstTitle">
-		<p id ="title">예매관리</p>
+		<p id ="title">상품환불</p>
 	</div>
-		<form action="adminReservation" id="admin_search">
+		<form action="adminRefundShop" id="admin_search">
 			<ul>
 				<li>
-					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'md_num'}"> <!-- 기본값 설정 -->
-           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="예매번호를 입력하세요">
+					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'order_num'}"> <!-- 기본값 설정 -->
+           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="주문번호를 입력하세요">
         		    <input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
 			</ul>
@@ -43,10 +43,12 @@
 		<table class="adminMember-table">
         <thead>
             <tr>
-                <th>예매 번호</th>
-                <th>회원번호</th>
-                <th>예매일</th>
-                <th>결제금액</th>
+                <th>주문내역번호</th>
+                <th>주문번호</th>
+                <th>상품명</th>
+                <th>구매수량</th>
+                <th>상품가격</th>
+                <th>주문상태</th>
                 <th></th>
             </tr>
         </thead>
@@ -56,13 +58,15 @@
             </tr>
         </c:if>
         <tbody>
-            <c:forEach var="mr" items="${list}">
+            <c:forEach var="rs" items="${list}">
                 <tr>
-                    <td class="mem-data">${mr.md_num}</td>
-                    <td class="mem-data">${mr.mem_num}</td>
-                    <td class="mem-data">${mr.mb_date}</td>
-                    <td class="mem-data">${mr.mb_price}</td>
-					<td class="button2"><input type="button" value="예매취소" onclick="refundMovie(${mr.mem_num}, ${mr.mb_price}, '예매환불' ,${mr.mb_num})"/></td>
+                    <td class="mem-data">${rs.od_num}</td>
+                    <td class="mem-data">${rs.order_num}</td>
+                    <td class="mem-data">${rs.p_name}</td>
+                    <td class="mem-data">${rs.order_quantity}</td>
+                    <td class="mem-data">${rs.p_price}</td>
+                    <td class="mem-data">${rs.order_status}</td>
+					<td class="button2"><input type="button" value="예매취소" onclick="refundMovie(${rs.od_num}, ${rs.p_name}, ${rs.order_quantity} ,${rs.p_price},${rs.order_status})"/></td>
                 </tr>
             </c:forEach>
         </tbody>

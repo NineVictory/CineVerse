@@ -6,6 +6,9 @@
     function redirectToEventDetail(event_num) {
         window.location.href = '/event/eventDetail?event_num=' + event_num;
     }
+    function redirectToEventModify(event_num) {
+        window.location.href = '/admin/adminEventModify?event_num=' + event_num;
+    }
     function deleteEvent(event_num) {
         $.ajax({
             type: "POST",
@@ -54,6 +57,7 @@
                 <th>마감일</th>
                 <th>등록일</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <c:if test="${empty list}">
@@ -63,12 +67,13 @@
         </c:if>
         <tbody>
             <c:forEach var="event" items="${list}">
-                <tr onclick="redirectToEventDetail(${event.event_num})" id = "intoEventDetail">
+                <tr>
                     <td class="mem-data">${event.event_num}</td>
-                    <td class="mem-data">${event.event_name}</td>
+                    <td class="mem-data" onclick="redirectToEventDetail(${event.event_num})" id = "intoEventDetail">${event.event_name}</td>
                     <td class="mem-data">${event.event_start}</td>
                     <td class="mem-data">${event.event_end}</td>
                     <td class="mem-data">${event.event_reg_date}</td>
+                    <td class="button1"><input type="button" value="수정" onclick="redirectToEventModify(${event.event_num})"/> </td>
                     <td class="button2"><input type="button" value="삭제" onclick="deleteEvent(${event.event_num})"/></td>
                 </tr>
             </c:forEach>
