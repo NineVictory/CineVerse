@@ -36,10 +36,14 @@ public interface AdminService {
 	public List<EventVO> selectEventList(Map<String,Object> map);
 	public Integer selectEventRowCount(Map<String,Object> map);
 	public void insertEvent(EventVO eventVO);
+	public EventVO selectEvent(long event_num);
+	public void modifyEvent(EventVO eventVO);
 	public void deleteEvent(long event_num);
 	public List<NoticeVO> selectNoticeList(Map<String,Object> map);
 	public Integer selectNoticeRowCount(Map<String,Object> map);
 	public void insertNotice(NoticeVO noticeVO);
+	public NoticeVO selectNotice(long nb_num);	
+	public void modifyNotice(NoticeVO noticeVO);
 	public void deleteNotice(long nb_num);
  	public List<FaqVO> selectFaqList(Map<String,Object> map);
  	public Integer selectFaqRowCount(Map<String,Object> map);

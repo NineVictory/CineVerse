@@ -169,6 +169,20 @@
 		#{event_type})
 	</insert>
 	
+	<!-- 이벤트 수정 -->
+	<insert id="modifyEvent" parameterType="EventVO">
+		UPDATE event
+		SET
+		event_name=#{event_name},
+		event_content=#{event_content},
+		event_filename=#{event_filename,jdbcType=VARCHAR},
+		event_start=#{event_start},
+		event_end=#{event_end},
+		event_type=#{event_type}
+		WHERE 
+		event_num = #{event_num}
+	</insert>
+	
 	<!-- 공지사항 시작 -->
 	<!-- 공지사항 목록/검색 -->
 		<sql id="noticeSearch">
@@ -233,7 +247,18 @@
 		#{mem_num}
 		)
 	</insert>
-
+	
+	<!-- 공지사항 수정 -->
+	<insert id="modifyNotice" parameterType="EventVO">
+		UPDATE notice_board
+		SET
+		nb_title=#{nb_title},
+		nb_content=#{nb_content},
+		nb_filename=#{nb_filename,jdbcType=VARCHAR},
+		nb_modify_date=SYSDATE
+		WHERE 
+		nb_num = #{nb_num}
+	</insert>
 	<!-- FAQ 시작 -->
 	<!-- 공지사항 목록/검색 -->
 		<sql id="faqSearch">

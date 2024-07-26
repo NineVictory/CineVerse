@@ -303,5 +303,21 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void modifyEvent(EventVO eventVO) {
+		adminMapper.modifyEvent(eventVO);
+	}
+	@Override
+	public EventVO selectEvent(long event_num) {
+		return adminMapper.selectEvent(event_num);
+	}
+	@Override
+	public NoticeVO selectNotice(long nb_num) {
+		return adminMapper.selectNotice(nb_num);
+	}
+	@Override
+	public void modifyNotice(NoticeVO noticeVO) {
+		adminMapper.modifyNotice(noticeVO);
+	}
 
 }

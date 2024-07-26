@@ -76,8 +76,8 @@
 	</definition>
 	<!-- 이벤트 수정폼 -->
 	<definition name="adminEventModify" extends="adminMain">
-		<put-attribute name="title" value="이벤트 등록" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventFormCSS.jsp" />
+		<put-attribute name="title" value="이벤트 수정" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventModifyCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEventModify.jsp" />
 	</definition>
 	<!-- 포인트 -->

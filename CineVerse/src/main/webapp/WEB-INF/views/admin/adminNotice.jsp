@@ -29,50 +29,60 @@
 </script>
 
 <div class="page-container">
-<div class="admin_member">
-	<div class="firstTitle">
-		<p id="title">공지사항</p>
-	</div>
-	<form action="adminNotice" id="admin_search">
-		<ul>
-			<li>
-				<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'nb_title'}"> <!-- 기본값 설정 -->
-           		<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="제목을 입력하세요">
-				<input type="submit" value="" class="search-button"
-				style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
-			</li>
-		</ul>
-	</form>
-	<div class="insert_button_all">
-		<input type = "button" value = "공지사항 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminNoticeForm'"/>
-	</div>
+	<div class="admin_member">
+		<div class="firstTitle">
+			<p id="title">공지사항</p>
+		</div>
+		<form action="adminNotice" id="admin_search">
+			<input type="hidden" name="nb_num" value="${noticeVO.nb_num}">
+			<ul>
+				<li><input type="hidden" name="keyfield"
+					value="${param.keyfield != null ? param.keyfield : 'nb_title'}">
+					<!-- 기본값 설정 --> <input type="search" name="keyword" id="keyword"
+					value="${param.keyword}" placeholder="제목을 입력하세요"> <input
+					type="submit" value="" class="search-button"
+					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
+				</li>
+			</ul>
+		</form>
+		<div class="insert_button_all">
+			<input type="button" value="공지사항 등록" class="insert_button"
+				onclick="location.href ='${pageContext.request.contextPath}/admin/adminNoticeForm'" />
+		</div>
 		<table class="adminMember-table">
-		<thead>
-			<tr>
-				<th>글 번호</th>
-				<th>제목</th>
-				<th>조회수</th>
-				<th>등록일</th>
-				<th></th>
-			</tr>
-		</thead>
-		<c:if test="${empty list}">
-            <tr>
-                <td colspan="7" class="mem-data">데이터가 없습니다.</td>
-            </tr>
-        </c:if>
-		<tbody>
-			<c:forEach var="notice" items="${list}">
-                <tr onclick="redirectToNoticeDetail(${notice.nb_num})" id = "intoNoticeDetail">
-					<td class="mem-data">${notice.nb_num}</td>
-					<td class="mem-data">${notice.nb_title}</td>
-					<td class="mem-data">${notice.nb_hit}</td>
-					<td class="mem-data">${notice.nb_reg_date}</td>
-					<td class="button2"><input type="button" value="삭제" onclick="deleteNotice(${notice.nb_num})"/></td>
+			<thead>
+				<tr>
+					<th>글 번호</th>
+					<th>제목</th>
+					<th>조회수</th>
+					<th>등록일</th>
+					<th></th>
+					<th></th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</div>
-	<div class="page-div">${page}</div> 
+			</thead>
+			<c:if test="${empty list}">
+				<tr>
+					<td colspan="7" class="mem-data">데이터가 없습니다.</td>
+				</tr>
+			</c:if>
+			<tbody>
+				<c:forEach var="notice" items="${list}">
+					<tr onclick="redirectToNoticeDetail(${notice.nb_num})"
+						id="intoNoticeDetail">
+						<td class="mem-data">${notice.nb_num}</td>
+						<td class="mem-data">${notice.nb_title}</td>
+						<td class="mem-data">${notice.nb_hit}</td>
+						<td class="mem-data">${notice.nb_reg_date}</td>
+						<td class="button1"><input type="button" value="수정"
+							onclick="location.href='${pageContext.request.contextPath}/admin/adminNoticeModify?nb_num=${notice.nb_num}'" />
+						</td>
+						<td class="button2"><input type="button" value="삭제"
+							onclick="deleteNotice(${notice.nb_num})" /></td>
+					</tr>
+				</c:forEach>
+
+			</tbody>
+		</table>
+	</div>
+	<div class="page-div">${page}</div>
 </div>

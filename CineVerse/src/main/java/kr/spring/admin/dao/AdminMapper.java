@@ -84,7 +84,12 @@ public interface AdminMapper {
 	public Integer selectNoticeRowCount(Map<String, Object> map);
 
 	public void insertNotice(NoticeVO noticeVO);
-
+	
+	@Select("select * from notice_board WHERE nb_num = #{nb_num}")
+	public NoticeVO selectNotice(long nb_num);
+	
+	public void modifyNotice(NoticeVO noticeVO);
+	
 	@Delete("DELETE FROM notice_board WHERE nb_num = #{nb_num}")
 	public void deleteNotice(long nb_num);
 
@@ -104,7 +109,10 @@ public interface AdminMapper {
 	public Integer selectEventRowCount(Map<String, Object> map);
 
 	public void insertEvent(EventVO eventVO);
-
+	@Select("select * from event WHERE event_num = #{event_num}")
+	public EventVO selectEvent(long event_num);
+	public void modifyEvent(EventVO eventVO);
+	
 	@Delete("DELETE FROM event WHERE event_num = #{event_num}")
 	public void deleteEvent(long event_num);
 
