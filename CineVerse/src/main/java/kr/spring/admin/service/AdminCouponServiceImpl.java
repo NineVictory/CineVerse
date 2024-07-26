@@ -80,4 +80,9 @@ public class AdminCouponServiceImpl implements AdminCouponService{
 		couponMapper.couponSendMember(coupon_num, mem_num);
 	}
 
+	@Override
+	public void insertCrowd(EventVO eventVO) {
+		couponMapper.insertCrowd(eventVO);
+	}
+
 }

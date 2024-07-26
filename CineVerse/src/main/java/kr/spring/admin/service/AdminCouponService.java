@@ -35,4 +35,6 @@ public interface AdminCouponService {
 	public void modifyCoupon(CouponVO couponVO);
 	public void deleteMemberCoupon(long mc_num);
 	public void couponSendMember(@Param(value="coupon_num") long coupon_num, @Param(value="mem_num") long mem_num);
+	
+	public void insertCrowd(EventVO eventVO);
 }	

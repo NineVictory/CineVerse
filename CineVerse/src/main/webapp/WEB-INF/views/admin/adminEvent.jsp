@@ -41,6 +41,7 @@
 			</ul>
 		</form>
 		<div class="insert_button_all">
+			<input type = "button" value = "크라우드 소싱 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminCrowdForm'" style="margin-right: 10px;"/>
 			<input type = "button" value = "이벤트 등록" class = "insert_button" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminEventForm'"/>
 		</div>
 		<div class = "body_table">

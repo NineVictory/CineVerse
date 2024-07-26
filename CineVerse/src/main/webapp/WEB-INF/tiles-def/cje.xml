@@ -142,4 +142,10 @@
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminMemberCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCouponSend.jsp" />
 	</definition>
+	
+	<definition name="adminCrowdForm" extends="adminMain">
+		<put-attribute name="title" value="크라우드 소싱 등록" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventFormCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCrowdForm.jsp" />
+	</definition>
 </tiles-definitions>

@@ -15,4 +15,7 @@ public class EventPVO {
 	private long event_num;
 	private Date ep_date;
 	private String ep_content;
+	private long ep_type;
+	private long event_type;
+	private String crowd_movie;
 }

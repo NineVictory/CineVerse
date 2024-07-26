@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.spring.admin.vo.EventVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.util.PagingUtil;
 
@@ -34,4 +35,7 @@ public interface AdminCouponMapper {
 	
 	@Insert("INSERT INTO member_coupon (mc_num, coupon_num, mem_num) VALUES(member_coupon_seq.nextval, #{coupon_num}, #{mem_num})")
 	public void couponSendMember(@Param(value="coupon_num") long coupon_num, @Param(value="mem_num") long mem_num);
+	
+	
+	public void insertCrowd(EventVO eventVO);
 }

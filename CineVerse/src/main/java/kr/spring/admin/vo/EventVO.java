@@ -31,4 +31,14 @@ public class EventVO {
 	private Date event_modify_date;
 	private MultipartFile event_upload;	//파일
 	private String event_type;
+	
+	private long ep_type;
+	@NotBlank
+	private String crowd_movie1;
+	@NotBlank
+	private String crowd_movie2;
+	@NotBlank
+	private String crowd_movie3;
+	@NotBlank
+	private String crowd_movie4;
 }
