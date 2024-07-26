@@ -73,7 +73,6 @@ public interface MyPageMapper {
 	@Select("SELECT COUNT(*) FROM movie_review WHERE mem_num=#{mem_num}")
 	public Integer movieReviewCnt(Long mem_num);
 	@Select("SELECT * FROM movie_review LEFT OUTER JOIN(SELECT mr_num, COUNT(*) AS fav_cnt FROM mr_fav GROUP BY mr_num) USING(mr_num) JOIN member_detail USING(mem_num) WHERE mem_num=#{mem_num}")
-	
 	public List<MovieReviewVO> movieReviewList(Long mem_num);
 	
 	
