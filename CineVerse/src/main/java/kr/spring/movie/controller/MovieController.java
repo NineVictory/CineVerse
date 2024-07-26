@@ -451,7 +451,7 @@ public class MovieController {
 
                memberService.totalPoint(user.getMem_num());
                // 결제 완료 후 완료 페이지로 이동
-               return "watchedMovie";
+               return "redirect:/myPage/reservationList";
            }
 
 
