@@ -32,7 +32,7 @@
 			<div class="fast-menu-cont flexbox-p">
 				<strong>1:1 문의</strong>
 				<span class="font14">24시간 365일 언제든지 문의해주세요</span>
-				<a href="consult" class="font12">문의하기</a>
+				<a href="consultList" class="font12">문의하기</a>
 			</div>
 		</div>
 		<div class="flexbox-p fast-menu">
