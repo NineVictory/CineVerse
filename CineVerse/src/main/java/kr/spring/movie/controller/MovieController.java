@@ -192,6 +192,18 @@ public class MovieController {
         return movieService.filterMoviesByGenres(Arrays.asList(genres));
     }
     
+    @GetMapping("/movie/filterMoviesByGenres2")
+    @ResponseBody
+    public List<MovieVO> filterMoviesByGenres2(@RequestParam("genres") String[] genres) {
+        return movieService.filterMoviesByGenres2(Arrays.asList(genres));
+    }
+    
+    @GetMapping("/movie/filterMoviesByGenres3")
+    @ResponseBody
+    public List<MovieVO> filterMoviesByGenres3(@RequestParam("genres") String[] genres) {
+        return movieService.filterMoviesByGenres3(Arrays.asList(genres));
+    }
+    
     @GetMapping("/movie/allMovies")
     @ResponseBody
     public List<MovieVO> allMovies() {

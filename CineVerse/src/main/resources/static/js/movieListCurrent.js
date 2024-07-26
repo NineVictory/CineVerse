@@ -141,7 +141,7 @@ $(document).ready(function() {
         } else {
             selectedGenres.delete(genre);
         }
-        filterMoviesByGenres();
+        filterMoviesByGenres2();
     });
 	
 	$("#movieListContainer ul.movie-list").append(html);
@@ -167,13 +167,13 @@ $(document).ready(function() {
 	
     // 장르로 영화 필터링
 // 장르로 영화 필터링
-function filterMoviesByGenres() {
+function filterMoviesByGenres2() {
     if (selectedGenres.size === 0) {
        window.location.href = '/movie/movieListCurrent';
     } else {
         // 선택된 장르가 있을 때, 해당 장르의 영화만 필터링
         $.ajax({
-            url: '/movie/filterMoviesByGenres',
+            url: '/movie/filterMoviesByGenres2',
             type: 'GET',
             traditional: true,
             data: { genres: Array.from(selectedGenres) },

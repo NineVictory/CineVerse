@@ -12,7 +12,7 @@
                 <div class="search-container">
                     <div class="movie-list-title">
                     <div class="movie-list-title-in">
-                    	<input type="checkbox" id="statusCheckbox" name="status" value="1" <c:if test="${param.status == 1}">checked</c:if>> 현재 상영작만 보기
+                    	<%-- <input type="checkbox" id="statusCheckbox" name="status" value="1" <c:if test="${param.status == 1}">checked</c:if>> 현재 상영작만 보기 --%>
                     </div>
                         
                         <div class="select-list-checkbox">

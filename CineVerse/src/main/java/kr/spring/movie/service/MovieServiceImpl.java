@@ -270,6 +270,17 @@ public class MovieServiceImpl implements MovieService {
     public List<MovieVO> filterMoviesByGenres(List<String> genres) {
         return movieMapper.filterMoviesByGenres(genres);
     }
+	@Override
+	public List<MovieVO> filterMoviesByGenres2(List<String> genres) {
+		
+		return movieMapper.filterMoviesByGenres2(genres);
+	}
+	
+	@Override
+	public List<MovieVO> filterMoviesByGenres3(List<String> genres) {
+		
+		return movieMapper.filterMoviesByGenres3(genres);
+	}
 
 	@Override
 	public MovieDetailKFAPIVO selectDetailKFAPIVO(String title) {
@@ -330,6 +341,8 @@ public class MovieServiceImpl implements MovieService {
 	public void updateUserMbNum(long mb_num, String user_mb_num) {
 		movieMapper.updateUserMbNum(mb_num, user_mb_num);
 	}
+
+
 
 
 

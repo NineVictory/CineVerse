@@ -34,6 +34,8 @@ public interface MovieService {
     
     public List<String> selectDistinctGenres();
     public List<MovieVO> filterMoviesByGenres(List<String> genres);
+    List<MovieVO> filterMoviesByGenres2(@Param("genres") List<String> genres);
+    List<MovieVO> filterMoviesByGenres3(@Param("genres") List<String> genres);
     MovieDetailKFAPIVO selectDetailKFAPIVO(String title);
     
     // 영화 북마크
