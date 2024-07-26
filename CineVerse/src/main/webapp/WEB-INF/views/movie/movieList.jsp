@@ -80,8 +80,8 @@
                     </c:if>
                 </c:forEach>
             </ul>
- <!--             <div class="more-button-container">
+             <div class="more-button-container">
             <button id="loadMoreButton" class="load-more-btn">더보기</button>
-        </div>     -->  
+        </div>
         </div>
     </div>

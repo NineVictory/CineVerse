@@ -5,39 +5,44 @@ $(document).ready(function() {
 /*	const itemsPerPage = 20; // 한 번에 표시할 영화 개수
     let currentPage = 1;*/
 	const selectedGenres = new Set();
-/*	 let status = $("#statusCheckbox").is(':checked') ? 1 : '';*/
-
-/*	// 초기 영화 목록 설정
+	    const itemsPerPage = 20; // 한 번에 표시할 영화 개수
+    let currentPage = 1;
+    
+	
+	    // 초기 화면 설정 함수 호출
+    showInitialMovies();
+    
+    // 초기 화면 설정
     function showInitialMovies() {
-        $('.movie').hide(); // 모든 항목 숨기기
-        $('.movie').slice(0, itemsPerPage).show(); // 처음 20개 항목 표시
-        console.log("Initial movies shown");
+        $('.movie').hide(); // 모든 항목을 숨김
+        $('.movie').slice(0, itemsPerPage).show(); // 첫 페이지 항목을 표시
     }
 
-    // 더보기 버튼 클릭 시 더 많은 영화 표시
+    // '더보기' 버튼 클릭 시 추가 항목 표시
     $("#loadMoreButton").click(function() {
-		console.log("Load more clicked");
         const totalItems = $('.movie').length;
         const itemsToShow = currentPage * itemsPerPage;
-
-        // 다음 페이지 항목들만 표시
+	
+        // 다음 페이지 항목들을 표시
         $('.movie').slice(itemsToShow, itemsToShow + itemsPerPage).show();
 
         currentPage++;
 
-        // 모든 항목이 표시된 경우 버튼 숨기기
+        // 모든 항목이 표시되었을 경우 버튼을 숨김
         if (itemsToShow + itemsPerPage >= totalItems) {
             $("#loadMoreButton").hide();
         }
-    });*/
+    });
+
+
+
     
     // 상영 중인 영화 필터링
     $("#statusCheckbox").change(function() {
        var status = $(this).is(':checked') ? 1 : '';
         location.href = '/movie/movieList?status=' + status;
         
-/*        currentPage = 1;
-        loadMovies(true);*/
+
     });
 
    // 최신순, 북마크순 체크박스 상태 관리
@@ -69,69 +74,7 @@ $(document).ready(function() {
         $("input[name='movieorder'][value='1']").prop('checked', true);
     }
 
-  /*  // 더보기 버튼 클릭 이벤트
-    $("#loadMoreButton").click(function() {
-        loadMoreMovies();
-    });
-    
-    function loadMovies(reset = false) {
-        if (reset) {
-            currentPage = 1;
-            displayedMovies.clear();
-            $("#movieListContainer ul.movie-list").empty();
-        }
-        loadMoreMovies();
-    }
 
-    function loadMoreMovies() {
-        currentPage++;
-        $.ajax({
-            url: "/movie/loadMoreMovies",
-            method: "GET",
-            data: {
-                pageNum: currentPage,
-                rowCount: rowCount,
-                keyfield: $('#keyfield').val(),
-                keyword: $('#keyword').val(),
-                movieorder: $("input[name='movieorder']:checked").val() || 1,
-            },
-            success: function(response) {
-                const movielist = response.movielist;
-
-                if (movielist.length > 0) {
-                    let html = '';
-                    movielist.forEach(movie => {
-                        if (!displayedMovies.has(movie.m_code)) {
-                            displayedMovies.add(movie.m_code);
-                            html += `
-                                <li class='movie'>
-                                    <img alt='영화1' src='/upload/${movie.m_filename}' onclick="location.href='movieDetail?m_code=${movie.m_code}'">
-                                    <p><a href='movieDetail?m_code=${movie.m_code}'><b>${movie.m_name}</b></a></p>
-                                    <div class='bookAopen'>
-                                        <div>예매율 34.1% | 개봉일 ${movie.m_opendate}</div>
-                                    </div>
-                                    <div class='movie-button'>
-                                        <div class='movie-fav-button-detail'>
-                                            <img class='output_bookMark' data-num='${movie.m_code}' src='/images/heart01.png'>
-                                            <span class='output_mfcount'></span>
-                                        </div>
-                                        <div class='movie-reservation-button-list'>예매하기</div>
-                                    </div>
-                                </li>`;
-                        }
-                    });
-                    $("#movieListContainer ul.movie-list").append(html);
-                }
-
-                if (movielist.length < rowCount) {
-                    $("#loadMoreButton").hide();
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error("Error loading more movies:", error);
-            }
-        });
-    }*/
  
    // 장르 체크박스 클릭 이벤트
     $('.genre-checkbox').change(function() {
@@ -215,8 +158,5 @@ function filterMoviesByGenres() {
     }
 }
 
-/*      // 초기 로드
-    loadMovies();*/
-        // 초기 실행
-    /*showInitialMovies();*/
+
 });
