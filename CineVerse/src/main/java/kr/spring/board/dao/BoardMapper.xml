@@ -163,16 +163,33 @@
  		WHERE r.cc_num=#{cc_num}
  		START WITH r.te_depth=0 CONNECT BY PRIOR r.te_num=r.te_parent_num ORDER SIBLINGS BY r.te_num DESC
  	</select>  -->
- 	<select id="selectListResponse" parameterType="long" resultType="boardResponseVO">
+ 	<select id="selectListResponse" parameterType="map" resultType="boardResponseVO">
 	SELECT 
-	r.te_num, r.te_content, r.mem_num, a.mem_id, b.mem_nickname,
-	r.te_date, r.te_ip, r.cc_num, r.te_depth, r.te_parent_num, n.mem_id
-	parent_id, m.mem_nickname pnick_name
+	r.te_num, 
+	r.te_content, 
+	r.mem_num, 
+	a.mem_id, 
+	b.mem_nickname,
+	r.te_date,
+	 r.te_mdate, 
+	 r.te_ip, 
+	 r.cc_num,
+	 r.te_depth, 
+	 r.te_parent_num, 
+	 n.mem_id parent_id, 
+	m.mem_nickname pnick_name, 
+	rf.respclick_num, 
+	rn.respfav_cnt
 	
 	FROM community_response r
 	JOIN member a ON r.mem_num = a.mem_num
 	LEFT JOIN member_detail b ON r.mem_num = b.mem_num
 	LEFT JOIN community_response s ON r.te_parent_num = s.te_num
+	
+	LEFT OUTER JOIN (SELECT te_num, mem_num respclick_num FROM community_response_fav WHERE mem_num=#{mem_num})rf ON r.te_num = rf.te_num
+    LEFT OUTER JOIN (SELECT te_num, COUNT(*) respfav_cnt FROM community_response_fav GROUP BY te_num)rn ON r.te_num = rn.te_num
+	
+	
 	LEFT JOIN member_detail m ON s.mem_num = m.mem_num
 	LEFT JOIN member n ON s.mem_num = n.mem_num
 	WHERE r.cc_num = #{cc_num}

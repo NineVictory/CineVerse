@@ -434,22 +434,38 @@ public class BoardAjaxController {
 	public Map<String, Object> getListResp(long cc_num, HttpSession session) {
 	    log.debug("<<답글 목록 - cc_num>> : " + cc_num);
 
-	    List<BoardResponseVO> list = boardService.selectListResponse(cc_num);
-	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    
+	    Map<String,Object> map = new HashMap<String,Object>();
+		map.put("cc_num", cc_num);
+		
+		//총글의 개수
+		int count = boardService.selectRowCountComment(cc_num);
+	    MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user != null) {
+			map.put("mem_num", user.getMem_num());
+		}else {
+			map.put("mem_num", 0);
+		}
+		
+		List<BoardResponseVO> list = null;
+		if(count > 0) {
+			list = boardService.selectListResponse(map);
+		}else {
+			list = Collections.emptyList(); // null이 아닌 비어있는 리스트 -> 빈 배열로 인식함
+		}
+	    
 
 	    Map<String, Object> mapJson = new HashMap<>();
 	    
 	    for (BoardResponseVO response : list) {
 	        // 각 답글에 대한 좋아요 개수 읽어서 지정해줌 response vo에 respfav_cnt 세팅함
-	        int favCount = boardService.selectResponseFavCnt(response.getTe_num());
+	        int favCount = boardService.selectRespFavCount(response.getTe_num());
 	        response.setRespfav_cnt(favCount);
 	    }
 	    
 	    mapJson.put("list", list);
 
-	    if (user != null) {
-	        mapJson.put("user_num", user.getMem_num());
-	    }
+	
 
 	    return mapJson;
 	}
@@ -517,4 +533,33 @@ public class BoardAjaxController {
 		return mapJson;
 	}
 	
+	
+	
+	/*===================
+	 * 답글 좋아요 등록/삭제
+	 *===================*/
+	@PostMapping("/board/writeRespFav")
+	@ResponseBody
+	public Map<String,Object> writeResponseFav(BoardResponseFavVO respFav, HttpSession session){
+		log.debug("<<답글 좋아요 등록/삭제>> : " + respFav);
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else {// 로그인
+			respFav.setMem_num(user.getMem_num());
+			BoardResponseFavVO boardResponseFav = boardService.selectRespFav(respFav);
+			if(boardResponseFav != null) {// 좋아요가 있을 경우 취소
+				boardService.deleteRespFav(respFav);
+				mapJson.put("status", "noFav");
+			}else {
+				boardService.insertRespFav(respFav);
+				mapJson.put("status", "yesFav");
+			}
+			mapJson.put("result", "success");
+			mapJson.put("count", boardService.selectRespFavCount(respFav.getTe_num()));
+		}
+		return mapJson;
+	}
 }

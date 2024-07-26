@@ -87,9 +87,9 @@ $(function() {
 					// 답글 버튼
 					output += '<div><input type="button" data-num="' + item.cc_num + '" data-parent="0" data-depth="0"  value="답글" class="response-btn"></div>';
 
-					// 좋아요 버튼
+					// 댓글좋아요 버튼
 					
-					if (item.click_num == 0 || param.user_num !== item.click_num) {
+					if (item.click_num == 0 || param.user_num != item.click_num) {
 						output += '<div class="cc-like-btn" data-num="' + item.cc_num + '"><img class="cc-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-rfcount">' + item.refav_cnt + '</span></div>';
 					} else {
 						output += '<div class="cc-like-btn" data-num="' + item.cc_num + '"><img class="cc-like" src="../images/kbm/heart02.png" height="11">&nbsp;<span class="output-rfcount">' + item.refav_cnt + '</span></div>';
@@ -685,16 +685,17 @@ $(function() {
 					output += '</div>';
 					output += '</div>'; // resp-sub-item 닫기
 
-					// 답글 작성 버튼 및 좋아요 버튼 출력
+					// 답글 작성 버튼
 					output += '<div class="flexbox-h side mhide">';
 					/*if (param.user_num) {*/
 						output += '<div><input type="button" data-num="' + item.cc_num + '" data-parent="' + item.te_num + '" data-depth="' + (item.te_depth + 1) + '" value="답글" class="response2-btn"></div>'; // 답글 작성 버튼 데이터 수정
 					
+					//답글좋아요
 					output += '<div class="flexbox-h">';
-					if (item.click_num == 0 || param.user_num !== item.click_num) {
-						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-rfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
+					if (item.respclick_num == 0 || param.user_num != item.respclick_num) {
+						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="resp-like" src="../images/kbm/heart01.png" height="11">&nbsp;<span class="output-respfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
 					} else {
-						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="cc-like" src="../images/kbm/heart02.png" height="11">&nbsp;<span class="output-rfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
+						output += '<div class="resp-like-btn" data-num="' + item.te_num + '"><img class="resp-like" src="../images/kbm/heart02.png" height="11">&nbsp;<span class="output-respfcount">' + item.respfav_cnt + '</span></div>'; // 좋아요 버튼 데이터 수정
 					}
 					output += '</div>';
 					output += '</div>'; // side 닫기
@@ -711,6 +712,41 @@ $(function() {
 			}
 		});
 	}
+	
+	/* ========================================================================
+	 * 답글 좋아요 등록
+	 * ======================================================================== */
+	$(document).on('click', '.resp-like-btn', function() {
+		let heart = $(this);
+		$.ajax({
+			url: 'writeRespFav',
+			type: 'post',
+			data: { te_num: heart.attr('data-num') },
+			dataType: 'json',
+			success: function(param) {
+				if (param.result == 'logout') {
+					alert('로그인 후 좋아요를 눌러주세요');
+				} else if (param.result == 'success') {
+					let output;
+					if (param.status == 'noFav') {
+						output = '../images/heart01.png';
+					} else {
+						output = '../images/heart02.png';
+					}
+					//문서 객체에 추가
+					heart.find('img.resp-like').attr('src', output);
+					heart.find('.output-respfcount').text(param.count);
+				} else {
+					alert('답글 좋아요 등록/삭제 오류');
+				}
+			},
+			error: function() {
+				alert('네트워크 오류 발생');
+			}
+		});
+	});
+	
+	
 	
 	/* ========================================================================
 	 * 답글 수정
@@ -732,7 +768,7 @@ $(function() {
 			responseUI += '	<div class="">';
 			responseUI += '		<img src="../myPage/viewProfile?mem_num=' +mem_num+ '" width="30" height="30" class="my-photo">';
 			responseUI += '		<span>' +name+ '</span>';
-			responseUI += '	</div>';*/
+			responseUI += '	</div>';	*/
 			responseUI += '	<div class="mresp-form-container">';
 			responseUI += '		<form id="mresp_form">'
 			responseUI += '  		 <input type="hidden" name="te_num" id="mresp_num" value="'+te_num+'">';

@@ -58,6 +58,8 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void deleteBoard(Long cb_num) {
+		//답글 좋아요 삭제
+		boardMapper.deleteRespFavByBoardNum(cb_num);
 		//답글 삭제
 		boardMapper.deleteResponseByBoardNum(cb_num);
 		//댓글 좋아요 삭제
@@ -125,6 +127,8 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void deleteComment(Long cc_num) {
+		//답글 좋아요
+		boardMapper.deleteRespFavByReNum(cc_num);
 		//답글
 		boardMapper.deleteResponseByReNum(cc_num);
 		//댓글 좋아요
@@ -153,8 +157,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardResponseVO> selectListResponse(Long cc_num) {
-		return boardMapper.selectListResponse(cc_num);
+	public List<BoardResponseVO> selectListResponse(Map<String,Object> map) {
+		return boardMapper.selectListResponse(map);
 	}
 
 	@Override
@@ -174,6 +178,8 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void deleteResponse(Long te_num) {
+		//답글 삭제 전 좋아요 삭제
+		boardMapper.deleteRespFavByTeNum(te_num);
 		boardMapper.deleteResponse(te_num);
 	}
 
@@ -182,15 +188,6 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.selectResponseCount(cc_num);
 	}
 
-	@Override
-	public Integer selectResponseFavCnt(Long te_num) {
-		return boardMapper.selectResponseFavCnt(te_num);
-	}
-
-	@Override
-	public BoardResponseFavVO selectResponseFav(BoardResponseFavVO boardResponseFav) {
-		return boardMapper.selectResponseFav(boardResponseFav);
-	}
 
 	@Override
 	public BoardBookmarkVO selectBM(BoardBookmarkVO bookmark) {
@@ -225,6 +222,26 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void responseReport(ResponseReportVO responseReportVO) {
 		boardMapper.responseReport(responseReportVO);		
+	}
+
+	@Override
+	public BoardResponseFavVO selectRespFav(BoardResponseFavVO respFav) {
+		return boardMapper.selectRespFav(respFav);
+	}
+
+	@Override
+	public Integer selectRespFavCount(Long te_num) {
+		return boardMapper.selectRespFavCount(te_num);
+	}
+
+	@Override
+	public void insertRespFav(BoardResponseFavVO respfav) {
+		boardMapper.insertRespFav(respfav);
+	}
+
+	@Override
+	public void deleteRespFav(BoardResponseFavVO respfav) {
+		boardMapper.deleteRespFav(respfav);
 	}
 
 }

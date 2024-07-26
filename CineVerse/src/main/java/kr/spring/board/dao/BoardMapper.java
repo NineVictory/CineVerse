@@ -95,9 +95,9 @@ public interface BoardMapper {
 	
 	
 	//답글
-	public List<BoardResponseVO> selectListResponse(Long cc_num);
+	public List<BoardResponseVO> selectListResponse(Map<String,Object> map);
 	
-	@Select("SELECT COUNT(*) FROM community_response WHERE cc_num=#{cc-num}")
+	@Select("SELECT COUNT(*) FROM community_response WHERE cc_num=#{cc_num}")
 	public Integer selectRowCountResponse(Map<String,Object> map);
 	
 	//게시글의 답글 총 개수
@@ -118,13 +118,8 @@ public interface BoardMapper {
 	//답글의 개수 구하기
 	@Select("SELECT COUNT(*) FROM community_response WHERE cc_num=#{cc_num}")
 	public Integer selectResponseCount(Long cc_num);
-	// 답글 좋아요 불러오기
-	@Select("SELECT * FROM community_response_fav WHERE te_num=#{te_num} AND mem_num=#{mem_num}")
-	public BoardResponseFavVO selectResponseFav(BoardResponseFavVO boardResponseFav);
-	// 답글 좋아요 개수 구하기
-	@Select("SELECT COUNT(*) FROM community_response_fav WHERE te_num=#{te_num}")
-	public Integer selectResponseFavCnt(Long te_num);
-
+	
+	
 	
 	//답글 좋아요
 	@Select("SELECT * FROM community_response_fav WHERE te_num=#{te_num} AND mem_num=#{mem_num}")
@@ -139,7 +134,7 @@ public interface BoardMapper {
 	@Delete("DELETE FROM community_response_fav WHERE te_num IN (SELECT te_num FROM community_response_fav JOIN community_response USING (te_num) WHERE cc_num=#{cc_num}")
 	public void deleteRespFavByReNum(Long cc_num);
 	//답글 삭제시 자식답글 좋아요 삭제
-	@Delete("DELETE FROM community_response_fav WHERE te_parent_num IN (SELECT )")
+	@Delete("DELETE FROM community_response_fav WHERE te_parent_num IN (SELECT te_parent_num FROM community_response WHERE te_parent_num=#{te_num})")
 	public void deleteRespFavByTeNum(Long te_num);
 	//게시글 삭제시 답글의 좋아요 삭제
 	@Delete("DELETE FROM community_response_fav WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")

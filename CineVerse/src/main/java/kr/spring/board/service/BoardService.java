@@ -56,21 +56,23 @@ public interface BoardService {
 	public void deleteReFav(BoardReFavVO fav);
 
 	//답글
-	public List<BoardResponseVO> selectListResponse(Long re_num);
+	public List<BoardResponseVO> selectListResponse(Map<String,Object> mapm);
 	public BoardResponseVO selectResponse(Long te_num);
 	public void insertResponse(BoardResponseVO boardResponse);
 	public void updateResponse(BoardResponseVO boardResponse);
 	public void deleteResponse(Long te_num);
 	//답글의 개수 구하기
 	public Integer selectResponseCount(Long cc_num);
-	// 답글 좋아요 가져오기
-	public BoardResponseFavVO selectResponseFav(BoardResponseFavVO boardResponseFav);
-	// 답글의 좋아요 개수 구하기
-	public Integer selectResponseFavCnt(Long te_num);
-
+	
 	//게시글의 답글 총 개수
 	public Integer selectResponseCountByCbNum(Long cb_num);
-
+	
+	//답글 좋아요
+	public BoardResponseFavVO selectRespFav(BoardResponseFavVO respFav);
+	public Integer selectRespFavCount(Long te_num);
+	public void insertRespFav(BoardResponseFavVO respfav);
+	public void deleteRespFav(BoardResponseFavVO respfav);
+	
 	
 	//부모글 신고
 	public void boardReport(BoardReportVO boardReportVO);
