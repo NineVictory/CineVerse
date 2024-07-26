@@ -73,7 +73,7 @@
 }
 
 .movie-list-wrapper{
-	 max-height: 670px; /* 원하는 최대 높이 값으로 설정하세요 */
+	max-height: 662px; /* 원하는 최대 높이 값으로 설정하세요 */
     overflow-y: auto;  /* 세로 방향으로 스크롤바가 필요할 경우 표시 */
     border: 1px solid #ddd; /* 선택적: 경계선 추가 */
     padding: 10px; /* 선택적: 내부 여백 추가 */
