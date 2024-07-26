@@ -16,7 +16,7 @@
 		<div class="search">
 			<form action="faq" id="faq_search_form" method="get" style="margin-left: auto;">
 			<input type="hidden" name="" value="">
-			<input type="search" class="search-input" name="keyword" placeholder="검색어를 입력해 주세요">
+			<input type="search" class="search-input" name="keyword" placeholder="검색어를 입력해 주세요" value="${param.keyword}">
 			<button type="submit" class="search-button" aria-label="검색하기">검색</button>
 			<%--<input type="image" src="${pageContext.request.contextPath}/images/kbm/search.png" width="20" alt="검색"> --%>
             </form>
