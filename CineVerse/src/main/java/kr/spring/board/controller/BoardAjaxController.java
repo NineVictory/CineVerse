@@ -433,29 +433,26 @@ public class BoardAjaxController {
 	@ResponseBody
 	public Map<String, Object> getListResp(long cc_num, HttpSession session) {
 	    log.debug("<<답글 목록 - cc_num>> : " + cc_num);
-
 	    
 	    Map<String,Object> map = new HashMap<String,Object>();
-		map.put("cc_num", cc_num);
-		
-		//총글의 개수
-		int count = boardService.selectRowCountComment(cc_num);
-	    MemberVO user = (MemberVO)session.getAttribute("user");
-		if(user != null) {
-			map.put("mem_num", user.getMem_num());
-		}else {
-			map.put("mem_num", 0);
-		}
-		
-		List<BoardResponseVO> list = null;
-		if(count > 0) {
-			list = boardService.selectListResponse(map);
-		}else {
-			list = Collections.emptyList(); // null이 아닌 비어있는 리스트 -> 빈 배열로 인식함
-		}
+	    map.put("cc_num", cc_num);
 	    
-
-	    Map<String, Object> mapJson = new HashMap<>();
+	    MemberVO user = (MemberVO)session.getAttribute("user");
+	    if(user != null) {
+	    	map.put("mem_num", user.getMem_num());
+	    }else {
+	    	map.put("mem_num",0);
+	    }
+	    
+	    int count = boardService.selectResponseCount(cc_num);
+	    List<BoardResponseVO> list = null;
+	    if(count > 0) {
+	    	list = boardService.selectListResponse(map);
+	    }else {
+	    	list = Collections.emptyList();//비어있는 리스트
+	    }
+	    
+	    Map<String, Object> mapJson = new HashMap<String,Object>();
 	    
 	    for (BoardResponseVO response : list) {
 	        // 각 답글에 대한 좋아요 개수 읽어서 지정해줌 response vo에 respfav_cnt 세팅함
@@ -465,7 +462,9 @@ public class BoardAjaxController {
 	    
 	    mapJson.put("list", list);
 
-	
+	    if (user != null) {
+	        mapJson.put("user_num", user.getMem_num());
+	    }
 
 	    return mapJson;
 	}
