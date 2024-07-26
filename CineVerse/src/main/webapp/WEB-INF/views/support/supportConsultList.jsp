@@ -8,7 +8,7 @@
 <script src="${pageContext.request.contextPath}/js/consult.list.js"></script>
 <!-- 1:1 문의 -->
 <div id="support_main" class="">
-	<h3>1:1 문의</h3>
+	<h3>1:1 문의💭</h3>
 
 	<div class="flexbox-h side qna-top">
 		<div><input type="checkbox" id="myCheckbox" data-num="${member.mem_num}"><span>나의 문의글</span></div>

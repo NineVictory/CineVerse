@@ -9,7 +9,6 @@
 <!-- 1:1 문의 -->
 <div id="support_main" class="">
 	<h3>1:1 문의</h3>
-
 	<div class="qna-member-info">
 		<div class="member-info-gap"><span class="info-label">이름</span><span>${user.mem_name}</span></div>
 		<div class="flexbox-h phone-email">

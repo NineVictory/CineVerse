@@ -75,6 +75,11 @@
         <li class="support_nav" id="fl"><a href="/support/faq"> 자주 찾는 질문 </a></li>
         <li class="support_nav" id="nl"><a href="/support/notice"> 공지/뉴스 </a></li>
         <li class="support_nav" id="cl"><a href="/support/consultList"> 1:1 문의 </a></li>
-        <li class="support-call"><div>CINEVERSE<br>고객센터<br>1234-5678<br><img src="${pageContext.request.contextPath}/images/kbm/heart01.png">10:00 ~ 19:00</div></li>
+        <li class="support-call">
+			<img src="https://adimg.cgv.co.kr/images/202302/house/CGV_BUGS_160x300.png" width="160" height="300" border="0" alt="광고-BUGS">
+		</li>
+        <li class="support-call">
+			<img src="https://adimg.cgv.co.kr/images/202406/Doraemon/0709_160x35.png" width="160" height="35" border="0" alt="광고-극장판 도라에몽: 진구의 지구 교향곡">
+		</li>
     </ul>
 </div>

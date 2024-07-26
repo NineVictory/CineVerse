@@ -12,29 +12,37 @@
 <div id="support_main" class="flexbox-p">
 	<div class="flexbox-h main-upper-menu">
 		<div class="flexbox-p fast-menu">
-			<img src="${pageContext.request.contextPath}/images/kbm/faq.png" width="38">
+		<div class="fast_menu_img">
+			<img src="${pageContext.request.contextPath}/images/qna.png" width="38">
+		</div>
+			
 			<div class="fast-menu-cont flexbox-p">
 				<strong>자주 묻는 질문 빠른 검색</strong>
 				<div id="search_box">
 					<input type="text" class="faq-keyword" class="font14">
-					<button title="검색하기" class="faq-mbutton" class="font11">검색</button>
+					<button title="검색하기" class="faq-mbutton" class="font11"></button>
 				</div>
+				<div class="search_a_all"><a class="search_a">포인트 관리</a><a class="search_a">계정 찾기</a></div>
 			</div>
 		</div>
 		<div class="flexbox-p fast-menu">
-			<img src="${pageContext.request.contextPath}/images/kbm/qna.png" width="48">
+			<div class="fast_menu_img">
+				<img src="${pageContext.request.contextPath}/images/message.png" width="38">
+			</div>
 			<div class="fast-menu-cont flexbox-p">
 				<strong>1:1 문의</strong>
 				<span class="font14">24시간 365일 언제든지 문의해주세요</span>
-				<a href="consult" class="font14">문의하기</a>
+				<a href="consult" class="font12">문의하기</a>
 			</div>
 		</div>
 		<div class="flexbox-p fast-menu">
-			<img src="${pageContext.request.contextPath}/images/kbm/file_fill.png" width="37">
+			<div class="fast_menu_img">
+				<img src="${pageContext.request.contextPath}/images/kbm/file_fill.png" width="37">
+			</div>
 			<div class="fast-menu-cont flexbox-p">
 				<strong>내 상담 내역 확인</strong>
 				<span class="font14">문의하신 내용을 확인하실 수 있습니다</span>
-				<a href="${pageContext.request.contextPath}/myPage/consult" target="_blank" rel="noopener noreferrer" class="font14">문의내역 조회</a>
+				<a href="${pageContext.request.contextPath}/myPage/consult" target="_blank" rel="noopener noreferrer" class="font12">문의내역 조회</a>
 			</div>
 		</div>
 	</div>

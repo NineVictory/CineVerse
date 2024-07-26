@@ -14,6 +14,10 @@
 div.supportNav{
 	width:18%;
 }
+div.supportNav ul{
+	padding : 0px;
+}
+
 div.supportNav ul li{
 	width:160px;
 }
@@ -22,24 +26,26 @@ div.supportNav ul li.support_nav a{
 	width:153px;
 }
 div.supportNav ul li.support_nav{
-	border-top:1px solid #BEBABA;
+/* 	border-top:1px solid #BEBABA;
 	border-left:1px solid #BEBABA;
-	border-right:1px solid #BEBABA;
+	border-right:1px solid #BEBABA; */
 }
 div.supportNav > *{
 	font-size:15px;
 }
-div.supportNav ul li.support-call{
+
+/* div.supportNav ul li.support-call{
 	border:1px solid #BEBABA;
 	border-radius:0 0 10px 10px;
-}
+} */
+
 .support-call div{
 	font-size:15px;
 	color:#8c8c8c;
 	padding:7px 5px 7px 7px;
 }
 li.support_nav{
-	padding:5px 5px 5px 7px;
+    padding: 10px 5px 10px 12px;
 }
 
 /*supportMain 고객센터 메인*/
@@ -74,10 +80,16 @@ li.support_nav{
 	gap:20px;
 }
 .main-upper-menu > div{
-	width:290px;
-	height:300px;
-	margin-right:15px;
-	background:#EFF3FD;
+border-radius: 5px;
+    gap: 20px;
+    display: flex;
+    width: 290px;
+    height: 300px;
+    margin-right: 15px;
+    background: var(--gray-1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .main-lower-menu{
 	width:930px;
@@ -106,41 +118,60 @@ li.support_nav{
 }
 /*문의하기,문의내역 버튼*/
 .fast-menu a{
-	background:#3F66ED;
-	color:#fff;
-	padding:3px 7px;
-	border-radius:5px;
+	    font-weight: 700;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
-.fast-menu img{
-	position:absolute;
-	top:65px;
-	margin-bottom:50px;
+.fast_menu_img{
+    height: 60px;
 }
 .fast-menu-cont{
-	align-items:center;
-	justify-content:center;
-	position:absolute;
-	top:150px;
-	width:235px;
-	gap:10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+.serach_a_all{
+	display:flex;
+	
+}
+.search_a {
+	cursor:pointer;
+    font-weight: 700;
+    font-size: 11px;
+    background: none !important;
+    color: #000 !important;
+}
+
 .fast-menu-cont strong{
 	font-size:16px;
 }
 .font14{
 	font-size:14px;
 }
+.font12{
+	font-size:12px;
+}
 .flex-start{
 	align-items:flex-start;
 }
 
 .faq-mbutton{
-	background:#3F66ED;
-	color:#fff;
-	padding:3px 7px;
-	border-radius:3px;
-	border:none;
-	width:42px;
+	background:white;
+	border-radius: 0px 10px 10px 0px;
+    border: none;
+    width: 30px;
+    height: 30px;
+    background-image: url(../images/search_icon.png);
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#search_box{
+	display:flex;
 }
 
 .imenu a {
@@ -163,7 +194,11 @@ li.support_nav{
 	border-radius:7px;
 }
 #search_box input.faq-keyword{
-	width:150px;
+border-radius: 10px 0px 0px 10px;
+    outline: none;
+    width: 150px;
+    border: none;
+    height: 30px;
 }
 
 .main-news{
