@@ -129,9 +129,20 @@ public class CinemaServiceImpl implements CinemaService{
 	}
 
 	@Override
+	public List<MovieVO> showMovieList2() {
+		return cinemaMapper.showMovieList2();
+	}
+	
+	@Override
+	public List<MovieVO> showMovieList3() {
+		return cinemaMapper.showMovieList3();
+	}
+	
+	@Override
 	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date, String c_location) {
 		return cinemaMapper.showMovieTimeList(m_code, mt_date, c_location);
 	}
+
 
 
 

@@ -202,13 +202,15 @@
 		SELECT m_code, m_name
 		FROM movie
 		WHERE m_status = 1
+		ORDER BY m_name ASC
 	</select>
 	
 	
 	<!-- 지점명만 목록으로 보여주기 -->
 	<select id="insertTimeCinemaList"  resultType="cinemaVO">
-		SELECT c_num, c_branch
+		SELECT c_num, c_branch, c_location
 		FROM cinema
+		ORDER BY c_location ASC, c_branch ASC
 	</select>
 	
 	
@@ -231,22 +233,48 @@
 	 
 	
 	<!-- 영화 상영시간표 조회 [사용자 전용] -->
-	<!-- 상영중인 영화목록만 조회 -->
+	<!-- (가나다순)상영중인 영화목록만 조회 -->
 	<select id="showMovieList"  resultType="movieVO">
 		SELECT m_code, m_name, rating
 		FROM movie
 		WHERE m_status = 1
+		ORDER BY m_name ASC
 	</select>
 	
-	<!-- 상영중인 영화목록만 조회 -->
+	<!-- (최신순)상영중인 영화목록만 조회 -->
+	<select id="showMovieList2"  resultType="movieVO">
+		SELECT m_code, m_name, rating, m_opendate
+		FROM movie
+		WHERE m_status = 1
+		ORDER BY m_opendate DESC
+	</select>
+	
+	<!-- (예매율순)상영중인 영화목록만 조회 -->
+	<select id="showMovieList3"  resultType="movieVO">
+		SELECT DISTINCT m.m_code, m.m_name, m.rating,
+        (SELECT COUNT(*) FROM movie_booking WHERE m_code = m.m_code) * 100.0 / (SELECT COUNT(*) FROM movie_booking) AS reservation_rate
+    	FROM movie m
+	    JOIN movie_time mt ON m.m_code = mt.m_code
+	    JOIN theater t ON mt.th_num = t.th_num
+	    JOIN cinema c ON t.c_num = c.c_num
+	    WHERE m.m_status = 1
+	    ORDER BY  reservation_rate DESC
+	</select>
+	
+	
+	
+	<!-- 영화에 해당하는  지점명별 영화시간표 조회 -->
 	<select id="showMovieTimeList" parameterType="object" resultType="movieTimeVO">
 		SELECT c_branch, mt_date, mt_start, mt_end, th_name
 		FROM movie_time 
 		JOIN theater USING(th_num)
 		JOIN cinema USING(c_num)
 		WHERE m_code = #{m_code} AND mt_date = #{mt_date} AND c_location = #{c_location}
-		ORDER BY mt_start ASC
+		ORDER BY c_branch ASC, mt_start ASC
 	</select>
+	
+	
+	
 	
 </mapper>							
 

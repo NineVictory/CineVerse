@@ -9,10 +9,10 @@
     <div class="movie-part">
         <div class="reserve-title">영화</div>
         <div class="select-movietime"><span id="selected-movie">선택한 영화명</span></div>
-        <div class="sort-wrapper">
+        <!-- <div class="sort-wrapper">
             <div class="sort-rate sort-selected">예매율순</div>
             <div class="sort-korean">가나다순</div>
-        </div>
+        </div> -->
         <div class="movie-list-wrapper">
             <div class="movie-list">
                 <ul class="movie-select">
@@ -149,24 +149,36 @@
                                     c_location: selectedLocation
                                 },
                                 success: function(response) {
-                                    // 중복된 c_branch를 추적하기 위한 객체 생성
+                                    // c_branch별로 항목을 그룹화하기 위한 객체 생성
                                     let branches = {};
-                                    let selectMovieTimeListHtml = '';
 
                                     response.forEach(function(item) {
-                                        // c_branch가 객체에 없으면 추가하고 HTML에 추가
                                         if (!branches[item.c_branch]) {
-                                            branches[item.c_branch] = true;
-                                            selectMovieTimeListHtml += '<div class="branch-section"><h3 class="c-location">' + item.c_branch + '</h3><div class="branch-time-list">';
+                                            // 새로운 c_branch를 발견한 경우, 객체에 추가하고 HTML에 추가
+                                            branches[item.c_branch] = [];
                                         }
-
-                                        selectMovieTimeListHtml += '<div class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
-                                        selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
-                                        selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
-                                        selectMovieTimeListHtml += '</div>';
-
-                                        
+                                        // c_branch에 해당하는 항목들을 배열에 추가
+                                        branches[item.c_branch].push(item);
                                     });
+
+                                    let selectMovieTimeListHtml = '';
+
+                                    // 각 c_branch에 대해 반복
+                                    for (let branch in branches) {
+                                        // c_branch 제목을 추가
+                                        selectMovieTimeListHtml += '<div class="branch-section"><h3 class="c-location">' + branch + '</h3>';
+
+                                        // 시간표 항목들을 가로로 정렬할 수 있도록 HTML 생성
+                                        selectMovieTimeListHtml += '<div class="movietime-container">';
+                                        branches[branch].forEach(function(item) {
+                                            selectMovieTimeListHtml += '<div class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
+                                            selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
+                                            selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
+                                            selectMovieTimeListHtml += '</div>';
+                                        });
+                                        selectMovieTimeListHtml += '</div>'; // movietime-container 종료
+                                        selectMovieTimeListHtml += '</div>'; // branch-section 종료
+                                    }
 
                                     $('.reserve-time-wrapper').html(selectMovieTimeListHtml);
                                 },

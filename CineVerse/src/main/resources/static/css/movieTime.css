@@ -40,7 +40,7 @@
 .sort-wrapper {
 	padding: 10px 6px 6px 10px;
 	display: flex;
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 2px solid #dddddd;
 }
 
 .sort-wrapper>div {
@@ -58,9 +58,11 @@
 	border-bottom: 1px solid #111111;
 }
 
-.sort-korean {
-	margin-left: 6px;
+.selected {
+    color: black;
+    font-weight: bold;
 }
+
 
 .movie-list {
 	display: flex;
@@ -71,7 +73,7 @@
 }
 
 .movie-list-wrapper{
-	 max-height: 615px; /* 원하는 최대 높이 값으로 설정하세요 */
+	 max-height: 670px; /* 원하는 최대 높이 값으로 설정하세요 */
     overflow-y: auto;  /* 세로 방향으로 스크롤바가 필요할 경우 표시 */
     border: 1px solid #ddd; /* 선택적: 경계선 추가 */
     padding: 10px; /* 선택적: 내부 여백 추가 */
@@ -277,13 +279,19 @@
 	margin-top: 30px;
 	display: flex; 
 	flex-direction: column;
-    flex-wrap: wrap; /* 버튼들이 줄바꿈될 수 있도록 설정 */
+   /*  flex-wrap: wrap; 버튼들이 줄바꿈될 수 있도록 설정 */
+    flex-wrap: nowrap;
     gap: 20px; /* 버튼들 사이의 간격 설정 */
-    margin-left: 70PX;
+    margin-left: 40PX;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 .branch-section{
 	display: flex;
+	flex-direction: column;
+	width: 600px;
+	
 }
 
  
@@ -428,6 +436,8 @@
     align-items: center;
     justify-content: center;
     cursor : pointer;
+    margin-right: 7px;
+    margin-bottom: 7px;
 }
 
 .movietime-item:hover {
@@ -458,6 +468,11 @@
 	
 }
 
+.movietime-container{
+	display: flex;
+	width: 600px;
+	flex-wrap: wrap;
+}
 
 
 /* 보류 
