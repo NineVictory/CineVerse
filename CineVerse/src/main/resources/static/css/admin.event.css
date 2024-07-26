@@ -94,7 +94,10 @@ form#admin_search input[type="submit"] {
 .button2 input:hover {
 	transform: scale(1.05);
 }
-
+#intoEventDetail:hover {
+    background-color: #4381FD; /* 원하는 색상으로 변경하세요 */
+    cursor:pointer;
+}
 .insert_button_all {
 	margin-top: 20px;
 	display: flex;
@@ -116,9 +119,6 @@ form#admin_search input[type="submit"] {
 	transition: transform 0.2s ease-in-out;
 }
 
-.insert_button:hover {
-	transform: scale(1.05);
-}
 .page-div {
 	display: flex;
     justify-content: center;

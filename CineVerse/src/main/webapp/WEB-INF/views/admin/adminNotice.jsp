@@ -4,6 +4,9 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
+	function redirectToNoticeDetail(nb_num) {
+	    window.location.href = '/support/noticeDetail?nb_num=' + nb_num;
+	}
     function deleteNotice(nb_num) {
         $.ajax({
             type: "POST",
@@ -34,7 +37,7 @@
 		<ul>
 			<li>
 				<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'nb_title'}"> <!-- 기본값 설정 -->
-           		<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원명을 입력하세요">
+           		<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="제목을 입력하세요">
 				<input type="submit" value="" class="search-button"
 				style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 			</li>
@@ -60,7 +63,7 @@
         </c:if>
 		<tbody>
 			<c:forEach var="notice" items="${list}">
-				<tr>
+                <tr onclick="redirectToNoticeDetail(${notice.nb_num})" id = "intoNoticeDetail">
 					<td class="mem-data">${notice.nb_num}</td>
 					<td class="mem-data">${notice.nb_title}</td>
 					<td class="mem-data">${notice.nb_hit}</td>

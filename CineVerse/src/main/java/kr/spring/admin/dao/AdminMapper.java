@@ -56,10 +56,10 @@ public interface AdminMapper {
 	public Integer selectMemberRowCount(Map<String, Object> map);
 
 	@Update("UPDATE member SET mem_auth = 1 WHERE mem_num=#{mem_num}")
-	public void updateMemberAuth(long mem_num);
+	public void deleteMemberAuth(long mem_num);
 
 	@Update("UPDATE member SET mem_auth = 2 WHERE mem_num=#{mem_num}")
-	public void deleteMemberAuth(long mem_num);
+	public void updateMemberAuth(long mem_num);
 
 	// 구독 맴버십
 	public List<AdminVO> selectMembershipList(Map<String, Object> map);
@@ -140,8 +140,8 @@ public interface AdminMapper {
 
 	public Integer selectMovieRowCount(Map<String, Object> map);
 
-	@Update("UPDATE movie SET m_delete = 2 WHERE m_code = #{m_code}")
-	public void deleteMovie(long m_code);
+	@Update("UPDATE movie SET m_delete = 2 WHERE m_code = #{m_code} AND m_status = 2")
+	public Integer deleteMovie(long m_code);
 
 	// 영화관 등록
 	@Select("SELECT cinema_num.nextval FROM dual")

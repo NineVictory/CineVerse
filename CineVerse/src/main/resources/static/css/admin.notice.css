@@ -97,7 +97,10 @@ font-size: 14px;
 .button2 input:hover {
     transform: scale(1.05);
 }
-
+#intoNoticeDetail:hover {
+    background-color: #4381FD; /* 원하는 색상으로 변경하세요 */
+    cursor:pointer;
+}
 .insert_button_all{
     margin-top: 20px;
     display: flex;
@@ -121,4 +124,8 @@ font-size: 14px;
 
 .insert_button:hover {
 transform: scale(1.05);
+}
+.page-div {
+	display: flex;
+    justify-content: center;
 }

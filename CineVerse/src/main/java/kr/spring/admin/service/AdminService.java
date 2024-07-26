@@ -59,7 +59,7 @@ public interface AdminService {
 	public Integer selectMovieRowCount(Map<String,Object> map);
 	public List<PointVO> selectPoint(Map<String,Object> map);
 	public Integer selectPointRowCount(Map<String,Object> map);
-	public void deleteMovie(long m_code);
+	public Integer deleteMovie(long m_code);
 	public Integer totalCommunity();
 	public Integer totalAssignment();
 	public Integer totalProduct();

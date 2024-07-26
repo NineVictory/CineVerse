@@ -13,8 +13,8 @@
                     // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
                     alert("영화 삭제");
                     location.reload(); // 예시로 페이지를 새로고침
-                } else {
-                    alert("영화 삭제실패");
+                } else{
+                    alert("상영중인영화");
                 }
             },
             error: function() {
@@ -60,7 +60,14 @@
                     <td class="mem-data">${movie.m_code}</td>
                     <td class="mem-data">${movie.m_name}</td>
                     <td class="mem-data">${movie.m_opendate}</td>
-                    <td class="mem-data">${movie.m_companys}</td>
+                    <c:choose>
+					    <c:when test="${empty movie.m_companys}">
+					        <td class="mem-data">제작사 데이터 없음</td>
+					    </c:when>
+					    <c:otherwise>
+					        <td class="mem-data">${movie.m_companys}</td>
+					    </c:otherwise>
+					</c:choose>
                     <c:if test = "${movie.m_status == 2}"><td class="mem-data">미상영</td></c:if>
                     <c:if test = "${movie.m_status == 1}"><td class="mem-data">상영중</td></c:if>
                     <td class="button2"><input type="button" value="삭제" onclick="deleteMovie(${movie.m_code})"/></td>

@@ -28,7 +28,7 @@
 <div class="page-container">
 <div class = "admin_member">
 	<div class = "firstTitle">
-		<p id ="title">결제 관리</p>
+		<p id ="title">포인트 관리</p>
 	</div>
 		<form action="adminPayment" id="admin_search">
 			<ul>

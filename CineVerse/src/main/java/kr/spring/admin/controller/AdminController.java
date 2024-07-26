@@ -158,7 +158,7 @@ public class AdminController {
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						count,10,10,"adminMember");
+						count,15,10,"adminMember");
 		List<AdminVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
@@ -210,12 +210,13 @@ public class AdminController {
 		map.put("keyword", keyword);
 
 		//전체,검색 레코드수
-		int count = adminService.selectMemberRowCount(map);
+		int count = adminService.selectMembershipRowCount(map);
+		log.debug("맴버십카운트" + count);
 
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						count,20,10,"adminMembership");
+						count,15,10,"adminMembership");
 		List<AdminVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
@@ -261,7 +262,7 @@ public class AdminController {
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						count,20,10,"adminNotice");
+						count,15,10,"adminNotice");
 		List<NoticeVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
@@ -349,7 +350,7 @@ public class AdminController {
 		//페이지 처리
 		PagingUtil page = 
 				new PagingUtil(keyfield,keyword,pageNum,
-						count,20,10,"adminFaq");
+						count,15,10,"adminFaq");
 		List<FaqVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
@@ -434,7 +435,7 @@ public class AdminController {
 			//페이지 처리
 			PagingUtil page = 
 					new PagingUtil(keyfield,keyword,pageNum,
-							count,20,10,"adminEvent");
+							count,15,10,"adminEvent");
 			List<EventVO> list = null;
 			if(count > 0) {
 				map.put("start", page.getStartRow());
@@ -692,9 +693,13 @@ public class AdminController {
 		@PostMapping("/deleteMovie")
 		@ResponseBody
 		public String deleteMovie(@RequestParam("m_code") long m_code) {
-			adminService.deleteMovie(m_code);
-			log.debug("<<영화 삭제 완료>>");
-			return "success";
+	        int affectedRows = adminService.deleteMovie(m_code);
+
+	        if (affectedRows == 1) {
+	            return "success";
+	        } else {
+	            return "fail";
+	        }
 
 		}
 		// 영화관등록 폼 호출
@@ -745,7 +750,7 @@ public class AdminController {
 			//페이지 처리
 			PagingUtil page = 
 					new PagingUtil(keyfield,keyword,pageNum,
-							count,20,10,"adminCinema");
+							count,15,10,"adminCinema");
 			List<CinemaVO> list = null;
 			if(count > 0) {
 				map.put("start", page.getStartRow());

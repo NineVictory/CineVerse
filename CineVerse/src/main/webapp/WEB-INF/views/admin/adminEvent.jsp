@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-
 <script>
+    function redirectToEventDetail(event_num) {
+        window.location.href = '/event/eventDetail?event_num=' + event_num;
+    }
     function deleteEvent(event_num) {
         $.ajax({
             type: "POST",
@@ -29,11 +31,11 @@
 	<div class = "firstTitle">
 		<p id ="title">이벤트</p>
 	</div>
-		<form action="adminAnswer" id="admin_search">
+		<form action="adminEvent" id="admin_search">
 			<ul>
 				<li>
 					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'event_name'}"> <!-- 기본값 설정 -->
-           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원명을 입력하세요">
+           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="제목을 입력하세요">
         		    <input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
 			</ul>
@@ -60,7 +62,7 @@
         </c:if>
         <tbody>
             <c:forEach var="event" items="${list}">
-                <tr>
+                <tr onclick="redirectToEventDetail(${event.event_num})" id = "intoEventDetail">
                     <td class="mem-data">${event.event_num}</td>
                     <td class="mem-data">${event.event_name}</td>
                     <td class="mem-data">${event.event_start}</td>

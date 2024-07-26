@@ -18,6 +18,7 @@
 				</li>
 			</ul>
 		</form>
+		<div class="body_table">
 		<table class="adminMember-table">
 			<thead>
 				<tr>
@@ -67,6 +68,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div class="page-div">${page}</div>
 		</div>
+	</div>
+	<div class="page-div">${page}</div>
 </div>

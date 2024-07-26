@@ -96,6 +96,7 @@ form#admin_search input[type="submit"] {
 }
 #intoAnswer:hover {
     background-color: #4381FD; /* 원하는 색상으로 변경하세요 */
+    cursor:pointer;
 }
 .insert_button_all {
 	margin-top: 20px;

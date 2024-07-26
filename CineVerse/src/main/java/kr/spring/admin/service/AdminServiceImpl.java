@@ -68,8 +68,8 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.selectMovieRowCount(map);
 	}
 	@Override
-	public void deleteMovie(long m_code) {
-		adminMapper.deleteMovie(m_code);
+	public Integer deleteMovie(long m_code) {
+		return adminMapper.deleteMovie(m_code);
 	}
 	@Override
 	public Integer totalMember() {
