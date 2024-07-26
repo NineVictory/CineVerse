@@ -166,7 +166,7 @@ public interface MovieMapper {
     @Update("UPDATE member_coupon SET coupon_use=2, mem_coupon_use=#{mem_coupon_use} WHERE mc_num=#{mc_num}")
     public void useCoupon(@Param("mem_coupon_use") long mem_coupon_use, @Param("mc_num") long mc_num);
 
-    @Select("select * from seat JOIN mb_detail USING(seat_num) JOIN movie_booking USING(mb_num) JOIN movie_time USING(mt_num) where mt_num=#{mt_num}")
+    @Select("select * from seat JOIN mb_detail USING(seat_num) JOIN movie_booking USING(mb_num) JOIN movie_time USING(mt_num) where mt_num=#{mt_num} and md_type=1")
     public List<SeatVO> seatBooking(long mt_num);
     
     
