@@ -234,8 +234,12 @@
 
                     // movietime-container 클릭 이벤트 처리
                     $(document).on('click', '.movietime-container', function() {
-                        let mtNum = $(this).data('mtnum'); // data-mtNum 속성 값 가져오기
-                        alert('선택된 시간표 번호: ' + mtNum);
+                        
+                        let check = confirm('영화를 예매하시겠습니까?');
+                        let mt_num = $(this).data('mtnum'); 
+                        if (check) {
+                            window.location.href = '../movie/movieSeat?mt_num=' + mt_num;
+                        }
                     });
 
                 });
