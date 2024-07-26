@@ -287,10 +287,12 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.selectOrderRowCount(map);
 	}
 	@Override
-	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity) {
-		adminMapper.refundShop(mem_num, ph_payment, order_num, order_quantity);
-		adminMapper.updateOdQuantity(order_num, order_quantity);
+	@Transactional
+	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity,@Param("p_price") long p_price) {
+		adminMapper.refundShop(mem_num, ph_payment, order_num, order_quantity, p_price);
+		adminMapper.updateOdQuantity(order_num, order_quantity); 
 		adminMapper.updateOdStauts(order_num);
+		memberMapper.totalPoint(mem_num);
 	}
 
 	@Override
@@ -308,6 +310,14 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void modifyNotice(NoticeVO noticeVO) {
 		adminMapper.modifyNotice(noticeVO);
+	}
+	@Override
+	public MovieVO selectMovie1(long m_code) {
+		return adminMapper.selectMovie1(m_code);
+	}
+	@Override
+	public void modifyMovie(MovieVO movieVO) {
+		adminMapper.modifyMovie(movieVO);
 	}
 
 }

@@ -147,7 +147,11 @@ public interface AdminMapper {
 	public List<MovieVO> selectMovie(Map<String, Object> map);
 
 	public Integer selectMovieRowCount(Map<String, Object> map);
-
+	//영화 수정
+	@Select("select * from movie WHERE m_code = #{m_code}")
+	public MovieVO selectMovie1(long m_code);
+	public void modifyMovie(MovieVO movieVO);
+	
 	@Update("UPDATE movie SET m_delete = 2 WHERE m_code = #{m_code} AND m_status = 2")
 	public Integer deleteMovie(long m_code);
 
@@ -219,8 +223,8 @@ public interface AdminMapper {
 	public Integer selectOrderRowCount(Map<String, Object> map);
 	
 	// 환불처리
-	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{mb_price}, SYSDATE, #{mem_num}, 4, #{ph_payment})")
-	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity);
+	@Insert("INSERT INTO point_history (ph_num, ph_point, ph_date, mem_num, ph_type, ph_payment) VALUES (point_history_seq.nextval, #{p_price}, SYSDATE, #{mem_num}, 4, #{ph_payment})")
+	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity,@Param("p_price") long p_price);
 
 	// 상품 수량 업데이트
 	@Update("UPDATE order_detail SET order_quantity = order_quantity + #{order_quantity} WHERE order_num = #{order_num}")

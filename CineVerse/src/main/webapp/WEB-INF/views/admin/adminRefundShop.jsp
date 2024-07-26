@@ -4,11 +4,11 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
-    function refundMovie(mem_num,ph_payment,order_num,order_quantity) {
+    function refundOrder(mem_num,p_price,order_num,order_quantity,order_status,ph_payment) {
         $.ajax({
             type: "POST",
-            url: "${pageContext.request.contextPath}/refundMovie",
-            data: { mem_num: mem_num, ph_payment: ph_payment , order_num: order_num , order_quantity: order_quantity},
+            url: "${pageContext.request.contextPath}/refundOrder",
+            data: { mem_num: mem_num , p_price: p_price,order_num: order_num , order_quantity: order_quantity, order_status: order_status, ph_payment: ph_payment},
             success: function(response) {
                 if (response === "success") {
                     // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
@@ -66,7 +66,7 @@
                     <td class="mem-data">${rs.order_quantity}</td>
                     <td class="mem-data">${rs.p_price}</td>
                     <td class="mem-data">${rs.order_status}</td>
-					<td class="button2"><input type="button" value="예매취소" onclick="refundMovie(${rs.od_num}, ${rs.p_name}, ${rs.order_quantity} ,${rs.p_price},${rs.order_status})"/></td>
+					<td class="button2"><input type="button" value="예매취소" onclick="refundOrder(${rs.mem_num},${rs.p_price * rs.order_quantity},${rs.order_num}, ${rs.order_quantity},${rs.order_status},'상품환불')"/></td>
                 </tr>
             </c:forEach>
         </tbody>

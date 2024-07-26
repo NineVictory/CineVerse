@@ -863,7 +863,53 @@ public class AdminController {
 		model.addAttribute("page", page.getPage());
 
 		return "adminCinema";
-	}
+		}
+		//영화 수정 폼 호출
+		@GetMapping("/admin/adminMovieModify")
+		public String adminMovieModify(long m_code,Model model){
+			MovieVO movieVO=
+					adminService.selectMovie1(m_code);
+			model.addAttribute("movieVO",movieVO);
+			return "adminMovieModify";
+			
+		}
+		//공지사항 등록
+		@PostMapping("/admin/adminMovieModify")
+		public String modifyMovie(@Valid MovieVO movieVO,
+				BindingResult result,
+				HttpServletRequest request,
+				Model model) throws IllegalStateException,IOException{
+			log.debug("<<공지사항 글 저장>> : " + movieVO);
+
+			// 업로드된 파일이 없는 경우
+			if (movieVO.getM_upload() == null || movieVO.getM_upload().isEmpty()) {
+			    // DB에 저장된 파일 정보 구하기
+			    MovieVO db_movie = adminService.selectMovie1(movieVO.getM_code());
+			    // 기존 파일명을 설정
+			    movieVO.setM_filename(db_movie.getM_filename());
+			} else {
+				MovieVO db_movie = adminService.selectMovie1(movieVO.getM_code());
+			    // 파일명 셋팅(FileUtil.createFile에서 파일이 없으면 null 처리함)
+			    movieVO.setM_filename(FileUtil.createFile(request, movieVO.getM_upload()));
+			    log.debug("파일명: " + movieVO.getM_filename());
+			}
+
+			// 폼 데이터 유효성 검사
+			/*
+			 * if (result.hasErrors()) { log.debug("<<유효성검사이상있음>> : " + movieVO); MovieVO vo
+			 * = adminService.selectMovie1( movieVO.getM_code());
+			 * movieVO.setM_filename(vo.getM_filename()); return "adminMovie"; // 다시 폼을 보여줌
+			 * }
+			 */
+			adminService.modifyMovie(movieVO);
+			//View 메시지 처리
+			model.addAttribute("message", "성공적으로 글이 수정되었습니다.");
+			model.addAttribute("url", 
+					request.getContextPath()+"/admin/adminMovieModify?m_code="
+											+movieVO.getM_code());
+ 
+			return "common/resultAlert";
+		}
 	// 영화관 삭제 처리
 	@PostMapping("/deleteCinema")
 	@ResponseBody
@@ -1034,7 +1080,7 @@ public class AdminController {
 		return "success";
 	}
 
-	//예매내역
+	//주문내역
 	@GetMapping("/admin/adminRefundShop")
 	public String adminRefundShop(
 			@RequestParam(defaultValue = "1") int pageNum,
@@ -1075,8 +1121,9 @@ public class AdminController {
 	// 결제 환불 처리
 	@PostMapping("/refundOrder")
 	@ResponseBody
-	public String refundOrder(@RequestParam("mem_num") long mem_num, @Param("ph_payment") String ph_payment, @Param("order_num") long order_num,@Param("order_quantity") long order_quantity) {
-		adminService.refundShop(mem_num, ph_payment, order_num, order_quantity);
+	public String refundOrder(@RequestParam("mem_num") long mem_num, @Param("ph_payment") String ph_payment, @Param("order_num") long order_num,@Param("order_quantity") long order_quantity,@Param("p_price") long p_price) {
+
+		adminService.refundShop(mem_num, ph_payment, order_num, order_quantity, p_price);
 		return "success";
 	}
 

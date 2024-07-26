@@ -87,6 +87,7 @@ public interface AdminService {
 	public void refundMovie(@Param("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment,@Param("mb_num") long mb_num);
 	public List<OrdersVO> selectOrder(Map<String, Object> map);
 	public Integer selectOrderRowCount(Map<String, Object> map);	
-	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity);
-
+	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity,@Param("p_price") long p_price);
+	public MovieVO selectMovie1(long m_code);
+	public void modifyMovie(MovieVO movieVO);
 }	

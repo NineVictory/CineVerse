@@ -10,12 +10,12 @@
 				${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyfield != null and keyfield != ''">
-       	        AND 
-           	   ${keyfield} LIKE '%' || #{keyword} || '%'
-        	</if>
+				AND
+				${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
+
 
 	<!-- 회원 전체/검색 목록 -->
 	<select id="selectMemberList" parameterType="map"
@@ -45,7 +45,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 회원 글 총레코드수/검색 레코드수 -->
 	<select id="selectMemberRowCount" parameterType="map"
 		resultType="integer">
@@ -56,14 +56,15 @@
 		ORDER BY mem_reg_date DESC
 	</select>
 
-	
+
 	<!-- 구독 전체/검색 목록 -->
 	<sql id="membershipSearch">
-			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	        </if>
+		<if
+			test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+			AND ${keyfield} LIKE '%' || #{keyword} || '%'
+		</if>
 	</sql>
-	
+
 
 	<select id="selectMembershipList" parameterType="map"
 		resultType="AdminVO">
@@ -81,7 +82,8 @@
 		FROM member m
 		JOIN member_detail md ON m.mem_num =
 		md.mem_num
-		WHERE m.mem_membership = 2
+		WHERE m.mem_membership =
+		2
 		<include refid="membershipSearch"></include>
 		) a
 		)
@@ -90,7 +92,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
 	<select id="selectMembershipRowCount" parameterType="map"
 		resultType="integer">
@@ -100,22 +102,22 @@
 		WHERE mem_membership = 2
 		<include refid="membershipSearch"></include>
 	</select>
-	
+
 	<!-- 이벤트시작 -->
 	<!-- 이벤트 목록/검색 -->
-		<sql id="eventSearch">
+	<sql id="eventSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
 				AND
 				${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyfield != null and keyfield != ''">
-       	        AND 
-           	   ${keyfield} LIKE '%' || #{keyword} || '%'
-        	</if>
+				AND
+				${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
+
 
 	<select id="selectEventList" parameterType="map"
 		resultType="EventVO">
@@ -138,7 +140,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
 	<select id="selectEventRowCount" parameterType="map"
 		resultType="integer">
@@ -147,7 +149,7 @@
 		FROM event
 		<include refid="eventSearch"></include>
 	</select>
-	
+
 	<!-- 이벤트 등록 -->
 	<insert id="insertEvent" parameterType="EventVO">
 		INSERT INTO event(
@@ -168,7 +170,7 @@
 		#{event_end},
 		#{event_type})
 	</insert>
-	
+
 	<!-- 이벤트 수정 -->
 	<insert id="modifyEvent" parameterType="EventVO">
 		UPDATE event
@@ -179,25 +181,25 @@
 		event_start=#{event_start},
 		event_end=#{event_end},
 		event_type=#{event_type}
-		WHERE 
+		WHERE
 		event_num = #{event_num}
 	</insert>
-	
+
 	<!-- 공지사항 시작 -->
 	<!-- 공지사항 목록/검색 -->
-		<sql id="noticeSearch">
+	<sql id="noticeSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
 				AND
 				${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyfield != null and keyfield != ''">
-       	        AND 
-           	   ${keyfield} LIKE '%' || #{keyword} || '%'
-        	</if>
+				AND
+				${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
+
 
 	<select id="selectNoticeList" parameterType="map"
 		resultType="NoticeVO">
@@ -219,7 +221,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
 	<select id="selectNoticeRowCount" parameterType="map"
 		resultType="integer">
@@ -228,7 +230,7 @@
 		FROM notice_board
 		<include refid="noticeSearch"></include>
 	</select>
-	
+
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice" parameterType="NoticeVO">
 		INSERT INTO notice_board
@@ -247,7 +249,7 @@
 		#{mem_num}
 		)
 	</insert>
-	
+
 	<!-- 공지사항 수정 -->
 	<insert id="modifyNotice" parameterType="EventVO">
 		UPDATE notice_board
@@ -256,24 +258,24 @@
 		nb_content=#{nb_content},
 		nb_filename=#{nb_filename,jdbcType=VARCHAR},
 		nb_modify_date=SYSDATE
-		WHERE 
+		WHERE
 		nb_num = #{nb_num}
 	</insert>
 	<!-- FAQ 시작 -->
 	<!-- 공지사항 목록/검색 -->
-		<sql id="faqSearch">
+	<sql id="faqSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
 				AND
 				${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyfield != null and keyfield != ''">
-       	        AND 
-           	   ${keyfield} LIKE '%' || #{keyword} || '%'
-        	</if>
+				AND
+				${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
+
 
 	<select id="selectFaqList" parameterType="map"
 		resultType="faqVO">
@@ -295,7 +297,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
 	<select id="selectFaqRowCount" parameterType="map"
 		resultType="integer">
@@ -305,8 +307,8 @@
 		<include refid="faqSearch"></include>
 	</select>
 
-	
-	<!-- FAQ 등록-->
+
+	<!-- FAQ 등록 -->
 	<insert id="insertFaq" parameterType="faqVO">
 		INSERT INTO faq
 		(
@@ -328,11 +330,11 @@
 		0
 		)
 	</insert>
-	 
+
 	<sql id="movieSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
-         	    AND ${keyfield} LIKE '%' || #{keyword} || '%'
+				AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
 		</where>
 	</sql>
@@ -374,11 +376,23 @@
     ]]>
 	</select>
 
+	<!-- 영화 수정 -->
+	<insert id="modifyMovie" parameterType="movieVO">
+		UPDATE movie
+		SET
+		m_name=#{m_name},
+		m_status=#{m_status},
+		m_content=#{m_content},
+		m_filename=#{m_filename,jdbcType=VARCHAR}
+		WHERE
+		m_code = #{m_code}
+	</insert>
+	
 	<!-- 포인트 시작 -->
 	<sql id="pointSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
-         	    AND ${keyfield} LIKE '%' || #{keyword} || '%'
+				AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
 			AND ph_type = 2
 		</where>
@@ -391,7 +405,7 @@
 		COUNT(*)
 		FROM point_history
 		<include refid="pointSearch"></include>
-		
+
 	</select>
 
 	<!-- 포인트충전 전체/검색 목록 -->
@@ -420,7 +434,7 @@
     WHERE rnum >= #{start} AND rnum <= #{end}
     ]]>
 	</select>
-	
+
 	<!-- 영화관 등록 -->
 	<insert id="insertCinema" parameterType="cinemaVO">
 		INSERT INTO cinema(
@@ -441,17 +455,18 @@
 		#{c_parkable},
 		1)
 	</insert>
-	
+
 	<!-- 영화관 목록 -->
-		<sql id="cinemaSearch">
+	<sql id="cinemaSearch">
 		<where>
-			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	        </if>
+			<if
+				test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+				AND ${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
-	
+
+
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
 	<select id="selectCinemaRowCount" parameterType="map"
 		resultType="integer">
@@ -482,8 +497,8 @@
     ]]>
 
 	</select>
-	
-	
+
+
 	<!-- 상영관 등록 -->
 	<insert id="insertTheater" parameterType="cinemaVO">
 		INSERT INTO theater(
@@ -497,22 +512,24 @@
 		#{th_name})
 	</insert>
 
-	
-	<select id="selectTheater" parameterType="String" resultType="theaterVO">
-  		  SELECT th_name
-  		  FROM theater
- 		  WHERE c_num = #{c_num}
+
+	<select id="selectTheater" parameterType="String"
+		resultType="theaterVO">
+		SELECT th_name
+		FROM theater
+		WHERE c_num = #{c_num}
 	</select>
-	
+
 	<!-- 자유게시판 목록 -->
 	<sql id="communitySearch">
 		<where>
-	        <if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	        </if>
+			<if
+				test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+				AND ${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
+
 
 	<select id="selectCommunityList" parameterType="map"
 		resultType="BoardVO">
@@ -537,7 +554,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
 	<select id="selectCommunityRowCount" parameterType="map"
 		resultType="integer">
@@ -546,17 +563,18 @@
 		FROM community_board
 		<include refid="communitySearch"></include>
 	</select>
-	
-	
+
+
 	<!-- 양도게시판 목록 -->
 	<sql id="assignSearch">
 		<where>
-	        <if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	        </if>
+			<if
+				test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+				AND ${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
+
 
 	<select id="selectAssignList" parameterType="map"
 		resultType="AssignVO">
@@ -581,7 +599,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
 	<select id="selectAssignRowCount" parameterType="map"
 		resultType="integer">
@@ -590,32 +608,35 @@
 		FROM assignment_board
 		<include refid="assignSearch"></include>
 	</select>
-	
+
 	<!-- 댓글 목록 -->
 	<sql id="replySearch">
 		<where>
-	        <if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	        </if>
+			<if
+				test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+				AND ${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
+
 
 	<!-- 댓글 리스트 조회 -->
-	<select id="selectReplyList" parameterType="map" resultType="replyVO">
+	<select id="selectReplyList" parameterType="map"
+		resultType="replyVO">
 		SELECT *
 		FROM (
 		SELECT a.*, rownum rnum
 		FROM (
-	    SELECT 'reply' AS data_type,
-	    	   cc_num,
-	           mem_num,
-	           cc_content,
-	           cc_report
-	    FROM community_comment
-	    <include refid="replySearch"></include>
-        ORDER BY cc_report DESC
-	    ) a
+		SELECT 'reply' AS
+		data_type,
+		cc_num,
+		mem_num,
+		cc_content,
+		cc_report
+		FROM community_comment
+		<include refid="replySearch"></include>
+		ORDER BY cc_report DESC
+		) a
 		)
 	    <![CDATA[
 	    WHERE rownum >= #{start} AND rownum <= #{end}
@@ -623,50 +644,55 @@
 	</select>
 
 	<!-- 대댓글 리스트 조회 -->
-	<select id="selectReCmtList" parameterType="map" resultType="replyVO">
+	<select id="selectReCmtList" parameterType="map"
+		resultType="replyVO">
 		SELECT *
 		FROM (
 		SELECT a.*, rownum rnum
 		FROM (
-	    SELECT 'comment' AS data_type,
-	    	   te_num,
-	           mem_num,
-	           te_content,
-	           te_report
-	    FROM community_response
-	    <include refid="replySearch"></include>
-	    ORDER BY te_report DESC
-	    ) a
+		SELECT 'comment' AS
+		data_type,
+		te_num,
+		mem_num,
+		te_content,
+		te_report
+		FROM community_response
+		<include refid="replySearch"></include>
+		ORDER BY te_report DESC
+		) a
 		)
 	    <![CDATA[
 	    WHERE rownum >= #{start} AND rownum <= #{end}
 	    ]]>
 	</select>
-	
+
 	<!-- 댓글 총레코드수/검색 레코드수 -->
-	<select id="selectReplyRowCount" parameterType="map" resultType="integer">
+	<select id="selectReplyRowCount" parameterType="map"
+		resultType="integer">
 		SELECT
 		COUNT(*)
 		FROM community_board
-	    <include refid="replySearch"></include>
-	</select>
-	
-	<!-- 대댓글 총레코드수/검색 레코드수 -->
-	<select id="selectReCmtRowCount" parameterType="map" resultType="integer">
-	    SELECT COUNT(*)
-	    FROM community_response
-	    <include refid="replySearch"></include>
+		<include refid="replySearch"></include>
 	</select>
 
-    <!-- 문의시작 -->
+	<!-- 대댓글 총레코드수/검색 레코드수 -->
+	<select id="selectReCmtRowCount" parameterType="map"
+		resultType="integer">
+		SELECT COUNT(*)
+		FROM community_response
+		<include refid="replySearch"></include>
+	</select>
+
+	<!-- 문의시작 -->
 	<sql id="consultSearch">
 		<where>
-			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	        </if>
+			<if
+				test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+				AND ${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
 		</where>
 	</sql>
-	
+
 
 	<!-- 문의 전체/검색 목록 -->
 	<select id="selectConsultList" parameterType="map"
@@ -690,7 +716,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 문의 글 총레코드수/검색 레코드수 -->
 	<select id="selectConsultRowCount" parameterType="map"
 		resultType="integer">
@@ -699,14 +725,15 @@
 		FROM consult
 		<include refid="consultSearch"></include>
 	</select>
-	
+
 	<!-- 예매 환불 시작 -->
 	<sql id="reservationSearch">
-			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	        </if>
+		<if
+			test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+			AND ${keyfield} LIKE '%' || #{keyword} || '%'
+		</if>
 	</sql>
-	
+
 
 	<!-- 예매 전체/검색 목록 -->
 	<select id="selectReservation" parameterType="map"
@@ -723,7 +750,8 @@
 		m.mb_price,
 		md.md_type
 		FROM movie_booking m
-		JOIN mb_detail md ON m.mb_num = md.mb_num
+		JOIN
+		mb_detail md ON m.mb_num = md.mb_num
 		WHERE md.md_type = 1
 		<include refid="reservationSearch"></include>
 		) a
@@ -733,7 +761,7 @@
     ]]>
 	</select>
 
-	
+
 	<!-- 문의 글 총레코드수/검색 레코드수 -->
 	<select id="selectReservationRowCount" parameterType="map"
 		resultType="integer">
@@ -743,20 +771,21 @@
 		WHERE md_type = 1
 		<include refid="reservationSearch"></include>
 	</select>
-	
-	
-	
+
+
+
 	<!-- 상품 환불 시작 -->
 	<sql id="refundShopSearch">
-			<if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-	            AND ${keyfield} LIKE '%' || #{keyword} || '%'
-	       </if>
+		<if
+			test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+			AND ${keyfield} LIKE '%' || #{keyword} || '%'
+		</if>
 	</sql>
-	 
+
 	<!-- 상품 전체/검색 목록 -->
-		<select id="selectOrder" parameterType="map"
+	<select id="selectOrder" parameterType="map"
 		resultType="ordersVO">
-			SELECT *
+					SELECT *
 			FROM (
 			SELECT a.*, rownum rnum
 			FROM (
@@ -766,7 +795,8 @@
                 p.p_name,
                 od.order_quantity,
                 p.p_price,
-                o.order_status
+                o.order_status,
+                o.mem_num
             FROM order_detail od
             JOIN product p ON od.p_num = p.p_num
             JOIN orders o ON od.order_num = o.order_num
@@ -774,12 +804,12 @@
 		<include refid="refundShopSearch"></include>
 		) a
 		)
-    <![CDATA[
-    WHERE rnum >= #{start} AND rnum <= #{end}
+ 	   <![CDATA[
+ 	   WHERE rnum >= #{start} AND rnum <= #{end}
     ]]>
 	</select>
-	
-	<!--  상품 환불 총레코드수/검색 레코드수 -->
+
+	<!-- 상품 환불 총레코드수/검색 레코드수 -->
 	<select id="selectOrderRowCount" parameterType="map"
 		resultType="integer">
 		SELECT

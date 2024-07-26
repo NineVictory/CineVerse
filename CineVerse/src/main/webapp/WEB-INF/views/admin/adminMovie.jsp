@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script>
+	function redirectToMovieModify(m_code) {
+	    window.location.href = '/admin/adminMovieModify?m_code=' + m_code;
+	}
     function deleteMovie(m_code) {
         $.ajax({
             type: "POST",
@@ -47,6 +50,7 @@
                 <th>제작사</th>
                 <th>상태</th>
                 <th></th>
+                <td></td>
             </tr>
         </thead>
         <c:if test="${empty list}">
@@ -70,6 +74,8 @@
 					</c:choose>
                     <c:if test = "${movie.m_status == 2}"><td class="mem-data">미상영</td></c:if>
                     <c:if test = "${movie.m_status == 1}"><td class="mem-data">상영중</td></c:if>
+                    <td class="button1"><input type="button" value="수정"
+							onclick="redirectToMovieModify(${movie.m_code})"/>
                     <td class="button2"><input type="button" value="삭제" onclick="deleteMovie(${movie.m_code})"/></td>
                 </tr>
             </c:forEach>

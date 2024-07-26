@@ -158,6 +158,13 @@
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMovieForm.jsp" />
 	</definition>
 
+	<!-- 영화 수정 -->
+	<definition name="adminMovieModify" extends="adminMain">
+		<put-attribute name="title" value="영화수정" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMovieModifyCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMovieModify.jsp" />
+	</definition>
+	
 	<!-- 영화관 관리 -->
 	<definition name="adminCinema" extends="adminMain">
 		<put-attribute name="title" value="영화관" />
