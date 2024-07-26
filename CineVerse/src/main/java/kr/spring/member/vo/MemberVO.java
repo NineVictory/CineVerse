@@ -56,7 +56,7 @@ public class MemberVO {
 	private String now_passwd;	// 컬럼은 없지만 필요에 의해 생성해줌
 		
 		public boolean ischeckedPassword(String userPasswd) {
-			if(mem_auth > 1 && mem_passwd.equals(userPasswd)) {
+			if(mem_auth > 2 && mem_passwd.equals(userPasswd)) {
 				return true;
 			}
 			return false;

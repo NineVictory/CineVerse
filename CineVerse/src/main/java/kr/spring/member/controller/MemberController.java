@@ -86,7 +86,7 @@ public class MemberController {
 		log.debug("<< 로그인 >> : " + memberVO);
 
 		// 유효성 체크 결과 오류가 있다면 form 호출
-		if (result.hasFieldErrors("id") || result.hasFieldErrors("passwd")) {
+		if (result.hasFieldErrors("mem_id") || result.hasFieldErrors("mem_passwd")) {
 			return memberLoginForm();
 		}
 
@@ -146,11 +146,10 @@ public class MemberController {
 			throw new AuthCheckException();
 		} catch (AuthCheckException e) {
 			// 인증 실패 로그인 폼 호출하기
-
-			if (member != null && member.getMem_auth() == 1) {
+			if (member != null && member.getMem_auth() == 2) {
 				// 정지회원 메세지 표시하기
 				result.reject("noAuthority");
-			} else if (member != null && member.getMem_auth() == 2) {
+			} else if (member != null && member.getMem_auth() == 1) {
 				// 탈퇴회원 메세지 표시하기
 				result.reject("deleteMem");
 			} else {
