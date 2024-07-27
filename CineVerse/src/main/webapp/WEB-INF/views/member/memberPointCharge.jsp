@@ -98,7 +98,7 @@
 					<c:if test="${!empty user }">
 					<input type="hidden" id="mem_num" name="mem_num" value="${user.mem_num }">
 					<label class="buyer_info_all">구매자 아이디 <input type="text" id="buyer_name" value="${user.mem_id }" disabled="disabled"></label>
-					<label class="buyer_info_all">구매자 이메일 <input type="email" id="buyer_email" value="${email }" ></label>
+					<label class="buyer_info_all">구매자 이메일 <input type="email" id="buyer_email" value="${user.mem_email }" ></label>
 					</c:if>
 					<c:if test="${empty user }">
 						<label class="buyer_info_all">구매자 아이디 <input type="text" id="buyer_name" disabled="disabled"></label>

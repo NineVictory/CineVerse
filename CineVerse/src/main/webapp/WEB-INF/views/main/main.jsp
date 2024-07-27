@@ -212,7 +212,7 @@
 </div>
 
 <div class="mid_menu_wrap">
-	<a href="#none" class="mid_itm" title="화면이동"> <img
+<%-- 	<a href="#none" class="mid_itm" title="화면이동"> <img
 		src="https://cf.lottecinema.co.kr//Media/WebAdmin/3423e358b74d49d5b12867c7d9c6f6a8.png"
 		alt="할인안내">
 	</a> <a href="${pageContext.request.contextPath}/member/pointCharge"
@@ -228,7 +228,7 @@
 	</a> <a href="#none" class="mid_itm" title="화면이동"> <img
 		src="https://cf.lottecinema.co.kr//Media/WebAdmin/9c4e2721ecdd488d86df6d27e3c2a000.png"
 		alt="bravo 브라보클럽">
-	</a>
+	</a> --%>
 </div>
 
 <div class="noticeClient">

@@ -137,7 +137,7 @@ ul, ol {
 }
 
 .main-navigation-li .main-navigation-a:hover {
-    color : #DBE3FF;
+    color: var(--main-color-strong);
 }
 
 

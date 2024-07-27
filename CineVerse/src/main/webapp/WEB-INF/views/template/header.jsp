@@ -14,6 +14,7 @@
             </ul>
             <ul class="main_menu2">
                 <li><a href="${pageContext.request.contextPath}/support/main">고객 센터</a></li>
+                <li><a href="${pageContext.request.contextPath}/member/pointCharge">포인트</a></li>
                 <li><a href="${pageContext.request.contextPath}/member/membershipInfo">멤버십</a></li>
                 <c:if test="${!empty user }">
                 	<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
@@ -54,13 +55,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#">영화관</a>
-                    <div>
-                        <ul>
-                        <li class=""><a href="${pageContext.request.contextPath}/cinema/cinemaList2" class="hide-menu-a" title="스페셜관">자체 영화관</a></li>
-                        <li class=""><a href="${pageContext.request.contextPath}/movie/otherMovieInfo" class="hide-menu-a" title="스페셜관">3사 영화관</a></li>    
-                        </ul>
-                    </div>
+                    <a href="${pageContext.request.contextPath}/cinema/cinemaList2" >영화관</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/event/event">이벤트</a>

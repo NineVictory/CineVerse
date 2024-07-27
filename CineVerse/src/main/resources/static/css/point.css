@@ -62,7 +62,8 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked {
-	border-color: var(--main-color-strong);
+	border: none;
+    background-color: var(--main-color-strong);
 }
 
 .choose_list span {

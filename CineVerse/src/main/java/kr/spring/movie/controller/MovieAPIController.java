@@ -36,7 +36,7 @@ public class MovieAPIController {
         
         model.addAttribute("message", "영화 랭크가 업데이트되었습니다.");
 		model.addAttribute("url", request.getContextPath() + "/main/main");
-		return "common/resultAlert";
+		return "/common/resultAlert";
     }
     
     
@@ -47,7 +47,7 @@ public class MovieAPIController {
         
         model.addAttribute("message", "영화 세부 정보 업데이트되었습니다.");
 		model.addAttribute("url", request.getContextPath() + "/main/main");
-		return "common/resultAlert";
+		return "/common/resultAlert";
     }
 
 }
