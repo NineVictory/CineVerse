@@ -72,6 +72,18 @@
 	</definition>
 	
 	
+	<definition name="adminEventParticipants" extends="adminMain">
+		<put-attribute name="title" value="이벤트 참여자"/>
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventCSS.jsp"/>
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEventParticipants.jsp"/>
+	</definition>
+	<definition name="adminEventResult" extends="adminMain">
+		<put-attribute name="title" value="이벤트 결과 랜덤"/>
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminEventCSS.jsp"/>
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminEventResult.jsp"/>
+	</definition>
+	
+	
 </tiles-definitions>
 
 

@@ -3,11 +3,7 @@ package kr.spring.admin.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
@@ -16,7 +12,6 @@ import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
-import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardVO;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
@@ -90,4 +85,12 @@ public interface AdminService {
 	public void refundShop(@Param("mem_num") long mem_num,@Param("ph_payment") String ph_payment,@Param("order_num") long order_num,@Param("order_quantity") long order_quantity,@Param("p_price") long p_price);
 	public MovieVO selectMovie1(long m_code);
 	public void modifyMovie(MovieVO movieVO);
+	public Integer selectEventParticipantsCnt(long event_num);
+	public List<EventVO> selectEventParticipants(long event_num);
+	public int selectChoiceNumber(long event_num);
+	public List<Long> selectMemberNumberEvent(long event_num);
+	public void updateEventResult(long mem_num,long event_num);
+	public Integer selectEventResultShow(long event_num);
+
+
 }	

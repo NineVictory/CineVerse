@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-        const myForm = document.getElementById('RegisterEvent_form');
+        const myForm = document.getElementById('registerEvent_form');
         myForm.onsubmit = function() {
             const items = document.querySelectorAll('.input-check');
             for (let i = 0; i < items.length; i++) {

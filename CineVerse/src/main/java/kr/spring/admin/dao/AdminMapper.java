@@ -233,5 +233,34 @@ public interface AdminMapper {
 	// 예매취소설정
 	@Update("UPDATE orders SET order_status = 5 WHERE order_num = #{order_num}") 
 	public void updateOdStauts(long order_num);
-	 
+	
+	//이벤트 참여한 사람 count 구하기 
+	@Select("SELECT COUNT(*) FROM event_participation WHERE event_num=#{event_num}")
+	public Integer selectEventParticipantsCnt(long event_num);
+	
+	// 이벤트 참여한 사람 list 구하기
+	@Select("SELECT ep.*, e.event_name, m.mem_id FROM event_participation ep JOIN event e ON e.event_num = ep.event_num JOIN member m ON m.mem_num=ep.mem_num WHERE ep.event_num=#{event_num}")
+	public List<EventVO> selectEventParticipants(long event_num);
+	
+	// 해당 이벤트 번호에 type이 2인 사람이 있다면 당첨자 발표 막기
+	@Select("SELECT COUNT(*) FROM event_participation WHERE ep_result=2 AND event_num=#{event_num}")
+	public Integer selectEventResultShow(long event_num);
+	
+	// 이벤트에서 총 몇 명 뽑을건지 테이블에 등록된 내용 가져오기
+	@Select("SELECT event_drawn FROM event WHERE event_num=#{event_num}")
+	public int selectChoiceNumber(long event_num);
+	
+	// 당첨자를 뽑을 이벤트에 참여한 사람의 mem_num 가져오기
+	@Select("SELECT mem_num FROM event_participation JOIN member USING(mem_num) WHERE event_num=#{event_num} AND mem_auth=3")
+	public List<Long> selectMemberNumberEvent(long event_num);
+	
+	// 당첨된 사람들의 결과를 업데이트 시키기
+	@Update("UPDATE event_participation SET ep_result=2 WHERE mem_num=#{mem_num} AND event_num=#{event_num}")
+	public void updateEventResult(long mem_num,long event_num);
+	
+	
+	
+	
+	
+	
 }

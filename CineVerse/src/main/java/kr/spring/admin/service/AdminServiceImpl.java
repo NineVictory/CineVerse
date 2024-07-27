@@ -25,10 +25,9 @@ import kr.spring.member.vo.PointVO;
 import kr.spring.movie.vo.MovieVO;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.vo.ConsultVO;
-import lombok.extern.slf4j.Slf4j;
+
 @Service
 @Transactional
-@Slf4j
 public class AdminServiceImpl implements AdminService{
 	@Autowired
 	AdminMapper adminMapper;
@@ -318,6 +317,30 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void modifyMovie(MovieVO movieVO) {
 		adminMapper.modifyMovie(movieVO);
+	}
+	@Override
+	public Integer selectEventParticipantsCnt(long event_num) {
+		return adminMapper.selectEventParticipantsCnt(event_num);
+	}
+	@Override
+	public List<EventVO> selectEventParticipants(long event_num) {
+		return adminMapper.selectEventParticipants(event_num);
+	}
+	@Override
+	public int selectChoiceNumber(long event_num) {
+		return adminMapper.selectChoiceNumber(event_num);
+	}
+	@Override
+	public List<Long> selectMemberNumberEvent(long event_num) {
+		return adminMapper.selectMemberNumberEvent(event_num);
+	}
+	@Override
+	public void updateEventResult(long mem_num,long event_num) {
+		adminMapper.updateEventResult(mem_num,event_num);
+	}
+	@Override
+	public Integer selectEventResultShow(long event_num) {
+		return adminMapper.selectEventResultShow(event_num);
 	}
 
 }

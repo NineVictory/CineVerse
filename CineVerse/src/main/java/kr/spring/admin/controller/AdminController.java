@@ -2,6 +2,7 @@ package kr.spring.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1125,6 +1126,54 @@ public class AdminController {
 
 		adminService.refundShop(mem_num, ph_payment, order_num, order_quantity, p_price);
 		return "success";
+	}
+	
+	// 각각의 이벤트 참여자 목록
+	@GetMapping("/admin/eventParticipants")
+	public String eventParticipants(long event_num ,Model model) {
+		int count = adminService.selectEventParticipantsCnt(event_num);
+		
+		List<EventVO> list = null;
+		if(count > 0) {
+			list=adminService.selectEventParticipants(event_num);
+		}
+		model.addAttribute("list",list);
+		model.addAttribute("event_num", event_num);
+		return "adminEventParticipants";
+	}
+
+	@PostMapping("/admin/adminEventResult")
+	@ResponseBody
+	public Map<String, Object> adminEventResult(long event_num) {
+	    Map<String, Object> mapAjax = new HashMap<>();
+	    
+	    // 관리자가 정한 당첨자 총 수 가져오기
+	    int numberOfWinners = adminService.selectChoiceNumber(event_num);
+	    log.debug("<< 관리자가 정한 당첨자 수 >> : " + numberOfWinners);
+	    // 당첨된 사람이 한 명이라도 있다면 다른 값 주기
+	    int numberOfResults = adminService.selectEventResultShow(event_num);
+	    log.debug("<< 당첨된 사람 수 >> : " + numberOfResults);
+	    // 이벤트 참여자의 mem_num 리스트 가져오기
+	 // 이벤트 참여자의 mem_num 리스트 가져오기
+	    List<Long> participants = adminService.selectMemberNumberEvent(event_num);
+
+	    // 참여자가 당첨자 수보다 적으면 예외 발생
+	    if (participants.size() < numberOfWinners) {
+	        mapAjax.put("result", "participantsizelow");
+	    } else if (numberOfResults >= numberOfWinners) { // 수정: numberOfResults == numberOfWinners 대신 >= 사용
+	        mapAjax.put("result", "alreadydone");
+	    } else {
+	        Collections.shuffle(participants);
+	        List<Long> winners = participants.subList(0, numberOfWinners);
+
+	        for (Long winner : winners) {
+	            adminService.updateEventResult(winner, event_num);
+	        }
+	        
+	        mapAjax.put("result", "success");
+	    }
+	    
+	    return mapAjax;
 	}
 
 }

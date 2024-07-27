@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script>
+	function redirectToEventParticipants(event_num) {
+    	window.location.href = '/admin/eventParticipants?event_num=' + event_num;
+	}
     function redirectToEventDetail(event_num) {
         window.location.href = '/event/eventDetail?event_num=' + event_num;
     }
@@ -58,6 +61,7 @@
                 <th>등록일</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <c:if test="${empty list}">
@@ -73,6 +77,7 @@
                     <td class="mem-data">${event.event_start}</td>
                     <td class="mem-data">${event.event_end}</td>
                     <td class="mem-data">${event.event_reg_date}</td>
+                    <td class="button1"><input type="button" value="이벤트 신청자" onclick="redirectToEventParticipants(${event.event_num})"/> </td>
                     <td class="button1"><input type="button" value="수정" onclick="redirectToEventModify(${event.event_num})"/> </td>
                     <td class="button2"><input type="button" value="삭제" onclick="deleteEvent(${event.event_num})"/></td>
                 </tr>
