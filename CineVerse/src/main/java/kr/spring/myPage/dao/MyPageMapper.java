@@ -63,8 +63,8 @@ public interface MyPageMapper {
 	public Integer movieBookMarkcnt(Long mem_num);
 	@Select("SELECT m.m_name,m.m_filename,m.m_code FROM movie_bookmark mb JOIN movie m ON m.m_code=mb.m_code WHERE mb.mem_num=#{mem_num}")
 	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
-	@Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num=#{mem_num}")//예매
-	public Integer reservationCnt(Long mem_num);
+	@Select("SELECT COUNT(*) FROM movie_booking JOIN mb_detail USING(mb_num) WHERE mem_num=#{mem_num} AND md_type=1")//예매
+	public Integer reservationCnt(Map<String, Object> map);
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);
 	public MovieBookingVO mainRes(Long mem_num);//메인나브
@@ -74,6 +74,16 @@ public interface MyPageMapper {
 	public Integer movieReviewCnt(Long mem_num);
 	@Select("SELECT * FROM movie_review LEFT OUTER JOIN(SELECT mr_num, COUNT(*) AS fav_cnt FROM mr_fav GROUP BY mr_num) USING(mr_num) JOIN member_detail USING(mem_num) WHERE mem_num=#{mem_num}")
 	public List<MovieReviewVO> movieReviewList(Long mem_num);
+	
+	//영화 리뷰 삭제
+	@Delete("DELETE FROM mr_fav WHERE mr_num=#{mr_num}")
+	public void delMovieRev_fav(Long mr_num);
+	@Delete("DELETE FROM movie_review WHERE mr_num=#{mr_num}")
+	public void delMovieRev(Long mr_num);
+	
+	
+	
+	
 	
 	
 	

@@ -214,8 +214,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Integer reservationCnt(Long mem_num) {
-		return myPageMapper.reservationCnt(mem_num);
+	public Integer reservationCnt(Map<String, Object> map) {
+		return myPageMapper.reservationCnt(map);
 	}
 
 	@Override
@@ -252,6 +252,18 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<MovieReviewVO> movieReviewList(Long mem_num) {
 		return myPageMapper.movieReviewList(mem_num);
+	}
+
+	/*
+	 * @Override public void delMovieRev_fav(Long mem_num) {
+	 * 
+	 * }
+	 */
+
+	@Override
+	public void delMovieRev(Long mr_num) {
+		myPageMapper.delMovieRev_fav(mr_num);
+		myPageMapper.delMovieRev(mr_num);
 	}
 
 

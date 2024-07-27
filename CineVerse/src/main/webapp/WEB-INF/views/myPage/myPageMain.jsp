@@ -37,7 +37,9 @@
     <div class="main_body_reservation">
         <div class="main_resrv"><span class="reserv_font">MY 예매내역</span><span class="main_count">${resCnt}건</span></div>
         
-        <c:if test="${resCnt == 0}"><div class="empty_position">예매한 영화가 존재하기 않습니다.</div></c:if>
+        <c:if test="${resCnt == 0}"><div class="qna">
+                <div class="mpQna">예매한 영화가 존재하지 않습니다</div>
+            </div></c:if>
         <c:if test="${resCnt > 0}">
             <c:forEach var="res" items="${lastRes}" varStatus="status">
                 <div class="main_body_reservation">

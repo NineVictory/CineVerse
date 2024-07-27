@@ -363,6 +363,7 @@
 		m.m_filename,
 		mt.mt_start,
 		mt.mt_end,
+		mbd.md_type,
 		ROW_NUMBER() OVER (PARTITION BY mb.mb_num ORDER BY mb.m_code) AS rn
 		FROM movie_booking mb
 		INNER JOIN movie m ON mb.m_code = m.m_code
@@ -388,7 +389,7 @@
 		mt_date,
 		m_filename,
 		mt_start,
-		mt_end
+		mt_end,md_type
 		FROM RankedBookings
 		WHERE rn = 1
 		ORDER BY mb_num DESC

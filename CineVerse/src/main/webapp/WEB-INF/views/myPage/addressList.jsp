@@ -66,7 +66,7 @@
 
 	<div class="myPage_address">
 		<c:if test="${count == 0}">
-            등록된 주소가 없습니다.
+            <div class="empty_position"></div>
         </c:if>
 		<c:if test="${count >= 1}">
 			<c:forEach var="a" items="${addressList}">

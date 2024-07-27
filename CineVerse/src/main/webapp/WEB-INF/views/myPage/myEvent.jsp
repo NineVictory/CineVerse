@@ -12,7 +12,7 @@
         </select>
 	</div>
 	<!-- 반복 -->
-	<c:if test="${count == 0}">참여한 이벤트 내역이 없습니다.</c:if>
+	<c:if test="${count == 0}"><div class="empty_position">참여한 이벤트 내역이 없습니다.</div></c:if>
 	<c:if test="${count > 0}">
 	<c:forEach var="event" items="${list}">
 	<div class="consult_box">

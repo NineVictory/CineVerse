@@ -56,7 +56,7 @@ public interface MyPageService {
 	public void updateNoSubDate();
 	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
 	public List<EventVO> eventList(Map<String, Object> map);
-	public Integer reservationCnt(Long mem_num);
+	public Integer reservationCnt(Map<String, Object> map);
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);
 	public MovieBookingVO mainRes(Long mem_num);//메인나브
@@ -64,5 +64,8 @@ public interface MyPageService {
 	public void updatePoint(Long mem_num);
 	public Integer movieReviewCnt(Long mem_num);
 	public List<MovieReviewVO> movieReviewList(Long mem_num);
+
+	/* public void delMovieRev_fav(Long mr_num); */
+	public void delMovieRev(Long mr_num);
 	
 }

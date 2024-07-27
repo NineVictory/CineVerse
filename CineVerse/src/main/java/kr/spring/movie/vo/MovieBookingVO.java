@@ -25,4 +25,5 @@ public class MovieBookingVO {
 	private int mt_end;
 	private Date mt_date;
 	private String m_filename;
+	private int md_type;
 }

@@ -21,7 +21,6 @@ public class MyPageVO {
 	private Long mem_num;
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_id;
-	@NotBlank
 	private String mem_nickName;
 	private int mem_auth;
 	private String auto;
@@ -96,6 +95,7 @@ public class MyPageVO {
 	private int mt_start;
 	private int mt_end;
 	private Date mt_date;
+	private int md_type;
 
 	// 비밀번호 변경시 현재 비밀번호를 저장하는 용도로 사용
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")

@@ -31,7 +31,7 @@
 			<c:if test="${member.mem_rank==5 }"><b>VVIP</b></c:if>
 			입니다
 		</div>
-		<div class="mp_vip_lounge">VIP 라운지</div>
+		<div class="mp_vip_lounge" onclick="location.href='/member/membershipInfo'">VIP 라운지</div>
 	</div>
 </div>
 
