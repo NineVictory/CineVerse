@@ -266,6 +266,13 @@ public class MyPageController {
 			member.setMt_date(booking.getMt_date());
 			member.setTh_name(booking.getTh_name());
 		}
+		
+		List<MovieBookingVO> list = null;
+		if(resCnt > 0) {
+			list = mypageService.watchedMovList(map);
+		}
+		
+		model.addAttribute("list",list);
 		model.addAttribute("resCnt", resCnt);
 		model.addAttribute("member", member);
 		return "watchedMovie";

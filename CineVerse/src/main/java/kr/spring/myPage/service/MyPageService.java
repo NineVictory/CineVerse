@@ -64,8 +64,8 @@ public interface MyPageService {
 	public void updatePoint(Long mem_num);
 	public Integer movieReviewCnt(Long mem_num);
 	public List<MovieReviewVO> movieReviewList(Long mem_num);
-
-	/* public void delMovieRev_fav(Long mr_num); */
 	public void delMovieRev(Long mr_num);
+	//내가 본 영화 md_type==1
+	public List<MovieBookingVO> watchedMovList(Map<String, Object> map);
 	
 }

@@ -345,27 +345,25 @@ public class MyPageAjaxController {
 		}
 		return mapJson;
 	}
-
+	
 	//예매 취소
 	@PostMapping("/myPage/delResMov")
 	@ResponseBody
-	public Map<String, Object> delResMov(@RequestParam("mem_num") long mem_num, @Param("mb_price") long mb_price, @Param("ph_payment") String ph_payment, @Param("mb_num") long mb_num,HttpSession session){
+	public Map<String, Object> delResMov(@RequestParam("mem_num") long mem_num, @RequestParam("mb_price") long mb_price, @RequestParam("ph_payment") String ph_payment, @RequestParam("mb_num") long mb_num, HttpSession session) {
+	    Map<String, Object> mapJson = new HashMap<String, Object>();
+	    MemberVO user = (MemberVO) session.getAttribute("user");
 
-
-		Map<String, Object> mapJson = new HashMap<String, Object>();
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		
-		if(user == null) {
-			mapJson.put("result", "logout");
-		} else if(user.getMem_num() != mem_num) {
-			mapJson.put("result", "wrongAccess");
-		} else {
-			long totalMb = adminService.totalMb(mb_num);
-			adminService.refundMovie(mem_num, mb_price, ph_payment, mb_num);
-			mapJson.put("result", "success");
-		}
-		return mapJson;
+	    if (user == null) {
+	        mapJson.put("result", "logout");
+	    } else if (user.getMem_num() != mem_num) {
+	        mapJson.put("result", "wrongAccess");
+	    } else {
+	        adminService.refundMovie(mem_num, mb_price, ph_payment, mb_num);
+	        mapJson.put("result", "success");
+	    }
+	    return mapJson;
 	}
+
 
 
 }

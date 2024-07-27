@@ -254,16 +254,15 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.movieReviewList(mem_num);
 	}
 
-	/*
-	 * @Override public void delMovieRev_fav(Long mem_num) {
-	 * 
-	 * }
-	 */
-
 	@Override
 	public void delMovieRev(Long mr_num) {
 		myPageMapper.delMovieRev_fav(mr_num);
 		myPageMapper.delMovieRev(mr_num);
+	}
+	
+	@Override
+	public List<MovieBookingVO> watchedMovList(Map<String, Object> map) {
+		return myPageMapper.watchedMovList(map);
 	}
 
 

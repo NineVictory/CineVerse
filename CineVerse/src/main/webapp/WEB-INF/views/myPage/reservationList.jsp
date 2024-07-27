@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/delResMovie.js"></script>
 <!-- 나의 예매목록 시작 -->
 <div class="myPage_main">
     <div class="reservation_display">
@@ -30,8 +32,7 @@
                                     <span class="mp_movie_number_1">예매번호</span> <span
                                         class="mp_movie_number_3">${res.user_mb_num}</span>
                                 </div>
-                                <div class="mp_movie_title"
-                                    onclick="location.href='/myPage/reservation?mb_num=${res.mb_num}'">${res.m_name}</div>
+                                <div class="mp_movie_title" onclick="location.href='/myPage/reservation?mb_num=${res.mb_num}'">${res.m_name}</div>
                                 <div class="reservation_list">
                                     <div class="reserv_info">
                                         <div>관람극장</div>
@@ -50,9 +51,7 @@
                                         <span class="m_pay">총 결제금액 </span><span class="my_blue_font">${res.mb_price}원</span>
                                     </div>
                                     <div>
-                                        <input type="button" class="m_cancle"
-                                            data-num="${res.mb_num}" data-mnum="${user.mem_num}"
-                                            value="예매취소">
+                                         <input type="button" class="m_cancle" data-num="${res.mb_num}" data-mnum="${user.mem_num}" data-price="${res.mb_price}" data-payment="${res.ph_payment}" value="예매취소">
                                     </div>
                                 </div>
                             </div>
@@ -107,11 +106,7 @@
                                     <div>
                                         <span class="m_pay">총 결제금액 </span><span class="my_blue_font">${res.mb_price}원</span>
                                     </div>
-                                    <div>
-                                        <input type="button" class="m_cancle"
-                                            data-num="${res.mb_num}" data-mnum="${user.mem_num}"
-                                            value="예매취소">
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

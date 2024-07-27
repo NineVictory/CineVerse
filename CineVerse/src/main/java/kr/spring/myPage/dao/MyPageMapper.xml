@@ -395,6 +395,65 @@
 		ORDER BY mb_num DESC
 	</select>
 
+	<!-- 예매 목록md_type==1인것만 -->
+	<select id="watchedMovList" parameterType="long"
+		resultType="movieBookingVO">
+		WITH RankedBookings AS (
+		SELECT
+		mb.user_mb_num,
+		mb.mb_num,
+		mb.m_code,
+		mb.mt_num,
+		mb.mb_price,
+		mt.th_num,
+		c.c_branch,
+		s.seat_num,
+		mb.mem_num,
+		m.m_name,
+		t.th_name,
+		mt.mt_date,
+		m.m_filename,
+		mt.mt_start,
+		mt.mt_end,
+		mbd.md_type,
+		ROW_NUMBER() OVER (PARTITION BY mb.mb_num ORDER BY mb.m_code) AS rn
+		FROM movie_booking mb
+		INNER JOIN movie m ON mb.m_code = m.m_code
+		INNER JOIN mb_detail mbd ON mb.mb_num = mbd.mb_num
+		INNER JOIN movie_time mt ON mb.mt_num = mt.mt_num
+		INNER JOIN theater t ON mt.th_num = t.th_num
+		INNER JOIN cinema c ON t.c_num = c.c_num
+		INNER JOIN seat s ON mbd.seat_num = s.seat_num
+		WHERE mb.mem_num = #{mem_num} AND md_type=1
+		)
+		SELECT
+		user_mb_num,
+		mb_num,
+		m_code,
+		mt_num,
+		mb_price,
+		th_num,
+		c_branch,
+		seat_num,
+		mem_num,
+		m_name,
+		th_name,
+		mt_date,
+		m_filename,
+		mt_start,
+		mt_end,md_type
+		FROM RankedBookings
+		WHERE rn = 1
+		ORDER BY mb_num DESC
+	</select>
+
+
+
+
+
+
+
+
 	<select id="lastRes" parameterType="long"
 		resultType="movieBookingVO">
 <![CDATA[
@@ -467,6 +526,7 @@
     ORDER BY mb_num DESC, mt_start DESC
     ]]>
 	</select>
+	
 	
 	<select id="mainRes" parameterType="long" resultType="movieBookingVO">
 		<![CDATA[
