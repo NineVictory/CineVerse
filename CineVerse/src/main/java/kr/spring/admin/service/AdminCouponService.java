@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.EventVO2;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.RefundMbVO;
@@ -36,5 +37,5 @@ public interface AdminCouponService {
 	public void deleteMemberCoupon(long mc_num);
 	public void couponSendMember(@Param(value="coupon_num") long coupon_num, @Param(value="mem_num") long mem_num);
 	
-	public void insertCrowd(EventVO eventVO);
+	public void insertCrowd(EventVO2 eventVO2);
 }	

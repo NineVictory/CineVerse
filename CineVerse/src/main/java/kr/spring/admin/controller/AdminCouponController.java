@@ -24,6 +24,7 @@ import kr.spring.admin.service.AdminCouponService;
 import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.EventVO2;
 import kr.spring.board.service.BoardService;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
@@ -204,34 +205,34 @@ public class AdminCouponController {
 	// 급한 관계로 여기에 크라우드 소싱 
 	@GetMapping("/admin/adminCrowdForm")
 	public String AdminCrowdForm(Model model){
-		model.addAttribute("eventVO", new EventVO());
+		model.addAttribute("eventVO", new EventVO2());
 		   
 		return "adminCrowdForm";
 	}
 	
 	@PostMapping("admin/adminCrowdForm")
-	public String insertCrowd(@Valid EventVO eventVO,
+	public String insertCrowd(@Valid EventVO2 eventVO2,
 			BindingResult result,
 			HttpServletRequest request,
 			HttpSession session,
 			Model model) throws IllegalStateException,IOException{
 		
-		log.debug("<<크라우드 소싱 등록>> ::: " + eventVO);
+		log.debug("<<크라우드 소싱 등록>> ::: " + eventVO2);
 
-		if(eventVO.getEvent_upload()==null || eventVO.getEvent_upload().isEmpty()) {
+		if(eventVO2.getEvent_upload()==null || eventVO2.getEvent_upload().isEmpty()) {
 			result.rejectValue("event_upload","fileNotFound");
 		}
 
 		if (result.hasErrors()) {
-			log.debug("<<유효성검사이상있음>> : " + eventVO);
+			log.debug("<<유효성검사이상있음>> : " + eventVO2);
 			return "adminCrowdForm"; 
 		}
 
-		eventVO.setEvent_filename(FileUtil.createFile(request, 
-				eventVO.getEvent_upload()));
+		eventVO2.setEvent_filename(FileUtil.createFile(request, 
+				eventVO2.getEvent_upload()));
 
-		log.debug("파일명: " + eventVO.getEvent_filename());
-		couponService.insertCrowd(eventVO);
+		log.debug("파일명: " + eventVO2.getEvent_filename());
+		couponService.insertCrowd(eventVO2);
 		
 		//View 메시지 처리
 		model.addAttribute("message", "성공적으로 크라우드 소싱이 등록되었습니다.");

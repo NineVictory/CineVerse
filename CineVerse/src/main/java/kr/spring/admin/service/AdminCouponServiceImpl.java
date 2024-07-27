@@ -12,6 +12,7 @@ import kr.spring.admin.dao.AdminCouponMapper;
 import kr.spring.admin.dao.AdminMapper;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.admin.vo.EventVO2;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
 import kr.spring.admin.vo.RefundMbVO;
@@ -81,8 +82,8 @@ public class AdminCouponServiceImpl implements AdminCouponService{
 	}
 
 	@Override
-	public void insertCrowd(EventVO eventVO) {
-		couponMapper.insertCrowd(eventVO);
+	public void insertCrowd(EventVO2 eventVO2) {
+		couponMapper.insertCrowd(eventVO2);
 	}
 
 }

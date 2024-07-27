@@ -91,7 +91,7 @@
     WHERE coupon_num = #{coupon_num}
 </update>
 
-<insert id="insertCrowd" parameterType="eventVO">
+<insert id="insertCrowd" parameterType="eventVO2">
 	INSERT INTO event (
 		event_num, event_name, event_filename, event_content, event_start, event_end, ep_type, crowd_movie1, crowd_movie2, crowd_movie3, crowd_movie4
 	) VALUES (

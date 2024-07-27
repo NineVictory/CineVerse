@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class EventVO {
+public class EventVO2 {
 	//이벤트관리
 	private long event_num;
 	@NotBlank
@@ -33,4 +33,12 @@ public class EventVO {
 	private String event_type;
 	
 	private long ep_type;
+	@NotBlank
+	private String crowd_movie1;
+	@NotBlank
+	private String crowd_movie2;
+	@NotBlank
+	private String crowd_movie3;
+	@NotBlank
+	private String crowd_movie4;
 }
