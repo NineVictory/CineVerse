@@ -33,7 +33,7 @@
                     </div>
                 </li>
                 <li class="secondary-li">
-                	<a href="#" class="secondary-a">영화</a>
+                	<a href="${pageContext.request.contextPath}/movie/movieList" class="secondary-a">영화</a>
                 	<div class="hide_menu">
                         <ul class="hide_menu_ul">
                             <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/movie/movieList" class="hide-menu-a" title="홈">홈</a></li>
@@ -50,9 +50,9 @@
                		<div class="hide_menu">
                         <ul class="hide_menu_ul">
                             <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/event/event" class="hide-menu-a" title="홈">홈</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="영화">영화</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="시사회/무대인사">시사회/무대인사</a></li>
-                            <li class="hide_menu_li"><a href="#" class="hide-menu-a" title="제휴할인">제휴할인</a></li>
+                            <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/event/event?event_type=1" class="hide-menu-a" title="영화">영화</a></li>
+                            <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/event/event?event_type=2" class="hide-menu-a" title="시사회/무대인사">시사회/무대인사</a></li>
+                            <li class="hide_menu_li"><a href="${pageContext.request.contextPath}/event/event?event_type=3" class="hide-menu-a" title="영화관">영화관</a></li>
                         </ul>
                     </div>
                	</li>

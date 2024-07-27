@@ -138,6 +138,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/event/eventDetail.jsp"/>
 	</definition>
 	
+	<definition name="eventEnd" extends="eventMain">
+		<put-attribute name="title" value="종료된이벤트"/>
+		<put-attribute name="body" value="/WEB-INF/views/event/eventEnd.jsp"/>
+	</definition>
 </tiles-definitions>
 
 

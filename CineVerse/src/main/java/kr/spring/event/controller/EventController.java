@@ -55,7 +55,7 @@ public class EventController {
 		int count = eventService.selectEventRowCount(map);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,10,10,"list","&event_type="+event_type);
+		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,10,10,"event","&event_type="+event_type);
 		List<UserEventVO> list = null;
 		if(count > 0) {
 			map.put("order", order);
@@ -116,4 +116,36 @@ public class EventController {
 	}
 	
 	
+	
+	@GetMapping("/event/end")
+	public String eventEnd(@RequestParam(defaultValue="1") int pageNum,
+			  				@RequestParam(defaultValue="1") int order, 
+							String keyfield, String keyword, Model model) {
+
+		log.debug("*** 종료된이벤트 목록 ***");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		//전체, 검색 레코드수
+		int count = eventService.selectEndedEventRowCount(map);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield,keyword,pageNum,count,10,10,"end");
+		List<UserEventVO> list = null;
+		if(count > 0) {
+			map.put("order", order);
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = eventService.selectEndedEventList(map);
+			
+			
+		}
+		
+		model.addAttribute("count", count); log.debug("*** count ***" + count);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page.getPage());
+		
+		return "eventEnd";
+	}
 }

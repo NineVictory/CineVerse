@@ -33,21 +33,43 @@
 			${event.event_content}
 		</div>
 		<div class="align-right list-btn-container" style="width:100%" onclick="location.href='event'" >
-			<img src="${pageContext.request.contextPath}/images/kbm/arrow_left.png" width="23px;" height="21px;">
-			<input type="button" value="목록" class="list-btn">
+			<img src="${pageContext.request.contextPath}/images/kbm/arrow_left.png" width="23px;" height="21px;" onclick="location.href='event'">
+			<input type="button" value="목록" class="list-btn" onclick="location.href='event'">
 		</div>
 		<hr size="1" width="100%">
 		<c:if test="${event.ep_type == 1}">
 		<div class="align-center participate-btn-container" style="width:100%">
 			<input id="event_participate_btn" type="button" value="이벤트 참여하기" data-num="${event.event_num}">
 		</div>
+		<script type="text/javascript">
+			var eventEndDateStr = ${event.event_end};
+		    const eventEndDate = new Date(eventEndDateStr);
+		    const currentDate = new Date();
+		
+		    if (eventEndDate < currentDate) {
+		        $('.participate-btn-container').hide();
+		    } else {
+		    	$('.participate-btn-container').show();
+		    }
+		</script>
+
 		</c:if>
 		
 		<c:if test="${event.ep_type == 2}">
 		<div class="align-center participate-btn-container" style="width:100%">
 			<input id="event_participate_btn2" type="button" value="투표하기" data-num="${event.event_num}">
 		</div>
+		<script type="text/javascript">
+			var eventEndDateStr = ${event.event_end};
+		    const eventEndDate = new Date(eventEndDateStr);
+		    const currentDate = new Date();
 		
+		    if (eventEndDate < currentDate) {
+		        $('.participate-btn-container2).hide();
+		    } else {
+		    	$('.participate-btn-container2').show();
+		    }
+		</script>
 		
 		<div id="eventModal" class="event-modal">
 	        <div class="event-modal-content">
@@ -75,8 +97,8 @@
 		            	<input type="radio" name="ep_content" value="crowd_movie4"> ${event.crowd_movie4}
 	            	</div>
 	            	<div class="modal-btn-con">
-						<input type="submit" class="movie" value="투표하기">
-						<input type="button" id="modal_cancel" value="취소" class="default-btn4">
+						<input type="submit" class="movie vote-btn" value="투표하기">
+						<input type="button" id="modal_cancel" value="취소" class="vote-cancel">
 					</div>
 	            </form>
 	        </div>

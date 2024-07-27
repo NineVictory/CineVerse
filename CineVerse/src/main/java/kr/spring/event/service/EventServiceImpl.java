@@ -48,4 +48,14 @@ public class EventServiceImpl implements EventService{
 		eventMapper.insertCrowd(eventP);
 	}
 
+	@Override
+	public Integer selectEndedEventRowCount(Map<String, Object> map) {
+		return eventMapper.selectEndedEventRowCount(map);
+	}
+
+	@Override
+	public List<UserEventVO> selectEndedEventList(Map<String, Object> map) {
+		return eventMapper.selectEndedEventList(map);
+	}
+
 }

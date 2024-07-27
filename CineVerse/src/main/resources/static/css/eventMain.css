@@ -33,6 +33,12 @@
 	font-size: 16px;
 	align-items: center;
 }
+.event-menu2{
+	margin:30px 0;
+	font-size:16px;
+	font-weight: 500;
+	color: #666;
+}
 
 .event-main {
 	display: flex;
@@ -97,9 +103,14 @@
 }
 
 .event-list-main {
-	width: 1160px; padding-top : 25px;
+	width: 1160px;
 	vertical-align: middle;
 	padding-top: 25px;
+}
+.event-list-main2 {
+	width: 1160px;
+	vertical-align: middle;
+
 }
 
 .event-list-main .event-infos {
@@ -305,6 +316,55 @@ input#event_participate_btn2{
 }
 .radio-container{
 	text-align:left;
-	width:300px;
+	width:280px;
 	margin:0 auto;
+}
+.radio-container input{
+	margin-bottom:10px;
+}
+
+
+
+/*종료이벤트*/
+table.endEventTable{
+	border-collapse: collapse;
+	width:100%;
+}
+table.endEventTable tr{
+	border-bottom: 1px solid var(--gray-3);
+}
+table.endEventTable > *{
+	font-size:14px;
+}
+td.endEvent-image{
+	width:140px;
+	height:110px;
+	vertical-align:middle;
+}
+.endEvent-img{
+	width:120px;
+	max-height:100px;
+}
+.endEvent-title{
+	width:650px;
+}
+.page-count{
+	width:100%;
+	margin:50px 0;
+}
+.endEventP{
+	text-align:right;
+}
+
+.modal-btn-con input{
+	background:none;
+	border:1px solid #828282;
+	border-radius:5px;
+	padding:3px 8px;
+	cursor:pointer;
+}
+.modal-btn-con input:hover{
+	border:1px solid var(--main-color-strong);
+	background-color:var(--main-color-strong);
+	color:#fff;
 }

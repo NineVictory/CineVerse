@@ -5,21 +5,21 @@
 <mapper namespace="kr.spring.event.dao.EventMapper">
 
 	<sql id="eventSearch">
-			<if test="event_type != null and event_type != ''">
-				AND event_type = #{event_type}
-			</if>
+		<if test="event_type != null and event_type != ''">
+			AND event_type = #{event_type}
+		</if>
 	</sql>
 	<sql id="eventRowSearch">
 		<where>
 			<if test="event_type != null and event_type != ''">
-				event_type = #{event_type}
+				AND event_type = #{event_type}
 			</if>
 		</where>
 	</sql>
 
 	<select id="selectEventRowCount" parameterType="map" resultType="integer">
-		SELECT COUNT(*) FROM event
-		<include refid="eventRowSearch"></include>
+		SELECT COUNT(*) FROM event <where> event_end >= SYSDATE
+		<include refid="eventSearch"></include></where>
 	</select>
 
 	<!-- 이벤트 전체 목록/검색 목록 -->
@@ -40,7 +40,7 @@
 									event_type
 														
 								FROM event 
-								WHERE event_end > SYSDATE
+								WHERE event_end >= SYSDATE
 								<include refid="eventSearch"></include>
 								
 								ORDER BY event_reg_date DESC)a) 
@@ -49,7 +49,38 @@
 		]]>
 	</select>
 
+	
+	<select id="selectEndedEventRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM event WHERE event_end &lt; SYSDATE
+	</select>
 
+	<!-- 이벤트 전체 목록/검색 목록 -->
+	<select id="selectEndedEventList" parameterType="map" resultType="userEventVO">
+		SELECT * FROM
+				(SELECT a.*, rownum rnum FROM			<!--좋아요가 없을 때 누락-->
+								(SELECT 
+									event_num,
+									<![CDATA[
+									REPLACE(REPLACE(event_name,'<','&lt;'),'>','&gt;') event_name,
+									]]>
+									event_filename,
+									event_content,
+									event_start,
+									event_end,
+									event_reg_date,
+									event_modify_date,
+									event_type
+														
+								FROM event 
+								WHERE event_end &lt; SYSDATE
+								
+								ORDER BY event_reg_date DESC)a) 
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	
 	<insert id="insertParticipation" parameterType="map">
 		INSERT INTO event_participation (ep_num, mem_num, event_num) 
 		VALUES (event_participation_seq.nextval, #{mem_num}, #{event_num})

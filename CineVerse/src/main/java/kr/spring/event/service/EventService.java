@@ -11,6 +11,10 @@ public interface EventService {
 	
 	public List<UserEventVO> selectEventList(Map<String,Object> map);
 	
+	public Integer selectEndedEventRowCount(Map<String,Object> map);
+	
+	public List<UserEventVO> selectEndedEventList(Map<String,Object> map);
+	
 	public UserEventVO selectEvent(long event_num);
 	
 	public EventPVO selectParticipation(EventPVO eventP);
