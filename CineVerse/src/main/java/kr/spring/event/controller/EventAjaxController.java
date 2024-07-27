@@ -78,5 +78,30 @@ public class EventAjaxController {
 		}
 		log.debug("<<이벤트 참여 EventPVO**********" + eventP);
 		return mapJson;
+
+	}
+	
+	
+
+	/*====================
+	 *크라우드소싱
+	 =====================*/
+	@PostMapping("/event/insertCrowd")
+	@ResponseBody
+	public Map<String,String> insertCrowd(EventPVO eventP, HttpSession session){
+		log.debug("**크라우드소싱 참여insert**");
+		
+		Map<String,String> mapJson = new HashMap<String,String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else {
+			eventP.setMem_num(user.getMem_num());
+			eventService.insertCrowd(eventP);
+			mapJson.put("result", "success");
+		}
+		
+		return mapJson;
 	}
 }

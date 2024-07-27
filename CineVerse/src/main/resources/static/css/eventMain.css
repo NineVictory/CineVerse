@@ -185,10 +185,11 @@ button#load-more{
 
 .event-info-main{
 	margin:20px 0;
-	min-height:250px;
+	padding:10px;
+	min-height:350px;
 }
 .event-info-main img{
-	width:1160px;
+	width:1140px;
 }
 
 
@@ -219,7 +220,7 @@ input#event_participate_btn2{
 }
 .participated{
 	background-color:#969696 !important;
-	cursor:none;
+	cursor:default;
 }
 .list-btn{
 	border:none;
@@ -232,6 +233,13 @@ input#event_participate_btn2{
 	display:flex;
 	align-items:center;
 	justify-content: flex-end;
+	margin:5px 0 ;
+	cursor:pointer;
+}
+.list-btn-container2{
+	display:flex;
+	align-items:center;
+	justify-content: flex-start;
 	margin:5px 0 ;
 	cursor:pointer;
 }
@@ -297,6 +305,6 @@ input#event_participate_btn2{
 }
 .radio-container{
 	text-align:left;
-	width:100px;
+	width:300px;
 	margin:0 auto;
 }

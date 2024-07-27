@@ -54,6 +54,11 @@
 		INSERT INTO event_participation (ep_num, mem_num, event_num) 
 		VALUES (event_participation_seq.nextval, #{mem_num}, #{event_num})
 	</insert>
+	
+	<insert id="insertCrowd" parameterType="eventPVO">
+		INSERT INTO event_participation (ep_num, mem_num, event_num, ep_content)
+		VALUES (event_participation_seq.nextval, #{mem_num}, #{event_num}, #{ep_content})
+	</insert>
 </mapper>							
 
 

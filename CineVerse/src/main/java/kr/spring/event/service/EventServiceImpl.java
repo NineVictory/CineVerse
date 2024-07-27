@@ -43,4 +43,9 @@ public class EventServiceImpl implements EventService{
 		eventMapper.insertParticipation(eventP);
 	}
 
+	@Override
+	public void insertCrowd(EventPVO eventP) {
+		eventMapper.insertCrowd(eventP);
+	}
+
 }

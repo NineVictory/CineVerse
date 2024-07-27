@@ -9,6 +9,10 @@
 
 <div class="page-container page-main">
 	<div class="event-main">
+		<div class=" list-btn-container2" style="width:100%" onclick="location.href='event'" >
+			<img src="${pageContext.request.contextPath}/images/kbm/arrow_left.png" width="23px;" height="21px;">
+			<input type="button" value="목록" class="list-btn">
+		</div>
 		<div class="제목 기간" style="width:100%">
 			<hr size="1" width="100%;">
 			<div class="flexbox-h side event-detail-container">
@@ -16,7 +20,8 @@
 					<span class="event-type">
 						<c:if test="${event.event_type == 1}">영화</c:if>
 						<c:if test="${event.event_type == 2}">시사회/무대인사</c:if>
-						<c:if test="${event.event_type == 3}">제휴할인</c:if>
+						<c:if test="${event.event_type == 3}">영화관</c:if>
+						<c:if test="${event.ep_type == 2}">크라우드소싱</c:if>
 					</span>
 					<span>${event.event_name}</span>
 				</div>
@@ -61,12 +66,13 @@
 					</div>
 	            </form:form> --%>
 	            
-	            <form action="" id="event_vote" method="post">
+	            <form action="insertCrowd" id="event_vote" method="post">
+	            	<input type="hidden" name="event_num" value="${event.event_num}">
 	            	<div class="radio-container">
-		            	<input type="radio" name="crowd_movie1" value="crowd_movie1"> ${event.crowd_movie1}<br>
-		            	<input type="radio" name="crowd_movie2" value="crowd_movie2"> ${event.crowd_movie2 }<br>
-		            	<input type="radio" name="crowd_movie3" value="crowd_movie3"> ${event.crowd_movie3 }<br>
-		            	<input type="radio" name="crowd_movie4" value="crowd_movie4"> ${event.crowd_movie4 }
+		            	<input type="radio" name="ep_content" value="crowd_movie1"> ${event.crowd_movie1}<br>
+		            	<input type="radio" name="ep_content" value="crowd_movie2"> ${event.crowd_movie2}<br>
+		            	<input type="radio" name="ep_content" value="crowd_movie3"> ${event.crowd_movie3}<br>
+		            	<input type="radio" name="ep_content" value="crowd_movie4"> ${event.crowd_movie4}
 	            	</div>
 	            	<div class="modal-btn-con">
 						<input type="submit" class="movie" value="투표하기">

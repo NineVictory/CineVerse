@@ -20,8 +20,8 @@ public class EventPVO {
 	private long ep_type;
 	private long event_type;
 	private MultipartFile event_upload;	//파일
-	private String crowd_movie1;
+/*	private String crowd_movie1;
 	private String crowd_movie2;
 	private String crowd_movie3;
-	private String crowd_movie4;
+	private String crowd_movie4;*/
 }

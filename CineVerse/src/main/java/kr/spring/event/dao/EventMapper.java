@@ -24,4 +24,6 @@ public interface EventMapper {
 	public EventPVO selectParticipation(EventPVO eventP);
 	
 	public void insertParticipation(EventPVO eventP);
+	
+	public void insertCrowd(EventPVO eventP);
 }

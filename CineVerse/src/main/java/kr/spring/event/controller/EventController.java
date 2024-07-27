@@ -7,16 +7,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.event.service.EventService;
+import kr.spring.event.vo.EventPVO;
 import kr.spring.event.vo.UserEventVO;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -108,4 +114,6 @@ public class EventController {
 		modelAndView.addObject("event", eventVO);
 		return modelAndView;
 	}
+	
+	
 }
