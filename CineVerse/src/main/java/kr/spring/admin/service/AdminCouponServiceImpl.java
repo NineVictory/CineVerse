@@ -86,4 +86,39 @@ public class AdminCouponServiceImpl implements AdminCouponService{
 		couponMapper.insertCrowd(eventVO2);
 	}
 
+	@Override
+	public List<EventVO2> crowdParticipants(long event_num) {
+		return couponMapper.crowdParticipants(event_num);
+	}
+
+	@Override
+	public Integer cpCount(long event_num) {
+		return couponMapper.cpCount(event_num);
+	}
+
+	@Override
+	public Integer m1Count(long event_num) {
+		return couponMapper.m1Count(event_num);
+	}
+
+	@Override
+	public Integer m2Count(long event_num) {
+		return couponMapper.m2Count(event_num);
+	}
+
+	@Override
+	public Integer m3Count(long event_num) {
+		return couponMapper.m3Count(event_num);
+	}
+
+	@Override
+	public Integer m4Count(long event_num) {
+		return couponMapper.m4Count(event_num);
+	}
+
+	@Override
+	public EventVO2 eventDetail(long event_num) {
+		return couponMapper.eventDetail(event_num);
+	}
+
 }

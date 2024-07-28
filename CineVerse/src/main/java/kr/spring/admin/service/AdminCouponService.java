@@ -38,4 +38,12 @@ public interface AdminCouponService {
 	public void couponSendMember(@Param(value="coupon_num") long coupon_num, @Param(value="mem_num") long mem_num);
 	
 	public void insertCrowd(EventVO2 eventVO2);
+	public List<EventVO2> crowdParticipants(long event_num);
+	public Integer cpCount(long event_num);
+	
+	public EventVO2 eventDetail(long event_num);
+	public Integer m1Count(long event_num);
+	public Integer m2Count(long event_num);
+	public Integer m3Count(long event_num);
+	public Integer m4Count(long event_num);
 }	

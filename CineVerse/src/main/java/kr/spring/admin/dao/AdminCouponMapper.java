@@ -39,4 +39,25 @@ public interface AdminCouponMapper {
 	
 	
 	public void insertCrowd(EventVO2 eventVO2);
+	
+	@Select("SELECT * FROM event_participation JOIN event USING(event_num) JOIN member USING (mem_num) JOIN member_detail USING(mem_num) WHERE event_num=#{event_num}")
+	public List<EventVO2> crowdParticipants(long event_num);
+	
+	@Select("SELECT COUNT(*) FROM event_participation WHERE event_num=#{event_num}")
+	public Integer cpCount(long event_num);
+	
+	
+	@Select("SELECT COUNT(*) FROM event_participation WHERE event_num=#{event_num} AND ep_content='crowd_movie1'")
+	public Integer m1Count(long event_num);
+	
+	@Select("SELECT COUNT(*) FROM event_participation WHERE event_num=#{event_num} AND ep_content='crowd_movie2'")
+	public Integer m2Count(long event_num);
+	
+	@Select("SELECT COUNT(*) FROM event_participation WHERE event_num=#{event_num} AND ep_content='crowd_movie3'")
+	public Integer m3Count(long event_num);
+	@Select("SELECT COUNT(*) FROM event_participation WHERE event_num=#{event_num} AND ep_content='crowd_movie4'")
+	public Integer m4Count(long event_num);
+	
+	@Select("SELECT * FROM event WHERE event_num=#{event_num}")
+	public EventVO2 eventDetail(long event_num);
 }

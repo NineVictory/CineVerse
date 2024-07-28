@@ -31,7 +31,9 @@ public class EventVO2 {
 	private Date event_modify_date;
 	private MultipartFile event_upload;	//파일
 	private String event_type;
-	
+
+	private Date ep_date;
+	private String mem_id;
 	private long ep_type;
 	@NotBlank
 	private String crowd_movie1;
@@ -41,4 +43,10 @@ public class EventVO2 {
 	private String crowd_movie3;
 	@NotBlank
 	private String crowd_movie4;
+
+	private long ep_num; // 신청자 식별 번호
+	private long mem_num;	// 신청자 mem_num
+	private String ep_content; // 이벤트 신청했을 때 적는 정보
+	private long ep_result; // 이벤트 결과
+
 }

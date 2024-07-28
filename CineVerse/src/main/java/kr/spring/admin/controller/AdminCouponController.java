@@ -243,7 +243,30 @@ public class AdminCouponController {
 	}
 	
 	@GetMapping("/admin/adminCrowdParticipants")
-	public String adminCrowdParticipants() {
+	public String adminCrowdParticipants(@RequestParam long event_num, Model model) {
+		log.debug("<<크라우드 소싱 참여자>> ::: " + event_num);
+		
+		int count = couponService.cpCount(event_num);
+		List<EventVO2> participants = null;
+		
+		if(count>0) {
+			participants = couponService.crowdParticipants(event_num);
+		}
+		
+		EventVO2 eventDetail = couponService.eventDetail(event_num);
+		
+		int m1Count = couponService.m1Count(event_num);
+		int m2Count = couponService.m2Count(event_num);
+		int m3Count = couponService.m3Count(event_num);
+		int m4Count = couponService.m4Count(event_num);
+		
+		model.addAttribute("m1Count", m1Count);
+		model.addAttribute("m2Count", m2Count);
+		model.addAttribute("m3Count", m3Count);
+		model.addAttribute("m4Count", m4Count);
+		model.addAttribute("eventDetail", eventDetail);
+		model.addAttribute("list", participants);
+		model.addAttribute("event_num", event_num);
 		
 		return "adminCrowdParticipants";
 	}
