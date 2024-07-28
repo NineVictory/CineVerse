@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -117,6 +116,9 @@
                         // 지역 선택 초기화
                         $('.theater-location .button').removeClass('selected'); 
 
+                        // 스크롤을 선택된 영화 항목으로 이동
+                        scrollToSelectedMovie(selectedMovie);
+
                         loadMovieTimeTable();
                     });
 
@@ -133,17 +135,17 @@
                         let str = time.toString().padStart(4, '0'); // Ensure the time is at least 4 digits
                         return str.slice(0, 2) + ':' + str.slice(2);
                     }
-                    
+
                     // 시간표를 로드하는 함수
                     function loadMovieTimeTable() {
                         console.log('Loading Time Table with:', {
                             selectedMovie: selectedMovie,
                             selectedDate: selectedDate,
                             selectedLocation: selectedLocation
-                        }); 
+                        });
                         if (selectedMovie && selectedDate && selectedLocation) {
                             $.ajax({
-                                url: '${pageContext.request.contextPath}/showMovieTimeList', 
+                                url: '${pageContext.request.contextPath}/showMovieTimeList',
                                 type: 'GET',
                                 data: {
                                     m_code: selectedMovie,
@@ -168,7 +170,8 @@
                                     // 각 c_branch에 대해 반복
                                     for (let branch in branches) {
                                         // c_branch 제목을 추가
-                                        selectMovieTimeListHtml += '<div class="branch-section"><h3 class="c-location">' + branch + '</h3>';
+                                        selectMovieTimeListHtml +='<h3 class="c-location">' + branch + '</h3>';
+                                        selectMovieTimeListHtml += '<div class="branch-section">';
 
                                         // 시간표 항목들을 가로로 정렬할 수 있도록 HTML 생성
                                         branches[branch].forEach(function(item) {
@@ -177,10 +180,11 @@
                                             selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
                                             selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
                                             selectMovieTimeListHtml += '</div>';
+                                            selectMovieTimeListHtml += '</div>'; // movietime-container 종료
                                         });
-                                        selectMovieTimeListHtml += '</div>'; // movietime-container 종료
                                         selectMovieTimeListHtml += '</div>'; // branch-section 종료
                                     }
+
 
                                     $('.reserve-time-wrapper').html(selectMovieTimeListHtml);
                                 },
@@ -193,13 +197,26 @@
                         }
                     }
 
+                    function scrollToSelectedMovie(movieCode) {
+                        let $selectedMovieElement = $('.movie-select li[data-mcode="' + movieCode + '"]');
+                        if ($selectedMovieElement.length) {
+                            // 선택된 영화 항목이 있는 경우, movie-list-wrapper의 스크롤을 조정
+                            $('.movie-list-wrapper').animate({
+                                scrollTop: $selectedMovieElement.position().top + $('.movie-list-wrapper').scrollTop() - $('.movie-list-wrapper').height() / 2 + $selectedMovieElement.outerHeight() / 2
+                            }, 500);
+                        }
+                    }
+
                     // 영화 날짜 생성 함수 호출
                     generateMovieDays();
-                    
+
                     // 페이지 로드 시 선택된 영화 및 지역 표시 및 시간표 로드
                     if (selectedMovie) {
                         $('.movie-select li[data-mcode="' + selectedMovie + '"]').addClass('selected');
                         $('#selected-movie').text($('.movie-select li[data-mcode="' + selectedMovie + '"]').text());
+
+                        // 페이지 로드 시 자동 스크롤
+                        scrollToSelectedMovie(selectedMovie);
                     }
 
                     if (selectedLocation) {
@@ -207,7 +224,7 @@
                     }
 
                     loadMovieTimeTable(); // 초기 로드 시 시간표 로드
-                    
+
                     // 툴팁 생성
                     $(document).on('mouseenter', '.movietime-item', function(event) {
                         let endTime = $(this).data('end-time');
@@ -234,9 +251,8 @@
 
                     // movietime-container 클릭 이벤트 처리
                     $(document).on('click', '.movietime-container', function() {
-                        
                         let check = confirm('영화를 예매하시겠습니까?');
-                        let mt_num = $(this).data('mtnum'); 
+                        let mt_num = $(this).data('mtnum');
                         if (check) {
                             window.location.href = '../movie/movieSeat?mt_num=' + mt_num;
                         }
