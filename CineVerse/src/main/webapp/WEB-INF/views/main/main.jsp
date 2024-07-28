@@ -124,7 +124,7 @@
                 <img class="poster_info_image" src="${fn:split(detail.m_filename, '|')[0]}" alt="${detail.m_name}">
                 <em class="num_info">${detail.movie_rank}</em>
                 <div class="overlay">
-                    <button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieReserve'">예매하기</button>
+                    <button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieTimeBYmovie?m_code=${detail.m_code}'">예매하기</button>
                     <button class="btn-details" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail?m_code=${detail.m_code}'">상세보기</button>
                 </div>
             </span>
