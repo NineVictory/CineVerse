@@ -148,6 +148,11 @@ public class CinemaServiceImpl implements CinemaService{
 		return cinemaMapper.getMovieRankMain();
 	}
 
+	/*
+	 * @Override public Integer bookingcount(long mt_num) { return
+	 * cinemaMapper.bookingcount(mt_num); }
+	 */
+
 
 
 

@@ -92,6 +92,15 @@ public interface CinemaMapper {
 	
 	//상영중인 영화시간표 조회
 	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date, String c_location);
+
+	
+	//상영시간별 좌석 예매자 수 구하기 
+	//public Integer bookingcount(long mt_num);
+	//public Integer bookingcount(Map<String, Object> map);
+	
+	
+	
+	
 	
 	
 	
