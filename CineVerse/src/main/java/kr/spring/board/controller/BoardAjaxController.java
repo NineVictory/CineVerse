@@ -156,27 +156,6 @@ public class BoardAjaxController {
 		return mapJson;
 	}
 	
-	/*===================
-	 * 부모글 데이터 처리
-	 *===================*/
-	//업로드 파일 삭제
-	/*
-	 * @PostMapping("/board/deleteFile")
-	 * 
-	 * @ResponseBody public Map<String,String> processFile(long cb_num,
-	 * HttpSession session, HttpServletRequest request){ Map<String,String> mapJson
-	 * = new HashMap<String,String>(); MemberVO user =
-	 * (MemberVO)session.getAttribute("user"); if(user == null) {
-	 * mapJson.put("result", "logout"); }else { BoardVO db_board =
-	 * boardService.selectBoard(cb_num); //로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-	 * if(user.getMem_num() != db_board.getMem_num()) { //불일치 mapJson.put("result",
-	 * "wrongAccess"); }else { //일치 boardService.deleteFile(cb_num); // 실제삭제
-	 * FileUtil.removeFile(request, db_board.getFilename());
-	 * 
-	 * mapJson.put("result", "success"); } }
-	 * 
-	 * return mapJson; }
-	 */
 	
 	/*===================
 	 * 댓글 등록

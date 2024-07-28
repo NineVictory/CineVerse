@@ -27,7 +27,7 @@ public class BoardResponseVO {
 	
 	private int respfav_cnt;
 	private int respclick_num;
-	
+	private int rr_report;
 	/*public void setTe_date(String te_date) {
 		this.te_date = DurationFromNow.getTimeDiffLabel(te_date);
 	}

@@ -48,31 +48,27 @@
 						</div>
 					</div>
 					<div>상품 이미지는 PC에서 1:1로 보여집니다.</div>
+					<div>(미선택시 기존 이미지 업로드)</div>
 					<form:errors path="ab_upload" cssClass="error-color"/>
 				</div>
 				<div class="flexbox-p">
 					<div id="preview">
-						<%-- <c:if test="${!empty ab_filenames}">
-							<c:forEach var="filename" items="${ab_filenames}" >
-								<script type="text/javascript">
-								$(document).ready(function() {
-									var imageUrl = '${pageContext.request.contextPath}/upload/'+filename;
-									var container = $('<div>').addClass('preview-image-container');
-									var img = $('<img>').attr({'src':imageUrl, 'data-filename':filename}).addClass('preview-image');
-									var removeButton = $('<button>').addClass('remove-button').text('X');
-									removeButton.on('click', function() {
-					                    container.remove(); // 미리보기 삭제
-					                    updateFileInput(filename); // input 파일 목록 업데이트
-					                });
-
-					                container.append(img).append(removeButton);
-					                $('#preview').append(container);
+						<div class="preview-image-container"  id="db_file">
+							<img src="${pageContext.request.contextPath}/upload/${assignVO.ab_filename}" class="preview-image">
+							<button class="remove-button" id="file_del">X</button>
+							<script type="text/javascript">
+								$(function(){
+									$('#file_del').click(function(event){
+										event.preventDefault();
+										$('#db_file').hide();
+									});	
+									$('#ab_upload').on('change', function(event){
+										$('#db_file').hide();
+									});
+									
 								});
-								</script>
-							</c:forEach>
-							
-        
-						</c:if> --%>
+							</script>
+						</div>
 					</div>
 				</div>	
 				

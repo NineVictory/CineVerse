@@ -178,8 +178,9 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void deleteResponse(Long te_num) {
-		//답글 삭제 전 좋아요 삭제
+		//답글 삭제 전 좋아요, 자식답글 좋아요 삭제
 		boardMapper.deleteRespFavByTeNum(te_num);
+		//자식답글 포함 삭제
 		boardMapper.deleteResponse(te_num);
 	}
 

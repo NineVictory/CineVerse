@@ -3,6 +3,7 @@ package kr.spring.assignment.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ import kr.spring.assignment.service.AssignService;
 import kr.spring.assignment.vo.AssignFavVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.controller.BoardAjaxController;
-
+import kr.spring.board.vo.BoardVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -87,6 +89,7 @@ public class AssignAjaxController {
 		return mapJson;
 	}
 	
+	//상태 변경
 	@PostMapping("/assignboard/updateStatus")
 	@ResponseBody
 	public Map<String,Object> updateStatus(AssignVO assign, HttpSession session){
@@ -104,6 +107,41 @@ public class AssignAjaxController {
 				mapJson.put("result", "wrongAccess");
 			}else {			
 				assignService.ab_updateStatus(assign);
+				mapJson.put("result", "success");
+			}
+		}
+		
+		return mapJson;
+	}
+	
+	/*================
+	 * 업로드 이미지 삭제
+	 *================*/
+	//업로드 파일 삭제
+	@PostMapping("/assignboard/deleteFile")
+	@ResponseBody
+	public Map<String,String> processFile(
+			              long ab_num,
+			              HttpSession session,
+			              HttpServletRequest request){
+		Map<String,String> mapJson = 
+				      new HashMap<String,String>();
+		MemberVO user = 
+				(MemberVO)session.getAttribute("user");
+		if(user==null) {
+			mapJson.put("result", "logout");
+		}else {
+			AssignVO db_assign = 
+					assignService.ab_selectBoard(ab_num); 
+			//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
+			if(user.getMem_num() != db_assign.getMem_num()) {
+				//불일치
+				mapJson.put("result", "wrongAccess");
+			}else {
+				//일치
+				assignService.ab_deleteFile(ab_num);
+				FileUtil.removeFile(request, db_assign.getAb_filename());
+				
 				mapJson.put("result", "success");
 			}
 		}

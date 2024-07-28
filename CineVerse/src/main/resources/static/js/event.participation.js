@@ -10,6 +10,7 @@ $(function(){
 			data:{event_num:event_num},
 			dataType:'json',
 			success:function(param){
+				console.log(param.status);
 				displayP(param);
 			},
 			error:function(){
@@ -147,13 +148,13 @@ $(function(){
 	function displayP(param){
 		if(param.status == 'yesP'){
 			//버튼 비활성화
-			$('#event_participate_btn').addClass('participated');
-			$('#event_participate_btn').val('이벤트 참여완료');
+            $('#event_participate_btn').addClass('participated');
+            $('#event_participate_btn').val('이벤트 참여완료');
 			$('#event_participate_btn').prop('disabled', true);
 			
 			$('#event_participate_btn2').addClass('participated');
 			$('#event_participate_btn2').val('참여완료');
-			$('#event_participate_btn').prop('disabled', true);
+			$('#event_participate_btn2').prop('disabled', true);
 		}else if(param.status == 'noP'){
 			//버튼 활성화
 			$('#event_participate_btn').removeClass('participated');
@@ -168,9 +169,11 @@ $(function(){
 	}
 	
 	//상세 진입시 버튼 상태
-	selectParticipation($('#event_participate_btn').attr('data-num'));
-	selectParticipation($('#event_participate_btn2').attr('data-num'));
-
+	if($('#event_participate_btn').attr('data-num')){
+		selectParticipation($('#event_participate_btn').attr('data-num'));
+	}else if($('#event_participate_btn2').attr('data-num')){
+		selectParticipation($('#event_participate_btn2').attr('data-num'));
+	}
 	
 	
 });

@@ -48,7 +48,18 @@
 						<div class="cell-content">
 							<div class="title"><a href="detail?ab_num=${board.ab_num}">${board.ab_title}</a></div>
 							<div class="likes-container"><div class="likes"><img src="${pageContext.request.contextPath}/images/kbm/hit.png" width="14px;"><span>${board.ab_hit}</span> <img src="${pageContext.request.contextPath}/images/kbm/comment.png" width="14px;"><span>${board.ac_cnt}</span> <img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="14px;"><span>${board.bookmark_cnt}</span></div></div>
-							<div class="writer"><img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">&nbsp;${board.mem_id}&nbsp;&nbsp; ${board.ab_reg_date}</div>
+							<div class="writer">
+								<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${board.mem_num}" width="18" height="18" class="my-photo">
+								<c:if test="${empty board.mem_nickname}">
+									<div class="member_id_board">${board.mem_id}</div>
+									<div class="regdate_board">${board.ab_reg_date}</div>
+								</c:if>
+								<c:if test="${!empty board.mem_nickname}">
+									<div class="member_id_board">${board.mem_nickname}</div>
+									<div class="regdate_board">${board.ab_reg_date}</div>
+								</c:if>
+							<%--&nbsp;${board.mem_id}&nbsp;&nbsp; ${board.ab_reg_date} --%>
+							</div>
 						</div>
 					</td>
 				</tr>

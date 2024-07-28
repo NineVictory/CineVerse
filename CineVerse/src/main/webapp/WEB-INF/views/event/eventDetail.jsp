@@ -42,7 +42,7 @@
 			<input id="event_participate_btn" type="button" value="이벤트 참여하기" data-num="${event.event_num}">
 		</div>
 		<script type="text/javascript">
-			var eventEndDateStr = ${event.event_end};
+			var eventEndDateStr = '${event.event_end}';
 		    const eventEndDate = new Date(eventEndDateStr);
 		    const currentDate = new Date();
 		

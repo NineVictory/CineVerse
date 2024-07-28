@@ -133,9 +133,9 @@
 		<div id="loading" style="display:none; margin:20px 0;" class="align-center">
 			<img src="${pageContext.request.contextPath}/images/kbm/loading.gif" width="30" height="30">
 		</div>
-		<div class="paging-button" style="display:none;">
+		<!-- <div class="paging-button" style="display:none;">
 			<input type="button" value="더보기">
-		</div>
+		</div> -->
 		<!-- 댓글 UI 끝 -->
 		
 		

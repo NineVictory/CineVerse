@@ -72,6 +72,7 @@ public interface BoardMapper {
 	public void insertComment(BoardCommentVO boardComment);				//cc_ip 컬럼 추가할 것
 	@Update("UPDATE community_comment SET cc_content=#{cc_content},cc_ip=#{cc_ip},cc_modify_date=SYSDATE WHERE cc_num=#{cc_num}")
 	public void updateComment(BoardCommentVO boardComment);
+	//댓글 삭제
 	@Delete("DELETE FROM community_comment WHERE cc_num=#{cc_num}")
 	public void deleteComment(Long cc_num);
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
@@ -88,8 +89,10 @@ public interface BoardMapper {
 	public void insertReFav(BoardReFavVO fav);
 	@Delete("DELETE FROM community_comment_fav WHERE cc_num=#{cc_num} AND mem_num=#{mem_num}")
 	public void deleteReFav(BoardReFavVO fav);
+	//댓글 삭제 전 좋아요 삭제
 	@Delete("DELETE FROM community_comment_fav WHERE cc_num=#{cc_num}")
 	public void deleteReFavByReNum(Long cc_num);
+	//부모글 삭제 전 댓글 좋아요 삭제
 	@Delete("DELETE FROM community_comment_fav WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")
 	public void deleteReFavByBoardNum(Long cb_num);
 	
@@ -108,11 +111,12 @@ public interface BoardMapper {
 	public void insertResponse(BoardResponseVO boardResponse);
 	@Update("UPDATE community_response SET te_content=#{te_content},te_ip=#{te_ip},te_mdate=SYSDATE WHERE te_num=#{te_num}")
 	public void updateResponse(BoardResponseVO boardResponse);
+	//답글 삭제시 자식답글까지 삭제
 	public void deleteResponse(Long te_num);
 	//댓글 삭제시 자식글인 답글을 모두 삭제
 	@Delete("DELETE FROM community_response WHERE cc_num=#{cc_num}")
 	public void deleteResponseByReNum(Long cc_num);	
-	//부모글 삭제시 댓글의 답글이 존재하면 댓글 번호를 구해서 답글 삭제
+	//부모글 삭제시 답글이 존재하면 댓글 번호를 구해서 답글 삭제
 	@Delete("DELETE FROM community_response WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")
 	public void deleteResponseByBoardNum(Long cb_num);
 	//답글의 개수 구하기
@@ -130,11 +134,12 @@ public interface BoardMapper {
 	public void insertRespFav(BoardResponseFavVO fav);
 	@Delete("DELETE FROM community_response_fav WHERE te_num=#{te_num} AND mem_num=#{mem_num}")
 	public void deleteRespFav(BoardResponseFavVO fav);
+	
 	//댓글 삭제시 답글 좋아요 삭제
-	@Delete("DELETE FROM community_response_fav WHERE te_num IN (SELECT te_num FROM community_response_fav JOIN community_response USING (te_num) WHERE cc_num=#{cc_num}")
+	@Delete("DELETE FROM community_response_fav WHERE te_num IN (SELECT te_num FROM community_response_fav JOIN community_response USING (te_num) WHERE cc_num=#{cc_num})")
 	public void deleteRespFavByReNum(Long cc_num);
+	
 	//답글 삭제시 자식답글 좋아요 삭제
-	@Delete("DELETE FROM community_response_fav WHERE te_parent_num IN (SELECT te_parent_num FROM community_response WHERE te_parent_num=#{te_num})")
 	public void deleteRespFavByTeNum(Long te_num);
 	//게시글 삭제시 답글의 좋아요 삭제
 	@Delete("DELETE FROM community_response_fav WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")

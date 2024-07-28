@@ -33,7 +33,7 @@ public interface AssignBoardMapper {
 	@Delete("DELETE FROM assignment_board WHERE ab_num=#{ab_num}")
 	public void ab_deleteBoard(Long ab_num);
 	
-	@Update("UPDATE assignment_board SET filename='' WHERE ab_num=#{ab_num}")
+	@Update("UPDATE assignment_board SET ab_filename='' WHERE ab_num=#{ab_num}")
 	public void ab_deleteFile(Long ab_num);// 파일만 삭제
 	
 	//부모글 찜

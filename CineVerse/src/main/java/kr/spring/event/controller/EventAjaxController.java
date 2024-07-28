@@ -41,7 +41,7 @@ public class EventAjaxController {
 			//로그인된 회원번호 셋팅
 			eventP.setMem_num(user.getMem_num());
 			EventPVO db_eventP = eventService.selectParticipation(eventP);
-			
+			log.debug("***eventP***" + eventP);
 			if(db_eventP != null) {
 				mapJson.put("status", "yesP");
 				

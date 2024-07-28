@@ -608,6 +608,7 @@ textarea.mcc-content {
 	background:#f7f7f7;
 	padding:2% 4%;
 	margin:10px 0;
+	width:100%;
 }
 /* .respitem:not(:last-child){
 	margin-bottom:20px;
@@ -893,7 +894,7 @@ ul.status-df li.font14 label{
     margin-top: 1rem;
     padding:5px;
     width:400px;
-    height:100px;
+    height:200px;
     align-items: flex-end;
 }
 

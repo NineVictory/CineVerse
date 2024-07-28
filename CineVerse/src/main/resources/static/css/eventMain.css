@@ -231,7 +231,7 @@ input#event_participate_btn2{
 }
 .participated{
 	background-color:#969696 !important;
-	cursor:default;
+	cursor:not-allowed;
 }
 .list-btn{
 	border:none;

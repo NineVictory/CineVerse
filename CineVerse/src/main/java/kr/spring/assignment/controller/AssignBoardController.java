@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.admin.vo.NoticeVO;
 import kr.spring.assignment.service.AssignService;
 import kr.spring.assignment.vo.AssignReportVO;
 import kr.spring.assignment.vo.AssignVO;
@@ -238,21 +239,37 @@ public class AssignBoardController {
 	//수정 폼에서 전송된 데이터 처리
 	@PostMapping("/assignboard/update")
 	public String submitUpdate(@Valid AssignVO assignVO, BindingResult result, Model model, 
-								HttpServletRequest request, @RequestParam("ab_upload") List<MultipartFile> files) throws IllegalStateException, IOException {
+								HttpServletRequest request, @RequestParam("ab_upload") MultipartFile ab_upload) throws IllegalStateException, IOException {
 		log.debug("<<양도글 수정>> : " + assignVO);
+		
+		
+		// 업로드된 파일이 없는 경우
+		if (assignVO.getAb_upload() == null || assignVO.getAb_upload().isEmpty()) {
+		    // DB에 저장된 파일 정보 구하기
+		    AssignVO db_vo = assignService.ab_selectBoard(assignVO.getAb_num());
+		    // 기존 파일명 설정
+		    assignVO.setAb_filename(db_vo.getAb_filename());
+		} else {
+			AssignVO db_vo = assignService.ab_selectBoard(assignVO.getAb_num());
+		    assignVO.setAb_filename(FileUtil.createFile(request, assignVO.getAb_upload()));
+		    log.debug("업로드파일명: " + assignVO.getAb_filename());
+		}
 		
 		//유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
 			AssignVO vo = assignService.ab_selectBoard(assignVO.getAb_num());
 			assignVO.setAb_filename(vo.getAb_filename());
+			log.debug("***" + vo.getAb_filename());
 			return "assignModify";
 		}
+		
+		
+		//DB에 저장된 파일 정보 구하기
+		AssignVO db_assign = assignService.ab_selectBoard(assignVO.getAb_num());
+	
 		//ip 셋팅
 		assignVO.setAb_ip(request.getRemoteAddr());
 		
-		// 파일 업로드 처리
-	    assignVO.setAb_filename(FileUtil.createFile(request,assignVO.getAb_upload()));
-
 	    
 	    /*if (files != null && !files.isEmpty()) {
 	        List<String> filenames = new ArrayList<>();
@@ -294,6 +311,11 @@ public class AssignBoardController {
 		
 		//글 수정
 		assignService.ab_updateBoard(assignVO);
+		
+		if(assignVO.getAb_upload() != null && !assignVO.getAb_upload().isEmpty()) {
+			//수정전 파일 삭제 처리
+			FileUtil.removeFile(request, db_assign.getAb_filename());
+		}
 		
 		//View에 표시할 메시지
 		model.addAttribute("message", "글 수정 완료");

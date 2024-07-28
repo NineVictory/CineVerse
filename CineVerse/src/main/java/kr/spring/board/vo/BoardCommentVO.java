@@ -46,6 +46,7 @@ public class BoardCommentVO {
 	private String pnick_name;
 	
 	private int respfav_cnt;
+	private int cc_report;
     
 	public void setRe_date(String cc_reg_date) {
 		this.cc_reg_date = DurationFromNow.getTimeDiffLabel(cc_reg_date);

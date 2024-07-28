@@ -93,23 +93,25 @@
 	<!-- 댓글 목록 -->
 	<select id="selectListComment" parameterType="map" resultType="boardCommentVO">
          SELECT * FROM (SELECT a.*, rownum rnum FROM 
-							(SELECT cc_num,
+							(SELECT cc.cc_num,
 									<![CDATA[
-									REPLACE(REPLACE(cc_content,'<','&lt;'),'>','&gt;') cc_content,
+									REPLACE(REPLACE(cc.cc_content,'<','&lt;'),'>','&gt;') cc_content,
 									]]> 
-									cc_reg_date, 
-									cc_modify_date, 
-									cb_num,
-									mem_num,
-									mem_id,
-									mem_nickname,
-									click_num,
-									refav_cnt,
-									resp_cnt
-							FROM community_comment JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num)
-        				 	LEFT OUTER JOIN (SELECT cc_num, mem_num click_num FROM community_comment_fav WHERE mem_num=#{mem_num}) USING(cc_num)
-        					LEFT OUTER JOIN (SELECT cc_num, COUNT(*) refav_cnt FROM community_comment_fav GROUP BY cc_num) USING(cc_num)
-         					LEFT OUTER JOIN (SELECT cc_num, COUNT(*) resp_cnt FROM community_response GROUP BY cc_num) USING(cc_num)
+									cc.cc_reg_date, 
+									cc.cc_modify_date, 
+									cc.cb_num,
+									m.mem_num,
+									m.mem_id,
+									md.mem_nickname,
+									cf.click_num,
+									cfc.refav_cnt,
+									rc.resp_cnt,
+									cr.cc_report
+							FROM community_comment cc JOIN member m ON cc.mem_num=m.mem_num LEFT OUTER JOIN member_detail md ON m.mem_num=md.mem_num
+							LEFT OUTER JOIN (SELECT cc_num, count(*) cc_report FROM comment_report GROUP BY cc_num)cr ON cc.cc_num=cr.cc_num
+        				 	LEFT OUTER JOIN (SELECT cc_num, mem_num click_num FROM community_comment_fav WHERE mem_num=#{mem_num})cf ON cc.cc_num=cf.cc_num
+        					LEFT OUTER JOIN (SELECT cc_num, COUNT(*) refav_cnt FROM community_comment_fav GROUP BY cc_num)cfc ON cc.cc_num=cfc.cc_num
+         					LEFT OUTER JOIN (SELECT cc_num, COUNT(*) resp_cnt FROM community_response GROUP BY cc_num)rc ON cc.cc_num=rc.cc_num
         					WHERE cb_num=#{cb_num} ORDER BY cc_num ASC)a)
       <![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>
 	</select>
@@ -179,7 +181,8 @@
 	 n.mem_id parent_id, 
 	m.mem_nickname pnick_name, 
 	rf.respclick_num, 
-	rn.respfav_cnt
+	rn.respfav_cnt,
+	rr.rr_report
 	
 	FROM community_response r
 	JOIN member a ON r.mem_num = a.mem_num
@@ -189,6 +192,7 @@
 	LEFT OUTER JOIN (SELECT te_num, mem_num respclick_num FROM community_response_fav WHERE mem_num=#{mem_num})rf ON r.te_num = rf.te_num
     LEFT OUTER JOIN (SELECT te_num, COUNT(*) respfav_cnt FROM community_response_fav GROUP BY te_num)rn ON r.te_num = rn.te_num
 	
+	LEFT OUTER JOIN (SELECT te_num, COUNT(*) rr_report FROM response_report GROUP BY te_num)rr ON r.te_num=rr.te_num
 	
 	LEFT JOIN member_detail m ON s.mem_num = m.mem_num
 	LEFT JOIN member n ON s.mem_num = n.mem_num
@@ -199,7 +203,7 @@
 	ORDER SIBLINGS BY r.te_num ASC
  	</select> 
  	
- 	<!-- 답글 삭제 -->
+ 	<!-- 답글 삭제 - 자식답글까지-->
  	<delete id="deleteResponse" parameterType="long">
  		DELETE FROM community_response WHERE te_num IN (
  			SELECT te_num
@@ -208,6 +212,20 @@
  			CONNECT BY PRIOR te_num = te_parent_num
  		)
  	</delete>
+ 	
+ 	<!-- 답글 삭제 전 답글 좋아요 및 자식답글 좋아요 삭제-->
+ 	<delete id="deleteRespFavByTeNum" parameterType="long">
+ 		DELETE FROM community_response_fav WHERE te_num IN (
+ 					SELECT te_num FROM community_response WHERE te_num IN (
+								 			SELECT te_num
+								 			FROM community_response
+								 			START WITH te_num=#{te_num}
+								 			CONNECT BY PRIOR te_num = te_parent_num
+								 		))
+ 	</delete>
+ 	
+
+ 	
  	
  	<!-- 게시글 답글수 -->
  	<select id="selectResponseCountByCbNum" parameterType="long">

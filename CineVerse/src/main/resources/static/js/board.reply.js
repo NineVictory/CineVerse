@@ -41,8 +41,8 @@ $(function() {
 
 					let output = '<div class="cc-all-container">';
 					output += '<div class="flexbox-p comment-container">';
-					output += '<div>';
-
+					
+					
 					// 작성자 정보 및 수정/삭제 버튼
 					output += '<div class="flexbox-h side writer-btns">';
 					output += '<div class="flexbox-h cc-writer-info">';
@@ -56,6 +56,9 @@ $(function() {
 						name = item.mem_id;
 					}
 					output += '</div>';
+					
+					if(item.cc_report < 5){
+						
 					if (param.user_num === item.mem_num) {
 						// 로그인 한 회원번호와 댓글 작성자 회원번호가 같으면 수정/삭제 버튼 표시
 						output += '<div class="cc-btn">';
@@ -68,10 +71,13 @@ $(function() {
 					}else{//댓글신고버튼
 						output += '<span class="comment-report" data-num="' +item.cc_num+ '" data-memnum="' +param.user_num+ '" data-content="' +item.cc_content.replace(/\r\n/g, '<br>')+ '">신고</span>'
 					}
+					
+					}
 					output += '</div>';
 
 					output += '</div>';
 					output += '<div class="sub-item">';
+					if(item.cc_report < 5){
 					output += '<div class="cc-content">' + item.cc_content.replace(/\r\n/g, '<br>') + '</div>';
 
 					// 수정일 표시
@@ -81,9 +87,13 @@ $(function() {
 						output += '<span class="cc-modify-date">' + item.cc_reg_date + '</span>';
 					}
 					output += '</div>';
-
+					
+					}else{
+						output += '<div style="font-size:14px; font-weight:500;">정지된 댓글입니다.</div>';
+					}
 					output += '<div class="flexbox-h side">';
-
+					
+					if(item.cc_report < 5){
 					// 답글 버튼
 					output += '<div><input type="button" data-num="' + item.cc_num + '" data-parent="0" data-depth="0"  value="답글" class="response-btn"></div>';
 
@@ -97,7 +107,8 @@ $(function() {
 					
 					
 					output += '</div>';
-
+					}
+				
 					// 답글 목록 컨테이너
 					output += '<div class="response-container">';
 					// 여기에 답글 목록을 불러와서 추가하도록 처리
@@ -338,7 +349,7 @@ $(function() {
 		if (check) {
 			//서버와 통신
 			$.ajax({
-				url: 'deleteComment',
+				url: '/board/deleteComment',
 				type: 'post',
 				data: { cc_num: cc_num },
 				dataType: 'json',
@@ -647,6 +658,8 @@ $(function() {
 					}
 					output += '</div>';
 
+					if(item.rr_report < 5){
+						
 					// 답글 수정/삭제 버튼
 					if (param.user_num == item.mem_num) {
 						output += '<div class="cc-btn mhide">';
@@ -660,13 +673,20 @@ $(function() {
 						output += '<span class="response-report" data-num="' +item.te_num+ '" data-memnum="' +param.user_num+ '" data-content="' +item.te_content.replace(/</g, '&lt;').replace(/>/g, '&gt;')+ '">신고</span>'
 
 					}
+					
+					}else{
+						output += '<div></div>';
+					}
 					output += '</div>'; // resp-detail-info 닫기
 					output += '</div>'; 
-
+					
+					if(item.rr_report < 5){
 					// 답글 내용과 작성일 출력
 					output += '<div class="resp-sub-item">';
 					output += '<div class="resp-item-main mhide">';
 					
+					
+						
 					if(item.te_parent_num>0){
                   		if(item.pnick_name){
                      		output += '<b>@' +item.pnick_name + ' &nbsp;</b>';
@@ -682,9 +702,15 @@ $(function() {
 					} else {
 						output += '<span class="resp-modify-date mhide">' + item.te_date + '</span>'; // 작성일 데이터 수정
 					}
+					
+					
 					output += '</div>';
 					output += '</div>'; // resp-sub-item 닫기
-
+					}else{
+						output += '<div style="font-size:14px; font-weight:500;">정지된 댓글입니다.</div>';
+					}
+					
+					if(item.rr_report < 5){
 					// 답글 작성 버튼
 					output += '<div class="flexbox-h side mhide">';
 					/*if (param.user_num) {*/
@@ -699,6 +725,8 @@ $(function() {
 					}
 					output += '</div>';
 					output += '</div>'; // side 닫기
+					
+					}
 
 					output += '</div>'; // respitem 닫기
 					output += '</div>';
