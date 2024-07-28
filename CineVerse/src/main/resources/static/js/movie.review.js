@@ -107,6 +107,19 @@ $(document).ready(function() {
 		$('textarea').val('');
 		$('#review_first .letter-count').text('300/300');
 	}
+	
+	    $('#mr_content').on('input keyup', function() {
+        var content = $(this).val();
+        var maxLength = 300;
+
+        if (content.length > maxLength) {
+            $(this).val(content.substring(0, maxLength));
+        }
+
+        var remaining = maxLength - $(this).val().length;
+        $('.letter-count').text(remaining + '/' + maxLength);
+
+    });
 
 	// 리뷰 수 표시 함수
 	function displayReviewCount(count) {
