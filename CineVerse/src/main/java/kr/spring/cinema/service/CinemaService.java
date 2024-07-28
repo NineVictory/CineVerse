@@ -79,6 +79,10 @@ public interface CinemaService {
 	//상영중인 영화시간표 조회
 	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date, String c_location);
 	
+	//상영시간별 좌석 예매자 수 구하기 
+	//public Integer bookingcount(long mt_num);
+	
+	
 		//영화관(잠시 보류)
 		//public List<CinemaVO> selectCinemaList(Integer c_location);
 		//public Integer selectCinemaRowCount(Map<String,Object> map);
