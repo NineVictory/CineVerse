@@ -28,7 +28,6 @@ $(function() {
 
 function openChatWindow() {
     var button = document.querySelector('.ass-chatBtn');
-    var abnum = button.getAttribute('data-abnum');
     var abmemnum = button.getAttribute('data-abmemnum');
     var usernum = button.getAttribute('data-usernum');
 
@@ -41,7 +40,13 @@ function openChatWindow() {
             usernum: usernum
         },
         success: function(param) {
-            if (param.result == 'success') {
+			if(param.result=='logout'){
+				alert('로그인 후 이용 가능합니다.');
+				window.close();
+			} else if(param.result=='error'){
+				alert('로그인 후 이용 가능합니다.');
+				window.close();
+			} else if (param.result == 'success') {
                 var talkRoomNum = param.talkRoomNum;
                 alert('채팅방이 성공적으로 생성되었습니다. 채팅방 번호: ' + talkRoomNum);
                 window.open('/talk/talkDetail?talkroom_num=' + talkRoomNum, '_blank', 'width=800,height=680');
@@ -88,7 +93,7 @@ function openChatWindow() {
                             $('#chatting_message').scrollTop($("#chatting_message")[0].scrollHeight);
                         }
                     });
-                }
+                };
             } else {
                 alert('채팅방 생성에 실패했습니다');
                 message_socket.close();

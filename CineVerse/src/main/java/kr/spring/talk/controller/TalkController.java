@@ -54,18 +54,30 @@ public class TalkController {
 	
 	@PostMapping("/talk/createTalkRoom")
 	@ResponseBody
-	public Map<String, Object> createTalkRoom(@RequestParam("abmemnum") Long abmemnum,
-	                                          @RequestParam("usernum") Long usernum,
+	public Map<String, Object> createTalkRoom(@RequestParam(value = "abmemnum", required = false) Long abmemnum,
+			@RequestParam(value = "usernum", required = false) Long usernum,
 	                                          HttpSession session) {
 	    Map<String, Object> mapAjax = new HashMap<>();
 	    
+	    if (usernum == null || abmemnum == null) {
+	        mapAjax.put("result", "logout");
+	        
+	        return mapAjax;
+	    }
+
+        
 	    Long[] membersObj = new Long[] {usernum, abmemnum};
 	    long[] members = new long[membersObj.length];
 	    for (int i = 0; i < membersObj.length; i++) {
-	        members[i] = membersObj[i]; // `Long`을 `long`으로 변환
+	    	 if (membersObj[i] != null) {
+	                members[i] = membersObj[i];
+	            } else {
+	                mapAjax.put("result", "error");
+	                return mapAjax;
+	            }
 	    }
-	    try {
-	        // 현재 세션의 사용자 정보를 가져와서 생성자 정보를 설정
+
+	    // 현재 세션의 사용자 정보를 가져와서 생성자 정보를 설정
 	        MemberVO user = (MemberVO) session.getAttribute("user"); // 양도글에서 버튼 누른 사람
 	        MemberVO abmem = memberService.selectMember(abmemnum); // 양도글에 글 올린 사람
 	        
@@ -93,12 +105,6 @@ public class TalkController {
 	        mapAjax.put("result", "success");
 	        mapAjax.put("talkRoomNum", talkRoomNum);
 	        mapAjax.put("messages", list);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        mapAjax.put("result", "error");
-	        mapAjax.put("message", "채팅방 생성에 실패했습니다.");
-	    }
-
 	    return mapAjax;
 	}
 
