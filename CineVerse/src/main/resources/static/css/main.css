@@ -12,6 +12,11 @@ a {
 	text-decoration: none;
 }
 
+.star_photo {
+	width: 12px !important;
+	margin-right: 3px;
+}
+
 .header-main {
 	position: absolute;
 	z-index: 2;
@@ -126,10 +131,10 @@ a {
 }
 
 .item {
-    width: 185px;
-    margin: 5px;
-    border-radius: 5px;
-    overflow: hidden;
+	width: 185px;
+	margin: 5px;
+	border-radius: 5px;
+	overflow: hidden;
 }
 
 .poster_info_image {
@@ -137,15 +142,15 @@ a {
 }
 
 .tit_info {
-    padding: 10px;
-    border-radius: 0 0 10px 10px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    font-weight: bold;
-    flex-direction: row;
-    justify-content: center;
+	padding: 10px;
+	border-radius: 0 0 10px 10px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	font-weight: bold;
+	flex-direction: row;
+	justify-content: center;
 }
 
 .ic_grade {
@@ -192,10 +197,23 @@ a {
 	margin-right: 10px;
 }
 
+.star_move {
+	align-items: center;
+	display: flex;
+	font-size: 12px;
+	color: #FFD700 !important;
+	cursor: pointer;
+}
+
 .star_info {
 	font-size: 12px;
 	color: #FFD700;
 	cursor: pointer;
+}
+
+.sub_info1 {
+	display: flex;
+	align-items: center;
 }
 
 .remain_info {
@@ -587,89 +605,89 @@ ul, ol {
 	cursor: pointer;
 }
 
-.top_info{
-    overflow: hidden;
-    position: relative;
-    height: 262px;
-    border-radius: 4px;
+.top_info {
+	overflow: hidden;
+	position: relative;
+	height: 262px;
+	border-radius: 4px;
 }
 
-.poster_info{
-display: block;
-    height: 262px;
+.poster_info {
+	display: block;
+	height: 262px;
 }
 
 .item .top_info .poster_info .num_info {
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 35px;
-    padding-left: 10px;
-    color: #fff;
-    font-weight: bold;
-    font-size: 26px;
-    background: linear-gradient(to bottom, rgb(0 0 0 / 7%) 0%, rgb(0 0 0 / 42%) 40%, rgb(0 0 0) 100%);
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 35px;
+	padding-left: 10px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 26px;
+	background: linear-gradient(to bottom, rgb(0 0 0/ 7%) 0%,
+		rgb(0 0 0/ 42%) 40%, rgb(0, 0, 0) 100%);
 }
 
 .em_title {
-display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .swiper-slide {
-    position: relative;
+	position: relative;
 }
 
 .overlay {
-height: 262px;
-    width: 188px;
-    background-color: rgba(0, 0, 0, 0.6);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0; 
-    transition: opacity 0.3s ease;
-    justify-content: center;
+	height: 262px;
+	width: 188px;
+	background-color: rgba(0, 0, 0, 0.6);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	justify-content: center;
 }
 
 .overlay button {
-width: 95px;
-    font-weight: 600;
-    font-size: 12px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding: 8px;
-    margin: 6px;
-    cursor: pointer;
+	width: 95px;
+	font-weight: 600;
+	font-size: 12px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 8px;
+	margin: 6px;
+	cursor: pointer;
 }
 
 .swiper-slide:hover .overlay {
-    opacity: 1;
+	opacity: 1;
 }
 
-.movie_infos_gt{
+.movie_infos_gt {
 	align-self: center;
-    align-items: center;
-    text-align: center;
-    width: 185px;
-    display: flex;
-    justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 185px;
+	display: flex;
+	justify-content: center;
 }
 
 .movie_info_center {
 	width: 185px;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
-    

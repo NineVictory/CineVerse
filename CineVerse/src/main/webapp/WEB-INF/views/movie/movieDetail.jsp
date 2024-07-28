@@ -77,7 +77,7 @@
     <a href="#movie-plot-section" class="detail-infomation" id="info-link">주요정보</a>
     <a href="#movie-teasers-section" class="detail-grade" id="teasers-link">트레일러</a>
     <a href="#movie-still-section" class="detail-still" id="still-link">스틸컷</a>
-    <a href="#movie-review-section" class="detail-review" id="review-link">평점/리뷰</a>
+    <a href="#movie-review-section" class="detail-review" id="review-link">평점</a>
 </div>
 
 	<div id="movie-plot-section" class="menu-title">주요정보</div>
@@ -103,7 +103,7 @@
    	</div>
 
 <!-- 별점 및 후기 -->             
-<div class="menu-title">평점/리뷰</div>
+<div class="menu-title">평점</div>
 		<div id="movie-review-section" class="grade-review">
 		<div id="review_form" style="display: none;">
 			<div class="star-rating">
