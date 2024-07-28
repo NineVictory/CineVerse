@@ -130,7 +130,7 @@
 		event_name,
 		event_start,
 		event_end,
-		event_reg_date
+		event_reg_date, ep_type
 		FROM event
 		<include refid="eventSearch"></include>
 		) a

@@ -77,8 +77,24 @@
                     <td class="mem-data">${event.event_start}</td>
                     <td class="mem-data">${event.event_end}</td>
                     <td class="mem-data">${event.event_reg_date}</td>
-                    <td class="button1"><input type="button" value="이벤트 신청자" onclick="redirectToEventParticipants(${event.event_num})"/> </td>
-                    <td class="button1"><input type="button" value="수정" onclick="redirectToEventModify(${event.event_num})"/> </td>
+                    <td class="button3">
+                    <c:choose>
+                    	<c:when test="${event.ep_type==1 }">
+                    		<input type="button" value="이벤트 신청자" onclick="redirectToEventParticipants(${event.event_num})"/>
+                    	</c:when>
+                   		<c:when test="${event.ep_type==2 }"> 
+                    		<input type="button" value="이벤트 신청자" onclick=""/> 
+                    	</c:when> 
+                    </c:choose></td>
+                    <td class="button1">
+                    <c:choose>
+                    	<c:when test="${event.ep_type==1 }">
+                    		<input type="button" value="수정" onclick="redirectToEventModify(${event.event_num})"/> 
+                    	</c:when>
+                   		<c:when test="${event.ep_type==2 }"> 
+                    		<input type="button" value="수정" onclick=""/> 
+                    	</c:when> 
+                    </c:choose> </td>
                     <td class="button2"><input type="button" value="삭제" onclick="deleteEvent(${event.event_num})"/></td>
                 </tr>
             </c:forEach>

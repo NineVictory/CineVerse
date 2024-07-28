@@ -70,7 +70,9 @@ form#admin_search input[type="submit"] {
 	border-bottom: 1px solid var(--gray-2);
 }
 
-.button1 input, .button2 input {
+.button1 input, .button2 input, .button3 input {
+	font-weight: 600;
+    font-size: 12px;
 	padding: 5px 10px;
 	border: none;
 	border-radius: 4px;
@@ -80,6 +82,7 @@ form#admin_search input[type="submit"] {
 }
 
 .button1 input {
+	color : #000;
 	background-color: var(--yellow-check-btn);
 }
 
@@ -94,6 +97,16 @@ form#admin_search input[type="submit"] {
 .button2 input:hover {
 	transform: scale(1.05);
 }
+
+.button3 input {
+	color : #000;
+	background-color: var(--main-color-light);
+}
+
+.button3 input:hover {
+	transform: scale(1.05);
+}
+
 #intoEventDetail:hover {
     cursor:pointer;
 }

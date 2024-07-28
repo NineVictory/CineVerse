@@ -1154,7 +1154,6 @@ public class AdminController {
 	    int numberOfResults = adminService.selectEventResultShow(event_num);
 	    log.debug("<< 당첨된 사람 수 >> : " + numberOfResults);
 	    // 이벤트 참여자의 mem_num 리스트 가져오기
-	 // 이벤트 참여자의 mem_num 리스트 가져오기
 	    List<Long> participants = adminService.selectMemberNumberEvent(event_num);
 
 	    // 참여자가 당첨자 수보다 적으면 예외 발생
