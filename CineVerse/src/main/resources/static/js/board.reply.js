@@ -57,7 +57,6 @@ $(function() {
 					}
 					output += '</div>';
 					
-					if(item.cc_report < 5){
 						
 					if (param.user_num === item.mem_num) {
 						// 로그인 한 회원번호와 댓글 작성자 회원번호가 같으면 수정/삭제 버튼 표시
@@ -72,7 +71,7 @@ $(function() {
 						output += '<span class="comment-report" data-num="' +item.cc_num+ '" data-memnum="' +param.user_num+ '" data-content="' +item.cc_content.replace(/\r\n/g, '<br>')+ '">신고</span>'
 					}
 					
-					}
+					
 					output += '</div>';
 
 					output += '</div>';
