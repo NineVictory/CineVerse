@@ -143,6 +143,11 @@ public class CinemaServiceImpl implements CinemaService{
 		return cinemaMapper.showMovieTimeList(m_code, mt_date, c_location);
 	}
 
+	@Override
+	public List<MovieVO> getMovieRankMain() {
+		return cinemaMapper.getMovieRankMain();
+	}
+
 
 
 

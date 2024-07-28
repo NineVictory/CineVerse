@@ -45,7 +45,7 @@ public interface CinemaService {
 	List<MovieTimeVO> getMoviesSortedByReservationRate(long c_num);
     List<MovieTimeVO> getMoviesSortedByName(long c_num);
     List<MovieTimeVO> getDefaultMovieList(long c_num); // 최신순 정렬
-	
+    public List<MovieVO> getMovieRankMain();
 	
 	 /*=======================
      * 영화 시간표

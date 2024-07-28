@@ -51,6 +51,11 @@ public interface CinemaMapper {
     List<MovieTimeVO> getMoviesSortedByReservationRate(@Param("c_num") long c_num);
     List<MovieTimeVO> getMoviesSortedByName(@Param("c_num") long c_num);
     List<MovieTimeVO> getDefaultMovieList(@Param("c_num") long c_num); // 최신순 정렬
+    
+    
+    
+    // 메인페이지에서 사용할 예매율 랭킹
+    public List<MovieVO> getMovieRankMain();
 	
 	/*=======================
      * 영화 시간표 등록 페이지

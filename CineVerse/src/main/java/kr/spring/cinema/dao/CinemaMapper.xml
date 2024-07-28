@@ -191,9 +191,33 @@
 	    ORDER BY m.m_opendate DESC
 	</select>
 	
-	
-	
-	
+	<!-- 메인페이지에서 사용될 영화 랭킹 순위 -->
+	<select id="getMovieRankMain" resultType="movieVO">
+       <![CDATA[
+        SELECT 
+            ROWNUM AS movie_rank,
+            m_code,
+            m_name,
+            rating,
+            m_filename,
+            reservation_rate
+        FROM (
+            SELECT 
+                m.m_code,
+                m.m_name,
+                m.rating, m.m_filename,
+                ROUND((SELECT COUNT(*) FROM movie_booking WHERE m_code = m.m_code) * 100.0 / 
+                (SELECT COUNT(*) FROM movie_booking), 1) AS reservation_rate
+            FROM 
+                movie m
+            WHERE
+                m.m_status = 1
+            ORDER BY 
+                reservation_rate DESC
+        )
+        WHERE ROWNUM <= 10
+        ]]>
+    </select>
 	
 	
 	<!-- 영화시간 등록 페이지 [관리자 전용] -->

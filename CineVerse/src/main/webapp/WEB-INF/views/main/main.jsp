@@ -116,15 +116,13 @@
 		<div class="swiper-container ranks">
 			<div class="swiper-wrapper movie-wrapper">
 				<!-- 아이템들을 swiper-slide로 감싸기 -->
-				<c:if test="${count > 0}">
-					<c:forEach var="list" items="${movieRankList}">
-						<c:forEach var="detail" items="${movieDetail}">
+						<c:forEach var="detail" items="${movieRank}">
 								<div class="swiper-slide">
     <div class="item">
         <div class="top_info">
             <span class="poster_info">
                 <img class="poster_info_image" src="${fn:split(detail.m_filename, '|')[0]}" alt="${detail.m_name}">
-                <em class="num_info">${detail.rank}</em>
+                <em class="num_info">${detail.movie_rank}</em>
                 <div class="overlay">
                     <button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieReserve'">예매하기</button>
                     <button class="btn-details" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail?m_code=${detail.m_code}'">상세보기</button>
@@ -149,7 +147,7 @@
         	</div>
             
             <span class="sub_info1">
-                <span class="rate_info">예매율&nbsp;<em>0%</em></span>
+                <span class="rate_info">예매율<em>${detail.reservation_rate }%</em></span>
                 <span class="star_info" style="cursor: pointer;">0</span>
             </span>
         </div>
@@ -157,8 +155,6 @@
 </div>
 
 						</c:forEach>
-					</c:forEach>
-				</c:if>
 			</div>
 			<!-- 이전/다음 버튼 -->
 			<div class="swiper-button-prev"></div>

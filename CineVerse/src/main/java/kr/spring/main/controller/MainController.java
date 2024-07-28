@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import kr.spring.cinema.service.CinemaService;
 import kr.spring.movie.service.MovieDetailService;
 import kr.spring.movie.service.MovieRankService;
 import kr.spring.movie.vo.MovieRankAPIVO;
@@ -19,10 +20,8 @@ import kr.spring.movie.vo.MovieVO;
 public class MainController {
 	
 	@Autowired
-    private MovieRankService movieRankService;
-	@Autowired
-	private MovieDetailService movieDetailService;
-	
+    private CinemaService cinemaService;
+
 	@GetMapping("/")
 	public String init() {
 		return "redirect:/main/main";
@@ -37,21 +36,21 @@ public class MainController {
 	}
 
 	public void getMovieRanks(Model model) {
-		SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyyMMdd");
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		cal.add(Calendar.DATE, -1);
-
-		String showrange = DATE_FMT.format(cal.getTime()) + "~" + DATE_FMT.format(cal.getTime());
-
-		Integer count = movieRankService.getMovieRankCnt(showrange);
-		List<MovieRankAPIVO> movieRankList = movieRankService.getMovieRank(showrange);
+		/*
+		 * SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyyMMdd"); Calendar cal =
+		 * Calendar.getInstance(); cal.setTime(new Date()); cal.add(Calendar.DATE, -1);
+		 * 
+		 * String showrange = DATE_FMT.format(cal.getTime()) + "~" +
+		 * DATE_FMT.format(cal.getTime());
+		 * 
+		 * Integer count = movieRankService.getMovieRankCnt(showrange);
+		 * List<MovieRankAPIVO> movieRankList =
+		 * movieRankService.getMovieRank(showrange);
+		 */
 		
-		List<MovieVO> movieRankDetail = movieDetailService.selectRankMovie(showrange);
+		List<MovieVO> movieRank = cinemaService.getMovieRankMain();
 		
-		model.addAttribute("count", count);
-		model.addAttribute("movieRankList", movieRankList);
-		model.addAttribute("movieDetail",movieRankDetail);
+		model.addAttribute("movieRank",movieRank);
 	}
 }
 
