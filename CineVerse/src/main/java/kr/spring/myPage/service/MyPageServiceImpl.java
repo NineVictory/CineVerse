@@ -265,6 +265,21 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.watchedMovList(map);
 	}
 
+	@Override
+	public Integer watMovieCnt(Map<String, Object> map) {
+		return myPageMapper.watMovieCnt(map);
+	}
+
+	@Override
+	public List<MovieBookingVO> resDetail(Long mem_num) {
+		return myPageMapper.resDetail(mem_num);
+	}
+
+	@Override
+	public Integer resDetailCnt(Long mem_num) {
+		return myPageMapper.resDetailCnt(mem_num);
+	}
+
 
 
 

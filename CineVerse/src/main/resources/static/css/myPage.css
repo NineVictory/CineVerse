@@ -1472,11 +1472,11 @@ gap: 7px;
 	text-align: center;
 }
 .wat_review{
-	margin-left: auto;
     border: 1px solid;
     width: 70px;
     font-size: 13px;
     text-align: center;
+    cursor:pointer;
     
 }
 .wat{

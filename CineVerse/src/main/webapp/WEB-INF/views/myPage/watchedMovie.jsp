@@ -37,7 +37,7 @@ String currentTime = sdfTime.format(new Date());
 						<div class="wa_info_sub">CINEVERSE ${wat.c_branch}
 							${wat.th_name}관/${wat.booking_count }명</div>
 						<div class="wat">
-							<input type="button" class="wat_review" value="리뷰쓰기" onclick="location.href='/movie/movieDetail?m_code=${wat.m_code}'">
+							<div class="wat_review" onclick="location.href='/movie/movieDetail?m_code=${wat.m_code}'">리뷰쓰기</div>
 						</div>
 
 					</div>

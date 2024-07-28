@@ -173,6 +173,14 @@ public class MyPageController {
 			member.setMt_date(booking.getMt_date());
 			member.setTh_name(booking.getTh_name());
 		}
+		
+		List<MovieBookingVO> list = null;
+		int resDeCnt = mypageService.resDetailCnt(user.getMem_num());
+		/*
+		 * if(resDeCnt > 0) { list = mypageService; }
+		 */
+		
+		model.addAttribute("list", list);
 		model.addAttribute("resCnt", resCnt);
 		model.addAttribute("member", member);
 		return "myPageReservation";
@@ -261,7 +269,7 @@ public class MyPageController {
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map);
+		int resCnt = mypageService.watMovieCnt(map);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());

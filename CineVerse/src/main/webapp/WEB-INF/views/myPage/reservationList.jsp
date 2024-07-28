@@ -64,7 +64,7 @@
 
     <!-- 취소 목록 표시 -->
     <div class="reservation_display">
-        <span class="myPage_title_del">취소 내역</span>
+        <span class="myPage_title_del">취소 내역<span class="main_res2">(취소 내역은 최대 3개를 보여드립니다.)</span></span>
     </div>
     <c:choose>
         <c:when test="${empty listForMdType2}">
@@ -157,11 +157,11 @@
         });
 
         // 취소 내역에서 최근 3개만 보이기
-        /* var cancelItems = document.querySelectorAll(".cancel-item");
+        var cancelItems = document.querySelectorAll(".cancel-item");
         if (cancelItems.length > 3) {
             for (var i = 3; i < cancelItems.length; i++) {
                 cancelItems[i].style.display = 'none';
             }
-        } */
+        }
     });
 </script>

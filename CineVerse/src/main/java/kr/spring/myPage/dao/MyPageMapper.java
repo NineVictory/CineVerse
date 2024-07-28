@@ -66,7 +66,7 @@ public interface MyPageMapper {
 	
 	
 	public Integer reservationCnt(Map<String, Object> map);
-	
+	public Integer watMovieCnt(Map<String, Object> map);
 	
 	
 	
@@ -74,6 +74,11 @@ public interface MyPageMapper {
 	//내가 본 영화
 	public List<MovieBookingVO> watchedMovList(Map<String, Object> map);//1 리스트
 	
+	
+	//모든 영화 카운트
+	public Integer resDetailCnt(Long mem_num);
+	//예매 디테일
+	public List<MovieBookingVO> resDetail(Long mem_num);
 	
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);

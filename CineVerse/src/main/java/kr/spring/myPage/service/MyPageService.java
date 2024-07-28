@@ -57,7 +57,13 @@ public interface MyPageService {
 	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
 	public List<EventVO> eventList(Map<String, Object> map);
 	public Integer reservationCnt(Map<String, Object> map);
+	public Integer watMovieCnt(Map<String, Object> map);
 	public List<MovieBookingVO> reservationList(Long mem_num);
+	
+	
+	public Integer resDetailCnt(Long mem_num);
+	public List<MovieBookingVO> resDetail(Long mem_num);//좌석,쿠폰금액,성인
+	
 	public List<MovieBookingVO> lastRes(Long mem_num);
 	public MovieBookingVO mainRes(Long mem_num);//메인나브
 	public void updateCoupon(Long mem_num);
