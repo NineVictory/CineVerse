@@ -65,8 +65,11 @@ public interface MyPageMapper {
 	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
 	
 	
-	@Select("SELECT COUNT(*) FROM movie_booking JOIN mb_detail USING(mb_num) WHERE mem_num=#{mem_num} AND md_type=1")//예매
 	public Integer reservationCnt(Map<String, Object> map);
+	
+	
+	
+	
 	
 	//내가 본 영화
 	public List<MovieBookingVO> watchedMovList(Map<String, Object> map);//1 리스트

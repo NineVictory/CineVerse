@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
 <%
 //서버 현재 날짜를 가져와 스크립트로 전달할 데이터
 SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -13,32 +14,38 @@ String currentTime = sdfTime.format(new Date());
 <!--  내가 본 영화 시작 -->
 <div class="myPage_main">
 
-    <div class="myPage_title">내가 본 영화</div>
-    <hr size="1" width="100%" class="wa_line">
+	<div class="myPage_title">내가 본 영화</div>
+	<hr size="1" width="100%" class="wa_line">
 
-    <div class="empty_position">내가 본 영화가 존재하지 않습니다</div>
+	<div class="empty_position">내가 본 영화가 존재하지 않습니다</div>
 
-    <c:if test="${resCnt > 0}">
-        <c:forEach var="wat" items="${list}">
-            <div class="wa_box_rep">
-                <div class="wa_box" data-mt-date="${wat.mt_date}" data-mt-end="${wat.mt_end}">
-                    <div class="wa_photo">
-                        <img alt="영화1" src="${fn:split(wat.m_filename, '|')[0]}"
-                             onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail?m_code=${wat.m_code}'"
-                             class="expect_movie_poster" width="150" height="210">
-                    </div>
-                    <div class="wa_movie_info">
-                        <div class="wa_info_name">${wat.m_name}</div>
-                        <div class="wa_info_sub">
-                            ${wat.mt_date} <span id="time-${wat.m_code}">${wat.mt_start}~${wat.mt_end}</span>
-                        </div>
-                        <div class="wa_info_sub">CINEVERSE ${wat.c_branch} ${wat.th_name}관/${wat.booking_count }명</div>
-                    </div>
-                </div>
-                <hr size="1" width="100%" class="wa_line">
-            </div>
-        </c:forEach>
-    </c:if>
+	<c:if test="${resCnt > 0}">
+		<c:forEach var="wat" items="${list}">
+			<div class="wa_box_rep">
+				<div class="wa_box" data-mt-date="${wat.mt_date}"
+					data-mt-end="${wat.mt_end}">
+					<div class="wa_photo">
+						<img alt="영화1" src="${fn:split(wat.m_filename, '|')[0]}"
+							onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail?m_code=${wat.m_code}'"
+							class="expect_movie_poster" width="150" height="210">
+					</div>
+					<div class="wa_movie_info">
+						<div class="wa_info_name">${wat.m_name}</div>
+						<div class="wa_info_sub">
+							${wat.mt_date} <span id="time-${wat.m_code}">${wat.mt_start}~${wat.mt_end}</span>
+						</div>
+						<div class="wa_info_sub">CINEVERSE ${wat.c_branch}
+							${wat.th_name}관/${wat.booking_count }명</div>
+						<div class="wat">
+							<input type="button" class="wat_review" value="리뷰쓰기" onclick="location.href='/movie/movieDetail?m_code=${wat.m_code}'">
+						</div>
+
+					</div>
+				</div>
+				<hr size="1" width="100%" class="wa_line">
+			</div>
+		</c:forEach>
+	</c:if>
 
 </div>
 <!--  내가 본 영화 끝 -->

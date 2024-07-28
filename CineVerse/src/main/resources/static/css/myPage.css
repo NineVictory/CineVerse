@@ -514,7 +514,7 @@
 }
 
 .wa_movie_info {
-	width: 400px;
+	width: 800px;
 	margin-left: 50px;
 }
 
@@ -1471,8 +1471,22 @@ gap: 7px;
 	margin-left:400px;
 	text-align: center;
 }
-
-
+.wat_review{
+	margin-left: auto;
+    border: 1px solid;
+    width: 70px;
+    font-size: 13px;
+    text-align: center;
+    
+}
+.wat{
+	margin-top: 10px;
+}
+.main_res2{
+	font-size: 12px;
+	color:#949292;
+	margin-left: 5px;
+}
 
 
 

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -42,7 +41,7 @@
         </div>
     </div>
 
-        <div class="main_resrv"><span class="reserv_font">MY 예매내역</span><span class="main_count">${resCnt}건</span></div>
+    <div class="main_resrv"><span class="reserv_font">MY 예매내역</span><span class="main_count">${resCnt}건</span><span class="main_res2">(최신 예매내역 2개를 보여드립니다.)</span></div>
     <div class="main_body_reservation">
         <c:if test="${resCnt == 0}">
             <div class="qna">
@@ -52,7 +51,7 @@
         <c:if test="${resCnt > 0}">
             <c:forEach var="res" items="${lastRes}" varStatus="status">
                 <div class="main_body_reservation">
-                    <div class="myPageReservation_list" onclick="location.href='/myPage/reservation'">
+                    <div class="myPageReservation_list">
                         <div class="mp_reserv">
                             <div class="m_movie_photo">
                                 <img alt="영화1" src="${fn:split(res.m_filename, '|')[0]}"
@@ -64,7 +63,7 @@
                                     <span class="mp_movie_number_1">예매번호</span>
                                     <span class="mp_movie_number_3">${res.user_mb_num}</span>
                                 </div>
-                                <div class="mp_movie_title">${res.m_name}</div>
+                                <div class="mp_movie_title" onclick="location.href='/myPage/reservation'">${res.m_name}</div>
 
                                 <div class="reservation_list">
                                     <div class="reserv_info">
@@ -147,16 +146,15 @@
         var reservationItems = document.querySelectorAll(".main_body_reservation");
         reservationItems.forEach(function(reservation) {
             var dateDiv = reservation.querySelector(".reservation-date");
-            var startTimeDiv = reservation.querySelector("[id^='time-start-']");
+            var endTimeDiv = reservation.querySelector("[id^='time-start-']").textContent.split("~")[1].trim();
             
-            if (dateDiv && startTimeDiv) {
+            if (dateDiv && endTimeDiv) {
                 var reservationDate = dateDiv.textContent.trim();
-                var reservationStartTime = startTimeDiv.textContent.split("~")[0].trim();
                 
-                var reservationDateTime = new Date(reservationDate + 'T' + reservationStartTime);
+                var reservationEndDateTime = new Date(reservationDate + 'T' + endTimeDiv);
 
-                // 상영 날짜가 현재 날짜보다 크거나, 상영 날짜가 같고 상영 시간이 현재 시간보다 큰 경우만 표시
-                if (reservationDateTime <= currentDate) {
+                // 상영 날짜와 상영 종료 시간이 현재 날짜와 시간보다 작을 때 숨김 처리
+                if (reservationEndDateTime < currentDate) {
                     reservation.style.display = "none";
                 }
             }
