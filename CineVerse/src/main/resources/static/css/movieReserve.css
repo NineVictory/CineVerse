@@ -528,6 +528,15 @@ margin-bottom: 10px;
     height: 580px;
 }
 
+.movie_name_over{
+	    text-align: left;
+    width: 220px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* 보류 
 
 

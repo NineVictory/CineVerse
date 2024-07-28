@@ -277,7 +277,7 @@ $(document).ready(function() {
                     let gradeClass = getGradeClass(movie.rating);
                     movieListHtml += '<li class="select" data-cnum="' + selectedCNum + '" data-mcode="' + movie.m_code + '">';
                     movieListHtml += '<a href="#" class="movie-item"><span class="ic_grade ' + gradeClass + '"></span></a>';
-                    movieListHtml += '<a href="#" class="movie-item">'+ movie.m_name + '</a>';
+                    movieListHtml += '<a href="#" class="movie-item"><span class="movie_name_over">'+ movie.m_name + '</span></a>';
                     movieListHtml += '</li>';
                 });
                 $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
