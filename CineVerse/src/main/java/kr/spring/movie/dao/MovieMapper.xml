@@ -241,7 +241,26 @@
         WHERE rnum >= #{start} AND rnum <= #{end}
         ]]>
     </select>
-
+    <!-- 영화 예매 여부 확인 -->
+    <select id="getBookingInfo" resultType="kr.spring.movie.vo.MovieBookingVO">
+    	<![CDATA[
+        SELECT *
+        FROM (SELECT *
+              FROM movie_booking
+              WHERE mem_num = #{mem_num} AND m_code = #{m_code}
+              AND EXISTS (
+                  SELECT 1
+                  FROM movie_time
+                  WHERE movie_time.mt_num = movie_booking.mt_num
+                  AND (TO_CHAR(movie_time.mt_date, 'YYYYMMDD') < TO_CHAR(SYSDATE, 'YYYYMMDD')
+                  OR (TO_CHAR(movie_time.mt_date, 'YYYYMMDD') = TO_CHAR(SYSDATE, 'YYYYMMDD')
+                  AND movie_time.mt_end <= TO_CHAR(SYSDATE, 'HH24MI')))
+              )
+              ORDER BY mb_date DESC
+        )
+        WHERE ROWNUM = 1
+        ]]>
+    </select>
 	<!-- 영화 리뷰 등록 -->
 	<insert id="insertReview" parameterType="MovieReviewVO">
 		INSERT INTO movie_review(

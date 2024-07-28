@@ -147,7 +147,11 @@ public interface MovieMapper {
     // 영화 예매 여부 확인
     @Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num = #{mem_num} AND m_code = #{m_code}")
     int hasBookedMovie(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
-    @Select("SELECT * FROM (SELECT * FROM movie_booking WHERE mem_num = #{mem_num} AND m_code = #{m_code} ORDER BY mb_date DESC) WHERE ROWNUM = 1")
+
+	/*
+	 * @Select("SELECT * FROM (SELECT * FROM movie_booking WHERE mem_num = #{mem_num} AND m_code = #{m_code} ORDER BY mb_date DESC) WHERE ROWNUM = 1"
+	 * )
+	 */
     MovieBookingVO getBookingInfo(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
 	@Select("SELECT movie_booking_seq.nextval FROM dual")
 	public Long selectMb_num();

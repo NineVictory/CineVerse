@@ -98,31 +98,31 @@ public class MovieAjaxController {
 	 *=======================*/
     @PostMapping("/movie/writeReview")
     @ResponseBody
-    public Map<String,String> writeReview(@ModelAttribute MovieReviewVO review, HttpSession session) {
+    public Map<String, String> writeReview(@ModelAttribute MovieReviewVO review, HttpSession session) {
         MemberVO user = (MemberVO) session.getAttribute("user");
         long userMemNum = user != null ? user.getMem_num() : -1L;
-        Map<String,String> mapJson = new HashMap<String, String>();
-		/*
-		 * // mb_num이 없는 경우에 대한 기본값 설정 if (review.getMb_num() == 0) { return "fail"; //
-		 * 적절한 처리로 변경 가능 }
-		 */
-        
-        boolean canWriteReview = movieService.canWriteReview(userMemNum, review.getM_code());
-        if(user == null) {
-			//로그인 안된경우
-			mapJson.put("result","logout");
-		}
-        else if(canWriteReview) {
-            review.setMem_num(userMemNum);
-         // mb_num 값 설정
+        Map<String, String> mapJson = new HashMap<>();
+
+        if (user == null) {
+            // 로그인 안된 경우
+            mapJson.put("result", "logout");
+        } else if (!movieService.canWriteReview(userMemNum, review.getM_code())) {
+            // 예매를 하지 않은 경우
+            mapJson.put("result", "noBooking");
+        } else {
+            // 예매를 했고, 시청 여부 확인
             MovieBookingVO bookingInfo = movieService.getBookingInfo(userMemNum, review.getM_code());
             if (bookingInfo != null) {
+                review.setMem_num(userMemNum);
                 review.setMb_num(bookingInfo.getMb_num());
+                log.debug("리뷰 등록: " + review);
+                movieService.insertReview(review);
+                mapJson.put("result", "success");
+            } else {
+                // 영화를 시청하지 않았거나, 아직 시청이 완료되지 않은 경우
+                mapJson.put("result", "noPermission");
             }
-            log.debug("리뷰 등록: " + review);
-            movieService.insertReview(review);
-            mapJson.put("result","success");
-        } 
+        }
         return mapJson;
     }
     /*===================

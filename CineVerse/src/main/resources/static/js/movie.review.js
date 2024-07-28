@@ -80,13 +80,18 @@ $(document).ready(function() {
 			success: function(param) {
 				if (param.result == 'logout') {
 					alert('로그인해야 리뷰를 작성할 수 있습니다.');
-				} else if (param.result === "success") {
+				} else if (param.result === "noPermission") {
+                    alert("영화를 시청하신 후 리뷰를 작성할 수 있습니다.");
+                } else if (param.result === "noBooking") {
+                    alert("영화 예매 후 리뷰를 작성할 수 있습니다.");
+                }else if (param.result === "success") {
 					// 폼 초기화
 					initForm();
 					// 리뷰 작성 시 성공하면 새로 삽입한 글을 포함해서 첫 번째 페이지의 게시글들을 다시 호출함
 					currentPage = 1;
 					loadReviews(currentPage, sortOption);
-				} else {
+					
+				}else {
 					alert("리뷰 등록에 실패했습니다.");
 				}
 			},
