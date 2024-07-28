@@ -21,7 +21,8 @@
 }
 /* 이미지 넓이 */
 .swiper-slide img {
-	width: 100%
+width: 100%;
+    height: 774px;
 }
 
 /* 페이지네이션 위치 잡기 */
@@ -118,51 +119,50 @@
 				<!-- 아이템들을 swiper-slide로 감싸기 -->
 						<c:forEach var="detail" items="${movieRank}">
 								<div class="swiper-slide">
-    <div class="item">
-        <div class="top_info">
-            <span class="poster_info">
-                <img class="poster_info_image" src="${fn:split(detail.m_filename, '|')[0]}" alt="${detail.m_name}">
-                <em class="num_info">${detail.movie_rank}</em>
-                <div class="overlay">
-                    <button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieTimeBYmovie?m_code=${detail.m_code}'">예매하기</button>
-                    <button class="btn-details" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail?m_code=${detail.m_code}'">상세보기</button>
-                </div>
-            </span>
-        </div>
-        <div class="btm_info">
-        	<div class="movie_infos_gt">
-        		<div class="movie_info_center">
-        		<strong class="tit_info">
-                <span class="ic_grade <c:choose><c:when test="${detail.rating eq '12세관람가' }">gr_12</c:when>
-                    <c:when test="${detail.rating eq '12세이상관람가' }">gr_12</c:when>
-                    <c:when test="${detail.rating eq '전체관람가' }">gr_all</c:when>
-                    <c:when test="${detail.rating eq '15세관람가' }">gr_15</c:when>
-                    <c:when test="${detail.rating eq '15세이상관람가' }">gr_15</c:when>
-                    <c:when test="${detail.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
-                    <c:when test="${detail.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
-                </span>
-                <span class="em_title">${detail.m_name}</span>
-            </strong>
-            </div>
-        	</div>
-            
-            <span class="sub_info1">
-                <span class="rate_info">예매율 <em>${detail.reservation_rate }%</em></span>
-                <span class="star_info"><a class="star_move" href="${pageContext.request.contextPath}/movie/movieDetail?m_code=${detail.m_code}#movie-review-section">
-                <img src="${pageContext.request.contextPath}/images/cje/star_yes.png" class="star_photo">
-                <c:if test="${detail.average_grade == null }">
-                	0.0
-                </c:if>
-                <c:if test="${detail.average_grade != null }">
-                	${detail.average_grade}
-                </c:if>
-                </a>
-                </span>
-            </span>
-        </div>
-    </div>
-</div>
-
+						    <div class="item">
+						        <div class="top_info">
+						            <span class="poster_info">
+						                <img class="poster_info_image" src="${fn:split(detail.m_filename, '|')[0]}" alt="${detail.m_name}">
+						                <em class="num_info">${detail.movie_rank}</em>
+						                <div class="overlay">
+						                    <button class="btn-book" onclick="location.href='${pageContext.request.contextPath}/movie/movieTimeBYmovie?m_code=${detail.m_code}'">예매하기</button>
+						                    <button class="btn-details" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail?m_code=${detail.m_code}'">상세보기</button>
+						                </div>
+						            </span>
+						        </div>
+						        <div class="btm_info">
+						        	<div class="movie_infos_gt">
+						        		<div class="movie_info_center">
+						        		<strong class="tit_info">
+						                <span class="ic_grade <c:choose><c:when test="${detail.rating eq '12세관람가' }">gr_12</c:when>
+						                    <c:when test="${detail.rating eq '12세이상관람가' }">gr_12</c:when>
+						                    <c:when test="${detail.rating eq '전체관람가' }">gr_all</c:when>
+						                    <c:when test="${detail.rating eq '15세관람가' }">gr_15</c:when>
+						                    <c:when test="${detail.rating eq '15세이상관람가' }">gr_15</c:when>
+						                    <c:when test="${detail.rating eq '18세관람가(청소년관람불가)' }">gr_19</c:when>
+						                    <c:when test="${detail.rating eq '청소년관람불가' }">gr_19</c:when></c:choose>">
+						                </span>
+						                <span class="em_title">${detail.m_name}</span>
+						            </strong>
+						            </div>
+						        	</div>
+						            
+						            <span class="sub_info1">
+						                <span class="rate_info">예매율 <em>${detail.reservation_rate }%</em></span>
+						                <span class="star_info"><a class="star_move" href="${pageContext.request.contextPath}/movie/movieDetail?m_code=${detail.m_code}#movie-review-section">
+						                <img src="${pageContext.request.contextPath}/images/cje/star_yes.png" class="star_photo">
+						                <c:if test="${detail.average_grade == null }">
+						                	0.0
+						                </c:if>
+						                <c:if test="${detail.average_grade != null }">
+						                	${detail.average_grade}
+						                </c:if>
+						                </a>
+						                </span>
+						            </span>
+						        </div>
+						    </div>
+						</div>
 						</c:forEach>
 			</div>
 			<!-- 이전/다음 버튼 -->

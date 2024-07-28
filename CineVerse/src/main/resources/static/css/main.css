@@ -14,6 +14,7 @@ a {
 
 .star_photo {
 	width: 12px !important;
+	height: 12px !important;
 	margin-right: 3px;
 }
 
@@ -139,6 +140,7 @@ a {
 
 .poster_info_image {
 	width: 100%;
+    height: auto !important;
 }
 
 .tit_info {
@@ -691,3 +693,4 @@ ul, ol {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
