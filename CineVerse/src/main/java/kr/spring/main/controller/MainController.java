@@ -47,9 +47,7 @@ public class MainController {
 		 * List<MovieRankAPIVO> movieRankList =
 		 * movieRankService.getMovieRank(showrange);
 		 */
-		
 		List<MovieVO> movieRank = cinemaService.getMovieRankMain();
-		
 		model.addAttribute("movieRank",movieRank);
 	}
 }

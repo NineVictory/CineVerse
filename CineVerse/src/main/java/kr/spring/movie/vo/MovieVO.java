@@ -39,7 +39,8 @@ public class MovieVO {
 	private int bookmark_cnt; // 북마크 개수
 	
 	private String rank; // 영화 랭킹
-	
+	private int mr_grade;
 	private String movie_rank; // 영화 랭킹(메인)
 	private String reservation_rate;	// 영화 예매율(메인)
+	private String average_grade;	// 각 영화의 리뷰평점
 }
