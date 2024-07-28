@@ -497,8 +497,20 @@
     ]]>
 
 	</select>
-
-
+	
+	<!-- 영화관 수정 -->
+	<insert id="modifyCinema" parameterType="cinemaVO">
+		UPDATE cinema
+		SET
+		c_branch=#{c_branch},
+		c_location=#{c_location},
+		c_address=#{c_address},
+		c_phone=#{c_phone},
+		c_parkable=#{c_parkable}
+		WHERE
+		c_num = #{c_num}
+	</insert>
+	
 	<!-- 상영관 등록 -->
 	<insert id="insertTheater" parameterType="cinemaVO">
 		INSERT INTO theater(

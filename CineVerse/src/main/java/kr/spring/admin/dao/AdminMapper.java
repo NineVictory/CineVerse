@@ -152,6 +152,7 @@ public interface AdminMapper {
 	public MovieVO selectMovie1(long m_code);
 	public void modifyMovie(MovieVO movieVO);
 	
+	//영화 삭제
 	@Update("UPDATE movie SET m_delete = 2 WHERE m_code = #{m_code} AND m_status = 2")
 	public Integer deleteMovie(long m_code);
 
@@ -163,12 +164,19 @@ public interface AdminMapper {
 	public List<CinemaVO> selectCinema(Map<String, Object> map);
 
 	public Integer selectCinemaRowCount(Map<String, Object> map);
-
+	
+	//영화관 등록
 	public void insertCinema(CinemaVO cinemaVO);
-
+	
+	//영화관 삭제
 	@Update("UPDATE cinema SET c_status = 0 WHERE c_num = #{c_num}")
 	public void deleteCinema(long c_num);
-
+	
+	//영화관 수정
+	@Select("select * from cinema WHERE c_num = #{c_num}")
+	public CinemaVO selectCinema1(long c_num);
+	public void modifyCinema(CinemaVO cinemaVO);
+	
 	// 상영관 등록
 	public void insertTheater(TheaterVO theaterVO);
 

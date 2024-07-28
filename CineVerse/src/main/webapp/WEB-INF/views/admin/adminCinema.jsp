@@ -4,6 +4,9 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
+	function redirectToCinemaModify(c_num) {
+	    window.location.href = '/admin/adminCinemaModify?c_num=' + c_num;
+	}
     function deleteCinema(c_num) {
         $.ajax({
             type: "POST",
@@ -48,6 +51,7 @@
                 <th>전화번호</th>
                 <th>주차</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <c:if test="${empty list}">
@@ -84,6 +88,8 @@
                    
                     <td class="mem-data">${cinema.c_phone}</td>
                     <td class="mem-data">${cinema.c_parkable}</td>
+                    <td class="button1"><input type="button" value="수정"
+							onclick="redirectToCinemaModify(${cinema.c_num})"/>
                     <td class="button2"><input type="button" value="삭제" onclick="deleteCinema(${cinema.c_num})"/></td>
                 </tr>
             </c:forEach>

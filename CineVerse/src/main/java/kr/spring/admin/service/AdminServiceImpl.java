@@ -342,5 +342,13 @@ public class AdminServiceImpl implements AdminService{
 	public Integer selectEventResultShow(long event_num) {
 		return adminMapper.selectEventResultShow(event_num);
 	}
+	@Override
+	public CinemaVO selectCinema1(long c_num) {
+		return adminMapper.selectCinema1(c_num);
+	}
+	@Override
+	public void modifyCinema(CinemaVO cinemaVO) {
+		adminMapper.modifyCinema(cinemaVO);
+	}
 
 }

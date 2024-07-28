@@ -874,7 +874,7 @@ public class AdminController {
 			return "adminMovieModify";
 			
 		}
-		//공지사항 등록
+		//공지사항 수정
 		@PostMapping("/admin/adminMovieModify")
 		public String modifyMovie(@Valid MovieVO movieVO,
 				BindingResult result,
@@ -920,7 +920,33 @@ public class AdminController {
 		return "success";
 
 	}
+	//영화 수정 폼 호출
+	@GetMapping("/admin/adminCinemaModify")
+	public String adminCinemaModify(long c_num,Model model){
+		CinemaVO cinemaVO=
+				adminService.selectCinema1(c_num);
+		model.addAttribute("cinemaVO",cinemaVO);
+		return "adminCinemaModify";
+		
+	}
+	//영화관 수정
+	@PostMapping("/admin/adminCinemaModify")
+	public String modifyCinema(@Valid CinemaVO cinemaVO,
+			BindingResult result,
+			HttpServletRequest request,
+			Model model) throws IllegalStateException,IOException{
+		log.debug("<<영화관 글 저장>> : " + cinemaVO);
+	    CinemaVO db_movie = adminService.selectCinema1(cinemaVO.getC_num());
+		
+		adminService.modifyCinema(cinemaVO);
+		//View 메시지 처리
+		model.addAttribute("message", "성공적으로 글이 수정되었습니다.");
+		model.addAttribute("url", 
+				request.getContextPath()+"/admin/adminCinemaModify?c_num="
+										+cinemaVO.getC_num()); 
 
+		return "common/resultAlert";
+	}
 	// 포인트조회
 	@GetMapping("/admin/adminPayment")
 	public String adminPayment(

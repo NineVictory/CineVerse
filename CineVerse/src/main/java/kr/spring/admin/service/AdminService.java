@@ -91,6 +91,7 @@ public interface AdminService {
 	public List<Long> selectMemberNumberEvent(long event_num);
 	public void updateEventResult(long mem_num,long event_num);
 	public Integer selectEventResultShow(long event_num);
-
+	public CinemaVO selectCinema1(long c_num);
+	public void modifyCinema(CinemaVO cinemaVO);
 
 }	
