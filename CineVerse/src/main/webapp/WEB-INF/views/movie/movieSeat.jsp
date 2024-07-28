@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
             var formattedTimes = timeParts.map(function(time) {
                 if (time.trim() === "0" || time.trim() === "0000") {
                     return "00:00";
-                } else if (time.trim().length === 3){
+                } else if (time.trim().length === 3){ 
                 	return '0' + time.trim().slice(0, 1) + ':' + time.trim().slice(1);
                 } else {
                     return time.trim().slice(0, 2) + ":" + time.trim().slice(2);

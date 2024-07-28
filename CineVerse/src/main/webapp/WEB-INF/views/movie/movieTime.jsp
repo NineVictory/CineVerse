@@ -31,7 +31,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> 
 
     <!-- 날짜 및 시간 -->
     <div class="time-part">
