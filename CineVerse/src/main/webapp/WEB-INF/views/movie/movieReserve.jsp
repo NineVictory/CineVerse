@@ -371,7 +371,8 @@ $(document).ready(function() {
                     $.each(data, function(index, movietime) {
                         selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + formatTime(movietime.mt_end) + '" data-mtnum="' + movietime.mt_num + '">';
                         selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(movietime.mt_start) + '</div>';
-                        selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name +'관'+ '</div>';
+                        selectMovieTimeListHtml += '<div class="available-seats">' + movietime.availableSeats + '/96</div>'; // 좌석 수 추가
+                        selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name + '관' + '</div>';
                         selectMovieTimeListHtml += '</li>';
                     });
                     $('.movietime-select').html(selectMovieTimeListHtml); // 영화 시간표 목록 업데이트
@@ -382,6 +383,7 @@ $(document).ready(function() {
             });
         }
     }
+
 
     // 영화 시간 데이터 담기 클릭 이벤트 핸들러 추가
     $(document).on('click', '.movietime-item', function() {
@@ -639,13 +641,13 @@ $(document).ready(function() {
             <form action="movieSeat" method="get">
                 <input type="hidden" name="mt_num" id="mt_num">
                 <c:if test="${!empty user}">
-                	<div class="moveSeatButton">
+                	<div class="moveSeatButton" id="moveSeatDiv">
                 	<img src="${pageContext.request.contextPath}/images/wright-arrow.png" width="30">
-                    <input type="submit" class="button_styles" value="좌석 선택">
+                    <input type="submit" class="button_styles" value="좌석 선택" id="seatSelectButton">
                     </div>
                 </c:if>
                 <c:if test="${empty user}">
-                <div class="moveSeatButton">
+                <div class="moveSeatButton" onclick="alertAndRedirect()">
                 <img src="${pageContext.request.contextPath}/images/wright-arrow.png" width="30">
                 <input type="button" class="button_styles" value="좌석 선택" onclick="alertAndRedirect()">
                 </div>
@@ -653,6 +655,11 @@ $(document).ready(function() {
             </form>    
         </div>
         <script>
+        	document.getElementById('moveSeatDiv').addEventListener('click', function() {
+            	// 버튼 요소를 찾아서 클릭 이벤트를 트리거
+            	document.getElementById('seatSelectButton').click();
+       		 });
+        
             function alertAndRedirect() {
                 alert("로그인 후 이용하실 수 있습니다.");
                 location.href = '${pageContext.request.contextPath}/member/login';
