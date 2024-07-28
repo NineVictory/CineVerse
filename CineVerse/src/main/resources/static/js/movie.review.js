@@ -263,8 +263,11 @@ $(document).ready(function() {
                 if (param.result === 'logout') {
                     alert('로그인 후 이용해주세요.');
                 } else if (param.result === 'success') {
-                    alert(rr_type + ' 신고가 접수되었습니다.');
-                } else {
+                    alert(rr_type + ' 신고가 접수되었습니다. [신고 다중 누적시 삭제 처리됩니다]');
+                } else if(param.result == 'duplicate'){
+					alert('이미 신고하신 리뷰입니다.');
+				}
+                else {
                     alert('신고 처리 중 오류가 발생했습니다.');
                 }
             },

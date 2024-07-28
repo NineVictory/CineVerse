@@ -15,7 +15,6 @@ public class MovieReviewReportVO {
 	private long rr_num;
 	private String rr_type;
 	private Date rr_reportdate;
-	private long rr_count;
 	private long mr_num;
 
 	

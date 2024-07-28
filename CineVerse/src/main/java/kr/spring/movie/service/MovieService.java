@@ -66,10 +66,15 @@ public interface MovieService {
 	public Integer selectReFavCount(Long mr_num);
 	public void insertReFav(MovieReviewfavVO fav);
 	public void deleteReFav(MovieReviewfavVO fav);
-    
+    //영화 리뷰 신고
 	public MovieReviewReportVO selectMovieReport(MovieReviewReportVO MovieReviewReport);
 	public void insertReviewReport(MovieReviewReportVO MovieReviewReport);
 	public void insertReviewReporter(MovieReviewReportReporterVO MovieReviewReportReporter);   
+	public Integer checkDuplicateReport(Long mr_num,Long mem_num);
+
+	/* public List<MovieReviewVO> selectVisibleReviews(Long m_code); */
+	public List<Long> getHiddenReviewIds();
+	
     // 영화 시간표
     void addMovieTime(MovieTimeVO movieTimeVO);
     

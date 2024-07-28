@@ -363,6 +363,29 @@ public class MovieServiceImpl implements MovieService {
 		
 	}
 
+	@Override
+	public Integer checkDuplicateReport(Long mr_num, Long mem_num) {
+		
+		return movieMapper.checkDuplicateReport(mr_num, mem_num);
+	}
+
+	@Override
+	public List<Long> getHiddenReviewIds() {
+		
+		return movieMapper.getHiddenReviewIds();
+	}
+
+	/*
+	 * @Override public List<MovieReviewVO> selectVisibleReviews(Long m_code) {
+	 * 
+	 * return movieMapper.selectVisibleReviews(m_code); }
+	 */
+
+
+
+
+
+
 
 
 

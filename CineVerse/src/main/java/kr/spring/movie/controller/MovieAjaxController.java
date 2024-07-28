@@ -130,7 +130,7 @@ public class MovieAjaxController {
 ===================*/
     @GetMapping("/movie/listReview")
     @ResponseBody
-    public Map<String, Object> getList(int m_code, int pageNum, int rowCount, String order, HttpSession session) {
+    public Map<String, Object> getList(Long m_code, int pageNum, int rowCount, String order, HttpSession session) {
         log.debug("<<리뷰 목록 - m_code>> : " + m_code);
         log.debug("<<리뷰 목록 - page_num>> : " + pageNum);
         log.debug("<<리뷰 목록 - rowCount>> : " + rowCount);
@@ -140,13 +140,7 @@ public class MovieAjaxController {
         map.put("m_code", m_code);
         map.put("order", order); // 추가된 부분
 
-        // 총글의 개수
-        int count = movieService.selectMovieRowCountReview(map);
 
-        // 페이지 처리
-        PagingUtil page = new PagingUtil(pageNum, count, rowCount);
-        map.put("start", page.getStartRow());
-        map.put("end", page.getEndRow());
 
         MemberVO user = (MemberVO) session.getAttribute("user");
         if (user != null) {
@@ -154,11 +148,22 @@ public class MovieAjaxController {
         } else {
             map.put("mem_num", 0);
         }
+        
+        // 총글의 개수
+        int count = movieService.selectMovieRowCountReview(map);
 
+        // 페이지 처리
+        PagingUtil page = new PagingUtil(pageNum, count, rowCount);
+        map.put("start", page.getStartRow());
+        map.put("end", page.getEndRow());
+        
+        List<Long> hiddenReviewIds = movieService.getHiddenReviewIds();
         List<MovieReviewVO> list = null;
 
         if (count > 0) {
-            list = movieService.selectMovieListReview(map);
+			list = movieService.selectMovieListReview(map);
+			
+	     	list.removeIf(review -> hiddenReviewIds.contains(review.getMr_num()));
         } else {
             list = Collections.emptyList();
         }
@@ -307,20 +312,27 @@ public class MovieAjaxController {
             return mapJson;
         }
         long mem_num = user.getMem_num();
-       
-            // 현재 로그인한 사용자의 회원 번호 설정
-			/* report.setMem_num(user.getMem_num()); */
+        
+        // 중복 신고 여부 확인   
+        Integer isDuplicate = movieService.checkDuplicateReport(mr_num, mem_num);
+        if (isDuplicate > 0) {
+            mapJson.put("result", "duplicate");
+            return mapJson;
+        }
+
             // 리뷰 신고 등록
             report.setMr_num(mr_num);
             report.setRr_type(rr_type);
-            report.setRr_count(1); // 초기값으로 0을 설정하거나 필요에 따라 설정
-            movieService.insertReviewReport(report);
+
+		    movieService.insertReviewReport(report);
+            
             // 신고자 정보 등록
             MovieReviewReportReporterVO reporter = new MovieReviewReportReporterVO();
             reporter.setRr_num(report.getRr_num());
             reporter.setMem_num(mem_num);
             movieService.insertReviewReporter(reporter);
-
+            
+            
             mapJson.put("result", "success");
 
         return mapJson;

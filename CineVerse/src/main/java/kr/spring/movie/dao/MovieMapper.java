@@ -128,6 +128,13 @@ public interface MovieMapper {
 	public void insertReviewReport(MovieReviewReportVO MovieReviewReport);
 	@Insert("INSERT INTO rr_reporter (rr_num,mem_num) VALUES (#{rr_num},#{mem_num})")
 	public void insertReviewReporter(MovieReviewReportReporterVO MovieReviewReportReporter);
+	@Select("SELECT COUNT(*) FROM rr_reporter r JOIN reviewreport rr ON r.rr_num = rr.rr_num WHERE rr.mr_num = #{mr_num} AND r.mem_num = #{mem_num}")
+	public Integer checkDuplicateReport(Long mr_num,Long mem_num);
+	/*
+	 * @Select("SELECT * FROM movie_review WHERE m_code = #{m_code} AND mr_num NOT IN (SELECT mr_num FROM reviewreport GROUP BY mr_num HAVING COUNT(*) >= 5)"
+	 * ) public List<MovieReviewVO> selectVisibleReviews(Long m_code);
+	 */
+	public List<Long> getHiddenReviewIds();
 	
 		
 		

@@ -291,6 +291,8 @@
 			WHERE rnum >=#{start} AND rnum <=#{end}
 			]]>
 	</select>
+	
+
 		<!-- 영화 리뷰 신고 등록 -->
 	<insert id="insertReviewReport" parameterType="MovieReviewReportVO">
 	<selectKey keyProperty="rr_num" resultType="long" order="BEFORE">
@@ -299,17 +301,22 @@
 		INSERT INTO reviewreport(
 			rr_num,
 			rr_type,
-			rr_count,
 			mr_num,
 			rr_reportdate
 				)
 		VALUES(
 			#{rr_num},
 			#{rr_type},
-			#{rr_count},
 			#{mr_num},
 			SYSDATE)
 	</insert>
+	<!-- 리뷰 신고 갯수가 5가 넘는 mr_num 구하기 -->
+	<select id="getHiddenReviewIds" resultType="Long">
+    SELECT mr_num
+    FROM reviewreport
+    GROUP BY mr_num
+    HAVING COUNT(*) >= 5
+	</select>
 	<!-- 영화 시간표 등록 -->
 	 <insert id="insertMovieTime" parameterType="MovieTimeVO">
 	 	  INSERT INTO movie_time (
@@ -378,6 +385,8 @@
 		        </foreach>
 		    )<![CDATA[ AND m_opendate > sysdate ]]> 
     </select>
+    
+    
 </mapper>							
 
 
