@@ -385,6 +385,11 @@ width: 180px;
 	font-size: 12px;
 }
 
+.seat_remain{
+	font-weight: 600;
+	font-size: 12px;
+}
+
 .movierating {
 	display: flex;
 	align-items: center;

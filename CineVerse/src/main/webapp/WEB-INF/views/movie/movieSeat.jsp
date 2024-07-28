@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
                            		<p class="moviename">${movieInfo.m_name}</p>
                            		</div>
                             	<p class="movietime">${movieInfo.mt_date} | ${movieInfo.mt_start} ~ ${movieInfo.mt_end}</p>
-                            	<p class="movieplace">${movieInfo.c_branch}지점 ${movieInfo.th_name}</p>
+                            	<p class="movieplace">${movieInfo.c_branch}점 ${movieInfo.th_name}</p>
                         </c:forEach>
-                        		 <p>남은 좌석: ${availableSeats}석</p>
+                        		 <p class="seat_remain">남은 좌석 ${availableSeats}석</p>
                         <div class="select-theater-date">
                        	 	<div class="selected-seats-wrapper">
                         		<span class="selected-seats-title">좌석번호</span>
@@ -84,18 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div id="container">
                             <div class="seatContainer" id="seatContainer">
                                 <div class="screen"></div>
-                                <!-- JavaScript로 생성된 좌석이 여기에 추가됩니다 -->
-                               <%--  <c:forEach var="i" begin="0" end="${fn:length(seatList) / 12}">
-                                    <div class="row">
-                                        <c:forEach var="j" begin="0" end="11">
-                                            <c:if test="${i * 12 + j < fn:length(seatList)}">
-                                                <span class="seat" data-seat-num="${seatList[i * 12 + j].seat_num}">
-                                                    ${seatList[i * 12 + j].seat_row}${seatList[i * 12 + j].seat_column}
-                                                </span>
-                                            </c:if>
-                                        </c:forEach>
-                                    </div>
-                                </c:forEach> --%>
 								<c:forEach var="i" begin="0" end="${fn:length(seatList) / 12}">
 									<div class="row">
 										<c:forEach var="j" begin="0" end="11">
