@@ -18,6 +18,7 @@ $(function() {
                         alert('타인의 예매내역은 취소할 수 없습니다.');
                     } else if (param.result == 'success') {
                         alert('예매 취소 완료');
+                        location.reload();
                     } else {
                         alert('예매취소 오류 발생');
                     }

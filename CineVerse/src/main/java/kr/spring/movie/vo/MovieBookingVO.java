@@ -27,4 +27,5 @@ public class MovieBookingVO {
 	private String m_filename;
 	private int md_type;
 	private String ph_payment;
+	private int booking_count;
 }

@@ -5,8 +5,10 @@
 <%@ page import="java.util.Date" %>
 <%
 //서버 현재 날짜를 가져와 스크립트로 전달할 데이터
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-String currentDate = sdf.format(new Date());
+SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
+String currentDate = sdfDate.format(new Date());
+String currentTime = sdfTime.format(new Date());
 %>
 <!--  내가 본 영화 시작 -->
 <div class="myPage_main">
@@ -19,7 +21,7 @@ String currentDate = sdf.format(new Date());
     <c:if test="${resCnt > 0}">
         <c:forEach var="wat" items="${list}">
             <div class="wa_box_rep">
-                <div class="wa_box" data-mt-date="${wat.mt_date}">
+                <div class="wa_box" data-mt-date="${wat.mt_date}" data-mt-end="${wat.mt_end}">
                     <div class="wa_photo">
                         <img alt="영화1" src="${fn:split(wat.m_filename, '|')[0]}"
                              onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail?m_code=${wat.m_code}'"
@@ -30,7 +32,7 @@ String currentDate = sdf.format(new Date());
                         <div class="wa_info_sub">
                             ${wat.mt_date} <span id="time-${wat.m_code}">${wat.mt_start}~${wat.mt_end}</span>
                         </div>
-                        <div class="wa_info_sub">CINEVERSE ${wat.c_branch} ${wat.th_name}관/관람인원수</div>
+                        <div class="wa_info_sub">CINEVERSE ${wat.c_branch} ${wat.th_name}관/${wat.booking_count }명</div>
                     </div>
                 </div>
                 <hr size="1" width="100%" class="wa_line">
@@ -52,8 +54,8 @@ String currentDate = sdf.format(new Date());
             // data-mt-date 속성에서 영화의 상영 날짜 가져옴
             var box = boxRep.querySelector(".wa_box");
             var mtDate = new Date(box.getAttribute("data-mt-date"));
-            // 상영 날짜가 현재 날짜보다 크거나 같으면 요소를 숨김
-            if (mtDate >= currentDate) {
+            // 상영 날짜가 현재 날짜보다 크면 요소를 숨김
+            if (mtDate > currentDate) {
                 boxRep.style.display = "none";
             } else {
                 hasPastMovies = true;

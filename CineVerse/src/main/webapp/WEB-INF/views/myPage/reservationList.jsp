@@ -19,7 +19,7 @@
         </c:when>
         <c:when test="${not empty listForMdType1}">
             <c:forEach var="res" items="${listForMdType1}">
-                <div class="main_body_reservation">
+                <div class="main_body_reservation reservation-item">
                     <div class="myPageReservation_list">
                         <div class="mp_reserv">
                             <div class="m_movie_photo">
@@ -41,8 +41,8 @@
                                     </div>
                                     <div class="my_reserv_info">
                                         <div>CINEVERSE${res.c_branch}</div>
-                                        <div>${res.mt_date}</div>
-                                        <div id="time-${res.user_mb_num}">${res.mt_start}~${res.mt_end}</div>
+                                        <div class="reservation-date">${res.mt_date}</div>
+                                        <div class="reservation-end-time" id="time-${res.user_mb_num}">${res.mt_start}~${res.mt_end}</div>
                                     </div>
                                 </div>
                                 <hr size="1" width="100%" class="reserv_line">
@@ -51,7 +51,7 @@
                                         <span class="m_pay">총 결제금액 </span><span class="my_blue_font">${res.mb_price}원</span>
                                     </div>
                                     <div>
-                                         <input type="button" class="m_cancle" data-num="${res.mb_num}" data-mnum="${user.mem_num}" data-price="${res.mb_price}" data-payment="${res.ph_payment}" value="예매취소">
+                                         <input type="button" class="m_cancle" data-num="${res.mb_num}" data-mnum="${user.mem_num}" data-price="${res.mb_price}" data-payment="예매환불" value="예매취소">
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
         </c:when>
         <c:when test="${not empty listForMdType2}">
             <c:forEach var="res" items="${listForMdType2}">
-                <div class="main_body_reservation">
+                <div class="main_body_reservation cancel-item">
                     <div class="myPageReservation_list">
                         <div class="mp_reserv">
                             <div class="m_movie_photo">
@@ -135,5 +135,33 @@
             });
             timeDiv.textContent = formattedTimes.join("~");
         });
+
+        // 현재 날짜와 시간 구하기
+        var currentDate = new Date();
+
+        // 예매 목록 날짜와 시간 비교하여 숨기기
+        var reservations = document.querySelectorAll(".reservation-item");
+        reservations.forEach(function(reservation) {
+            var dateDiv = reservation.querySelector(".reservation-date");
+            var endTimeDiv = reservation.querySelector(".reservation-end-time");
+            if (dateDiv && endTimeDiv) {
+                var reservationDate = dateDiv.textContent.trim();
+                var reservationEndTime = endTimeDiv.textContent.split("~")[1].trim();
+
+                var reservationDateTime = new Date(reservationDate + 'T' + reservationEndTime);
+
+                if (reservationDateTime < currentDate) {
+                    reservation.style.display = 'none';
+                }
+            }
+        });
+
+        // 취소 내역에서 최근 3개만 보이기
+        /* var cancelItems = document.querySelectorAll(".cancel-item");
+        if (cancelItems.length > 3) {
+            for (var i = 3; i < cancelItems.length; i++) {
+                cancelItems[i].style.display = 'none';
+            }
+        } */
     });
 </script>
