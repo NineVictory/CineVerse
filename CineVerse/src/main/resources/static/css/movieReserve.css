@@ -11,15 +11,15 @@
 
 .reserve-title {
 	font-weight: 600;
-    font-size: 14px;
+	font-size: 14px;
 	border-bottom: 1px solid #dddddd;
 	background-color: var(--gray-6);
-    height: 35px;
-    color: #fff;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+	height: 35px;
+	color: #fff;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
 }
 
 /* 지점명 */
@@ -136,10 +136,10 @@
 }
 
 .sort-wrapper {
-gap: 15px;
-    padding: 10px 6px 6px 10px;
-    display: flex;
-    border-bottom: 2px solid var(--gray-5);
+	gap: 15px;
+	padding: 10px 6px 6px 10px;
+	display: flex;
+	border-bottom: 2px solid var(--gray-5);
 }
 
 .sort-wrapper>div {
@@ -148,12 +148,10 @@ gap: 15px;
 	font-size: 14px;
 }
 
-
 .selected {
-    color: black;
-    font-weight: bold;
+	color: black;
+	font-weight: bold;
 }
-
 
 .movie-list {
 	display: flex;
@@ -174,35 +172,34 @@ gap: 15px;
 	font-weight: bold; /* 선택된 항목의 글씨를 굵게 */
 }
 
-.theater-place > a.active{
+.theater-place>a.active {
 	background-color: #e0e0e0; /* 선택된 항목의 배경색 */
 	font-weight: bold; /* 선택된 항목의 글씨를 굵게 */
 }
 
-
 .movie-day.active {
 	height: 60px;
-    border-radius: 20px;
-    background-color: #f0f0f0;
-    font-weight: bold;
+	border-radius: 20px;
+	background-color: #f0f0f0;
+	font-weight: bold;
 }
 
 .movie-day-sun.active {
 	height: 60px;
-    border-radius: 20px;
-    background-color: #f0f0f0;
-    font-weight: bold;
+	border-radius: 20px;
+	background-color: #f0f0f0;
+	font-weight: bold;
 }
 
 .movie-day-sat.active {
 	height: 60px;
-    border-radius: 20px;
-    background-color: #f0f0f0;
-    font-weight: bold;
+	border-radius: 20px;
+	background-color: #f0f0f0;
+	font-weight: bold;
 }
 
 .movietime-item.active {
-    background-color: #f0f0f0;
+	background-color: #f0f0f0;
 }
 
 .select {
@@ -259,40 +256,40 @@ gap: 15px;
 	color: #e83431; /* 주말 색상 설정 */
 }
 
-.movie-day:hover {    
+.movie-day:hover {
 	height: 60px;
-    border-radius: 20px;
-    background-color: #e0e0e0;
-    color: #333;
+	border-radius: 20px;
+	background-color: #e0e0e0;
+	color: #333;
 }
 
 .movie-day-sat:hover {
-    height: 60px;
-    border-radius: 20px;
-    background-color: #e0e0e0;
-    color: #333;
+	height: 60px;
+	border-radius: 20px;
+	background-color: #e0e0e0;
+	color: #333;
 }
 
 .movie-day-sun:hover {
-    height: 60px;
-    border-radius: 20px;
-    background-color: #e0e0e0;
-    color: #333;
+	height: 60px;
+	border-radius: 20px;
+	background-color: #e0e0e0;
+	color: #333;
 }
 
 .movie-day-selected {
-	    height: 60px;
-    border-radius: 20px;
+	height: 60px;
+	border-radius: 20px;
 	background-color: #333333; /* 선택된 날짜 배경색 */
 	color: white; /* 선택된 날짜 텍스트 색상 */
 }
 
 .reserve-time-wrapper {
-margin-bottom: 10px;
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
 }
 
 /* .movietime-select {
@@ -335,17 +332,17 @@ margin-bottom: 10px;
 }
 
 .movietime-item {
-    display: flex;
-    width: 110px;
-    height: 55px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 3px 0px 3px 0px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor : pointer;
-    transition: all 0.3s;
+	display: flex;
+	width: 110px;
+	height: 55px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	padding: 3px 0px 3px 0px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s;
 }
 
 .movietime-item:hover {
@@ -353,7 +350,7 @@ margin-bottom: 10px;
 }
 
 .movietime-item .mt-start {
-	cursor:pointer;
+	cursor: pointer;
 	font-weight: 600;
 	font-size: 15px;
 	/* margin-bottom: 5px;*/
@@ -371,18 +368,22 @@ margin-bottom: 10px;
 	/* 	position: absolute;
 	bottom: 5px;
 	right: 5px;*/
-	font-size: 13px;
-    font-weight: 400;
-	
+	font-size: 12px;
+	font-weight: 450;
 }
 
 .movietime-item .th-name {
 	/* 	position: absolute;
 	bottom: 5px;
 	right: 5px;*/
-	font-size: 13px;
-    font-weight: 400;
-	
+	font-size: 12px;
+	font-weight: 450;
+}
+
+.th_seat_name {
+	width: 80px;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 .reserve-time-active {
@@ -433,7 +434,6 @@ margin-bottom: 10px;
 	background: #CD1327 url(../images/cmj/pc_grade_19.png) 0 0 no-repeat;
 }
 
-
 .movieSeatButton {
 	width: 150px;
 	height: 80px;
@@ -455,19 +455,19 @@ margin-bottom: 10px;
 }
 
 .moveSeatButton {
-    cursor: pointer;
-    display: flex;
-    width: 95px;
-    height: 75px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 15px;
-    background: #3F66ED;
-    color: #FFFFFF;
-    flex-direction: column;
-    transition: all 0.3s;
-    align-items: center;
-    justify-content: center;
+	cursor: pointer;
+	display: flex;
+	width: 95px;
+	height: 75px;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 15px;
+	background: #3F66ED;
+	color: #FFFFFF;
+	flex-direction: column;
+	transition: all 0.3s;
+	align-items: center;
+	justify-content: center;
 }
 
 .moveSeatButton:hover {
@@ -488,8 +488,8 @@ margin-bottom: 10px;
 
 .seat-select-button {
 	margin-right: 15px;
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 
 .movietime-select {
@@ -501,50 +501,61 @@ margin-bottom: 10px;
 	flex-wrap: wrap;
 }
 
-.selected-movie-info{
-    margin-bottom: 15px;
-    font-weight: 600;
-    font-size: 17px;
-    gap: 5px;
-    margin-left: 15px;
-    display: flex;
-    align-items: center;
+.selected-movie-info {
+	margin-bottom: 15px;
+	font-weight: 600;
+	font-size: 17px;
+	gap: 5px;
+	margin-left: 15px;
+	display: flex;
+	align-items: center;
 }
 
 .movie-item {
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	height: 34px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.tooltip{
-	font-size : 12px;
-	font-weight : 500;
+.tooltip {
+	font-size: 12px;
+	font-weight: 500;
 }
 
-
-.button_styles{
+.button_styles {
+	cursor:pointer;
 	border: none;
-    background: none;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
+	background: none;
+	color: white;
+	font-size: 14px;
+	font-weight: 500;
 }
 
-.movitime-list{
+.movitime-list {
 	width: 395px;
-    height: 580px;
+	height: 580px;
 }
 
-.movie_name_over{
+.movie_name_over {
+	text-align: left;
+	width: 220px;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.reserve_movie_nm{
 	    text-align: left;
-    width: 220px;
+    width: 325px;
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
 
 /* 보류 
 

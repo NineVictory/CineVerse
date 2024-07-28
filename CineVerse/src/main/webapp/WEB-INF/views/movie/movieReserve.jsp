@@ -371,8 +371,10 @@ $(document).ready(function() {
                     $.each(data, function(index, movietime) {
                         selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + formatTime(movietime.mt_end) + '" data-mtnum="' + movietime.mt_num + '">';
                         selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(movietime.mt_start) + '</div>';
+                        selectMovieTimeListHtml += '<div class="th_seat_name">';
                         selectMovieTimeListHtml += '<div class="available-seats">' + movietime.availableSeats + '/96</div>'; // 좌석 수 추가
                         selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name + '관' + '</div>';
+                        selectMovieTimeListHtml += '</div>';
                         selectMovieTimeListHtml += '</li>';
                     });
                     $('.movietime-select').html(selectMovieTimeListHtml); // 영화 시간표 목록 업데이트
@@ -608,7 +610,7 @@ $(document).ready(function() {
 
                 selectedMovieHtml = '<div class="movie-item selected">';
                 selectedMovieHtml += '<span class="ic_grade ' + gradeClass + '"></span>';
-                selectedMovieHtml += '<span>' +movieName+'</span>';
+                selectedMovieHtml += '<span class="reserve_movie_nm">' +movieName+'</span>';
                 selectedMovieHtml += '</div>';
 
                 $('.selected-movie-info').html(selectedMovieHtml);
@@ -643,13 +645,13 @@ $(document).ready(function() {
                 <c:if test="${!empty user}">
                 	<div class="moveSeatButton" id="moveSeatDiv">
                 	<img src="${pageContext.request.contextPath}/images/wright-arrow.png" width="30">
-                    <input type="submit" class="button_styles" value="좌석 선택" id="seatSelectButton">
+                    <input type="submit" class="button_styles" value="좌석 선택">
                     </div>
                 </c:if>
                 <c:if test="${empty user}">
                 <div class="moveSeatButton" onclick="alertAndRedirect()">
                 <img src="${pageContext.request.contextPath}/images/wright-arrow.png" width="30">
-                <input type="button" class="button_styles" value="좌석 선택" onclick="alertAndRedirect()">
+                <input type="button" class="button_styles" value="좌석 선택">
                 </div>
 		</c:if>
             </form>    
@@ -657,7 +659,7 @@ $(document).ready(function() {
         <script>
         	document.getElementById('moveSeatDiv').addEventListener('click', function() {
             	// 버튼 요소를 찾아서 클릭 이벤트를 트리거
-            	document.getElementById('seatSelectButton').click();
+            	document.getElementById('moveSeatDiv').click();
        		 });
         
             function alertAndRedirect() {
