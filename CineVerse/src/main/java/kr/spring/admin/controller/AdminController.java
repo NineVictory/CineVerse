@@ -29,6 +29,7 @@ import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.ReMovieVO;
 import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.admin.vo.FaqVO;
@@ -1200,5 +1201,45 @@ public class AdminController {
 	    
 	    return mapAjax;
 	}
+	//영화리뷰내역
+		@GetMapping("/admin/adminReMovie")
+		public String adminReMovie(
+				@RequestParam(defaultValue = "1") int pageNum,
+				@RequestParam(value = "keyword", required = false) String keyword,
+				@RequestParam(value = "keyfield", required = false) String keyfield,
+				Model model) { 
+			// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "mr_content"; // 기본 검색 필드를 설정합니다.
+			}
+			if (keyword == null || keyword.isEmpty()) {
+				keyword = ""; // 기본 검색 필드를 설정합니다.
+			}
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+
+			map.put("keyfield", keyfield);
+
+			// 전체, 검색 레코드 수
+			int count = adminService.selectReMovieRowCount(map);
+
+
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminReMovie");
+			List<ReMovieVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+				list = adminService.selectReMovie(map);
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
+			return "adminReMovie";
+
+		}	
 
 }

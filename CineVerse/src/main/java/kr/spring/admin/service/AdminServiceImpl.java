@@ -13,6 +13,7 @@ import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.ReMovieVO;
 import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
@@ -349,6 +350,14 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void modifyCinema(CinemaVO cinemaVO) {
 		adminMapper.modifyCinema(cinemaVO);
+	}
+	@Override
+	public List<ReMovieVO> selectReMovie(Map<String, Object> map) {
+		return adminMapper.selectReMovie(map);
+	}
+	@Override
+	public Integer selectReMovieRowCount(Map<String, Object> map) {
+		return adminMapper.selectReMovieRowCount(map);
 	}
 
 }

@@ -14,6 +14,7 @@ import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.ReMovieVO;
 import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
@@ -49,6 +50,7 @@ public interface AdminMapper {
 
 	@Select("SELECT COUNT(*) FROM consult WHERE consult_status = 1")
 	public Integer totalConsult();
+	
 
 	// 회원 관리
 	public List<AdminVO> selectMemberList(Map<String, Object> map);
@@ -266,9 +268,12 @@ public interface AdminMapper {
 	@Update("UPDATE event_participation SET ep_result=2 WHERE mem_num=#{mem_num} AND event_num=#{event_num}")
 	public void updateEventResult(long mem_num,long event_num);
 	
+	// 영화리뷰
+	public List<ReMovieVO> selectReMovie(Map<String, Object> map);
+
+	public Integer selectReMovieRowCount(Map<String, Object> map);
 	
-	
-	
-	
+	//영화리뷰삭제
+
 	
 }

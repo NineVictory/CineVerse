@@ -34,7 +34,7 @@
 				href="${pageContext.request.contextPath}/admin/adminReservation"
 				class="menu-link">예매관리</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}/admin/adminReview"
+				href="${pageContext.request.contextPath}/admin/adminReMovie"
 				class="menu-link">리뷰관리</a></li>
 		</ul>
 		<a class="menu-item">영화관</a>

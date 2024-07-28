@@ -9,6 +9,7 @@ import kr.spring.admin.vo.AdminVO;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.admin.vo.FaqVO;
 import kr.spring.admin.vo.NoticeVO;
+import kr.spring.admin.vo.ReMovieVO;
 import kr.spring.admin.vo.RefundMbVO;
 import kr.spring.admin.vo.ReplyVO;
 import kr.spring.assignment.vo.AssignVO;
@@ -93,5 +94,6 @@ public interface AdminService {
 	public Integer selectEventResultShow(long event_num);
 	public CinemaVO selectCinema1(long c_num);
 	public void modifyCinema(CinemaVO cinemaVO);
-
+	public List<ReMovieVO> selectReMovie(Map<String, Object> map);
+	public Integer selectReMovieRowCount(Map<String, Object> map);
 }	
