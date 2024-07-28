@@ -313,6 +313,52 @@
 	</select>
 	
 	
+	<!--                     관 리 자 용                  -->
+	<sql id="movieTimeSearch">
+		<where>
+			<if test="keyfield != null and keyword != null">
+				AND ${keyfield} LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>
+	</sql>
+
+	<!-- 영화 시간표 글 총레코드수/검색 레코드수 -->
+	<select id="controllMovieTimeRowCount" parameterType="map" resultType="integer">
+		SELECT
+		COUNT(*)
+		FROM movie_time
+		<include refid="movieTimeSearch"></include>
+	</select>
+
+	<!-- 영화 시간표 전체/검색 목록 -->
+	<select id="controllMovieTime" parameterType="map" resultType="movieTimeVO">
+		SELECT
+		*
+		FROM (
+		SELECT
+		a.*,
+		rownum rnum
+		FROM (
+		SELECT
+		mt_num,
+		mt_date,
+		mt_start,
+		mt_end,
+		m_code,
+		th_num
+		FROM movie_time
+		<include refid="movieTimeSearch"></include>
+		) a
+		)
+    <![CDATA[
+    WHERE rnum >= #{start} AND rnum <= #{end}
+    ]]>
+	</select>
+	
+	
+	
+	
+	
 </mapper>							
 
 

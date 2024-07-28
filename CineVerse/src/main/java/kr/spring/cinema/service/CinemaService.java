@@ -80,9 +80,16 @@ public interface CinemaService {
 	public List<MovieTimeVO> showMovieTimeList(long m_code, String mt_date, String c_location);
 	
 	//상영시간별 좌석 예매자 수 구하기 
-	//public Integer bookingcount(long mt_num);
+	//public Integer bookingcount(long mt_num); 
 	public Integer getBookedSeats(long mt_num); // 예매된 좌석 수를 조회하는 메서드
 	public Integer getAvailableSeats(long mt_num); // 남은 좌석 수를 계산하는 메서드
+	
+	
+	// [관리자] 영화상영시간표 제어 관리
+	public List<MovieTimeVO> controllMovieTime(Map<String, Object> map);
+	public Integer controllMovieTimeRowCount(Map<String, Object> map);
+	
+	
 	
 		//영화관(잠시 보류)
 		//public List<CinemaVO> selectCinemaList(Integer c_location);

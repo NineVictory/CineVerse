@@ -100,7 +100,9 @@ public interface CinemaMapper {
 	
 	
 	
-	
+	// [관리자] 영화상영시간표 제어 관리
+	public List<MovieTimeVO> controllMovieTime(Map<String, Object> map);
+	public Integer controllMovieTimeRowCount(Map<String, Object> map);
 	
 	
 	

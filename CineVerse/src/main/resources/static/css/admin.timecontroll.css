@@ -1,1 +1,131 @@
 /* 제작 중 */
+@charset "UTF-8";
+
+.admin_member {
+    margin-top: 30px;
+    margin-left: 100px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.firstTitle {
+    padding: 15px;
+    text-align: center;
+}
+
+#title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+form#admin_search {
+    padding: 20px;
+    background-color: var(--main-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form#admin_search ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+form#admin_search li {
+    display: inline-block;
+}
+
+form#admin_search input[type="search"] {
+padding: 10px;
+    border: 1px solid var(--gray-2);
+    border-radius: 4px;
+    width: 380px;
+    margin-right: 10px;
+}
+
+form#admin_search input[type="submit"] {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-size: cover;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.adminMember-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.adminMember-table thead {
+    background-color: var(--gray-1);
+}
+
+.adminMember-table th,
+.adminMember-table td {
+font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--gray-2);
+}
+
+
+.button1 input, .button2 input {
+	font-weight: 600;
+    font-size: 12px;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	color: white;
+	transition: transform 0.2s ease-in-out;
+}
+
+.button1 input {
+	color : #000;
+	background-color: var(--yellow-check-btn);
+}
+
+.button1 input:hover {
+    transform: scale(1.05);
+}
+
+.button2 input {
+    background-color: var(--red-check-btn);
+}
+
+.button2 input:hover {
+    transform: scale(1.05);
+}
+
+.insert_button_all{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.insert_button {
+    font-weight: 500;
+    background-color: var(--main-color-strong);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.insert_button:hover {
+transform: scale(1.05);
+}
+.page-div {
+	display: flex;
+    justify-content: center;
+}

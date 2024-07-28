@@ -234,7 +234,37 @@ public class CinemaController {
 	  	* 등록된 상영시간표 관리 [관리자용]
 	  	*========================*/
 	 @GetMapping("/admin/adminTimeControll")
-	   public String otherMovieInfo(){
+	   public String adminTimeControll(@RequestParam(defaultValue = "1") int pageNum,
+									   @RequestParam(value = "keyword", required = false) String keyword,
+				                       @RequestParam(value = "keyfield", required = false) String keyfield,Model model){
+		// keyfield가 없으면 기본값을 설정
+			if (keyfield == null || keyfield.isEmpty()) {
+				keyfield = "mt_date"; // 기본 검색 필드를 설정합니다.
+			}
+
+			// 파라미터를 맵에 추가
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+			map.put("keyfield", keyfield);
+
+			// 전체, 검색 레코드 수
+			int count = cinemaService.controllMovieTimeRowCount(map);
+
+			// 페이지 처리
+			PagingUtil page = new PagingUtil(keyfield, keyword, pageNum, count, 10, 10, "adminTimeControll");
+
+			List<MovieTimeVO> list = null; 
+			if (count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end", page.getEndRow());
+
+				list = cinemaService.controllMovieTime(map); 
+			}
+
+			model.addAttribute("count", count);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page.getPage());
+
 	      return "adminTimeControll";
 	   }
 	

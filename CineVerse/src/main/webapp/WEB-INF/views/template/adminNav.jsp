@@ -28,6 +28,9 @@
 				href="${pageContext.request.contextPath}/admin/adminMovieTime"
 				class="menu-link">영화시간표등록</a></li>
 			<li><a
+				href="${pageContext.request.contextPath}/admin/adminTimeControll"
+				class="menu-link">영화시간표관리</a></li>	
+			<li><a
 				href="${pageContext.request.contextPath}/admin/adminMovie"
 				class="menu-link">영화관리</a></li>
 			<li><a

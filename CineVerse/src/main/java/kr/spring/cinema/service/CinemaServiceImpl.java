@@ -160,28 +160,28 @@ public class CinemaServiceImpl implements CinemaService{
         return totalSeats - (bookedSeats != null ? bookedSeats : 0);
 	}
 
+	@Override
+	public List<MovieTimeVO> controllMovieTime(Map<String, Object> map) {
+		return cinemaMapper.controllMovieTime(map);
+	}
+
+	@Override
+	public Integer controllMovieTimeRowCount(Map<String, Object> map) {
+		return cinemaMapper.controllMovieTimeRowCount(map);
+	}
+
+	
+	
+	
+	
+	
 	
 	/*
 	 * @Override public Integer bookingcount(long mt_num) { return
 	 * cinemaMapper.bookingcount(mt_num); }
 	 */
 
-
-	 
-
-
-
-
-	
-
-
-	
-	
-	 
-	
-	
-	
-	 
+ 
 	
 	/*
 	 * @Override public List<CinemaVO> selectCinemaList(Integer c_location) { return
