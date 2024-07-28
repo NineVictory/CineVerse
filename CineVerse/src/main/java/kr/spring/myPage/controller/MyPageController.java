@@ -157,33 +157,32 @@ public class MyPageController {
 
 	// 나의 예매내역-디테일
 	@GetMapping("/myPage/reservation")
-	public String myPageReservation(HttpSession session, Model model) {
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mem_num", user.getMem_num());
-		
-		int resCnt = mypageService.reservationCnt(map);
-		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
-		if (booking != null && resCnt > 0) {
-			member.setC_branch(booking.getC_branch());
-			member.setM_name(booking.getM_name());
-			member.setMt_start(booking.getMt_start());
-			member.setMt_date(booking.getMt_date());
-			member.setTh_name(booking.getTh_name());
-		}
-		
-		List<MovieBookingVO> list = null;
-		int resDeCnt = mypageService.resDetailCnt(user.getMem_num());
-		/*
-		 * if(resDeCnt > 0) { list = mypageService; }
-		 */
-		
-		model.addAttribute("list", list);
-		model.addAttribute("resCnt", resCnt);
-		model.addAttribute("member", member);
-		return "myPageReservation";
+	public String myPageReservation(MyPageVO mypage,HttpSession session, Model model) {
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    if (member != null) {
+	        member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("mem_num", user.getMem_num());
+
+	        int resCnt = mypageService.reservationCnt(map);
+	        MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+	        if (booking != null && resCnt > 0) {
+	            member.setC_branch(booking.getC_branch());
+	            member.setM_name(booking.getM_name());
+	            member.setMt_start(booking.getMt_start());
+	            member.setMt_date(booking.getMt_date());
+	            member.setTh_name(booking.getTh_name());
+	        }
+
+	        map.put("mb_num", mypage.getMb_num());
+	        List<MovieBookingVO> detail = mypageService.resDetail(map);
+
+	        model.addAttribute("detail", detail);
+	        model.addAttribute("resCnt", resCnt);
+	        model.addAttribute("member", member);
+	    } 
+	    return "myPageReservation";
 	}
 
 	// 나의 쿠폰

@@ -19,8 +19,7 @@
 	<div class="reservation_rep">
 		<div class="re_movie_number">
 			<span class="mp_movie_number_1">예매번호</span><span
-				class="mp_movie_number_2">0023-</span> <span
-				class="mp_movie_number_3">0619-3123-229</span>
+				class="mp_movie_number_2">00235555555555</span>
 		</div>
 		<div class="reserv_display">
 			<div class="wa_photo">

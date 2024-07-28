@@ -731,7 +731,7 @@ FROM (
 
 
 <!-- 내가 결제한 모든 영화 카운트 -->
-<select id="resDetailCnt" parameterType="long" resultType="integer">
+<!-- <select id="resDetailCnt" parameterType="long" resultType="integer">
 WITH RankedBookings AS (
     SELECT
         mb.user_mb_num,
@@ -761,7 +761,7 @@ WITH RankedBookings AS (
     INNER JOIN seat s ON mbd.seat_num = s.seat_num
     WHERE mb.mem_num = #{mem_num}
 )
-SELECT COUNT(*)
+SELECT COALESCE(COUNT(*), 0) 
 FROM (
     SELECT
         user_mb_num,
@@ -784,15 +784,76 @@ FROM (
     FROM RankedBookings
     WHERE rn = 1
 ) FilteredRankedBookings
+</select> -->
+
+<!-- 영화 결제 상세페이지 여러 개 반환 -->
+<select id="resDetail" parameterType="map" resultType="movieBookingVO">
+WITH RankedBookings AS (
+    SELECT
+        mb.user_mb_num,
+        mb.mb_num,
+        mb.m_code,
+        mb.mt_num,
+        mb.mb_price,
+        mt.th_num,
+        c.c_branch,
+        mb.mem_num,
+        m.m_name,
+        t.th_name,
+        mt.mt_date,
+        m.m_filename,
+        mt.mt_start,
+        mt.mt_end,
+        mbd.md_type,
+        COUNT(mb.mb_num) OVER (PARTITION BY mb.mb_num) AS booking_count,
+        ROW_NUMBER() OVER (PARTITION BY mb.mb_num ORDER BY mb.user_mb_num) AS rn,
+        s.seat_num,
+        s.seat_row,
+        s.seat_column
+    FROM movie_booking mb
+    INNER JOIN movie m ON mb.m_code = m.m_code
+    INNER JOIN mb_detail mbd ON mb.mb_num = mbd.mb_num
+    INNER JOIN movie_time mt ON mb.mt_num = mt.mt_num
+    INNER JOIN theater t ON mt.th_num = t.th_num
+    INNER JOIN cinema c ON t.c_num = c.c_num
+    INNER JOIN seat s ON mbd.seat_num = s.seat_num
+    WHERE mb.mb_num = #{mb_num}
+),
+AggregatedSeats AS (
+    SELECT
+        mb_num,
+        XMLAGG(XMLELEMENT(e, seat_num || ', ') ORDER BY seat_num).EXTRACT('//text()').getCLOBVal() AS seat_nums,
+        XMLAGG(XMLELEMENT(e, seat_row || ', ') ORDER BY seat_row).EXTRACT('//text()').getCLOBVal() AS seat_rows,
+        XMLAGG(XMLELEMENT(e, seat_column || ', ') ORDER BY seat_column).EXTRACT('//text()').getCLOBVal() AS seat_columns
+    FROM RankedBookings
+    GROUP BY mb_num
+)
+SELECT
+    rb.user_mb_num,
+    rb.mb_num,
+    rb.m_code,
+    rb.mt_num,
+    rb.mb_price,
+    rb.th_num,
+    rb.c_branch,
+    rb.mem_num,
+    rb.m_name,
+    rb.th_name,
+    rb.mt_date,
+    rb.m_filename,
+    rb.mt_start,
+    rb.mt_end,
+    rb.md_type,
+    rb.booking_count,
+    a.seat_nums,
+    a.seat_rows,
+    a.seat_columns
+FROM RankedBookings rb
+JOIN AggregatedSeats a ON rb.mb_num = a.mb_num
+WHERE rb.rn = 1
+ORDER BY rb.mb_num DESC
 </select>
 
-<!-- 영화 결제 상세페이지 -->
-<select id="resDetail" parameterType="long" resultType="movieBookingVO">
-
-
-
-
-</select>
 
 
 

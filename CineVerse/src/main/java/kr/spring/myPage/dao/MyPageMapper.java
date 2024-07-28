@@ -63,22 +63,25 @@ public interface MyPageMapper {
 	public Integer movieBookMarkcnt(Long mem_num);
 	@Select("SELECT m.m_name,m.m_filename,m.m_code FROM movie_bookmark mb JOIN movie m ON m.m_code=mb.m_code WHERE mb.mem_num=#{mem_num}")
 	public List<MovieBookMarkVO> movieBookMarkList(Long mem_num);
-	
-	
 	public Integer reservationCnt(Map<String, Object> map);
 	public Integer watMovieCnt(Map<String, Object> map);
-	
-	
-	
-	
 	//내가 본 영화
 	public List<MovieBookingVO> watchedMovList(Map<String, Object> map);//1 리스트
+	
+	
+	
 	
 	
 	//모든 영화 카운트
 	public Integer resDetailCnt(Long mem_num);
 	//예매 디테일
-	public List<MovieBookingVO> resDetail(Long mem_num);
+	public List<MovieBookingVO> resDetail(Map<String, Object> map);
+	
+	
+	
+	
+	
+	
 	
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);
