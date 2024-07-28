@@ -7,29 +7,30 @@
 }
 
 .reserve-container>div {
-	border: 1px solid #dddddd;
+	/* border: 1px solid #dddddd; */
 }
 
 .reserve-title {
-	border-bottom: 1px solid #dddddd;
-	background-color: #444444;
-	text-align: center;
-	color: #dddddd;
-	padding: 5px;
-	font-size: 15px;
-	font-weight: bold;
+    display: flex;
+    background-color: var(--gray-6);
+    /* text-align: center; */
+    color: #fff;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
 }
 
 .select-movietime{
-	border-bottom: 1px solid #dddddd;
-	background-color: #D3D3D3;
-	text-align: center;
-	align-items: center;	
-	padding: 5px;
-	font-size: 20px;
-	font-weight: bold;
-	height: 70px;
-	margin-bottom: 30px;
+    display: flex;
+    background-color: var(--gray-1);
+    align-items: center;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 55px;
+    justify-content: center;
 }
 
 /* 영화 */
@@ -73,10 +74,8 @@
 }
 
 .movie-list-wrapper{
-	max-height: 662px; /* 원하는 최대 높이 값으로 설정하세요 */
-    overflow-y: auto;  /* 세로 방향으로 스크롤바가 필요할 경우 표시 */
-    border: 1px solid #ddd; /* 선택적: 경계선 추가 */
-    padding: 10px; /* 선택적: 내부 여백 추가 */
+	max-height: 710px;
+    overflow-y: auto;
 }
 
 
@@ -87,15 +86,16 @@
 }
 
 .select {
-	font-size: 14px;
-	display: flex;
-    padding: 14px;
-    border-bottom: 1px solid var(--gray-3);
+	gap:5px;
+font-size: 13px;
+    display: flex;
+    padding: 17px;
+    /* border-bottom: 1px solid var(--gray-3); */
     /* background-color: #E6E4D9; */
     /* margin-top: 20px; */
     /* margin-bottom: 20px; */
-    align-items: center;
     font-weight: 600;
+    align-items: center;
 }
 
 .ic_grade {
@@ -288,10 +288,10 @@
 }
 
 .branch-section{
-	display: flex;
-	flex-direction: column;
-	width: 600px;
-	
+    display: flex;
+    flex-direction: row;
+    /* width: 600px; */
+    flex-wrap: wrap;
 }
 
  
@@ -469,42 +469,49 @@
 }
 
 .movietime-container{
-	display: flex;
-	width: 600px;
-	flex-wrap: wrap;
+    display: flex;
+    /* width: 600px; */
+    flex-wrap: wrap;
 }
 
-
-/* 보류 
-
-
-.movie-list-title {
-    padding: 6px 4px;
-    margin-left: 5px;
-    font-size: 12px;
+.movie-list-wrapper::-webkit-scrollbar {
+	width: 5px;
 }
 
-.movie-list-title-active {
-    background-color: #333333;
+.movie-list-wrapper::-webkit-scrollbar-thumb {
+	background-color: var(--gray-3);
+	border-radius: 10px;
 }
 
-.movie-list-title-active>button {
-    font-weight: bold;
-    color: white;
+.movie-list-wrapper::-webkit-scrollbar-track {
+	background-color: var(--gray-1);
+	border-radius: 10px;
 }
 
-
-
-.movie-list-age {
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 12px;
-    border-radius: 100%;
+.cinema-gallery::-webkit-scrollbar {
+	height: 3px;
 }
 
+.cinema-gallery::-webkit-scrollbar-thumb {
+	background-color: var(--gray-3);
+	border-radius: 10px;
+}
 
+.cinema-gallery::-webkit-scrollbar-track {
+	background-color: var(--gray-1);
+	border-radius: 10px;
+}
 
-*/
+.reserve-time-wrapper::-webkit-scrollbar {
+	width: 5px;
+}
+
+.reserve-time-wrapper::-webkit-scrollbar-thumb {
+	background-color: var(--gray-3);
+	border-radius: 10px;
+}
+
+.reserve-time-wrapper::-webkit-scrollbar-track {
+	background-color: var(--gray-1);
+	border-radius: 10px;
+}

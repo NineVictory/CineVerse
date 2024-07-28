@@ -31,7 +31,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> 
 
     <!-- 날짜 및 시간 -->
     <div class="time-part">
@@ -164,19 +164,20 @@
                                     let selectMovieTimeListHtml = '';
 
                                     // 각 c_branch에 대해 반복
-                                    for (let branch in branches) {
+                                     for (let branch in branches) {
                                         // c_branch 제목을 추가
-                                        selectMovieTimeListHtml += '<div class="branch-section"><h3 class="c-location">' + branch + '</h3>';
+                                        selectMovieTimeListHtml +='<h3 class="c-location">' + branch + '</h3>';
+                                        selectMovieTimeListHtml += '<div class="branch-section">';
 
                                         // 시간표 항목들을 가로로 정렬할 수 있도록 HTML 생성
-                                        selectMovieTimeListHtml += '<div class="movietime-container">';
                                         branches[branch].forEach(function(item) {
+                                            selectMovieTimeListHtml += '<div class="movietime-container" data-mtNum="' + item.mt_num + '">';
                                             selectMovieTimeListHtml += '<div class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
                                             selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
                                             selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
                                             selectMovieTimeListHtml += '</div>';
+                                            selectMovieTimeListHtml += '</div>'; // movietime-container 종료
                                         });
-                                        selectMovieTimeListHtml += '</div>'; // movietime-container 종료
                                         selectMovieTimeListHtml += '</div>'; // branch-section 종료
                                     }
 
