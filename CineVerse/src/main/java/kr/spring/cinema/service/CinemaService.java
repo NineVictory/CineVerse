@@ -81,7 +81,8 @@ public interface CinemaService {
 	
 	//상영시간별 좌석 예매자 수 구하기 
 	//public Integer bookingcount(long mt_num);
-	
+	public Integer getBookedSeats(long mt_num); // 예매된 좌석 수를 조회하는 메서드
+	public Integer getAvailableSeats(long mt_num); // 남은 좌석 수를 계산하는 메서드
 	
 		//영화관(잠시 보류)
 		//public List<CinemaVO> selectCinemaList(Integer c_location);

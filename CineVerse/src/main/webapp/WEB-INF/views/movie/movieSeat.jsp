@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             	<p class="movietime">${movieInfo.mt_date} | ${movieInfo.mt_start} ~ ${movieInfo.mt_end}</p>
                             	<p class="movieplace">${movieInfo.c_branch}지점 ${movieInfo.th_name}</p>
                         </c:forEach>
+                        		 <p>남은 좌석: ${availableSeats}석</p>
                         <div class="select-theater-date">
                        	 	<div class="selected-seats-wrapper">
                         		<span class="selected-seats-title">좌석번호</span>

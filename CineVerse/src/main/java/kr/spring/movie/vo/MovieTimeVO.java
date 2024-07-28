@@ -24,4 +24,5 @@ public class MovieTimeVO {
 	private String m_filename; 
 	
 	private int c_location;
+	private Integer availableSeats; 
 }

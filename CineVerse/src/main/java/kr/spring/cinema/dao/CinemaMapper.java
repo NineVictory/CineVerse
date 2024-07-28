@@ -95,7 +95,7 @@ public interface CinemaMapper {
 
 	
 	//상영시간별 좌석 예매자 수 구하기 
-	//public Integer bookingcount(long mt_num);
+	public Integer bookingcount(long mt_num);
 	//public Integer bookingcount(Map<String, Object> map);
 	
 	

@@ -148,10 +148,26 @@ public class CinemaServiceImpl implements CinemaService{
 		return cinemaMapper.getMovieRankMain();
 	}
 
+	@Override
+	public Integer getBookedSeats(long mt_num) {
+		return cinemaMapper.bookingcount(mt_num);
+	}
+
+	@Override
+	public Integer getAvailableSeats(long mt_num) {
+		Integer totalSeats = 96; // 전체 좌석 수 (고정값 또는 데이터베이스에서 가져올 수 있음)
+        Integer bookedSeats = getBookedSeats(mt_num);
+        return totalSeats - (bookedSeats != null ? bookedSeats : 0);
+	}
+
+	
 	/*
 	 * @Override public Integer bookingcount(long mt_num) { return
 	 * cinemaMapper.bookingcount(mt_num); }
 	 */
+
+
+	 
 
 
 

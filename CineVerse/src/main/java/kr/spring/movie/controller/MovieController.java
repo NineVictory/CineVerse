@@ -304,23 +304,28 @@ public class MovieController {
            return cinemaService.selectMovieTimeList(c_num, m_code, mt_date);
        }
    
-      /*=======================
-       * 좌석 선택
-       *=======================*/
-       @GetMapping("/movie/movieSeat")
-       public String movieSeat(long mt_num, Model model) {
-           // 선택한 영화 및 지점명 정보 목록 조회
-           List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
-           List<SeatVO> seatList = cinemaService.selectSeatList(mt_num);
-           List<SeatVO> bookedSeats = movieService.seatBooking(mt_num);
-           
-           // Model 객체에 데이터 추가
-           model.addAttribute("movieInfoList", movieInfoList);
-           model.addAttribute("seatList", seatList);
-           model.addAttribute("bookedSeats", bookedSeats);
-           // 뷰 이름 반환
-           return "movieSeat"; 
-       }
+       /*=======================
+        * 좌석 선택
+        *=======================*/
+        @GetMapping("/movie/movieSeat")
+        public String movieSeat(long mt_num, Model model) {
+            // 선택한 영화 및 지점명 정보 목록 조회
+            List<MovieTimeVO> movieInfoList = cinemaService.selectAllInfoList(mt_num);
+            List<SeatVO> seatList = cinemaService.selectSeatList(mt_num);
+            List<SeatVO> bookedSeats = movieService.seatBooking(mt_num);
+            
+            // 남은 좌석 수 계산
+            Integer availableSeats = cinemaService.getAvailableSeats(mt_num);
+            
+            
+            // Model 객체에 데이터 추가
+            model.addAttribute("movieInfoList", movieInfoList);
+            model.addAttribute("seatList", seatList);
+            model.addAttribute("bookedSeats", bookedSeats);
+            model.addAttribute("availableSeats", availableSeats);
+            // 뷰 이름 반환
+            return "movieSeat"; 
+        }
    
          /*=======================
         * 영화 결제 
