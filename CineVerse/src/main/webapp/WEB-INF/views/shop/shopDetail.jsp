@@ -144,10 +144,15 @@
 			        			</div>
 			        		</div>
 							<c:forEach var="review" items="${reviewList}">
-								<div class="bookMark_box" style="margin-bottom: 20px;">
+								<div class="bookMark_box_1" style="margin-bottom: 20px;">
 								            <div class="bk_content">
-								                <div class="my_board_bk">
-								                    <div class="my_board_type">
+								            <div class="review_fav_date">
+								            	<div class="my_photo_img">
+								            		<img src="${pageContext.request.contextPath}/myPage/viewProfile?mem_num=${review.mem_num}" width="18" height="18" class="my-photo">
+								            	</div>
+								            	<div class="my_review_idall">
+												
+												<div class="my_board_type">
 														<c:if test="${review.pr_grade>=1}"> 
 															<img src=${pageContext.request.contextPath}/images/cje/star_yes.png class="userReStar">
 														</c:if>
@@ -184,15 +189,22 @@
 														</c:if>
 														 ${review.pr_grade}
 								                    </div>
+								                    
+								                    <div class="id_regdate">
+												${review.mem_id} · ${review.pr_reg_date}
+												</div>
+								                    </div>
+								            </div>
+								                <div class="my_board_bk">
+								                
+								                    
 								                    <div class="my_boardWrite_bk">${review.pr_content}</div>
 								                </div>
 								                <div class="bk_delete_btn">
 								                    
 								                </div>
 								            </div>
-								            <div class="review_fav_date">
-												${review.mem_id} · ${review.pr_reg_date}
-								            </div>
+								            
 								        </div>
 								        </c:forEach>
 				    		</div>

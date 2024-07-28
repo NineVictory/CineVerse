@@ -122,7 +122,11 @@ public class ShopController {
 			if (count!=0) {
 				float review_grade = Math.round(shopService.reviewGrade(p_num) * 10.0) / 10.0f;
 				List<ProductVO> reviewList = shopService.reviewList(p_num);
-
+				
+				for (ProductVO review : reviewList) {
+	                review.setMem_id(maskId(review.getMem_id()));
+	            }
+				
 				model.addAttribute("reviewList", reviewList);
 				model.addAttribute("review_grade", review_grade);
 			}
@@ -131,6 +135,15 @@ public class ShopController {
 			model.addAttribute("product", product);
 			return "shopDetail";
 		}		
+	}
+	
+	private String maskId(String mem_id) {
+	    if (mem_id.length() > 2) {
+	    	// 2개까지는 자기 아이디 보여주고 나머지는 *표로 반복해서 보여주기
+	        return mem_id.substring(0, 2) + "*".repeat(mem_id.length() - 2);
+	    } else {
+	        return mem_id;
+	    }
 	}
 
 	// 벌스샵 결제 (상품 결제) - 바로 가기

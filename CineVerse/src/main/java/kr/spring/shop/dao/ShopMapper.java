@@ -206,7 +206,7 @@ public interface ShopMapper {
 	public Float reviewGrade(long p_num);
 	
 	// 리뷰 리스트
-	@Select("SELECT * FROM product_review JOIN order_detail USING(od_num) JOIN orders USING(order_num) JOIN member USING(mem_num) WHERE product_review.p_num=#{p_num}")
+	@Select("SELECT * FROM product_review JOIN order_detail USING(od_num) JOIN orders USING(order_num) JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE product_review.p_num=#{p_num}")
 	public List<ProductVO> reviewList(long p_num);
 	
 	// 리뷰 카운트
