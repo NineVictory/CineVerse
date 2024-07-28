@@ -5,7 +5,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/movie.bookmark.js"></script>
 <script src="${pageContext.request.contextPath}/js/movieList.js"></script>
-
     <div class="movie-page">
         <div class="movie-main">
             <form id="movie_search" method="get">
@@ -21,11 +20,14 @@
                     </div>
                     </div>
                     
-                    <div class="genre-checkboxes">
-                        <c:forEach var="genre" items="${genres}" varStatus="status">
-                            <label><input type="checkbox" name="genre" value="${genre}" class="genre-checkbox"> ${genre}</label>
-                        </c:forEach>
-                    </div>
+                   <div class="genre-toggles">
+					    <c:forEach var="genre" items="${genres}" varStatus="status">
+					        <div class="toggle-button" data-genre="${genre}">
+					            ${genre}
+					        </div>
+					    </c:forEach>
+					</div>
+
                     <div class="select-wrapper">
                         <select name="keyfield" id="keyfield-select">
                             <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>영화이름</option>
