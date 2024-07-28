@@ -515,8 +515,8 @@ html {
 
 #scroll-to-top {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 60px;
+    right: 130px;
     border: none;
     border-radius: 5px;
     padding: 10px;
