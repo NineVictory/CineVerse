@@ -241,4 +241,12 @@ public class AdminCouponController {
 
 		return "common/resultAlert";
 	}
+	
+	@GetMapping("/admin/adminCrowdParticipants")
+	public String adminCrowdParticipants() {
+		
+		return "adminCrowdParticipants";
+	}
+	
+	
 }

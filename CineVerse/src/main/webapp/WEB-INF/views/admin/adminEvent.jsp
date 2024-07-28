@@ -83,7 +83,7 @@
                     		<input type="button" value="이벤트 신청자" onclick="redirectToEventParticipants(${event.event_num})"/>
                     	</c:when>
                    		<c:when test="${event.ep_type==2 }"> 
-                    		<input type="button" value="이벤트 신청자" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminCrowdParticipants'"/> 
+                    		<input type="button" value="이벤트 신청자" onclick = "location.href ='${pageContext.request.contextPath}/admin/adminCrowdParticipants?event_num=${event.event_num}'"/> 
                     	</c:when> 
                     </c:choose></td>
                     <td class="button1">
