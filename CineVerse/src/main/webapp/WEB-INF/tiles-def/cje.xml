@@ -162,5 +162,8 @@
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminCrowdParticipants.jsp"/>
 	</definition>
     
-    
+    	<definition name="supportConsultForm2" extends="supportMain">
+		<put-attribute name="title" value="1:1문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/support/supportConsultForm2.jsp"/>
+	</definition>
 </tiles-definitions>
