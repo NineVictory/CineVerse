@@ -22,7 +22,7 @@ public class UserEventVO {
 	private String event_end;
 	private Date event_reg_date;
 	private Date event_modify_date;
-	
+	private String ep_content;
 	//추가
 	private String event_type;
 	private int ep_type;

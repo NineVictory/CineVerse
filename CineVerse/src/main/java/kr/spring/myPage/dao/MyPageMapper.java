@@ -56,8 +56,15 @@ public interface MyPageMapper {
 	public List<ConsultVO> consultList(Map<String, Object> map);//문의 목록
 	@Select("SELECT * FROM (SELECT * FROM consult  WHERE mem_num = #{mem_num} ORDER BY consult_num DESC) WHERE ROWNUM = 1")
 	public ConsultVO lastConsert(Long mem_num);//마지막 문의글
+	
+	
+	
 	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
 	public List<EventVO> eventList(Map<String, Object> map);
+	
+	
+	
+	
 	//기대하는 영화
 	@Select("SELECT COUNT(*) FROM movie_bookmark WHERE mem_num=#{mem_num}")
 	public Integer movieBookMarkcnt(Long mem_num);
@@ -67,22 +74,11 @@ public interface MyPageMapper {
 	public Integer watMovieCnt(Map<String, Object> map);
 	//내가 본 영화
 	public List<MovieBookingVO> watchedMovList(Map<String, Object> map);//1 리스트
-	
-	
-	
-	
-	
 	//모든 영화 카운트
 	public Integer resDetailCnt(Long mem_num);
 	//예매 디테일
 	public MovieBookingVO resDetail(Long mb_num);
-	
-	
-	
-	
-	
-	
-	
+
 	public List<MovieBookingVO> reservationList(Long mem_num);
 	public List<MovieBookingVO> lastRes(Long mem_num);
 	public MovieBookingVO mainRes(Long mem_num);//메인나브
@@ -99,21 +95,12 @@ public interface MyPageMapper {
 	@Delete("DELETE FROM movie_review WHERE mr_num=#{mr_num}")
 	public void delMovieRev(Long mr_num);
 	
-	
-	
-	
-	
-	
-	
-	
 	//쿠폰사용 1로 변경
 	@Update("UPDATE member_coupon SET coupon_use=2 WHERE mem_num=#{mem_num}")
 	public void updateCoupon(Long mem_num);
 	//포인트 환불
 	@Insert("INSERT INTO point_history(ph_num,ph_point,ph_date,mem_num,ph_type,ph_payment) VALUES(point_history_seq.nextval,#{ph_point},SYSDATE,#{mem_num},0,'환불'")
 	public void updatePoint(Long mem_num);
-	
-	
 	
 	//구독 목록 보기
 	@Select("SELECT * FROM member WHERE mem_num=#{mem_num}")
@@ -145,6 +132,9 @@ public interface MyPageMapper {
 	@Update("UPDATE member_detail SET mem_membership_date = NULL WHERE mem_num=(SELECT mem_num FROM member_detail WHERE ADD_MONTHS(mem_membership_date,1)<SYSDATE)")
 	public void updateNoSubDate();
 
+
+	
+	
 	
 
 
