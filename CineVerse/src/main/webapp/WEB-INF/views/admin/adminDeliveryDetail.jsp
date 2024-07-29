@@ -7,37 +7,7 @@
 <div class = "admin_member">
 	<div class = "order_modify_form">
 		<h2>배송 관리</h2>
-			주문번호 : ${order_num}
-		
-		<form:form action="modifyDelivery" class = "order_change" method="post" modelAttribute="ordersVO" >
-			<form:hidden path="order_num"/>
-			<ul>
-			<c:if test="${order_status != 6}">
-			<li>
-             	<label for="order_status">주문 상태 변경 </label>
-                <form:radiobutton path="order_status" value="1"/> 결제완료
-                <form:radiobutton path="order_status" value="2"/> 배송준비중
-                <form:radiobutton path="order_status" value="3"/> 배송중
-                <form:radiobutton path="order_status" value="4"/> 배송완료
-                <form:radiobutton path="order_status" value="5"/> 주문취소
-                <form:radiobutton path="order_status" value="6"/> 주문확정
-                <form:errors path="order_status" element="div" cssClass="error"/>
-            </li>
-            </c:if>
-            <c:if test="${order_status == 6}">
-			<li>
-             	<label for="order_status">주문 상태 변경 </label>
-                <form:radiobutton path="order_status" value="1"/> 결제완료
-                <form:radiobutton path="order_status" value="2"/> 배송준비중
-                <form:radiobutton path="order_status" value="3"/> 배송중
-                <form:radiobutton path="order_status" value="4"/> 배송완료
-                <form:radiobutton path="order_status" value="5"/> 주문취소
-                <form:errors path="order_status" element="div" cssClass="error"/>
-            </li>
-            </c:if>
-            <form:button id="submit_btn" class="button2">변경하기</form:button>
-            </ul>
-    <table class="adminMember-table">
+		<table class="adminMember-table">
         <thead>
             <tr>
                 <th>회원번호</th>
@@ -66,6 +36,34 @@
             </c:forEach> 
         </tbody>
     </table>
+		<form:form action="modifyDelivery" class = "order_change" method="post" modelAttribute="ordersVO" >
+			<form:hidden path="order_num"/>
+			<ul>
+			<c:if test="${order_status != 6}">
+			<li>
+             	<label for="order_status">주문 상태 변경 </label>
+                <form:radiobutton path="order_status" value="1"/> 결제완료
+                <form:radiobutton path="order_status" value="2"/> 배송준비중
+                <form:radiobutton path="order_status" value="3"/> 배송중
+                <form:radiobutton path="order_status" value="4"/> 배송완료
+                <form:radiobutton path="order_status" value="5"/> 주문취소
+                <form:radiobutton path="order_status" value="6"/> 주문확정
+                <form:errors path="order_status" element="div" cssClass="error"/>
+            </li>
+            </c:if>
+            <c:if test="${order_status == 6}">
+			<li>
+             	<label for="order_status">주문 상태 변경 </label>
+                <form:radiobutton path="order_status" value="1"/> 결제완료
+                <form:radiobutton path="order_status" value="2"/> 배송준비중
+                <form:radiobutton path="order_status" value="3"/> 배송중
+                <form:radiobutton path="order_status" value="4"/> 배송완료
+                <form:radiobutton path="order_status" value="5"/> 주문취소
+                <form:errors path="order_status" element="div" cssClass="error"/>
+            </li>
+            </c:if>
+            <form:button id="submit_btn" class="button2">변경하기</form:button>
+            </ul>
 	</form:form>
 </div>
 </div>

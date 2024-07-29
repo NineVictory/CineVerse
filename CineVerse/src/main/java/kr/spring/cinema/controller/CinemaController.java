@@ -305,7 +305,7 @@ public class CinemaController {
 	 				model.addAttribute("message", "성공적으로 글이 수정되었습니다.");
 	 				model.addAttribute("url", 
 	 						request.getContextPath()+"/admin/adminTimeControll");
-	 	 
+	 				
 	 				return "common/resultAlert";
 	 			}
 	

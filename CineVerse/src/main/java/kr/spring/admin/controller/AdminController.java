@@ -362,7 +362,7 @@ public class AdminController {
 		return "adminNoticeModify";
 		
 	}
-	//공지사항 등록
+	//공지사항 수정
 	@PostMapping("admin/adminNoticeModify")
 	public String modifyNotice(@Valid NoticeVO noticeVO,
 			BindingResult result,
@@ -395,8 +395,7 @@ public class AdminController {
 		//View 메시지 처리
 		model.addAttribute("message", "성공적으로 글이 수정되었습니다.");
 		model.addAttribute("url", 
-				request.getContextPath()+"/admin/adminNoticeModify?nb_num="
-										+noticeVO.getNb_num());
+				request.getContextPath()+"/admin/adminNotice");
 
 		return "common/resultAlert";
 	}
