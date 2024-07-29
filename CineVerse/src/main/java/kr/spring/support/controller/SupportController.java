@@ -237,7 +237,7 @@ public class SupportController {
 			return "common/resultAlert";
 		}
 		MemberVO member = memberService.selectCheckMember(user.getMem_id());
-		if(consult.getMem_num() != member.getMem_num()) {
+		if(consult.getMem_num() != member.getMem_num() && user.getMem_auth() < 9) {
 			model.addAttribute("message", "타인의 문의글은 볼 수 없습니다.");
 			model.addAttribute("url", request.getContextPath() + "/support/consultList");
 			return "common/resultAlert";
