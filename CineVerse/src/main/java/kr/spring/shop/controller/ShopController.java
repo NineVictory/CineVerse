@@ -182,9 +182,9 @@ public class ShopController {
 		List<MyPageVO> couponList = null;
 		map.put("mem_num", user.getMem_num());
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));//복붙
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		if(member.getCoupon_cnt() > 0) {
-			couponList = mypageService.selectMemCouponList(map);
+			couponList = shopService.selectMemCouponList(map);
 		}
 
 		long total = (product.getP_price() * pb_quantity);

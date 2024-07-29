@@ -55,7 +55,7 @@
 				<hr size="1" width="100%" class="wa_line">
 				<div class="reserv_pay_cancle">
 					<div>
-						<span class="m_pay">총 결제금액 </span><span class="my_blue_font">${od.p_price*od.order_quantity}원</span>
+						<span class="m_pay">총 상품금액 </span><span class="my_blue_font">${od.p_price*od.order_quantity}원</span>
 					</div>
 					<div class="my_bought_btn">
 						<div>

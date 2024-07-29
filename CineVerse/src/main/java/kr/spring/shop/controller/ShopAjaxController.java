@@ -133,80 +133,76 @@ public class ShopAjaxController {
 	@PostMapping("/shop/buyDirect")
 	@ResponseBody
 	public Map<String, Object> buyDirect(@ModelAttribute OrdersVO orders, HttpSession session, Model model) {
-		log.debug("<<상품 바로 구매>> ::: " + orders);
+	    log.debug("<<상품 바로 구매>> ::: " + orders);
 
-		Map<String, Object> mapJson = new HashMap<String, Object>();
-		MemberVO user = (MemberVO) session.getAttribute("user");
+	    Map<String, Object> mapJson = new HashMap<>();
+	    MemberVO user = (MemberVO) session.getAttribute("user");
 
-		if (user == null) { // 로그아웃 상태
-			mapJson.put("result", "logout");
-		} else if (orders.getA_num() == 0) { // 배송지 없음
-			mapJson.put("result", "noAddress");
-		} else if(orders.getAgree()==2) { // 동의 x
-			mapJson.put("result", "noAgree");
-		} else {
-			long point = shopService.getPoint(user.getMem_num());
-			if(point<orders.getTotal()) { // 포인트 부족
-				mapJson.put("result", "noPoint");
-			} else { // 성공
-				orders.setMem_num(user.getMem_num());
-				orders.setOrder_quantity(orders.getPb_quantity());
+	    if (user == null) { // 로그아웃 상태
+	        mapJson.put("result", "logout");
+	    } else if (orders.getA_num() == 0) { // 배송지 없음
+	        mapJson.put("result", "noAddress");
+	    } else if (orders.getAgree() == 2) { // 동의 x
+	        mapJson.put("result", "noAgree");
+	    } else {
+	        long point = shopService.getPoint(user.getMem_num());
+	        if (point < orders.getTotal()) { // 포인트 부족
+	            mapJson.put("result", "noPoint");
+	        } else { // 성공
+	            orders.setMem_num(user.getMem_num());
+	            orders.setOrder_quantity(orders.getPb_quantity());
 
-				// 주문번호(사용자에게 보여줄 용도. PK 아님) 생성
-				// 약간... 간지 느낌
-				// 형식 : yyyy-mmdd-랜덤숫자-주문번호(PK)
-				LocalDate today = LocalDate.now();
+	            // 주문번호(사용자에게 보여줄 용도. PK 아님) 생성
+	            LocalDate today = LocalDate.now();
+	            int year = today.getYear();
+	            int month = today.getMonthValue();
+	            int day = today.getDayOfMonth();
+	            String od_number = String.format("%d-%02d%d", year, month, day);
 
-				int year = today.getYear();
-				int month = today.getMonthValue();
-				int day = today.getDayOfMonth();
-				String od_number;
-				if(month<10) {
-					od_number = year + ("-0"  + month) + day;
-				} else {
-					od_number = year + ("-"  + month) + day;
-				}
+	            Random random = new Random();
+	            StringBuilder ran_num_result = new StringBuilder("-");
+	            for (int i = 0; i < 4; i++) {
+	                ran_num_result.append(random.nextInt(10));
+	            }
 
+	            // 주문 번호 (PK) 설정
+	            long order_num = shopService.getNextOrderNum();
+	            orders.setOrder_num(order_num);
 
-				Random random = new Random();
+	            // 주문 번호 (간지용) 설정
+	            od_number = od_number + ran_num_result.toString() + "-" + order_num;
+	            orders.setOd_number(od_number);
 
-				String ran_num_result = "-";
-				for(int i=0; i<4; i++) {
-					int ran_num = random.nextInt(10);
-					ran_num_result += ran_num;
-				}
+	            shopService.directOrder(orders);
+	            shopService.directOrderDetail(orders);
 
-				// 주문 번호 (PK) 설정
-				long order_num = shopService.getNextOrderNum();
-				orders.setOrder_num(order_num);
+	            // 상품 수량 차감
+	            shopService.sellProduct(orders.getPb_quantity(), orders.getP_num());
 
-				// 주문 번호 (간지용) 설정
-				od_number = od_number + ran_num_result + "-" + order_num;
-				orders.setOd_number(od_number);
+	            // 쿠폰 사용 여부 처리
+	            if (orders.getMc_num() != 0) { // 쿠폰 사용했을 경우
+	                shopService.useCoupon(order_num, orders.getMc_num());
+	                CouponVO cp = shopService.couponInfo(orders.getMc_num());
+	                log.debug("<<쿠폰>>" + cp.getCoupon_sale() + ", " + orders.getTotal());
+	                long total = orders.getTotal();
+	                orders.setPh_point(total);
+	                orders.setPh_type(1); // 사용
+	            } else {
+	                log.debug("<<쿠폰 없음!>>" + orders.getTotal());
+	                orders.setPh_point(orders.getTotal());
+	                orders.setPh_type(1); // 사용
+	            }
 
-				shopService.directOrder(orders);
-				shopService.directOrderDetail(orders);
+	            // 포인트 갱신
+	            shopService.usePoint(orders);
+	            memberService.totalPoint(user.getMem_num());
 
-				// 상품 수량 차감
-				shopService.sellProduct(orders.getPb_quantity(), orders.getP_num());
-
-				// 포인트 차감
-				orders.setPh_point(orders.getTotal());
-				orders.setPh_type(1); // 사용
-				shopService.usePoint(orders);
-
-				// 포인트 갱신 
-				memberService.totalPoint(user.getMem_num());
-
-				if(orders.getMc_num()!=0) { // 쿠폰 사용했을 경우
-					shopService.useCoupon(order_num, orders.getMc_num());
-				}
-
-				mapJson.put("result", "success");
-			}
-		}
-		return mapJson;
+	            mapJson.put("result", "success");
+	        }
+	    }
+	    return mapJson;
 	}
+
 
 
 	/* 왜 이건 안 됐던걸까
@@ -327,9 +323,7 @@ public class ShopAjaxController {
 	    
 	    String totalStr = formData.get("total");
 	    long total = Integer.parseInt(totalStr.replace(",", ""));
-	    if (total<50000) {
-	    	total+=3000;
-	    }
+	    int deli = 0;
 	    String total_countStr = formData.get("total_count");
 	    long total_count = Integer.parseInt(total_countStr.replace(",", ""));
 	    
@@ -393,18 +387,27 @@ public class ShopAjaxController {
 	                shopService.basketDelete(pb_num); // 장바구니에서 삭제
 	            }
 
-	            // 포인트 차감
-	            orders.setPh_point(total);
-	            orders.setPh_type(1); // 사용
-	            shopService.usePoint(orders);
+	            
+	         // 상품 수량 차감
+	            shopService.sellProduct(orders.getPb_quantity(), orders.getP_num());
 
-	            // 포인트 갱신 
-	            memberService.totalPoint(user.getMem_num());
-
+	            // 쿠폰 사용 여부 처리
 	            if (mc_num != 0) { // 쿠폰 사용했을 경우
-	                shopService.useCoupon(order_num, orders.getMc_num());
+	                shopService.useCoupon(order_num, mc_num);
+	                CouponVO cp = shopService.couponInfo(mc_num);
+	                orders.setPh_point(total-cp.getCoupon_sale());
+	                orders.setPh_type(1); // 사용
+	            } else {
+	                orders.setPh_point(total);
+	                orders.setPh_type(1); // 사용
 	            }
 
+	            // 포인트 갱신
+	            shopService.usePoint(orders);
+	            memberService.totalPoint(user.getMem_num());
+	            
+	            
+	            
 	            mapJson.put("result", "success");
 	        }
 	    }
