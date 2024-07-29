@@ -645,7 +645,7 @@ $(document).ready(function() {
                 <c:if test="${!empty user}">
                 	<div class="moveSeatButton" id="moveSeatDiv">
                 	<img src="${pageContext.request.contextPath}/images/wright-arrow.png" width="30">
-                    <input type="submit" class="button_styles" value="좌석 선택">
+                    <input type="submit" class="button_styles" value="좌석 선택" id="movieSeatDiv">
                     </div>
                 </c:if>
                 <c:if test="${empty user}">
@@ -659,7 +659,7 @@ $(document).ready(function() {
         <script>
         	document.getElementById('moveSeatDiv').addEventListener('click', function() {
             	// 버튼 요소를 찾아서 클릭 이벤트를 트리거
-            	document.getElementById('moveSeatDiv').click();
+            	document.getElementById('movieSeatDiv').click();
        		 });
         
             function alertAndRedirect() {
