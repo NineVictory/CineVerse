@@ -229,9 +229,10 @@ $(function() {
 		//댓글 번호
 		let cc_num = $(this).attr('data-num');
 		//댓글 내용
-		let cc_content = $(this).closest('.comment-container').find('.cc-content').html().replace(/<br>/gi, '\r\n');
+		let cc_content = $(this).closest('.cc-all-container').find('.cc-content').html().replace(/<br>/gi, '\r\n');
 		let mem_num = $(this).attr('data-memnum');
 		let name = $(this).attr('data-name');
+		console.log(cc_num + ',' + mem_num);
 		let modifyUI = '';
 	/*	modifyUI += '	<div class="flexbox-p mcc-container">';
 		modifyUI += '		<div>';
@@ -265,14 +266,14 @@ $(function() {
 /*		$(this).closest('.comment-container').hide();
 		$(this).closest('.cc-all-container').find('.response-btn').hide();
 		$(this).closest('.cc-all-container').find('.response-container').show();*/
-		$(this).closest('.comment-container').find('.cc-content').hide();
-		$(this).closest('.comment-container').find('.cc-modify-date').hide();
-		$(this).closest('.comment-container').find('.cc-btn').hide();
-		$(this).closest('.comment-container').find('.response-btn').hide();
-		$(this).closest('.comment-container').find('.cc-like-btn').hide();
+		$(this).closest('.cc-all-container').find('.cc-content').hide();
+		$(this).closest('.cc-all-container').find('.cc-modify-date').hide();
+		$(this).closest('.cc-all-container').find('.cc-btn').hide();
+		$(this).closest('.cc-all-container').find('.response-btn').hide();
+		$(this).closest('.cc-all-container').find('.cc-like-btn').hide();
 
 		//수정폼을 수정하고자하는 데이터가 있는 div에 노출
-		$(this).closest('.comment-container').find('.sub-item').prepend(modifyUI);
+		$(this).closest('.cc-all-container').find('.sub-item').prepend(modifyUI);
 
 	});
 
@@ -322,7 +323,7 @@ $(function() {
 					let updatedContent = form.find('#mcc_content').val();
 					form.closest('.cc-all-container').find('.cc-content').html(updatedContent.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r\n/g, '<br>').replace(/\r/g, '<br>').replace(/\n/g, '<br>'));
 					//등록일->수정일
-					this.closest('.cc-all-container').find('.cc-modify-date').html(param.cc_modify_date);
+					form.closest('.cc-all-container').find('.cc-modify-date').html(param.cc_modify_date);
 					
 					//수정폼 초기화
 					initModifyForm();

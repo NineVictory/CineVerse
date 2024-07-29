@@ -48,22 +48,30 @@
 	
 	
 	
-	<definition name="assignList" extends="boardList">
+	<definition name="assignList"  template="/WEB-INF/views/template/layout_assign.jsp">
+	
 		<put-attribute name="title" value="양도/교환"/>
+		<put-attribute name="css" value="/WEB-INF/views/board/boardCSS2.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header_all.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignList.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+		
+		
+		
 	</definition>
 	
-	<definition name="assignView" extends="boardList">
+	<definition name="assignView" extends="assignList">
 		<put-attribute name="title" value="양도/교환 글상세"/>
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignView.jsp"/>
 	</definition>
 	
-	<definition name="assignWrite" extends="boardList">
+	<definition name="assignWrite" extends="assignList">
 		<put-attribute name="title" value="양도/교환 글등록"/>
+		<put-attribute name="css" value="/WEB-INF/views/assignboard/boardCSS2.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignWrite.jsp"/>
 	</definition>
 	
-	<definition name="assignModify" extends="boardList">
+	<definition name="assignModify" extends="assignList">
 		<put-attribute name="title" value="양도/교환 글수정"/>
 		<put-attribute name="body" value="/WEB-INF/views/assignboard/assignModify.jsp"/>
 	</definition>
