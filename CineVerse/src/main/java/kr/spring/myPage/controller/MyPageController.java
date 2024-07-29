@@ -175,8 +175,8 @@ public class MyPageController {
 	            member.setTh_name(booking.getTh_name());
 	        }
 
-	        map.put("mb_num", mypage.getMb_num());
-	        List<MovieBookingVO> detail = mypageService.resDetail(map);
+	       
+	        MovieBookingVO detail = mypageService.resDetail(mypage.getMb_num());
 
 	        model.addAttribute("detail", detail);
 	        model.addAttribute("resCnt", resCnt);
@@ -932,7 +932,33 @@ public class MyPageController {
 		model.addAttribute("member", member);
 		return "deleteMember";
 	}
+	
+	@PostMapping("/myPage/deleteMember")
+	public String postDeleteMember(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
 
+		if (result.hasErrors()) {
+			return "deleteMember";
+		}
+
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		myPageVO.setMem_num(user.getMem_num());
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+
+		// 데이터베이스 업데이트 수행
+		//mypageService.updateMember_detail(myPageVO);
+
+		log.debug("<<회원탈퇴>> : " + myPageVO);
+		
+
+		model.addAttribute("member",member);
+		model.addAttribute("message", "회원 탈퇴 완료");
+		model.addAttribute("url", request.getContextPath() + "/main/main");
+		return "common/resultAlert";
+	}
+
+	
+	
+	
 	// 멤버십 구독
 	@GetMapping("/myPage/memberShipSub")
 	public String myPageMemberShipSub(HttpSession session, Model model) {

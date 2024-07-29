@@ -62,7 +62,7 @@ public interface MyPageService {
 	
 	
 	public Integer resDetailCnt(Long mem_num);
-	public List<MovieBookingVO> resDetail(Map<String, Object> map);//좌석,쿠폰금액,성인
+	public MovieBookingVO resDetail(Long mb_num);
 	
 	
 	

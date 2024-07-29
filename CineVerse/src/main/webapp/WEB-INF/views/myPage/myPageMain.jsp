@@ -63,7 +63,7 @@
                                     <span class="mp_movie_number_1">예매번호</span>
                                     <span class="mp_movie_number_3">${res.user_mb_num}</span>
                                 </div>
-                                <div class="mp_movie_title" onclick="location.href='/myPage/reservation'">${res.m_name}</div>
+                                <div class="mp_movie_title" onclick="location.href='/myPage/reservation?mb_num=${res.mb_num}'">${res.m_name}</div>
 
                                 <div class="reservation_list">
                                     <div class="reserv_info">

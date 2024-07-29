@@ -75,7 +75,7 @@ public interface MyPageMapper {
 	//모든 영화 카운트
 	public Integer resDetailCnt(Long mem_num);
 	//예매 디테일
-	public List<MovieBookingVO> resDetail(Map<String, Object> map);
+	public MovieBookingVO resDetail(Long mb_num);
 	
 	
 	

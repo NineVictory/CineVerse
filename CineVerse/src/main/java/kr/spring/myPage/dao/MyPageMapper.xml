@@ -787,7 +787,7 @@ FROM (
 </select> -->
 
 <!-- 영화 결제 상세페이지 여러 개 반환 -->
-<select id="resDetail" parameterType="map" resultType="movieBookingVO">
+<select id="resDetail" parameterType="long" resultType="movieBookingVO">
 WITH RankedBookings AS (
     SELECT
         mb.user_mb_num,

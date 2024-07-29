@@ -276,9 +276,11 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public List<MovieBookingVO> resDetail(Map<String, Object> map) {
-	    return myPageMapper.resDetail(map);
+	public MovieBookingVO resDetail(Long mb_num) {
+		return myPageMapper.resDetail(mb_num);
 	}
+
+	
 	
 
 
