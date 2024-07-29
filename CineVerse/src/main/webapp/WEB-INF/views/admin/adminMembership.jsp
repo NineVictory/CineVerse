@@ -5,6 +5,10 @@
 
 <script>
     function refundMembership(mem_num,point_payment) {
+		var userConfirmed = confirm("구독을 취소하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/refundMembership",
@@ -22,7 +26,7 @@
                 alert("서버 오류가 발생했습니다.");
             }
         });
-    }
+    }}
 </script>
 <div class="page-container">
 

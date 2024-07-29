@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 게시판 글쓰기 시작 -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -29,9 +30,14 @@
 			<form:errors path="m_status" element="div" cssClass="error-message"></form:errors>
 		</li>
 		<li>
-			<label for="m_content">내용</label>
-			<form:textarea rows="5" cols="30" path="m_content" class="input-check"/>
+			<label for="m_content">트레일러</label>
+			<form:textarea rows="5" cols="30" path="m_content" class="input-check" style="resize: none;"/>
 			<form:errors path="m_content" element="div" cssClass="error-message"></form:errors>
+		</li>
+		<li>
+			<label for="plot">내용</label>
+			<form:textarea rows="5" cols="30" path="plot" class="input-check"/>
+			<form:errors path="plot" element="div" cssClass="error-message"></form:errors>
 			<script>
 				 function MyCustomUploadAdapterPlugin(editor) {
 					    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
@@ -40,7 +46,7 @@
 					}
 				 
 				 ClassicEditor
-		            .create( document.querySelector( '#m_content' ),{
+		            .create( document.querySelector( '#plot' ),{
 		            	extraPlugins: [MyCustomUploadAdapterPlugin]
 		            })
 		            .then( editor => {
@@ -49,17 +55,17 @@
 		            .catch( error => {
 		                console.error( error );
 		            } );
-			    </script> 
+			 </script> 
 		</li>
 		<li>
 			<label for="m_upload">사진</label>
 			<input type="file" name="m_upload" id="m_upload" class="input-check" accept="image/gif,image/png,image/jpeg">
 			<form:errors path="m_upload" element="div" cssClass="error-message"></form:errors>
 			<c:if test="${!empty movieVO.m_filename}">
-				<div id="file_detail">
-					(${movieVO.m_filename})파일이 등록되어 있습니다.
-				</div>
-				</c:if>
+				<div id="file_detail" title="${movieVO.m_filename}">
+        (${fn:substring(movieVO.m_filename, 0, 20)})...(${fn:substring(movieVO.m_filename, fn:length(movieVO.m_filename)-10, fn:length(movieVO.m_filename))}) 파일이 등록되어 있습니다.
+   				</div>
+			</c:if>
 		</li>
 		
 	</ul>

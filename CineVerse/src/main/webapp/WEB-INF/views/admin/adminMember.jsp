@@ -6,6 +6,10 @@
 
 <script>
     function stopMember(mem_num) {
+		var userConfirmed = confirm("회원을 정지하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/stopMember",
@@ -23,8 +27,13 @@
                 alert("서버 오류가 발생했습니다.");
             }
         });
+        }
     }
     function deleteMember(mem_num) {
+		var userConfirmed = confirm("회원을 삭제하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/deleteMember",
@@ -43,7 +52,12 @@
             }
         });
     }
+    }
     function recoverMember(mem_num) {
+    	var userConfirmed = confirm("회원을 복구하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/recoverMember",
@@ -61,6 +75,7 @@
                 alert("서버 오류가 발생했습니다.");
             }
         });
+        }
     }
 </script>
 

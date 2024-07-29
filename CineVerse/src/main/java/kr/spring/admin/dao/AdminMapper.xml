@@ -384,6 +384,7 @@
 		SET
 		m_name=#{m_name},
 		m_status=#{m_status},
+		plot=#{plot},
 		m_content=#{m_content},
 		m_filename=#{m_filename,jdbcType=VARCHAR}
 		WHERE
