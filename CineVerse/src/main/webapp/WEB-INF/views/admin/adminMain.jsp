@@ -15,34 +15,34 @@
 		<div class="cineverse_data_all">
 			<div class="row1">
 				<div class="section" class="col">
-					<img src="${pageContext.request.contextPath}/images/cmj/user_setting.png" width="70" height="70">
+					<img src="${pageContext.request.contextPath}/images/cmj/user_setting.png" id = "mainlink" width="70" height="70" onclick="location.href ='${pageContext.request.contextPath}/admin/adminMember'" >
 					<span class="setting_name">회원</span>
 					<div class="result_data">${memTotal}</div>
 				</div>
 				<div class="section" class="col">
-					<img src="${pageContext.request.contextPath}/images/cmj/post_setting.png" width="70" height="70">
+					<img src="${pageContext.request.contextPath}/images/cmj/post_setting.png" id = "mainlink" width="70" height="70" onclick="location.href ='${pageContext.request.contextPath}/admin/adminCommunity'">
 					<span class="setting_name">커뮤니티</span>
 					<div class="result_data">${boardTotal}</div>
 				</div>
 				<div class="section" class="col">
-					<img src="${pageContext.request.contextPath}/images/cmj/goods_setting.png" width="70" height="70">
+					<img src="${pageContext.request.contextPath}/images/cmj/goods_setting.png" id = "mainlink" width="70" height="70" onclick="location.href ='${pageContext.request.contextPath}/admin/adminProductList'">
 					<span class="setting_name">벌스샵</span>
 					<div class="result_data">${productTotal}</div>
 				</div>
 			</div>
 			<div class="row2">
 				<div class="section" class="col">
-					<img src="${pageContext.request.contextPath}/images/cmj/qa_setting.png" width="70" height="70">
+					<img src="${pageContext.request.contextPath}/images/cmj/qa_setting.png" id = "mainlink" width="70" height="70" onclick="location.href ='${pageContext.request.contextPath}/admin/adminConsult'">
 					<span class="setting_name">문의</span>
 					<div class="result_data">${consultTotal}</div>
 				</div>
 				<div class="section" class="col">
-					<img src="${pageContext.request.contextPath}/images/cmj/movie_setting.png" width="70" height="70">
+					<img src="${pageContext.request.contextPath}/images/cmj/movie_setting.png" id = "mainlink" width="70" height="70" onclick="location.href ='${pageContext.request.contextPath}/admin/adminMovie'">
 					<span class="setting_name">영화</span>
 					<div class="result_data">${movieTotal}</div>
 				</div>
 				<div class="section" class="col">
-					<img src="${pageContext.request.contextPath}/images/cmj/cinema_setting.png" width="70" height="70">
+					<img src="${pageContext.request.contextPath}/images/cmj/cinema_setting.png" id = "mainlink" width="70" height="70" onclick="location.href ='${pageContext.request.contextPath}/admin/adminCinema'">
 					<span class="setting_name">영화관</span>
 					<div class="result_data">${cinemaTotal}</div>
 				</div>

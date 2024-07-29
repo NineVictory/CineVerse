@@ -96,7 +96,7 @@
 	
 	<definition name="adminOrderDetail" extends="adminMain">
 		<put-attribute name="title" value="주문 내역 관리" />
-		<put-attribute name="css" value="/WEB-INF/views/admin/adminDeliverCSS.jsp" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminDeliveryDetailCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminDeliveryDetail.jsp" />
 	</definition>
 	

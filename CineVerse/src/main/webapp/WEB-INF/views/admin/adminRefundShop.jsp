@@ -66,7 +66,7 @@
                     <td class="mem-data">${rs.order_quantity}</td>
                     <td class="mem-data">${rs.p_price}</td>
                     <td class="mem-data">${rs.order_status}</td>
-					<td class="button2"><input type="button" value="예매취소" onclick="refundOrder(${rs.mem_num},${rs.p_price * rs.order_quantity},${rs.order_num}, ${rs.order_quantity},${rs.order_status},'상품환불')"/></td>
+					<td class="button2"><input type="button" value="주문취소" onclick="refundOrder(${rs.mem_num},${rs.p_price * rs.order_quantity},${rs.order_num}, ${rs.order_quantity},${rs.order_status},'상품환불')"/></td>
                 </tr>
             </c:forEach>
         </tbody>

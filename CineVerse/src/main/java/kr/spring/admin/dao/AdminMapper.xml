@@ -430,6 +430,7 @@
 		ph_payment
 		FROM point_history
 		<include refid="pointSearch"></include>
+		ORDER BY ph_date DESC
 		) a
 		)
     <![CDATA[

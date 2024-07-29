@@ -114,3 +114,6 @@
 	margin-left: 11%;
 	margin-top: 20px;
 }
+#mainlink {
+	cursor: pointer;
+}

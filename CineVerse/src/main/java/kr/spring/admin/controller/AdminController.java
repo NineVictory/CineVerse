@@ -1262,7 +1262,8 @@ public class AdminController {
 		
 		// 리뷰삭제 처리
 		  @PostMapping("/deleteMr")
-		  @ResponseBody public String deleteMr(@RequestParam("mr_num") long mr_num) {
+		  @ResponseBody 
+		  public String deleteMr(@RequestParam("mr_num") long mr_num) {
 		  adminService.updateMovieReview(mr_num); 
 		  return "success"; 
 		  }

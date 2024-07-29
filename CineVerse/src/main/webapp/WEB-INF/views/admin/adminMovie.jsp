@@ -34,7 +34,7 @@
             }
         });
     }
-        }
+}
 </script>
 <div class="page-container">
 

@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import kr.spring.admin.service.AdminService;
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
+import kr.spring.movie.vo.MovieVO;
+import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -270,14 +272,42 @@ public class CinemaController {
 	   }
 	
 	 	// 영화 시간표 처리
-	 	@GetMapping("/admin/delete")
-		public String deleteMovieTime(long mt_num, HttpServletRequest request) {
-
+	 	@PostMapping("/deleteTimeControll")
+	 	@ResponseBody 
+		public String deleteMovieTime(@RequestParam("mt_num") long mt_num) {
 			//글 삭제
 			cinemaService.deleteMovieTime(mt_num);
-			
-			return "redirect:/admin/adminTimeControll";
+			return "success";
 		}
+	 	
+	 	//영화시간표 수정 폼 호출
+	 			@GetMapping("/admin/adminMtModify")
+	 			public String adminMtModify(long mt_num,Model model){
+	 				MovieTimeVO movieTimeVO=
+	 						cinemaService.getMovieTimeById(mt_num);
+	 				model.addAttribute("movieTimeVO",movieTimeVO);
+	 				return "adminMtModify";
+	 				
+	 			}
+	 			
+	 			
+	 	//영화시간표 수정
+	 			@PostMapping("/admin/adminMtModify")
+	 			public String modifyMovie(@Valid MovieTimeVO movieTimeVO,
+	 					BindingResult result,
+	 					HttpServletRequest request,
+	 					Model model) throws IllegalStateException,IOException{
+	 				log.debug("<<공지사항 글 저장>> : " + movieTimeVO);
+
+	 				
+	 				cinemaService.updateMovieTime(movieTimeVO);
+	 				//View 메시지 처리
+	 				model.addAttribute("message", "성공적으로 글이 수정되었습니다.");
+	 				model.addAttribute("url", 
+	 						request.getContextPath()+"/admin/adminTimeControll");
+	 	 
+	 				return "common/resultAlert";
+	 			}
 	
 	 
 	 

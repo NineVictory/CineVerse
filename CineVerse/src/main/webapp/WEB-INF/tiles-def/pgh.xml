@@ -226,6 +226,13 @@
 		<put-attribute name="css" value="/WEB-INF/views/admin/adminReMovieCSS.jsp" />
 		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminReMovie.jsp" />
 	</definition>
+	
+	<!-- 영화상영표 수정 -->
+	<definition name="adminMtModify" extends="adminMain">
+		<put-attribute name="title" value="리뷰관리" />
+		<put-attribute name="css" value="/WEB-INF/views/admin/adminMovieModifyCSS.jsp" />
+		<put-attribute name="admin_body" value="/WEB-INF/views/admin/adminMtModify.jsp" />
+	</definition>
 </tiles-definitions>
 
 

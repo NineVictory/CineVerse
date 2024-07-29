@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class cMovieVO {
-	private Long c_num;				//영화관 번호
+	private long c_num;				//영화관 번호
 	private String c_branch;		//지점명
 	private String c_location;		//지역
 	private String c_address;		//주소
@@ -19,11 +19,11 @@ public class cMovieVO {
 	private String c_parkable;		//주차 가능 여부
 	private long cm_id;
 	private long m_code;
-	private Long th_num;
+	private long th_num;
 	private String th_name;
 	private String th_position;
 	private String m_name;// 영화명
-	private Long mt_num;
+	private long mt_num;
 	private Date mt_date;
 	private String mt_start;
 	private String mt_end;
