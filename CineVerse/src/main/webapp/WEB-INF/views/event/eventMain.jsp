@@ -20,7 +20,7 @@
 				<span><a href="event?event_type=3">영화관</a></span>
 			</div>
 			<div class="event-type-btn">
-				<input type="button" value="당첨자 발표" class="event_btn">
+				<input type="button" value="당첨자 발표" class="event_btn" id="event_mypage">
 				<input type="button" value="종료된 이벤트" class="event_btn" onclick="location.href='/event/end'">
 			</div>
 

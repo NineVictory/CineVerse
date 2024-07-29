@@ -54,7 +54,7 @@ public class EventAjaxController {
 	}
 	
 	//이벤트 참여하기
-	@PostMapping("event/writeParticipation")
+	@PostMapping("/event/writeParticipation")
 	@ResponseBody
 	public Map<String,Object> writeParticipation(EventPVO eventP, HttpSession session){
 		
@@ -77,6 +77,24 @@ public class EventAjaxController {
 			mapJson.put("result", "success");
 		}
 		log.debug("<<이벤트 참여 EventPVO**********" + eventP);
+		return mapJson;
+
+	}
+	//마이페이지 이벤트 참여페이지 이동
+	@PostMapping("/event/eventMyPageLoginCheck")
+	@ResponseBody
+	public Map<String,Object> eventMyPageLoginCheck(HttpSession session){
+		log.debug("***당첨페이지이동***");
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else {
+			mapJson.put("result", "success");
+		}
+
 		return mapJson;
 
 	}

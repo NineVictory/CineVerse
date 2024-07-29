@@ -29,4 +29,27 @@ $(function(){
     }
 
     loadMoreButton.on('click', showItems);
+    
+    
+    
+    //당첨자 마이페이지 이동
+    $('#event_mypage').click(function(){
+		$.ajax({
+			url:'eventMyPageLoginCheck',
+			type:'post',
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'logout'){
+					alert('로그인 후 확인 가능합니다.');
+				}else if(param.result == 'success'){
+					location.href='/myPage/myEvent';
+				}else{
+					alert('당첨자 발표 확인 오류');
+				}
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
+		});
+	});
 });
