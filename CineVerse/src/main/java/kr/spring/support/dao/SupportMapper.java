@@ -49,5 +49,10 @@ public interface SupportMapper {
 	@Select("SELECT * FROM faq WHERE f_num=#{f_num}")
 	public UserFaqVO selectFaq(Long f_num);
 	@Update("UPDATE faq SET f_hit=f_hit+1 WHERE f_num=#{f_num}")
-	public void updateFaqHit(Long nb_num); 
+	public void updateFaqHit(Long nb_num);
+	
+	// 메인에서 띄울 가장 최신 글
+	@Select("SELECT * FROM notice_board WHERE  nb_reg_date = (SELECT MAX(nb_reg_date) FROM notice_board)")
+	public UserNoticeVO getNotice();
+	
 }

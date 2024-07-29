@@ -15,12 +15,17 @@ import kr.spring.movie.service.MovieDetailService;
 import kr.spring.movie.service.MovieRankService;
 import kr.spring.movie.vo.MovieRankAPIVO;
 import kr.spring.movie.vo.MovieVO;
+import kr.spring.support.service.SupportService;
+import kr.spring.support.vo.UserNoticeVO;
 
 @Controller
 public class MainController {
 	
 	@Autowired
     private CinemaService cinemaService;
+	
+	@Autowired
+    private SupportService supportService;
 
 	@GetMapping("/")
 	public String init() {
@@ -31,6 +36,7 @@ public class MainController {
 	public String main(Model model) {
 		
 		getMovieRanks(model);
+		getNotice(model);
 		
 		return "main";//Tiles의 설정명
 	}
@@ -49,6 +55,13 @@ public class MainController {
 		 */
 		List<MovieVO> movieRank = cinemaService.getMovieRankMain();
 		model.addAttribute("movieRank",movieRank);
+	}
+	
+	public void getNotice(Model model) {
+		
+		UserNoticeVO notice = supportService.getNotice();
+		
+		model.addAttribute("notice",notice);
 	}
 }
 
