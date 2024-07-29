@@ -16,15 +16,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
 import kr.spring.cinema.vo.TheaterVO;
 import kr.spring.movie.vo.MovieTimeVO;
-import kr.spring.movie.vo.MovieVO;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -268,9 +269,29 @@ public class CinemaController {
 	      return "adminTimeControll";
 	   }
 	
+	 	// 영화 시간표 처리
+	 	@GetMapping("/admin/delete")
+		public String deleteMovieTime(long mt_num, HttpServletRequest request) {
+
+			//글 삭제
+			cinemaService.deleteMovieTime(mt_num);
+			
+			return "redirect:/admin/adminTimeControll";
+		}
 	
-	
-	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	/*=====================
 	 * 상영관 등록
 	 *=====================*/

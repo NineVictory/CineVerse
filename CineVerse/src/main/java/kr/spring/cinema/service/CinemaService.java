@@ -88,7 +88,9 @@ public interface CinemaService {
 	// [관리자] 영화상영시간표 제어 관리
 	public List<MovieTimeVO> controllMovieTime(Map<String, Object> map);
 	public Integer controllMovieTimeRowCount(Map<String, Object> map);
-	
+	public MovieTimeVO getMovieTimeById(long mt_num); // 영화 시간표 조회 메서드
+	public void updateMovieTime(MovieTimeVO movietime);
+	public void deleteMovieTime(long mt_num);
 	
 	
 		//영화관(잠시 보류)

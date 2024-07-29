@@ -170,6 +170,21 @@ public class CinemaServiceImpl implements CinemaService{
 		return cinemaMapper.controllMovieTimeRowCount(map);
 	}
 
+	@Override
+	public void updateMovieTime(MovieTimeVO movietime) {
+		cinemaMapper.updateMovieTime(movietime);
+	}
+
+	@Override
+	public void deleteMovieTime(long mt_num) {
+		cinemaMapper.deleteMovieTime(mt_num);
+	}
+
+	@Override
+	public MovieTimeVO getMovieTimeById(long mt_num) {
+		return cinemaMapper.getMovieTimeById(mt_num);
+	}
+
 	
 	
 	

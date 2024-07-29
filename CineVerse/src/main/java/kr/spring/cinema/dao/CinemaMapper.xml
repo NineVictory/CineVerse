@@ -354,9 +354,16 @@
     WHERE rnum >= #{start} AND rnum <= #{end}
     ]]>
 	</select>
-	
-	
-	
+
+	<!-- 영화 시간표 수정 -->
+	<update id="updateMovieTime" parameterType="movieTimeVO">
+	 	UPDATE movie_time SET  		
+	 			mt_date = #{mt_date},
+	 			mt_start = #{mt_start},
+	 			mt_end = #{mt_end}
+	 	WHERE mt_num = #{mt_num}
+	 </update>
+	 
 	
 	
 </mapper>							
