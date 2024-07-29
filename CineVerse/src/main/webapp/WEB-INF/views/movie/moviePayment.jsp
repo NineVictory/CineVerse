@@ -151,6 +151,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	            var trimmedTime = time.trim();
 	            if (trimmedTime === "0" || trimmedTime === "0000") {
 	                return "00:00";
+	            } else if(time.trim().length === 3){ 
+                	return '0' + time.trim().slice(0, 1) + ':' + time.trim().slice(1); 
 	            } else {
 	                return trimmedTime.slice(0, 2) + ":" + trimmedTime.slice(2);
 	            }
