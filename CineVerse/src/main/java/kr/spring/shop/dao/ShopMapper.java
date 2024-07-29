@@ -238,7 +238,7 @@ public interface ShopMapper {
 	@Select("SELECT COUNT(*) FROM orders")
 	public Integer orderCount(Map<String, Object> map);
 	
-	@Select("SELECT * FROM orders JOIN order_detail USING (order_num) JOIN product USING(p_num) WHERE order_num=#{order_num}")
+	@Select("SELECT * FROM orders JOIN order_detail USING (order_num) JOIN product USING(p_num) JOIN member USING(mem_num) WHERE order_num=#{order_num}")
 	public List<OrdersVO> adminOrderDetailList(Long order_num);
 	
 	@Select("SELECT * FROM orders WHERE order_num=#{order_num}")

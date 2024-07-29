@@ -94,3 +94,109 @@
     display: flex;
     justify-content: flex-start;
 }
+
+
+
+.admin_member {
+	margin-top: 20px;
+}
+
+.order_modify_form {
+	padding: 20px;
+	border-radius: 5px;
+}
+
+.order_modify_form h2 {
+	color: #333;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+.adminMember-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.adminMember-table th, .adminMember-table td {
+	padding: 10px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+.adminMember-table th {
+	background-color: #007bff;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.adminMember-table td {
+	background-color: #fdfdfd;
+}
+
+.button1, .button2 {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin: 10px 2px;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s;
+}
+
+.button1:hover, .button2:hover {
+	background-color: #0056b3;
+}
+
+.order_change ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.order_change li {
+	margin-bottom: 15px;
+}
+
+.order_change label {
+	margin-right: 10px;
+	font-weight: bold;
+}
+
+.order_change .radio-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	align-items: center;
+}
+
+.order_change input[type="radio"] {
+	margin-right: 5px;
+}
+
+.order_change .error {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+.order_status_radio {
+	display: flex;
+	justify-content: space-around;
+}
+
+.order_change {
+	gap: 12px;
+	display: flex;
+	flex-direction: column;
+}
+
+.order_change_btn {
+	display: flex;
+	justify-content: center;
+}
