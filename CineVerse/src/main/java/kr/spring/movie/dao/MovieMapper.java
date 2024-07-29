@@ -145,7 +145,11 @@ public interface MovieMapper {
     void addMovieTime(MovieTimeVO movieTimeVO);
     
     // 영화 예매 여부 확인
-    @Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num = #{mem_num} AND m_code = #{m_code}")
+	/*
+	 * @Select("SELECT COUNT(*) FROM movie_booking WHERE mem_num = #{mem_num} AND m_code = #{m_code}"
+	 * )
+	 */
+    @Select("SELECT COUNT(*) FROM movie_booking mb JOIN mb_detail md ON mb.mb_num = md.mb_num WHERE mb.mem_num = #{mem_num} AND mb.m_code = #{m_code} AND md.md_type = 1")
     int hasBookedMovie(@Param("mem_num") long mem_num, @Param("m_code") long m_code);
 
 	/*
