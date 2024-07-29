@@ -26,6 +26,7 @@
                 <th>영화 코드</th>
                 <th>상영관 번호</th>
                 <td></td>
+                <td></td>
             </tr>
         </thead>
         <c:if test="${empty list}">
