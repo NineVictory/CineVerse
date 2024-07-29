@@ -13,3 +13,4 @@ public interface MovieMapper2 {
 	public MovieTimeVO selectData(long m_code);
 
 }
+ 
