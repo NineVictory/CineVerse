@@ -178,6 +178,7 @@
                                             selectMovieTimeListHtml += '<div class="movietime-container" data-mtNum="' + item.mt_num + '">';
                                             selectMovieTimeListHtml += '<div class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
                                             selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
+                                            selectMovieTimeListHtml += '<div class="available-seats">' + item.availableSeats + '/96</div>';
                                             selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
                                             selectMovieTimeListHtml += '</div>';
                                             selectMovieTimeListHtml += '</div>'; // movietime-container 종료
