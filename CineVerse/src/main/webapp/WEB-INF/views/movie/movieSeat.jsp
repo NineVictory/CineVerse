@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                            		<p class="moviename">${movieInfo.m_name}</p>
                            		</div>
                             	<p class="movietime">${movieInfo.mt_date} | ${movieInfo.mt_start} ~ ${movieInfo.mt_end}</p>
-                            	<p class="movieplace">${movieInfo.c_branch}점 ${movieInfo.th_name}</p>
+                            	<p class="movieplace">${movieInfo.c_branch}점 ${movieInfo.th_name}관</p>
                         </c:forEach>
                         		 <p class="seat_remain">남은 좌석 ${availableSeats}석</p>
                         <div class="select-theater-date">
