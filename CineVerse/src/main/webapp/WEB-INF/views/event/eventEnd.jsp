@@ -10,9 +10,9 @@
 	<div class="event-main">
 		<div class="event">
 			<h1>EVENT</h1>
-			<div class="event-type-btn">
+			<%--<div class="event-type-btn">
 				<input type="button" value="당첨자 발표" class="event_btn">
-			</div>
+			</div> --%>
 		</div>
 		<div class="event-menu-all">
 			<div class="event-menu2">
