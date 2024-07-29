@@ -34,8 +34,7 @@ $(function() {
                         let cr = sale;
                         $('.cr').text(`${formattedSale}원`);
                         let total = totalValue - sale;
-                        let deliveryFee = total >= 50000 ? 0 : 3000;
-                        total += deliveryFee;
+                        let deliveryFee = totalValue >= 50000 ? 0 : 3000;
                         $('.ttt').text(`${numberWithCommas(total)}원`);
                         updateHiddenInput(total, mc_num);
                     } else {
@@ -50,8 +49,8 @@ $(function() {
             $('#selected_coupon_info').val('');
             $('.cr').text('0원');
             let deliveryFee = totalValue >= 50000 ? 0 : 3000;
-            $('.ttt').text(`${numberWithCommas(totalValue + deliveryFee)}원`);
-            updateHiddenInput(totalValue + deliveryFee, ''); // hidden input의 값을 원래 값으로 업데이트, mc_num 빈 값 전달
+            $('.ttt').text(`${numberWithCommas(totalValue)}원`);
+            updateHiddenInput(totalValue, ''); // hidden input의 값을 원래 값으로 업데이트, mc_num 빈 값 전달
         }
     });
 

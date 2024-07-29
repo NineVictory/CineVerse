@@ -35,7 +35,7 @@ $(function() {
                         $('.cr').text(`${formattedSale}원`);
                         let total = parseFloat(totalValue) - sale;
                         let deliveryFee = total >= 50000 ? 0 : 3000;
-                        $('.ttt').text(`${numberWithCommas(total + deliveryFee)}원`);
+                        $('.ttt').text(`${numberWithCommas(total)}원`);
                         updateHiddenInput(total, mc_num); // hidden input의 값을 업데이트, mc_num 전달
                     } else {
                         alert('쿠폰 적용 오류 발생');
