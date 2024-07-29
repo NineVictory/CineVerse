@@ -534,8 +534,12 @@ FROM (
     FROM DistinctBookings
     WHERE 
         (mt_date > TRUNC(SYSDATE) OR
-        mt_date = TRUNC(SYSDATE) AND 
-        TO_DATE(mt_end, 'HH24:MI') > TO_DATE(TO_CHAR(SYSDATE, 'HH24:MI'), 'HH24:MI')))
+        (mt_date = TRUNC(SYSDATE) AND 
+        TO_DATE(
+            LPAD(SUBSTR(mt_end, 1, LENGTH(mt_end) - 2), 2, '0') || ':' || 
+            LPAD(SUBSTR(mt_end, -2), 2, '0'), 
+            'HH24:MI'
+        ) > TO_DATE(TO_CHAR(SYSDATE, 'HH24:MI'), 'HH24:MI')))ORDER BY mt_date ASC)
 WHERE rnum <= 2
 
     ]]>
