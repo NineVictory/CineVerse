@@ -99,4 +99,5 @@ public interface ShopService {
 	public List<ProductVO> selectReviewList(Map<String, Object> map);
 	public Integer adminReviewCount(Map<String, Object> map);
 	public void deleteReview(Long pr_num);
+	public OrdersVO selectDetailOrder(long order_num);
 }

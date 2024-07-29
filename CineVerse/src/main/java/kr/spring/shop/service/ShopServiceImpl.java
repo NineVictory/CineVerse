@@ -377,6 +377,11 @@ public class ShopServiceImpl implements ShopService {
 		shopMapper.deleteReview(pr_num);
 	}
 
+	@Override
+	public OrdersVO selectDetailOrder(long order_num) {
+		return shopMapper.selectDetailOrder(order_num);
+	}
+
 	
 
 

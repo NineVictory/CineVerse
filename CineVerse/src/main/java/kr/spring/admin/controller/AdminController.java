@@ -103,6 +103,10 @@ public class AdminController {
 	public OrdersVO initCommand10() {
 		return new OrdersVO();
 	}
+	@ModelAttribute
+	public ReMovieVO initCommand11() {
+		return new ReMovieVO();
+	}
 	/*==============================
 	 * 관리자메인
 	 *==============================*/	
@@ -202,6 +206,18 @@ public class AdminController {
 		return "success";
 
 	}
+	
+	// 회원 정지 처리
+		@PostMapping("/recoverMember")
+		@ResponseBody
+		public String recoverMember(@RequestParam("mem_num") int mem_num) {
+			// auth 값을 1으로 업데이트하는 예시입니다.
+			adminService.recoverMemberAuth(mem_num);
+			log.debug("<<회원복구 완료>>");
+			return "success";
+
+		}
+		
 	/*==============================
 	 * 구독 관리
 	 *==============================*/	
@@ -723,7 +739,9 @@ public class AdminController {
 
 			for (ReplyVO reply : list) {
 				String titleWithoutHtml = StringUtil.useNoHTML(reply.getCc_content());
+				String titleWithoutHtml1 = StringUtil.useNoHTML(reply.getTe_content());
 				reply.setCc_content(titleWithoutHtml);
+				reply.setTe_content(titleWithoutHtml1);
 			}
 		}
 		log.debug("<<댓글 확인>>" + list);
@@ -1231,6 +1249,7 @@ public class AdminController {
 			if (count > 0) {
 				map.put("start", page.getStartRow());
 				map.put("end", page.getEndRow());
+				
 				list = adminService.selectReMovie(map);
 			}
 
@@ -1241,5 +1260,12 @@ public class AdminController {
 			return "adminReMovie";
 
 		}	
-
+		
+		// 리뷰삭제 처리
+		  @PostMapping("/deleteMr")
+		  @ResponseBody public String deleteMr(@RequestParam("mr_num") long mr_num) {
+		  adminService.updateMovieReview(mr_num); 
+		  return "success"; 
+		  }
+		 
 }

@@ -456,13 +456,24 @@ font-size: 13px;
 	/* margin-bottom: 5px;*/
 }
 
-.movietime-item .mt-date {
+.movietime-item .available-seats {
 	/* position: absolute;
 	bottom: 5px;
 	left: 5px;
 	font-size: 13px; */
+	font-size: 13px;
+    font-weight: 400;
+}
+
+.movietime-item .th-name {
+	/* 	position: absolute;
+	bottom: 5px;
+	right: 5px;*/
+	font-size: 13px;
+    font-weight: 400;
 	
 }
+
 
 .movietime-item .th-name {
 	/* 	position: absolute;

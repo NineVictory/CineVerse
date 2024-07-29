@@ -65,7 +65,7 @@
 										<span class="my_order_confirm" data-num="${o.order_num}"
 											data-mnum="${o.mem_num}">주문확정</span>
 										<span class="my_order_return"> <a
-											href="${pagecontext.request.contextPath}/support/consultForm">교환/반품</a></span>
+											href="${pagecontext.request.contextPath}/support/consultForm2?order_num=${o.order_num}">교환/반품</a></span>
 									</c:if>
 									<c:if test="${o.order_status==6 && o.order_re_status==1}">
 										<span class="my_order_review"

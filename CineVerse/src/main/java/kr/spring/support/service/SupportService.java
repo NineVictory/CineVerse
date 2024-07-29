@@ -32,4 +32,5 @@ public interface SupportService {
 	public Integer selectFaqRowCount(Map<String,Object> map);
 	public UserFaqVO selectFaq(Long f_num);
 	public void updateFaqHit(Long nb_num); 
+	public UserNoticeVO getNotice();
 }

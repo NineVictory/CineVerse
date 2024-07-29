@@ -64,7 +64,7 @@
                     <img class="output_bookMark" data-num="${movie.m_code}" src="${pageContext.request.contextPath}/images/heart01.png">
                     <span class="output_mfcount"></span>
                 </div>
-                <div class="movie-reservation" onclick="location.href='/movie/movieReserve'">
+                <div class="movie-reservation" onclick="location.href='${pageContext.request.contextPath}/movie/movieTimeBYmovie?m_code=${movie.m_code}'">
                	 	예매하기
             	</div>
             </div>

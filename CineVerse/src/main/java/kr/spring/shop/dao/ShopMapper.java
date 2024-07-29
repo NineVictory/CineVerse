@@ -263,4 +263,7 @@ public interface ShopMapper {
 	
 	@Delete("DELETE product_review WHERE pr_num=#{pr_num}")
 	public void deleteReview(Long pr_num);
+	
+	@Select("SELECT od_number FROM orders WHERE order_num=#{order_num}")
+	public OrdersVO selectDetailOrder(long order_num);
 }

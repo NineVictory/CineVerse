@@ -3,19 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
-<!-- <script>
-    function deleteNotice(nb_num) {
+<script>
+    function deleteMr(mr_num) {
         $.ajax({
             type: "POST",
-            url: "${pageContext.request.contextPath}/deleteNotice",
-            data: { nb_num: nb_num },
+            url: "${pageContext.request.contextPath}/deleteMr",
+            data: { mr_num: mr_num },
             success: function(response) {
                 if (response === "success") {
                     // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
-                    alert("공지사항 게시물 삭제");
+                    alert("영화리뷰 삭제");
                     location.reload(); // 예시로 페이지를 새로고침
                 } else {
-                    alert("공지사항 게시물 삭제실패");
+                    alert("영화리뷰 삭제실패");
                 }
             },
             error: function() {
@@ -23,7 +23,7 @@
             }
         });
     }
-</script> -->
+</script>
 
 <div class="page-container">
 	<div class="admin_member">
@@ -35,7 +35,7 @@
 				<li><input type="hidden" name="keyfield"
 					value="${param.keyfield != null ? param.keyfield : 'mr_content'}">
 					<!-- 기본값 설정 --> <input type="search" name="keyword" id="keyword"
-					value="${param.keyword}" placeholder="리뷰번호를 입력하세요"> <input
+					value="${param.keyword}" placeholder="제목를 입력하세요"> <input
 					type="submit" value="" class="search-button"
 					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
@@ -65,11 +65,9 @@
 						<td class="mem-data">${rm.mr_content}</td>
 						<td class="mem-data">${rm.mr_regdate}</td>
 						<td class="mem-data">${rm.review_count}</td>
-						<td class="button2"><input type="button" value="삭제"
-							onclick="deleteReMovie(${rm.mr_num})" /></td>
+						<td class="button2"><input type="button" value="삭제" onclick="deleteMr(${rm.mr_num})" /></td>
 					</tr>
 				</c:forEach>
-
 			</tbody>
 		</table>
 	</div>

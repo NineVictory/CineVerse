@@ -156,6 +156,7 @@
 		event_num,
 		event_name,
 		event_content,
+		event_drawn,
 		event_filename,
 		event_start,
 		event_end,
@@ -165,6 +166,7 @@
 		event_seq.nextval,
 		#{event_name},
 		#{event_content},
+		#{event_drawn},
 		#{event_filename,jdbcType=VARCHAR},
 		#{event_start},
 		#{event_end},
@@ -860,8 +862,7 @@
                 COUNT(rr.mr_num) AS review_count
             FROM movie_review mr
             LEFT JOIN reviewreport rr ON mr.mr_num = rr.mr_num
-            WHERE mr.mr_num LIKE '%' || #{keyword} || '%'
-               AND mr.mr_content LIKE '%' || #{keyword} || '%'
+			<include refid="removieSearch"></include>
             GROUP BY mr.m_code, mr.mr_num, DBMS_LOB.SUBSTR(mr.mr_content, 4000, 1), mr.mr_regdate
             ORDER BY review_count DESC
         ) a

@@ -31,6 +31,7 @@ public class EventVO {
 	private Date event_modify_date;
 	private MultipartFile event_upload;	//파일
 	private String event_type;
+	private long event_drawn;
 	
 	private long ep_num; // 신청자 식별 번호
 	private long mem_num;	// 신청자 mem_num
@@ -38,6 +39,5 @@ public class EventVO {
 	private String ep_content; // 이벤트 신청했을 때 적는 정보
 	private long ep_result; // 이벤트 결과
 	private String mem_id;	// 신청한 사람의 아이디
-	
 	private long ep_type;
 }

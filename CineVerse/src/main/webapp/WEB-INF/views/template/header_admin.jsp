@@ -5,7 +5,7 @@
     <div class="container_admin">
         <nav class="main-navigation">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/admin/adminMain">홈</a></li>
+                <li><a href="${pageContext.request.contextPath}/main/main">홈</a></li>
                 <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
                 <li><a><span id="currentDateTime"></span></a></li>
             </ul>

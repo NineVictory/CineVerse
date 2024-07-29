@@ -85,6 +85,11 @@ public class SupportServiceImpl implements SupportService{
 		supportMapper.updateFaqHit(nb_num);		
 	}
 
+	@Override
+	public UserNoticeVO getNotice() {
+		return supportMapper.getNotice();
+	}
+
 	
 
 }

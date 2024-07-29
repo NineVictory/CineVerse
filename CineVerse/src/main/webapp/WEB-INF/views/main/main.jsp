@@ -241,9 +241,11 @@ width: 100%;
 		<div class="noticeClient_container">
 			<div class="noticeClient_content">
 				<div class="notice_wrap">
-					<strong>공지사항</strong> <a href="${pageContext.request.contextPath}/support/main" class="btn_link">[행사/이벤트]
-						&lt;선재 업고 튀어&gt; 최종화 단체 관람 이벤트 관련 주요 공지 </a> <a href="${pageContext.request.contextPath}/support/main"
-						id="notice_more" class="btn_more">더보기</a>
+					<strong>공지사항</strong>
+					<a href="${pageContext.request.contextPath}/support/noticeDetail?nb_num=${notice.nb_num}" class="btn_link">
+					${notice.nb_title }
+					</a> 
+					<a href="${pageContext.request.contextPath}/support/main" id="notice_more" class="btn_more">더보기</a>
 				</div>
 				<div class="client_wrap">
 					<dl class="client_list">

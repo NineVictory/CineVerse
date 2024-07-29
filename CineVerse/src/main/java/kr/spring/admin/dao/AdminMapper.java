@@ -63,6 +63,9 @@ public interface AdminMapper {
 	@Update("UPDATE member SET mem_auth = 2 WHERE mem_num=#{mem_num}")
 	public void updateMemberAuth(long mem_num);
 
+	@Update("UPDATE member SET mem_auth = 3 WHERE mem_num=#{mem_num}")
+	public void recoverMemberAuth(long mem_num);
+	
 	// 구독 맴버십
 	public List<AdminVO> selectMembershipList(Map<String, Object> map);
 
@@ -274,6 +277,8 @@ public interface AdminMapper {
 	public Integer selectReMovieRowCount(Map<String, Object> map);
 	
 	//영화리뷰삭제
-
+	@Update("UPDATE movie_review SET mr_status=1 WHERE mr_num=#{mr_num}")
+	public void updateMovieReview(long mr_num);
+	
 	
 }

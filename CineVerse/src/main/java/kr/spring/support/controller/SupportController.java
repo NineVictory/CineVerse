@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.shop.service.ShopService;
 import kr.spring.shop.vo.OrdersVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.ConsultVO;
@@ -41,6 +42,9 @@ public class SupportController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ShopService shopService;
 	
 	@ModelAttribute
 	public ConsultVO initCommand() {
@@ -264,6 +268,28 @@ public class SupportController {
 		model.addAttribute("user", db_member);
 		model.addAttribute("orderList", order_list);
 		return modelAndView;
+	}
+	
+	//1:1문의폼
+	@GetMapping("/support/consultForm2")
+	public ModelAndView consultForm2(@RequestParam long order_num, Model model, HttpSession session) {
+	    
+	    MemberVO user = (MemberVO)session.getAttribute("user");
+	    MemberVO db_member = memberService.selectCheckMember(user.getMem_id());
+	    db_member.setMem_phone(db_member.getMem_phone().replaceAll("(\\d{3})(\\d{4})(\\d{4})", "$1-****-$3"));
+
+	    List<OrdersVO> order_list = supportService.selectOdNumbersByMemNum(user.getMem_num());
+	    OrdersVO od_number = shopService.selectDetailOrder(order_num);
+	    ConsultVO consult = new ConsultVO();
+	    consult.setConsult_type("exchange");
+	    consult.setOd_number(od_number.getOd_number());
+	    consult.setOrder_num(order_num);
+	    ModelAndView modelAndView = new ModelAndView("supportConsultForm2");
+	    model.addAttribute("consultVO", consult);
+	    model.addAttribute("user", db_member);
+	    model.addAttribute("orderList", order_list); 
+
+	    return modelAndView;
 	}
 	
 	@PostMapping("/support/consultForm")
