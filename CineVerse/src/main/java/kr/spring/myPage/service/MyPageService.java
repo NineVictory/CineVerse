@@ -79,7 +79,7 @@ public interface MyPageService {
 	public Integer mdCount(Long mb_num);
 	
 	//영화포인트
-	public Integer selectPayCouponCnt(Long mem_coupon_use,Long mem_num);
-	public MyPageVO selectCouponPrice(Long mc_num);
+	public Integer selectPayCouponCnt(Long mem_num);
+	public MyPageVO selectCouponPrice(Long mem_coupon_use);
 	
 }

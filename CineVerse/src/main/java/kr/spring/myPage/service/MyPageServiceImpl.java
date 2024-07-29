@@ -296,14 +296,16 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Integer selectPayCouponCnt(Long mem_coupon_use,Long mem_num) {
-		return myPageMapper.selectPayCouponCnt(mem_coupon_use, mem_num);
+	public Integer selectPayCouponCnt(Long mem_num) {
+		return myPageMapper.selectPayCouponCnt(mem_num);
 	}
 
 	@Override
-	public MyPageVO selectCouponPrice(Long mc_num) {
-		return myPageMapper.selectCouponPrice(mc_num);
+	public MyPageVO selectCouponPrice(Long mem_coupon_use) {
+		return myPageMapper.selectCouponPrice(mem_coupon_use);
 	}
+
+	
 
 	
 	

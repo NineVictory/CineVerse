@@ -141,11 +141,11 @@ public interface MyPageMapper {
 	
 	
 	//영화상세 포인트 가격
-	@Select("SELECT COUNT(*) FROM member_coupon WHERE coupon_use=#{coupon_use} and mem_num=#{mem_num}")
-	public Integer selectPayCouponCnt(Long mem_coupon_use,Long mem_num);
+	@Select("SELECT COUNT(*) FROM member_coupon WHERE coupon_use=2 and mem_num=#{mem_num}")
+	public Integer selectPayCouponCnt(Long mem_num);
 	
 	@Select("SELECT * FROM member_coupon mc JOIN coupon_db cd on mc.coupon_num=cd.coupon_num WHERE cd.coupon_where=1 AND mc.mem_coupon_use=#{mem_coupon_use}")
-	public MyPageVO selectCouponPrice(Long mc_num);
+	public MyPageVO selectCouponPrice(Long mem_coupon_use);
 
 
 }

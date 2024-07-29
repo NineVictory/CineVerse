@@ -157,8 +157,9 @@ public class MyPageController {
 
 
 	// 나의 예매내역-디테일
+	// 나의 예매내역-디테일
 	@GetMapping("/myPage/reservation")
-	public String myPageReservation(MyPageVO mypage,HttpSession session, Model model) {
+	public String myPageReservation(MyPageVO mypage, HttpSession session, Model model) {
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 	    MyPageVO member = mypageService.selectMember(user.getMem_num());
 	    if (member != null) {
@@ -176,7 +177,6 @@ public class MyPageController {
 	            member.setTh_name(booking.getTh_name());
 	        }
 
-	       
 	        MovieBookingVO detail = mypageService.resDetail(mypage.getMb_num());
 	        List<MovieBookingVO> collist = mypageService.selectColumn(mypage.getMb_num());
 	        List<MovieBookingVO> rowlist = mypageService.selectRow(mypage.getMb_num());
@@ -184,22 +184,28 @@ public class MyPageController {
 	        int count = mypageService.mdCount(mypage.getMb_num());
 	        
 	        List<String> seatList = new ArrayList<>();
-	        for(int i=0; i<count; i++) {
-	        	int columnValue = collist.get(i).getSeat_column();  
+	        for (int i = 0; i < count; i++) {
+	            int columnValue = collist.get(i).getSeat_column();  
 	            String rowValue = rowlist.get(i).getSeat_row();      
 	            seatList.add(columnValue + rowValue);
 	        }
 	        
-	        	Long total = detail.getMb_price();
-			  int coupon = mypageService.selectPayCouponCnt(mypage.getMem_coupon_use(),user.getMem_num());
-			  MyPageVO moviePay = null;
-			  if (coupon > 0) { 
-				  moviePay = mypageService.selectCouponPrice(mypage.getMc_num());
-				  total -= moviePay.getCoupon_sale();
-			  }
-			  
-	        model.addAttribute("total",total);
-	        //model.addAttribute("moviePay",moviePay);
+	        Long total = detail.getMb_price();
+	        int coupon = mypageService.selectPayCouponCnt(user.getMem_num());
+	        Long couponSale = 0L;
+	        if (coupon > 0) { 
+	            MyPageVO moviePay = mypageService.selectCouponPrice(mypage.getMb_num());
+	            if (moviePay != null) {
+	                Integer couponSaleInt = moviePay.getCoupon_sale();
+	                if (couponSaleInt != null) {
+	                    couponSale = couponSaleInt.longValue();
+	                    total -= couponSale;
+	                    model.addAttribute("couponSale", couponSale);
+	                }
+	            }
+	        }
+	        
+	        model.addAttribute("total", total);
 	        model.addAttribute("seatList", seatList);
 	        model.addAttribute("detail", detail);
 	        model.addAttribute("resCnt", resCnt);
@@ -207,6 +213,8 @@ public class MyPageController {
 	    } 
 	    return "myPageReservation";
 	}
+
+
 
 	// 나의 쿠폰
 	@GetMapping("/myPage/coupon")
