@@ -473,6 +473,11 @@ font-size: 13px;
     font-weight: 400;
 	
 }
+.th_seat_name {
+	width: 80px;
+	display: flex;
+	justify-content: space-evenly;
+}
 
 
 .movietime-item .th-name {
