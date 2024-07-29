@@ -47,9 +47,16 @@
                     </div>
                     <div class="my_reserv_info_4">
                         <div>${detail.booking_count }명</div>
-                        <div><c:forEach var="se" items="${seatList}">
-                        	${se}
-                        </c:forEach></div>
+                        
+                        
+                        <div>
+    <c:forEach var="se" items="${seatList}" varStatus="status">
+        ${se}<c:if test="${!status.last}">,</c:if>
+    </c:forEach>
+</div>
+                        
+                        
+                        
                     </div>
                 </div>
                 <hr size="1" width="100%" class="wa_line">
@@ -79,6 +86,9 @@
                 <div class="coupon_count">
                     <c:if test="${not empty couponSale}">
                         ${couponSale}원
+                    </c:if>
+                    <c:if test="${empty couponSale}">
+                        0원
                     </c:if>
                 </div>
             </div>

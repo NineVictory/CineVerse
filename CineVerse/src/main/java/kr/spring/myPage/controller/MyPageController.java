@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
@@ -55,6 +56,8 @@ public class MyPageController {
 	@Autowired
 	private MovieService movieService;
 
+	@Autowired
+	private AdminService adminService;
 
 	// 자바빈(VO) 초기화
 	@ModelAttribute
@@ -156,7 +159,7 @@ public class MyPageController {
 	}
 
 
-	// 나의 예매내역-디테일
+
 	// 나의 예매내역-디테일
 	@GetMapping("/myPage/reservation")
 	public String myPageReservation(MyPageVO mypage, HttpSession session, Model model) {
@@ -961,32 +964,31 @@ public class MyPageController {
 		return "deleteMember";
 	}
 	
+	
 	@PostMapping("/myPage/deleteMember")
 	public String postDeleteMember(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    myPageVO.setMem_num(user.getMem_num());
 
-		if (result.hasErrors()) {
-			return "deleteMember";
-		}
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
 
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		myPageVO.setMem_num(user.getMem_num());
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    
+	    if (!member.getMem_passwd().equals(myPageVO.getMem_passwd())) {
+	        result.rejectValue("mem_passwd", "passwdError", "비밀번호가 일치하지 않습니다.");
+	        return "deleteMember";
+	    }
 
-		// 데이터베이스 업데이트 수행
-		//mypageService.updateMember_detail(myPageVO);
+	    adminService.deleteMemberAuth(myPageVO.getMem_num());
 
-		log.debug("<<회원탈퇴>> : " + myPageVO);
-		
+	    log.debug("<<회원탈퇴>> : " + myPageVO);
 
-		model.addAttribute("member",member);
-		model.addAttribute("message", "회원 탈퇴 완료");
-		model.addAttribute("url", request.getContextPath() + "/main/main");
-		return "common/resultAlert";
+	    model.addAttribute("member", member);
+	    model.addAttribute("message", "회원 탈퇴 완료");
+	    model.addAttribute("url", request.getContextPath() + "/member/login");
+	    return "common/resultAlert";
 	}
 
-	
-	
-	
+
 	// 멤버십 구독
 	@GetMapping("/myPage/memberShipSub")
 	public String myPageMemberShipSub(HttpSession session, Model model) {

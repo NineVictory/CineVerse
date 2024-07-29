@@ -340,7 +340,7 @@ public class MyPageAjaxController {
 		} else if(user.getMem_num() != mem_num) {
 			mapJson.put("result", "wrongAccess");
 		} else {
-			mypageService.delMovieRev(mr_num);
+			movieService.deleteReview(mr_num);
 			mapJson.put("result", "success");
 		}
 		return mapJson;

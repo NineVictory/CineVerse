@@ -28,7 +28,7 @@ public class MyPageVO {
 
 	@NotBlank
 	private String mem_name;
-
+	
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_passwd;
 
