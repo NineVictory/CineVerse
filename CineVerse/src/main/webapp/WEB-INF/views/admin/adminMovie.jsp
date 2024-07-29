@@ -4,9 +4,18 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script>
 	function redirectToMovieModify(m_code) {
+		var userConfirmed = confirm("영화를 수정하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
 	    window.location.href = '/admin/adminMovieModify?m_code=' + m_code;
 	}
+	}
     function deleteMovie(m_code) {
+		var userConfirmed = confirm("영화을 삭제하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/deleteMovie",
@@ -25,6 +34,7 @@
             }
         });
     }
+        }
 </script>
 <div class="page-container">
 

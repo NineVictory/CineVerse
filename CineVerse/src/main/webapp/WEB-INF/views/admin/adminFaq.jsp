@@ -5,6 +5,10 @@
 
 <script>
     function deleteFaq(f_num) {
+    	var userConfirmed = confirm("FAQ을 삭제하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/deleteFaq",
@@ -22,7 +26,7 @@
                 alert("서버 오류가 발생했습니다.");
             }
         });
-    }
+    }}
 </script>
 
 <div class="page-container">

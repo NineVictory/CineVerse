@@ -925,8 +925,7 @@ public class AdminController {
 			//View 메시지 처리
 			model.addAttribute("message", "성공적으로 글이 수정되었습니다.");
 			model.addAttribute("url", 
-					request.getContextPath()+"/admin/adminMovieModify?m_code="
-											+movieVO.getM_code());
+					request.getContextPath()+"/admin/adminMovie");
  
 			return "common/resultAlert";
 		}

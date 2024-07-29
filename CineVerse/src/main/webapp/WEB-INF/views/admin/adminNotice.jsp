@@ -7,10 +7,20 @@
 	function redirectToNoticeDetail(nb_num) {
 	    window.location.href = '/support/noticeDetail?nb_num=' + nb_num;
 	}
+	
 	function redirectToNoticeModify(nb_num) {
+		var userConfirmed = confirm("공지사항을 수정하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
 	    window.location.href = '/admin/adminNoticeModify?nb_num=' + nb_num;
 	}
+	}
     function deleteNotice(nb_num) {
+		var userConfirmed = confirm("공지사항을 삭제하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/deleteNotice",
@@ -28,7 +38,7 @@
                 alert("서버 오류가 발생했습니다.");
             }
         });
-    }
+    }}
 </script>
 
 <div class="page-container">

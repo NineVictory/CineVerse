@@ -82,8 +82,7 @@
 		FROM member m
 		JOIN member_detail md ON m.mem_num =
 		md.mem_num
-		WHERE m.mem_membership =
-		2
+		WHERE m.mem_membership = 2
 		<include refid="membershipSearch"></include>
 		) a
 		)

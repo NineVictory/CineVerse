@@ -212,7 +212,6 @@ public interface AdminMapper {
 	@Update("UPDATE consult SET consult_modify_date = SYSDATE, consult_status = 2, consult_answer = #{consult_answer, jdbcType=VARCHAR} WHERE consult_num = #{consult_num}")
 	public void updateAnswer(ConsultVO consultVO);
 
-	// 예매 취소
 
 	// 예약
 	public List<RefundMbVO> selectReservation(Map<String, Object> map);
@@ -278,8 +277,8 @@ public interface AdminMapper {
 	public Integer selectReMovieRowCount(Map<String, Object> map);
 	
 	//영화리뷰삭제
-	@Update("UPDATE movie_review SET mr_status = 2 WHERE mr_num=#{mr_num}")
+	@Delete("DELETE FROM movie_review WHERE mr_num = #{mr_num}")
 	public void updateMovieReview(long mr_num);
-	
-	
+
+
 }

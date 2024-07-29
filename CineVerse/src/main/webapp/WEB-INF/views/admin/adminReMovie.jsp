@@ -5,10 +5,14 @@
 
 <script>
     function deleteMr(mr_num) {
+		var userConfirmed = confirm("리뷰를 삭제하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/deleteMr",
-            data: { mr_num: mr_num },
+            data: { mr_num: mr_num},
             success: function(response) {
                 if (response === "success") {
                     // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
@@ -22,6 +26,7 @@
                 alert("서버 오류가 발생했습니다.");
             }
         });
+    }
     }
 </script>
 

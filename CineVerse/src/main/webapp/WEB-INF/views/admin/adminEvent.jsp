@@ -13,6 +13,10 @@
         window.location.href = '/admin/adminEventModify?event_num=' + event_num;
     }
     function deleteEvent(event_num) {
+		var userConfirmed = confirm("이벤트을 삭제하시겠습니까?");
+        
+        // 사용자가 확인 버튼을 클릭한 경우에만 AJAX 요청을 보냄
+        if (userConfirmed) {
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/deleteEvent",
@@ -30,7 +34,7 @@
                 alert("서버 오류가 발생했습니다.");
             }
         });
-    }
+    }}
 </script>
 <div class="page-container">
 <div class = "admin_member">
