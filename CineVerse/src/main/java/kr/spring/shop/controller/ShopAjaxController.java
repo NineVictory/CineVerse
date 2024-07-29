@@ -299,8 +299,7 @@ public class ShopAjaxController {
 	    log.debug("<<장바구니에서 결제하기>> ::: " + formData);
 
 	    String countStr = formData.get("count");
-	    int count;
-	    count = Integer.parseInt(countStr.replace(",", ""));
+	    int count = Integer.parseInt(countStr.replace(",", ""));
 
 	    List<Integer> pb_nums = new ArrayList<>();
 
@@ -309,7 +308,7 @@ public class ShopAjaxController {
 	        pb_nums.add(Integer.parseInt(pb_numStr.replace(",", "")));
 	    }
 
-	    Map<String, Object> mapJson = new HashMap<String, Object>();
+	    Map<String, Object> mapJson = new HashMap<>();
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 
 	    String anumStr = formData.get("a_num");
@@ -323,10 +322,13 @@ public class ShopAjaxController {
 	    
 	    String totalStr = formData.get("total");
 	    long total = Integer.parseInt(totalStr.replace(",", ""));
-	    int deli = 0;
+	    
 	    String total_countStr = formData.get("total_count");
 	    long total_count = Integer.parseInt(total_countStr.replace(",", ""));
 	    
+	    long deliveryFee = total >= 50000 ? 0 : 3000;
+	    long finalTotal = total + deliveryFee;
+
 	    if (user == null) { // 로그아웃 상태
 	        mapJson.put("result", "logout");
 	    } else if (a_num == 0) { // 배송지 없음
@@ -336,7 +338,7 @@ public class ShopAjaxController {
 	    } else {
 	        long point = shopService.getPoint(user.getMem_num());
 	        log.debug("point ::: " + point);
-	        if (point < total) { // 포인트 부족
+	        if (point < finalTotal) { // 포인트 부족
 	            mapJson.put("result", "noPoint");
 	        } else { // 성공
 	            OrdersVO orders = new OrdersVO();
@@ -387,18 +389,15 @@ public class ShopAjaxController {
 	                shopService.basketDelete(pb_num); // 장바구니에서 삭제
 	            }
 
-	            
-	         // 상품 수량 차감
-	            shopService.sellProduct(orders.getPb_quantity(), orders.getP_num());
-
 	            // 쿠폰 사용 여부 처리
 	            if (mc_num != 0) { // 쿠폰 사용했을 경우
 	                shopService.useCoupon(order_num, mc_num);
 	                CouponVO cp = shopService.couponInfo(mc_num);
-	                orders.setPh_point(total-cp.getCoupon_sale());
+	                finalTotal = total - cp.getCoupon_sale() + deliveryFee;
+	                orders.setPh_point(finalTotal);
 	                orders.setPh_type(1); // 사용
 	            } else {
-	                orders.setPh_point(total);
+	                orders.setPh_point(finalTotal);
 	                orders.setPh_type(1); // 사용
 	            }
 
@@ -406,14 +405,11 @@ public class ShopAjaxController {
 	            shopService.usePoint(orders);
 	            memberService.totalPoint(user.getMem_num());
 	            
-	            
-	            
 	            mapJson.put("result", "success");
 	        }
 	    }
 
 	    return mapJson;
 	}
-
 
 }
