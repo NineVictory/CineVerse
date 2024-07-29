@@ -148,7 +148,17 @@ width: 100%;
 						        	</div>
 						            
 						            <span class="sub_info1">
-						                <span class="rate_info">예매율 <em>${detail.reservation_rate }%</em></span>
+						                <span class="rate_info">예매율 <em>
+						                <%-- ${detail.reservation_rate }% --%>
+						                 <c:choose>
+					                            <c:when test="${detail.reservation_rate != null}">
+					                                ${detail.reservation_rate}%
+					                            </c:when>
+					                            <c:otherwise>
+					                                0%
+					                            </c:otherwise>
+					                        </c:choose>
+						                </em></span>
 						                <span class="star_info"><a class="star_move" href="${pageContext.request.contextPath}/movie/movieDetail?m_code=${detail.m_code}#movie-review-section">
 						                <img src="${pageContext.request.contextPath}/images/cje/star_yes.png" class="star_photo">
 						                <c:if test="${detail.average_grade == null }">

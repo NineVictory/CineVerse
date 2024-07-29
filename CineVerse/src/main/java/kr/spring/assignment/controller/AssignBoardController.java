@@ -159,20 +159,27 @@ public class AssignBoardController {
 	 *양도게시판 글상세
 	 =====================*/
 	@GetMapping("/assignboard/detail")
-	public ModelAndView process(long ab_num, HttpSession session) {
+	public String process(long ab_num, Model model, HttpServletRequest request, HttpSession session) {
 		log.debug("<<양도게시판 글 상세 - ab_num>> : " + ab_num);
+		
+		AssignVO assign = assignService.ab_selectBoard(ab_num);
+		if(assign.getAr_report() >= 5) {
+			model.addAttribute("message", "신고 정지된 글입니다.");
+			model.addAttribute("url", request.getContextPath() + "/assignboard/list");
+			return "common/resultAlert";
+		}
 		
 		//해당 글의 조회수 증가
 		assignService.ab_updateHit(ab_num);
 		
-		AssignVO assign = assignService.ab_selectBoard(ab_num);
 		
-		ModelAndView modelAndView = new ModelAndView("assignView");
+		
+		//ModelAndView modelAndView = new ModelAndView("assignView");
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 
-		modelAndView.addObject("user", user);
-		
+		//modelAndView.addObject("user", user);
+		model.addAttribute("user", user);
 		
 		log.debug("<<assign.getAb_filename()*****************>>: " + assign.getAb_filename());
 		/*if(assign.getAb_filenames() != null) {
@@ -185,9 +192,9 @@ public class AssignBoardController {
 		//내용에 태그를 허용하지 않으면서 줄바꿈 처리
 		//assign.setAb_content(StringUtil.useBrNoHTML(assign.getAb_content()));
 		
-		modelAndView.addObject("assign", assign);
-		
-		return modelAndView;
+		//modelAndView.addObject("assign", assign);
+		model.addAttribute("assign", assign);
+		return "assignView";
 	}
 	
 	

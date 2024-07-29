@@ -144,13 +144,20 @@ public class BoardController {
 	 *게시판 글상세
 	 =====================*/
 	@GetMapping("/board/detail")
-	public ModelAndView process(long cb_num) {
+	public String process(long cb_num, Model model, HttpServletRequest request) {
 		log.debug("<<게시판 글 상세 - cb_num>> : " + cb_num);
 		
-		//해당 글의 조회수 증가
-		boardService.updateHit(cb_num);
+		
 		
 		BoardVO board = boardService.selectBoard(cb_num);
+		
+		if(board.getCc_report() >= 5) {
+			model.addAttribute("message", "신고 정지된 글입니다.");
+			model.addAttribute("url", request.getContextPath() + "/board/list");
+			return "common/resultAlert";
+		}
+		//해당 글의 조회수 증가
+		boardService.updateHit(cb_num);
 		
 		long all_resp = boardService.selectResponseCountByCbNum(cb_num);
 		long re_cnt = boardService.selectRowCountComment(cb_num);
@@ -162,10 +169,13 @@ public class BoardController {
 		
 		//내용에 태그를 허용하지 않으면서 줄바꿈 처리(CKEditor 사용시 주석 처리)
 		//board.setContent(StringUtil.useBrNoHTML(board.getContent()));
-		ModelAndView modelAndView = new ModelAndView("boardView");
-		modelAndView.addObject("board", board);
-		modelAndView.addObject("comment_cnt", all_comments);
-		return modelAndView;
+		
+		model.addAttribute("board", board);
+		model.addAttribute("comment_cnt", all_comments);
+		//ModelAndView modelAndView = new ModelAndView("boardView");
+		//modelAndView.addObject("board", board);
+		//modelAndView.addObject("comment_cnt", all_comments);
+		return "boardView";
 	}
 	
 	

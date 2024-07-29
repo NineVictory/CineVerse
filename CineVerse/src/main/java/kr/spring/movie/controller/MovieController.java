@@ -87,6 +87,8 @@ public class MovieController {
                movie.setM_opendate(formatDate(movie.getM_opendate()));
            }
        }
+		List<MovieVO> movieRank = cinemaService.getMovieRankMain();
+		model.addAttribute("movieRank",movieRank);
        model.addAttribute("count", count);
        model.addAttribute("movielist", movielist);
        model.addAttribute("page", page.getPage());
