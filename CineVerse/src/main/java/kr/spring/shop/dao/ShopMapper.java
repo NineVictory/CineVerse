@@ -198,7 +198,7 @@ public interface ShopMapper {
 	public void updateOrderReStatus(long order_num);
 	
 	// 사용한 쿠폰 있는지 찾아보기
-	@Select("SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) WHERE mem_coupon_use=#{mem_coupon_use}")
+	@Select("SELECT * FROM member_coupon JOIN coupon_db USING(coupon_num) WHERE mem_coupon_use=#{mem_coupon_use} AND rownum=1")
 	public CouponVO usedCoupon(long order_num);
 	
 	// 리뷰 평점 
