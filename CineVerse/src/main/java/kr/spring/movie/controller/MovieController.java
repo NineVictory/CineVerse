@@ -137,6 +137,9 @@ public class MovieController {
        model.addAttribute("movieListCurrent", movieListCurrent);
        model.addAttribute("page", page.getPage());
        
+       List<MovieVO> movieRank = cinemaService.getMovieRankMain();
+		model.addAttribute("movieRank",movieRank);
+       
        // 장르 목록 추가
        List<String> genres = movieService.selectDistinctGenres();
        model.addAttribute("genres", genres);
@@ -180,6 +183,9 @@ public class MovieController {
        model.addAttribute("count", count);
        model.addAttribute("movieListSchedule", movieListSchedule);
        model.addAttribute("page", page.getPage());
+       
+       List<MovieVO> movieRank = cinemaService.getMovieRankMain();
+		model.addAttribute("movieRank",movieRank);
        
        // 장르 목록 추가
        List<String> genres = movieService.selectDistinctGenres();
