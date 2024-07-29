@@ -35,7 +35,7 @@ public class MainController {
 	@GetMapping("/main/main")
 	public String main(Model model) {
 		
-		getMovieRanks(model);
+		/* getMovieRanks(model); */
 		getNotice(model);
 		
 		return "main";//Tiles의 설정명
