@@ -27,6 +27,7 @@ public interface AdminService {
 	public Integer totalMember();
 	public void updateMemberAuth(long mem_num);
 	public void deleteMemberAuth(long mem_num);
+	public void recoverMemberAuth(long mem_num);
 	public List<AdminVO> selectMembershipList(Map<String,Object> map);
 	public Integer selectMembershipRowCount(Map<String,Object> map);
 	public List<EventVO> selectEventList(Map<String,Object> map);

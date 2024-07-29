@@ -43,6 +43,25 @@
             }
         });
     }
+    function recoverMember(mem_num) {
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/recoverMember",
+            data: { mem_num: mem_num },
+            success: function(response) {
+                if (response === "success") {
+                    // 업데이트 성공 시 페이지 리로드 혹은 메시지 표시 등의 동작 추가 가능
+                    alert("회원을 복구시켰습니다.");
+                    location.reload(); // 예시로 페이지를 새로고침
+                } else {
+                    alert("회원 복구에 실패했습니다.");
+                }
+            },
+            error: function() {
+                alert("서버 오류가 발생했습니다.");
+            }
+        });
+    }
 </script>
 
 <div class="page-container">
@@ -105,7 +124,15 @@
                     <td class="mem-data">${member.mem_phone}</td>
                     <td class="mem-data">${member.mem_email}</td>
                     <td class="mem-data">${member.mem_reg_date}</td>
+                    <c:if test = "${member.mem_auth == 3}">
                     <td class="button1"><input type="button" value="정지" onclick="stopMember(${member.mem_num})" /></td>
+                    </c:if>
+                    <c:if test="${member.mem_auth == 2 || member.mem_auth == 1}">
+                    <td class="button3"><input type="button" value="복구" onclick="recoverMember(${member.mem_num})" /></td>
+                    </c:if>
+                    <c:if test="${member.mem_auth ==9}">
+                    <td class="button1"><input type="button" value="권한삭제" onclick="recoverMember(${member.mem_num})" /></td>
+                    </c:if>                
                     <td class="button2"><input type="button" value="탈퇴" onclick="deleteMember(${member.mem_num})" /></td>
                 </tr>
             </c:forEach>

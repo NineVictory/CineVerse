@@ -63,6 +63,9 @@ public interface AdminMapper {
 	@Update("UPDATE member SET mem_auth = 2 WHERE mem_num=#{mem_num}")
 	public void updateMemberAuth(long mem_num);
 
+	@Update("UPDATE member SET mem_auth = 3 WHERE mem_num=#{mem_num}")
+	public void recoverMemberAuth(long mem_num);
+	
 	// 구독 맴버십
 	public List<AdminVO> selectMembershipList(Map<String, Object> map);
 

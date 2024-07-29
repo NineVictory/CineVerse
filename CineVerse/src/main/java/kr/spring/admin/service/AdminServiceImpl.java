@@ -39,6 +39,9 @@ public class AdminServiceImpl implements AdminService{
 	public void updateMemberAuth(long mem_num) {
 		adminMapper.updateMemberAuth(mem_num);
 	}
+	public void recoverMemberAuth(long mem_num) {
+		adminMapper.recoverMemberAuth(mem_num);
+	}
 	@Override
 	public void insertEvent(EventVO eventVO) {
 		adminMapper.insertEvent(eventVO);

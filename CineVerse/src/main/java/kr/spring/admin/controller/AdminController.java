@@ -206,6 +206,18 @@ public class AdminController {
 		return "success";
 
 	}
+	
+	// 회원 정지 처리
+		@PostMapping("/recoverMember")
+		@ResponseBody
+		public String recoverMember(@RequestParam("mem_num") int mem_num) {
+			// auth 값을 1으로 업데이트하는 예시입니다.
+			adminService.recoverMemberAuth(mem_num);
+			log.debug("<<회원복구 완료>>");
+			return "success";
+
+		}
+		
 	/*==============================
 	 * 구독 관리
 	 *==============================*/	
