@@ -221,6 +221,15 @@
                     $(document).on('mouseleave', '.movietime-item', function() {
                         $('.tooltip').remove();
                     });
+					
+					// movietime-container 클릭 이벤트 처리
+					                   $(document).on('click', '.movietime-container', function() {
+					                       let check = confirm('영화를 예매하시겠습니까?');
+					                       let mt_num = $(this).data('mtnum');
+					                       if (check) {
+					                           window.location.href = '../movie/movieSeat?mt_num=' + mt_num;
+					                       }
+					                   });
                     
                     
                 });
