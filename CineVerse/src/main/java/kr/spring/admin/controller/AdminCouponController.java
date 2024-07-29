@@ -30,6 +30,7 @@ import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.PagingUtil2;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -169,9 +170,9 @@ public class AdminCouponController {
 		int count = adminService.selectMemberRowCount(map);
 
 		//페이지 처리
-		PagingUtil page = 
-				new PagingUtil(keyfield,keyword,pageNum,
-						count,10,10,"admin/adminCouponSend?coupon_num=" + coupon_num);
+		PagingUtil2 page = 
+				new PagingUtil2(keyfield,keyword,pageNum,
+						count,10,10,"couponSend?coupon_num=" + coupon_num);
 
 		List<AdminVO> list = null;
 
