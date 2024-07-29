@@ -21,11 +21,14 @@
                     </div>
                     </div>
                     
-                    <div class="genre-checkboxes">
-                        <c:forEach var="genre" items="${genres}" varStatus="status">
-                            <label><input type="checkbox" name="genre" value="${genre}" class="genre-checkbox"> ${genre}</label>
-                        </c:forEach>
-                    </div>
+                    <div class="genre-toggles">
+					    <c:forEach var="genre" items="${genres}" varStatus="status">
+					        <div class="toggle-button" data-genre="${genre}">
+					            ${genre}
+					        </div>
+					    </c:forEach>
+					</div>
+					
                     <div class="select-wrapper">
                         <select name="keyfield" id="keyfield-select">
                             <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>영화이름</option>
@@ -74,7 +77,20 @@
                             </div>
                             <div class="bookAopen">
                             	<div>개봉일 ${movie.m_opendate}</div>
-                                <div>예매율 0% </div>
+                                <c:choose>
+				                    <c:when test="${not empty movieRank}">
+				                        <c:set var="reservationRate" value="0" />
+				                        <c:forEach var="rankedMovie" items="${movieRank}">
+				                            <c:if test="${rankedMovie.m_code == movie.m_code}">
+				                                <c:set var="reservationRate" value="${rankedMovie.reservation_rate}" />
+				                            </c:if>
+				                        </c:forEach>
+				                        <div>예매율 ${reservationRate}%</div>
+				                    </c:when>
+				                    <c:otherwise>
+				                        <div>예매율 0%</div>
+				                    </c:otherwise>
+				                </c:choose>
                             </div>
                         </li>
                     </c:if>

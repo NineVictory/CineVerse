@@ -279,12 +279,12 @@ padding: 20px;
 }
 
 .toggle-button {
+height: 35px;
     font-weight: 700;
     font-size: 11px;
     display: flex;
-    padding: 5px 5px;
-    border-radius: 7px;
-    background-color: var(--yellow-check-btn);
+    border-radius: 25px;
+    border: 2px solid #fdeeb3;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     width: 65px;

@@ -134,14 +134,16 @@ $(document).ready(function() {
     }*/
  
    // 장르 체크박스 클릭 이벤트
-    $('.genre-checkbox').change(function() {
-        let genre = $(this).val();
-        if ($(this).is(':checked')) {
-            selectedGenres.add(genre);
-        } else {
+$('.toggle-button').click(function() {
+        let genre = $(this).data('genre');
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
             selectedGenres.delete(genre);
+        } else {
+            $(this).addClass('active');
+            selectedGenres.add(genre);
         }
-        filterMoviesByGenres3();
+        filterMoviesByGenres();
     });
 	
 	$("#movieListContainer ul.movie-list").append(html);
@@ -167,56 +169,50 @@ $(document).ready(function() {
 	
     // 장르로 영화 필터링
 // 장르로 영화 필터링
-function filterMoviesByGenres3() {
-    if (selectedGenres.size === 0) {
-       window.location.href = '/movie/movieListSchedule';
-    } else {
-        // 선택된 장르가 있을 때, 해당 장르의 영화만 필터링
-        $.ajax({
-            url: '/movie/filterMoviesByGenres3',
-            type: 'GET',
-            traditional: true,
-            data: { genres: Array.from(selectedGenres) },
-            dataType: 'json',
-            success: function(response) {
-				 let html = '';
-                $("#movieListContainer ul.movie-list").empty();
-                response.forEach(function(movie) {
-                    let filenames = movie.m_filename.split('|');
-                    let mainImage = filenames[0]; // 첫 번째 이미지 파일명 선택
-                    html = `
-                        <li class="movie">
-                            <img alt="영화1" src="${mainImage}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
-                            <div class="overlay">
-                                <button class="btn-book" onclick="location.href='/movie/movieReserve'">예매하기</button>
-                                <button class="btn-details" onclick="location.href='movieDetail?m_code=${movie.m_code}'">상세보기</button>
-                            </div>
-                            <div class="movie_name_list">
-                                <div class="movie_list_grade">
-                                    <div class="movie_list_gn">
-                                        <span class="ic_grade ${getGradeClass(movie.rating)}"></span>
-                                        <span class="movie_name"><b>${movie.m_name}</b></span>
+ function filterMoviesByGenres() {
+        if (selectedGenres.size === 0) {
+            window.location.href = '/movie/movieList';
+        } else {
+            $.ajax({
+                url: '/movie/filterMoviesByGenres',
+                type: 'GET',
+                traditional: true,
+                data: { genres: Array.from(selectedGenres) },
+                dataType: 'json',
+                success: function(response) {
+                    let html = '';
+                    $("#movieListContainer ul.movie-list").empty();
+                    response.forEach(function(movie) {
+                        let filenames = movie.m_filename.split('|');
+                        let mainImage = filenames[0];
+                        html = `
+                            <li class="movie">
+                                <img alt="영화1" src="${mainImage}" onclick="location.href='movieDetail?m_code=${movie.m_code}'">
+                                <div class="overlay">
+                                    <button class="btn-book" onclick="location.href='/movie/movieReserve'">예매하기</button>
+                                    <button class="btn-details" onclick="location.href='movieDetail?m_code=${movie.m_code}'">상세보기</button>
+                                </div>
+                                <div class="movie_name_list">
+                                    <div class="movie_list_grade">
+                                        <div class="movie_list_gn">
+                                            <span class="ic_grade ${getGradeClass(movie.rating)}"></span>
+                                            <span class="movie_name"><b>${movie.m_name}</b></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="bookAopen">
-                                <div>개봉일 ${movie.m_opendate}</div>
-                                <div>예매율 0%</div>
-                            </div>
-                        </li>
-                    `;
-                    $("#movieListContainer ul.movie-list").append(html);
-                });
-            },
-            error: function(xhr, status, error) {
-                console.error('Error filtering movies:', error);
-            }
-        });
+                                <div class="bookAopen">
+                                    <div>개봉일 ${movie.m_opendate}</div>
+                                    <div>예매율 0%</div>
+                                </div>
+                            </li>
+                        `;
+                        $("#movieListContainer ul.movie-list").append(html);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error filtering movies:', error);
+                }
+            });
+        }
     }
-}
-
-/*      // 초기 로드
-    loadMovies();*/
-        // 초기 실행
-    /*showInitialMovies();*/
 });

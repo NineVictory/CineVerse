@@ -157,5 +157,4 @@ $('.toggle-button').click(function() {
             });
         }
     }
-
 });
