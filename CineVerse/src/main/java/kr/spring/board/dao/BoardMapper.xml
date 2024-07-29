@@ -221,10 +221,20 @@
 								 			FROM community_response
 								 			START WITH te_num=#{te_num}
 								 			CONNECT BY PRIOR te_num = te_parent_num
-								 		))
+						 													))
  	</delete>
  	
-
+	<!-- 답글 삭제 전 자식답글 신고 삭제-->
+ 	<delete id="deleteRespReportByTeNum" parameterType="long">
+ 		DELETE FROM response_report WHERE te_num IN (
+ 					SELECT te_num FROM community_response WHERE te_num IN (
+								 			SELECT te_num
+								 			FROM community_response
+								 			START WITH te_num=#{te_num}
+								 			CONNECT BY PRIOR te_num = te_parent_num
+						 													))
+ 	</delete>
+	
  	
  	
  	<!-- 게시글 답글수 -->

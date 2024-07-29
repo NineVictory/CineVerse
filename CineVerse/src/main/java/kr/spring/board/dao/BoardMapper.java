@@ -142,17 +142,34 @@ public interface BoardMapper {
 	//답글 삭제시 자식답글 좋아요 삭제
 	public void deleteRespFavByTeNum(Long te_num);
 	//게시글 삭제시 답글의 좋아요 삭제
-	@Delete("DELETE FROM community_response_fav WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")
+	@Delete("DELETE FROM community_response_fav WHERE te_num IN (SELECT te_num FROM community_response WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")
 	public void deleteRespFavByBoardNum(Long cb_num);
 	
 	
 	
 	//부모글 신고
 	public void boardReport(BoardReportVO boardReportVO);
+	//게시글 삭제시 신고 삭제
+	@Delete("DELETE FROM community_report WHERE cb_num=#{cb_num}")
+	public void deleteBoardReport(Long cb_num);
 	
 	//댓글 신고
 	public void commentReport(CommentReportVO commentReportVO);
-		
+	//댓글 삭제 전 해당 신고내역 삭제
+	@Delete("DELETE FROM comment_report WHERE cc_num=#{cc_num}")
+	public void deleteCommentReportByCcNum(Long cc_num);
+	//게시물 삭제 전 댓글 신고 삭제
+	@Delete("DELETE FROM comment_report WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")
+	public void deleteCommentReportByCbNum(Long cb_num);
+	
 	//답글 신고
 	public void responseReport(ResponseReportVO responseReportVO);
+	//답글 삭제시 자식 답글 신고 삭제
+	public void deleteRespReportByTeNum(Long te_num);
+	//댓글 삭제시 자식 답글 신고 삭제
+	@Delete("DELETE FROM response_report WHERE te_num IN (SELECT te_num FROM community_response WHERE cc_num=#{cc_num})")
+	public void deleteRespReportByCcNum(Long cc_num);
+	//게시물 삭제시 답글 신고 삭제
+	@Delete("DELETE FROM response_report WHERE te_num IN (SELECT te_num FROM community_response WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num}))")
+	public void deleteRespReportByCbNum(Long cb_num);
 }

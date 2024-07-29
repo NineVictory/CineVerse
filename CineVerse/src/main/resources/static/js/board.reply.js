@@ -63,12 +63,16 @@ $(function() {
 						output += '<div class="cc-btn">';
 						output += '<span class="cc-cbtn"><img class="menu-img" src="../images/kbm/menu.png" height="18"></span>';
 						output += '<ul class="cc-btn-hide">';
+						if(item.cc_report < 5){
 						output += '<li><a href="" class="cc-modify-btn" data-num="' + item.cc_num + '" data-memnum="' + item.mem_num + '" data-name="' +name+ '">수정</a></li>';
+						}
 						output += '<li><a href="" class="cc-delete-btn" data-num="' + item.cc_num + '">삭제</a></li>';
 						output += '</ul>';
 						output += '</div>';
 					}else{//댓글신고버튼
+						if(param.user_num && item.rr_report < 5){
 						output += '<span class="comment-report" data-num="' +item.cc_num+ '" data-memnum="' +param.user_num+ '" data-content="' +item.cc_content.replace(/\r\n/g, '<br>')+ '">신고</span>'
+						}
 					}
 					
 					
@@ -657,25 +661,25 @@ $(function() {
 					}
 					output += '</div>';
 
-					if(item.rr_report < 5){
+					
 						
 					// 답글 수정/삭제 버튼
 					if (param.user_num == item.mem_num) {
 						output += '<div class="cc-btn mhide">';
 						output += '<span class="cc-cbtn"><img class="menu-img" src="../images/kbm/menu.png" height="18"></span>';
 						output += '<ul class="cc-btn-hide">';
+						if(item.rr_report < 5){
 						output += '<li><a href="" class="resp-modify-btn" data-num="' + item.te_num + '" data-memnum="' +item.mem_num+ '" data-name="' +name+ '">수정</a></li>'; // 수정 버튼 데이터 수정
+						}
 						output += '<li><a href="" class="resp-delete-btn" data-num="' + item.te_num + '" data-rnum="'+item.cc_num+'" data-mem="'+item.mem_num+'" >삭제</a></li>'; // 삭제 버튼 데이터 수정
 						output += '</ul>';
 						output += '</div>';
 					}else{//답글신고버튼
+						if(param.user_num && item.rr_report < 5){
 						output += '<span class="response-report" data-num="' +item.te_num+ '" data-memnum="' +param.user_num+ '" data-content="' +item.te_content.replace(/</g, '&lt;').replace(/>/g, '&gt;')+ '">신고</span>'
-
+						}
 					}
-					
-					}else{
-						output += '<div></div>';
-					}
+				
 					output += '</div>'; // resp-detail-info 닫기
 					output += '</div>'; 
 					

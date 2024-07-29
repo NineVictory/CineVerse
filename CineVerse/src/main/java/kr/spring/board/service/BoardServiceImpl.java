@@ -60,16 +60,22 @@ public class BoardServiceImpl implements BoardService{
 	public void deleteBoard(Long cb_num) {
 		//답글 좋아요 삭제
 		boardMapper.deleteRespFavByBoardNum(cb_num);
+		//답글 신고 삭제
+		boardMapper.deleteRespReportByCbNum(cb_num);
 		//답글 삭제
 		boardMapper.deleteResponseByBoardNum(cb_num);
 		//댓글 좋아요 삭제
 		boardMapper.deleteReFavByBoardNum(cb_num);
+		//댓글 신고 삭제
+		boardMapper.deleteCommentReportByCbNum(cb_num);
 		//댓글 삭제
 		boardMapper.deleteCommentByBoardNum(cb_num);
 		//부모글 좋아요 삭제
 		boardMapper.deleteFavByBoardNum(cb_num);
 		//북마크 삭제
 		boardMapper.deleteBMByBoardNum(cb_num);
+		//부모글 신고 삭제
+		boardMapper.deleteBoardReport(cb_num);
 		//부모글 삭제
 		boardMapper.deleteBoard(cb_num);
 	}
@@ -129,10 +135,14 @@ public class BoardServiceImpl implements BoardService{
 	public void deleteComment(Long cc_num) {
 		//답글 좋아요
 		boardMapper.deleteRespFavByReNum(cc_num);
-		//답글
+		//답글 신고
+		boardMapper.deleteRespReportByCcNum(cc_num);
+		//답글 삭제
 		boardMapper.deleteResponseByReNum(cc_num);
 		//댓글 좋아요
 		boardMapper.deleteReFavByReNum(cc_num);
+		//댓글 신고
+		boardMapper.deleteCommentReportByCcNum(cc_num);
 		boardMapper.deleteComment(cc_num);
 	}
 
@@ -180,6 +190,8 @@ public class BoardServiceImpl implements BoardService{
 	public void deleteResponse(Long te_num) {
 		//답글 삭제 전 좋아요, 자식답글 좋아요 삭제
 		boardMapper.deleteRespFavByTeNum(te_num);
+		//답글 신고 삭제
+		boardMapper.deleteRespReportByTeNum(te_num);
 		//자식답글 포함 삭제
 		boardMapper.deleteResponse(te_num);
 	}

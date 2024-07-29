@@ -76,6 +76,7 @@ public interface BoardService {
 	
 	//부모글 신고
 	public void boardReport(BoardReportVO boardReportVO);
+
 	
 	//댓글 신고
 	public void commentReport(CommentReportVO commentReportVO);

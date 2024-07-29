@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -11,7 +11,7 @@
 	<h3>신고하기</h3>
 	<hr size="1" width="100%;">
 	<div class="flexbox-p info-con">
-		<div class="report-info"><label>내용</label><span>${param.cc_content}</span></div>
+		<div class="report-info"><label>내용</label><span><c:out value="${param.cc_content}" escapeXml="true" /></span></div>
 	</div>
 	<hr size="1" width="100%;">
 	<form:form action="submitCommentReport" method="post" id="reportForm" modelAttribute="commentReportVO">
