@@ -287,7 +287,7 @@ public class SupportController {
 	    ModelAndView modelAndView = new ModelAndView("supportConsultForm2");
 	    model.addAttribute("consultVO", consult);
 	    model.addAttribute("user", db_member);
-	    model.addAttribute("orderList", order_list);
+	    model.addAttribute("orderList", order_list); 
 
 	    return modelAndView;
 	}
