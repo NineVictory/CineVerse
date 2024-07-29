@@ -6,7 +6,7 @@
 	<div class="menu-bar">
 		<div class="menu-logo">
 			<img src="${pageContext.request.contextPath}/images/cmj/logo.png"
-			onclick="location.href = '${pageContext.request.contextPath}/main/main'" width="130"/>
+			onclick="location.href = '${pageContext.request.contextPath}/admin/adminMain'" width="130"/>
 		</div>
 		
 		<a class="menu-item">회원</a>

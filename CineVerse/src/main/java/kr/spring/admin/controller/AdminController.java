@@ -103,6 +103,10 @@ public class AdminController {
 	public OrdersVO initCommand10() {
 		return new OrdersVO();
 	}
+	@ModelAttribute
+	public ReMovieVO initCommand11() {
+		return new ReMovieVO();
+	}
 	/*==============================
 	 * 관리자메인
 	 *==============================*/	
@@ -723,7 +727,9 @@ public class AdminController {
 
 			for (ReplyVO reply : list) {
 				String titleWithoutHtml = StringUtil.useNoHTML(reply.getCc_content());
+				String titleWithoutHtml1 = StringUtil.useNoHTML(reply.getTe_content());
 				reply.setCc_content(titleWithoutHtml);
+				reply.setTe_content(titleWithoutHtml1);
 			}
 		}
 		log.debug("<<댓글 확인>>" + list);
@@ -1231,6 +1237,7 @@ public class AdminController {
 			if (count > 0) {
 				map.put("start", page.getStartRow());
 				map.put("end", page.getEndRow());
+				
 				list = adminService.selectReMovie(map);
 			}
 
@@ -1241,5 +1248,14 @@ public class AdminController {
 			return "adminReMovie";
 
 		}	
-
+		
+		// 결제 환불 처리
+		// 스테이터스로 가능 하도록 추가한 코드
+		/*
+		 * @PostMapping("/deleteMr")
+		 * 
+		 * @ResponseBody public String deleteMr(@RequestParam("mr_num") long mr_num) {
+		 * 
+		 * adminService.updateMovieReview(mr_num); return "success"; }
+		 */
 }

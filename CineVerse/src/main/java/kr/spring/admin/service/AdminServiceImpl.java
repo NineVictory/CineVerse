@@ -359,5 +359,8 @@ public class AdminServiceImpl implements AdminService{
 	public Integer selectReMovieRowCount(Map<String, Object> map) {
 		return adminMapper.selectReMovieRowCount(map);
 	}
-
+	@Override
+	public void updateMovieReview(long mr_num) {
+		adminMapper.updateMovieReview(mr_num);
+	}
 }

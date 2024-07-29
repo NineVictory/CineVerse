@@ -274,6 +274,8 @@ public interface AdminMapper {
 	public Integer selectReMovieRowCount(Map<String, Object> map);
 	
 	//영화리뷰삭제
-
+	@Update("UPDATE movie_review SET mr_status=1 WHERE mr_num=#{mr_num}")
+	public void updateMovieReview(long mr_num);
+	
 	
 }

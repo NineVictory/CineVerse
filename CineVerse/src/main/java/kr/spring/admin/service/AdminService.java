@@ -96,4 +96,5 @@ public interface AdminService {
 	public void modifyCinema(CinemaVO cinemaVO);
 	public List<ReMovieVO> selectReMovie(Map<String, Object> map);
 	public Integer selectReMovieRowCount(Map<String, Object> map);
+	public void updateMovieReview(long mr_num);
 }	
