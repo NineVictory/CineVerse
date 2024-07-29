@@ -502,7 +502,16 @@ public class MovieController {
                 SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd");
                 String mt_date = outputFormat.format(date);
                 
-               return cinemaService.showMovieTimeList(m_code, mt_date, decodedDate2);
+                List<MovieTimeVO> list = cinemaService.showMovieTimeList(m_code, mt_date, decodedDate2);
+                
+                // 각 영화 시간표에 대해 좌석 수 계산 및 추가
+                for (MovieTimeVO movieTime : list) {
+                    	long mt_num = movieTime.getMt_num();
+                    	Integer availableSeats = cinemaService.getAvailableSeats(mt_num);
+                    	movieTime.setAvailableSeats(availableSeats);
+                	}
+                
+               return list;
            }
        
    

@@ -84,8 +84,8 @@
 
                             // 클릭 이벤트 추가
                             $dayElement.on('click', function() {
-                                $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('selected');
-                                $(this).addClass('selected');
+                                $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('movie-day-selected');
+                                $(this).addClass('movie-day-selected');
                                 selectedDate = $(this).attr('data-date');
                                 $('#selected-date').text(selectedDate); // 선택한 날짜를 표시
                                 console.log('Selected Date:', selectedDate);
@@ -109,18 +109,18 @@
                         selectedLocation = null;
                         $('#selected-date').text('선택한 날짜');
                         $('.reserve-time-wrapper').empty();
-                        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('selected'); // 날짜 선택 초기화
+                        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('movie-day-selected'); // 날짜 선택 초기화
 
                         // 지역 선택 초기화
-                        $('.theater-location .button').removeClass('selected'); 
+                        $('.theater-location .button').removeClass('movie-day-selected'); 
 
                         loadMovieTimeTable();
                     });
 
                     // 지역 선택 클릭 이벤트 처리
                     $('.theater-location .button').on('click', function() {
-                        $('.theater-location .button').removeClass('selected');
-                        $(this).addClass('selected');
+                        $('.theater-location .button').removeClass('movie-day-selected');
+                        $(this).addClass('movie-day-selected');
                         selectedLocation = $(this).attr('data-c_location'); // 데이터 속성에서 값을 가져옵니다.
                         console.log('Selected Location:', selectedLocation);
                         loadMovieTimeTable(); // 지역이 선택되었으므로 시간표를 로드합니다.
@@ -174,6 +174,7 @@
                                             selectMovieTimeListHtml += '<div class="movietime-container" data-mtNum="' + item.mt_num + '">';
                                             selectMovieTimeListHtml += '<div class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
                                             selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
+                                            selectMovieTimeListHtml += '<div class="available-seats">' + item.availableSeats + '/96</div>';
                                             selectMovieTimeListHtml += '<div class="th-name">' + item.th_name + '관' + '</div>';
                                             selectMovieTimeListHtml += '</div>';
                                             selectMovieTimeListHtml += '</div>'; // movietime-container 종료

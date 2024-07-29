@@ -140,7 +140,7 @@ a {
 
 .poster_info_image {
 	width: 100%;
-    height: auto !important;
+	height: auto !important;
 }
 
 .tit_info {
@@ -486,7 +486,7 @@ a, a:link, a:visited, a:active, a:hover {
 	{
 	float: left;
 	overflow: hidden;
-	max-width: 300px;
+	max-width: 400px;
 	margin-top: 2px;
 	margin-left: 40px;
 	font-size: 14px;
@@ -693,4 +693,3 @@ ul, ol {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-

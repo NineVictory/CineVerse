@@ -35,7 +35,9 @@
 
 /* 영화 */
 .movie-part {
-	width: 400px;
+    border-left: 1px solid var(--gray-3);
+    width: 400px;
+    border-bottom: 1px solid var(--gray-3);
 }
 
 .sort-wrapper {
@@ -141,6 +143,8 @@ font-size: 13px;
 /* 날짜 및 시간 */
 .time-part {
 	width: 750px;
+	    border-bottom: 1px solid var(--gray-3);
+    border-right: 1px solid var(--gray-3);
 }
 
 .reserve-time {
@@ -182,9 +186,9 @@ font-size: 13px;
 }
 
 .movie-day:hover {    
-	height: 60px;
+    height: 60px;
     border-radius: 20px;
-    background-color: #e0e0e0;
+    background-color: var(--gray-1);
     color: #333;
 }
 
@@ -203,10 +207,11 @@ font-size: 13px;
 }
 
 .movie-day-selected {
-	    height: 60px;
+	height: 60px;
+	font-weight: 800;
     border-radius: 20px;
-	background-color: #333333; /* 선택된 날짜 배경색 */
-	color: white; /* 선택된 날짜 텍스트 색상 */
+	background-color: var(--gray-1);
+	color: #000;
 }
 
 .location-part{
@@ -409,9 +414,9 @@ font-size: 13px;
 	align-items: center;
 }
 
- .selected {
-        background-color: #d3d3d3; /* 선택된 항목의 배경색을 변경 */
-    }
+.selected {
+    background-color: var(--gray-1);
+}
 
 .tooltip {
 	position: absolute;
@@ -451,13 +456,24 @@ font-size: 13px;
 	/* margin-bottom: 5px;*/
 }
 
-.movietime-item .mt-date {
+.movietime-item .available-seats {
 	/* position: absolute;
 	bottom: 5px;
 	left: 5px;
 	font-size: 13px; */
+	font-size: 13px;
+    font-weight: 400;
+}
+
+.movietime-item .th-name {
+	/* 	position: absolute;
+	bottom: 5px;
+	right: 5px;*/
+	font-size: 13px;
+    font-weight: 400;
 	
 }
+
 
 .movietime-item .th-name {
 	/* 	position: absolute;
