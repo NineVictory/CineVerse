@@ -76,7 +76,27 @@
                             </div>
                             <div class="bookAopen">
                             	<div>개봉일 ${movie.m_opendate}</div>
-                                <div>예매율 0% </div>
+<%--                             	<c:if test="${movieRank.reservation_rate}">
+                                <div>예매율 ${empty movieRank.reservation_rate}% </div>
+                                </c:if>
+                                
+                                <c:if test="${empty movieRank.reservation_rate}">
+                                <div>예매율 0%</div>
+                                </c:if> --%>
+								 <c:choose>
+				                    <c:when test="${not empty movieRank}">
+				                        <c:set var="reservationRate" value="0" />
+				                        <c:forEach var="rankedMovie" items="${movieRank}">
+				                            <c:if test="${rankedMovie.m_code == movie.m_code}">
+				                                <c:set var="reservationRate" value="${rankedMovie.reservation_rate}" />
+				                            </c:if>
+				                        </c:forEach>
+				                        <div>예매율 ${reservationRate}%</div>
+				                    </c:when>
+				                    <c:otherwise>
+				                        <div>예매율 0%</div>
+				                    </c:otherwise>
+				                </c:choose>
                             </div>
                         </li>
                     </c:if>
