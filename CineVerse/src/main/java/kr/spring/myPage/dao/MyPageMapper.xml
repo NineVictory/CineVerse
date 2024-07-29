@@ -464,7 +464,7 @@
 	<select id="lastRes" parameterType="long"
 		resultType="movieBookingVO">
 <![CDATA[
-   WITH RankedBookings AS (
+WITH RankedBookings AS (
     SELECT
         mb.user_mb_num,
         mb.mb_num,
@@ -530,14 +530,13 @@ FROM (
         m_filename,
         mt_start,
         mt_end,
-        ROWNUM AS rnum
+        ROW_NUMBER() OVER (ORDER BY mb_num DESC, mt_start DESC) AS rnum
     FROM DistinctBookings
     WHERE 
         (mt_date > TRUNC(SYSDATE) OR
-        mt_date = TRUNC(SYSDATE) AND TO_DATE(mt_end, 'HH24:MI') > TO_DATE(TO_CHAR(SYSDATE, 'HH24:MI'), 'HH24:MI'))
-    ORDER BY mb_num DESC, mt_start DESC
-)
-WHERE rnum >= 2
+        mt_date = TRUNC(SYSDATE) AND TO_DATE(mt_end, 'HH24:MI') > TO_DATE(TO_CHAR(SYSDATE, 'HH24:MI'), 'HH24:MI')))
+WHERE rnum <= 2
+
     ]]>
 	</select>
 
