@@ -142,22 +142,5 @@
             
             timeDiv.textContent = formattedTimes.join("~");
         });
-
-        var reservationItems = document.querySelectorAll(".main_body_reservation");
-        reservationItems.forEach(function(reservation) {
-            var dateDiv = reservation.querySelector(".reservation-date");
-            var endTimeDiv = reservation.querySelector("[id^='time-start-']").textContent.split("~")[1].trim();
-            
-            if (dateDiv && endTimeDiv) {
-                var reservationDate = dateDiv.textContent.trim();
-                
-                var reservationEndDateTime = new Date(reservationDate + 'T' + endTimeDiv);
-
-                // 상영 날짜와 상영 종료 시간이 현재 날짜와 시간보다 작을 때 숨김 처리
-                if (reservationEndDateTime < currentDate) {
-                    reservation.style.display = "none";
-                }
-            }
-        });
     });
 </script>
