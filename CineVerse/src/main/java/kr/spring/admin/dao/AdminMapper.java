@@ -112,6 +112,7 @@ public interface AdminMapper {
 	public List<EventVO> selectEventList(Map<String, Object> map);
 
 	public Integer selectEventRowCount(Map<String, Object> map);
+	
 
 	public void insertEvent(EventVO eventVO);
 	@Select("select * from event WHERE event_num = #{event_num}")
@@ -277,7 +278,7 @@ public interface AdminMapper {
 	public Integer selectReMovieRowCount(Map<String, Object> map);
 	
 	//영화리뷰삭제
-	@Update("UPDATE movie_review SET mr_status=1 WHERE mr_num=#{mr_num}")
+	@Update("UPDATE movie_review SET mr_status = 2 WHERE mr_num=#{mr_num}")
 	public void updateMovieReview(long mr_num);
 	
 	

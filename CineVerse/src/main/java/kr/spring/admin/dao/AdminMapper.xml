@@ -845,6 +845,7 @@
 				AND
 				${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
+			AND mr_status = 1
 		</where>
 	</sql>
 
@@ -862,13 +863,15 @@
                 COUNT(rr.mr_num) AS review_count
             FROM movie_review mr
             LEFT JOIN reviewreport rr ON mr.mr_num = rr.mr_num
-			<include refid="removieSearch"></include>
+			<!-- <include refid="removieSearch"></include> -->
+			WHERE mr.mr_status =1 AND
+			${keyfield} LIKE '%' || #{keyword} || '%'
             GROUP BY mr.m_code, mr.mr_num, DBMS_LOB.SUBSTR(mr.mr_content, 4000, 1), mr.mr_regdate
             ORDER BY review_count DESC
         ) a
     )
     <![CDATA[
-    WHERE rnum >= #{start} AND rnum <= #{end}
+    WHERE rnum >= #{start} AND rnum <= #{end} 
     ]]>
 	</select>
 
