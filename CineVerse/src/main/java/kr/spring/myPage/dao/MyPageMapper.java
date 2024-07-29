@@ -133,8 +133,12 @@ public interface MyPageMapper {
 	public void updateNoSubDate();
 
 
-	
-	
+	@Select("SELECT seat_row FROM seat JOIN mb_detail USING(seat_num) WHERE mb_num=#{mb_num}")
+	public List<MovieBookingVO> selectRow(Long mb_num);
+	@Select("SELECT seat_column FROM seat JOIN mb_detail USING(seat_num) WHERE mb_num=#{mb_num}")
+	public List<MovieBookingVO> selectColumn(Long mb_num);
+	@Select("SELECT COUNT(*) FROM mb_detail WHERE mb_num=#{mb_num}")
+	public Integer mdCount(Long mb_num);
 	
 
 

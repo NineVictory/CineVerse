@@ -31,6 +31,7 @@ import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
 import kr.spring.movie.vo.MovieReviewVO;
 import kr.spring.myPage.service.MyPageService;
+import kr.spring.myPage.service.MyPageServiceImpl;
 import kr.spring.myPage.vo.MyPageVO;
 import kr.spring.support.vo.ConsultVO;
 import kr.spring.talk.service.TalkService;
@@ -177,7 +178,18 @@ public class MyPageController {
 
 	       
 	        MovieBookingVO detail = mypageService.resDetail(mypage.getMb_num());
-
+	        List<MovieBookingVO> collist = mypageService.selectColumn(mypage.getMb_num());
+	        List<MovieBookingVO> rowlist = mypageService.selectRow(mypage.getMb_num());
+	        
+	        int count = mypageService.mdCount(mypage.getMb_num());
+	        
+	        List<String> seatList = new ArrayList<>();
+	        for(int i=0; i<count; i++) {
+	        	String columnValue = collist.get(i).toString();  
+	            String rowValue = rowlist.get(i).toString();   
+	            seatList.add(rowValue + columnValue);
+	        }
+	        model.addAttribute("seatList", seatList);
 	        model.addAttribute("detail", detail);
 	        model.addAttribute("resCnt", resCnt);
 	        model.addAttribute("member", member);
@@ -615,9 +627,6 @@ public class MyPageController {
 			member.setTh_name(booking.getTh_name());
 		}
 		model.addAttribute("resCnt", resCnt);
-		
-		
-
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());

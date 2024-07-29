@@ -280,6 +280,21 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.resDetail(mb_num);
 	}
 
+	@Override
+	public List<MovieBookingVO> selectRow(Long mb_num) {
+		return myPageMapper.selectRow(mb_num);
+	}
+
+	@Override
+	public List<MovieBookingVO> selectColumn(Long mb_num) {
+		return myPageMapper.selectColumn(mb_num);
+	}
+
+	@Override
+	public Integer mdCount(Long mb_num) {
+		return myPageMapper.mdCount(mb_num);
+	}
+
 	
 	
 

@@ -78,4 +78,9 @@ public interface MyPageService {
 	//내가 본 영화 md_type==1
 	public List<MovieBookingVO> watchedMovList(Map<String, Object> map);
 	
+	
+	public List<MovieBookingVO> selectRow(Long mb_num);
+	public List<MovieBookingVO> selectColumn(Long mb_num);
+	public Integer mdCount(Long mb_num);
+	
 }
