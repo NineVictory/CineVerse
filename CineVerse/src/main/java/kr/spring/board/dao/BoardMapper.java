@@ -26,7 +26,7 @@ public interface BoardMapper {
 	public List<BoardVO> selectList(Map<String,Object> map);
 	public Integer selectRowCount(Map<String,Object> map);
 	public void insertBoard(BoardVO board);
-	@Select("SELECT * FROM community_board JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE cb_num=#{cb_num}")
+	@Select("SELECT * FROM community_board JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) LEFT OUTER JOIN (SELECT cb_num, COUNT(*) cc_report FROM community_report GROUP BY cb_num) USING (cb_num) WHERE cb_num=#{cb_num}")
 	public BoardVO selectBoard(Long cb_num);
 	@Update("UPDATE community_board SET cb_hit=cb_hit+1 WHERE cb_num=#{cb_num}")
 	public void updateHit(Long cb_num);

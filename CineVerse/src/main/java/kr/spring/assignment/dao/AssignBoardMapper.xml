@@ -20,7 +20,9 @@
 	
 	<!-- 게시판 상세 -->
 	<select id="ab_selectBoard">
-		SELECT * FROM assignment_board JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE ab_num=#{ab_num}
+		SELECT * FROM assignment_board JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) 
+		LEFT OUTER JOIN assign_report USING (ab_num)
+		WHERE ab_num=#{ab_num}
 		
 	</select>
 	

@@ -39,4 +39,6 @@ public class BoardVO {
 	private int cc_cnt;				//댓글 개수
 	private int fav_cnt;			//좋아요 개수
 	private int all_comments;		// 댓글+답글
+	
+	private int cc_report;	//신고 수
 }
