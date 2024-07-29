@@ -185,10 +185,21 @@ public class MyPageController {
 	        
 	        List<String> seatList = new ArrayList<>();
 	        for(int i=0; i<count; i++) {
-	        	String columnValue = collist.get(i).toString();  
-	            String rowValue = rowlist.get(i).toString();   
-	            seatList.add(rowValue + columnValue);
+	        	int columnValue = collist.get(i).getSeat_column();  
+	            String rowValue = rowlist.get(i).getSeat_row();      
+	            seatList.add(columnValue + rowValue);
 	        }
+	        
+	        	Long total = detail.getMb_price();
+			  int coupon = mypageService.selectPayCouponCnt(mypage.getMem_coupon_use(),user.getMem_num());
+			  MyPageVO moviePay = null;
+			  if (coupon > 0) { 
+				  moviePay = mypageService.selectCouponPrice(mypage.getMc_num());
+				  total -= moviePay.getCoupon_sale();
+			  }
+			  
+	        model.addAttribute("total",total);
+	        //model.addAttribute("moviePay",moviePay);
 	        model.addAttribute("seatList", seatList);
 	        model.addAttribute("detail", detail);
 	        model.addAttribute("resCnt", resCnt);

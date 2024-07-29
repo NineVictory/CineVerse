@@ -295,6 +295,16 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.mdCount(mb_num);
 	}
 
+	@Override
+	public Integer selectPayCouponCnt(Long mem_coupon_use,Long mem_num) {
+		return myPageMapper.selectPayCouponCnt(mem_coupon_use, mem_num);
+	}
+
+	@Override
+	public MyPageVO selectCouponPrice(Long mc_num) {
+		return myPageMapper.selectCouponPrice(mc_num);
+	}
+
 	
 	
 

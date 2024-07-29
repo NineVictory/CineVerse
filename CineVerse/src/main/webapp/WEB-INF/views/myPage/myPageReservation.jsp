@@ -47,7 +47,9 @@
                     </div>
                     <div class="my_reserv_info_4">
                         <div>${detail.booking_count }명</div>
-                        <div>0</div>
+                        <div><c:forEach var="se" items="${seatList}">
+                        	${se}
+                        </c:forEach></div>
                     </div>
                 </div>
                 <hr size="1" width="100%" class="wa_line">
@@ -73,8 +75,8 @@
                 <div class="pay_coupon">쿠폰 결제</div>
             </div>
             <div class="pay_way_count">
-                <div class="point_count">000원</div>
-                <div class="coupon_count">000원</div>
+                <div class="point_count">원</div>
+                <div class="coupon_count">원</div>
             </div>
         </div>
     </div>

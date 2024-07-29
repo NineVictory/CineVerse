@@ -63,11 +63,7 @@ public interface MyPageService {
 	
 	public Integer resDetailCnt(Long mem_num);
 	public MovieBookingVO resDetail(Long mb_num);
-	
-	
-	
-	
-	
+
 	public List<MovieBookingVO> lastRes(Long mem_num);
 	public MovieBookingVO mainRes(Long mem_num);//메인나브
 	public void updateCoupon(Long mem_num);
@@ -77,10 +73,13 @@ public interface MyPageService {
 	public void delMovieRev(Long mr_num);
 	//내가 본 영화 md_type==1
 	public List<MovieBookingVO> watchedMovList(Map<String, Object> map);
-	
-	
+
 	public List<MovieBookingVO> selectRow(Long mb_num);
 	public List<MovieBookingVO> selectColumn(Long mb_num);
 	public Integer mdCount(Long mb_num);
+	
+	//영화포인트
+	public Integer selectPayCouponCnt(Long mem_coupon_use,Long mem_num);
+	public MyPageVO selectCouponPrice(Long mc_num);
 	
 }
