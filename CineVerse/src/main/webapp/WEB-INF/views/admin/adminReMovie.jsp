@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
-<!-- <script>
+<script>
     function deleteMr(mr_num) {
         $.ajax({
             type: "POST",
@@ -23,7 +23,7 @@
             }
         });
     }
-</script> -->
+</script>
 
 <div class="page-container">
 	<div class="admin_member">
@@ -65,8 +65,7 @@
 						<td class="mem-data">${rm.mr_content}</td>
 						<td class="mem-data">${rm.mr_regdate}</td>
 						<td class="mem-data">${rm.review_count}</td>
-						<td class="button2"><input type="button" value="삭제"
-							onclick="deleteMr(${rm.mr_num})" /></td>
+						<td class="button2"><input type="button" value="삭제" onclick="deleteMr(${rm.mr_num})" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>

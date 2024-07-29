@@ -45,6 +45,11 @@
 			</form:select>
 			<form:errors path="event_type" element="div" cssClass="error-message"></form:errors>
 		</li>
+		<li>	
+			<label for="event_drawn">당첨자 수</label>
+			<form:input path="event_drawn" class="input-check"/>
+			<form:errors path="event_drawn" element="div" cssClass="error-message"></form:errors>
+		</li>
 		<li>
 			<label for="event_upload">사진</label>
 			<input type="file" name="event_upload" id="event_upload" class="input-check" accept="image/gif,image/png,image/jpeg">

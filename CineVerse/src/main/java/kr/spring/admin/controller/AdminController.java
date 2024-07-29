@@ -1261,13 +1261,11 @@ public class AdminController {
 
 		}	
 		
-		// 결제 환불 처리
-		// 스테이터스로 가능 하도록 추가한 코드
-		/*
-		 * @PostMapping("/deleteMr")
-		 * 
-		 * @ResponseBody public String deleteMr(@RequestParam("mr_num") long mr_num) {
-		 * 
-		 * adminService.updateMovieReview(mr_num); return "success"; }
-		 */
+		// 리뷰삭제 처리
+		  @PostMapping("/deleteMr")
+		  @ResponseBody public String deleteMr(@RequestParam("mr_num") long mr_num) {
+		  adminService.updateMovieReview(mr_num); 
+		  return "success"; 
+		  }
+		 
 }
