@@ -127,8 +127,10 @@
                 if (time.includes(":")) {
                     return time; // 이미 포맷된 경우 그대로 반환
                 }
-                if (time === "0" || time === "0000") {
+                if (time.trim() === "0" || time.trim() === "0000") {
                     return "00:00";
+                }else if (time.trim().length === 3){ 
+                	return ' 0' + time.trim().slice(0, 1) + ':' + time.trim().slice(1);
                 } else {
                     return time.slice(0, 2) + ":" + time.slice(2);
                 }

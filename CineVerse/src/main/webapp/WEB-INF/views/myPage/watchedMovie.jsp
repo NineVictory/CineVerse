@@ -83,8 +83,10 @@ String currentTime = sdfTime.format(new Date());
                 if (time.includes(":")) {
                     return time;
                 }
-                if (time === "0" || time === "0000") {
+                if (time.trim() === "0" || time.trim() === "0000") {
                     return "00:00";
+                }else if (time.trim().length === 3){ 
+                	return '0' + time.trim().slice(0, 1) + ':' + time.trim().slice(1);
                 } else {
                     return time.slice(0, 2) + ":" + time.slice(2);
                 }
