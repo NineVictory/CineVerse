@@ -210,7 +210,7 @@ public interface ShopMapper {
 	public List<ProductVO> reviewList(long p_num);
 	
 	// 리뷰 카운트
-	@Select("select count(*) from product_review WHERE p_num=#{p_num}")
+	@Select("select count(*) from product_review WHERE p_num=#{p_num}") 
 	public Integer reviewCount(long p_num);
 	
 	
