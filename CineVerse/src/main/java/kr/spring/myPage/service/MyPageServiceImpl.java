@@ -12,6 +12,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.event.vo.UserEventVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -208,10 +209,7 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.eventcnt(map);
 	}
 
-	@Override
-	public List<EventVO> eventList(Map<String, Object> map) {
-		return myPageMapper.eventList(map);
-	}
+	
 
 	@Override
 	public Integer reservationCnt(Map<String, Object> map) {
@@ -303,6 +301,11 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public MyPageVO selectCouponPrice(Long mem_coupon_use) {
 		return myPageMapper.selectCouponPrice(mem_coupon_use);
+	}
+
+	@Override
+	public List<UserEventVO> eventList(Map<String, Object> map) {
+		return myPageMapper.eventList(map);
 	}
 
 	

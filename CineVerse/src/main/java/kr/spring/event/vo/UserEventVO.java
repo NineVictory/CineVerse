@@ -29,7 +29,7 @@ public class UserEventVO {
 	//
 	private long t_rest;	//dday
 	private int event_drawn;
-	
+	private int ep_result;
 	private MultipartFile event_upload;	//파일
 	private String crowd_movie1;
 	private String crowd_movie2;

@@ -14,6 +14,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.event.vo.UserEventVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
@@ -60,7 +61,7 @@ public interface MyPageMapper {
 	
 	
 	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
-	public List<EventVO> eventList(Map<String, Object> map);
+	public List<UserEventVO> eventList(Map<String, Object> map);
 	
 	
 	

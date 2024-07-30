@@ -25,6 +25,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.event.vo.UserEventVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
@@ -654,7 +655,7 @@ public class MyPageController {
 		map.put("mem_num", user.getMem_num());
 		map.put("category", category);
 
-		List<EventVO> list = null;
+		List<UserEventVO> list = null;
 		int count = mypageService.eventcnt(map);
 		if(count > 0) {
 			list = mypageService.eventList(map);
