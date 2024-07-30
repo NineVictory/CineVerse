@@ -7,7 +7,6 @@
 
     <div class="reservation_display">
         <span class="myPage_title_re">예매내역</span>
-        <span class="watched_movie">내가 본 영화</span>
     </div>
     <hr size="1" width="100%" class="wa_line">
     <div class="reservation_font">
@@ -20,7 +19,7 @@
     <div class="reservation_rep">
         <div class="re_movie_number">
             <span class="mp_movie_number_1">예매번호</span><span
-                class="mp_movie_number_2">${detail.user_mb_num }</span>
+                class="mp_movie_number_3">${detail.user_mb_num }</span>
         </div>
         <div class="reserv_display">
             <div class="wa_photo">
