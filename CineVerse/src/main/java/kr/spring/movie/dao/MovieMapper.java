@@ -167,7 +167,7 @@ public interface MovieMapper {
     @Insert("INSERT INTO mb_detail (md_num, md_type, mb_num, seat_num) VALUES (mb_detail_seq.nextval, #{md_type}, #{mb_num}, #{seat_num})")
     void insertBookingDetail(MbDetailVO mbDetail);
 
-	/*
+	/* 
 	 * @Select("SELECT COUNT(*) FROM movie_booking mb " +
 	 * "JOIN mb_detail md ON mb.mb_num = md.mb_num " +
 	 * "WHERE mb.mem_num = #{mem_num} " + "AND mb.mt_num = #{mt_num} " +
