@@ -74,8 +74,8 @@
 					<tr>
 						<td class="mem-data">${movieTime.mt_num}</td>
 						<td class="mem-data">${movieTime.mt_date}</td>
-						<td class="mem-data">${movieTime.mt_start}</td>
-						<td class="mem-data">${movieTime.mt_end}</td>
+						<td class="mem-data movieTimes">${movieTime.mt_start}</td>
+						<td class="mem-data movieTimee">${movieTime.mt_end}</td>
 						<td class="mem-data">${movieTime.m_name}</td>
 						<td class="mem-data">${movieTime.th_num}</td>
 						<td class="button1"><input type="button" value="수정"
@@ -89,3 +89,29 @@
 	</div>
 	<div class="page-div">${page}</div>
 </div>
+
+<script>
+function formatTime(time) {
+  if (time.length === 3) {
+    time = '0' + time;
+  }
+  if (time.length === 4) {
+    return time.slice(0, 2) + ':' + time.slice(2);
+  }
+  return time;
+}
+
+var startTimes = document.querySelectorAll('.movieTimes');
+var endTimes = document.querySelectorAll('.movieTimee');
+
+startTimes.forEach(function(element) {
+  var startTimeText = element.textContent.trim();
+  element.textContent = formatTime(startTimeText);
+});
+
+endTimes.forEach(function(element) {
+  var endTimeText = element.textContent.trim();
+  element.textContent = formatTime(endTimeText);
+});
+
+</script>
