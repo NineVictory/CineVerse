@@ -8,7 +8,7 @@
 
 	<div class="reservation_display">
 		<span class="myPage_title_re">결제 내역</span>
-		<span class="watched_movie"><a href="/myPage/bought">내가 산 굿즈</a></span>
+		<span class="watched_movie"><a href="/myPage/bought" style="color:#fff;">내가 산 굿즈</a></span>
 	</div>
 	<hr size="1" width="100%" class="wa_line">
 	<c:if test="${!empty orderDetail}">
@@ -60,7 +60,7 @@
 					<div class="my_bought_btn">
 						<div>
 							<c:if test="${od.order_status==6 && od.od_review_status==1}">
-								<span class="my_order_review" data-pnum="${od.p_num}" data-num="${od.od_num}" style="padding:3px;">리뷰쓰기</span>
+								<span class="my_order_review" data-pnum="${od.p_num}" data-num="${od.od_num}" style="padding:9px;">리뷰쓰기</span>
 							</c:if>
 						</div>
 					</div>

@@ -31,7 +31,7 @@
 						</div>
 
 
-						<div class="mpMovie_info">
+						<div class="mpMovie_info" onclick="location.href='/myPage/boughtDetail?order_num=${o.order_num}'">
 							<div class="bought_info">
 								<!-- 20,47,48,49에 사용한 변수는 myPage.css(1086)에 새로 추가했어요 쩝 -->
 								<span class="mp_movie_number_1">결제번호</span> <span
