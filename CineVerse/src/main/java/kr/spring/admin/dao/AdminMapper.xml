@@ -704,7 +704,7 @@
 				test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
 				AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
-				AND consult_status = 2
+				AND consult_status = 1
 		</where>
 	</sql>
 
