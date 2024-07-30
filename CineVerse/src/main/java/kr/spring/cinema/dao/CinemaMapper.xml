@@ -208,7 +208,7 @@
 			        m.m_name,
 			        m.rating, 
 			        m.m_filename,
-			        ROUND((SELECT COUNT(*) FROM movie_booking WHERE m_code = m.m_code) * 100.0 / 
+			        ROUND((SELECT COUNT(*) FROM movie_booking JOIN mb_detail USING(mb_num) WHERE m_code = m.m_code AND md_type=1) * 100.0 / 
 			        (SELECT COUNT(*) FROM movie_booking),1) AS reservation_rate,
 			        TO_CHAR((SELECT AVG(mr.mr_grade) 
 			                 FROM movie_review mr 
