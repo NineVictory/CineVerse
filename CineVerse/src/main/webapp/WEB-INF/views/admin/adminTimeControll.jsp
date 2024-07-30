@@ -59,7 +59,7 @@
 					<th>시작 시간</th>
 					<th>종료 시간</th>
 					<th>영화 제목</th>
-					<th>상영관 번호</th>
+					<th>지점명</th>
 					<td></td>
 					<td></td>
 				</tr>
@@ -77,7 +77,7 @@
 						<td class="mem-data movieTimes">${movieTime.mt_start}</td>
 						<td class="mem-data movieTimee">${movieTime.mt_end}</td>
 						<td class="mem-data">${movieTime.m_name}</td>
-						<td class="mem-data">${movieTime.th_num}</td>
+						<td class="mem-data">${movieTime.c_branch}</td>
 						<td class="button1"><input type="button" value="수정"
 							onclick="redirectToMovieModify(${movieTime.mt_num})" /></td>
 						<td class="button2"><input type="button" value="삭제"

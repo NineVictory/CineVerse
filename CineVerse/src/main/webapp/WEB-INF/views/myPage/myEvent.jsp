@@ -32,7 +32,7 @@
 						<c:if test="${event.ep_result== 1 }">
 							<script type="text/javascript">
 							$('.ep_result_btn').click(function(){
-								alert('미당첨입니다.\n다음에 한 번 더 도전해보세요!');
+								alert('이벤트에 당첨되지 않았습니다.\n다음 이벤트를 기대해주세요!');
 							})
 							</script>
 						</c:if>

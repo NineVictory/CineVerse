@@ -140,7 +140,7 @@
 	</select>
 
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 이벤트 글 총레코드수/검색 레코드수 -->
 	<select id="selectEventRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -223,7 +223,7 @@
 	</select>
 
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 공지사항 글 총레코드수/검색 레코드수 -->
 	<select id="selectNoticeRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -299,7 +299,7 @@
 	</select>
 
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- FAQ 글 총레코드수/검색 레코드수 -->
 	<select id="selectFaqRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -400,7 +400,7 @@
 		</where>
 	</sql>
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 포인트 글 총레코드수/검색 레코드수 -->
 	<select id="selectPointRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -468,7 +468,7 @@
 	</sql>
 
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 영화관 글 총레코드수/검색 레코드수 -->
 	<select id="selectCinemaRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -544,28 +544,29 @@
 	</sql>
 
 
-	<select id="selectCommunityList" parameterType="map"
-		resultType="BoardVO">
-		SELECT *
-		FROM (
-		SELECT a.*, rownum rnum
-		FROM (
-		SELECT
-		cb_num,
-		mem_num,mem_id,
-		cb_title,
-		cb_type,
-		cb_report,
-		cb_hit,
-		cb_reg_date
-		FROM community_board JOIN member USING (mem_num)
-		<include refid="communitySearch"></include>
-		) a
-		)
+<select id="selectCommunityList" parameterType="map" resultType="BoardVO">
+    SELECT a.cb_num, a.mem_num, a.mem_id, a.cb_title, a.cb_type, a.cb_hit, a.cb_reg_date, a.report_count
+    FROM (
+        SELECT cb.cb_num,
+               cb.mem_num,
+               m.mem_id,
+               cb.cb_title,
+               cb.cb_type,
+               cb.cb_hit,
+               cb.cb_reg_date,
+               COUNT(cr.cb_num) AS report_count,
+               ROW_NUMBER() OVER (ORDER BY cb.cb_num) AS rnum
+        FROM community_board cb
+        JOIN member m ON cb.mem_num = m.mem_num
+        LEFT JOIN community_report cr ON cb.cb_num = cr.cb_num
+        <include refid="communitySearch" />
+        GROUP BY cb.cb_num, cb.mem_num, m.mem_id, cb.cb_title, cb.cb_type, cb.cb_hit, cb.cb_reg_date
+    ) a
     <![CDATA[
     WHERE rnum >= #{start} AND rnum <= #{end}
+    ORDER BY report_count DESC
     ]]>
-	</select>
+</select>
 
 
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
@@ -703,6 +704,7 @@
 				test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
 				AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
+				AND consult_status = 2
 		</where>
 	</sql>
 

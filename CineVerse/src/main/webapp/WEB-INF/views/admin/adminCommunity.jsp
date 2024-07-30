@@ -49,18 +49,13 @@
 						<c:if test="${cb.cb_type == 'dailyTalk'}">
 							<td class="mem-data">일상톡톡</td>
 						</c:if>
-						<c:if test="${!empty cb.cb_report}">
-							<td class="mem-data">${cb.cb_report}</td>
-						</c:if>
-						<c:if test="${empty cb.cb_report}">
+						<c:if test="${empty cb.report_count}">
 							<td class="mem-data">0</td>
 						</c:if>
-						<c:if test="${!empty cb.cb_report}">
-							<td class="mem-data">${cb.cb_hit}</td>
+						<c:if test="${!empty cb.report_count}">
+							<td class="mem-data">${cb.report_count}</td>
 						</c:if>
-						<c:if test="${empty cb.cb_report}">
-							<td class="mem-data">0</td>
-						</c:if>
+						<td class="mem-data">${cb.cb_hit}</td>
 						<td class="mem-data">${cb.cb_reg_date}</td>
 						<td class="button2"><input type="button" value="삭제"
 							onclick="deleteCommunity(${cb.cb_num})" /></td>
