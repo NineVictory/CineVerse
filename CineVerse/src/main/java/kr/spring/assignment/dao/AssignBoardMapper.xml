@@ -47,11 +47,10 @@
 									mem_num,
 									mem_id,
 									mem_nickname,
-									ac_cnt,
+									
 									bookmark_cnt
 								
 									FROM assignment_board 
-									LEFT OUTER JOIN (SELECT COUNT(*) ac_cnt, ab_num FROM ab_comment GROUP BY ab_num) USING(ab_num)
 									LEFT OUTER JOIN (SELECT COUNT(*) bookmark_cnt, ab_num FROM ab_bookmark GROUP BY ab_num) USING(ab_num)
 												JOIN member USING(mem_num)
 												LEFT OUTER JOIN member_detail USING(mem_num)
