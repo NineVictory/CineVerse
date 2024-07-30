@@ -66,7 +66,7 @@
                     <td class="mem-data">${mr.md_num}</td>
                     <td class="mem-data">${mr.mem_id}</td>
                     <td class="mem-data">${mr.mb_date}</td>
-                    <td class="mem-data">${mr.mb_price}</td>
+                    <td class="mem-data">${mr.mb_price}P</td>
 					<td class="button2"><input type="button" value="예매취소" onclick="refundMovie(${mr.mem_num}, ${mr.mb_price}, '예매환불' ,${mr.mb_num})"/></td>
                 </tr>
             </c:forEach>

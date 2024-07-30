@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 <script>
@@ -63,7 +64,7 @@
             <c:forEach var="point" items="${list}">
                 <tr>
                     <td class="mem-data">${point.ph_num}</td>
-                    <td class="mem-data">${point.ph_point}</td>
+                    <td class="mem-data"><fmt:formatNumber value="${point.ph_point}" type="number" groupingUsed="true" />원</td>
                     <td class="mem-data">${point.ph_date}</td>
                     <td class="mem-data">${point.mem_id}</td>
                     <td class="mem-data">${point.ph_payment}</td>
