@@ -834,8 +834,8 @@
 		<include refid="refundShopSearch"></include>
 	</select>
 	
-		<!-- 공지사항 시작 -->
-	<!-- 공지사항 목록/검색 -->
+		<!-- 영화리뷰 시작 -->
+	<!-- 영화리뷰 목록/검색 -->
 	<sql id="removieSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
@@ -846,7 +846,6 @@
 				AND
 				${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
-			AND mr_status = 1
 		</where>
 	</sql>
 
@@ -865,7 +864,7 @@
             FROM movie_review mr
             LEFT JOIN reviewreport rr ON mr.mr_num = rr.mr_num
 			<!-- <include refid="removieSearch"></include> -->
-			WHERE mr.mr_status =1 AND
+			WHERE 
 			${keyfield} LIKE '%' || #{keyword} || '%'
             GROUP BY mr.m_code, mr.mr_num, DBMS_LOB.SUBSTR(mr.mr_content, 4000, 1), mr.mr_regdate
             ORDER BY review_count DESC
