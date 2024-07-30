@@ -14,6 +14,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
+import kr.spring.interceptor.AuthCheckInterceptor;
 import kr.spring.interceptor.AutoLoginCheckInterceptor;
 import kr.spring.interceptor.LoginCheckInterceptor;
 import kr.spring.websocket.SocketHandler;
@@ -24,6 +25,7 @@ import kr.spring.websocket.SocketHandler;
 public class AppConfig implements WebMvcConfigurer, WebSocketConfigurer{
 	private LoginCheckInterceptor loginCheck;
 	private AutoLoginCheckInterceptor autoLoginCheck;
+	private AuthCheckInterceptor authCheck;
 	
 	@Bean
 	public AutoLoginCheckInterceptor interceptor() {
@@ -32,12 +34,19 @@ public class AppConfig implements WebMvcConfigurer, WebSocketConfigurer{
 		return autoLoginCheck;
 	}
 	
-	
 	@Bean
 	public LoginCheckInterceptor interceptor2() {
 		loginCheck = new LoginCheckInterceptor();
 		return loginCheck;
 	}
+	
+	@Bean
+	public AuthCheckInterceptor interceptor3() {
+		authCheck = new AuthCheckInterceptor();
+		return authCheck;
+	}
+	
+	
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -94,7 +103,12 @@ public class AppConfig implements WebMvcConfigurer, WebSocketConfigurer{
 				.addPathPatterns("/shop/shopFav")
 				.addPathPatterns("/assignboard/write")
 				.addPathPatterns("/assignboard/update")
-				.addPathPatterns("/support/consultForm");
+				.addPathPatterns("/support/consultForm")
+				.addPathPatterns("/admin/**");
+		
+		// auth Login Check
+		registry.addInterceptor(authCheck)
+						.addPathPatterns("/admin/**");
 		
 				
 	}
