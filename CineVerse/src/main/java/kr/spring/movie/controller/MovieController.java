@@ -433,8 +433,8 @@ public class MovieController {
                // 중복 체크
                int duplicateCount = movieService.checkDuplicateBooking(user.getMem_num(), mt_num, seatNum);
                if (duplicateCount > 0) {
-            	    session.setAttribute("errorMessage", "이미 예매된 좌석입니다. 다른 좌석을 선택해주세요.");
-            	    return "redirect:/movie/movieReserve";
+					/* session.setAttribute("errorMessage", "이미 예매된 좌석입니다. 다른 좌석을 선택해주세요."); */
+            	    return "redirect:/movie/movieSeat?mt_num="+mt_num;
             	} else {
             	    session.removeAttribute("errorMessage");
             	}
