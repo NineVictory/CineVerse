@@ -31,8 +31,8 @@
 	<div class="warning flexbox-h">
 
 			<img src="${pageContext.request.contextPath}/images/kbm/heart01.png" width="25px;" height="25px">
-			<div>
-				고객님의 문의에 답변하는 직원은 <span class="font-red">고객 여려분의 가족 중 한 사람</span>일 수 있습니다.
+			<div class="information-text">
+				고객님의 문의에 답변하는 직원은 <span class="font-red"><b>고객 여려분의 가족 중 한 사람</b></span>일 수 있습니다.
 				<p>
 				CINEVERSE는 고객의 언어폭력(비하, 욕설, 반말, 성희롱 등)으로부터 고객상담지원을 보호하기 위해<br>
 				관련 법에 따라 수사기관에 필요한 조치를 요구할 수 있으며, 형법에 의해 처벌 대상이 될 수 있습니다.
@@ -45,21 +45,26 @@
 		<div class="문의상세">
 		
 			<div class="flexbox-h form-items">
-				<div class="form-label p-center">문의유형&nbsp;<span class="font-red">*</span></div>
+				<div class="form-label">문의유형&nbsp;<span class="font-red">*</span></div>
 				<div class="p-center">
-
-					<form:radiobutton path="consult_type" value="inquiry" checked="checked"/>문의
-					&nbsp;
-					<form:radiobutton path="consult_type" value="dissatisfaction" />불만
-					&nbsp;
-					<form:radiobutton path="consult_type" value="compliment" />칭찬
-					&nbsp;
-					<form:radiobutton path="consult_type" value="proposal" />제안
-					&nbsp;
-					<form:radiobutton path="consult_type" value="missing" />분실물
-					&nbsp;
-					<form:radiobutton path="consult_type" value="exchange" />교환/환불
-					&nbsp;
+					<div>
+                		<form:radiobutton path="consult_type" value="inquiry"/> 문의
+                	</div>
+                    <div>
+                		<form:radiobutton path="consult_type" value="dissatisfaction"/> 불만
+                	</div>
+                    <div>
+                		<form:radiobutton path="consult_type" value="compliment"/> 칭찬
+                	</div>
+                    <div>
+                		<form:radiobutton path="consult_type" value="proposal"/> 제안
+                	</div>
+                    <div>
+                		<form:radiobutton path="consult_type" value="missing"/> 분실물
+                	</div>
+                    <div>
+						<form:radiobutton path="consult_type" value="exchange"/> 교환/환불
+                	</div>
 					<div class="">
 						<%-- <form:label path="od_number" class="">주문번호</form:label> --%>
 						<form:select path="order_num" id="order_num" class="">

@@ -102,7 +102,8 @@ border-radius: 5px;
 	width:290px;
 }
 .p-center{
-	display:flex;
+    gap: 20px;
+    display: flex;
     align-items: center;
 }
 .main-notice-title:hover{
@@ -273,7 +274,7 @@ border-radius: 10px 0px 0px 10px;
 
 /*consult 일대일문의*/
 .qna-member-info{
-	margin-top:15px;
+	margin-top:13px;
 }
 .qna-member-info > div{
 	border-top:1px solid #000;
@@ -283,7 +284,7 @@ border-radius: 10px 0px 0px 10px;
 }
 .check-info{
 	padding:2px 5px 2px 0;
-	font-size:14px;
+	font-size:12px;
 }
 .member-info-gap{
 	display:flex;
@@ -314,7 +315,7 @@ form#qna_register{
 	font-size:15px;
 }
 .form-label{
-	width:100px;
+	width:95px;
 
 }
 .form-items{
@@ -323,18 +324,22 @@ form#qna_register{
 }
 
 input#consult_title{
-	width:790px;
-	padding:7px;
+    border-radius: 10px;
+    width: 790px;
+    padding: 10px;
+    border: 1px solid var(--gray-4);
 } 
 .consult-form-title-container{
 	width:850px;
 }
 textarea#consult_content{
-	width:850px;
-	padding:7px;
-	height:170px;
-	overflow:auto;
-	resize:none;
+	    border-radius: 10px;
+border: 1px solid var(--gray-4);
+    width: 850px;
+    padding: 10px;
+    height: 170px;
+    overflow: auto;
+    resize: none;
 }
 .file-info > div{
 	margin-top:7px;
@@ -589,4 +594,9 @@ form#news_search_form{
     background-color:#fff;
     color:#000;
     cursor:pointer;
+}
+
+.information-text{
+	font-size: 13px;
+	
 }
