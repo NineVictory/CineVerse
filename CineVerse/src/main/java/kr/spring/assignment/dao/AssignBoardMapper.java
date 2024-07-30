@@ -55,4 +55,7 @@ public interface AssignBoardMapper {
 	
 	//양도글 신고
 	public void processReport(AssignReportVO assignReportVO);
+	//게시글 삭제전 신고 삭제
+	@Delete("DELETE FROM assign_report WHERE ab_num=#{ab_num}")
+	public void deleteAssignReport(Long ab_num);
 }

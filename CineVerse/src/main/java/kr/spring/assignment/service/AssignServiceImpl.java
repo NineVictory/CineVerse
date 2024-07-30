@@ -51,6 +51,7 @@ public class AssignServiceImpl implements AssignService{
 
 	@Override
 	public void ab_deleteBoard(Long ab_num) {
+		assignBoardMapper.deleteAssignReport(ab_num);
 		assignBoardMapper.ab_deleteFavByBoardNum(ab_num);
 		assignBoardMapper.ab_deleteBoard(ab_num);
 	}
