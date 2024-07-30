@@ -58,10 +58,10 @@ public class MyPageController {
 
 	@Autowired
 	private AssignService assignService;
-	
+
 	@Autowired
 	private BoardService boardService;
-	
+
 	@Autowired
 	private MovieService movieService;
 
@@ -73,70 +73,69 @@ public class MyPageController {
 	public MyPageVO initCommand() {
 		return new MyPageVO();
 	}
-	
-	//메인페이지
+
+	// 메인페이지
 	@GetMapping("/myPage/myPageMain")
 	public String myPageMain(HttpSession session, Model model) {
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    MyPageVO member = mypageService.selectMember(user.getMem_num());
-	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
-	    log.debug("<<마이페이지 >> : " + member);
+		log.debug("<<마이페이지 >> : " + member);
 
-	    Map<String, Object> map = new HashMap<String, Object>();
-	    map.put("mem_num", user.getMem_num());
-	    int count = mypageService.consultcnt(map);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_num", user.getMem_num());
+		int count = mypageService.consultcnt(map);
 
-	    ConsultVO lastConsult = null;
+		ConsultVO lastConsult = null;
 
-	    if (count > 0) {
-	        lastConsult = mypageService.lastConsert(user.getMem_num());
-	        log.debug("<<마지막 문의글 >> : " + lastConsult);
-	    }
+		if (count > 0) {
+			lastConsult = mypageService.lastConsert(user.getMem_num());
+			log.debug("<<마지막 문의글 >> : " + lastConsult);
+		}
 
-	    int resCnt = mypageService.reservationCnt(map);
-	    List<MovieBookingVO> lastRes = null;
+		int resCnt = mypageService.reservationCnt(map);
+		List<MovieBookingVO> lastRes = null;
 
-	    if (resCnt > 0) {
-	        lastRes = mypageService.lastRes(user.getMem_num());
-	        log.debug("<<예매목록>> : " + lastRes);
-	    }
+		if (resCnt > 0) {
+			lastRes = mypageService.lastRes(user.getMem_num());
+			log.debug("<<예매목록>> : " + lastRes);
+		}
 
-	    MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
-	    if (booking != null && resCnt > 0) {
-	        member.setC_branch(booking.getC_branch());
-	        member.setM_name(booking.getM_name());
-	        member.setMt_start(booking.getMt_start());
-	        member.setMt_date(booking.getMt_date());
-	        member.setTh_name(booking.getTh_name());
-	        log.debug("<<예매 상세>> : " + booking);
-	    }
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+			log.debug("<<예매 상세>> : " + booking);
+		}
 
-	    log.debug("<<최종 Member>> : " + member);
-	    log.debug("<<최종 lastRes>> : " + lastRes);
+		log.debug("<<최종 Member>> : " + member);
+		log.debug("<<최종 lastRes>> : " + lastRes);
 
-	    model.addAttribute("member", member);
-	    model.addAttribute("count", count);
-	    model.addAttribute("lastConsult", lastConsult);
-	    model.addAttribute("resCnt", resCnt);
-	    model.addAttribute("lastRes", lastRes);
+		model.addAttribute("member", member);
+		model.addAttribute("count", count);
+		model.addAttribute("lastConsult", lastConsult);
+		model.addAttribute("resCnt", resCnt);
+		model.addAttribute("lastRes", lastRes);
 
-	    return "myPageMain";
+		return "myPageMain";
 	}
 
-
-	//나의 예매내역
+	// 나의 예매내역
 	@GetMapping("/myPage/reservationList")
 	public String reservationList(HttpSession session, Model model) {
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    MyPageVO member = mypageService.selectMember(user.getMem_num());
-	    member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
-	    Long memNum = user.getMem_num();
-	    Map<String, Object> map = new HashMap<>();
-	    map.put("mem_num", memNum);
+		Long memNum = user.getMem_num();
+		Map<String, Object> map = new HashMap<>();
+		map.put("mem_num", memNum);
 
-	    int resCnt = mypageService.reservationCnt(map);
+		int resCnt = mypageService.reservationCnt(map);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -147,86 +146,82 @@ public class MyPageController {
 		}
 		model.addAttribute("resCnt", resCnt);
 
-	    List<MovieBookingVO> list = mypageService.reservationList(memNum);
+		List<MovieBookingVO> list = mypageService.reservationList(memNum);
 
-	    List<MovieBookingVO> listForMdType1 = new ArrayList<>();
-	    List<MovieBookingVO> listForMdType2 = new ArrayList<>();
-	    
-	    for (MovieBookingVO res : list) {
-	        if (res.getMd_type() == 1) {
-	            listForMdType1.add(res);
-	        } else if (res.getMd_type() == 2) {
-	            listForMdType2.add(res);
-	        }
-	    }
+		List<MovieBookingVO> listForMdType1 = new ArrayList<>();
+		List<MovieBookingVO> listForMdType2 = new ArrayList<>();
 
-	    model.addAttribute("listForMdType1", listForMdType1);
-	    model.addAttribute("listForMdType2", listForMdType2);
-	    model.addAttribute("member", member);
+		for (MovieBookingVO res : list) {
+			if (res.getMd_type() == 1) {
+				listForMdType1.add(res);
+			} else if (res.getMd_type() == 2) {
+				listForMdType2.add(res);
+			}
+		}
 
-	    return "reservationList";
+		model.addAttribute("listForMdType1", listForMdType1);
+		model.addAttribute("listForMdType2", listForMdType2);
+		model.addAttribute("member", member);
+
+		return "reservationList";
 	}
-
-
 
 	// 나의 예매내역-디테일
 	@GetMapping("/myPage/reservation")
 	public String myPageReservation(MyPageVO mypage, HttpSession session, Model model) {
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    MyPageVO member = mypageService.selectMember(user.getMem_num());
-	    if (member != null) {
-	        member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-	        Map<String, Object> map = new HashMap<>();
-	        map.put("mem_num", user.getMem_num());
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
+		if (member != null) {
+			member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+			Map<String, Object> map = new HashMap<>();
+			map.put("mem_num", user.getMem_num());
 
-	        int resCnt = mypageService.reservationCnt(map);
-	        MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
-	        if (booking != null && resCnt > 0) {
-	            member.setC_branch(booking.getC_branch());
-	            member.setM_name(booking.getM_name());
-	            member.setMt_start(booking.getMt_start());
-	            member.setMt_date(booking.getMt_date());
-	            member.setTh_name(booking.getTh_name());
-	        }
+			int resCnt = mypageService.reservationCnt(map);
+			MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+			if (booking != null && resCnt > 0) {
+				member.setC_branch(booking.getC_branch());
+				member.setM_name(booking.getM_name());
+				member.setMt_start(booking.getMt_start());
+				member.setMt_date(booking.getMt_date());
+				member.setTh_name(booking.getTh_name());
+			}
 
-	        MovieBookingVO detail = mypageService.resDetail(mypage.getMb_num());
-	        List<MovieBookingVO> collist = mypageService.selectColumn(mypage.getMb_num());
-	        List<MovieBookingVO> rowlist = mypageService.selectRow(mypage.getMb_num());
-	        
-	        int count = mypageService.mdCount(mypage.getMb_num());
-	        
-	        List<String> seatList = new ArrayList<>();
-	        for (int i = 0; i < count; i++) {
-	            int columnValue = collist.get(i).getSeat_column();  
-	            String rowValue = rowlist.get(i).getSeat_row();      
-	            seatList.add(columnValue + rowValue);
-	        }
-	        
-	        Long total = detail.getMb_price();
-	        int coupon = mypageService.selectPayCouponCnt(user.getMem_num());
-	        Long couponSale = 0L;
-	        if (coupon > 0) { 
-	            MyPageVO moviePay = mypageService.selectCouponPrice(mypage.getMb_num());
-	            if (moviePay != null) {
-	                Integer couponSaleInt = moviePay.getCoupon_sale();
-	                if (couponSaleInt != null) {
-	                    couponSale = couponSaleInt.longValue();
-	                    total -= couponSale;
-	                    model.addAttribute("couponSale", couponSale);
-	                }
-	            }
-	        }
-	        
-	        model.addAttribute("total", total);
-	        model.addAttribute("seatList", seatList);
-	        model.addAttribute("detail", detail);
-	        model.addAttribute("resCnt", resCnt);
-	        model.addAttribute("member", member);
-	    } 
-	    return "myPageReservation";
+			MovieBookingVO detail = mypageService.resDetail(mypage.getMb_num());
+			List<MovieBookingVO> collist = mypageService.selectColumn(mypage.getMb_num());
+			List<MovieBookingVO> rowlist = mypageService.selectRow(mypage.getMb_num());
+
+			int count = mypageService.mdCount(mypage.getMb_num());
+
+			List<String> seatList = new ArrayList<>();
+			for (int i = 0; i < count; i++) {
+				int columnValue = collist.get(i).getSeat_column();
+				String rowValue = rowlist.get(i).getSeat_row();
+				seatList.add(columnValue + rowValue);
+			}
+
+			Long total = detail.getMb_price();
+			int coupon = mypageService.selectPayCouponCnt(user.getMem_num());
+			Long couponSale = 0L;
+			if (coupon > 0) {
+				MyPageVO moviePay = mypageService.selectCouponPrice(mypage.getMb_num());
+				if (moviePay != null) {
+					Integer couponSaleInt = moviePay.getCoupon_sale();
+					if (couponSaleInt != null) {
+						couponSale = couponSaleInt.longValue();
+						total -= couponSale;
+						model.addAttribute("couponSale", couponSale);
+					}
+				}
+			}
+
+			model.addAttribute("total", total);
+			model.addAttribute("seatList", seatList);
+			model.addAttribute("detail", detail);
+			model.addAttribute("resCnt", resCnt);
+			model.addAttribute("member", member);
+		}
+		return "myPageReservation";
 	}
-
-
 
 	// 나의 쿠폰
 	@GetMapping("/myPage/coupon")
@@ -266,8 +261,6 @@ public class MyPageController {
 		return "coupon";
 	}
 
-
-
 	// 나의 활동 - 기대되는 영화
 	@GetMapping("/myPage/expectingMovie")
 	public String expectingMovie(HttpSession session, Model model) {
@@ -290,18 +283,16 @@ public class MyPageController {
 		int count = mypageService.movieBookMarkcnt(user.getMem_num());
 
 		List<MovieBookMarkVO> movie = null;
-		if(count > 0) {
+		if (count > 0) {
 			movie = mypageService.movieBookMarkList(user.getMem_num());
 			log.debug("<<찜한 영화 목록>> : " + movie);
 		}
 
-		model.addAttribute("count",count);
-		model.addAttribute("movie",movie);
+		model.addAttribute("count", count);
+		model.addAttribute("movie", movie);
 		model.addAttribute("member", member);
 		return "expectingMovie";
 	}
-
-
 
 	// 나의 활동 - 내가 본 영화
 	@GetMapping("/myPage/watchedMovie")
@@ -320,13 +311,13 @@ public class MyPageController {
 			member.setMt_date(booking.getMt_date());
 			member.setTh_name(booking.getTh_name());
 		}
-		
+
 		List<MovieBookingVO> list = null;
-		if(resCnt > 0) {
+		if (resCnt > 0) {
 			list = mypageService.watchedMovList(map);
 		}
-		
-		model.addAttribute("list",list);
+
+		model.addAttribute("list", list);
 		model.addAttribute("resCnt", resCnt);
 		model.addAttribute("member", member);
 		return "watchedMovie";
@@ -338,7 +329,7 @@ public class MyPageController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
-		Map<String, Object> map = new HashMap<String,Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
 		int resCnt = mypageService.reservationCnt(map);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
@@ -352,7 +343,7 @@ public class MyPageController {
 		model.addAttribute("resCnt", resCnt);
 		int count = mypageService.movieReviewCnt(user.getMem_num());
 		List<MovieReviewVO> list = null;
-		if(count > 0) {
+		if (count > 0) {
 			list = mypageService.movieReviewList(user.getMem_num());
 		}
 
@@ -364,7 +355,7 @@ public class MyPageController {
 
 	// 커뮤니티 북마크
 	@GetMapping("/myPage/bookMark")
-	public String myPageBookMark(@RequestParam(defaultValue = "0")int category, HttpSession session, Model model) {
+	public String myPageBookMark(@RequestParam(defaultValue = "0") int category, HttpSession session, Model model) {
 		log.debug("<<카테고리 >> : " + category);
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -392,7 +383,7 @@ public class MyPageController {
 		log.debug("<<게시글 수>> : " + count);
 
 		List<BoardVO> list = null;
-		if(count > 0) {
+		if (count > 0) {
 			list = mypageService.cBoardBookMarkList(map);
 			log.debug("<<글 목록>> : " + list);
 		}
@@ -405,9 +396,7 @@ public class MyPageController {
 
 	// 커뮤니티 좋아요
 	@GetMapping("/myPage/boardFav")
-	public String myPageboardFav(@RequestParam(defaultValue = "0")int category,
-			HttpSession session, 
-			Model model) {
+	public String myPageboardFav(@RequestParam(defaultValue = "0") int category, HttpSession session, Model model) {
 		log.debug("<<카테고리 >> : " + category);
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -435,7 +424,7 @@ public class MyPageController {
 		log.debug("<<게시글 수>> : " + count);
 
 		List<BoardFavVO> list = null;
-		if(count > 0) {
+		if (count > 0) {
 			list = mypageService.cBoardWriteFavList(map);
 			log.debug("<<글 목록>> : " + list);
 		}
@@ -446,12 +435,9 @@ public class MyPageController {
 		return "boardFav";
 	}
 
-
 	// 게시판 - 내가 쓴 글
 	@GetMapping("/myPage/boardWrite")
-	public String myPageBoardWrite(@RequestParam(defaultValue = "0") int category, 
-			HttpSession session, 
-			Model model) {
+	public String myPageBoardWrite(@RequestParam(defaultValue = "0") int category, HttpSession session, Model model) {
 
 		log.debug("<<카테고리 >> : " + category);
 
@@ -493,12 +479,9 @@ public class MyPageController {
 		return "myBoardWrite";
 	}
 
-
 	// 게시판 - 내가 쓴 댓글
 	@GetMapping("/myPage/boardReply")
-	public String myPageBoardReply(@RequestParam(defaultValue = "0") int category,
-			HttpSession session,
-			Model model) {
+	public String myPageBoardReply(@RequestParam(defaultValue = "0") int category, HttpSession session, Model model) {
 
 		log.debug("<<카테고리 >> : " + category);
 
@@ -551,11 +534,9 @@ public class MyPageController {
 		return "myBoardReply";
 	}
 
-
 	// 양도/교환 북마크
 	@GetMapping("/myPage/aBoardBookMark")
-	public String myPageAboardBookMark(@RequestParam(defaultValue = "0") int category,
-			HttpSession session, 
+	public String myPageAboardBookMark(@RequestParam(defaultValue = "0") int category, HttpSession session,
 			Model model) {
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -582,8 +563,8 @@ public class MyPageController {
 		map.put("mem_num", user.getMem_num());
 
 		List<AssignVO> list = null;
-		int count=mypageService.aBoardBookMark(map);
-		if(count > 0) {
+		int count = mypageService.aBoardBookMark(map);
+		if (count > 0) {
 			list = mypageService.aBoardBookMarkList(map);
 
 			log.debug("<< 글 목록 >> : " + list);
@@ -594,18 +575,15 @@ public class MyPageController {
 		return "aBoardBookMark";
 	}
 
-	//양도/교환 게시글
+	// 양도/교환 게시글
 	@GetMapping("/myPage/aBoardWrite")
-	public String myPageAboardWrite(@RequestParam(defaultValue = "0") int category,
-			HttpSession session,
-			Model model) {
+	public String myPageAboardWrite(@RequestParam(defaultValue = "0") int category, HttpSession session, Model model) {
 		log.debug("<<카테고리 >> : " + category);
 
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 
-		
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
 		int resCnt = mypageService.reservationCnt(map2);
@@ -625,7 +603,7 @@ public class MyPageController {
 
 		List<AssignVO> list = null;
 		int count = mypageService.aBoardListcnt(map);
-		if(count > 0) {
+		if (count > 0) {
 			list = mypageService.aBoardList(map);
 
 			log.debug("<< 글 목록 >> : " + list);
@@ -638,10 +616,9 @@ public class MyPageController {
 		return "aBoardWrite";
 	}
 
-
 	// 이벤트 참여 내역
 	@GetMapping("/myPage/myEvent")
-	public String myPageEvent(@RequestParam(defaultValue="0")int category, HttpSession session, Model model) {
+	public String myPageEvent(@RequestParam(defaultValue = "0") int category, HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
@@ -665,12 +642,12 @@ public class MyPageController {
 
 		List<UserEventVO> list = null;
 		int count = mypageService.eventcnt(map);
-		if(count > 0) {
+		if (count > 0) {
 			list = mypageService.eventList(map);
 		}
 
-		model.addAttribute("list",list);
-		model.addAttribute("count",count);
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
 		model.addAttribute("member", member);
 		return "myEvent";
 	}
@@ -716,7 +693,8 @@ public class MyPageController {
 
 	// 채팅 이력
 	@GetMapping("/myPage/chatList")
-	public String myPageChatList(@RequestParam(defaultValue = "1") int pageNum, String keyword,HttpSession session, Model model) {
+	public String myPageChatList(@RequestParam(defaultValue = "1") int pageNum, String keyword, HttpSession session,
+			Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
@@ -741,10 +719,10 @@ public class MyPageController {
 		int count = talkService.selectRowCount(map);
 
 		// 페이지 처리하기
-		PagingUtil page = new PagingUtil(null, keyword, pageNum,count,30,10,"talkList");
+		PagingUtil page = new PagingUtil(null, keyword, pageNum, count, 30, 10, "talkList");
 
 		List<TalkRoomVO> list = null;
-		if(count > 0) {
+		if (count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
 
@@ -758,21 +736,19 @@ public class MyPageController {
 		return "chatList";
 	}
 
-	//멤버십 구독
+	// 멤버십 구독
 	@GetMapping("/myPage/membershipUpdate")
-	public String membershipUpdate(Model model,HttpServletRequest request,HttpSession session) {
+	public String membershipUpdate(Model model, HttpServletRequest request, HttpSession session) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		mypageService.updateNoSub();
 		mypageService.updateNoSubDate();
 
-		model.addAttribute("message","구독 서비스 해지 완료");
-		model.addAttribute("url",request.getContextPath()+"/main/main");
+		model.addAttribute("message", "구독 서비스 해지 완료");
+		model.addAttribute("url", request.getContextPath() + "/main/main");
 		return "common/resultAlert";
 	}
-
-
 
 	// 회원 정보 - 비밀번호 변경 폼
 	@GetMapping("/myPage/passwdChange")
@@ -799,14 +775,15 @@ public class MyPageController {
 		return "passwdChange";
 	}
 
-	//비밀번호 변경 폼
+	// 비밀번호 변경 폼
 	@PostMapping("/myPage/passwdChange")
-	public String submitpasswdChange(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
-
+	public String submitpasswdChange(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model,
+			HttpServletRequest request) {
 
 		log.debug("<<비밀번호 변경 처리>> : " + myPageVO);
-		//유효성 체크 결과 오류가 있으면 폼 호출
-		if(result.hasFieldErrors("now_passwd") || result.hasFieldErrors("mem_passwd") || result.hasFieldErrors("captcha_chars")) {
+		// 유효성 체크 결과 오류가 있으면 폼 호출
+		if (result.hasFieldErrors("now_passwd") || result.hasFieldErrors("mem_passwd")
+				|| result.hasFieldErrors("captcha_chars")) {
 			return "passwdChange";
 		}
 
@@ -814,13 +791,14 @@ public class MyPageController {
 		String code = "1"; // 키 발급 0, 캡챠 이미지 비교시 1로 세팅
 
 		// 캡챠 키 발급시 받아서 세션에 저장해둔 키값
-		String key = (String)session.getAttribute("captcha_key");
+		String key = (String) session.getAttribute("captcha_key");
 		// 사용자가 입력한 캡챠 이미지 글자값
 		String value = myPageVO.getCaptcha_chars();
-		String key_apiURL = "https://openapi.naver.com/v1/captcha/nkey?code=" + code + "&key=" + key + "&value=" + value; 
+		String key_apiURL = "https://openapi.naver.com/v1/captcha/nkey?code=" + code + "&key=" + key + "&value="
+				+ value;
 
-		Map<String,String> requestHeaders = new HashMap<String,String>();
-		requestHeaders.put("X-Naver-Client-Id",  "pjCvRXCBMUnA7oYsWNKj");
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		requestHeaders.put("X-Naver-Client-Id", "pjCvRXCBMUnA7oYsWNKj");
 		requestHeaders.put("X-Naver-Client-Secret", "DYu3HKzI4x");
 		String responseBody = CaptchaUtil.get(key_apiURL, requestHeaders);
 
@@ -828,7 +806,7 @@ public class MyPageController {
 		JSONObject jObject = new JSONObject(responseBody);
 
 		boolean captcha_result = jObject.getBoolean("result");
-		if(!captcha_result) {
+		if (!captcha_result) {
 			result.rejectValue("captcha_chars", "invalidCaptcha");
 			return "passwdChange";
 		}
@@ -840,7 +818,7 @@ public class MyPageController {
 
 		model.addAttribute("member", member);
 
-		if(!member.getMem_passwd().equals(myPageVO.getNow_passwd())) {
+		if (!member.getMem_passwd().equals(myPageVO.getNow_passwd())) {
 			result.rejectValue("now_passwd", "invalidPassword");
 			return "passwdChange";
 		}
@@ -848,24 +826,24 @@ public class MyPageController {
 		mypageService.updatePassword(myPageVO);
 
 		model.addAttribute("message", "비밀번호 변경 완료");
-		model.addAttribute("url",  request.getContextPath() + "/myPage/myPageMain");
+		model.addAttribute("url", request.getContextPath() + "/myPage/myPageMain");
 
 		return "common/resultAlert";
 	}
-	/*====================
-	 * 	네이버 캡챠 API 사용\
-	 =====================*/
+	/*
+	 * ==================== 네이버 캡챠 API 사용\ =====================
+	 */
 
-	//캡챠 이미지 호출
+	// 캡챠 이미지 호출
 
 	@GetMapping("/myPage/getCaptcha")
 	public String getCaptcha(Model model, HttpSession session) {
 
-		String code = "0";//키 발급시 0, 캡챠 이미지 비교시 1로 세팅
+		String code = "0";// 키 발급시 0, 캡챠 이미지 비교시 1로 세팅
 		String key_apiURL = "https://openapi.naver.com/v1/captcha/nkey?code=" + code;
 
-		Map<String,String> requestHeaders = new HashMap<String,String>();
-		requestHeaders.put("X-Naver-Client-Id",  "pjCvRXCBMUnA7oYsWNKj");
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		requestHeaders.put("X-Naver-Client-Id", "pjCvRXCBMUnA7oYsWNKj");
 		requestHeaders.put("X-Naver-Client-Secret", "DYu3HKzI4x");
 
 		String responseBody = CaptchaUtil.get(key_apiURL, requestHeaders);
@@ -875,7 +853,7 @@ public class MyPageController {
 		JSONObject jObject = new JSONObject(responseBody);
 
 		try {
-			//https://openapi.naver.com/v1/captcha/nkey 호출로 받은 키값(을 "key"가 읽어옴
+			// https://openapi.naver.com/v1/captcha/nkey 호출로 받은 키값(을 "key"가 읽어옴
 			String key = jObject.getString("key");
 			session.setAttribute("captcha_key", key);
 
@@ -886,15 +864,11 @@ public class MyPageController {
 			model.addAttribute("imageFile", response_byte);
 			model.addAttribute("filename", "captcha.jpg");
 
-		}catch(Exception e) {
+		} catch (Exception e) {
 			log.error(e.toString());
 		}
 		return "imageView";
 	}
-
-
-
-
 
 	// 회원 정보 - 개인정보 변경
 	@GetMapping("/myPage/modifyUser")
@@ -921,7 +895,8 @@ public class MyPageController {
 	}
 
 	@PostMapping("/myPage/modifyUser")
-	public String postModifyUser1(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
+	public String postModifyUser1(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model,
+			HttpServletRequest request) {
 
 		if (result.hasErrors()) {
 			return "modifyUser";
@@ -940,14 +915,11 @@ public class MyPageController {
 		user.setMem_nickname(myPageVO.getMem_nickName());
 		user.setMem_email(myPageVO.getMem_email());
 
-		model.addAttribute("member",member);
+		model.addAttribute("member", member);
 		model.addAttribute("message", "개인정보 변경 완료");
 		model.addAttribute("url", request.getContextPath() + "/myPage/modifyUser");
 		return "common/resultAlert";
 	}
-
-
-
 
 	// 회원 정보 - 회원 탈퇴
 	@GetMapping("/myPage/deleteMember")
@@ -972,34 +944,46 @@ public class MyPageController {
 		model.addAttribute("member", member);
 		return "deleteMember";
 	}
-	
-	
+
 	@PostMapping("/myPage/deleteMember")
-	public String postDeleteMember(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    myPageVO.setMem_num(user.getMem_num());
+	public String postDeleteMember(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model,
+			HttpServletRequest request) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		myPageVO.setMem_num(user.getMem_num());
 
-	    MyPageVO member = mypageService.selectMember(user.getMem_num());
+		MyPageVO member = mypageService.selectMember(user.getMem_num());
 
-	    
-	    if (!member.getMem_passwd().equals(myPageVO.getMem_passwd())) {
-	        result.rejectValue("mem_passwd", "passwdError", "비밀번호가 일치하지 않습니다.");
-	        return "deleteMember";
-	    }
-	    mypageService.deleteOrders(user.getMem_num());
-	    talkService.deleteTalkRoom(user.getMem_num());
-	    
-	    mypageService.deleteMoviebooking(user.getMem_num());
+		if (!member.getMem_passwd().equals(myPageVO.getMem_passwd())) {
+			result.rejectValue("mem_passwd", "passwdError", "비밀번호가 일치하지 않습니다.");
+			return "deleteMember";
+		}
 
+		log.debug("<< << 회원 탈퇴 진행 시작 >> >>");
+		mypageService.deleteOrders(user.getMem_num());
+		log.debug("<< << 벌스샵 탈퇴 진행 완료 >> >>");
 
-	    log.debug("<<회원탈퇴>> : " + myPageVO);
+		mypageService.deleteCommunityB(user.getMem_num());
+		log.debug("<< << 커뮤니티 관련 진행 완료 >> >>");
 
-	    model.addAttribute("member", member);
-	    model.addAttribute("message", "회원 탈퇴 완료");
-	    model.addAttribute("url", request.getContextPath() + "/member/login");
-	    return "common/resultAlert";
+		mypageService.deleteMoviebooking(user.getMem_num());
+		log.debug("<< << 영화 예매 삭제 진행 완료 >> >>");
+		
+		  mypageService.deleteTalkroomByMemNum(user.getMem_num());
+		  log.debug("<< << 채팅방 삭제 진행 완료 >> >>");
+
+		mypageService.deleteAssignBoard(user.getMem_num());
+		log.debug("<< << 양도 관련 탈퇴 진행 완료 >> >>");
+
+		mypageService.updateMem(user.getMem_num());
+		log.debug("<< << 회원 탈퇴 진행 전체 완료 >> >>");
+
+		log.debug("<<회원탈퇴>> : " + myPageVO);
+
+		model.addAttribute("member", member);
+		model.addAttribute("message", "회원 탈퇴 완료");
+		model.addAttribute("url", request.getContextPath() + "/member/login");
+		return "common/resultAlert";
 	}
-
 
 	// 멤버십 구독
 	@GetMapping("/myPage/memberShipSub")
@@ -1023,14 +1007,14 @@ public class MyPageController {
 
 		CouponVO coupon = mypageService.selectMembershipSub(user.getMem_num());
 
-		model.addAttribute("coupon",coupon);
+		model.addAttribute("coupon", coupon);
 		model.addAttribute("member", member);
 		return "memberShipSub";
 	}
 
 	// 나의 문의 내역 - 1:1문의
 	@GetMapping("/myPage/consult")
-	public String myPageConsult(@RequestParam(defaultValue = "0")int category,HttpSession session, Model model) {
+	public String myPageConsult(@RequestParam(defaultValue = "0") int category, HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
@@ -1057,22 +1041,16 @@ public class MyPageController {
 		int count = mypageService.consultcnt(map);
 		List<ConsultVO> list = null;
 
-		if(count > 0) {
+		if (count > 0) {
 			list = mypageService.consultList(map);
 			log.debug("<<문의글>> : " + list);
 		}
 
 		model.addAttribute("list", list);
-		model.addAttribute("count",count);
+		model.addAttribute("count", count);
 		model.addAttribute("member", member);
 		return "consult";
 	}
-
-
-
-
-
-
 
 	// 프로필 사진 출력하기(로그인 전용)
 	@GetMapping("/myPage/photoView")
@@ -1125,6 +1103,5 @@ public class MyPageController {
 		model.addAttribute("imageFile", readbyte);
 		model.addAttribute("filename", "profile_none.png");
 	}
-
 
 }

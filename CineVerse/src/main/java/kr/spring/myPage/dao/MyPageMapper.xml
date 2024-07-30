@@ -335,9 +335,11 @@
 	</select>
 
 	<!-- 이벤트 목록 -->
-	<select id="eventList" parameterType="map" resultType="userEventVO">
+	<select id="eventList" parameterType="map"
+		resultType="userEventVO">
 		SELECT *
-		FROM event_participation ep JOIN event e ON ep.event_num=e.event_num
+		FROM event_participation ep JOIN event e ON
+		ep.event_num=e.event_num
 		WHERE mem_num=#{mem_num}
 	</select>
 
@@ -641,7 +643,8 @@ WHERE ROWNUM = 1
 
 
 	<!-- 영화예매목록 카운트 -->
-	<select id="reservationCnt" parameterType="map" resultType="integer">
+	<select id="reservationCnt" parameterType="map"
+		resultType="integer">
 <![CDATA[
 WITH RankedBookings AS (
     SELECT
@@ -696,9 +699,10 @@ FROM (
     WHERE rn = 1 AND mt_date > SYSDATE
 ) FilteredRankedBookings
 ]]>
-</select>
-<!-- 내가 본 영화 카운트 -->
-<select id="watMovieCnt" parameterType="map" resultType="integer">
+	</select>
+	<!-- 내가 본 영화 카운트 -->
+	<select id="watMovieCnt" parameterType="map"
+		resultType="integer">
 <![CDATA[
 WITH RankedBookings AS (
     SELECT
@@ -753,136 +757,395 @@ FROM (
     WHERE rn = 1 AND mt_date < SYSDATE
 ) FilteredRankedBookings
 ]]>
-</select>
+	</select>
 
 
 
 
-<!-- 내가 결제한 모든 영화 카운트 -->
-<!-- <select id="resDetailCnt" parameterType="long" resultType="integer">
-WITH RankedBookings AS (
-    SELECT
-        mb.user_mb_num,
-        mb.mb_num,
-        mb.m_code,
-        mb.mt_num,
-        mb.mb_price,
-        mt.th_num,
-        c.c_branch,
-        s.seat_num,
-        mb.mem_num,
-        m.m_name,
-        t.th_name,
-        mt.mt_date,
-        m.m_filename,
-        mt.mt_start,
-        mt.mt_end,
-        mbd.md_type,
-        ROW_NUMBER() OVER (PARTITION BY mb.mb_num ORDER BY mb.mb_num) AS rn,
-        COUNT(*) OVER (PARTITION BY mb.mb_num) AS booking_count
-    FROM movie_booking mb
-    INNER JOIN movie m ON mb.m_code = m.m_code
-    INNER JOIN mb_detail mbd ON mb.mb_num = mbd.mb_num
-    INNER JOIN movie_time mt ON mb.mt_num = mt.mt_num
-    INNER JOIN theater t ON mt.th_num = t.th_num
-    INNER JOIN cinema c ON t.c_num = c.c_num
-    INNER JOIN seat s ON mbd.seat_num = s.seat_num
-    WHERE mb.mem_num = #{mem_num}
-)
-SELECT COALESCE(COUNT(*), 0) 
-FROM (
-    SELECT
-        user_mb_num,
-        mb_num,
-        m_code,
-        mt_num,
-        mb_price,
-        th_num,
-        c_branch,
-        seat_num,
-        mem_num,
-        m_name,
-        th_name,
-        mt_date,
-        m_filename,
-        mt_start,
-        mt_end,
-        md_type,
-        booking_count
-    FROM RankedBookings
-    WHERE rn = 1
-) FilteredRankedBookings
-</select> -->
+	<!-- 내가 결제한 모든 영화 카운트 -->
+	<!-- <select id="resDetailCnt" parameterType="long" resultType="integer"> 
+		WITH RankedBookings AS ( SELECT mb.user_mb_num, mb.mb_num, mb.m_code, mb.mt_num, 
+		mb.mb_price, mt.th_num, c.c_branch, s.seat_num, mb.mem_num, m.m_name, t.th_name, 
+		mt.mt_date, m.m_filename, mt.mt_start, mt.mt_end, mbd.md_type, ROW_NUMBER() 
+		OVER (PARTITION BY mb.mb_num ORDER BY mb.mb_num) AS rn, COUNT(*) OVER (PARTITION 
+		BY mb.mb_num) AS booking_count FROM movie_booking mb INNER JOIN movie m ON 
+		mb.m_code = m.m_code INNER JOIN mb_detail mbd ON mb.mb_num = mbd.mb_num INNER 
+		JOIN movie_time mt ON mb.mt_num = mt.mt_num INNER JOIN theater t ON mt.th_num 
+		= t.th_num INNER JOIN cinema c ON t.c_num = c.c_num INNER JOIN seat s ON 
+		mbd.seat_num = s.seat_num WHERE mb.mem_num = #{mem_num} ) SELECT COALESCE(COUNT(*), 
+		0) FROM ( SELECT user_mb_num, mb_num, m_code, mt_num, mb_price, th_num, c_branch, 
+		seat_num, mem_num, m_name, th_name, mt_date, m_filename, mt_start, mt_end, 
+		md_type, booking_count FROM RankedBookings WHERE rn = 1 ) FilteredRankedBookings 
+		</select> -->
 
-<!-- 영화 결제 상세페이지 여러 개 반환 -->
-<select id="resDetail" parameterType="long" resultType="movieBookingVO">
-WITH RankedBookings AS (
-    SELECT
-        mb.user_mb_num,
-        mb.mb_num,
-        mb.m_code,
-        mb.mt_num,
-        mb.mb_price,
-        mt.th_num,
-        c.c_branch,
-        mb.mem_num,
-        m.m_name,
-        t.th_name,
-        mt.mt_date,
-        m.m_filename,
-        mt.mt_start,
-        mt.mt_end,
-        mbd.md_type,
-        COUNT(mb.mb_num) OVER (PARTITION BY mb.mb_num) AS booking_count,
-        ROW_NUMBER() OVER (PARTITION BY mb.mb_num ORDER BY mb.user_mb_num) AS rn,
-        s.seat_num,
-        s.seat_row,
-        s.seat_column
-    FROM movie_booking mb
-    INNER JOIN movie m ON mb.m_code = m.m_code
-    INNER JOIN mb_detail mbd ON mb.mb_num = mbd.mb_num
-    INNER JOIN movie_time mt ON mb.mt_num = mt.mt_num
-    INNER JOIN theater t ON mt.th_num = t.th_num
-    INNER JOIN cinema c ON t.c_num = c.c_num
-    INNER JOIN seat s ON mbd.seat_num = s.seat_num
-    WHERE mb.mb_num = #{mb_num}
-),
-AggregatedSeats AS (
-    SELECT
-        mb_num,
-        XMLAGG(XMLELEMENT(e, seat_num || ', ') ORDER BY seat_num).EXTRACT('//text()').getCLOBVal() AS seat_nums,
-        XMLAGG(XMLELEMENT(e, seat_row || ', ') ORDER BY seat_row).EXTRACT('//text()').getCLOBVal() AS seat_rows,
-        XMLAGG(XMLELEMENT(e, seat_column || ', ') ORDER BY seat_column).EXTRACT('//text()').getCLOBVal() AS seat_columns
-    FROM RankedBookings
-    GROUP BY mb_num
-)
-SELECT
-    rb.user_mb_num,
-    rb.mb_num,
-    rb.m_code,
-    rb.mt_num,
-    rb.mb_price,
-    rb.th_num,
-    rb.c_branch,
-    rb.mem_num,
-    rb.m_name,
-    rb.th_name,
-    rb.mt_date,
-    rb.m_filename,
-    rb.mt_start,
-    rb.mt_end,
-    rb.md_type,
-    rb.booking_count,
-    a.seat_nums,
-    a.seat_rows,
-    a.seat_columns
-FROM RankedBookings rb
-JOIN AggregatedSeats a ON rb.mb_num = a.mb_num
-WHERE rb.rn = 1
-ORDER BY rb.mb_num DESC
-</select>
+	<!-- 영화 결제 상세페이지 여러 개 반환 -->
+	<select id="resDetail" parameterType="long"
+		resultType="movieBookingVO">
+		WITH RankedBookings AS (
+		SELECT
+		mb.user_mb_num,
+		mb.mb_num,
+		mb.m_code,
+		mb.mt_num,
+		mb.mb_price,
+		mt.th_num,
+		c.c_branch,
+		mb.mem_num,
+		m.m_name,
+		t.th_name,
+		mt.mt_date,
+		m.m_filename,
+		mt.mt_start,
+		mt.mt_end,
+		mbd.md_type,
+		COUNT(mb.mb_num) OVER (PARTITION BY mb.mb_num) AS booking_count,
+		ROW_NUMBER() OVER (PARTITION BY mb.mb_num ORDER BY mb.user_mb_num) AS rn,
+		s.seat_num,
+		s.seat_row,
+		s.seat_column
+		FROM movie_booking mb
+		INNER JOIN movie m ON mb.m_code = m.m_code
+		INNER JOIN mb_detail mbd ON mb.mb_num = mbd.mb_num
+		INNER JOIN movie_time mt ON mb.mt_num = mt.mt_num
+		INNER JOIN theater t ON mt.th_num = t.th_num
+		INNER JOIN cinema c ON t.c_num = c.c_num
+		INNER JOIN seat s ON mbd.seat_num = s.seat_num
+		WHERE mb.mb_num = #{mb_num}
+		),
+		AggregatedSeats AS (
+		SELECT
+		mb_num,
+		XMLAGG(XMLELEMENT(e, seat_num || ', ') ORDER BY seat_num).EXTRACT('//text()').getCLOBVal()
+		AS seat_nums,
+		XMLAGG(XMLELEMENT(e, seat_row || ', ') ORDER BY seat_row).EXTRACT('//text()').getCLOBVal()
+		AS seat_rows,
+		XMLAGG(XMLELEMENT(e, seat_column || ', ') ORDER BY
+		seat_column).EXTRACT('//text()').getCLOBVal() AS seat_columns
+		FROM RankedBookings
+		GROUP BY mb_num
+		)
+		SELECT
+		rb.user_mb_num,
+		rb.mb_num,
+		rb.m_code,
+		rb.mt_num,
+		rb.mb_price,
+		rb.th_num,
+		rb.c_branch,
+		rb.mem_num,
+		rb.m_name,
+		rb.th_name,
+		rb.mt_date,
+		rb.m_filename,
+		rb.mt_start,
+		rb.mt_end,
+		rb.md_type,
+		rb.booking_count,
+		a.seat_nums,
+		a.seat_rows,
+		a.seat_columns
+		FROM RankedBookings rb
+		JOIN AggregatedSeats a ON rb.mb_num = a.mb_num
+		WHERE rb.rn = 1
+		ORDER BY rb.mb_num DESC
+	</select>
 
 
+	<!-- address 삭제 -->
+	<delete id="deleteaddressmem" parameterType="Long">
+		DELETE FROM address
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- pbasket 삭제 -->
+	<delete id="deletePbasketmem" parameterType="Long">
+		DELETE FROM p_basket
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- 상품 리뷰 삭제 -->
+	<delete id="deletePreview" parameterType="Long">
+		DELETE FROM product_review
+		WHERE od_num IN (
+		SELECT od.od_num
+		FROM order_detail od
+		JOIN orders o ON od.order_num = o.order_num
+		WHERE o.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 상품 좋아요 삭제 -->
+	<delete id="deletePfav" parameterType="Long">
+		DELETE FROM product_fav
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- 주문 세부 정보 삭제 -->
+	<delete id="deleteOrderdetail" parameterType="Long">
+		DELETE FROM order_detail
+		WHERE order_num IN (
+		SELECT o.order_num
+		FROM orders o
+		WHERE o.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 주문 삭제 -->
+	<delete id="deleteOrders" parameterType="Long">
+		DELETE FROM orders
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- assignboard 신고 삭제 -->
+	<delete id="deleteAssingReport" parameterType="Long">
+		DELETE FROM assign_report
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteAssingReportAll" parameterType="Long">
+		DELETE FROM assign_report
+		WHERE ab_num IN (
+		SELECT ab.ab_num
+		FROM assignment_board ab
+		WHERE ab.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 양도 북마크 삭제 -->
+	<delete id="deleteAbmark" parameterType="Long">
+		DELETE FROM ab_bookmark
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteAbmarkAll" parameterType="Long">
+		DELETE FROM ab_bookmark
+		WHERE ab_num IN (
+		SELECT ab.ab_num
+		FROM assignment_board ab
+		WHERE ab.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 양도 글 삭제 -->
+	<delete id="deleteAssignBoard" parameterType="Long">
+		DELETE FROM assignment_board
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- 커뮤니티 신고 삭제 -->
+	<delete id="deleteCommunityReport" parameterType="Long">
+		DELETE FROM community_report
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteCommunityReportA" parameterType="Long">
+		DELETE FROM community_report
+		WHERE cb_num IN (
+		SELECT cb.cb_num
+		FROM community_board cb
+		WHERE cb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 댓글 신고 삭제 -->
+	<delete id="deleteCommentReport" parameterType="Long">
+		DELETE FROM comment_report
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteCommentReportA" parameterType="Long">
+		DELETE FROM comment_report
+		WHERE cc_num IN (
+		SELECT cc.cc_num
+		FROM community_comment cc
+		JOIN community_board cb ON cc.cb_num = cb.cb_num
+		WHERE cb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 대댓글 신고 삭제 -->
+	<delete id="deleteResponseReport" parameterType="Long">
+		DELETE FROM response_report
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteResponseReportA" parameterType="Long">
+		DELETE FROM response_report
+		WHERE te_num IN (
+		SELECT cr.te_num
+		FROM community_response cr
+		JOIN community_comment cc ON cr.cc_num = cc.cc_num
+		JOIN community_board cb ON cc.cb_num = cb.cb_num
+		WHERE cb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 커뮤니티 관련 삭제 -->
+	<delete id="deleteCommunityResFav" parameterType="Long">
+		DELETE FROM community_response_fav
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteCommunityResFavA" parameterType="Long">
+		DELETE FROM community_response_fav
+		WHERE te_num IN (
+		SELECT cr.te_num
+		FROM community_response cr
+		JOIN community_comment cc ON cr.cc_num = cc.cc_num
+		JOIN community_board cb ON cc.cb_num = cb.cb_num
+		WHERE cb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<delete id="deleteCommunityComFav" parameterType="Long">
+		DELETE FROM community_comment_fav
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteCommunityComFavA" parameterType="Long">
+		DELETE FROM community_comment_fav
+		WHERE cc_num IN (
+		SELECT cc.cc_num
+		FROM community_comment cc
+		JOIN community_board cb ON cc.cb_num = cb.cb_num
+		WHERE cb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<delete id="deleteCommunityFav" parameterType="Long">
+		DELETE FROM community_fav
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteCommunityFavA" parameterType="Long">
+		DELETE FROM community_fav
+		WHERE cb_num IN (
+		SELECT cb.cb_num
+		FROM community_board cb
+		WHERE cb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 커뮤니티 북마크 삭제 -->
+	<delete id="deleteCommunityCB" parameterType="Long">
+		DELETE FROM community_bookmark
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteCommunityCBA" parameterType="Long">
+		DELETE FROM community_bookmark
+		WHERE cb_num IN (
+		SELECT cb.cb_num
+		FROM community_board cb
+		WHERE cb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 대댓글 삭제 -->
+	<delete id="deleteCommunityCR" parameterType="Long">
+		DELETE FROM community_response
+		WHERE mem_num = #{mem_num}
+	</delete>
+	
+	<delete id="deleteCommunityCRA" parameterType="Long">
+		DELETE FROM community_response
+		WHERE cc_num IN (
+		SELECT cc.cc_num
+		FROM community_comment cc
+		JOIN community_board cb ON cc.cb_num = cb.cb_num
+		WHERE cb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteCommunityCA" parameterType="Long">
+		DELETE FROM community_comment
+		WHERE mem_num = #{mem_num}
+	</delete>
+	
+	<delete id="deleteCommunityC" parameterType="Long">
+		DELETE FROM community_comment
+		WHERE cb_num IN (SELECT cb_num FROM community_board WHERE mem_num=#{mem_num} )
+	</delete>
+
+	<!-- 커뮤니티 글 삭제 -->
+	<delete id="deleteCommunityB" parameterType="Long">
+		DELETE FROM community_board
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- Talk 관련 삭제 -->
+	<delete id="deleteTalkReadByMemNum" parameterType="Long">
+		DELETE FROM talk_read
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteTalkByMemNum" parameterType="Long">
+		DELETE FROM talk
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteTalkMemberByMemNum" parameterType="Long">
+		DELETE FROM talk_member
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<delete id="deleteTalkroomByMemNum" parameterType="Long">
+		DELETE FROM talkroom
+		WHERE talkroom_num IN (
+		SELECT tm.talkroom_num
+		FROM talk_member tm
+		WHERE tm.mem_num = #{mem_num}
+		)
+	</delete>
+
+
+	<!-- 영화 예매 상세 삭제 -->
+	<delete id="deleteMbdetail" parameterType="Long">
+		DELETE FROM mb_detail
+		WHERE mb_num IN (
+		SELECT mb.mb_num
+		FROM movie_booking mb
+		WHERE mb.mem_num = #{mem_num}
+		)
+	</delete>
+
+	<!-- 영화 예매 삭제 -->
+	<delete id="deleteMoviebooking" parameterType="Long">
+		DELETE FROM movie_booking
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- 이벤트 참여 삭제 -->
+	<delete id="deleteEventP" parameterType="Long">
+		DELETE FROM event_participation
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- 상담 삭제 -->
+	<delete id="deleteConsult" parameterType="Long">
+		DELETE FROM consult
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- 쿠폰 삭제 -->
+	<delete id="deleteMemCoupon" parameterType="Long">
+		DELETE FROM member_coupon
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- 회원 상세 삭제 -->
+	<delete id="deleteMemdetail" parameterType="Long">
+		DELETE FROM member_detail
+		WHERE mem_num = #{mem_num}
+	</delete>
+
+	<!-- 회원 정보 업데이트 -->
+	<update id="updateMem" parameterType="Long">
+		UPDATE member
+		SET mem_auth = 1, mem_membership = 1
+		WHERE mem_num = #{mem_num}
+	</update>
 
 
 </mapper>

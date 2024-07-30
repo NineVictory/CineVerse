@@ -83,8 +83,22 @@ public interface MyPageService {
 	public Integer selectPayCouponCnt(Long mem_num);
 	public MyPageVO selectCouponPrice(Long mem_coupon_use);
 	
+	// 벌스샵 관련 전체 틀
 	public void deleteOrders(Long mem_num);
+	
+	// 커뮤니티 전체 틀
+	public void deleteCommunityB(Long mem_num);
+	
+	// 양도 전체 틀
+	public void deleteAssignBoard(Long mem_num);
+	
+	// 채팅 전체 틀
+	public void deleteTalkroomByMemNum(Long mem_num);
+	
+	// 영화 예매 전체 틀
 	public void deleteMoviebooking(Long mem_num);
+	
+	// 회원 이벤트, 문의, 쿠폰, 디테일 삭제 후 member 업데이트
 	public void updateMem(Long mem_num);
 	
 	

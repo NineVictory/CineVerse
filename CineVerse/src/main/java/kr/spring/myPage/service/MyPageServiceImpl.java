@@ -308,40 +308,83 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.eventList(map);
 	}
 
-	@Override
-	public void updateMem(Long mem_num) {
-		myPageMapper.deleteEventP(mem_num);
-		myPageMapper.deleteConsult(mem_num);
-		myPageMapper.deleteMemCoupon(mem_num);
-		myPageMapper.deleteMemdetail(mem_num);
-		myPageMapper.updateMem(mem_num);
-	}
+	@Transactional
+    @Override
+    public void deleteOrders(Long mem_num) {
+        myPageMapper.deletePbasketmem(mem_num);
+        myPageMapper.deletePreview(mem_num);
+        myPageMapper.deletePfav(mem_num);
+        myPageMapper.deleteOrderdetail(mem_num);
+        myPageMapper.deleteOrders(mem_num);
+        myPageMapper.deleteaddressmem(mem_num);
+    }
 
-	@Override
-	public void deleteOrders(Long mem_num) {
-		// 주문 관련 삭제
-		myPageMapper.deleteaddressmem(mem_num);
-		myPageMapper.deletePbasketmem(mem_num);
-		myPageMapper.deletePreview(mem_num);
-		myPageMapper.deletePfav(mem_num);
-		myPageMapper.deleteOrderdetail(mem_num);
-		myPageMapper.deleteOrders(mem_num);
-	}
+    @Transactional
+    @Override
+    public void deleteMoviebooking(Long mem_num) {
+    	myPageMapper.deleteMovieBookmark(mem_num);
+    	myPageMapper.deleterrReport(mem_num);
+    	myPageMapper.deleteReviewReport(mem_num);
+    	myPageMapper.deleteMovieReview(mem_num);
+        myPageMapper.deleteMbdetail(mem_num);
+        myPageMapper.deleteMoviebooking(mem_num);
+    }
 
-	@Override
-	public void deleteMoviebooking(Long mem_num) {
-		// 영화 예매 삭제
-		myPageMapper.deleteMbdetail(mem_num);
-		myPageMapper.deleteMoviebooking(mem_num);
-	}
+    @Transactional
+    @Override
+    public void deleteCommunityB(Long mem_num) {
+        myPageMapper.deleteCommunityReport(mem_num);
+        myPageMapper.deleteCommunityReportA(mem_num);
+        myPageMapper.deleteCommentReport(mem_num);
+        myPageMapper.deleteCommentReportA(mem_num);
+        myPageMapper.deleteResponseReport(mem_num);
+        myPageMapper.deleteResponseReportA(mem_num);
+        myPageMapper.deleteCommunityResFav(mem_num);
+        myPageMapper.deleteCommunityResFavA(mem_num);
+        myPageMapper.deleteCommunityComFavA(mem_num);
+        myPageMapper.deleteCommunityComFav(mem_num);
+        myPageMapper.deleteCommunityFav(mem_num);
+        myPageMapper.deleteCommunityFavA(mem_num);
+        myPageMapper.deleteCommunityCB(mem_num);
+        myPageMapper.deleteCommunityCBA(mem_num);
+        myPageMapper.deleteCommunityCR(mem_num);
+        myPageMapper.deleteCommunityCRA(mem_num);
+        myPageMapper.deleteCommunityCA(mem_num);
+        myPageMapper.deleteCommunityC(mem_num);
+        myPageMapper.deleteCommunityB(mem_num);
+    }
 
-	
+    @Transactional
+    @Override
+    public void deleteAssignBoard(Long mem_num) {
+        myPageMapper.deleteAssingReport(mem_num);
+        myPageMapper.deleteAssingReportAll(mem_num);
+        myPageMapper.deleteAbmark(mem_num);
+        myPageMapper.deleteAbmarkAll(mem_num);
+        myPageMapper.deleteAssignBoard(mem_num);
+    }
 
-	
-	
+    @Transactional
+    @Override
+    public void deleteTalkroomByMemNum(Long mem_num) {
+        myPageMapper.deleteTalkReadByMemNum(mem_num);
+        myPageMapper.deleteTalkReadTN(mem_num);
+        myPageMapper.deleteTalkByMemNum(mem_num);
+        myPageMapper.deleteTalkTN(mem_num);
+        myPageMapper.deleteTalkMemberByMemNum(mem_num);
+        myPageMapper.deleteTalkMemTN(mem_num);
+        myPageMapper.deleteTalkroomByMemNum(mem_num);
+    }
 
-
-
+    @Transactional
+    @Override
+    public void updateMem(Long mem_num) {
+        myPageMapper.deleteEventP(mem_num);
+        myPageMapper.deleteConsult(mem_num);
+        myPageMapper.deleteMemCoupon(mem_num);
+        myPageMapper.deleteMemdetail(mem_num);
+        myPageMapper.updateMem(mem_num);
+    }
 
 
 

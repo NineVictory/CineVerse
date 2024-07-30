@@ -156,53 +156,105 @@ public interface MyPageMapper {
 	// 회원 탈퇴 관련
 	// 벌스샵 관련
 	// address 삭제
-	@Delete("DELETE FROM address WHERE mem_num=#{mem_num}")
 	public void deleteaddressmem(Long mem_num);
 	// pbasket 삭제
-	@Delete ("DELETE FROM p_basket WHERE mem_num=#{mem_num}")
 	public void deletePbasketmem(Long mem_num);
 	//상품 리뷰 삭제
-	@Delete("DELETE FROM product_review WHERE od_num=(SELECT od_num FROM order_detail WHERE order_num=(SELECT order_num FROM orders WHERE mem_num=#{mem_num}))")
 	public void deletePreview(Long mem_num);
 	// 상품 좋아요 삭제
-	@Delete("DELETE FROM product_fav WHERE mem_num=#{mem_num}")
 	public void deletePfav(Long mem_num);
 	//주문 세부 정보
-	@Delete("DELETE FROM order_detail  WHERE order_num=(SELECT order_num FROM orders WHERE mem_num=#{mem_num})")
 	public void deleteOrderdetail(Long mem_num);
 	// 주문
-	@Delete("DELETE FROM orders WHERE mem_num=#{mem_num}")
 	public void deleteOrders(Long mem_num);
-	// assignboard 받아오고, talkdelete 삭제도 넣기
 	
-	// 커뮤니티 삭제는 boardservice 가져오기
+	// assignboard 신고 삭제
+	public void deleteAssingReport(Long mem_num);
+	public void deleteAssingReportAll(Long mem_num);
+	// 양도 북마크 삭제
+	public void deleteAbmark(Long mem_num);
+	public void deleteAbmarkAll(Long mem_num);
+	// 양도 글 삭제
+	public void deleteAssignBoard(Long mem_num);
 	
+	// 커뮤니티 신고 삭제
+	public void deleteCommunityReport(Long mem_num);
+	public void deleteCommunityReportA(Long mem_num);
+	
+	public void deleteCommentReport(Long mem_num);
+	public void deleteCommentReportA(Long mem_num);
+	
+	public void deleteResponseReport(Long mem_num);
+	public void deleteResponseReportA(Long mem_num);
+	
+	// 커뮤니티 좋아요 삭제
+	public void deleteCommunityResFav(Long mem_num);
+	public void deleteCommunityResFavA(Long mem_num);
+	
+	public void deleteCommunityComFav(Long mem_num);
+	public void deleteCommunityComFavA(Long mem_num);
+	
+	public void deleteCommunityFav(Long mem_num);
+	public void deleteCommunityFavA(Long mem_num);
+
+	//커뮤니티 북마크 삭제
+	public void deleteCommunityCB(Long mem_num);
+	public void deleteCommunityCBA(Long mem_num);
+	
+	// 커뮤니티 대댓글 삭제
+	public void deleteCommunityCRA(Long mem_num);
+	public void deleteCommunityCR(Long mem_num);
+	
+	// 커뮤니티 댓글 삭제
+	public void deleteCommunityC(Long mem_num);
+	public void deleteCommunityCA(Long mem_num);
+	
+	// 커뮤니티 글 삭제
+	public void deleteCommunityB(Long mem_num);
+	
+	// Talk 삭제
+    public void deleteTalkReadByMemNum(Long mem_num);
+
+    public void deleteTalkByMemNum(Long mem_num);
+
+    public void deleteTalkMemberByMemNum(Long mem_num);
+
+    public void deleteTalkroomByMemNum(Long mem_num);
+	
+    public void deleteMreview(Long mem_num);
 	// mbdetail 영화 예매 상세 
-	@Delete("DELETE FROM mb_detail WHERE mb_num=(select mb_num from movie_booking where mem_num=#{mem_num})")
 	public void deleteMbdetail(Long mem_num);
 	// moviebooking 영화 예매 상세 
-	@Delete("DELETE FROM movie_booking WHERE mem_num=#{mem_num}")
 	public void deleteMoviebooking(Long mem_num);
 	
 	// eventParticipation
-	@Delete("DELETE FROM event_participation WHERE mem_num=#{mem_num}")
 	public void deleteEventP(Long mem_num);
 	
 	// consult 삭제
-	@Delete("DELETE FROM consult WHERE mem_num=#{mem_num}")
 	public void deleteConsult(Long mem_num);
 	
 	// member_coupon 삭제
-	@Delete("DELETE FROM member_coupon WHERE mem_num=#{mem_num}")
 	public void deleteMemCoupon(Long mem_num);
 	
 	// member_detail 삭제
-	@Delete("DELETE FROM memeber_detail WHERE mem_num=#{mem_num}")
 	public void deleteMemdetail(Long mem_num);
 	
 	// member_update
-	@Update("UPDATE member SET mem_auth=1 AND mem_membership=1 WHERE mem_num=#{mem_num}")
 	public void updateMem(Long mem_num);
 	
-
+	@Delete("DELETE FROM rr_reporter WHERE rr_num IN (SELECT rr_num FROM reviewreport WHERE mr_num IN (SELECT mr_num FROM movie_review WHERE mem_num=#{mem_num}))")
+	public void deleterrReport(Long mem_num);
+	@Delete("DELETE FROM reviewreport WHERE mr_num IN (SELECT mr_num FROM movie_review WHERE mem_num=#{mem_num})")
+	public void deleteReviewReport(Long mem_num);
+	@Delete("DELETE FROM movie_review WHERE mem_num=#{mem_num}")
+	public void deleteMovieReview(Long mem_num);
+	@Delete("DELETE FROM movie_bookmark WHERE mem_num=#{mem_num}")
+	public void deleteMovieBookmark(Long mem_num);
+	
+	@Delete("DELETE FROM talk_read WHERE talkroom_num IN (SELECT talkroom_num FROM talk_member WHERE mem_num=#{mem_num})")
+	public void deleteTalkReadTN(Long mem_num);
+	@Delete("DELETE FROM talk WHERE talkroom_num IN (SELECT talkroom_num FROM talk_member WHERE mem_num=#{mem_num})")
+	public void deleteTalkTN(Long mem_num);
+	@Delete("DELETE FROM talk_member WHERE talkroom_num IN (SELECT talkroom_num FROM talk_member WHERE mem_num=#{mem_num})")
+	public void deleteTalkMemTN(Long mem_num);
 }
