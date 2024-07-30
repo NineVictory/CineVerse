@@ -60,7 +60,17 @@
 			AND consult_type = 'exchange'
 		</if>
 	</sql>
-
+	<sql id="eventType">
+		<if test="ep_type != null and ep_type !=''">
+			AND ep_type = #{ep_type}
+		</if>
+		<if test="category == 1">
+			AND ep_type = 1
+		</if>
+		<if test="category == 2">
+			AND ep_type = 2
+		</if>
+	</sql>
 
 	<!-- 문의 갯수 -->
 	<select id="consultcnt" parameterType="map" resultType="integer">
