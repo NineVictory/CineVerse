@@ -172,8 +172,26 @@ public class MyPageController2 {
 		log.debug("<<구매 내역 상세 페이지 : order_num>> ::: " + order_num);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MyPageVO member = mypageService.selectMember(user.getMem_num());
-		model.addAttribute("member",member);
 		
+		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
+
+
+	    Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("mem_num", user.getMem_num());
+		int resCnt = mypageService.reservationCnt(map2);
+		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
+		if (booking != null && resCnt > 0) {
+			member.setC_branch(booking.getC_branch());
+			member.setM_name(booking.getM_name());
+			member.setMt_start(booking.getMt_start());
+			member.setMt_date(booking.getMt_date());
+			member.setTh_name(booking.getTh_name());
+		}
+		model.addAttribute("resCnt", resCnt);
+	    
+	    
+	    model.addAttribute("member", member);
+			
 		List<OrdersVO> orderDetail = shopService.orderDetailList(order_num);
 		int order_price = shopService.orderPrice(order_num);
 		OrdersVO order = shopService.selectOrder(order_num);
