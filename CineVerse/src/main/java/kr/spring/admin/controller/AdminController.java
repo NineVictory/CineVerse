@@ -960,8 +960,7 @@ public class AdminController {
 		//View 메시지 처리
 		model.addAttribute("message", "성공적으로 글이 수정되었습니다.");
 		model.addAttribute("url", 
-				request.getContextPath()+"/admin/adminCinemaModify?c_num="
-										+cinemaVO.getC_num()); 
+				request.getContextPath()+"/admin/adminCinema");
 
 		return "common/resultAlert";
 	}
