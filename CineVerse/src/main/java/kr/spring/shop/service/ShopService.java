@@ -52,6 +52,8 @@ public interface ShopService {
 	// 쿠폰 조건
 	public CouponVO couponInfo(long mc_num);
 
+	
+	
 	// 관리자
 	public List<ProductVO> adminProductList(Map<String, Object> map);
 
@@ -80,12 +82,15 @@ public interface ShopService {
 	public List<ProductVO> reviewList(long p_num);
 	public Integer reviewCount(long p_num);
 	
+	
+	// 찜 추천
 	public List<ProductVO> recommandProduct(long p_category);
 	public Integer productFavCnt(long mem_num);
 	public ProductVO selectMostCategory(long mem_num);
 	public List<MyPageVO> selectMemCouponList(Map<String, Object> map);	// 회원 쿠폰 목록 불러오기
 	
 	
+	// 관리자
 	public void updateProduct(ProductVO productVO);
 	public void deleteFile(Long p_num);
 	public List<OrdersVO> orderList(Map<String, Object> map);

@@ -100,7 +100,7 @@ public class ShopAjaxController {
 	// 쿠폰 선택하기
 	@GetMapping("/shop/coupon")
 	@ResponseBody
-	public Map<String, Object> getMethodName(@RequestParam long mc_num, @RequestParam long sale, @RequestParam long noSaleTotal, HttpSession session) {
+	public Map<String, Object> selectCoupon(@RequestParam long mc_num, @RequestParam long sale, @RequestParam long noSaleTotal, HttpSession session) {
 		log.debug("<<쿠폰 선택 - mc_num>> ::: " + mc_num);
 		log.debug("<<쿠폰 선택 - sale>> ::: " + sale);
 		log.debug("<<쿠폰 선택 - noSaleTotal(배송비, 쿠폰 적용 전)>> ::: " + noSaleTotal);
@@ -295,7 +295,7 @@ public class ShopAjaxController {
 	// 장바구니 -> 결제 -> 진짜 결제하기
 	@PostMapping("/shop/buyWithBasket")
 	@ResponseBody
-	public Map<String, Object> postMethodName(@RequestParam Map<String, String> formData, HttpSession session) {
+	public Map<String, Object> buyWithBasket(@RequestParam Map<String, String> formData, HttpSession session) {
 	    log.debug("<<장바구니에서 결제하기>> ::: " + formData);
 
 	    String countStr = formData.get("count");
