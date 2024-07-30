@@ -644,6 +644,7 @@ public class AdminController {
 			map.put("end", page.getEndRow());
 
 			list = adminService.selectCommunityList(map);
+			log.debug("자유게시판 : "+list);
 			for (BoardVO board : list) {
 				String titleWithoutHtml = StringUtil.useNoHTML(board.getCb_title());
 				board.setCb_title(titleWithoutHtml);

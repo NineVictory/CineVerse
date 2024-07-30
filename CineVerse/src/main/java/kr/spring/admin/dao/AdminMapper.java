@@ -48,7 +48,7 @@ public interface AdminMapper {
 	@Select("SELECT COUNT(*) FROM cinema")
 	public Integer totalCinema();
 
-	@Select("SELECT COUNT(*) FROM consult WHERE consult_status = 1")
+	@Select("SELECT COUNT(*) FROM consult WHERE consult_status = 2")
 	public Integer totalConsult();
 	
 

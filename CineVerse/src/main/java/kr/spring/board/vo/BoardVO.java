@@ -41,4 +41,5 @@ public class BoardVO {
 	private int all_comments;		// 댓글+답글
 	
 	private int cc_report;	//신고 수
+	private int report_count;
 }
