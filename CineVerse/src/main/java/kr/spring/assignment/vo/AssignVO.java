@@ -40,7 +40,7 @@ public class AssignVO {
 	private String ab_type;
 	@NotNull
 	private int ab_item_status;
-	private long ab_report;
+	//private long ab_report;
 
 	private String mem_id;
 	private String mem_nickname;
