@@ -88,7 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
         </c:if>
     </div>
 </div>
-
+<%-- 	 <!-- 에러 메시지 표시 -->
+<c:if test="${!empty sessionScope.errorMessage}">
+    <script type="text/javascript">
+        alert('${sessionScope.errorMessage}');
+    </script>
+    <c:remove var="errorMessage" scope="session"/>
+</c:if> --%>
  	
  	<div class="pay_select">
  		<div class="all_titles"><p>결제하기</p></div>

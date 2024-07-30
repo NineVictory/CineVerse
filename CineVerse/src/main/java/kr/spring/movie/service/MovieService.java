@@ -88,7 +88,7 @@ public interface MovieService {
     void insertBooking(MovieBookingVO movieBooking);
     void insertBookingDetail(MbDetailVO mbDetail);
     void insertPointHistory(long ph_point, long mem_num, int ph_type, String ph_payment);
-    
+    int checkDuplicateBooking(@Param("mem_num") long mem_num, @Param("mt_num") long mt_num, @Param("seatNums") String seatNumStr);
 	/* void updateMemberPoint(long ph_point, long mem_num); */
 	/* void usePoint(long ph_point, long mem_num); */
     void updateMemberPoint(long newPoint, long mem_num);

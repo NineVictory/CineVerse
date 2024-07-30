@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.spring.cinema.service.CinemaService;
 import kr.spring.cinema.vo.CinemaVO;
@@ -387,7 +389,8 @@ public class MovieController {
            }
 
            @PostMapping("/movie/confirmPayment")
-           public String confirmPayment(@RequestParam("mt_num") long mt_num, 
+           public String confirmPayment(RedirectAttributes redirectAttributes,
+        		   						@RequestParam("mt_num") long mt_num, 
                                         @RequestParam("ticketNumber") int ticketNumber, 
                                         @RequestParam("selectedSeats") String selectedSeats, 
                                         @RequestParam("finalAmount") long finalAmount,
@@ -401,14 +404,23 @@ public class MovieController {
                    // 로그인이 되어 있지 않으면 로그인 페이지로 리디렉션
                    return "redirect:/member/login";
                }
-
+               
                log.debug("<<confirmPayment - mt_num>> ::: " + mt_num);
                log.debug("<<confirmPayment - ticketNumber>> ::: " + ticketNumber);
                log.debug("<<confirmPayment - selectedSeats>> ::: " + selectedSeats);
                log.debug("<<confirmPayment - finalAmount>> ::: " + finalAmount);
                log.debug("<<confirmPayment - m_code>> ::: " + m_code);
                log.debug("<<confirmPayment - seatNum>> ::: " + seatNum);
+               
+               
+            // 좌석 번호 배열로 변환
+			/*
+			 * String[] seatsArray = seatNum.split(","); List<Long> seatNums =
+			 * Arrays.stream(seatsArray).map(Long::parseLong).collect(Collectors.toList());
+			 */
 
+
+               
                // 예매 정보 생성
                Long mbNum = movieService.getMbNum(); // mb_num을 미리 가져옴
                MovieBookingVO movieBooking = new MovieBookingVO();
@@ -418,7 +430,14 @@ public class MovieController {
                movieBooking.setMt_num(mt_num);
                movieBooking.setM_code(m_code);
                
-           
+               // 중복 체크
+               int duplicateCount = movieService.checkDuplicateBooking(user.getMem_num(), mt_num, seatNum);
+               if (duplicateCount > 0) {
+            	    session.setAttribute("errorMessage", "이미 예매된 좌석입니다. 다른 좌석을 선택해주세요.");
+            	    return "redirect:/movie/movieReserve";
+            	} else {
+            	    session.removeAttribute("errorMessage");
+            	}
                
                
 
@@ -453,6 +472,8 @@ public class MovieController {
                log.debug("<<movieBooking - movieBooking>> ::: " + movieBooking);
 
                String[] seats = seatNum.split(",");
+               
+               
                for (String seat : seats) {
                    MbDetailVO mbDetail = new MbDetailVO();
                    mbDetail.setMd_type(1); // 예시로 사용, 실제로는 필요한 값 설정

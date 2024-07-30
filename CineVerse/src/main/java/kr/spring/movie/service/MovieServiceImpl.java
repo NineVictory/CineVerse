@@ -1,7 +1,9 @@
 package kr.spring.movie.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -373,6 +375,15 @@ public class MovieServiceImpl implements MovieService {
 	public List<Long> getHiddenReviewIds() {
 		
 		return movieMapper.getHiddenReviewIds();
+	}
+
+	@Override
+	public int checkDuplicateBooking(long mem_num, long mt_num, String seatNumStr) {
+	    		List<Long> seatNums = Arrays.stream(seatNumStr.split(","))
+                .map(String::trim)
+                .map(Long::parseLong)
+                .collect(Collectors.toList());
+		return movieMapper.checkDuplicateBooking(mem_num, mt_num, seatNums);
 	}
 
 	/*

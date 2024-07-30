@@ -166,7 +166,14 @@ public interface MovieMapper {
     Long selectMd_num();
     @Insert("INSERT INTO mb_detail (md_num, md_type, mb_num, seat_num) VALUES (mb_detail_seq.nextval, #{md_type}, #{mb_num}, #{seat_num})")
     void insertBookingDetail(MbDetailVO mbDetail);
-    
+
+	/*
+	 * @Select("SELECT COUNT(*) FROM movie_booking mb " +
+	 * "JOIN mb_detail md ON mb.mb_num = md.mb_num " +
+	 * "WHERE mb.mem_num = #{mem_num} " + "AND mb.mt_num = #{mt_num} " +
+	 * "AND md.seat_num IN (#{seatNums})")
+	 */
+    int checkDuplicateBooking(@Param("mem_num") long mem_num, @Param("mt_num") long mt_num, @Param("seatNums") List<Long> seatNums);
     //결제시 point값 차감하기
 	/*
 	 * @Update("UPDATE member SET point = point - #{ph_point} WHERE mem_num = #{mem_num}"
