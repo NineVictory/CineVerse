@@ -49,7 +49,7 @@
 						<c:if test="${ab.ab_type == 'exchange'}">
 							<td class="mem-data">교환</td>
 						</c:if>
-						<td class="mem-data">${ab.ab_report}</td>
+
 						<td class="mem-data">${ab.ab_hit}</td>
 						<td class="mem-data">${ab.ab_reg_date}</td>
 						<td class="button2"><input type="button" value="삭제"
