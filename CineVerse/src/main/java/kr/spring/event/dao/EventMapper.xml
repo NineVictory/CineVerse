@@ -40,7 +40,7 @@
 									event_type
 														
 								FROM event 
-								WHERE event_end >= SYSDATE
+								WHERE TO_DATE(event_end, 'YYYY-MM-DD') >= TRUNC(SYSDATE)
 								<include refid="eventSearch"></include>
 								
 								ORDER BY event_reg_date DESC)a) 
@@ -54,7 +54,7 @@
 		SELECT COUNT(*) FROM event WHERE event_end &lt; SYSDATE
 	</select>
 
-	<!-- 이벤트 전체 목록/검색 목록 -->
+	<!-- 종료된이벤트 전체 목록/검색 목록 -->
 	<select id="selectEndedEventList" parameterType="map" resultType="userEventVO">
 		SELECT * FROM
 				(SELECT a.*, rownum rnum FROM			<!--좋아요가 없을 때 누락-->
