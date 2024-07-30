@@ -61,7 +61,7 @@ $(function() {
 					if (param.user_num === item.mem_num) {
 						// 로그인 한 회원번호와 댓글 작성자 회원번호가 같으면 수정/삭제 버튼 표시
 						output += '<div class="cc-btn">';
-						output += '<span class="cc-cbtn"><img class="menu-img" src="../images/kbm/menu.png" height="18"></span>';
+						output += '<span class="cc-cbtn"><img class="menu-img" src="../images/kbm/menu_vertical.png" height="18"></span>';
 						output += '<ul class="cc-btn-hide">';
 						if(item.cc_report < 5){
 						output += '<li><a href="" class="cc-modify-btn" data-num="' + item.cc_num + '" data-memnum="' + item.mem_num + '" data-name="' +name+ '">수정</a></li>';
@@ -667,7 +667,7 @@ $(function() {
 					// 답글 수정/삭제 버튼
 					if (param.user_num == item.mem_num) {
 						output += '<div class="cc-btn mhide">';
-						output += '<span class="cc-cbtn"><img class="menu-img" src="../images/kbm/menu.png" height="18"></span>';
+						output += '<span class="cc-cbtn"><img class="menu-img" src="../images/kbm/menu_vertical.png" height="18"></span>';
 						output += '<ul class="cc-btn-hide">';
 						if(item.rr_report < 5){
 						output += '<li><a href="" class="resp-modify-btn" data-num="' + item.te_num + '" data-memnum="' +item.mem_num+ '" data-name="' +name+ '">수정</a></li>'; // 수정 버튼 데이터 수정
