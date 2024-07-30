@@ -44,7 +44,7 @@
 		                            <p>가격 <span>${product.p_price}원</span></p>
 		                        </div>
 		                        <div class="button-div2">
-									<div class="delete-btn" data-num="${product.pb_num}" data-memnum="${product.mem_num}">장바구니 삭제</div>
+									<div class="delete-btn" data-num="${product.pb_num}" data-memnum="${product.mem_num}" style="margin-left: 60px;">찜 취소</div>
 								</div>
 		                    </div>
 		                </div>

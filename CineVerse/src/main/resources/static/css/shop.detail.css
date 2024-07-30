@@ -101,6 +101,7 @@ body {
 	background-color: #f0f0f0;
 	text-align: center;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 .showPrice {
@@ -121,12 +122,14 @@ body {
 	border-radius: 10px;
 	font-size: 12.5pt;
 	font-weight: 600;
+	cursor: pointer;
 }
 
 .shop-submit button {
 	background: white;
 	margin-right: 26px;
 	border: 2px solid black;
+	cursor: pointer;
 }
 
 #buyNowBtn {
@@ -286,6 +289,7 @@ review-profile {
 	font-size: 14px;
 	font-weight: 500;
 	align-self: flex-start; /* 상단 정렬/하단 정렬이면 end 사용 */
+	cursor: pointer;
 }
 
 .my_board_type {

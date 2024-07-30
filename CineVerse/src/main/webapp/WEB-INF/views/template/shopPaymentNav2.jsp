@@ -54,7 +54,7 @@
 		    <input type="hidden" name="count" id="hiddenCount">
 			<input type="hidden" name="total_count" id="hiddenTotalCount">
 			<input type="hidden" name="total" id="hiddenTotal">
-		    <input type="submit" value="결제하기" class="realBuy">
+		    <input type="submit" value="결제하기" class="realBuy" style="cursor: pointer;">
 		</form>
 	</div>
 </div>

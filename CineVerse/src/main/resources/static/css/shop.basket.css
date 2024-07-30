@@ -27,6 +27,7 @@ body {
 .total_count, .total_price, .coupon_discount, .deliveryfee, .price-result  {
 	display: flex;
     justify-content: space-between;
+    
 }
 
 
@@ -53,6 +54,7 @@ body {
 	background-color: #B8C8FF;
 	padding: 5px 15px;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 
@@ -66,10 +68,12 @@ body {
 	margin-top: 40px;
 	background: #3F66ED;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 .delete-btn{
 	margin-left: 20px;
+	cursor: pointer;
 }
 
 #shop_pay{
@@ -319,4 +323,9 @@ body {
 	color: white;
 	margin-bottom: 20px;
 	width:200px;
+	cursor: pointer;
+}
+
+.realBuy{
+	cursor: pointer;
 }

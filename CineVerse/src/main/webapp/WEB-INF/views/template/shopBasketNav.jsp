@@ -50,7 +50,7 @@
 			<input type="hidden" name="count" id="hiddenCount">
 			<input type="hidden" name="total_count" id="hiddenTotalCount">
 			<input type="hidden" name="total" id="hiddenTotal">
-			<input type="submit" value="주문하기" class="pay-box">
+			<input type="submit" value="주문하기" class="pay-box" style="cursor: pointer;">
 		</form>
 </div>
 </c:if>

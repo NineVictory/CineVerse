@@ -253,6 +253,7 @@ input[type="submit"] {
     text-align: center;
     line-height: 60px; 
     border:none;
+    cursor: pointer;
 }
 
 
@@ -368,6 +369,7 @@ input[type="submit"] {
 
 .add-address{
 	width: 70px;
+	cursor: pointer;
 }
 
 .no-address{
@@ -380,5 +382,9 @@ input[type="submit"] {
 	border-radius: 15px;
 	font-size: 10pt;
 	padding: 8px 12px;
+}
+
+.realBuy{
+	cursor: pointer;
 }
 	
