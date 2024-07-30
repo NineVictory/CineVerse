@@ -720,7 +720,7 @@
 		consult_num,
 		mem_num,mem_id,
 		consult_title,
-		consult_type,	
+		consult_type,
 		consult_reg_date
 		FROM consult JOIN member USING(mem_num)
 		<include refid="consultSearch"></include>

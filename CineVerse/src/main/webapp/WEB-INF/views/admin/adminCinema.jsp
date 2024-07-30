@@ -96,10 +96,10 @@
                     </c:if>
                    
                     <td class="mem-data">${cinema.c_phone}</td>
-                    <c:if test =${cinema.c_parkable == 1}>
+                    <c:if test ="${cinema.c_parkable == 1}">
                     <td class="mem-data">가능</td>						
 					</c:if>
-					<c:if test =${cinema.c_parkable == 0}>
+					<c:if test ="${cinema.c_parkable == 0}">
                     <td class="mem-data">불가능</td>						
 					</c:if>
                     <td class="button1"><input type="button" value="수정"
