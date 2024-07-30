@@ -61,7 +61,8 @@
                             let displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i);
                             let day = displayDate.getDate();
                             let dayOfWeek = daysOfWeek[displayDate.getDay()];
-                            let year = displayDate.getFullYear().toString().slice(-2); // YY 형식
+                            //let year = displayDate.getFullYear().toString().slice(-2); // YY 형식
+                            let year = displayDate.getFullYear().toString(); // YYYY 형식
                             let month = (displayDate.getMonth() + 1).toString().padStart(2, '0'); // MM 형식
                             let formattedDay = day.toString().padStart(2, '0'); // DD 형식
 
@@ -162,7 +163,8 @@
                                     });
 
                                     let selectMovieTimeListHtml = '';
-
+                                    let currentTime = new Date(); // 현재 시간 가져오기
+                                    
                                     // 각 c_branch에 대해 반복
                                      for (let branch in branches) {
                                         // c_branch 제목을 추가
@@ -171,6 +173,8 @@
 
                                         // 시간표 항목들을 가로로 정렬할 수 있도록 HTML 생성
                                         branches[branch].forEach(function(item) {
+                                        	let movieStartTime = new Date(selectedDate + ' ' + formatTime(item.mt_start));
+                                        	if (currentTime < movieStartTime){
                                             selectMovieTimeListHtml += '<div class="movietime-container" data-mtNum="' + item.mt_num + '">';
                                             selectMovieTimeListHtml += '<div class="movietime-item" data-end-time="' + formatTime(item.mt_end) + '">';
                                             selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(item.mt_start) + '</div>';
@@ -180,10 +184,11 @@
                                             selectMovieTimeListHtml += '</div>';
                                             selectMovieTimeListHtml += '</div>';
                                             selectMovieTimeListHtml += '</div>'; // movietime-container 종료
+                                        	}
                                         });
                                         selectMovieTimeListHtml += '</div>'; // branch-section 종료
                                     }
-
+								
                                     $('.reserve-time-wrapper').html(selectMovieTimeListHtml);
                                 },
                                 error: function() {
