@@ -135,7 +135,7 @@ public class MyPageController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("mem_num", memNum);
 
-		int resCnt = mypageService.reservationCnt(map);
+		int resCnt = mypageService.watMovieCnt(map);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -176,7 +176,7 @@ public class MyPageController {
 			Map<String, Object> map = new HashMap<>();
 			map.put("mem_num", user.getMem_num());
 
-			int resCnt = mypageService.reservationCnt(map);
+			int resCnt = mypageService.watMovieCnt(map);
 			MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 			if (booking != null && resCnt > 0) {
 				member.setC_branch(booking.getC_branch());
@@ -231,7 +231,7 @@ public class MyPageController {
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -269,7 +269,7 @@ public class MyPageController {
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map);
+		int resCnt = mypageService.watMovieCnt(map);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -332,7 +332,7 @@ public class MyPageController {
 		member.setCoupon_cnt(mypageService.selectMemberCoupon(user.getMem_num()));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map);
+		int resCnt = mypageService.watMovieCnt(map);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -365,7 +365,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -406,7 +406,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -448,7 +448,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -492,7 +492,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -546,7 +546,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -587,7 +587,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -626,7 +626,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -662,7 +662,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -702,7 +702,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -760,7 +760,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -880,7 +880,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -931,7 +931,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -995,7 +995,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
@@ -1022,7 +1022,7 @@ public class MyPageController {
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("mem_num", user.getMem_num());
-		int resCnt = mypageService.reservationCnt(map2);
+		int resCnt = mypageService.watMovieCnt(map2);
 		MovieBookingVO booking = mypageService.mainRes(user.getMem_num());
 		if (booking != null && resCnt > 0) {
 			member.setC_branch(booking.getC_branch());
