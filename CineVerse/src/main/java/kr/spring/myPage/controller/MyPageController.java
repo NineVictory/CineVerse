@@ -94,7 +94,7 @@ public class MyPageController {
 			log.debug("<<마지막 문의글 >> : " + lastConsult);
 		}
 
-		int resCnt = mypageService.reservationCnt(map);
+		int resCnt = mypageService.watMovieCnt(map);
 		List<MovieBookingVO> lastRes = null;
 
 		if (resCnt > 0) {
@@ -315,6 +315,7 @@ public class MyPageController {
 		List<MovieBookingVO> list = null;
 		if (resCnt > 0) {
 			list = mypageService.watchedMovList(map);
+			log.debug("<<예매목록>> : " + list);
 		}
 
 		model.addAttribute("list", list);
