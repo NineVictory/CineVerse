@@ -17,8 +17,8 @@
 		<form action="adminConsult" id="admin_search">
 			<ul>
 				<li>
-					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'mem_num'}"> <!-- 기본값 설정 -->
-           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원명을 입력하세요">
+					<input type="hidden" name="keyfield" value="${param.keyfield != null ? param.keyfield : 'mem_id'}"> <!-- 기본값 설정 -->
+           			<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원 아이디를 입력하세요">
 					<input type="submit" value="" class = "search-button" style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
 			</ul>
@@ -27,7 +27,7 @@
         <thead>
             <tr>
                 <th>문의번호</th>
-                <th>회원번호</th>
+                <th>회원 아이디</th>
                 <th>제목</th>
                 <th>분류</th>
                 <th>작성일</th>                
@@ -42,7 +42,7 @@
             <c:forEach var="consult" items="${list}">
                 <tr onclick="redirectToAdminAnswer(${consult.consult_num})" id = "intoAnswer">
 					<td class="mem-data">${consult.consult_num}</td>
-                    <td class="mem-data">${consult.mem_num}</td>
+                    <td class="mem-data">${consult.mem_id}</td>
                     <td class="mem-data">${consult.consult_title}</td>    
                     <c:if test = "${consult.consult_type == 'dissatisfaction'}">              
                     <td class="mem-data">불만사항</td>

@@ -49,7 +49,7 @@
         <thead>
             <tr>
                 <th>예매 번호</th>
-                <th>회원번호</th>
+                <th>회원 아이디</th>
                 <th>예매일</th>
                 <th>결제금액</th>
                 <th></th>
@@ -64,7 +64,7 @@
             <c:forEach var="mr" items="${list}">
                 <tr>
                     <td class="mem-data">${mr.md_num}</td>
-                    <td class="mem-data">${mr.mem_num}</td>
+                    <td class="mem-data">${mr.mem_id}</td>
                     <td class="mem-data">${mr.mb_date}</td>
                     <td class="mem-data">${mr.mb_price}</td>
 					<td class="button2"><input type="button" value="예매취소" onclick="refundMovie(${mr.mem_num}, ${mr.mb_price}, '예매환불' ,${mr.mb_num})"/></td>

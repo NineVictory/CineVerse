@@ -326,7 +326,7 @@
 	<select id="controllMovieTimeRowCount" parameterType="map" resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM movie_time
+		FROM movie_time JOIN movie USING (m_code)
 		<include refid="movieTimeSearch"></include>
 	</select>
 
@@ -344,9 +344,9 @@
 		mt_date,
 		mt_start,
 		mt_end,
-		m_code,
+		m_code,m_name,
 		th_num
-		FROM movie_time
+		FROM movie_time JOIN movie USING (m_code)
 		<include refid="movieTimeSearch"></include>
 		) a
 		)

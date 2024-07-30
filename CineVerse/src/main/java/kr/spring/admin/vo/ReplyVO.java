@@ -23,4 +23,5 @@ public class ReplyVO {
 	private Date te_date;
 	private long te_report;
 	private String data_type;
+	private String mem_id;
 }

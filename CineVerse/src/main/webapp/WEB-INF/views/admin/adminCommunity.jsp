@@ -12,7 +12,7 @@
 				<li><input type="hidden" name="keyfield"
 					value="${param.keyfield != null ? param.keyfield : 'cb_title'}">
 					<!-- 기본값 설정 --> <input type="search" name="keyword" id="keyword"
-					value="${param.keyword}" placeholder="지점명을 입력하세요"> <input
+					value="${param.keyword}" placeholder="게시글 제목을 입력하세요"> <input
 					type="submit" value="" class="search-button"
 					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
@@ -41,7 +41,7 @@
 				<c:forEach var="cb" items="${list}">
 					<tr>
 						<td class="mem-data">${cb.cb_num}</td>
-						<td class="mem-data">${cb.mem_num}</td>
+						<td class="mem-data">${cb.mem_id}</td>
 						<td class="mem-data">${cb.cb_title}</td>
 						<c:if test="${cb.cb_type == 'movieTalk'}">
 							<td class="mem-data">영화톡톡</td>

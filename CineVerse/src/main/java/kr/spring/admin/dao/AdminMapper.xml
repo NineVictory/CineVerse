@@ -405,7 +405,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM point_history
+		FROM point_history JOIN member USING (mem_num)
 		<include refid="pointSearch"></include>
 
 	</select>
@@ -424,11 +424,9 @@
 		ph_num,
 		ph_point,
 		ph_date,
-                <![CDATA[
-                REPLACE(REPLACE(mem_num, '<', '&lt;'), '>', '&gt;') AS mem_num,
-                ]]>
+        mem_num,mem_id,
 		ph_payment
-		FROM point_history
+		FROM point_history JOIN member USING(mem_num)
 		<include refid="pointSearch"></include>
 		ORDER BY ph_date DESC
 		) a
@@ -554,13 +552,13 @@
 		FROM (
 		SELECT
 		cb_num,
-		mem_num,
+		mem_num,mem_id,
 		cb_title,
 		cb_type,
 		cb_report,
 		cb_hit,
 		cb_reg_date
-		FROM community_board
+		FROM community_board JOIN member USING (mem_num)
 		<include refid="communitySearch"></include>
 		) a
 		)
@@ -575,7 +573,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM community_board
+		FROM community_board JOIN member USING (mem_num)
 		<include refid="communitySearch"></include>
 	</select>
 
@@ -599,13 +597,13 @@
 		FROM (
 		SELECT
 		ab_num,
-		mem_num,
+		mem_num,mem_id,
 		ab_title,
 		ab_type,
 		ab_report,
 		ab_hit,
 		ab_reg_date
-		FROM assignment_board
+		FROM assignment_board JOIN member USING(mem_num)
 		<include refid="assignSearch"></include>
 		) a
 		)
@@ -620,7 +618,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM assignment_board
+		FROM assignment_board JOIN member USING(mem_num)
 		<include refid="assignSearch"></include>
 	</select>
 
@@ -645,10 +643,10 @@
 		SELECT 'reply' AS
 		data_type,
 		cc_num,
-		mem_num,
+		mem_num,mem_id,
 		cc_content,
 		cc_report
-		FROM community_comment
+		FROM community_comment JOIN member USING(mem_num)
 		<include refid="replySearch"></include>
 		ORDER BY cc_report DESC
 		) a
@@ -668,10 +666,10 @@
 		SELECT 'comment' AS
 		data_type,
 		te_num,
-		mem_num,
+		mem_num,mem_id,
 		te_content,
 		te_report
-		FROM community_response
+		FROM community_response JOIN member USING(mem_num)
 		<include refid="replySearch"></include>
 		ORDER BY te_report DESC
 		) a
@@ -686,7 +684,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM community_board
+		FROM community_board JOIN member USING(mem_num)
 		<include refid="replySearch"></include>
 	</select>
 
@@ -694,7 +692,7 @@
 	<select id="selectReCmtRowCount" parameterType="map"
 		resultType="integer">
 		SELECT COUNT(*)
-		FROM community_response
+		FROM community_response JOIN member USING(mem_num)
 		<include refid="replySearch"></include>
 	</select>
 
@@ -718,11 +716,11 @@
 		FROM (
 		SELECT
 		consult_num,
-		mem_num,
+		mem_num,mem_id,
 		consult_title,
-		consult_type,
+		consult_type,	
 		consult_reg_date
-		FROM consult
+		FROM consult JOIN member USING(mem_num)
 		<include refid="consultSearch"></include>
 		) a
 		)
@@ -737,7 +735,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM consult
+		FROM consult JOIN member USING(mem_num)
 		<include refid="consultSearch"></include>
 	</select>
 
@@ -760,13 +758,15 @@
 		SELECT
 		md.md_num,
 		m.mb_num,
-		m.mem_num,
+		m.mem_num,mem.mem_id,
 		m.mb_date,
 		m.mb_price,
 		md.md_type
 		FROM movie_booking m
 		JOIN
 		mb_detail md ON m.mb_num = md.mb_num
+		JOIN
+		member mem ON m.mem_num = mem.mem_num
 		WHERE md.md_type = 1
 		<include refid="reservationSearch"></include>
 		) a

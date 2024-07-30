@@ -43,9 +43,9 @@
 		<form action="adminTimeControll" id="admin_search">
 			<ul>
 				<li><input type="hidden" name="keyfield"
-					value="${param.keyfield != null ? param.keyfield : 'mt_date'}">
+					value="${param.keyfield != null ? param.keyfield : 'm_name'}">
 					<!-- 기본값 설정 --> <input type="search" name="keyword" id="keyword"
-					value="${param.keyword}" placeholder="상영일을 입력하세요"> <input
+					value="${param.keyword}" placeholder="영화 제목을 입력하세요"> <input
 					type="submit" value="" class="search-button"
 					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
@@ -58,7 +58,7 @@
 					<th>상영일</th>
 					<th>시작 시간</th>
 					<th>종료 시간</th>
-					<th>영화 코드</th>
+					<th>영화 제목</th>
 					<th>상영관 번호</th>
 					<td></td>
 					<td></td>
@@ -76,7 +76,7 @@
 						<td class="mem-data">${movieTime.mt_date}</td>
 						<td class="mem-data">${movieTime.mt_start}</td>
 						<td class="mem-data">${movieTime.mt_end}</td>
-						<td class="mem-data">${movieTime.m_code}</td>
+						<td class="mem-data">${movieTime.m_name}</td>
 						<td class="mem-data">${movieTime.th_num}</td>
 						<td class="button1"><input type="button" value="수정"
 							onclick="redirectToMovieModify(${movieTime.mt_num})" /></td>

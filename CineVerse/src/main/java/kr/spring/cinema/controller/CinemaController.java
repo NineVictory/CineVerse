@@ -240,9 +240,9 @@ public class CinemaController {
 	   public String adminTimeControll(@RequestParam(defaultValue = "1") int pageNum,
 									   @RequestParam(value = "keyword", required = false) String keyword,
 				                       @RequestParam(value = "keyfield", required = false) String keyfield,Model model){
-		// keyfield가 없으면 기본값을 설정
+		 	// keyfield가 없으면 기본값을 설정
 			if (keyfield == null || keyfield.isEmpty()) {
-				keyfield = "mt_date"; // 기본 검색 필드를 설정합니다.
+				keyfield = "m_name"; // 기본 검색 필드를 설정합니다.
 			}
 
 			// 파라미터를 맵에 추가

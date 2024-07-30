@@ -305,7 +305,7 @@ public class SupportController {
 		model.addAttribute("orderList", order_list);
 		
 		
-		if(result.hasErrors()) {
+		if(result.hasFieldErrors("consult_title") || result.hasFieldErrors("consult_content")) {
 			return "supportConsultForm";
 		}
 		

@@ -56,9 +56,9 @@
 		<form action="adminReply" id="admin_search">
 			<ul>
 				<li><input type="hidden" name="keyfield"
-					value="${param.keyfield != null ? param.keyfield : 'mem_num'}">
+					value="${param.keyfield != null ? param.keyfield : 'mem_id'}">
 					<!-- 기본값 설정 --> 
-					<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원명을 입력하세요"> 
+					<input type="search" name="keyword" id="keyword" value="${param.keyword}" placeholder="회원 아이디를 입력하세요"> 
 					<input type="submit" value="" class="search-button"
 					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
@@ -85,7 +85,7 @@
 		        <c:if test="${re.data_type == 'reply'}">
 		        <tr>
 		        	<td class="mem-date">${re.cc_num}</td>
-		            <td class="mem-data">${re.mem_num}</td>
+		            <td class="mem-data">${re.mem_id}</td>
 		            <td class="mem-data">${re.cc_content}</td> 
 		            <c:if test="${!empty re.cc_report}">
 		                <td class="mem-data">${re.cc_report}</td>
