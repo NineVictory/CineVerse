@@ -62,7 +62,7 @@ String currentTime = sdfTime.format(new Date());
             var box = boxRep.querySelector(".wa_box");
             var mtDate = new Date(box.getAttribute("data-mt-date"));
             // 상영 날짜가 현재 날짜보다 크면 요소를 숨김
-            if (mtDate > currentDate) {
+            if (mtDate >= currentDate) {
                 boxRep.style.display = "none";
             } else {
                 hasPastMovies = true;
