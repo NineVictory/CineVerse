@@ -644,6 +644,7 @@ public class AdminController {
 			map.put("end", page.getEndRow());
 
 			list = adminService.selectCommunityList(map);
+			log.debug("자유게시판 : "+list);
 			for (BoardVO board : list) {
 				String titleWithoutHtml = StringUtil.useNoHTML(board.getCb_title());
 				board.setCb_title(titleWithoutHtml);
@@ -714,7 +715,7 @@ public class AdminController {
 			Model model) {
 		// keyfield가 없으면 기본값을 설정
 		if (keyfield == null || keyfield.isEmpty()) {
-			keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+			keyfield = "mem_id"; // 기본 검색 필드를 설정합니다.
 		}
 
 		// 파라미터를 맵에 추가
@@ -973,7 +974,7 @@ public class AdminController {
 			Model model) {
 		// keyfield가 없으면 기본값을 설정
 		if (keyfield == null || keyfield.isEmpty()) {
-			keyfield = "mem_num"; // 기본 검색 필드를 설정합니다.
+			keyfield = "mem_id"; // 기본 검색 필드를 설정합니다.
 		}
 
 		// 파라미터를 맵에 추가

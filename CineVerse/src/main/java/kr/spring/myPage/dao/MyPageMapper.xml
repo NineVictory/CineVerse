@@ -60,7 +60,17 @@
 			AND consult_type = 'exchange'
 		</if>
 	</sql>
-
+	<sql id="eventType">
+		<if test="ep_type != null and ep_type !=''">
+			AND ep_type = #{ep_type}
+		</if>
+		<if test="category == 1">
+			AND ep_type = 1
+		</if>
+		<if test="category == 2">
+			AND ep_type = 2
+		</if>
+	</sql>
 
 	<!-- 문의 갯수 -->
 	<select id="consultcnt" parameterType="map" resultType="integer">
@@ -534,8 +544,12 @@ FROM (
     FROM DistinctBookings
     WHERE 
         (mt_date > TRUNC(SYSDATE) OR
-        mt_date = TRUNC(SYSDATE) AND 
-        TO_DATE(mt_end, 'HH24:MI') > TO_DATE(TO_CHAR(SYSDATE, 'HH24:MI'), 'HH24:MI')))
+        (mt_date = TRUNC(SYSDATE) AND 
+        TO_DATE(
+            LPAD(SUBSTR(mt_end, 1, LENGTH(mt_end) - 2), 2, '0') || ':' || 
+            LPAD(SUBSTR(mt_end, -2), 2, '0'), 
+            'HH24:MI'
+        ) > TO_DATE(TO_CHAR(SYSDATE, 'HH24:MI'), 'HH24:MI')))ORDER BY mt_date ASC)
 WHERE rnum <= 2
 
     ]]>

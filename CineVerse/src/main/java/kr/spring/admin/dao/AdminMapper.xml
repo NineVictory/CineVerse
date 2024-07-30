@@ -140,7 +140,7 @@
 	</select>
 
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 이벤트 글 총레코드수/검색 레코드수 -->
 	<select id="selectEventRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -223,7 +223,7 @@
 	</select>
 
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 공지사항 글 총레코드수/검색 레코드수 -->
 	<select id="selectNoticeRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -299,7 +299,7 @@
 	</select>
 
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- FAQ 글 총레코드수/검색 레코드수 -->
 	<select id="selectFaqRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -400,12 +400,12 @@
 		</where>
 	</sql>
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 포인트 글 총레코드수/검색 레코드수 -->
 	<select id="selectPointRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM point_history
+		FROM point_history JOIN member USING (mem_num)
 		<include refid="pointSearch"></include>
 
 	</select>
@@ -424,11 +424,9 @@
 		ph_num,
 		ph_point,
 		ph_date,
-                <![CDATA[
-                REPLACE(REPLACE(mem_num, '<', '&lt;'), '>', '&gt;') AS mem_num,
-                ]]>
+        mem_num,mem_id,
 		ph_payment
-		FROM point_history
+		FROM point_history JOIN member USING(mem_num)
 		<include refid="pointSearch"></include>
 		ORDER BY ph_date DESC
 		) a
@@ -470,7 +468,7 @@
 	</sql>
 
 
-	<!-- 게시판 글 총레코드수/검색 레코드수 -->
+	<!-- 영화관 글 총레코드수/검색 레코드수 -->
 	<select id="selectCinemaRowCount" parameterType="map"
 		resultType="integer">
 		SELECT
@@ -546,28 +544,29 @@
 	</sql>
 
 
-	<select id="selectCommunityList" parameterType="map"
-		resultType="BoardVO">
-		SELECT *
-		FROM (
-		SELECT a.*, rownum rnum
-		FROM (
-		SELECT
-		cb_num,
-		mem_num,
-		cb_title,
-		cb_type,
-		cb_report,
-		cb_hit,
-		cb_reg_date
-		FROM community_board
-		<include refid="communitySearch"></include>
-		) a
-		)
+<select id="selectCommunityList" parameterType="map" resultType="BoardVO">
+    SELECT a.cb_num, a.mem_num, a.mem_id, a.cb_title, a.cb_type, a.cb_hit, a.cb_reg_date, a.report_count
+    FROM (
+        SELECT cb.cb_num,
+               cb.mem_num,
+               m.mem_id,
+               cb.cb_title,
+               cb.cb_type,
+               cb.cb_hit,
+               cb.cb_reg_date,
+               COUNT(cr.cb_num) AS report_count,
+               ROW_NUMBER() OVER (ORDER BY cb.cb_num) AS rnum
+        FROM community_board cb
+        JOIN member m ON cb.mem_num = m.mem_num
+        LEFT JOIN community_report cr ON cb.cb_num = cr.cb_num
+        <include refid="communitySearch" />
+        GROUP BY cb.cb_num, cb.mem_num, m.mem_id, cb.cb_title, cb.cb_type, cb.cb_hit, cb.cb_reg_date
+    ) a
     <![CDATA[
     WHERE rnum >= #{start} AND rnum <= #{end}
+    ORDER BY report_count DESC
     ]]>
-	</select>
+</select>
 
 
 	<!-- 게시판 글 총레코드수/검색 레코드수 -->
@@ -575,7 +574,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM community_board
+		FROM community_board JOIN member USING (mem_num)
 		<include refid="communitySearch"></include>
 	</select>
 
@@ -599,13 +598,13 @@
 		FROM (
 		SELECT
 		ab_num,
-		mem_num,
+		mem_num,mem_id,
 		ab_title,
 		ab_type,
 		ab_report,
 		ab_hit,
 		ab_reg_date
-		FROM assignment_board
+		FROM assignment_board JOIN member USING(mem_num)
 		<include refid="assignSearch"></include>
 		) a
 		)
@@ -620,7 +619,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM assignment_board
+		FROM assignment_board JOIN member USING(mem_num)
 		<include refid="assignSearch"></include>
 	</select>
 
@@ -645,10 +644,10 @@
 		SELECT 'reply' AS
 		data_type,
 		cc_num,
-		mem_num,
+		mem_num,mem_id,
 		cc_content,
 		cc_report
-		FROM community_comment
+		FROM community_comment JOIN member USING(mem_num)
 		<include refid="replySearch"></include>
 		ORDER BY cc_report DESC
 		) a
@@ -668,10 +667,10 @@
 		SELECT 'comment' AS
 		data_type,
 		te_num,
-		mem_num,
+		mem_num,mem_id,
 		te_content,
 		te_report
-		FROM community_response
+		FROM community_response JOIN member USING(mem_num)
 		<include refid="replySearch"></include>
 		ORDER BY te_report DESC
 		) a
@@ -686,7 +685,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM community_board
+		FROM community_board JOIN member USING(mem_num)
 		<include refid="replySearch"></include>
 	</select>
 
@@ -694,7 +693,7 @@
 	<select id="selectReCmtRowCount" parameterType="map"
 		resultType="integer">
 		SELECT COUNT(*)
-		FROM community_response
+		FROM community_response JOIN member USING(mem_num)
 		<include refid="replySearch"></include>
 	</select>
 
@@ -705,6 +704,7 @@
 				test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
 				AND ${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
+				AND consult_status = 2
 		</where>
 	</sql>
 
@@ -718,11 +718,11 @@
 		FROM (
 		SELECT
 		consult_num,
-		mem_num,
+		mem_num,mem_id,
 		consult_title,
-		consult_type,
+		consult_type,	
 		consult_reg_date
-		FROM consult
+		FROM consult JOIN member USING(mem_num)
 		<include refid="consultSearch"></include>
 		) a
 		)
@@ -737,7 +737,7 @@
 		resultType="integer">
 		SELECT
 		COUNT(*)
-		FROM consult
+		FROM consult JOIN member USING(mem_num)
 		<include refid="consultSearch"></include>
 	</select>
 
@@ -760,13 +760,15 @@
 		SELECT
 		md.md_num,
 		m.mb_num,
-		m.mem_num,
+		m.mem_num,mem.mem_id,
 		m.mb_date,
 		m.mb_price,
 		md.md_type
 		FROM movie_booking m
 		JOIN
 		mb_detail md ON m.mb_num = md.mb_num
+		JOIN
+		member mem ON m.mem_num = mem.mem_num
 		WHERE md.md_type = 1
 		<include refid="reservationSearch"></include>
 		) a
@@ -834,8 +836,8 @@
 		<include refid="refundShopSearch"></include>
 	</select>
 	
-		<!-- 공지사항 시작 -->
-	<!-- 공지사항 목록/검색 -->
+		<!-- 영화리뷰 시작 -->
+	<!-- 영화리뷰 목록/검색 -->
 	<sql id="removieSearch">
 		<where>
 			<if test="keyfield != null and keyword != null">
@@ -846,7 +848,6 @@
 				AND
 				${keyfield} LIKE '%' || #{keyword} || '%'
 			</if>
-			AND mr_status = 1
 		</where>
 	</sql>
 
@@ -865,7 +866,7 @@
             FROM movie_review mr
             LEFT JOIN reviewreport rr ON mr.mr_num = rr.mr_num
 			<!-- <include refid="removieSearch"></include> -->
-			WHERE mr.mr_status =1 AND
+			WHERE 
 			${keyfield} LIKE '%' || #{keyword} || '%'
             GROUP BY mr.m_code, mr.mr_num, DBMS_LOB.SUBSTR(mr.mr_content, 4000, 1), mr.mr_regdate
             ORDER BY review_count DESC

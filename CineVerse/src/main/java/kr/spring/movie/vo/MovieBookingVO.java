@@ -28,4 +28,6 @@ public class MovieBookingVO {
 	private int md_type;
 	private String ph_payment;
 	private int booking_count;
+	private Long mem_coupon_use;
+	private long mc_num;
 }

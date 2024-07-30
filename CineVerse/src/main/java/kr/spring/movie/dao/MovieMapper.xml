@@ -404,7 +404,17 @@
 		        </foreach>
 		    )<![CDATA[ AND m_opendate > sysdate ]]> 
     </select>
-    
+    <select id="checkDuplicateBooking" parameterType="map" resultType="int">
+	    SELECT COUNT(*)
+	    FROM movie_booking mb
+	    JOIN mb_detail md ON mb.mb_num = md.mb_num
+	    WHERE mb.mem_num = #{mem_num}
+	    AND mb.mt_num = #{mt_num}
+	    AND md.seat_num IN
+    <foreach item="seatNum" collection="seatNums" open="(" separator="," close=")">
+      #{seatNum}
+    </foreach>
+  </select>
     
 </mapper>							
 

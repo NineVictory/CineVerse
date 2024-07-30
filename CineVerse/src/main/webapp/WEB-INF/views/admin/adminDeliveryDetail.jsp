@@ -2,15 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<div class="page-container">
 
+
+<div class="page-container">
 <div class = "admin_member">
 	<div class = "order_modify_form">
 		<h2>배송 관리</h2>
 		<table class="adminMember-table">
         <thead>
             <tr>
-                <th>회원번호</th>
+                <th>회원 아이디</th>
                 <th>주문내역번호</th>
                 <th>상품이름</th>
                	<th>주문개수</th>
@@ -20,7 +21,7 @@
         <tbody>
             <c:forEach var="order" items="${orderDetailList}">
                 <tr>
-                    <td class="mem-data">${order.mem_num}</td>
+                    <td class="mem-data">${order.mem_id}</td>
                     <td class="mem-data">${order.od_num}</td>
                     <td class="mem-data">${order.p_name}</td>
                     <td class="mem-data">${order.order_quantity}</td>
@@ -38,21 +39,19 @@
     </table>
 		<form:form action="modifyDelivery" class = "order_change" method="post" modelAttribute="ordersVO" >
 			<form:hidden path="order_num"/>
-			<ul>
 			<c:if test="${order_status != 6}">
-			<li>
              	<label for="order_status">주문 상태 변경 </label>
-                <form:radiobutton path="order_status" value="1"/> 결제완료
-                <form:radiobutton path="order_status" value="2"/> 배송준비중
-                <form:radiobutton path="order_status" value="3"/> 배송중
-                <form:radiobutton path="order_status" value="4"/> 배송완료
-                <form:radiobutton path="order_status" value="5"/> 주문취소
-                <form:radiobutton path="order_status" value="6"/> 주문확정
-                <form:errors path="order_status" element="div" cssClass="error"/>
-            </li>
+             	<div class="order_status_radio">
+                <div><form:radiobutton path="order_status" value="1" /> 결제완료</div>
+                <div><form:radiobutton path="order_status" value="2"/> 배송준비중</div>
+                <div><form:radiobutton path="order_status" value="3"/> 배송중</div>
+                <div><form:radiobutton path="order_status" value="4"/> 배송완료</div>
+                <div><form:radiobutton path="order_status" value="5"/> 주문취소</div>
+                <div><form:radiobutton path="order_status" value="6"/> 주문확정</div>
+                <div><form:errors path="order_status" element="div" cssClass="error"/></div>
+                </div>
             </c:if>
             <c:if test="${order_status == 6}">
-			<li>
              	<label for="order_status">주문 상태 변경 </label>
                 <form:radiobutton path="order_status" value="1"/> 결제완료
                 <form:radiobutton path="order_status" value="2"/> 배송준비중
@@ -60,10 +59,11 @@
                 <form:radiobutton path="order_status" value="4"/> 배송완료
                 <form:radiobutton path="order_status" value="5"/> 주문취소
                 <form:errors path="order_status" element="div" cssClass="error"/>
-            </li>
             </c:if>
-            <form:button id="submit_btn" class="button2">변경하기</form:button>
-            </ul>
+            <div class="order_change_btn">
+            	<form:button id="submit_btn" class="button2">변경하기</form:button>
+            </div>
+            
 	</form:form>
 </div>
 </div>

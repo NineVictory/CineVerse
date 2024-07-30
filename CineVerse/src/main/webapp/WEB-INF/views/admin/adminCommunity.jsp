@@ -12,7 +12,7 @@
 				<li><input type="hidden" name="keyfield"
 					value="${param.keyfield != null ? param.keyfield : 'cb_title'}">
 					<!-- 기본값 설정 --> <input type="search" name="keyword" id="keyword"
-					value="${param.keyword}" placeholder="지점명을 입력하세요"> <input
+					value="${param.keyword}" placeholder="게시글 제목을 입력하세요"> <input
 					type="submit" value="" class="search-button"
 					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
@@ -41,7 +41,7 @@
 				<c:forEach var="cb" items="${list}">
 					<tr>
 						<td class="mem-data">${cb.cb_num}</td>
-						<td class="mem-data">${cb.mem_num}</td>
+						<td class="mem-data">${cb.mem_id}</td>
 						<td class="mem-data">${cb.cb_title}</td>
 						<c:if test="${cb.cb_type == 'movieTalk'}">
 							<td class="mem-data">영화톡톡</td>
@@ -49,18 +49,13 @@
 						<c:if test="${cb.cb_type == 'dailyTalk'}">
 							<td class="mem-data">일상톡톡</td>
 						</c:if>
-						<c:if test="${!empty cb.cb_report}">
-							<td class="mem-data">${cb.cb_report}</td>
-						</c:if>
-						<c:if test="${empty cb.cb_report}">
+						<c:if test="${empty cb.report_count}">
 							<td class="mem-data">0</td>
 						</c:if>
-						<c:if test="${!empty cb.cb_report}">
-							<td class="mem-data">${cb.cb_hit}</td>
+						<c:if test="${!empty cb.report_count}">
+							<td class="mem-data">${cb.report_count}</td>
 						</c:if>
-						<c:if test="${empty cb.cb_report}">
-							<td class="mem-data">0</td>
-						</c:if>
+						<td class="mem-data">${cb.cb_hit}</td>
 						<td class="mem-data">${cb.cb_reg_date}</td>
 						<td class="button2"><input type="button" value="삭제"
 							onclick="deleteCommunity(${cb.cb_num})" /></td>

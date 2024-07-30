@@ -88,7 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
         </c:if>
     </div>
 </div>
-
+<%-- 	 <!-- 에러 메시지 표시 -->
+<c:if test="${!empty sessionScope.errorMessage}">
+    <script type="text/javascript">
+        alert('${sessionScope.errorMessage}');
+    </script>
+    <c:remove var="errorMessage" scope="session"/>
+</c:if> --%>
  	
  	<div class="pay_select">
  		<div class="all_titles"><p>결제하기</p></div>
@@ -151,6 +157,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	            var trimmedTime = time.trim();
 	            if (trimmedTime === "0" || trimmedTime === "0000") {
 	                return "00:00";
+	            } else if(time.trim().length === 3){ 
+                	return '0' + time.trim().slice(0, 1) + ':' + time.trim().slice(1); 
 	            } else {
 	                return trimmedTime.slice(0, 2) + ":" + trimmedTime.slice(2);
 	            }

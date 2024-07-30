@@ -47,13 +47,22 @@
                     </div>
                     <div class="my_reserv_info_4">
                         <div>${detail.booking_count }명</div>
-                        <div>0</div>
+                        
+                        
+                        <div>
+    <c:forEach var="se" items="${seatList}" varStatus="status">
+        ${se}<c:if test="${!status.last}">,</c:if>
+    </c:forEach>
+</div>
+                        
+                        
+                        
                     </div>
                 </div>
                 <hr size="1" width="100%" class="wa_line">
                 <div class="reserv_pay_cancle">
                     <div>
-                        <span class="m_pay">총 결제금액 </span><span class="my_blue_font">${detail.mb_price }원</span>
+                        <span class="m_pay">총 결제금액 </span><span class="my_blue_font">${detail.mb_price}원</span>
                     </div>
                 </div>
             </div>
@@ -64,7 +73,7 @@
     <div class="pay_receipt_box">
         <div class="pay_receipt">
             <div class="reservation_pay">총 결제금액</div>
-            <span class="reservation_pay_blue_font">${detail.mb_price }원</span>
+            <span class="reservation_pay_blue_font">${detail.mb_price}원</span>
         </div>
         <hr size="1" width="100%" class="wa_line">
         <div class="payment_way">
@@ -73,8 +82,15 @@
                 <div class="pay_coupon">쿠폰 결제</div>
             </div>
             <div class="pay_way_count">
-                <div class="point_count">000원</div>
-                <div class="coupon_count">000원</div>
+                <div class="point_count">${detail.mb_price}원</div>
+                <div class="coupon_count">
+                    <c:if test="${not empty couponSale}">
+                        ${couponSale}원
+                    </c:if>
+                    <c:if test="${empty couponSale}">
+                        0원
+                    </c:if>
+                </div>
             </div>
         </div>
     </div>

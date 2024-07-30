@@ -226,6 +226,256 @@ $(document).ready(function() {
         e.preventDefault(); // 기본 동작 중지
         selectedCNum = $(this).attr('data-cnum');
         
+        // 다른 지점 클릭 시 초기화
+        selectedDate = null;
+        selectedMtStart = null;
+        selectedMovieHtml = null;
+        $('#mt_num').val('');
+        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+        $('.movietime-item').removeClass('active');
+        $('.movietime-select').empty(); // 시간표 목록 초기화
+        $('.selected-movie-info').empty();
+        
+        // 모든 영화 항목에서 active 클래스 제거
+        $('.theater-place > a').removeClass('active');
+
+        // 클릭한 영화 항목에 active 클래스 추가
+        $(this).addClass('active');
+        
+        loadMovieList('default'); // 기본 정렬
+    });
+
+    // 예매율 순 버튼 클릭 이벤트 핸들러
+    $('.sort-rate').click(function(e) {
+        e.preventDefault();
+        loadMovieList('reservation'); // 예매율 순 정렬
+    });
+
+    // 가나다순 버튼 클릭 이벤트 핸들러
+    $('.sort-korean').click(function(e) {
+        e.preventDefault();
+        loadMovieList('korean'); // 가나다순 정렬
+    });
+    
+    // 최신순 버튼 클릭 이벤트 핸들러
+    $('.sort-date-movie').click(function(e) {
+        e.preventDefault();
+        loadMovieList('date'); // 최신순 정렬
+    });
+
+    function loadMovieList(sort) {
+        if (!selectedCNum) return; // 지점이 선택되지 않은 경우 반환
+        $.ajax({
+            type: 'GET',
+            url: '${pageContext.request.contextPath}/movieReserveList',
+            data: { c_num: selectedCNum, sort: sort },
+            dataType: 'json',
+            success: function(data) {
+                let movieListHtml = '';
+                $.each(data, function(index, movie) {
+                    let gradeClass = getGradeClass(movie.rating);
+                    movieListHtml += '<li class="select" data-cnum="' + selectedCNum + '" data-mcode="' + movie.m_code + '">';
+                    movieListHtml += '<a href="#" class="movie-item"><span class="ic_grade ' + gradeClass + '"></span></a>';
+                    movieListHtml += '<a href="#" class="movie-item"><span class="movie_name_over">'+ movie.m_name + '</span></a>';
+                    movieListHtml += '</li>';
+                });
+                $('.movie-list ul').html(movieListHtml); // 영화 목록 업데이트
+            },
+            error: function() {
+                alert('영화 목록을 불러오는 데 실패했습니다.');
+            }
+        });
+    }
+
+    function getGradeClass(rating) {
+        switch (rating) {
+            case '12세관람가':
+            case '12세이상관람가':
+                return 'gr_12';
+            case '전체관람가':
+                return 'gr_all';
+            case '15세관람가':
+            case '15세이상관람가':
+                return 'gr_15';
+            case '18세관람가(청소년관람불가)':
+            case '청소년관람불가':
+                return 'gr_19';
+            default:
+                return 'gr_unknown';
+        }
+    }
+
+    // 영화 클릭 이벤트 핸들러 설정
+    $(document).on('click', '.select', function(e) {
+        e.preventDefault(); // 기본 동작 중지
+
+        selectedMCode = $(this).attr('data-mcode');
+
+        // 선택된 날짜, 시간 초기화
+        selectedDate = null;
+        selectedMtStart = null;
+        $('#mt_num').val(''); // hidden input 초기화
+
+        // 모든 영화 항목에서 active 클래스 제거
+        $('.select').removeClass('active');
+
+        // 클릭한 영화 항목에 active 클래스 추가
+        $(this).addClass('active');
+
+        // 날짜 및 시간 초기화
+        $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+        $('.movietime-item').removeClass('active');
+        $('.movietime-select').empty(); // 시간표 목록 초기화
+    });
+
+    // 날짜 클릭 이벤트 핸들러 설정
+    $(document).on('click', '.movie-day, .movie-day-sun, .movie-day-sat', function() {
+        if (selectedMCode) { // 영화가 선택된 경우에만 날짜 선택
+            selectedDate = $(this).data('date'); // 클릭한 날짜의 값 가져오기
+
+            // 모든 날짜 항목에서 active 클래스 제거
+            $('.movie-day, .movie-day-sun, .movie-day-sat').removeClass('active');
+
+            // 클릭한 날짜 항목에 active 클래스 추가
+            $(this).addClass('active');
+
+            // 선택된 시간 초기화
+            selectedMtStart = null;
+            $('#mt_num').val(''); // hidden input 초기화
+
+            // 모든 상영시간 항목에서 active 클래스 제거
+            $('.movietime-item').removeClass('active');
+
+            loadMovieTimeTable(); // 영화 시간표 목록을 불러오는 함수 호출
+        } else {
+            alert('영화를 먼저 선택해주세요.');
+        }
+    });
+
+    function formatTime(time) {
+        let str = time.toString().padStart(4, '0'); // Ensure the time is at least 4 digits
+        return  str.slice(0, 2) + ':' + str.slice(2);
+    }
+
+    function loadMovieTimeTable() {
+        if (selectedCNum && selectedMCode && selectedDate) {
+        	console.log('선택한 날짜 : ' + selectedDate);
+            // 영화 시간표 목록 불러오기
+            $.ajax({
+                type: 'GET',
+                url: '${pageContext.request.contextPath}/selectMovieTimeList',
+                data: { c_num: selectedCNum, m_code: selectedMCode, mt_date2: selectedDate },
+                dataType: 'json',
+                success: function(data) {
+                    let selectMovieTimeListHtml = '';
+                    let currentTime = new Date(); // 현재 시간 가져오기
+					
+                    $.each(data, function(index, movietime) {
+                        //let movieStartTime = new Date('20'+selectedDate + ' ' + formatTime(movietime.mt_start)); // 영화 시작 시간을 Date 객체로 변환
+                        let movieStartTime = new Date(selectedDate + ' ' + formatTime(movietime.mt_start)); // 영화 시작 시간을 Date 객체로 변환
+						console.log('영화 시간 : '+movieStartTime+ ',현재 시간:' + currentTime);
+                        // 현재 시간이 영화 시작 시간보다 이후인 경우에만 표시
+                        if (currentTime < movieStartTime) {
+                            selectMovieTimeListHtml += '<li class="movietime-item" data-end-time="' + formatTime(movietime.mt_end) + '" data-mtnum="' + movietime.mt_num + '">';
+                            selectMovieTimeListHtml += '<div class="mt-start">' + formatTime(movietime.mt_start) + '</div>';
+                            selectMovieTimeListHtml += '<div class="th_seat_name">';
+                            selectMovieTimeListHtml += '<div class="available-seats">' + movietime.availableSeats + '/96</div>'; // 좌석 수 추가
+                            selectMovieTimeListHtml += '<div class="th-name">' + movietime.th_name + '관' + '</div>';
+                            selectMovieTimeListHtml += '</div>';
+                            selectMovieTimeListHtml += '</li>';
+                        }
+                    });
+
+                    if (selectMovieTimeListHtml === '') {
+                        selectMovieTimeListHtml = '<li>현재 시간 이후의 상영 일정이 없습니다.</li>';
+                    }
+
+                    $('.movietime-select').html(selectMovieTimeListHtml); // 영화 시간표 목록 업데이트
+                },
+                error: function() {
+                    alert('영화 시간표 목록을 불러오는 데 실패했습니다.');
+                }
+            });
+        }
+    }
+
+    // 영화 시간 데이터 담기 클릭 이벤트 핸들러 추가
+    $(document).on('click', '.movietime-item', function() {
+        selectedMtStart = $(this).data('mtnum');
+        $('#mt_num').val(selectedMtStart);
+        // 모든 상영시간 항목에서 active 클래스 제거
+        $('.movietime-item').removeClass('active');
+
+        // 클릭한 상영시간 항목에 active 클래스 추가
+        $(this).addClass('active');
+    });
+
+    // 툴팁 생성
+    $(document).on('mouseenter', '.movietime-item', function(event) {
+        let endTime = $(this).data('end-time');
+        let tooltip = '<div class="tooltip">종료 | ' + endTime + '</div>';
+        $('body').append(tooltip);
+        let tooltipElement = $('.tooltip');
+        tooltipElement.css({
+            top: event.pageY + 8,
+            left: event.pageX + 10
+        });
+    });
+
+    $(document).on('mousemove', '.movietime-item', function(event) {
+        let tooltipElement = $('.tooltip');
+        tooltipElement.css({
+            top: event.pageY + 8,
+            left: event.pageX + 10
+        });
+    });
+
+    $(document).on('mouseleave', '.movietime-item', function() {
+        $('.tooltip').remove();
+    });
+
+    // 좌석 선택 버튼 클릭 이벤트 핸들러 추가
+    $('.moveSeatButton').click(function(e) {
+        if (!selectedCNum) {
+            alert('지점을 선택해주세요.');
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
+
+        if (!selectedMCode) {
+            alert('영화를 선택해주세요.');
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
+
+        if (!selectedDate) {
+            alert('날짜를 선택해주세요.');
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
+
+        if (!selectedMtStart) {
+            alert('시간을 선택해주세요.');
+            e.preventDefault(); // 폼 제출 방지
+            return;
+        }
+    });
+});
+</script>
+
+<!-- <script type="text/javascript">
+$(document).ready(function() {
+    let selectedCNum = null;
+    let selectedMCode = null;
+    let selectedDate = null;
+    let selectedMtStart = null;
+    let selectedMovieHtml = null;
+
+    // 지점 클릭 이벤트 핸들러
+    $('.theater-place > a').click(function(e) {
+        e.preventDefault(); // 기본 동작 중지
+        selectedCNum = $(this).attr('data-cnum');
+        
         //다른 지점 클릭 시 초기화
         selectedDate = null;
         let selectedMtStart = null;
@@ -449,7 +699,7 @@ $(document).ready(function() {
         }
     });
 });
-</script>
+</script> -->
 
 <div class="reserve-container">
     <!-- 지점명 -->
@@ -547,7 +797,8 @@ $(document).ready(function() {
                         let displayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i);
                         let day = displayDate.getDate();
                         let dayOfWeek = daysOfWeek[displayDate.getDay()];
-                        let year = displayDate.getFullYear().toString().slice(-2); // YY 형식
+                        //let year = displayDate.getFullYear().toString().slice(-2); // YY 형식
+                        let year = displayDate.getFullYear().toString(); // YYYY 형식
                         let month = (displayDate.getMonth() + 1).toString().padStart(2, '0'); // MM 형식
                         let formattedDay = day.toString().padStart(2, '0'); // DD 형식
 

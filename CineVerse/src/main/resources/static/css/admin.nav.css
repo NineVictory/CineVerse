@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+a{
+	cursor: pointer;	
+}
 .left-outer {
 background-color: #EFF3FD;
     position: fixed;

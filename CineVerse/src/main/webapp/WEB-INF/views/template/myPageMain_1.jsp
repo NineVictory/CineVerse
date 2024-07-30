@@ -22,7 +22,7 @@
             <span class="myPageMain_name">${member.mem_name} 님</span> <span class="myPageMain_id">닉네임: ${member.mem_nickName}</span> <span class="myPageMain_nickName">아이디: ${member.mem_id}</span>
         </div>
         <div class="myPageMain_vip">
-            고객님은 2024년 1월
+            고객님은 2024년 7월
             <c:if test="${member.mem_rank == 1}"><b>BASIC</b></c:if>
             <c:if test="${member.mem_rank == 2}"><b>MEMBER</b></c:if>
             <c:if test="${member.mem_rank == 3}"><b>REGULAR</b></c:if>

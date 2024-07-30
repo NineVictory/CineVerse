@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.EventVO;
 import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.event.vo.UserEventVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.service.MovieService;
@@ -55,6 +57,8 @@ public class MyPageController {
 	@Autowired
 	private MovieService movieService;
 
+	@Autowired
+	private AdminService adminService;
 
 	// 자바빈(VO) 초기화
 	@ModelAttribute
@@ -156,9 +160,10 @@ public class MyPageController {
 	}
 
 
+
 	// 나의 예매내역-디테일
 	@GetMapping("/myPage/reservation")
-	public String myPageReservation(MyPageVO mypage,HttpSession session, Model model) {
+	public String myPageReservation(MyPageVO mypage, HttpSession session, Model model) {
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 	    MyPageVO member = mypageService.selectMember(user.getMem_num());
 	    if (member != null) {
@@ -176,7 +181,6 @@ public class MyPageController {
 	            member.setTh_name(booking.getTh_name());
 	        }
 
-	       
 	        MovieBookingVO detail = mypageService.resDetail(mypage.getMb_num());
 	        List<MovieBookingVO> collist = mypageService.selectColumn(mypage.getMb_num());
 	        List<MovieBookingVO> rowlist = mypageService.selectRow(mypage.getMb_num());
@@ -184,11 +188,28 @@ public class MyPageController {
 	        int count = mypageService.mdCount(mypage.getMb_num());
 	        
 	        List<String> seatList = new ArrayList<>();
-	        for(int i=0; i<count; i++) {
-	        	String columnValue = collist.get(i).toString();  
-	            String rowValue = rowlist.get(i).toString();   
-	            seatList.add(rowValue + columnValue);
+	        for (int i = 0; i < count; i++) {
+	            int columnValue = collist.get(i).getSeat_column();  
+	            String rowValue = rowlist.get(i).getSeat_row();      
+	            seatList.add(columnValue + rowValue);
 	        }
+	        
+	        Long total = detail.getMb_price();
+	        int coupon = mypageService.selectPayCouponCnt(user.getMem_num());
+	        Long couponSale = 0L;
+	        if (coupon > 0) { 
+	            MyPageVO moviePay = mypageService.selectCouponPrice(mypage.getMb_num());
+	            if (moviePay != null) {
+	                Integer couponSaleInt = moviePay.getCoupon_sale();
+	                if (couponSaleInt != null) {
+	                    couponSale = couponSaleInt.longValue();
+	                    total -= couponSale;
+	                    model.addAttribute("couponSale", couponSale);
+	                }
+	            }
+	        }
+	        
+	        model.addAttribute("total", total);
 	        model.addAttribute("seatList", seatList);
 	        model.addAttribute("detail", detail);
 	        model.addAttribute("resCnt", resCnt);
@@ -196,6 +217,8 @@ public class MyPageController {
 	    } 
 	    return "myPageReservation";
 	}
+
+
 
 	// 나의 쿠폰
 	@GetMapping("/myPage/coupon")
@@ -632,7 +655,7 @@ public class MyPageController {
 		map.put("mem_num", user.getMem_num());
 		map.put("category", category);
 
-		List<EventVO> list = null;
+		List<UserEventVO> list = null;
 		int count = mypageService.eventcnt(map);
 		if(count > 0) {
 			list = mypageService.eventList(map);
@@ -942,32 +965,31 @@ public class MyPageController {
 		return "deleteMember";
 	}
 	
+	
 	@PostMapping("/myPage/deleteMember")
 	public String postDeleteMember(@Valid MyPageVO myPageVO, BindingResult result, HttpSession session, Model model, HttpServletRequest request) {
+	    MemberVO user = (MemberVO) session.getAttribute("user");
+	    myPageVO.setMem_num(user.getMem_num());
 
-		if (result.hasErrors()) {
-			return "deleteMember";
-		}
+	    MyPageVO member = mypageService.selectMember(user.getMem_num());
 
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		myPageVO.setMem_num(user.getMem_num());
-		MyPageVO member = mypageService.selectMember(user.getMem_num());
+	    
+	    if (!member.getMem_passwd().equals(myPageVO.getMem_passwd())) {
+	        result.rejectValue("mem_passwd", "passwdError", "비밀번호가 일치하지 않습니다.");
+	        return "deleteMember";
+	    }
 
-		// 데이터베이스 업데이트 수행
-		//mypageService.updateMember_detail(myPageVO);
+	    adminService.deleteMemberAuth(myPageVO.getMem_num());
 
-		log.debug("<<회원탈퇴>> : " + myPageVO);
-		
+	    log.debug("<<회원탈퇴>> : " + myPageVO);
 
-		model.addAttribute("member",member);
-		model.addAttribute("message", "회원 탈퇴 완료");
-		model.addAttribute("url", request.getContextPath() + "/main/main");
-		return "common/resultAlert";
+	    model.addAttribute("member", member);
+	    model.addAttribute("message", "회원 탈퇴 완료");
+	    model.addAttribute("url", request.getContextPath() + "/member/login");
+	    return "common/resultAlert";
 	}
 
-	
-	
-	
+
 	// 멤버십 구독
 	@GetMapping("/myPage/memberShipSub")
 	public String myPageMemberShipSub(HttpSession session, Model model) {

@@ -142,6 +142,7 @@ text-align: center;
 }
 
 .bookAopen {
+	    font-weight: 600;
 	margin-bottom: 5px;
 	font-size: 12px;
 	width: 225px;

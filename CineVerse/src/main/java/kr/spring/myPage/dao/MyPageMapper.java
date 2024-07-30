@@ -14,6 +14,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.event.vo.UserEventVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
@@ -60,7 +61,7 @@ public interface MyPageMapper {
 	
 	
 	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
-	public List<EventVO> eventList(Map<String, Object> map);
+	public List<UserEventVO> eventList(Map<String, Object> map);
 	
 	
 	
@@ -131,8 +132,6 @@ public interface MyPageMapper {
 	public void updateNoSub();
 	@Update("UPDATE member_detail SET mem_membership_date = NULL WHERE mem_num=(SELECT mem_num FROM member_detail WHERE ADD_MONTHS(mem_membership_date,1)<SYSDATE)")
 	public void updateNoSubDate();
-
-
 	@Select("SELECT seat_row FROM seat JOIN mb_detail USING(seat_num) WHERE mb_num=#{mb_num}")
 	public List<MovieBookingVO> selectRow(Long mb_num);
 	@Select("SELECT seat_column FROM seat JOIN mb_detail USING(seat_num) WHERE mb_num=#{mb_num}")
@@ -140,10 +139,14 @@ public interface MyPageMapper {
 	@Select("SELECT COUNT(*) FROM mb_detail WHERE mb_num=#{mb_num}")
 	public Integer mdCount(Long mb_num);
 	
-
-
-
-
+	
+	
+	//영화상세 포인트 가격
+	@Select("SELECT COUNT(*) FROM member_coupon WHERE coupon_use=2 and mem_num=#{mem_num}")
+	public Integer selectPayCouponCnt(Long mem_num);
+	
+	@Select("SELECT * FROM member_coupon mc JOIN coupon_db cd on mc.coupon_num=cd.coupon_num WHERE cd.coupon_where=1 AND mc.mem_coupon_use=#{mem_coupon_use}")
+	public MyPageVO selectCouponPrice(Long mem_coupon_use);
 
 
 }

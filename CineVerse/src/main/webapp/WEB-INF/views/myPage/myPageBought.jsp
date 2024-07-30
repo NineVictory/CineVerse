@@ -50,7 +50,7 @@
 
 								<div class="my_reserv_info">
 									<div>${o.order_date}</div>
-									<div>${o.total_price}원</div>
+									<div>${o.total_price}원(배송비X)</div>
 									<div>${o.total_quantity}개</div>
 								</div>
 							</div>

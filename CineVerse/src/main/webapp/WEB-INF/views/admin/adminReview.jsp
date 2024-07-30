@@ -3,6 +3,8 @@
     
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+
+
 <div class="page-container">
 <div class = "admin_member">
 	<div class = "firstTitle">
@@ -41,7 +43,7 @@
                     <td class="mem-data">${review.pr_grade}</td>
                     <td class="mem-data">${review.pr_content}</td>
                     <td class="mem-data">${review.pr_reg_date}</td>
-                    <td class="button1"><button value="${review.pr_num}" class="review_del">리뷰 삭제</button></td>
+                    <td class="button2"><input type="button" value="리뷰 삭제" class="review_del" data-prNum="${review.pr_num}"></td>
                     
                     
                 </tr>
@@ -56,7 +58,7 @@ $(document).ready(function() {
     $('.review_del').click(function() {
         const choice = confirm('삭제하시겠습니까?');
         if (choice) {
-            const prNum = $(this).val();
+            const prNum = $(this).attr('data-prNum');
             $.ajax({
                 url: 'deleteReview',
                 data: { pr_num: prNum }, 

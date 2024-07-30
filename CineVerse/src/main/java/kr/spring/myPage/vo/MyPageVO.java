@@ -28,7 +28,7 @@ public class MyPageVO {
 
 	@NotBlank
 	private String mem_name;
-
+	
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")
 	private String mem_passwd;
 
@@ -52,7 +52,7 @@ public class MyPageVO {
 	private int coupon_cnt;	// 쿠폰 개수를 지정하는 이름
 
 	private long mc_num;		// 회원의 쿠폰 번호
-	private int coupon_use;		// 회원 쿠폰 사용 여부 1:미사용, 2:사용, 3:만기
+	private long coupon_use;		// 회원 쿠폰 사용 여부 1:미사용, 2:사용, 3:만기
 	private long coupon_num;	// 쿠폰의 번호
 
 	private String coupon_name;		// 쿠폰 이름
@@ -96,8 +96,7 @@ public class MyPageVO {
 	private int mt_end;
 	private Date mt_date;
 	private int md_type;
-	
-	
+	private Long mem_coupon_use;
 
 	// 비밀번호 변경시 현재 비밀번호를 저장하는 용도로 사용
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,12}$")

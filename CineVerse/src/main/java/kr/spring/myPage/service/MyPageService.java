@@ -11,6 +11,7 @@ import kr.spring.assignment.vo.AssignVO;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
+import kr.spring.event.vo.UserEventVO;
 import kr.spring.member.vo.CouponVO;
 import kr.spring.movie.vo.MovieBookMarkVO;
 import kr.spring.movie.vo.MovieBookingVO;
@@ -55,7 +56,7 @@ public interface MyPageService {
 	public void updateNoSub();
 	public void updateNoSubDate();
 	public Integer eventcnt(Map<String, Object> map);//이벤트 갯수
-	public List<EventVO> eventList(Map<String, Object> map);
+	public List<UserEventVO> eventList(Map<String, Object> map);
 	public Integer reservationCnt(Map<String, Object> map);
 	public Integer watMovieCnt(Map<String, Object> map);
 	public List<MovieBookingVO> reservationList(Long mem_num);
@@ -63,11 +64,7 @@ public interface MyPageService {
 	
 	public Integer resDetailCnt(Long mem_num);
 	public MovieBookingVO resDetail(Long mb_num);
-	
-	
-	
-	
-	
+
 	public List<MovieBookingVO> lastRes(Long mem_num);
 	public MovieBookingVO mainRes(Long mem_num);//메인나브
 	public void updateCoupon(Long mem_num);
@@ -77,10 +74,13 @@ public interface MyPageService {
 	public void delMovieRev(Long mr_num);
 	//내가 본 영화 md_type==1
 	public List<MovieBookingVO> watchedMovList(Map<String, Object> map);
-	
-	
+
 	public List<MovieBookingVO> selectRow(Long mb_num);
 	public List<MovieBookingVO> selectColumn(Long mb_num);
 	public Integer mdCount(Long mb_num);
+	
+	//영화포인트
+	public Integer selectPayCouponCnt(Long mem_num);
+	public MyPageVO selectCouponPrice(Long mem_coupon_use);
 	
 }

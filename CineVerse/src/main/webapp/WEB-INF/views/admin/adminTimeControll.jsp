@@ -43,9 +43,9 @@
 		<form action="adminTimeControll" id="admin_search">
 			<ul>
 				<li><input type="hidden" name="keyfield"
-					value="${param.keyfield != null ? param.keyfield : 'mt_date'}">
+					value="${param.keyfield != null ? param.keyfield : 'm_name'}">
 					<!-- 기본값 설정 --> <input type="search" name="keyword" id="keyword"
-					value="${param.keyword}" placeholder="상영일을 입력하세요"> <input
+					value="${param.keyword}" placeholder="영화 제목을 입력하세요"> <input
 					type="submit" value="" class="search-button"
 					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
@@ -58,8 +58,8 @@
 					<th>상영일</th>
 					<th>시작 시간</th>
 					<th>종료 시간</th>
-					<th>영화 코드</th>
-					<th>상영관 번호</th>
+					<th>영화 제목</th>
+					<th>지점명</th>
 					<td></td>
 					<td></td>
 				</tr>
@@ -74,10 +74,10 @@
 					<tr>
 						<td class="mem-data">${movieTime.mt_num}</td>
 						<td class="mem-data">${movieTime.mt_date}</td>
-						<td class="mem-data">${movieTime.mt_start}</td>
-						<td class="mem-data">${movieTime.mt_end}</td>
-						<td class="mem-data">${movieTime.m_code}</td>
-						<td class="mem-data">${movieTime.th_num}</td>
+						<td class="mem-data movieTimes">${movieTime.mt_start}</td>
+						<td class="mem-data movieTimee">${movieTime.mt_end}</td>
+						<td class="mem-data">${movieTime.m_name}</td>
+						<td class="mem-data">${movieTime.c_branch}</td>
 						<td class="button1"><input type="button" value="수정"
 							onclick="redirectToMovieModify(${movieTime.mt_num})" /></td>
 						<td class="button2"><input type="button" value="삭제"
@@ -89,3 +89,29 @@
 	</div>
 	<div class="page-div">${page}</div>
 </div>
+
+<script>
+function formatTime(time) {
+  if (time.length === 3) {
+    time = '0' + time;
+  }
+  if (time.length === 4) {
+    return time.slice(0, 2) + ':' + time.slice(2);
+  }
+  return time;
+}
+
+var startTimes = document.querySelectorAll('.movieTimes');
+var endTimes = document.querySelectorAll('.movieTimee');
+
+startTimes.forEach(function(element) {
+  var startTimeText = element.textContent.trim();
+  element.textContent = formatTime(startTimeText);
+});
+
+endTimes.forEach(function(element) {
+  var endTimeText = element.textContent.trim();
+  element.textContent = formatTime(endTimeText);
+});
+
+</script>

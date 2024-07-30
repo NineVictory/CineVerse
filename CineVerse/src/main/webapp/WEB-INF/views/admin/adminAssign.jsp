@@ -13,7 +13,7 @@
 				<li><input type="hidden" name="keyfield"
 					value="${param.keyfield != null ? param.keyfield : 'ab_title'}">
 					<!-- 기본값 설정 --> <input type="search" name="keyword" id="keyword"
-					value="${param.keyword}" placeholder="제목을 입력하세요"> <input
+					value="${param.keyword}" placeholder="게시글 제목을 입력하세요"> <input
 					type="submit" value="" class="search-button"
 					style="background-image: url('${pageContext.request.contextPath}/images/pgh/searchButton.png');">
 				</li>
@@ -41,7 +41,7 @@
 				<c:forEach var="ab" items="${list}">
 					<tr>
 						<td class="mem-data">${ab.ab_num}</td>
-						<td class="mem-data">${ab.mem_num}</td>
+						<td class="mem-data">${ab.mem_id}</td>
 						<td class="mem-data">${ab.ab_title}</td>
 						<c:if test="${ab.ab_type == 'handover'}">
 							<td class="mem-data">양도</td>

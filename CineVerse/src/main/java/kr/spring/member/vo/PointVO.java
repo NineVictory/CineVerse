@@ -16,4 +16,5 @@ public class PointVO {
 	private Long mem_num;
 	private String ph_payment;
 	private int ph_type;
+	private String mem_id;
 }

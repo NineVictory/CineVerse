@@ -1,10 +1,36 @@
 $(function(){
-	let currentIndex = 0;
+	let currentIndex = 1;
     const itemsPerPage = 8;
     const items = $('.event-list li');
     const loadMoreButton = $('#load-more');
 
-    function showItems() {
+	// 더보기 버튼의 초기 표시 여부 설정
+    if (items.length <= itemsPerPage) {
+        loadMoreButton.hide(); // 항목이 8개 이하일 경우 더보기 버튼 숨김
+    } else {
+        loadMoreButton.show(); // 항목이 8개 초과일 경우 더보기 버튼 보임
+    }
+
+
+	function showInitialEvents(){
+		items.hide();
+		items.slice(0, itemsPerPage).show();
+	}
+	showInitialEvents();
+	
+	$(document).on('click',loadMoreButton,function(){
+		const totalEvents = items.length;
+		const itemsToShow = currentIndex * itemsPerPage;
+		
+		items.slice(itemsToShow, itemsToShow + itemsPerPage).show();
+		
+		currentIndex++;
+		
+		if(itemsToShow + itemsPerPage >= totalEvents){
+			loadMoreButton.hide();
+		}
+	});
+  /*  function showItems() {
         for (let i = currentIndex; i < currentIndex + itemsPerPage && i < items.length; i++) {
             $(items[i]).show();
         }
@@ -13,23 +39,17 @@ $(function(){
         if (currentIndex >= items.length) {
             loadMoreButton.hide();
         }
-    }
+    }*/
 
     // 처음 8개 항목 표시
-    for (let i = 0; i < itemsPerPage && i < items.length; i++) {
+    /*for (let i = 0; i < itemsPerPage && i < items.length; i++) {
         $(items[i]).show();
     }
     currentIndex = itemsPerPage;
 
-    // 더보기 버튼의 초기 표시 여부 설정
-    if (items.length <= itemsPerPage) {
-        loadMoreButton.hide(); // 항목이 8개 이하일 경우 더보기 버튼 숨김
-    } else {
-        loadMoreButton.show(); // 항목이 8개 초과일 경우 더보기 버튼 보임
-    }
-
-    loadMoreButton.on('click', showItems);
     
+    loadMoreButton.on('click', showItems);
+    */
     
     
     //당첨자 마이페이지 이동
