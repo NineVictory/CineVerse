@@ -220,17 +220,17 @@
 						<div class="assView-btn flexbox-h side">
 							<button class="likeBtn" data-num="${assign.ab_num}"
 								<c:if test="${assign.ab_status == 3}">disabled</c:if>>
-								<img
+								<div style="display:flex; align-items: baseline; "><img
 									src="${pageContext.request.contextPath}/images/kbm/heartwhite.png"
-									width="16"><span> 찜 </span><span class="output-fcount"></span>
+									width="16">&nbsp;<span>찜 </span><span class="output-fcount"></span></div>
 							</button>
 							<button class="ass-chatBtn" data-abnum="${assign.ab_num}"
 								data-abmemnum="${assign.mem_num}"
 								data-usernum="${user.mem_num }"
 								<c:if test="${assign.ab_status == 3}">disabled style="background:#c7c7c7;"</c:if>>
 								<img
-									src="${pageContext.request.contextPath}/images/kbm/heartwhite.png"
-									width="16"><span>채팅</span>
+									src="${pageContext.request.contextPath}/images/kbm/paper.png"
+									width="18">&nbsp;<span>채팅</span>
 							</button>
 						</div>
 					</div>
