@@ -148,5 +148,61 @@ public interface MyPageMapper {
 	@Select("SELECT * FROM member_coupon mc JOIN coupon_db cd on mc.coupon_num=cd.coupon_num WHERE cd.coupon_where=1 AND mc.mem_coupon_use=#{mem_coupon_use}")
 	public MyPageVO selectCouponPrice(Long mem_coupon_use);
 
+	
+	
+	
+	
+	
+	// 회원 탈퇴 관련
+	// 벌스샵 관련
+	// address 삭제
+	@Delete("DELETE FROM address WHERE mem_num=#{mem_num}")
+	public void deleteaddressmem(Long mem_num);
+	// pbasket 삭제
+	@Delete ("DELETE FROM p_basket WHERE mem_num=#{mem_num}")
+	public void deletePbasketmem(Long mem_num);
+	//상품 리뷰 삭제
+	@Delete("DELETE FROM product_review WHERE od_num=(SELECT od_num FROM order_detail WHERE order_num=(SELECT order_num FROM orders WHERE mem_num=#{mem_num}))")
+	public void deletePreview(Long mem_num);
+	// 상품 좋아요 삭제
+	@Delete("DELETE FROM product_fav WHERE mem_num=#{mem_num}")
+	public void deletePfav(Long mem_num);
+	//주문 세부 정보
+	@Delete("DELETE FROM order_detail  WHERE order_num=(SELECT order_num FROM orders WHERE mem_num=#{mem_num})")
+	public void deleteOrderdetail(Long mem_num);
+	// 주문
+	@Delete("DELETE FROM orders WHERE mem_num=#{mem_num}")
+	public void deleteOrders(Long mem_num);
+	// assignboard 받아오고, talkdelete 삭제도 넣기
+	
+	// 커뮤니티 삭제는 boardservice 가져오기
+	
+	// mbdetail 영화 예매 상세 
+	@Delete("DELETE FROM mb_detail WHERE mb_num=(select mb_num from movie_booking where mem_num=#{mem_num})")
+	public void deleteMbdetail(Long mem_num);
+	// moviebooking 영화 예매 상세 
+	@Delete("DELETE FROM movie_booking WHERE mem_num=#{mem_num}")
+	public void deleteMoviebooking(Long mem_num);
+	
+	// eventParticipation
+	@Delete("DELETE FROM event_participation WHERE mem_num=#{mem_num}")
+	public void deleteEventP(Long mem_num);
+	
+	// consult 삭제
+	@Delete("DELETE FROM consult WHERE mem_num=#{mem_num}")
+	public void deleteConsult(Long mem_num);
+	
+	// member_coupon 삭제
+	@Delete("DELETE FROM member_coupon WHERE mem_num=#{mem_num}")
+	public void deleteMemCoupon(Long mem_num);
+	
+	// member_detail 삭제
+	@Delete("DELETE FROM memeber_detail WHERE mem_num=#{mem_num}")
+	public void deleteMemdetail(Long mem_num);
+	
+	// member_update
+	@Update("UPDATE member SET mem_auth=1 AND mem_membership=1 WHERE mem_num=#{mem_num}")
+	public void updateMem(Long mem_num);
+	
 
 }

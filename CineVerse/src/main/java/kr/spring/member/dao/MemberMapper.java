@@ -2,6 +2,7 @@ package kr.spring.member.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -77,7 +78,6 @@ public interface MemberMapper {
 	
 	@Update("UPDATE member set mem_rank=#{mem_rank} WHERE mem_num=#{mem_num}")
 	public void updateMemberRank(MemberVO memberVO);
-	
-	
+
 }
 

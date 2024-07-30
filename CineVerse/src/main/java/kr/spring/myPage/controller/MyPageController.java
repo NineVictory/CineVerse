@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.spring.admin.service.AdminService;
 import kr.spring.admin.vo.EventVO;
+import kr.spring.assignment.service.AssignService;
 import kr.spring.assignment.vo.AssignVO;
+import kr.spring.board.service.BoardService;
 import kr.spring.board.vo.BoardCommentVO;
 import kr.spring.board.vo.BoardFavVO;
 import kr.spring.board.vo.BoardVO;
@@ -54,6 +56,12 @@ public class MyPageController {
 	@Autowired
 	private TalkService talkService;
 
+	@Autowired
+	private AssignService assignService;
+	
+	@Autowired
+	private BoardService boardService;
+	
 	@Autowired
 	private MovieService movieService;
 
@@ -978,8 +986,11 @@ public class MyPageController {
 	        result.rejectValue("mem_passwd", "passwdError", "비밀번호가 일치하지 않습니다.");
 	        return "deleteMember";
 	    }
+	    mypageService.deleteOrders(user.getMem_num());
+	    talkService.deleteTalkRoom(user.getMem_num());
+	    
+	    mypageService.deleteMoviebooking(user.getMem_num());
 
-	    adminService.deleteMemberAuth(myPageVO.getMem_num());
 
 	    log.debug("<<회원탈퇴>> : " + myPageVO);
 

@@ -142,7 +142,7 @@ public interface BoardMapper {
 	//답글 삭제시 자식답글 좋아요 삭제
 	public void deleteRespFavByTeNum(Long te_num);
 	//게시글 삭제시 답글의 좋아요 삭제
-	@Delete("DELETE FROM community_response_fav WHERE te_num IN (SELECT te_num FROM community_response WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num})")
+	@Delete("DELETE FROM community_response_fav WHERE te_num IN (SELECT te_num FROM community_response WHERE cc_num IN (SELECT cc_num FROM community_comment WHERE cb_num=#{cb_num}))")
 	public void deleteRespFavByBoardNum(Long cb_num);
 	
 	

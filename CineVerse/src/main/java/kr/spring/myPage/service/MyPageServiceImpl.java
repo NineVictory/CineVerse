@@ -308,6 +308,33 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.eventList(map);
 	}
 
+	@Override
+	public void updateMem(Long mem_num) {
+		myPageMapper.deleteEventP(mem_num);
+		myPageMapper.deleteConsult(mem_num);
+		myPageMapper.deleteMemCoupon(mem_num);
+		myPageMapper.deleteMemdetail(mem_num);
+		myPageMapper.updateMem(mem_num);
+	}
+
+	@Override
+	public void deleteOrders(Long mem_num) {
+		// 주문 관련 삭제
+		myPageMapper.deleteaddressmem(mem_num);
+		myPageMapper.deletePbasketmem(mem_num);
+		myPageMapper.deletePreview(mem_num);
+		myPageMapper.deletePfav(mem_num);
+		myPageMapper.deleteOrderdetail(mem_num);
+		myPageMapper.deleteOrders(mem_num);
+	}
+
+	@Override
+	public void deleteMoviebooking(Long mem_num) {
+		// 영화 예매 삭제
+		myPageMapper.deleteMbdetail(mem_num);
+		myPageMapper.deleteMoviebooking(mem_num);
+	}
+
 	
 
 	

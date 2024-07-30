@@ -83,4 +83,9 @@ public interface MyPageService {
 	public Integer selectPayCouponCnt(Long mem_num);
 	public MyPageVO selectCouponPrice(Long mem_coupon_use);
 	
+	public void deleteOrders(Long mem_num);
+	public void deleteMoviebooking(Long mem_num);
+	public void updateMem(Long mem_num);
+	
+	
 }
