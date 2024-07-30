@@ -19,7 +19,7 @@ String currentTime = sdfTime.format(new Date());
 
 	<div class="empty_position">내가 본 영화가 존재하지 않습니다</div>
 
-	<c:if test="${resCnt > 0}">
+	<c:if test="${wwCnt > 0}">
 		<c:forEach var="wat" items="${list}">
 			<div class="wa_box_rep">
 				<div class="wa_box" data-mt-date="${wat.mt_date}"

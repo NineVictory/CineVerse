@@ -696,7 +696,7 @@ FROM (
         md_type,
         booking_count
     FROM RankedBookings
-    WHERE rn = 1 AND mt_date > SYSDATE
+    WHERE rn = 1 AND mt_date >= TRUNC(SYSDATE)
 ) FilteredRankedBookings
 ]]>
 	</select>
