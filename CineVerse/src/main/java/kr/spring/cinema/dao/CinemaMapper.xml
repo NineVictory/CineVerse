@@ -345,8 +345,12 @@
 		mt_start,
 		mt_end,
 		m_code,m_name,
-		th_num
+		th_num,
+		c_num,
+		c_branch
 		FROM movie_time JOIN movie USING (m_code)
+		JOIN theater USING (th_num)
+		JOIN cinema USING (c_num)
 		<include refid="movieTimeSearch"></include>
 		) a
 		)
