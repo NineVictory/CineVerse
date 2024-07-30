@@ -70,7 +70,7 @@ $(function() {
 						output += '</ul>';
 						output += '</div>';
 					}else{//댓글신고버튼
-						if(param.user_num && item.rr_report < 5){
+						if(param.user_num != null && item.cc_report < 5){
 						output += '<span class="comment-report" data-num="' +item.cc_num+ '" data-memnum="' +param.user_num+ '" data-content="' +item.cc_content.replace(/\r\n/g, '<br>')+ '">신고</span>'
 						}
 					}
