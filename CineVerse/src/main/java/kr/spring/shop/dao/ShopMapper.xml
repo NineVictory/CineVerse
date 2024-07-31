@@ -198,7 +198,7 @@
 	    FROM order_detail od
 	    JOIN product p ON od.p_num = p.p_num
 	) sub ON o.order_num = sub.order_num AND sub.rn = 1
-	WHERE o.mem_num = #{mem_num}
+	WHERE o.mem_num = #{mem_num} order by order_num DESC
 
   </select>
 
