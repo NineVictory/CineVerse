@@ -966,7 +966,7 @@ FROM (
 		SELECT cc.cc_num
 		FROM community_comment cc
 		JOIN community_board cb ON cc.cb_num = cb.cb_num
-		WHERE cb.mem_num = #{mem_num}
+		WHERE cc.mem_num = #{mem_num}
 		)
 	</delete>
 
