@@ -48,27 +48,5 @@
 				</div>
 			</div>
 		</div>
-		<div class="cloud_rank">
-			<div class="cloud_rank_tit">
-				크라우드 펀딩 신청 영화 수 순위
-			</div>
-			<div class="row1">
-				<div class="cloud_main">
-					<img src="https://i.namu.wiki/i/wyRZMZAvjXvMm8j-Q83iVbURBXumdu2hoSed8Yl2VhSnosWmD2a7N44G7M2PLmVce3bFVkrT7ZBJNsEUOu0XwJurKztV4qrDJND2zhe0tKDkwBwIe-IU4DCTwniLYT0LDOIWDh5yCAGM4wAdZG_j0Q.webp" width="200" alt="크라우드 통계">
-					<span class="cloud_mranks">1위</span>
-					<span class="cloud_mtitle">인사이드 아웃 1</span>
-				</div>
-				<div class="cloud_main">
-					<img src="https://i.namu.wiki/i/noeVPcKtuNzBjpetkb5pAOMephmt7G4X832b6FnmnUWHkWlL8G4rNvE1bwMAwoYY2vBgMinX66JWFHmol7XGApmgP1PY3idzYza5T4UFxrmKbbMe4di5n84gNxHpKmsOqUPf7588its6CnOjI2Lg-Q.webp" width="200" alt="크라우드 통계">
-					<span class="cloud_mranks">2위</span>
-					<span class="cloud_mtitle">악마는 프라다를 입는다</span>
-				</div>
-				<div class="cloud_main">
-					<img src="https://i.namu.wiki/i/O9ta3JJFwS8zHKwmDDAF4YscTBK3uv_3h_EvN2zRaF98wsTm252OmFJEQrVqXjofU5lYIQb5khtPDMvzgXgpfoNVhpE7QtCutLziN_EA2vaHMmzGMgyTMy-yliUKYdyoRZOTVcGIz7S2pY8Bobmi5g.webp" width="200" alt="크라우드 통계">
-					<span class="cloud_mranks">3위</span>
-					<span class="cloud_mtitle">이상한 나라의 앨리스</span>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
