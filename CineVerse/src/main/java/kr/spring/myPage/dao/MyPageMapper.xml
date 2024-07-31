@@ -347,6 +347,7 @@
 		FROM event_participation ep JOIN event e ON
 		ep.event_num=e.event_num
 		WHERE mem_num=#{mem_num}
+		<include refid="eventType"></include>
 	</select>
 
 	<update id="updateMember_detail" parameterType="myPageVO">
