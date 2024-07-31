@@ -36,7 +36,7 @@
 							<a href="eventDetail?event_num=${event.event_num}" class="event-img">
 								<img src="${pageContext.request.contextPath}/upload/${event.event_filename}" alt="이벤트 대표 사진" >
 								<span class="event-title flexbox-p">
-									<span style="font-size: 16px; font-weight: 600;">${event.event_name}</span>
+									<span class="event_main_name">${event.event_name}</span>
 									<span style="font-size: 13px">${event.event_start}~${event.event_end}<b class="event-dday">D-${event.t_rest}</b></span>
 								</span>
 							

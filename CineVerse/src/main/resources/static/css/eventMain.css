@@ -369,3 +369,14 @@ td.endEvent-image{
 	background-color:var(--main-color-strong);
 	color:#fff;
 }
+
+
+.event_main_name{
+	    width: 260px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 600;
+}
