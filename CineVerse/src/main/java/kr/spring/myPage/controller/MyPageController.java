@@ -964,8 +964,10 @@ public class MyPageController {
 		mypageService.deleteOrders(user.getMem_num());
 		log.debug("<< << 벌스샵 탈퇴 진행 완료 >> >>");
 
-		mypageService.deleteCommunityB(user.getMem_num());
-		log.debug("<< << 커뮤니티 관련 진행 완료 >> >>");
+		/*
+		 * mypageService.deleteCommunityB(user.getMem_num());
+		 * log.debug("<< << 커뮤니티 관련 진행 완료 >> >>");
+		 */
 
 		mypageService.deleteMoviebooking(user.getMem_num());
 		log.debug("<< << 영화 예매 삭제 진행 완료 >> >>");

@@ -333,8 +333,8 @@ public class MyPageServiceImpl implements MyPageService{
     @Transactional
     @Override
     public void deleteCommunityB(Long mem_num) {
+    	myPageMapper.deleteCommunityReportA(mem_num);
         myPageMapper.deleteCommunityReport(mem_num);
-        myPageMapper.deleteCommunityReportA(mem_num);
         myPageMapper.deleteCommentReport(mem_num);
         myPageMapper.deleteCommentReportA(mem_num);
         myPageMapper.deleteResponseReport(mem_num);
