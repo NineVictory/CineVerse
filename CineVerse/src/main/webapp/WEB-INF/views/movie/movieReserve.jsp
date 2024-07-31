@@ -397,6 +397,7 @@ $(document).ready(function() {
                 }
             });
         }
+        
     }
 
     // 영화 시간 데이터 담기 클릭 이벤트 핸들러 추가
@@ -891,7 +892,7 @@ $(document).ready(function() {
         </div>
 
         <div class="seat-select-button">
-            <form action="movieSeat" method="get">
+            <form action="movieSeat" method="get" id="movieSeat">
                 <input type="hidden" name="mt_num" id="mt_num">
                 <c:if test="${!empty user}">
                 	<div class="moveSeatButton" id="moveSeatDiv">
@@ -902,7 +903,7 @@ $(document).ready(function() {
                 <c:if test="${empty user}">
                 <div class="moveSeatButton" onclick="alertAndRedirect()">
                 <img src="${pageContext.request.contextPath}/images/wright-arrow.png" width="30">
-                <input type="button" class="button_styles" value="좌석 선택">
+                <input type="submit" class="button_styles" value="좌석 선택">
                 </div>
 		</c:if>
             </form>    
