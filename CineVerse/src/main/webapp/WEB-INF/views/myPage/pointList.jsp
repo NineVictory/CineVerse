@@ -29,6 +29,7 @@
 					<c:if test="${point.ph_payment == '구독권 환불' }">멤버십 구독취소</c:if>
 					<c:if test="${point.ph_payment == '예매환불' }">예매 취소</c:if>
 					<c:if test="${point.ph_payment == '영화 예약' }">영화 예매</c:if>
+					<c:if test="${point.ph_payment == '상품환불' }">상품 환불</c:if>
 				</div>
 				<div class="my_point_now">
 				<c:choose>
