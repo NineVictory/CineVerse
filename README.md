@@ -60,7 +60,7 @@
 # ERD
 >
 > <div>
->    
+>    https://github.com/NineVictory/CineVerse/blob/main/CineVerse%20(1).png
 > </div>
 
 # 트러블슈팅
