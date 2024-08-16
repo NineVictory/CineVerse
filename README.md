@@ -1,4 +1,5 @@
-https://github.com/NineVictory/CineVerse/blob/main/logo.png
+
+![image](https://github.com/NineVictory/CineVerse/blob/main/logo.png)
 # 프로젝트 이름
 > ***Cineverse***
 > 
@@ -60,7 +61,8 @@ https://github.com/NineVictory/CineVerse/blob/main/logo.png
 # ERD
 >
 > <div>
->    https://github.com/NineVictory/CineVerse/blob/main/CineVerse%20(1).png
+>   
+ ![image](https://github.com/NineVictory/CineVerse/blob/main/CineVerse%20(1).png)
 > </div>
 
 # 트러블슈팅
