@@ -1,4 +1,4 @@
-
+https://github.com/NineVictory/CineVerse/blob/main/logo.png
 # 프로젝트 이름
 > ***Cineverse***
 > 
